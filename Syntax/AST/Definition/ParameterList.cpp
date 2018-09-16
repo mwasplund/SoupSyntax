@@ -3,12 +3,12 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Soup.StaticAnalysis.AST
+namespace Soup::Syntax
 {
     /// <summary>
     /// The function definition
     /// </summary>
-    public sealed class ParameterList : Node
+    export class ParameterList : Node
     {
         /// <summary>
         /// Gets or sets the list of parameters

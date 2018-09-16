@@ -1,72 +1,37 @@
 ﻿#pragma once
+#include "Node.h"
 
-namespace Soup.StaticAnalysis.AST
+namespace Soup::Syntax
 {
     /// <summary>
     /// The initializer declarator list node
     /// </summary>
-    public sealed class InitializerDeclaratorList : Node
+    export class InitializerDeclaratorList : Node
     {
+    public:
         /// <summary>
         /// Gets or sets the list of items
         /// </summary>
-        public IList<InitializerDeclarator> Items { get; set; }
+        const std::vector<InitializerDeclarator>& GetItems() const;
 
         /// <summary>
         /// Initialize
         /// </summary>
-        public InitializerDeclaratorList() :
-            this(new List<InitializerDeclarator>())
-        {
-        }
+        InitializerDeclaratorList();
 
         /// <summary>
         /// Initialize
         /// </summary>
-        public InitializerDeclaratorList(IList<InitializerDeclarator> items)
-        {
-            Items = items;
-        }
+        InitializerDeclaratorList(std::vector<InitializerDeclarator>&& items);
 
         /// <summary>
         /// Equality operator
         /// </summary>
-        public static bool operator ==(InitializerDeclaratorList lhs, InitializerDeclaratorList rhs)
-        {
-            if (object.ReferenceEquals(lhs, null))
-                return object.ReferenceEquals(rhs, null);
-            else
-                return lhs.Equals(rhs);
-        }
+        bool operator ==(const InitializerDeclaratorList& rhs) const;
 
         /// <summary>
         /// Inequality operator
         /// </summary>
-        public static bool operator !=(InitializerDeclaratorList lhs, InitializerDeclaratorList rhs)
-        {
-            return !(lhs == rhs);
-        }
-
-        /// <summary>
-        /// Equals
-        /// </summary>
-        public override bool Equals(object obj)
-        {
-            var other = obj as InitializerDeclaratorList;
-            if (object.ReferenceEquals(other, null))
-            {
-                return false;
-            }
-
-            return Items.SequenceEqual(other.Items);
-        }
-
-        /// <summary>
-        /// Get hash code
-        /// </summary>
-        public override int GetHashCode()
-        {
-            return Items.GetHashCode();
-        }
+        bool operator !=(const InitializerDeclaratorList& rhs) const;
     }
 }

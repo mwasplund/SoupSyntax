@@ -1,20 +1,22 @@
 ﻿#pragma once
+#include "ExpressionNode.h"
 
-namespace Soup.StaticAnalysis.AST
+namespace Soup::Syntax
 {
     /// <summary>
     /// Arithmetic Expression
     /// </summary>
-    public abstract class ArithmeticExpression : ExpressionNode
+    export class ArithmeticExpression : ExpressionNode
     {
+    public:
         /// <summary>
         /// The left expression
         /// </summary>
-        public ExpressionNode Left { get; set; }
+        const ExpressionNode& GetLeft() const;
 
         /// <summary>
         /// The right expression
         /// </summary>
-        public ExpressionNode Right { get; set; }
+        const ExpressionNode& GetRight() const;
     }
 }

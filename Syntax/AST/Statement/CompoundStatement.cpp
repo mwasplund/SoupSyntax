@@ -4,12 +4,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Soup.StaticAnalysis.AST
+namespace Soup::Syntax
 {
     /// <summary>
     /// Compound statement node
     /// </summary>
-    public sealed class CompoundStatement : Node
+    export class CompoundStatement : Node
     {
         /// <summary>
         /// Gets or sets the list of statements

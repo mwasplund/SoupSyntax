@@ -1,11 +1,11 @@
 ﻿
 
-namespace Soup.StaticAnalysis.AST
+namespace Soup::Syntax
 {
     /// <summary>
     /// The base expression node
     /// </summary>
-    public abstract class ExpressionNode : Node
+    export class ExpressionNode : Node
     {
     }
 }

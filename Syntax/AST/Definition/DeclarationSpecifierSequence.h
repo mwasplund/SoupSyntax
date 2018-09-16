@@ -1,72 +1,37 @@
 ﻿#pragma once
+#include "Node.h"
 
-namespace Soup.StaticAnalysis.AST
+namespace Soup::Syntax
 {
     /// <summary>
     /// Declaration specifier sequence
     /// </summary>
-    public sealed class DeclarationSpecifierSequence : Node
+    export class DeclarationSpecifierSequence : Node
     {
+    public:
         /// <summary>
         /// Gets or sets the list of declaration specifiers
         /// </summary>
-        public IList<Node> Specifiers { get; set; }
+        const std::vector<Node>& GetSpecifiers() const;
 
         /// <summary>
         /// Initialize
         /// </summary>
-        public DeclarationSpecifierSequence() :
-            this(new List<Node>())
-        {
-        }
+        DeclarationSpecifierSequence();
 
         /// <summary>
         /// Initialize
         /// </summary>
-        public DeclarationSpecifierSequence(IList<Node> specifiers)
-        {
-            Specifiers = specifiers;
-        }
+        DeclarationSpecifierSequence(std::vector<Node>&& specifiers);
 
         /// <summary>
         /// Equality operator
         /// </summary>
-        public static bool operator ==(DeclarationSpecifierSequence lhs, DeclarationSpecifierSequence rhs)
-        {
-            if (object.ReferenceEquals(lhs, null))
-                return object.ReferenceEquals(rhs, null);
-            else
-                return lhs.Equals(rhs);
-        }
+        bool operator ==(const DeclarationSpecifierSequence& rhs) const;
 
         /// <summary>
         /// Inequality operator
         /// </summary>
-        public static bool operator !=(DeclarationSpecifierSequence lhs, DeclarationSpecifierSequence rhs)
-        {
-            return !(lhs == rhs);
-        }
-
-        /// <summary>
-        /// Equals
-        /// </summary>
-        public override bool Equals(object obj)
-        {
-            var other = obj as DeclarationSpecifierSequence;
-            if (object.ReferenceEquals(other, null))
-            {
-                return false;
-            }
-
-            return Specifiers.SequenceEqual(other.Specifiers);
-        }
-
-        /// <summary>
-        /// Get hash code
-        /// </summary>
-        public override int GetHashCode()
-        {
-            return Specifiers.GetHashCode();
-        }
+        bool operator !=(const DeclarationSpecifierSequence& rhs) const;
     }
 }

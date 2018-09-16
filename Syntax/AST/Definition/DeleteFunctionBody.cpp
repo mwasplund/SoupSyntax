@@ -1,11 +1,11 @@
 ﻿
 
-namespace Soup.StaticAnalysis.AST
+namespace Soup::Syntax
 {
     /// <summary>
     /// The delete function body
     /// </summary>
-    public sealed class DeleteFunctionBody : Node
+    export class DeleteFunctionBody : Node
     {
         /// <summary>
         /// Equality operator

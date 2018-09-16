@@ -1,11 +1,11 @@
 ﻿
 
-namespace Soup.StaticAnalysis.AST
+namespace Soup::Syntax
 {
     /// <summary>
     /// The initializer declarator node
     /// </summary>
-    public sealed class InitializerDeclarator : Node
+    export class InitializerDeclarator : Node
     {
         /// <summary>
         /// Gets or sets the declarator

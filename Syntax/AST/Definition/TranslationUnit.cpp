@@ -1,11 +1,11 @@
 ﻿
 
-namespace Soup.StaticAnalysis.AST
+namespace Soup::Syntax
 {
     /// <summary>
     /// The root translation unit node
     /// </summary>
-    public sealed class TranslationUnit : Node
+    export class TranslationUnit : Node
     {
         /// <summary>
         /// Equality operator

@@ -1,11 +1,11 @@
 ﻿
 
-namespace Soup.StaticAnalysis.AST
+namespace Soup::Syntax
 {
     /// <summary>
     /// The try function body
     /// </summary>
-    public sealed class TryFunctionBody : Node
+    export class TryFunctionBody : Node
     {
         /// <summary>
         /// Gets or sets the statements

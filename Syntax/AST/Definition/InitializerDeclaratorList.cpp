@@ -3,12 +3,12 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Soup.StaticAnalysis.AST
+namespace Soup::Syntax
 {
     /// <summary>
     /// The initializer declarator list node
     /// </summary>
-    public sealed class InitializerDeclaratorList : Node
+    export class InitializerDeclaratorList : Node
     {
         /// <summary>
         /// Gets or sets the list of items

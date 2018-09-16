@@ -1,77 +1,42 @@
 ﻿#pragma once
+#include "Declaration.h"
 
-namespace Soup.StaticAnalysis.AST
+namespace Soup::Syntax
 {
     /// <summary>
     /// The function definition
     /// </summary>
-    public sealed class FunctionDefinition : Declaration
+    export class FunctionDefinition : Declaration
     {
+    public:
         /// <summary>
         /// Gets or sets the return type
         /// </summary>
-        public DeclarationSpecifierSequence ReturnType { get; set; }
+        const DeclarationSpecifierSequence& GetReturnType() const;
 
         /// <summary>
         /// Gets or sets the identifier
         /// </summary>
-        public Identifier Identifier { get; set; }
+        const Identifier& GetIdentifier() const;
 
         /// <summary>
         /// Gets or sets the parameter list
         /// </summary>
-        public ParameterList ParameterList { get; set; }
+        const ParameterList& ParameterList() const;
 
         /// <summary>
         /// Gets or sets the body
         /// </summary>
-        public Node Body { get; set; }
+        const Node& GetBody() const;
 
         /// <summary>
         /// Equality operator
         /// </summary>
-        public static bool operator ==(FunctionDefinition lhs, FunctionDefinition rhs)
-        {
-            if (object.ReferenceEquals(lhs, null))
-                return object.ReferenceEquals(rhs, null);
-            else
-                return lhs.Equals(rhs);
-        }
+        bool operator ==(const FunctionDefinition& rhs) const;
 
         /// <summary>
         /// Inequality operator
         /// </summary>
-        public static bool operator !=(FunctionDefinition lhs, FunctionDefinition rhs)
-        {
-            return !(lhs == rhs);
-        }
-
-        /// <summary>
-        /// Equals
-        /// </summary>
-        public override bool Equals(object obj)
-        {
-            var other = obj as FunctionDefinition;
-            if (object.ReferenceEquals(other, null))
-            {
-                return false;
-            }
-
-            return ReturnType == other.ReturnType &&
-                Identifier ==  other.Identifier &&
-                ParameterList ==  other.ParameterList &&
-                Body == other.Body;
-        }
-
-        /// <summary>
-        /// Get hash code
-        /// </summary>
-        public override int GetHashCode()
-        {
-            return ReturnType.GetHashCode() ^
-                Identifier.GetHashCode() ^
-                ParameterList.GetHashCode() ^
-                Body.GetHashCode();
-        }
+        bool operator !=(const FunctionDefinition& rhs) const;
     }
 }

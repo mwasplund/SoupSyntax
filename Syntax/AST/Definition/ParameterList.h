@@ -1,56 +1,27 @@
 ﻿#pragma once
+#include "Node.h"
 
-namespace Soup.StaticAnalysis.AST
+namespace Soup::Syntax
 {
     /// <summary>
     /// The function definition
     /// </summary>
-    public sealed class ParameterList : Node
+    export class ParameterList : Node
     {
+    public:
         /// <summary>
         /// Gets or sets the list of parameters
         /// </summary>
-        public IList<Node> Parameters { get; set; }
+        const std::vector<Node>& GetParameters() const;
 
         /// <summary>
         /// Equality operator
         /// </summary>
-        public static bool operator ==(ParameterList lhs, ParameterList rhs)
-        {
-            if (object.ReferenceEquals(lhs, null))
-                return object.ReferenceEquals(rhs, null);
-            else
-                return lhs.Equals(rhs);
-        }
+        bool operator ==(const ParameterList& rhs) const;
 
         /// <summary>
         /// Inequality operator
         /// </summary>
-        public static bool operator !=(ParameterList lhs, ParameterList rhs)
-        {
-            return !(lhs == rhs);
-        }
-
-        /// <summary>
-        /// Equals
-        /// </summary>
-        public override bool Equals(object obj)
-        {
-            var other = obj as ParameterList;
-            if (object.ReferenceEquals(other, null))
-            {
-                return false;
-            }
-
-            return Parameters.SequenceEqual(other.Parameters);
-        }
-
-        /// <summary>
-        /// Get hash code
-        /// </summary>
-        public override int GetHashCode()
-        {
-            return Parameters.GetHashCode();
-        }
+        bool operator !=(const ParameterList& rhs) const;
     }
 }

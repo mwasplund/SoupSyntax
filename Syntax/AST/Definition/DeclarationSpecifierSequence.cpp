@@ -3,12 +3,12 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Soup.StaticAnalysis.AST
+namespace Soup::Syntax
 {
     /// <summary>
     /// Declaration specifier sequence
     /// </summary>
-    public sealed class DeclarationSpecifierSequence : Node
+    export class DeclarationSpecifierSequence : Node
     {
         /// <summary>
         /// Gets or sets the list of declaration specifiers

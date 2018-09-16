@@ -1,11 +1,12 @@
 ﻿#pragma once
+#include "Node.h"
 
-namespace Soup.StaticAnalysis.AST
+namespace Soup::Syntax
 {
     /// <summary>
     /// Declaration
     /// </summary>
-    public abstract class Declaration : Node
+    export class Declaration : Node
     {
     }
 }

@@ -1,11 +1,11 @@
 ﻿
 
-namespace Soup.StaticAnalysis.AST
+namespace Soup::Syntax
 {
     /// <summary>
     /// Return statement node
     /// </summary>
-    public sealed class ReturnStatement : Statement
+    export class ReturnStatement : Statement
     {
         /// <summary>
         /// Equality operator

@@ -1,11 +1,11 @@
 ﻿
 
-namespace Soup.StaticAnalysis.AST
+namespace Soup::Syntax
 {
     /// <summary>
     /// The default function body
     /// </summary>
-    public sealed class DefaultFunctionBody : Node
+    export class DefaultFunctionBody : Node
     {
         /// <summary>
         /// Equality operator

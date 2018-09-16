@@ -1,11 +1,11 @@
 ﻿
 
-namespace Soup.StaticAnalysis.AST
+namespace Soup::Syntax
 {
     /// <summary>
     /// The simple declaration
     /// </summary>
-    public sealed class SimpleDefinition : Declaration
+    export class SimpleDefinition : Declaration
     {
         /// <summary>
         /// Gets or sets the specifiers

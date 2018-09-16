@@ -1,11 +1,11 @@
 ﻿
 
-namespace Soup.StaticAnalysis.AST
+namespace Soup::Syntax
 {
     /// <summary>
     /// The regular function body
     /// </summary>
-    public sealed class RegularFunctionBody : Node
+    export class RegularFunctionBody : Node
     {
         /// <summary>
         /// Gets or sets the statements

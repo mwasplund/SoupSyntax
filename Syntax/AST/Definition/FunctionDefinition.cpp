@@ -1,11 +1,11 @@
 ﻿
 
-namespace Soup.StaticAnalysis.AST
+namespace Soup::Syntax
 {
     /// <summary>
     /// The function definition
     /// </summary>
-    public sealed class FunctionDefinition : Declaration
+    export class FunctionDefinition : Declaration
     {
         /// <summary>
         /// Gets or sets the return type

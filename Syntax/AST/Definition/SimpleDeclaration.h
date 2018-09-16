@@ -1,63 +1,32 @@
 ﻿#pragma once
+#include "Declaration.h"
 
-namespace Soup.StaticAnalysis.AST
+namespace Soup::Syntax
 {
     /// <summary>
     /// The simple declaration
     /// </summary>
-    public sealed class SimpleDefinition : Declaration
+    export class SimpleDefinition : Declaration
     {
+    public:
         /// <summary>
         /// Gets or sets the specifiers
         /// </summary>
-        public DeclarationSpecifierSequence DeclarationSpecifierSequence { get; set; }
+        const DeclarationSpecifierSequence& GetDeclarationSpecifierSequence() const;
 
         /// <summary>
         /// Gets or sets the optional initializer
         /// </summary>
-        public InitializerDeclaratorList InitializerDeclaratorList { get; set; }
+        const InitializerDeclaratorList& GetInitializerDeclaratorList() const;
 
         /// <summary>
         /// Equality operator
         /// </summary>
-        public static bool operator ==(SimpleDefinition lhs, SimpleDefinition rhs)
-        {
-            if (object.ReferenceEquals(lhs, null))
-                return object.ReferenceEquals(rhs, null);
-            else
-                return lhs.Equals(rhs);
-        }
+        bool operator ==(const SimpleDefinition& rhs) const;
 
         /// <summary>
         /// Inequality operator
         /// </summary>
-        public static bool operator !=(SimpleDefinition lhs, SimpleDefinition rhs)
-        {
-            return !(lhs == rhs);
-        }
-
-        /// <summary>
-        /// Equals
-        /// </summary>
-        public override bool Equals(object obj)
-        {
-            var other = obj as SimpleDefinition;
-            if (object.ReferenceEquals(other, null))
-            {
-                return false;
-            }
-
-            return DeclarationSpecifierSequence == other.DeclarationSpecifierSequence &&
-                InitializerDeclaratorList == other.InitializerDeclaratorList;
-        }
-
-        /// <summary>
-        /// Get hash code
-        /// </summary>
-        public override int GetHashCode()
-        {
-            return DeclarationSpecifierSequence.GetHashCode() ^
-                InitializerDeclaratorList.GetHashCode();
-        }
+        bool operator !=(const SimpleDefinition& rhs) const;
     }
 }

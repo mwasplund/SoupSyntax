@@ -1,51 +1,22 @@
 ﻿#pragma once
+#include "Node.h"
 
-namespace Soup.StaticAnalysis.AST
+namespace Soup::Syntax
 {
     /// <summary>
     /// The default function body
     /// </summary>
-    public sealed class DefaultFunctionBody : Node
+    export class DefaultFunctionBody : Node
     {
+    public:
         /// <summary>
         /// Equality operator
         /// </summary>
-        public static bool operator ==(DefaultFunctionBody lhs, DefaultFunctionBody rhs)
-        {
-            if (object.ReferenceEquals(lhs, null))
-                return object.ReferenceEquals(rhs, null);
-            else
-                return lhs.Equals(rhs);
-        }
+        bool operator ==(const DefaultFunctionBody& rhs) const;
 
         /// <summary>
         /// Inequality operator
         /// </summary>
-        public static bool operator !=(DefaultFunctionBody lhs, DefaultFunctionBody rhs)
-        {
-            return !(lhs == rhs);
-        }
-
-        /// <summary>
-        /// Equals
-        /// </summary>
-        public override bool Equals(object obj)
-        {
-            var other = obj as DefaultFunctionBody;
-            if (object.ReferenceEquals(other, null))
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        /// <summary>
-        /// Get hash code
-        /// </summary>
-        public override int GetHashCode()
-        {
-            return 0;
-        }
+        bool operator !=(const DefaultFunctionBody& rhs) const;
     }
 }

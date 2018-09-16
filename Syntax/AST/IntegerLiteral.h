@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-namespace Soup.StaticAnalysis.AST
+namespace Soup::Syntax
 {
     /// <summary>
     /// An integer value

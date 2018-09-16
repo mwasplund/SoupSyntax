@@ -1,11 +1,11 @@
 ﻿
 
-namespace Soup.StaticAnalysis.AST
+namespace Soup::Syntax
 {
     /// <summary>
     /// Arithmetic Expression
     /// </summary>
-    public abstract class ArithmeticExpression : ExpressionNode
+    export class ArithmeticExpression : ExpressionNode
     {
         /// <summary>
         /// The left expression

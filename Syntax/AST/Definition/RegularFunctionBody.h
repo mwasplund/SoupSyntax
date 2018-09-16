@@ -1,56 +1,27 @@
 ﻿#pragma once
+#include "Node.h"
 
-namespace Soup.StaticAnalysis.AST
+namespace Soup::Syntax
 {
     /// <summary>
     /// The regular function body
     /// </summary>
-    public sealed class RegularFunctionBody : Node
+    export class RegularFunctionBody : Node
     {
+    public:
         /// <summary>
         /// Gets or sets the statements
         /// </summary>
-        public CompoundStatement Statements { get; set; }
+        const CompoundStatement& GetStatements() const;
 
         /// <summary>
         /// Equality operator
         /// </summary>
-        public static bool operator ==(RegularFunctionBody lhs, RegularFunctionBody rhs)
-        {
-            if (object.ReferenceEquals(lhs, null))
-                return object.ReferenceEquals(rhs, null);
-            else
-                return lhs.Equals(rhs);
-        }
+        bool operator ==(const RegularFunctionBody& rhs) const;
 
         /// <summary>
         /// Inequality operator
         /// </summary>
-        public static bool operator !=(RegularFunctionBody lhs, RegularFunctionBody rhs)
-        {
-            return !(lhs == rhs);
-        }
-
-        /// <summary>
-        /// Equals
-        /// </summary>
-        public override bool Equals(object obj)
-        {
-            var other = obj as RegularFunctionBody;
-            if (object.ReferenceEquals(other, null))
-            {
-                return false;
-            }
-
-            return Statements == other.Statements;
-        }
-
-        /// <summary>
-        /// Get hash code
-        /// </summary>
-        public override int GetHashCode()
-        {
-            return Statements.GetHashCode();
-        }
+        bool operator !=(const RegularFunctionBody& rhs) const;
     }
 }

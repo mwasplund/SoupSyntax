@@ -1,56 +1,27 @@
 ﻿#pragma once
+#include "Node.h"
 
-namespace Soup.StaticAnalysis.AST
+namespace Soup::Syntax
 {
     /// <summary>
     /// The try function body
     /// </summary>
-    public sealed class TryFunctionBody : Node
+    export class TryFunctionBody : Node
     {
+    public:
         /// <summary>
         /// Gets or sets the statements
         /// </summary>
-        public CompoundStatement Statements { get; set; }
+        const CompoundStatement& GetStatements() const;
 
         /// <summary>
         /// Equality operator
         /// </summary>
-        public static bool operator ==(TryFunctionBody lhs, TryFunctionBody rhs)
-        {
-            if (object.ReferenceEquals(lhs, null))
-                return object.ReferenceEquals(rhs, null);
-            else
-                return lhs.Equals(rhs);
-        }
+        bool operator ==(const TryFunctionBody& rhs) const;
 
         /// <summary>
         /// Inequality operator
         /// </summary>
-        public static bool operator !=(TryFunctionBody lhs, TryFunctionBody rhs)
-        {
-            return !(lhs == rhs);
-        }
-
-        /// <summary>
-        /// Equals
-        /// </summary>
-        public override bool Equals(object obj)
-        {
-            var other = obj as TryFunctionBody;
-            if (object.ReferenceEquals(other, null))
-            {
-                return false;
-            }
-
-            return Statements.Equals(other.Statements);
-        }
-
-        /// <summary>
-        /// Get hash code
-        /// </summary>
-        public override int GetHashCode()
-        {
-            return Statements.GetHashCode();
-        }
+        bool operator !=(const TryFunctionBody& rhs) const;
     }
 }

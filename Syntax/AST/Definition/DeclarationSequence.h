@@ -1,72 +1,37 @@
 ﻿#pragma once
+#include "Node.h"
 
-namespace Soup.StaticAnalysis.AST
+namespace Soup::Syntax
 {
     /// <summary>
     /// Declaration sequence
     /// </summary>
-    public sealed class DeclarationSequence : Node
+    export class DeclarationSequence : Node
     {
+    public:
         /// <summary>
         /// Gets or sets the list of declarations
         /// </summary>
-        public IList<Declaration> Declarations { get; set; }
+        const std::vector<Declaration>& GetDeclarations() const;
 
         /// <summary>
         /// Initialize
         /// </summary>
-        public DeclarationSequence() :
-            this(new List<Declaration>())
-        {
-        }
+        DeclarationSequence();
 
         /// <summary>
         /// Initialize
         /// </summary>
-        public DeclarationSequence(IList<Declaration> declarations)
-        {
-            Declarations = declarations;
-        }
+        DeclarationSequence(std::vector<Declaration>&& declarations);
 
         /// <summary>
         /// Equality operator
         /// </summary>
-        public static bool operator ==(DeclarationSequence lhs, DeclarationSequence rhs)
-        {
-            if (object.ReferenceEquals(lhs, null))
-                return object.ReferenceEquals(rhs, null);
-            else
-                return lhs.Equals(rhs);
-        }
+        bool operator ==(const DeclarationSequence& rhs) const;
 
         /// <summary>
         /// Inequality operator
         /// </summary>
-        public static bool operator !=(DeclarationSequence lhs, DeclarationSequence rhs)
-        {
-            return !(lhs == rhs);
-        }
-
-        /// <summary>
-        /// Equals
-        /// </summary>
-        public override bool Equals(object obj)
-        {
-            var other = obj as DeclarationSequence;
-            if (object.ReferenceEquals(other, null))
-            {
-                return false;
-            }
-
-            return Declarations.SequenceEqual(other.Declarations);
-        }
-
-        /// <summary>
-        /// Get hash code
-        /// </summary>
-        public override int GetHashCode()
-        {
-            return Declarations.GetHashCode();
-        }
+        bool operator !=(const DeclarationSequence& rhs) const;
     }
 }
