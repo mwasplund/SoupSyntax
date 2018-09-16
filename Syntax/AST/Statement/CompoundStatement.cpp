@@ -9,7 +9,7 @@ namespace Soup::Syntax
     /// <summary>
     /// Compound statement node
     /// </summary>
-    export class CompoundStatement : Node
+    export class CompoundStatement : public Node
     {
         /// <summary>
         /// Gets or sets the list of statements

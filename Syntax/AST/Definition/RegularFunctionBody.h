@@ -1,12 +1,13 @@
 ﻿#pragma once
 #include "Node.h"
+#include "CompoundStatement.h"
 
 namespace Soup::Syntax
 {
     /// <summary>
     /// The regular function body
     /// </summary>
-    export class RegularFunctionBody : Node
+    export class RegularFunctionBody : public Node
     {
     public:
         /// <summary>
@@ -23,5 +24,5 @@ namespace Soup::Syntax
         /// Inequality operator
         /// </summary>
         bool operator !=(const RegularFunctionBody& rhs) const;
-    }
+    };
 }

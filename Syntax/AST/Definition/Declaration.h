@@ -6,7 +6,7 @@ namespace Soup::Syntax
     /// <summary>
     /// Declaration
     /// </summary>
-    export class Declaration : Node
+    export class Declaration : public Node
     {
-    }
+    };
 }

@@ -8,7 +8,7 @@ namespace Soup::Syntax
     /// <summary>
     /// Declaration specifier sequence
     /// </summary>
-    export class DeclarationSpecifierSequence : Node
+    export class DeclarationSpecifierSequence : public Node
     {
         /// <summary>
         /// Gets or sets the list of declaration specifiers

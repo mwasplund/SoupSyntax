@@ -5,7 +5,7 @@ namespace Soup::Syntax
     /// <summary>
     /// The default function body
     /// </summary>
-    export class DefaultFunctionBody : Node
+    export class DefaultFunctionBody : public Node
     {
         /// <summary>
         /// Equality operator

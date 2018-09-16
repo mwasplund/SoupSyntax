@@ -6,7 +6,7 @@ namespace Soup::Syntax
     /// <summary>
     /// The simple declaration
     /// </summary>
-    export class SimpleDefinition : Declaration
+    export class SimpleDefinition : public Declaration
     {
     public:
         /// <summary>
@@ -28,5 +28,5 @@ namespace Soup::Syntax
         /// Inequality operator
         /// </summary>
         bool operator !=(const SimpleDefinition& rhs) const;
-    }
+    };
 }

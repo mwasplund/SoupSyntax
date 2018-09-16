@@ -5,7 +5,7 @@ namespace Soup::Syntax
     /// <summary>
     /// The try function body
     /// </summary>
-    export class TryFunctionBody : Node
+    export class TryFunctionBody : public Node
     {
         /// <summary>
         /// Gets or sets the statements

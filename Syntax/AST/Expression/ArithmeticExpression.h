@@ -18,5 +18,5 @@ namespace Soup::Syntax
         /// The right expression
         /// </summary>
         const ExpressionNode& GetRight() const;
-    }
+    };
 }

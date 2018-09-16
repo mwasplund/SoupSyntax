@@ -5,7 +5,7 @@ namespace Soup::Syntax
     /// <summary>
     /// The delete function body
     /// </summary>
-    export class DeleteFunctionBody : Node
+    export class DeleteFunctionBody : public Node
     {
         /// <summary>
         /// Equality operator

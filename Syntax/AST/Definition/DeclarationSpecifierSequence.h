@@ -6,7 +6,7 @@ namespace Soup::Syntax
     /// <summary>
     /// Declaration specifier sequence
     /// </summary>
-    export class DeclarationSpecifierSequence : Node
+    export class DeclarationSpecifierSequence : public Node
     {
     public:
         /// <summary>
@@ -33,5 +33,5 @@ namespace Soup::Syntax
         /// Inequality operator
         /// </summary>
         bool operator !=(const DeclarationSpecifierSequence& rhs) const;
-    }
+    };
 }

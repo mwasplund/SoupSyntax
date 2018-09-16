@@ -6,7 +6,7 @@ namespace Soup::Syntax
     /// <summary>
     /// The initializer declarator list node
     /// </summary>
-    export class InitializerDeclaratorList : Node
+    export class InitializerDeclaratorList : public Node
     {
     public:
         /// <summary>
@@ -33,5 +33,5 @@ namespace Soup::Syntax
         /// Inequality operator
         /// </summary>
         bool operator !=(const InitializerDeclaratorList& rhs) const;
-    }
+    };
 }

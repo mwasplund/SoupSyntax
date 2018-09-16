@@ -1,12 +1,14 @@
 ﻿#pragma once
 #include "Node.h"
+#include "Statement.h"
+#include <vector>
 
 namespace Soup::Syntax
 {
     /// <summary>
     /// Compound statement node
     /// </summary>
-    export class CompoundStatement : Node
+    export class CompoundStatement : public Node
     {
     public:
         /// <summary>
@@ -23,5 +25,5 @@ namespace Soup::Syntax
         /// Inequality operator
         /// </summary>
         bool operator !=(const CompoundStatement& rhs) const;
-    }
+    };
 }

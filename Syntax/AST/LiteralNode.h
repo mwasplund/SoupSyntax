@@ -6,7 +6,7 @@ namespace Soup::Syntax
     /// <summary>
     /// A literal node
     /// </summary>
-    export class LiteralNode : ExpressionNode
+    export class LiteralNode : public ExpressionNode
     {
-    }
+    };
 }

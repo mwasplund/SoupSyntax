@@ -8,7 +8,7 @@ namespace Soup::Syntax
     /// <summary>
     /// The function definition
     /// </summary>
-    export class ParameterList : Node
+    export class ParameterList : public Node
     {
         /// <summary>
         /// Gets or sets the list of parameters

@@ -1,11 +1,12 @@
 ﻿#pragma once
+#include "LiteralNode.h"
 
 namespace Soup::Syntax
 {
     /// <summary>
     /// An integer value
     /// </summary>
-    class IntegerLiteral : LiteralNode
+    export class IntegerLiteral : public LiteralNode
     {
     public:
         /// <summary>
@@ -27,5 +28,5 @@ namespace Soup::Syntax
         /// Inequality operator
         /// </summary>
         bool operator !=(const IntegerLiteral& rhs) const;
-    }
+    };
 }

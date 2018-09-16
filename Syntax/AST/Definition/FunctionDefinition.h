@@ -1,12 +1,13 @@
 ﻿#pragma once
 #include "Declaration.h"
-
+#include "DeclarationSpecifierSequence.h"
+#include "ParameterList.h"
 namespace Soup::Syntax
 {
     /// <summary>
     /// The function definition
     /// </summary>
-    export class FunctionDefinition : Declaration
+    export class FunctionDefinition : public Declaration
     {
     public:
         /// <summary>
@@ -38,5 +39,5 @@ namespace Soup::Syntax
         /// Inequality operator
         /// </summary>
         bool operator !=(const FunctionDefinition& rhs) const;
-    }
+    };
 }

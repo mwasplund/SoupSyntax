@@ -82,7 +82,7 @@ namespace Soup::Syntax
     /// <summary>
     /// Primitive data type node
     /// </summary>
-    export class PrimitiveDataTypeNode : Node
+    export class PrimitiveDataTypeNode : public Node
     {
     public:
         /// <summary>
@@ -104,5 +104,5 @@ namespace Soup::Syntax
         /// Inequality operator
         /// </summary>
         bool operator !=(const PrimitiveDataTypeNode& rhs) const;
-    }
+    };
 }

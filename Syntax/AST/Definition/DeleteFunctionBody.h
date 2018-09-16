@@ -6,7 +6,7 @@ namespace Soup::Syntax
     /// <summary>
     /// The delete function body
     /// </summary>
-    export class DeleteFunctionBody : Node
+    export class DeleteFunctionBody : public Node
     {
     public:
         /// <summary>
@@ -18,5 +18,5 @@ namespace Soup::Syntax
         /// Inequality operator
         /// </summary>
         bool operator !=(const DeleteFunctionBody& rhs) const;
-    }
+    };
 }

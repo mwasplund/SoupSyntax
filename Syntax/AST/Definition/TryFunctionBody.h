@@ -6,7 +6,7 @@ namespace Soup::Syntax
     /// <summary>
     /// The try function body
     /// </summary>
-    export class TryFunctionBody : Node
+    export class TryFunctionBody : public Node
     {
     public:
         /// <summary>
@@ -23,5 +23,5 @@ namespace Soup::Syntax
         /// Inequality operator
         /// </summary>
         bool operator !=(const TryFunctionBody& rhs) const;
-    }
+    };
 }

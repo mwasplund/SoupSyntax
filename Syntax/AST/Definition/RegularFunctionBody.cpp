@@ -5,7 +5,7 @@ namespace Soup::Syntax
     /// <summary>
     /// The regular function body
     /// </summary>
-    export class RegularFunctionBody : Node
+    export class RegularFunctionBody : public Node
     {
         /// <summary>
         /// Gets or sets the statements

@@ -18,5 +18,5 @@ namespace Soup::Syntax
         /// Inequality operator
         /// </summary>
         bool operator !=(const ReturnStatement& rhs) const;
-    }
+    };
 }

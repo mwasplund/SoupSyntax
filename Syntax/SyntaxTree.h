@@ -6,5 +6,5 @@ namespace Soup::Sytax
   {
   public:
     static SyntaxTree Parse();
-  }
+  };
 }

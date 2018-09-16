@@ -1,12 +1,13 @@
 ﻿#pragma once
 #include "Node.h"
+#include <vector>
 
 namespace Soup::Syntax
 {
     /// <summary>
     /// Declaration sequence
     /// </summary>
-    export class DeclarationSequence : Node
+    export class DeclarationSequence : public Node
     {
     public:
         /// <summary>
@@ -33,5 +34,5 @@ namespace Soup::Syntax
         /// Inequality operator
         /// </summary>
         bool operator !=(const DeclarationSequence& rhs) const;
-    }
+    };
 }

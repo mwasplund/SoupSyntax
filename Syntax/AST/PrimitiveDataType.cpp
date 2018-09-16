@@ -83,7 +83,7 @@ namespace Soup::Syntax
     /// <summary>
     /// Primitive data type node
     /// </summary>
-    public class PrimitiveDataTypeNode : Node
+    public class PrimitiveDataTypeNode : public Node
     {
         /// <summary>
         /// Gets or sets the type

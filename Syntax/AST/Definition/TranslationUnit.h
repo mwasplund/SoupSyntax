@@ -6,7 +6,7 @@ namespace Soup::Syntax
     /// <summary>
     /// The root translation unit node
     /// </summary>
-    export class TranslationUnit : Node
+    export class TranslationUnit : public Node
     {
     public:
         /// <summary>
@@ -23,5 +23,5 @@ namespace Soup::Syntax
         /// Inequality operator
         /// </summary>
         bool operator !=(const TranslationUnit& rhs) const;
-    }
+    };
 }

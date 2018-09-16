@@ -5,7 +5,7 @@ namespace Soup::Syntax
     /// <summary>
     /// The root translation unit node
     /// </summary>
-    export class TranslationUnit : Node
+    export class TranslationUnit : public Node
     {
         /// <summary>
         /// Equality operator

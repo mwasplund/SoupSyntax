@@ -6,7 +6,7 @@ namespace Soup::Syntax
     /// <summary>
     /// An integer value
     /// </summary>
-    export class QualifiedName : Node
+    export class QualifiedName : public Node
     {
     public:
         /// <summary>
@@ -33,5 +33,5 @@ namespace Soup::Syntax
         /// Inequality operator
         /// </summary>
         bool operator !=(const QualifiedName& rhs) const;
-    }
+    };
 }

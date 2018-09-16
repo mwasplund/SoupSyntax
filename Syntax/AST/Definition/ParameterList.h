@@ -6,7 +6,7 @@ namespace Soup::Syntax
     /// <summary>
     /// The function definition
     /// </summary>
-    export class ParameterList : Node
+    export class ParameterList : public Node
     {
     public:
         /// <summary>
@@ -23,5 +23,5 @@ namespace Soup::Syntax
         /// Inequality operator
         /// </summary>
         bool operator !=(const ParameterList& rhs) const;
-    }
+    };
 }

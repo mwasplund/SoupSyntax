@@ -6,7 +6,7 @@ namespace Soup::Syntax
     /// <summary>
     /// The default function body
     /// </summary>
-    export class DefaultFunctionBody : Node
+    export class DefaultFunctionBody : public Node
     {
     public:
         /// <summary>
@@ -18,5 +18,5 @@ namespace Soup::Syntax
         /// Inequality operator
         /// </summary>
         bool operator !=(const DefaultFunctionBody& rhs) const;
-    }
+    };
 }

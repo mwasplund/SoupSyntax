@@ -9,5 +9,5 @@ namespace Soup::Syntax
     export class Node
     {
     public:
-    }
+    };
 }

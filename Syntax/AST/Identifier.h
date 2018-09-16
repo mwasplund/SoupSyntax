@@ -1,12 +1,13 @@
 ﻿#pragma once
 #include "Node.h"
+#include <string>
 
 namespace Soup::Syntax
 {
     /// <summary>
     /// An identifier
     /// </summary>
-    export class Identifier : Node
+    export class Identifier : public Node
     {
     private:
         std::string value;
@@ -31,5 +32,5 @@ namespace Soup::Syntax
         /// Inequality operator
         /// </summary>
         bool operator !=(const Identifier& rhs) const;
-    }
+    };
 }

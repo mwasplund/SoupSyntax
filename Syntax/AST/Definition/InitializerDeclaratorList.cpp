@@ -8,7 +8,7 @@ namespace Soup::Syntax
     /// <summary>
     /// The initializer declarator list node
     /// </summary>
-    export class InitializerDeclaratorList : Node
+    export class InitializerDeclaratorList : public Node
     {
         /// <summary>
         /// Gets or sets the list of items
