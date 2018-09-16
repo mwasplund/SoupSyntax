@@ -25,7 +25,7 @@ void ParserExceptionErrorListener::ReportAttemptingFullContext(
     throw new ParseCanceledException();
 }
 
-public override void ParserExceptionErrorListenerReportContextSensitivity(
+void ParserExceptionErrorListenerReportContextSensitivity(
     Parser recogni::zer, [NotNull] DFA dfa, int startIndex, int stopIndex, int prediction, [NotNull] SimulatorState acceptState)
 {
     Debug.WriteLine("Hmm");
@@ -41,5 +41,4 @@ void ParserExceptionErrorListener::SyntaxError(
     RecognitionException e)
 {
     throw new ParseCanceledException("line " + line + ":" + charPositionInLine + " " + msg);
-}
 }
