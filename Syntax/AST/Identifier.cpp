@@ -1,64 +1,27 @@
 ﻿
+module ModuleSyntax;
 
-namespace Soup.StaticAnalysis.AST
+using Soup::Syntax;
+
+Identifier(std::string value)
 {
-    /// <summary>
-    /// An identifier
-    /// </summary>
-    public sealed class Identifier : Node
-    {
-        /// <summary>
-        /// Initialize
-        /// </summary>
-        public Identifier(string value)
-        {
-            Value = value;
-        }
+    Value = std::move(value);
+}
 
-        /// <summary>
-        /// Gets or sets the value
-        /// </summary>
-        public string Value { get; set; }
+const std::string& GetValue()
+{
 
-        /// <summary>
-        /// Equality operator
-        /// </summary>
-        public static bool operator ==(Identifier lhs, Identifier rhs)
-        {
-            if (object.ReferenceEquals(lhs, null))
-                return object.ReferenceEquals(rhs, null);
-            else
-                return lhs.Equals(rhs);
-        }
+}
 
-        /// <summary>
-        /// Inequality operator
-        /// </summary>
-        public static bool operator !=(Identifier lhs, Identifier rhs)
-        {
-            return !(lhs == rhs);
-        }
+bool operator ==(const Identifier& rhs)
+{
+    if (object.ReferenceEquals(lhs, null))
+        return object.ReferenceEquals(rhs, null);
+    else
+        return lhs.Equals(rhs);
+}
 
-        /// <summary>
-        /// Equals
-        /// </summary>
-        public override bool Equals(object obj)
-        {
-            var other = obj as Identifier;
-            if (object.ReferenceEquals(other, null))
-            {
-                return false;
-            }
-
-            return Value == other.Value;
-        }
-
-        /// <summary>
-        /// Get hash code
-        /// </summary>
-        public override int GetHashCode()
-        {
-            return Value.GetHashCode();
-        }
-    }
+bool operator !=(const Identifier& rhs)
+{
+    return !(lhs == rhs);
 }

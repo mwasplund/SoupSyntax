@@ -1,402 +1,264 @@
 ﻿
-using Antlr4.Runtime.Misc;
-using Soup.StaticAnalysis.AST;
-using System;
 
-namespace Soup.StaticAnalysis
+namespace Soup::StaticAnalysis
 {
     /// <summary>
     /// Abstract syntax tree visitor
     /// </summary>
-    public class ASTVisitor : CppParserBaseVisitor<Node>
+    class ASTVisitor : CppParserBaseVisitor<Node>
     {
+    public:
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.typedefName()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitTypedefName([NotNull] CppParser.TypedefNameContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitTypedefName(CppParser.TypedefNameContext context) override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.namespaceName()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitNamespaceName([NotNull] CppParser.NamespaceNameContext context)
-        {
-            throw new NotImplementedException();
-        }
+        ode VisitNamespaceName(CppParser.NamespaceNameContext context) override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.namespaceAlias()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitNamespaceAlias([NotNull] CppParser.NamespaceAliasContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitNamespaceAlias(CppParser.NamespaceAliasContext context) override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.className()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitClassName([NotNull] CppParser.ClassNameContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitClassName(CppParser.ClassNameContext context) override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.enumName()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitEnumName([NotNull] CppParser.EnumNameContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitEnumName(CppParser.EnumNameContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.templateName()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitTemplateName([NotNull] CppParser.TemplateNameContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitTemplateName(CppParser.TemplateNameContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.translationUnit()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitTranslationUnit([NotNull] CppParser.TranslationUnitContext context)
-        {
-            var result = new TranslationUnit();
-
-            // Check for the optional declaration sequences
-            var declarationSequence = context.declarationSequence();
-            if (declarationSequence != null)
-            {
-                result.Declarations = (DeclarationSequence)Visit(declarationSequence);
-            }
-
-            return result;
-        }
+        Node VisitTranslationUnit(CppParser.TranslationUnitContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.primaryExpression()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitPrimaryExpression([NotNull] CppParser.PrimaryExpressionContext context)
-        {
-            if (context.literal () != null)
-            {
-                return Visit(context.literal());
-            }
-            else
-            {
-                throw new NotImplementedException();
-            }
-        }
+        Node VisitPrimaryExpression(CppParser.PrimaryExpressionContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.unqualifiedIdentifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitUnqualifiedIdentifier([NotNull] CppParser.UnqualifiedIdentifierContext context)
-        {
-            var identifier = context.Identifier();
-            return new Identifier(identifier.GetText());
-        }
+        Node VisitUnqualifiedIdentifier(CppParser.UnqualifiedIdentifierContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.qualifiedIdentifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitQualifiedIdentifier([NotNull] CppParser.QualifiedIdentifierContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitQualifiedIdentifier(CppParser.QualifiedIdentifierContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.nestedNameSpecifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitNestedNameSpecifier([NotNull] CppParser.NestedNameSpecifierContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitNestedNameSpecifier(CppParser.NestedNameSpecifierContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.lambdaExpression()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitLambdaExpression([NotNull] CppParser.LambdaExpressionContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitLambdaExpression(CppParser.LambdaExpressionContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.lambdaIntroducer()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitLambdaIntroducer([NotNull] CppParser.LambdaIntroducerContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitLambdaIntroducer(CppParser.LambdaIntroducerContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.lambdaDeclarator()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitLambdaDeclarator([NotNull] CppParser.LambdaDeclaratorContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitLambdaDeclarator(CppParser.LambdaDeclaratorContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.lambdaCapture()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitLambdaCapture([NotNull] CppParser.LambdaCaptureContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitLambdaCapture(CppParser.LambdaCaptureContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.captureDefault()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitCaptureDefault([NotNull] CppParser.CaptureDefaultContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitCaptureDefault(CppParser.CaptureDefaultContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.captureList()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitCaptureList([NotNull] CppParser.CaptureListContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitCaptureList(CppParser.CaptureListContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.capture()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitCapture([NotNull] CppParser.CaptureContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitCapture(CppParser.CaptureContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.simpleCapture()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitSimpleCapture([NotNull] CppParser.SimpleCaptureContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitSimpleCapture(CppParser.SimpleCaptureContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.initializerCapture()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitInitializerCapture([NotNull] CppParser.InitializerCaptureContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitInitializerCapture(CppParser.InitializerCaptureContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.foldExpression()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitFoldExpression([NotNull] CppParser.FoldExpressionContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitFoldExpression(CppParser.FoldExpressionContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.foldOperator()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitFoldOperator([NotNull] CppParser.FoldOperatorContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitFoldOperator(CppParser.FoldOperatorContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.postfixExpression()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitPostfixExpression([NotNull] CppParser.PostfixExpressionContext context)
-        {
-            if (context.primaryExpression() != null)
-            {
-                return Visit(context.primaryExpression());
-            }
-            else
-            {
-                throw new NotImplementedException();
-            }
-        }
+        Node VisitPostfixExpression(CppParser.PostfixExpressionContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.expressionList()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitExpressionList([NotNull] CppParser.ExpressionListContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitExpressionList(CppParser.ExpressionListContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.pseudoDestructorName()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitPseudoDestructorName([NotNull] CppParser.PseudoDestructorNameContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitPseudoDestructorName(CppParser.PseudoDestructorNameContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.unaryExpression()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitUnaryExpression([NotNull] CppParser.UnaryExpressionContext context)
-        {
-            if (context.postfixExpression() != null)
-            {
-                return Visit(context.postfixExpression());
-            }
-            else
-            {
-                throw new NotImplementedException();
-            }
-        }
+        Node VisitUnaryExpression(CppParser.UnaryExpressionContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.unaryOperator()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitUnaryOperator([NotNull] CppParser.UnaryOperatorContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitUnaryOperator(CppParser.UnaryOperatorContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.newExpression()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitNewExpression([NotNull] CppParser.NewExpressionContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitNewExpression(CppParser.NewExpressionContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.newPlacement()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitNewPlacement([NotNull] CppParser.NewPlacementContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitNewPlacement(CppParser.NewPlacementContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.newTypeIdentifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitNewTypeIdentifier([NotNull] CppParser.NewTypeIdentifierContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitNewTypeIdentifier(CppParser.NewTypeIdentifierContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.newDeclarator()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitNewDeclarator([NotNull] CppParser.NewDeclaratorContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitNewDeclarator(CppParser.NewDeclaratorContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.noPointerNewDeclarator()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitNoPointerNewDeclarator([NotNull] CppParser.NoPointerNewDeclaratorContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitNoPointerNewDeclarator(CppParser.NoPointerNewDeclaratorContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.newInitializer()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitNewInitializer([NotNull] CppParser.NewInitializerContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitNewInitializer(CppParser.NewInitializerContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.deleteExpression()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitDeleteExpression([NotNull] CppParser.DeleteExpressionContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitDeleteExpression(CppParser.DeleteExpressionContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.noExceptionExpression()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitNoExceptionExpression([NotNull] CppParser.NoExceptionExpressionContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitNoExceptionExpression(CppParser.NoExceptionExpressionContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.castExpression()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitCastExpression([NotNull] CppParser.CastExpressionContext context)
+        Node VisitCastExpression(CppParser.CastExpressionContext context)  override;
         {
             if (context.LeftParenthesis() != null)
             {
@@ -413,7 +275,7 @@ namespace Soup.StaticAnalysis
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitPointerManipulationExpression([NotNull] CppParser.PointerManipulationExpressionContext context)
+        Node VisitPointerManipulationExpression(CppParser.PointerManipulationExpressionContext context)  override;
         {
             if (context.PeriodAsterisk() != null)
             {
@@ -434,7 +296,7 @@ namespace Soup.StaticAnalysis
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitMultiplicativeExpression([NotNull] CppParser.MultiplicativeExpressionContext context)
+        Node VisitMultiplicativeExpression(CppParser.MultiplicativeExpressionContext context)  override;
         {
             if (context.Asterisk() != null)
             {
@@ -459,7 +321,7 @@ namespace Soup.StaticAnalysis
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitAdditiveExpression([NotNull] CppParser.AdditiveExpressionContext context)
+        Node VisitAdditiveExpression(CppParser.AdditiveExpressionContext context)  override;
         {
             if (context.Plus() != null)
             {
@@ -480,7 +342,7 @@ namespace Soup.StaticAnalysis
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitShiftExpression([NotNull] CppParser.ShiftExpressionContext context)
+        Node VisitShiftExpression(CppParser.ShiftExpressionContext context)  override;
         {
             if (context.DoubleLessThan() != null)
             {
@@ -501,7 +363,7 @@ namespace Soup.StaticAnalysis
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitRelationalExpression([NotNull] CppParser.RelationalExpressionContext context)
+        Node VisitRelationalExpression(CppParser.RelationalExpressionContext context)  override;
         {
             if (context.LessThan() != null)
             {
@@ -530,7 +392,7 @@ namespace Soup.StaticAnalysis
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitEqualityExpression([NotNull] CppParser.EqualityExpressionContext context)
+        Node VisitEqualityExpression(CppParser.EqualityExpressionContext context)  override;
         {
             if (context.DoubleEqual() != null)
             {
@@ -551,7 +413,7 @@ namespace Soup.StaticAnalysis
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitAndExpression([NotNull] CppParser.AndExpressionContext context)
+        Node VisitAndExpression(CppParser.AndExpressionContext context)  override;
         {
             if (context.Ampersand() != null)
             {
@@ -568,7 +430,7 @@ namespace Soup.StaticAnalysis
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitExclusiveOrExpression([NotNull] CppParser.ExclusiveOrExpressionContext context)
+        Node VisitExclusiveOrExpression(CppParser.ExclusiveOrExpressionContext context)  override;
         {
             if (context.Caret() != null)
             {
@@ -585,7 +447,7 @@ namespace Soup.StaticAnalysis
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitInclusiveOrExpression([NotNull] CppParser.InclusiveOrExpressionContext context)
+        Node VisitInclusiveOrExpression(CppParser.InclusiveOrExpressionContext context)  override;
         {
             if (context.VerticalBar() != null)
             {
@@ -602,7 +464,7 @@ namespace Soup.StaticAnalysis
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitLogicalAndExpression([NotNull] CppParser.LogicalAndExpressionContext context)
+        Node VisitLogicalAndExpression(CppParser.LogicalAndExpressionContext context)  override;
         {
             if (context.DoubleAmpersand() != null)
             {
@@ -619,7 +481,7 @@ namespace Soup.StaticAnalysis
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitLogicalOrExpression([NotNull] CppParser.LogicalOrExpressionContext context)
+        Node VisitLogicalOrExpression(CppParser.LogicalOrExpressionContext context)  override;
         {
             if (context.DoubleVerticalBar() != null)
             {
@@ -636,7 +498,7 @@ namespace Soup.StaticAnalysis
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitConditionalExpression([NotNull] CppParser.ConditionalExpressionContext context)
+        Node VisitConditionalExpression(CppParser.ConditionalExpressionContext context)  override;
         {
             if (context.QuestionMark() != null)
             {
@@ -653,17 +515,14 @@ namespace Soup.StaticAnalysis
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitThrowExpression([NotNull] CppParser.ThrowExpressionContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitThrowExpression(CppParser.ThrowExpressionContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.assignmentExpression()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitAssignmentExpression([NotNull] CppParser.AssignmentExpressionContext context)
+        Node VisitAssignmentExpression(CppParser.AssignmentExpressionContext context)  override;
         {
             if (context.conditionalExpression() != null)
             {
@@ -680,77 +539,56 @@ namespace Soup.StaticAnalysis
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitAssignmentOperator([NotNull] CppParser.AssignmentOperatorContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitAssignmentOperator(CppParser.AssignmentOperatorContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.expression()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitExpression([NotNull] CppParser.ExpressionContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitExpression(CppParser.ExpressionContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.constantExpression()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitConstantExpression([NotNull] CppParser.ConstantExpressionContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitConstantExpression(CppParser.ConstantExpressionContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.initializerStatement()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitInitializerStatement([NotNull] CppParser.InitializerStatementContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitInitializerStatement(CppParser.InitializerStatementContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.condition()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitCondition([NotNull] CppParser.ConditionContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitCondition(CppParser.ConditionContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.labeledStatement()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitLabeledStatement([NotNull] CppParser.LabeledStatementContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitLabeledStatement(CppParser.LabeledStatementContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.expressionStatement()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitExpressionStatement([NotNull] CppParser.ExpressionStatementContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitExpressionStatement(CppParser.ExpressionStatementContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.compoundStatement()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitCompoundStatement([NotNull] CppParser.CompoundStatementContext context)
+        Node VisitCompoundStatement(CppParser.CompoundStatementContext context)  override;
         {
             // Check for optional sequence
             CompoundStatement result = null;
@@ -773,7 +611,7 @@ namespace Soup.StaticAnalysis
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitStatementSequence([NotNull] CppParser.StatementSequenceContext context)
+        Node VisitStatementSequence(CppParser.StatementSequenceContext context)  override;
         {
             // Handle the recursive rule
             CompoundStatement sequence;
@@ -799,73 +637,52 @@ namespace Soup.StaticAnalysis
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitSelectionStatement([NotNull] CppParser.SelectionStatementContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitSelectionStatement(CppParser.SelectionStatementContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.iterationStatement()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitIterationStatement([NotNull] CppParser.IterationStatementContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitIterationStatement(CppParser.IterationStatementContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.forInitializerStatement()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitForInitializerStatement([NotNull] CppParser.ForInitializerStatementContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitForInitializerStatement(CppParser.ForInitializerStatementContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.forRangeDeclaration()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitForRangeDeclaration([NotNull] CppParser.ForRangeDeclarationContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitForRangeDeclaration(CppParser.ForRangeDeclarationContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.forRangeInitializer()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitForRangeInitializer([NotNull] CppParser.ForRangeInitializerContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitForRangeInitializer(CppParser.ForRangeInitializerContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.jumpStatement()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitJumpStatement([NotNull] CppParser.JumpStatementContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitJumpStatement(CppParser.JumpStatementContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.declarationStatement()"/>.
         /// </summary>
-        public override Node VisitDeclarationStatement([NotNull] CppParser.DeclarationStatementContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitDeclarationStatement(CppParser.DeclarationStatementContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.declarationSequence()"/>.
         /// </summary>
-        public override Node VisitDeclarationSequence([NotNull] CppParser.DeclarationSequenceContext context)
+        Node VisitDeclarationSequence(CppParser.DeclarationSequenceContext context)  override;
         {
             // Handle the recursive rule
             DeclarationSequence sequence;
@@ -891,27 +708,21 @@ namespace Soup.StaticAnalysis
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitNoDeclarationSpecifierFunctionDeclaration([NotNull] CppParser.NoDeclarationSpecifierFunctionDeclarationContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitNoDeclarationSpecifierFunctionDeclaration(CppParser.NoDeclarationSpecifierFunctionDeclarationContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.aliasDeclaration()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitAliasDeclaration([NotNull] CppParser.AliasDeclarationContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitAliasDeclaration(CppParser.AliasDeclarationContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.simpleDeclaration()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitSimpleDeclaration([NotNull] CppParser.SimpleDeclarationContext context)
+        Node VisitSimpleDeclaration(CppParser.SimpleDeclarationContext context)  override;
         {
             return new SimpleDefinition()
             {
@@ -925,37 +736,28 @@ namespace Soup.StaticAnalysis
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitStaticAssertDeclaration([NotNull] CppParser.StaticAssertDeclarationContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitStaticAssertDeclaration(CppParser.StaticAssertDeclarationContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.emptyDeclaration()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitEmptyDeclaration([NotNull] CppParser.EmptyDeclarationContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitEmptyDeclaration(CppParser.EmptyDeclarationContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.attributeDeclaration()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitAttributeDeclaration([NotNull] CppParser.AttributeDeclarationContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitAttributeDeclaration(CppParser.AttributeDeclarationContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.declarationSpecifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitDeclarationSpecifier([NotNull] CppParser.DeclarationSpecifierContext context)
+        Node VisitDeclarationSpecifier(CppParser.DeclarationSpecifierContext context)  override;
         {
             if (context.definingTypeSpecifier() != null)
             {
@@ -972,7 +774,7 @@ namespace Soup.StaticAnalysis
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitDeclarationSpecifierSequence([NotNull] CppParser.DeclarationSpecifierSequenceContext context)
+        Node VisitDeclarationSpecifierSequence(CppParser.DeclarationSpecifierSequenceContext context)  override;
         {
             // Handle the recursive rule
             DeclarationSpecifierSequence sequence;
@@ -998,47 +800,35 @@ namespace Soup.StaticAnalysis
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitStorageClassSpecifier([NotNull] CppParser.StorageClassSpecifierContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitStorageClassSpecifier(CppParser.StorageClassSpecifierContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.functionSpecifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitFunctionSpecifier([NotNull] CppParser.FunctionSpecifierContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitFunctionSpecifier(CppParser.FunctionSpecifierContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.typeSpecifierSequence()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitTypeSpecifierSequence([NotNull] CppParser.TypeSpecifierSequenceContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitTypeSpecifierSequence(CppParser.TypeSpecifierSequenceContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.definingTypeSpecifierSequence()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitDefiningTypeSpecifierSequence([NotNull] CppParser.DefiningTypeSpecifierSequenceContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitDefiningTypeSpecifierSequence(CppParser.DefiningTypeSpecifierSequenceContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.simpleTypeSpecifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitSimpleTypeSpecifier([NotNull] CppParser.SimpleTypeSpecifierContext context)
+        Node VisitSimpleTypeSpecifier(CppParser.SimpleTypeSpecifierContext context)  override;
         {
             if (context.Char() != null)
                 return new PrimitiveDataTypeNode(PrimitiveDataType.Char);
@@ -1077,387 +867,273 @@ namespace Soup.StaticAnalysis
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitTypeName([NotNull] CppParser.TypeNameContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitTypeName(CppParser.TypeNameContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.declarationTypeSpecifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitDeclarationTypeSpecifier([NotNull] CppParser.DeclarationTypeSpecifierContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitDeclarationTypeSpecifier(CppParser.DeclarationTypeSpecifierContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.elaboratedTypeSpecifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitElaboratedTypeSpecifier([NotNull] CppParser.ElaboratedTypeSpecifierContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitElaboratedTypeSpecifier(CppParser.ElaboratedTypeSpecifierContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.enumSpecifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitEnumSpecifier([NotNull] CppParser.EnumSpecifierContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitEnumSpecifier(CppParser.EnumSpecifierContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.enumHead()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitEnumHead([NotNull] CppParser.EnumHeadContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitEnumHead(CppParser.EnumHeadContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.enumHeadName()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitEnumHeadName([NotNull] CppParser.EnumHeadNameContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitEnumHeadName(CppParser.EnumHeadNameContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.opaqueEnumDeclaration()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitOpaqueEnumDeclaration([NotNull] CppParser.OpaqueEnumDeclarationContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitOpaqueEnumDeclaration(CppParser.OpaqueEnumDeclarationContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.enumKey()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitEnumKey([NotNull] CppParser.EnumKeyContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitEnumKey(CppParser.EnumKeyContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.enumBase()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitEnumBase([NotNull] CppParser.EnumBaseContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitEnumBase(CppParser.EnumBaseContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.enumeratorList()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitEnumeratorList([NotNull] CppParser.EnumeratorListContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitEnumeratorList(CppParser.EnumeratorListContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.enumeratorDefinition()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitEnumeratorDefinition([NotNull] CppParser.EnumeratorDefinitionContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitEnumeratorDefinition(CppParser.EnumeratorDefinitionContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.enumerator()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitEnumerator([NotNull] CppParser.EnumeratorContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitEnumerator(CppParser.EnumeratorContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.namespaceDefinition()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitNamespaceDefinition([NotNull] CppParser.NamespaceDefinitionContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitNamespaceDefinition(CppParser.NamespaceDefinitionContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.namedNamespaceDefinition()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitNamedNamespaceDefinition([NotNull] CppParser.NamedNamespaceDefinitionContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitNamedNamespaceDefinition(CppParser.NamedNamespaceDefinitionContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.unnamedNamespaceDefinition()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitUnnamedNamespaceDefinition([NotNull] CppParser.UnnamedNamespaceDefinitionContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitUnnamedNamespaceDefinition(CppParser.UnnamedNamespaceDefinitionContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.nestedNamespaceDefinition()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitNestedNamespaceDefinition([NotNull] CppParser.NestedNamespaceDefinitionContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitNestedNamespaceDefinition(CppParser.NestedNamespaceDefinitionContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.enclosingNamespaceSpecifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitEnclosingNamespaceSpecifier([NotNull] CppParser.EnclosingNamespaceSpecifierContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitEnclosingNamespaceSpecifier(CppParser.EnclosingNamespaceSpecifierContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.namespaceBody()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitNamespaceBody([NotNull] CppParser.NamespaceBodyContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitNamespaceBody(CppParser.NamespaceBodyContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.namespaceAliasDefinition()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitNamespaceAliasDefinition([NotNull] CppParser.NamespaceAliasDefinitionContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitNamespaceAliasDefinition(CppParser.NamespaceAliasDefinitionContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.qualifiedNamespaceSpecifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitQualifiedNamespaceSpecifier([NotNull] CppParser.QualifiedNamespaceSpecifierContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitQualifiedNamespaceSpecifier(CppParser.QualifiedNamespaceSpecifierContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.usingDeclaration()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitUsingDeclaration([NotNull] CppParser.UsingDeclarationContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitUsingDeclaration(CppParser.UsingDeclarationContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.usingDeclaratorList()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitUsingDeclaratorList([NotNull] CppParser.UsingDeclaratorListContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitUsingDeclaratorList(CppParser.UsingDeclaratorListContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.usingDeclarator()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitUsingDeclarator([NotNull] CppParser.UsingDeclaratorContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitUsingDeclarator(CppParser.UsingDeclaratorContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.usingDirective()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitUsingDirective([NotNull] CppParser.UsingDirectiveContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitUsingDirective(CppParser.UsingDirectiveContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.asmDefinition()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitAsmDefinition([NotNull] CppParser.AsmDefinitionContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitAsmDefinition(CppParser.AsmDefinitionContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.linkageSpecification()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitLinkageSpecification([NotNull] CppParser.LinkageSpecificationContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitLinkageSpecification(CppParser.LinkageSpecificationContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.attributeSpecifierSequence()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitAttributeSpecifierSequence([NotNull] CppParser.AttributeSpecifierSequenceContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitAttributeSpecifierSequence(CppParser.AttributeSpecifierSequenceContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.attributeSpecifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitAttributeSpecifier([NotNull] CppParser.AttributeSpecifierContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitAttributeSpecifier(CppParser.AttributeSpecifierContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.alignmentSpecifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitAlignmentSpecifier([NotNull] CppParser.AlignmentSpecifierContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitAlignmentSpecifier(CppParser.AlignmentSpecifierContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.attributeUsingPrefix()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitAttributeUsingPrefix([NotNull] CppParser.AttributeUsingPrefixContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitAttributeUsingPrefix(CppParser.AttributeUsingPrefixContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.attributeList()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitAttributeList([NotNull] CppParser.AttributeListContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitAttributeList(CppParser.AttributeListContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.attribute()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitAttribute([NotNull] CppParser.AttributeContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitAttribute(CppParser.AttributeContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.attributeToken()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitAttributeToken([NotNull] CppParser.AttributeTokenContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitAttributeToken(CppParser.AttributeTokenContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.attributeScopedToken()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitAttributeScopedToken([NotNull] CppParser.AttributeScopedTokenContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitAttributeScopedToken(CppParser.AttributeScopedTokenContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.attributeNamespace()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitAttributeNamespace([NotNull] CppParser.AttributeNamespaceContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitAttributeNamespace(CppParser.AttributeNamespaceContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.attributeArgumentClause()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitAttributeArgumentClause([NotNull] CppParser.AttributeArgumentClauseContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitAttributeArgumentClause(CppParser.AttributeArgumentClauseContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.balancedTokenSequence()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitBalancedTokenSequence([NotNull] CppParser.BalancedTokenSequenceContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitBalancedTokenSequence(CppParser.BalancedTokenSequenceContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.balancedToken()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitBalancedToken([NotNull] CppParser.BalancedTokenContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitBalancedToken(CppParser.BalancedTokenContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.initializerDeclaratorList()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitInitializerDeclaratorList([NotNull] CppParser.InitializerDeclaratorListContext context)
+        Node VisitInitializerDeclaratorList(CppParser.InitializerDeclaratorListContext context)  override;
         {
             // Handle the recursive rule
             InitializerDeclaratorList list;
@@ -1483,7 +1159,7 @@ namespace Soup.StaticAnalysis
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitInitializerDeclarator([NotNull] CppParser.InitializerDeclaratorContext context)
+        Node VisitInitializerDeclarator(CppParser.InitializerDeclaratorContext context)  override;
         {
             // Check for optional initializer
             Node initializer = null;
@@ -1504,17 +1180,14 @@ namespace Soup.StaticAnalysis
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitPointerDeclarator([NotNull] CppParser.PointerDeclaratorContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitPointerDeclarator(CppParser.PointerDeclaratorContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.noPointerDeclarator()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitNoPointerDeclarator([NotNull] CppParser.NoPointerDeclaratorContext context)
+        Node VisitNoPointerDeclarator(CppParser.NoPointerDeclaratorContext context)  override;
         {
             // Check if it was an identifier declarator
             var identifierExpression = context.identifierExpression();
@@ -1531,137 +1204,98 @@ namespace Soup.StaticAnalysis
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitParametersAndQualifiers([NotNull] CppParser.ParametersAndQualifiersContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitParametersAndQualifiers(CppParser.ParametersAndQualifiersContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.trailingReturnType()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitTrailingReturnType([NotNull] CppParser.TrailingReturnTypeContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitTrailingReturnType(CppParser.TrailingReturnTypeContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.pointerOperator()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitPointerOperator([NotNull] CppParser.PointerOperatorContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitPointerOperator(CppParser.PointerOperatorContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.constVolatileQualifierSequence()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitConstVolatileQualifierSequence([NotNull] CppParser.ConstVolatileQualifierSequenceContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitConstVolatileQualifierSequence(CppParser.ConstVolatileQualifierSequenceContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.constVolatileQualifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitConstVolatileQualifier([NotNull] CppParser.ConstVolatileQualifierContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitConstVolatileQualifier(CppParser.ConstVolatileQualifierContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.referenceQualifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitReferenceQualifier([NotNull] CppParser.ReferenceQualifierContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitReferenceQualifier(CppParser.ReferenceQualifierContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.typeIdentifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitTypeIdentifier([NotNull] CppParser.TypeIdentifierContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitTypeIdentifier(CppParser.TypeIdentifierContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.definingTypeIdentifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitDefiningTypeIdentifier([NotNull] CppParser.DefiningTypeIdentifierContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitDefiningTypeIdentifier(CppParser.DefiningTypeIdentifierContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.abstractDeclarator()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitAbstractDeclarator([NotNull] CppParser.AbstractDeclaratorContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitAbstractDeclarator(CppParser.AbstractDeclaratorContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.pointerAbstractDeclarator()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitPointerAbstractDeclarator([NotNull] CppParser.PointerAbstractDeclaratorContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitPointerAbstractDeclarator(CppParser.PointerAbstractDeclaratorContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.noPointerAbstractDeclarator()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitNoPointerAbstractDeclarator([NotNull] CppParser.NoPointerAbstractDeclaratorContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitNoPointerAbstractDeclarator(CppParser.NoPointerAbstractDeclaratorContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.abstractPackDeclarator()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitAbstractPackDeclarator([NotNull] CppParser.AbstractPackDeclaratorContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitAbstractPackDeclarator(CppParser.AbstractPackDeclaratorContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.noPointerAbstractPackDeclarator()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitNoPointerAbstractPackDeclarator([NotNull] CppParser.NoPointerAbstractPackDeclaratorContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitNoPointerAbstractPackDeclarator(CppParser.NoPointerAbstractPackDeclaratorContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.parameterDeclarationClause()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitParameterDeclarationClause([NotNull] CppParser.ParameterDeclarationClauseContext context)
+        Node VisitParameterDeclarationClause(CppParser.ParameterDeclarationClauseContext context)  override;
         {
             // TODO Items
             return new ParameterList();
@@ -1672,27 +1306,21 @@ namespace Soup.StaticAnalysis
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitParameterDeclarationList([NotNull] CppParser.ParameterDeclarationListContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitParameterDeclarationList(CppParser.ParameterDeclarationListContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.parameterDeclaration()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitParameterDeclaration([NotNull] CppParser.ParameterDeclarationContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitParameterDeclaration(CppParser.ParameterDeclarationContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.functionDefinition()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitFunctionDefinition([NotNull] CppParser.FunctionDefinitionContext context)
+        Node VisitFunctionDefinition(CppParser.FunctionDefinitionContext context)  override;
         {
             // Check for optional return type
             DeclarationSpecifierSequence returnType = null;
@@ -1724,7 +1352,7 @@ namespace Soup.StaticAnalysis
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitRegularFunctionBody([NotNull] CppParser.RegularFunctionBodyContext context)
+        Node VisitRegularFunctionBody(CppParser.RegularFunctionBodyContext context)  override;
         {
             return new RegularFunctionBody()
             {
@@ -1738,7 +1366,7 @@ namespace Soup.StaticAnalysis
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitExplicitlyDefaultedFunction([NotNull] CppParser.ExplicitlyDefaultedFunctionContext context)
+        Node VisitExplicitlyDefaultedFunction(CppParser.ExplicitlyDefaultedFunctionContext context)  override;
         {
             return new DefaultFunctionBody();
         }
@@ -1748,7 +1376,7 @@ namespace Soup.StaticAnalysis
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitDeletedFunction([NotNull] CppParser.DeletedFunctionContext context)
+        Node VisitDeletedFunction(CppParser.DeletedFunctionContext context)  override;
         {
             return new DeleteFunctionBody();
         }
@@ -1758,7 +1386,7 @@ namespace Soup.StaticAnalysis
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitBraceOrEqualInitializer([NotNull] CppParser.BraceOrEqualInitializerContext context)
+        Node VisitBraceOrEqualInitializer(CppParser.BraceOrEqualInitializerContext context)  override;
         {
             if (context.Equal() != null)
             {
@@ -1775,507 +1403,357 @@ namespace Soup.StaticAnalysis
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitInitializerList([NotNull] CppParser.InitializerListContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitInitializerList(CppParser.InitializerListContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.bracedInitializerList()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitBracedInitializerList([NotNull] CppParser.BracedInitializerListContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitBracedInitializerList(CppParser.BracedInitializerListContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.expressionOrBracedInitializerList()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitExpressionOrBracedInitializerList([NotNull] CppParser.ExpressionOrBracedInitializerListContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitExpressionOrBracedInitializerList(CppParser.ExpressionOrBracedInitializerListContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.classSpecifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitClassSpecifier([NotNull] CppParser.ClassSpecifierContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitClassSpecifier(CppParser.ClassSpecifierContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.classHead()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitClassHead([NotNull] CppParser.ClassHeadContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitClassHead(CppParser.ClassHeadContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.classHeadName()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitClassHeadName([NotNull] CppParser.ClassHeadNameContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitClassHeadName(CppParser.ClassHeadNameContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.classVirtualSpecifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitClassVirtualSpecifier([NotNull] CppParser.ClassVirtualSpecifierContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitClassVirtualSpecifier(CppParser.ClassVirtualSpecifierContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.classKey()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitClassKey([NotNull] CppParser.ClassKeyContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitClassKey(CppParser.ClassKeyContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.memberSpecification()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitMemberSpecification([NotNull] CppParser.MemberSpecificationContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitMemberSpecification(CppParser.MemberSpecificationContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.memberDeclaration()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitMemberDeclaration([NotNull] CppParser.MemberDeclarationContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitMemberDeclaration(CppParser.MemberDeclarationContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.memberDeclaratorList()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitMemberDeclaratorList([NotNull] CppParser.MemberDeclaratorListContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitMemberDeclaratorList(CppParser.MemberDeclaratorListContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.memberDeclarator()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitMemberDeclarator([NotNull] CppParser.MemberDeclaratorContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitMemberDeclarator(CppParser.MemberDeclaratorContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.virtualSpecifierSequence()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitVirtualSpecifierSequence([NotNull] CppParser.VirtualSpecifierSequenceContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitVirtualSpecifierSequence(CppParser.VirtualSpecifierSequenceContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.virtualSpecifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitVirtualSpecifier([NotNull] CppParser.VirtualSpecifierContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitVirtualSpecifier(CppParser.VirtualSpecifierContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.pureSpecifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitPureSpecifier([NotNull] CppParser.PureSpecifierContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitPureSpecifier(CppParser.PureSpecifierContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.baseClause()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitBaseClause([NotNull] CppParser.BaseClauseContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitBaseClause(CppParser.BaseClauseContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.baseSpecifierList()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitBaseSpecifierList([NotNull] CppParser.BaseSpecifierListContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitBaseSpecifierList(CppParser.BaseSpecifierListContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.baseSpecifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitBaseSpecifier([NotNull] CppParser.BaseSpecifierContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitBaseSpecifier(CppParser.BaseSpecifierContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.classOrDecltype()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitClassOrDecltype([NotNull] CppParser.ClassOrDecltypeContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitClassOrDecltype(CppParser.ClassOrDecltypeContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.accessSpecifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitAccessSpecifier([NotNull] CppParser.AccessSpecifierContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitAccessSpecifier(CppParser.AccessSpecifierContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.conversionFunctionIdentifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitConversionFunctionIdentifier([NotNull] CppParser.ConversionFunctionIdentifierContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitConversionFunctionIdentifier(CppParser.ConversionFunctionIdentifierContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.conversionTypeIdentifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitConversionTypeIdentifier([NotNull] CppParser.ConversionTypeIdentifierContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitConversionTypeIdentifier(CppParser.ConversionTypeIdentifierContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.conversionDeclarator()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitConversionDeclarator([NotNull] CppParser.ConversionDeclaratorContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitConversionDeclarator(CppParser.ConversionDeclaratorContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.constructorInitializer()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitConstructorInitializer([NotNull] CppParser.ConstructorInitializerContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitConstructorInitializer(CppParser.ConstructorInitializerContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.memberInitializerList()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitMemberInitializerList([NotNull] CppParser.MemberInitializerListContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitMemberInitializerList(CppParser.MemberInitializerListContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.memberInitializer()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitMemberInitializer([NotNull] CppParser.MemberInitializerContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitMemberInitializer(CppParser.MemberInitializerContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.memberInitializerIdentifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitMemberInitializerIdentifier([NotNull] CppParser.MemberInitializerIdentifierContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitMemberInitializerIdentifier(CppParser.MemberInitializerIdentifierContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.operatorFunctionIdentifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitOperatorFunctionIdentifier([NotNull] CppParser.OperatorFunctionIdentifierContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitOperatorFunctionIdentifier(CppParser.OperatorFunctionIdentifierContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.anyOperator()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitAnyOperator([NotNull] CppParser.AnyOperatorContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitAnyOperator(CppParser.AnyOperatorContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.literalOperatorIdentifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitLiteralOperatorIdentifier([NotNull] CppParser.LiteralOperatorIdentifierContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitLiteralOperatorIdentifier(CppParser.LiteralOperatorIdentifierContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.templateDeclaration()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitTemplateDeclaration([NotNull] CppParser.TemplateDeclarationContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitTemplateDeclaration(CppParser.TemplateDeclarationContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.templateParameterList()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitTemplateParameterList([NotNull] CppParser.TemplateParameterListContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitTemplateParameterList(CppParser.TemplateParameterListContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.templateParameter()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitTemplateParameter([NotNull] CppParser.TemplateParameterContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitTemplateParameter(CppParser.TemplateParameterContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.typeParameter()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitTypeParameter([NotNull] CppParser.TypeParameterContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitTypeParameter(CppParser.TypeParameterContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.typeParameterKey()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitTypeParameterKey([NotNull] CppParser.TypeParameterKeyContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitTypeParameterKey(CppParser.TypeParameterKeyContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.simpleTemplateIdentifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitSimpleTemplateIdentifier([NotNull] CppParser.SimpleTemplateIdentifierContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitSimpleTemplateIdentifier(CppParser.SimpleTemplateIdentifierContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.templateIdentifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitTemplateIdentifier([NotNull] CppParser.TemplateIdentifierContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitTemplateIdentifier(CppParser.TemplateIdentifierContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.templateArgumentList()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitTemplateArgumentList([NotNull] CppParser.TemplateArgumentListContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitTemplateArgumentList(CppParser.TemplateArgumentListContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.templateArgument()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitTemplateArgument([NotNull] CppParser.TemplateArgumentContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitTemplateArgument(CppParser.TemplateArgumentContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.typenameSpecifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitTypenameSpecifier([NotNull] CppParser.TypenameSpecifierContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitTypenameSpecifier(CppParser.TypenameSpecifierContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.explicitInstantiation()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitExplicitInstantiation([NotNull] CppParser.ExplicitInstantiationContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitExplicitInstantiation(CppParser.ExplicitInstantiationContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.explicitSpecialization()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitExplicitSpecialization([NotNull] CppParser.ExplicitSpecializationContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitExplicitSpecialization(CppParser.ExplicitSpecializationContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.deductionGuide()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitDeductionGuide([NotNull] CppParser.DeductionGuideContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitDeductionGuide(CppParser.DeductionGuideContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.tryBlock()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitTryBlock([NotNull] CppParser.TryBlockContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitTryBlock(CppParser.TryBlockContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.functionTryBlock()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitFunctionTryBlock([NotNull] CppParser.FunctionTryBlockContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitFunctionTryBlock(CppParser.FunctionTryBlockContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.handlerSequence()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitHandlerSequence([NotNull] CppParser.HandlerSequenceContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitHandlerSequence(CppParser.HandlerSequenceContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.handler()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitHandler([NotNull] CppParser.HandlerContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitHandler(CppParser.HandlerContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.exceptionDeclaration()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitExceptionDeclaration([NotNull] CppParser.ExceptionDeclarationContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitExceptionDeclaration(CppParser.ExceptionDeclarationContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.noExceptionSpecifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitNoExceptionSpecifier([NotNull] CppParser.NoExceptionSpecifierContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitNoExceptionSpecifier(CppParser.NoExceptionSpecifierContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.identifierList()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitIdentifierList([NotNull] CppParser.IdentifierListContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitIdentifierList(CppParser.IdentifierListContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.literal()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitLiteral([NotNull] CppParser.LiteralContext context)
+        Node VisitLiteral(CppParser.LiteralContext context)  override;
         {
             if (context.FloatingPointLiteral() != null)
                 throw new NotImplementedException();
@@ -2292,7 +1770,7 @@ namespace Soup.StaticAnalysis
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitIntegerLiteral([NotNull] CppParser.IntegerLiteralContext context)
+        Node VisitIntegerLiteral(CppParser.IntegerLiteralContext context)  override;
         {
             // Parse the integer value
             int value = int.Parse(context.GetText());
@@ -2305,29 +1783,20 @@ namespace Soup.StaticAnalysis
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitBooleanLiteral([NotNull] CppParser.BooleanLiteralContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitBooleanLiteral(CppParser.BooleanLiteralContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.pointerLiteral()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitPointerLiteral([NotNull] CppParser.PointerLiteralContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitPointerLiteral(CppParser.PointerLiteralContext context)  override;
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="CppParser.userDefinedLiteral()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        public override Node VisitUserDefinedLiteral([NotNull] CppParser.UserDefinedLiteralContext context)
-        {
-            throw new NotImplementedException();
-        }
+        Node VisitUserDefinedLiteral(CppParser.UserDefinedLiteralContext context)  override;
     }
 }

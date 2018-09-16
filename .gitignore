@@ -1,3 +1,7 @@
 # Antlr
 *.interp
 *.tokens
+
+# Build
+obj/
+bin/

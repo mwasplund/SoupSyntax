@@ -1,64 +1,20 @@
 ﻿
+module SoupSyntax;
+using Soup::Syntax;
 
-namespace Soup.StaticAnalysis.AST
+int Value { get; set; }
+
+IntegerLiteral(int value)
 {
-    /// <summary>
-    /// An integer value
-    /// </summary>
-    public sealed class IntegerLiteral : LiteralNode
-    {
-        /// <summary>
-        /// Gets or sets the value
-        /// </summary>
-        public int Value { get; set; }
+    Value = value;
+}
 
-        /// <summary>
-        /// Initialize
-        /// </summary>
-        public IntegerLiteral(int value)
-        {
-            Value = value;
-        }
+bool operator ==(IntegerLiteral rhs)
+{
+    return this->value == rhs.value;
+}
 
-        /// <summary>
-        /// Equality operator
-        /// </summary>
-        public static bool operator ==(IntegerLiteral lhs, IntegerLiteral rhs)
-        {
-            if (object.ReferenceEquals(lhs, null))
-                return object.ReferenceEquals(rhs, null);
-            else
-                return lhs.Equals(rhs);
-        }
-
-        /// <summary>
-        /// Inequality operator
-        /// </summary>
-        public static bool operator !=(IntegerLiteral lhs, IntegerLiteral rhs)
-        {
-            return !(lhs == rhs);
-        }
-
-        /// <summary>
-        /// Equals
-        /// </summary>
-        public override bool Equals(object obj)
-        {
-            var other = obj as IntegerLiteral;
-            if (object.ReferenceEquals(other, null))
-            {
-                return false;
-            }
-
-            return Value == other.Value;
-        }
-
-        /// <summary>
-        /// Get hash code
-        /// </summary>
-        public override int GetHashCode()
-        {
-            return Value.GetHashCode();
-        }
-    }
+bool operator !=(IntegerLiteral lhs, IntegerLiteral rhs)
+{
+    return !(lhs == rhs);
 }

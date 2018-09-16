@@ -1,0 +1,35 @@
+﻿#pragma once
+#include "Node.h"
+
+namespace Soup::Syntax
+{
+    /// <summary>
+    /// An identifier
+    /// </summary>
+    export class Identifier : Node
+    {
+    private:
+        std::string value;
+
+    public:
+        /// <summary>
+        /// Initialize
+        /// </summary>
+        Identifier(std::string value);
+
+        /// <summary>
+        /// Gets or sets the value
+        /// </summary>
+        const std::string& GetValue() const;
+
+        /// <summary>
+        /// Equality operator
+        /// </summary>
+        bool operator =(const Identifier& rhs) const;
+
+        /// <summary>
+        /// Inequality operator
+        /// </summary>
+        bool operator !=(const Identifier& rhs) const;
+    }
+}
