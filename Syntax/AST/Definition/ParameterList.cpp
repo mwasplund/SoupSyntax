@@ -31,7 +31,7 @@ namespace Soup::Syntax
         /// </summary>
         public static bool operator !=(ParameterList lhs, ParameterList rhs)
         {
-            return !(lhs == rhs);
+            return !(*this == rhs);
         }
 
         /// <summary>

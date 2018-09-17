@@ -33,5 +33,5 @@ bool FunctionDefinition::operator ==(const FunctionDefinition& rhs) const
 
 bool FunctionDefinition::operator !=(const FunctionDefinition& rhs) const
 {
-    return !(lhs == rhs);
+    return !(*this == rhs);
 }

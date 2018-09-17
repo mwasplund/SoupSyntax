@@ -47,7 +47,7 @@ namespace Soup::Syntax
         /// </summary>
         public static bool operator !=(InitializerDeclaratorList lhs, InitializerDeclaratorList rhs)
         {
-            return !(lhs == rhs);
+            return !(*this == rhs);
         }
 
         /// <summary>

@@ -23,7 +23,7 @@ namespace Soup::Syntax
         /// </summary>
         public static bool operator !=(AdditionExpression lhs, AdditionExpression rhs)
         {
-            return !(lhs == rhs);
+            return !(*this == rhs);
         }
 
         /// <summary>

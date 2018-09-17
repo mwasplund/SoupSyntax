@@ -3,13 +3,13 @@
 using namespace Soup::Syntax;
 
 void ParserExceptionErrorListener::ReportAmbiguity(
-    [NotNull] Parser recognizer,
-    [NotNull] DFA dfa,
+    Parser recognizer,
+    DFA dfa,
     int startIndex,
     int stopIndex,
     bool exact,
-    [Nullable] BitSet ambigAlts,
-    [NotNull] ATNConfigSet configs)
+    BitSet ambigAlts,
+    ATNConfigSet configs)
 {
     throw new ParseCanceledException();
 }
@@ -26,7 +26,7 @@ void ParserExceptionErrorListener::ReportAttemptingFullContext(
 }
 
 void ParserExceptionErrorListenerReportContextSensitivity(
-    Parser recogni::zer, [NotNull] DFA dfa, int startIndex, int stopIndex, int prediction, [NotNull] SimulatorState acceptState)
+    Parser recogni::zer, DFA dfa, int startIndex, int stopIndex, int prediction, SimulatorState acceptState)
 {
     Debug.WriteLine("Hmm");
     //throw new ParseCanceledException();

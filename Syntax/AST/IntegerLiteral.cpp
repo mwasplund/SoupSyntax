@@ -12,12 +12,12 @@ IntegerLiteral::IntegerLiteral(int value)
     this->value = value;
 }
 
-bool IntegerLiteral::operator ==(IntegerLiteral rhs)
+bool IntegerLiteral::operator ==(const IntegerLiteral& rhs) const
 {
     return this->value == rhs.value;
 }
 
-bool IntegerLiteral::operator !=(IntegerLiteral lhs, IntegerLiteral rhs)
+bool IntegerLiteral::operator !=(const IntegerLiteral& rhs) const
 {
-    return !(lhs == rhs);
+    return !(*this == rhs);
 }

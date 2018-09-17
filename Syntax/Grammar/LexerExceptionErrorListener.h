@@ -11,11 +11,11 @@ namespace Soup::Syntax
         /// Syntax error
         /// </summary>
         void SyntaxError(
-            [NotNull] IRecognizer recognizer,
-            [Nullable] int offendingSymbol,
+            IRecognizer recognizer,
+            int offendingSymbol,
             int line,
             int charPositionInLine,
-            [NotNull] string msg,
-            [Nullable] RecognitionException e);
+            string msg,
+            RecognitionException e);
     }
 }

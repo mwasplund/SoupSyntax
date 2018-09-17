@@ -2,12 +2,12 @@
 module SoupSyntax;
 using namespace Soup::Syntax;
 
-bool DeleteFunctionBody::operator ==(const DeleteFunctionBody? rhs)
+bool DeleteFunctionBody::operator ==(const DeleteFunctionBody& rhs) const
 {
     return true;
 }
 
-bool DeleteFunctionBody::operator !=(const DeleteFunctionBody& rhs)
+bool DeleteFunctionBody::operator !=(const DeleteFunctionBody& rhs) const
 {
-    return !(lhs == rhs);
+    return !(*this == rhs);
 }

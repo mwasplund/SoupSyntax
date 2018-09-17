@@ -11,24 +11,24 @@ namespace Soup::StaticAnalysis
         /// Report ambiguity
         /// </summary>
         void ReportAmbiguity(
-            [NotNull] Parser recognizer,
-            [NotNull] DFA dfa,
+            Parser recognizer,
+            DFA dfa,
             int startIndex,
             int stopIndex,
             bool exact,
-            [Nullable] BitSet ambigAlts,
-            [NotNull] ATNConfigSet configs) override;
+            BitSet ambigAlts,
+            ATNConfigSet configs) override;
 
         /// <summary>
         /// Report attempting full context
         /// </summary>
         void ReportAttemptingFullContext(
-            [NotNull] Parser recognizer,
-            [NotNull] DFA dfa,
+            Parser recognizer,
+            DFA dfa,
             int startIndex,
             int stopIndex,
-            [Nullable] BitSet conflictingAlts,
-            [NotNull] SimulatorState conflictState) override;
+            BitSet conflictingAlts,
+            SimulatorState conflictState) override;
 
         /// <summary>
         /// Report context sensitivity
@@ -45,11 +45,11 @@ namespace Soup::StaticAnalysis
         /// Syntax error
         /// </summary>
         void SyntaxError(
-            [NotNull] IRecognizer recognizer,
-            [Nullable] IToken offendingSymbol,
+            IRecognizer recognizer,
+            IToken offendingSymbol,
             int line,
             int charPositionInLine,
-            [NotNull] string msg,
-            [Nullable] RecognitionException e) override;
+            string msg,
+            RecognitionException e) override;
     }
 }

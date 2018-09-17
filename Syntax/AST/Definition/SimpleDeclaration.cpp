@@ -20,5 +20,5 @@ bool SimpleDefinition::operator ==(const SimpleDefinition& rhs) const
 
 bool SimpleDefinition::operator !=(const SimpleDefinition& rhs) const
 {
-    return !(lhs == rhs);
+    return !(*this == rhs);
 }

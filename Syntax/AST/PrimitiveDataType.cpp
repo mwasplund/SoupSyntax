@@ -12,12 +12,12 @@ PrimitiveDataTypeNode::PrimitiveDataTypeNode(PrimitiveDataType type)
     this->type = type;
 }
 
-bool PrimitiveDataTypeNode::operator ==(const PrimitiveDataTypeNode& rhs)
+bool PrimitiveDataTypeNode::operator ==(const PrimitiveDataTypeNode& rhs) const
 {
     return this->type == rhs.type;
 }
 
-bool PrimitiveDataTypeNode::operator !=(const PrimitiveDataTypeNode& rhs)
+bool PrimitiveDataTypeNode::operator !=(const PrimitiveDataTypeNode& rhs) const
 {
-    return !(lhs == rhs);
+    return !(*this == rhs);
 }

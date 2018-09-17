@@ -26,7 +26,7 @@ namespace Soup::Syntax
         /// <summary>
         /// Equality operator
         /// </summary>
-        bool operator =(const Identifier& rhs) const;
+        bool operator ==(const Identifier& rhs) const;
 
         /// <summary>
         /// Inequality operator

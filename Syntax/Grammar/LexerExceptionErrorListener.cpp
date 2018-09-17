@@ -2,12 +2,12 @@
 using namespace Soup::Syntax;
 
 void LexerExceptionErrorListener::SyntaxError(
-    [NotNull] IRecognizer recognizer,
-    [Nullable] int offendingSymbol,
+    IRecognizer recognizer,
+    int offendingSymbol,
     int line,
     int charPositionInLine,
-    [NotNull] string msg,
-    [Nullable] RecognitionException e)
+    string msg,
+    RecognitionException e)
 {
     throw new ParseCanceledException("line " + line + ":" + charPositionInLine + " " + msg);
 }

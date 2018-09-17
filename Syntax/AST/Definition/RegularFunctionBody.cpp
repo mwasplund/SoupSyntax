@@ -14,5 +14,5 @@ bool RegularFunctionBody::operator ==(const, RegularFunctionBody& rhs) const
 
 bool RegularFunctionBody::operator !=(const RegularFunctionBody& rhs) const
 {
-    return !(lhs == rhs);
+    return !(*this == rhs);
 }

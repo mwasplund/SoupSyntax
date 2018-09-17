@@ -2,7 +2,7 @@
 module SoupSyntax;
 using namespace Soup::Syntax;
 
-const LiteralNode& Qualifier() const
+const LiteralNode& QualifiedName::GetQualifier() const
 {
     return this->qualifier;
 }
@@ -16,13 +16,13 @@ QualifiedName::QualifiedName()
 {
 }
 
-bool QualifiedName::operator ==(const QualifiedName& rhs)
+bool QualifiedName::operator ==(const QualifiedName& rhs) const
 {
     return this->qualifier == rhs.qualifier &&
         this->name == rhs.name;
 }
 
-bool QualifiedName::operator !=(const QualifiedName& rhs)
+bool QualifiedName::operator !=(const QualifiedName& rhs) const
 {
-    return !(lhs == rhs);
+    return !(*this == rhs);
 }

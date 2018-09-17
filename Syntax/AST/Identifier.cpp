@@ -2,22 +2,22 @@
 module SoupSyntax;
 using namespace Soup::Syntax;
 
-Identifier(std::string value)
+Identifier::Identifier(std::string value)
 {
     this->value = std::move(value);
 }
 
-const std::string& GetValue()
+const std::string& Identifier::GetValue() const
 {
     return this->value;
 }
 
-bool operator ==(const Identifier& rhs)
+bool Identifier::operator ==(const Identifier& rhs) const
 {
     return this->value == rhs.value;
 }
 
-bool operator !=(const Identifier& rhs)
+bool Identifier::operator !=(const Identifier& rhs) const
 {
-    return !(lhs == rhs);
+    return !(*this == rhs);
 }

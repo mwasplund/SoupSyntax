@@ -14,5 +14,5 @@ bool TryFunctionBody::operator ==(const TryFunctionBody& rhs)
 
 bool TryFunctionBody::operator !=(const TryFunctionBody& rhs)
 {
-    return !(lhs == rhs);
+    return !(*this == rhs);
 }

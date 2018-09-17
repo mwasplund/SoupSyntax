@@ -25,7 +25,7 @@ namespace Soup::Syntax
         /// <summary>
         /// Equality operator
         /// </summary>
-        bool operator =(const IntegerLiteral& rhs) const;
+        bool operator ==(const IntegerLiteral& rhs) const;
 
         /// <summary>
         /// Inequality operator

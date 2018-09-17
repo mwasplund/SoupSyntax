@@ -17,5 +17,5 @@ bool TranslationUnit::operator ==(const TranslationUnit& rhs) const
 
 bool TranslationUnit::operator !=(const TranslationUnit& rhs) const
 {
-    return !(lhs == rhs);
+    return !(*this == rhs);
 }

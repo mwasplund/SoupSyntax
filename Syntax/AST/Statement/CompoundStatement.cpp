@@ -18,5 +18,5 @@ bool operator ==(const CompoundStatement& rhs)
 
 bool operator !=(const CompoundStatement& rhs)
 {
-    return !(lhs == rhs);
+    return !(*this == rhs);
 }

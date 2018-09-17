@@ -18,5 +18,5 @@ public static bool InitializerDeclarator::operator ==(InitializerDeclarator lhs,
 
 public static bool InitializerDeclarator::operator !=(InitializerDeclarator lhs, InitializerDeclarator rhs)
 {
-    return !(lhs == rhs);
+    return !(*this == rhs);
 }

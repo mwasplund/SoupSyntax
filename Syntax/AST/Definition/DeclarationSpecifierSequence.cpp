@@ -1,75 +1,28 @@
 ﻿
+module SoupSyntax;
+using namespace Soup::Syntax;
 
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Soup::Syntax
+const std::vector<Node>& DeclarationSpecifierSequence::GetSpecifiers() const
 {
-    /// <summary>
-    /// Declaration specifier sequence
-    /// </summary>
-    export class DeclarationSpecifierSequence : public Node
-    {
-        /// <summary>
-        /// Gets or sets the list of declaration specifiers
-        /// </summary>
-        public IList<Node> Specifiers { get; set; }
+    return this->specifiers;
+}
 
-        /// <summary>
-        /// Initialize
-        /// </summary>
-        public DeclarationSpecifierSequence() :
-            this(new List<Node>())
-        {
-        }
+DeclarationSpecifierSequence::DeclarationSpecifierSequence() :
+    specifiers()
+{
+}
 
-        /// <summary>
-        /// Initialize
-        /// </summary>
-        public DeclarationSpecifierSequence(IList<Node> specifiers)
-        {
-            Specifiers = specifiers;
-        }
+DeclarationSpecifierSequence::DeclarationSpecifierSequence(std::vector<Node>&& specifiers)
+{
+    this->specifiers = std::move(specifiers);
+}
 
-        /// <summary>
-        /// Equality operator
-        /// </summary>
-        public static bool operator ==(DeclarationSpecifierSequence lhs, DeclarationSpecifierSequence rhs)
-        {
-            if (object.ReferenceEquals(lhs, null))
-                return object.ReferenceEquals(rhs, null);
-            else
-                return lhs.Equals(rhs);
-        }
+bool DeclarationSpecifierSequence::operator ==(const DeclarationSpecifierSequence& rhs) const
+{
+    return this->specifiers == rhs.specifiers;
+}
 
-        /// <summary>
-        /// Inequality operator
-        /// </summary>
-        public static bool operator !=(DeclarationSpecifierSequence lhs, DeclarationSpecifierSequence rhs)
-        {
-            return !(lhs == rhs);
-        }
-
-        /// <summary>
-        /// Equals
-        /// </summary>
-        public override bool Equals(object obj)
-        {
-            var other = obj as DeclarationSpecifierSequence;
-            if (object.ReferenceEquals(other, null))
-            {
-                return false;
-            }
-
-            return Specifiers.SequenceEqual(other.Specifiers);
-        }
-
-        /// <summary>
-        /// Get hash code
-        /// </summary>
-        public override int GetHashCode()
-        {
-            return Specifiers.GetHashCode();
-        }
-    }
+bool DeclarationSpecifierSequence::operator !=(const DeclarationSpecifierSequence& rhs) const
+{
+    return !(*this == rhs);
 }
