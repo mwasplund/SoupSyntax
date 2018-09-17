@@ -8,6 +8,9 @@ namespace Soup::Syntax
     /// </summary>
     export class DeclarationSpecifierSequence : public Node
     {
+    private:
+        std::vector<Node> specifiers;
+
     public:
         /// <summary>
         /// Gets or sets the list of declaration specifiers

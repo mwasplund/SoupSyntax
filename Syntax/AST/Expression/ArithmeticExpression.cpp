@@ -1,20 +1,13 @@
 ﻿
+module SoupSyntax;
+using namespace Soup::Syntax;
 
-namespace Soup::Syntax
+const ExpressionNode& ArithmeticExpression::GetLeft() const
 {
-    /// <summary>
-    /// Arithmetic Expression
-    /// </summary>
-    export class ArithmeticExpression : ExpressionNode
-    {
-        /// <summary>
-        /// The left expression
-        /// </summary>
-        public ExpressionNode Left { get; set; }
+    return this->left;
+}
 
-        /// <summary>
-        /// The right expression
-        /// </summary>
-        public ExpressionNode Right { get; set; }
-    }
+const ExpressionNode& ArithmeticExpression::GetRight() const
+{
+    return this->right;
 }

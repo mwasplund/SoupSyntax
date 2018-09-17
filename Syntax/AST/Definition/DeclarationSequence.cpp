@@ -1,31 +1,28 @@
 ﻿
 module SoupSyntax;
-using Soup::Syntax;
+using namespace Soup::Syntax;
 
-const std::vector<Declaration>& GetDeclarations() const
+const std::vector<Declaration>& DeclarationSequence::GetDeclarations() const
 {
-    
+    return this->declarations;
 }
 
-DeclarationSequence() :
-    this(new List<Declaration>())
+DeclarationSequence::DeclarationSequence() :
+    declarations()
 {
 }
 
-DeclarationSequence(IList<Declaration> declarations)
+DeclarationSequence::DeclarationSequence(std:;vector<Declaration>&& declarations)
 {
-    Declarations = declarations;
+    this->declarations = std::move(declarations);
 }
 
-static bool operator ==(DeclarationSequence lhs, DeclarationSequence rhs)
+bool DeclarationSequence::operator ==(cont DeclarationSequence& rhs)
 {
-    if (object.ReferenceEquals(lhs, null))
-        return object.ReferenceEquals(rhs, null);
-    else
-        return lhs.Equals(rhs);
+    return this->declarations == rhs.declarations;
 }
 
-bool operator !=(DeclarationSequence lhs, DeclarationSequence rhs)
+bool DeclarationSequence::operator !=(const DeclarationSequence& rhs)
 {
     return !(lhs == rhs);
 }

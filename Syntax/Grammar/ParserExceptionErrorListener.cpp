@@ -1,6 +1,6 @@
 ﻿#include "ParserExceptionErrorListener.h";
 
-using Soup::Syntax;
+using namespace Soup::Syntax;
 
 void ParserExceptionErrorListener::ReportAmbiguity(
     [NotNull] Parser recognizer,

@@ -8,6 +8,9 @@ namespace Soup::Syntax
     /// </summary>
     export class TranslationUnit : public Node
     {
+    private:
+        DeclarationSequence declarations;
+
     public:
         /// <summary>
         /// Gets or sets the option declaration sequence

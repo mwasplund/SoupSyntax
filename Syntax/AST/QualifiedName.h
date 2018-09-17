@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "Node.h"
+#include "LiteralNode.h"
 
 namespace Soup::Syntax
 {
@@ -8,6 +9,10 @@ namespace Soup::Syntax
     /// </summary>
     export class QualifiedName : public Node
     {
+    private:
+        LiteralNode qualifier;
+        Node name;
+
     public:
         /// <summary>
         /// Gets or sets the Qualifier

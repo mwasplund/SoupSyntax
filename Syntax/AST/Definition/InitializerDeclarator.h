@@ -8,6 +8,10 @@ namespace Soup::Syntax
     /// </summary>
     export class InitializerDeclarator : public Node
     {
+    private:
+        Node declarator;
+        Node initializer;
+
     public:
         /// <summary>
         /// Gets or sets the declarator

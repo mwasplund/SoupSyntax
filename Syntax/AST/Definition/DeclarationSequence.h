@@ -9,6 +9,9 @@ namespace Soup::Syntax
     /// </summary>
     export class DeclarationSequence : public Node
     {
+    private:
+        std::vector<Declaration> declarations;
+
     public:
         /// <summary>
         /// Gets or sets the list of declarations

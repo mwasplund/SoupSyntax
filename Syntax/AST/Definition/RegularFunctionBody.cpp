@@ -1,56 +1,18 @@
 ﻿
+module SoupSyntax;
+using namespace Soup::Syntax;
 
-namespace Soup::Syntax
+const CompoundStatement& RegularFunctionBody::GetStatements() const
 {
-    /// <summary>
-    /// The regular function body
-    /// </summary>
-    export class RegularFunctionBody : public Node
-    {
-        /// <summary>
-        /// Gets or sets the statements
-        /// </summary>
-        public CompoundStatement Statements { get; set; }
+    return this->statements;
+}
 
-        /// <summary>
-        /// Equality operator
-        /// </summary>
-        public static bool operator ==(RegularFunctionBody lhs, RegularFunctionBody rhs)
-        {
-            if (object.ReferenceEquals(lhs, null))
-                return object.ReferenceEquals(rhs, null);
-            else
-                return lhs.Equals(rhs);
-        }
+bool RegularFunctionBody::operator ==(const, RegularFunctionBody& rhs) const
+{
+    return this->statements == rhs.statements;
+}
 
-        /// <summary>
-        /// Inequality operator
-        /// </summary>
-        public static bool operator !=(RegularFunctionBody lhs, RegularFunctionBody rhs)
-        {
-            return !(lhs == rhs);
-        }
-
-        /// <summary>
-        /// Equals
-        /// </summary>
-        public override bool Equals(object obj)
-        {
-            var other = obj as RegularFunctionBody;
-            if (object.ReferenceEquals(other, null))
-            {
-                return false;
-            }
-
-            return Statements == other.Statements;
-        }
-
-        /// <summary>
-        /// Get hash code
-        /// </summary>
-        public override int GetHashCode()
-        {
-            return Statements.GetHashCode();
-        }
-    }
+bool RegularFunctionBody::operator !=(const RegularFunctionBody& rhs) const
+{
+    return !(lhs == rhs);
 }

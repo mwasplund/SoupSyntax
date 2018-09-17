@@ -1,14 +1,15 @@
 ﻿
 module SoupSyntax;
-using Soup::Syntax;
+using namespace Soup::Syntax;
 
 const LiteralNode& Qualifier() const
 {
-
+    return this->qualifier;
 }
 
 const Node& QualifiedName::GetName() const
 {
+    return this->name;
 }
 
 QualifiedName::QualifiedName()
@@ -17,10 +18,8 @@ QualifiedName::QualifiedName()
 
 bool QualifiedName::operator ==(const QualifiedName& rhs)
 {
-    if (object.ReferenceEquals(lhs, null))
-        return object.ReferenceEquals(rhs, null);
-    else
-        return lhs.Equals(rhs);
+    return this->qualifier == rhs.qualifier &&
+        this->name == rhs.name;
 }
 
 bool QualifiedName::operator !=(const QualifiedName& rhs)

@@ -8,6 +8,10 @@ namespace Soup::Syntax
     /// </summary>
     export class SimpleDefinition : public Declaration
     {
+    private:
+        DeclarationSpecifierSequence declarationSpecifierSequence;
+        InitializerDeclaratorList initializerDeclaratorList;
+
     public:
         /// <summary>
         /// Gets or sets the specifiers

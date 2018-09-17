@@ -1,2 +1,2 @@
 ﻿module SoupSyntax;
-using Soup::Syntax;
+using namespace Soup::Syntax;

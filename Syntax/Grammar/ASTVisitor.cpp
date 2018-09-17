@@ -1,6 +1,6 @@
 ﻿#include "ASTVisitor.h"
 
-using Soup::Syntax;
+using namespace Soup::Syntax;
 
 Node ASTVisitor::VisitTypedefName(CppParser.TypedefNameContext context)
 {

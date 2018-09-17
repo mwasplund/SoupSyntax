@@ -1,63 +1,24 @@
 ﻿
+module SoupSyntax;
+using namespace Soup::Syntax;
 
-namespace Soup::Syntax
+const DeclarationSpecifierSequence& SimpleDefinition::GetDeclarationSpecifierSequence() const
 {
-    /// <summary>
-    /// The simple declaration
-    /// </summary>
-    export class SimpleDefinition : Declaration
-    {
-        /// <summary>
-        /// Gets or sets the specifiers
-        /// </summary>
-        public DeclarationSpecifierSequence DeclarationSpecifierSequence { get; set; }
+    return this->declarationSpecifierSequence;
+}
 
-        /// <summary>
-        /// Gets or sets the optional initializer
-        /// </summary>
-        public InitializerDeclaratorList InitializerDeclaratorList { get; set; }
+const InitializerDeclaratorList& SimpleDefinition::GetInitializerDeclaratorList() const
+{
+    return this->initializerDeclaratorList;
+}
 
-        /// <summary>
-        /// Equality operator
-        /// </summary>
-        public static bool operator ==(SimpleDefinition lhs, SimpleDefinition rhs)
-        {
-            if (object.ReferenceEquals(lhs, null))
-                return object.ReferenceEquals(rhs, null);
-            else
-                return lhs.Equals(rhs);
-        }
+bool SimpleDefinition::operator ==(const SimpleDefinition& rhs) const
+{
+    return this->declarationSpecifierSequence == rhs.declarationSpecifierSequence &&
+        this->initializerDeclaratorList == rhs.initializerDeclaratorList;
+}
 
-        /// <summary>
-        /// Inequality operator
-        /// </summary>
-        public static bool operator !=(SimpleDefinition lhs, SimpleDefinition rhs)
-        {
-            return !(lhs == rhs);
-        }
-
-        /// <summary>
-        /// Equals
-        /// </summary>
-        public override bool Equals(object obj)
-        {
-            var other = obj as SimpleDefinition;
-            if (object.ReferenceEquals(other, null))
-            {
-                return false;
-            }
-
-            return DeclarationSpecifierSequence == other.DeclarationSpecifierSequence &&
-                InitializerDeclaratorList == other.InitializerDeclaratorList;
-        }
-
-        /// <summary>
-        /// Get hash code
-        /// </summary>
-        public override int GetHashCode()
-        {
-            return DeclarationSpecifierSequence.GetHashCode() ^
-                InitializerDeclaratorList.GetHashCode();
-        }
-    }
+bool SimpleDefinition::operator !=(const SimpleDefinition& rhs) const
+{
+    return !(lhs == rhs);
 }

@@ -1,20 +1,23 @@
 ﻿
 module SoupSyntax;
-using Soup::Syntax;
+using namespace Soup::Syntax;
 
-int Value { get; set; }
-
-IntegerLiteral(int value)
+int IntegerLiteral::GetValue() const
 {
-    Value = value;
+    return this->value;
 }
 
-bool operator ==(IntegerLiteral rhs)
+IntegerLiteral::IntegerLiteral(int value)
+{
+    this->value = value;
+}
+
+bool IntegerLiteral::operator ==(IntegerLiteral rhs)
 {
     return this->value == rhs.value;
 }
 
-bool operator !=(IntegerLiteral lhs, IntegerLiteral rhs)
+bool IntegerLiteral::operator !=(IntegerLiteral lhs, IntegerLiteral rhs)
 {
     return !(lhs == rhs);
 }

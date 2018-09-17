@@ -5,10 +5,7 @@
   ],
   "public": "Module.cpp",
   "source": [
-    "AnalyzerContext.cpp",
-    "ASTVisitor.cpp",
-    "LexerExceptionErrorListener.cpp",
-    "ParserExceptionErrorListener.cpp",
+    "SyntaxTree.cpp",
     "AST/Identifier.cpp",
     "AST/IntegerLiteral.cpp",
     "AST/LiteralNode.cpp",
@@ -34,6 +31,9 @@
     "AST/Statement/CompoundStatement.cpp",
     "AST/Statement/ReturnStatement.cpp",
     "AST/Statement/Statement.cpp",
-    "Grammar/CppLexer.cpp"
+    "Grammar/ASTVisitor.cpp",
+    "Grammar/CppLexer.cpp",
+    "Grammar/LexerExceptionErrorListener.cpp",
+    "Grammar/ParserExceptionErrorListener.cpp"
   ]
 }

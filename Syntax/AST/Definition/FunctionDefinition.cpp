@@ -1,77 +1,37 @@
 ﻿
+module SoupSyntax;
+using namespace Soup::Syntax;
 
-namespace Soup::Syntax
+const DeclarationSpecifierSequence& FunctionDefinition::ReturnType() const
 {
-    /// <summary>
-    /// The function definition
-    /// </summary>
-    export class FunctionDefinition : Declaration
-    {
-        /// <summary>
-        /// Gets or sets the return type
-        /// </summary>
-        public DeclarationSpecifierSequence ReturnType { get; set; }
+    return this->returnType;
+}
 
-        /// <summary>
-        /// Gets or sets the identifier
-        /// </summary>
-        public Identifier Identifier { get; set; }
+const Identifier& FunctionDefinition::Identifier() const
+{
+    return this->identifier;
+}
 
-        /// <summary>
-        /// Gets or sets the parameter list
-        /// </summary>
-        public ParameterList ParameterList { get; set; }
+const ParameterList& FunctionDefinition::ParameterList() const
+{
+    return this->parameterList;
+}
 
-        /// <summary>
-        /// Gets or sets the body
-        /// </summary>
-        public Node Body { get; set; }
+const Node& FunctionDefinition::Body() const
+{
+    return this->body;
+}
 
-        /// <summary>
-        /// Equality operator
-        /// </summary>
-        public static bool operator ==(FunctionDefinition lhs, FunctionDefinition rhs)
-        {
-            if (object.ReferenceEquals(lhs, null))
-                return object.ReferenceEquals(rhs, null);
-            else
-                return lhs.Equals(rhs);
-        }
+bool FunctionDefinition::operator ==(const FunctionDefinition& rhs) const
+{
+    return 
+        this->returnType == rhs.returnType &&
+        this->identifier == rhs.identifier &&
+        this->parameterList == rhs.parameterList &&
+        this->body == rhs.body;
+}
 
-        /// <summary>
-        /// Inequality operator
-        /// </summary>
-        public static bool operator !=(FunctionDefinition lhs, FunctionDefinition rhs)
-        {
-            return !(lhs == rhs);
-        }
-
-        /// <summary>
-        /// Equals
-        /// </summary>
-        public override bool Equals(object obj)
-        {
-            var other = obj as FunctionDefinition;
-            if (object.ReferenceEquals(other, null))
-            {
-                return false;
-            }
-
-            return ReturnType == other.ReturnType &&
-                Identifier ==  other.Identifier &&
-                ParameterList ==  other.ParameterList &&
-                Body == other.Body;
-        }
-
-        /// <summary>
-        /// Get hash code
-        /// </summary>
-        public override int GetHashCode()
-        {
-            return ReturnType.GetHashCode() ^
-                Identifier.GetHashCode() ^
-                ParameterList.GetHashCode() ^
-                Body.GetHashCode();
-        }
-    }
+bool FunctionDefinition::operator !=(const FunctionDefinition& rhs) const
+{
+    return !(lhs == rhs);
 }

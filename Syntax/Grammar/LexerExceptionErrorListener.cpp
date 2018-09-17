@@ -1,5 +1,5 @@
 ﻿#include "LexerExceptionErrorListener.h"
-using Soup::Syntax;
+using namespace Soup::Syntax;
 
 void LexerExceptionErrorListener::SyntaxError(
     [NotNull] IRecognizer recognizer,

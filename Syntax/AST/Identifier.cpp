@@ -1,24 +1,20 @@
 ﻿
-module ModuleSyntax;
-
-using Soup::Syntax;
+module SoupSyntax;
+using namespace Soup::Syntax;
 
 Identifier(std::string value)
 {
-    Value = std::move(value);
+    this->value = std::move(value);
 }
 
 const std::string& GetValue()
 {
-
+    return this->value;
 }
 
 bool operator ==(const Identifier& rhs)
 {
-    if (object.ReferenceEquals(lhs, null))
-        return object.ReferenceEquals(rhs, null);
-    else
-        return lhs.Equals(rhs);
+    return this->value == rhs.value;
 }
 
 bool operator !=(const Identifier& rhs)

@@ -1,56 +1,21 @@
 ﻿
+module SoupSyntax;
+using namespace Soup::Syntax;
 
-namespace Soup::Syntax
+const DeclarationSequence& TranslationUnit::GetDeclarations() const
 {
-    /// <summary>
-    /// The root translation unit node
-    /// </summary>
-    export class TranslationUnit : public Node
-    {
-        /// <summary>
-        /// Equality operator
-        /// </summary>
-        public static bool operator ==(TranslationUnit lhs, TranslationUnit rhs)
-        {
-            if (object.ReferenceEquals(lhs, null))
-                return object.ReferenceEquals(rhs, null);
-            else
-                return lhs.Equals(rhs);
-        }
+    return this->declarations;
+}
 
-        /// <summary>
-        /// Inequality operator
-        /// </summary>
-        public static bool operator !=(TranslationUnit lhs, TranslationUnit rhs)
-        {
-            return !(lhs == rhs);
-        }
+bool TranslationUnit::operator ==(const TranslationUnit& rhs) const
+{
+    if (object.ReferenceEquals(lhs, null))
+        return object.ReferenceEquals(rhs, null);
+    else
+        return lhs.Equals(rhs);
+}
 
-        /// <summary>
-        /// Gets or sets the option declaration sequence
-        /// </summary>
-        public DeclarationSequence Declarations { get; set; }
-
-        /// <summary>
-        /// Equals
-        /// </summary>
-        public override bool Equals(object obj)
-        {
-            var other = obj as TranslationUnit;
-            if (object.ReferenceEquals(other, null))
-            {
-                return false;
-            }
-
-            return Declarations == other.Declarations;
-        }
-
-        /// <summary>
-        /// Get hash code
-        /// </summary>
-        public override int GetHashCode()
-        {
-            return Declarations.GetHashCode();
-        }
-    }
+bool TranslationUnit::operator !=(const TranslationUnit& rhs) const
+{
+    return !(lhs == rhs);
 }

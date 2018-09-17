@@ -84,6 +84,9 @@ namespace Soup::Syntax
     /// </summary>
     export class PrimitiveDataTypeNode : public Node
     {
+    private:
+        PrimitiveDataType type;
+
     public:
         /// <summary>
         /// Gets or sets the type

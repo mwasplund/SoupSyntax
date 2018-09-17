@@ -8,6 +8,9 @@ namespace Soup::Syntax
     /// </summary>
     export class TryFunctionBody : public Node
     {
+    private:
+        CompoundStatement statements;
+
     public:
         /// <summary>
         /// Gets or sets the statements

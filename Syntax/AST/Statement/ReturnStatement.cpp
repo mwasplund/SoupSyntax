@@ -1,51 +1,13 @@
 ﻿
+module SoupSyntax;
+using namespace Soup::Syntax;
 
-namespace Soup::Syntax
+bool ReturnStatement::operator ==(const ReturnStatement& rhs)
 {
-    /// <summary>
-    /// Return statement node
-    /// </summary>
-    export class ReturnStatement : Statement
-    {
-        /// <summary>
-        /// Equality operator
-        /// </summary>
-        public static bool operator ==(ReturnStatement lhs, ReturnStatement rhs)
-        {
-            if (object.ReferenceEquals(lhs, null))
-                return object.ReferenceEquals(rhs, null);
-            else
-                return lhs.Equals(rhs);
-        }
+    return true;
+}
 
-        /// <summary>
-        /// Inequality operator
-        /// </summary>
-        public static bool operator !=(ReturnStatement lhs, ReturnStatement rhs)
-        {
-            return !(lhs == rhs);
-        }
-
-        /// <summary>
-        /// Equals
-        /// </summary>
-        public override bool Equals(object obj)
-        {
-            var other = obj as ReturnStatement;
-            if (object.ReferenceEquals(other, null))
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        /// <summary>
-        /// Get hash code
-        /// </summary>
-        public override int GetHashCode()
-        {
-            return 0;
-        }
-    }
+bool ReturnStatement::operator !=(const ReturnStatement& rhs)
+{
+    return !(*this == rhs);
 }

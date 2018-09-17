@@ -1,7 +1,9 @@
 ﻿#pragma once
+#include "Node.h"
 #include "Declaration.h"
 #include "DeclarationSpecifierSequence.h"
 #include "ParameterList.h"
+
 namespace Soup::Syntax
 {
     /// <summary>
@@ -9,6 +11,12 @@ namespace Soup::Syntax
     /// </summary>
     export class FunctionDefinition : public Declaration
     {
+    private:
+        DeclarationSpecifierSequence returnType;
+        Identifier identifier;
+        ParameterList parameterList;
+        Node body;
+
     public:
         /// <summary>
         /// Gets or sets the return type

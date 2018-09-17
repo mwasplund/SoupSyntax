@@ -8,6 +8,9 @@ namespace Soup::Syntax
     /// </summary>
     export class IntegerLiteral : public LiteralNode
     {
+    private:
+        int value;
+
     public:
         /// <summary>
         /// Gets or sets the value

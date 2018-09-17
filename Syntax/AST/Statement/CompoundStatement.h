@@ -10,6 +10,9 @@ namespace Soup::Syntax
     /// </summary>
     export class CompoundStatement : public Node
     {
+    private:
+        std::vector<Statement> statements;
+
     public:
         /// <summary>
         /// Gets or sets the list of statements
