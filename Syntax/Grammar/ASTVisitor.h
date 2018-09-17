@@ -5,7 +5,7 @@ namespace Soup::StaticAnalysis
     /// <summary>
     /// Abstract syntax tree visitor
     /// </summary>
-    class ASTVisitor : CppParserBaseVisitor<Node>
+    class ASTVisitor : public CppParserBaseVisitor<Node>
     {
     public:
         /// <summary>
