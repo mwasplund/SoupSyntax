@@ -3,6 +3,7 @@
 
 
 #include "CppParserListener.h"
+#include "CppParserVisitor.h"
 
 #include "CppParser.h"
 
@@ -58,6 +59,14 @@ void CppParser::TypedefNameContext::exitRule(tree::ParseTreeListener *listener) 
     parserListener->exitTypedefName(this);
 }
 
+
+antlrcpp::Any CppParser::TypedefNameContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitTypedefName(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::TypedefNameContext* CppParser::typedefName() {
   TypedefNameContext *_localctx = _tracker.createInstance<TypedefNameContext>(_ctx, getState());
   enterRule(_localctx, 0, CppParser::RuleTypedefName);
@@ -109,6 +118,14 @@ void CppParser::NamespaceNameContext::exitRule(tree::ParseTreeListener *listener
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitNamespaceName(this);
+}
+
+
+antlrcpp::Any CppParser::NamespaceNameContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitNamespaceName(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::NamespaceNameContext* CppParser::namespaceName() {
@@ -175,6 +192,14 @@ void CppParser::NamespaceAliasContext::exitRule(tree::ParseTreeListener *listene
     parserListener->exitNamespaceAlias(this);
 }
 
+
+antlrcpp::Any CppParser::NamespaceAliasContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitNamespaceAlias(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::NamespaceAliasContext* CppParser::namespaceAlias() {
   NamespaceAliasContext *_localctx = _tracker.createInstance<NamespaceAliasContext>(_ctx, getState());
   enterRule(_localctx, 4, CppParser::RuleNamespaceAlias);
@@ -226,6 +251,14 @@ void CppParser::ClassNameContext::exitRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitClassName(this);
+}
+
+
+antlrcpp::Any CppParser::ClassNameContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitClassName(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::ClassNameContext* CppParser::className() {
@@ -292,6 +325,14 @@ void CppParser::EnumNameContext::exitRule(tree::ParseTreeListener *listener) {
     parserListener->exitEnumName(this);
 }
 
+
+antlrcpp::Any CppParser::EnumNameContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitEnumName(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::EnumNameContext* CppParser::enumName() {
   EnumNameContext *_localctx = _tracker.createInstance<EnumNameContext>(_ctx, getState());
   enterRule(_localctx, 8, CppParser::RuleEnumName);
@@ -339,6 +380,14 @@ void CppParser::TemplateNameContext::exitRule(tree::ParseTreeListener *listener)
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitTemplateName(this);
+}
+
+
+antlrcpp::Any CppParser::TemplateNameContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitTemplateName(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::TemplateNameContext* CppParser::templateName() {
@@ -392,6 +441,14 @@ void CppParser::TranslationUnitContext::exitRule(tree::ParseTreeListener *listen
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitTranslationUnit(this);
+}
+
+
+antlrcpp::Any CppParser::TranslationUnitContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitTranslationUnit(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::TranslationUnitContext* CppParser::translationUnit() {
@@ -528,6 +585,14 @@ void CppParser::PrimaryExpressionContext::exitRule(tree::ParseTreeListener *list
     parserListener->exitPrimaryExpression(this);
 }
 
+
+antlrcpp::Any CppParser::PrimaryExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitPrimaryExpression(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::PrimaryExpressionContext* CppParser::primaryExpression() {
   PrimaryExpressionContext *_localctx = _tracker.createInstance<PrimaryExpressionContext>(_ctx, getState());
   enterRule(_localctx, 14, CppParser::RulePrimaryExpression);
@@ -628,6 +693,14 @@ void CppParser::IdentifierExpressionContext::exitRule(tree::ParseTreeListener *l
     parserListener->exitIdentifierExpression(this);
 }
 
+
+antlrcpp::Any CppParser::IdentifierExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitIdentifierExpression(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::IdentifierExpressionContext* CppParser::identifierExpression() {
   IdentifierExpressionContext *_localctx = _tracker.createInstance<IdentifierExpressionContext>(_ctx, getState());
   enterRule(_localctx, 16, CppParser::RuleIdentifierExpression);
@@ -718,6 +791,14 @@ void CppParser::UnqualifiedIdentifierContext::exitRule(tree::ParseTreeListener *
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitUnqualifiedIdentifier(this);
+}
+
+
+antlrcpp::Any CppParser::UnqualifiedIdentifierContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitUnqualifiedIdentifier(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::UnqualifiedIdentifierContext* CppParser::unqualifiedIdentifier() {
@@ -831,6 +912,14 @@ void CppParser::QualifiedIdentifierContext::exitRule(tree::ParseTreeListener *li
     parserListener->exitQualifiedIdentifier(this);
 }
 
+
+antlrcpp::Any CppParser::QualifiedIdentifierContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitQualifiedIdentifier(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::QualifiedIdentifierContext* CppParser::qualifiedIdentifier() {
   QualifiedIdentifierContext *_localctx = _tracker.createInstance<QualifiedIdentifierContext>(_ctx, getState());
   enterRule(_localctx, 20, CppParser::RuleQualifiedIdentifier);
@@ -917,6 +1006,14 @@ void CppParser::NestedNameSpecifierContext::exitRule(tree::ParseTreeListener *li
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitNestedNameSpecifier(this);
+}
+
+
+antlrcpp::Any CppParser::NestedNameSpecifierContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitNestedNameSpecifier(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 
@@ -1070,6 +1167,14 @@ void CppParser::LambdaExpressionContext::exitRule(tree::ParseTreeListener *liste
     parserListener->exitLambdaExpression(this);
 }
 
+
+antlrcpp::Any CppParser::LambdaExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitLambdaExpression(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::LambdaExpressionContext* CppParser::lambdaExpression() {
   LambdaExpressionContext *_localctx = _tracker.createInstance<LambdaExpressionContext>(_ctx, getState());
   enterRule(_localctx, 24, CppParser::RuleLambdaExpression);
@@ -1136,6 +1241,14 @@ void CppParser::LambdaIntroducerContext::exitRule(tree::ParseTreeListener *liste
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitLambdaIntroducer(this);
+}
+
+
+antlrcpp::Any CppParser::LambdaIntroducerContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitLambdaIntroducer(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::LambdaIntroducerContext* CppParser::lambdaIntroducer() {
@@ -1224,6 +1337,14 @@ void CppParser::LambdaDeclaratorContext::exitRule(tree::ParseTreeListener *liste
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitLambdaDeclarator(this);
+}
+
+
+antlrcpp::Any CppParser::LambdaDeclaratorContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitLambdaDeclarator(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::LambdaDeclaratorContext* CppParser::lambdaDeclarator() {
@@ -1355,6 +1476,14 @@ void CppParser::LambdaCaptureContext::exitRule(tree::ParseTreeListener *listener
     parserListener->exitLambdaCapture(this);
 }
 
+
+antlrcpp::Any CppParser::LambdaCaptureContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitLambdaCapture(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::LambdaCaptureContext* CppParser::lambdaCapture() {
   LambdaCaptureContext *_localctx = _tracker.createInstance<LambdaCaptureContext>(_ctx, getState());
   enterRule(_localctx, 30, CppParser::RuleLambdaCapture);
@@ -1434,6 +1563,14 @@ void CppParser::CaptureDefaultContext::exitRule(tree::ParseTreeListener *listene
     parserListener->exitCaptureDefault(this);
 }
 
+
+antlrcpp::Any CppParser::CaptureDefaultContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitCaptureDefault(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::CaptureDefaultContext* CppParser::captureDefault() {
   CaptureDefaultContext *_localctx = _tracker.createInstance<CaptureDefaultContext>(_ctx, getState());
   enterRule(_localctx, 32, CppParser::RuleCaptureDefault);
@@ -1503,6 +1640,14 @@ void CppParser::CaptureListContext::exitRule(tree::ParseTreeListener *listener) 
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitCaptureList(this);
+}
+
+
+antlrcpp::Any CppParser::CaptureListContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitCaptureList(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 
@@ -1613,6 +1758,14 @@ void CppParser::CaptureContext::exitRule(tree::ParseTreeListener *listener) {
     parserListener->exitCapture(this);
 }
 
+
+antlrcpp::Any CppParser::CaptureContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitCapture(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::CaptureContext* CppParser::capture() {
   CaptureContext *_localctx = _tracker.createInstance<CaptureContext>(_ctx, getState());
   enterRule(_localctx, 36, CppParser::RuleCapture);
@@ -1674,6 +1827,14 @@ void CppParser::SimpleCaptureContext::exitRule(tree::ParseTreeListener *listener
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitSimpleCapture(this);
+}
+
+
+antlrcpp::Any CppParser::SimpleCaptureContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitSimpleCapture(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::SimpleCaptureContext* CppParser::simpleCapture() {
@@ -1769,6 +1930,14 @@ void CppParser::InitializerCaptureContext::exitRule(tree::ParseTreeListener *lis
     parserListener->exitInitializerCapture(this);
 }
 
+
+antlrcpp::Any CppParser::InitializerCaptureContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitInitializerCapture(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::InitializerCaptureContext* CppParser::initializerCapture() {
   InitializerCaptureContext *_localctx = _tracker.createInstance<InitializerCaptureContext>(_ctx, getState());
   enterRule(_localctx, 40, CppParser::RuleInitializerCapture);
@@ -1851,6 +2020,14 @@ void CppParser::FoldExpressionContext::exitRule(tree::ParseTreeListener *listene
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitFoldExpression(this);
+}
+
+
+antlrcpp::Any CppParser::FoldExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitFoldExpression(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::FoldExpressionContext* CppParser::foldExpression() {
@@ -2076,6 +2253,14 @@ void CppParser::FoldOperatorContext::exitRule(tree::ParseTreeListener *listener)
     parserListener->exitFoldOperator(this);
 }
 
+
+antlrcpp::Any CppParser::FoldOperatorContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitFoldOperator(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::FoldOperatorContext* CppParser::foldOperator() {
   FoldOperatorContext *_localctx = _tracker.createInstance<FoldOperatorContext>(_ctx, getState());
   enterRule(_localctx, 44, CppParser::RuleFoldOperator);
@@ -2267,6 +2452,14 @@ void CppParser::PostfixExpressionContext::exitRule(tree::ParseTreeListener *list
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitPostfixExpression(this);
+}
+
+
+antlrcpp::Any CppParser::PostfixExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitPostfixExpression(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 
@@ -2800,6 +2993,14 @@ void CppParser::ExpressionListContext::exitRule(tree::ParseTreeListener *listene
     parserListener->exitExpressionList(this);
 }
 
+
+antlrcpp::Any CppParser::ExpressionListContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitExpressionList(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::ExpressionListContext* CppParser::expressionList() {
   ExpressionListContext *_localctx = _tracker.createInstance<ExpressionListContext>(_ctx, getState());
   enterRule(_localctx, 48, CppParser::RuleExpressionList);
@@ -2875,6 +3076,14 @@ void CppParser::PseudoDestructorNameContext::exitRule(tree::ParseTreeListener *l
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitPseudoDestructorName(this);
+}
+
+
+antlrcpp::Any CppParser::PseudoDestructorNameContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitPseudoDestructorName(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::PseudoDestructorNameContext* CppParser::pseudoDestructorName() {
@@ -3044,6 +3253,14 @@ void CppParser::UnaryExpressionContext::exitRule(tree::ParseTreeListener *listen
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitUnaryExpression(this);
+}
+
+
+antlrcpp::Any CppParser::UnaryExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitUnaryExpression(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::UnaryExpressionContext* CppParser::unaryExpression() {
@@ -3225,6 +3442,14 @@ void CppParser::UnaryOperatorContext::exitRule(tree::ParseTreeListener *listener
     parserListener->exitUnaryOperator(this);
 }
 
+
+antlrcpp::Any CppParser::UnaryOperatorContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitUnaryOperator(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::UnaryOperatorContext* CppParser::unaryOperator() {
   UnaryOperatorContext *_localctx = _tracker.createInstance<UnaryOperatorContext>(_ctx, getState());
   enterRule(_localctx, 54, CppParser::RuleUnaryOperator);
@@ -3315,6 +3540,14 @@ void CppParser::NewExpressionContext::exitRule(tree::ParseTreeListener *listener
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitNewExpression(this);
+}
+
+
+antlrcpp::Any CppParser::NewExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitNewExpression(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::NewExpressionContext* CppParser::newExpression() {
@@ -3455,6 +3688,14 @@ void CppParser::NewPlacementContext::exitRule(tree::ParseTreeListener *listener)
     parserListener->exitNewPlacement(this);
 }
 
+
+antlrcpp::Any CppParser::NewPlacementContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitNewPlacement(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::NewPlacementContext* CppParser::newPlacement() {
   NewPlacementContext *_localctx = _tracker.createInstance<NewPlacementContext>(_ctx, getState());
   enterRule(_localctx, 58, CppParser::RuleNewPlacement);
@@ -3510,6 +3751,14 @@ void CppParser::NewTypeIdentifierContext::exitRule(tree::ParseTreeListener *list
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitNewTypeIdentifier(this);
+}
+
+
+antlrcpp::Any CppParser::NewTypeIdentifierContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitNewTypeIdentifier(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::NewTypeIdentifierContext* CppParser::newTypeIdentifier() {
@@ -3578,6 +3827,14 @@ void CppParser::NewDeclaratorContext::exitRule(tree::ParseTreeListener *listener
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitNewDeclarator(this);
+}
+
+
+antlrcpp::Any CppParser::NewDeclaratorContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitNewDeclarator(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::NewDeclaratorContext* CppParser::newDeclarator() {
@@ -3663,6 +3920,14 @@ void CppParser::NoPointerNewDeclaratorContext::exitRule(tree::ParseTreeListener 
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitNoPointerNewDeclarator(this);
+}
+
+
+antlrcpp::Any CppParser::NoPointerNewDeclaratorContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitNoPointerNewDeclarator(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 
@@ -3785,6 +4050,14 @@ void CppParser::NewInitializerContext::exitRule(tree::ParseTreeListener *listene
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitNewInitializer(this);
+}
+
+
+antlrcpp::Any CppParser::NewInitializerContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitNewInitializer(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::NewInitializerContext* CppParser::newInitializer() {
@@ -3940,6 +4213,14 @@ void CppParser::DeleteExpressionContext::exitRule(tree::ParseTreeListener *liste
     parserListener->exitDeleteExpression(this);
 }
 
+
+antlrcpp::Any CppParser::DeleteExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitDeleteExpression(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::DeleteExpressionContext* CppParser::deleteExpression() {
   DeleteExpressionContext *_localctx = _tracker.createInstance<DeleteExpressionContext>(_ctx, getState());
   enterRule(_localctx, 68, CppParser::RuleDeleteExpression);
@@ -4041,6 +4322,14 @@ void CppParser::NoExceptionExpressionContext::exitRule(tree::ParseTreeListener *
     parserListener->exitNoExceptionExpression(this);
 }
 
+
+antlrcpp::Any CppParser::NoExceptionExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitNoExceptionExpression(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::NoExceptionExpressionContext* CppParser::noExceptionExpression() {
   NoExceptionExpressionContext *_localctx = _tracker.createInstance<NoExceptionExpressionContext>(_ctx, getState());
   enterRule(_localctx, 70, CppParser::RuleNoExceptionExpression);
@@ -4110,6 +4399,14 @@ void CppParser::CastExpressionContext::exitRule(tree::ParseTreeListener *listene
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitCastExpression(this);
+}
+
+
+antlrcpp::Any CppParser::CastExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitCastExpression(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::CastExpressionContext* CppParser::castExpression() {
@@ -4192,6 +4489,14 @@ void CppParser::PointerManipulationExpressionContext::exitRule(tree::ParseTreeLi
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitPointerManipulationExpression(this);
+}
+
+
+antlrcpp::Any CppParser::PointerManipulationExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitPointerManipulationExpression(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 
@@ -4311,6 +4616,14 @@ void CppParser::MultiplicativeExpressionContext::exitRule(tree::ParseTreeListene
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitMultiplicativeExpression(this);
+}
+
+
+antlrcpp::Any CppParser::MultiplicativeExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitMultiplicativeExpression(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 
@@ -4442,6 +4755,14 @@ void CppParser::AdditiveExpressionContext::exitRule(tree::ParseTreeListener *lis
 }
 
 
+antlrcpp::Any CppParser::AdditiveExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitAdditiveExpression(this);
+  else
+    return visitor->visitChildren(this);
+}
+
+
 CppParser::AdditiveExpressionContext* CppParser::additiveExpression() {
    return additiveExpression(0);
 }
@@ -4554,6 +4875,14 @@ void CppParser::ShiftExpressionContext::exitRule(tree::ParseTreeListener *listen
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitShiftExpression(this);
+}
+
+
+antlrcpp::Any CppParser::ShiftExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitShiftExpression(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 
@@ -4677,6 +5006,14 @@ void CppParser::RelationalExpressionContext::exitRule(tree::ParseTreeListener *l
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitRelationalExpression(this);
+}
+
+
+antlrcpp::Any CppParser::RelationalExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitRelationalExpression(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 
@@ -4821,6 +5158,14 @@ void CppParser::EqualityExpressionContext::exitRule(tree::ParseTreeListener *lis
 }
 
 
+antlrcpp::Any CppParser::EqualityExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitEqualityExpression(this);
+  else
+    return visitor->visitChildren(this);
+}
+
+
 CppParser::EqualityExpressionContext* CppParser::equalityExpression() {
    return equalityExpression(0);
 }
@@ -4932,6 +5277,14 @@ void CppParser::AndExpressionContext::exitRule(tree::ParseTreeListener *listener
 }
 
 
+antlrcpp::Any CppParser::AndExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitAndExpression(this);
+  else
+    return visitor->visitChildren(this);
+}
+
+
 CppParser::AndExpressionContext* CppParser::andExpression() {
    return andExpression(0);
 }
@@ -5019,6 +5372,14 @@ void CppParser::ExclusiveOrExpressionContext::exitRule(tree::ParseTreeListener *
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitExclusiveOrExpression(this);
+}
+
+
+antlrcpp::Any CppParser::ExclusiveOrExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitExclusiveOrExpression(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 
@@ -5112,6 +5473,14 @@ void CppParser::InclusiveOrExpressionContext::exitRule(tree::ParseTreeListener *
 }
 
 
+antlrcpp::Any CppParser::InclusiveOrExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitInclusiveOrExpression(this);
+  else
+    return visitor->visitChildren(this);
+}
+
+
 CppParser::InclusiveOrExpressionContext* CppParser::inclusiveOrExpression() {
    return inclusiveOrExpression(0);
 }
@@ -5202,6 +5571,14 @@ void CppParser::LogicalAndExpressionContext::exitRule(tree::ParseTreeListener *l
 }
 
 
+antlrcpp::Any CppParser::LogicalAndExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitLogicalAndExpression(this);
+  else
+    return visitor->visitChildren(this);
+}
+
+
 CppParser::LogicalAndExpressionContext* CppParser::logicalAndExpression() {
    return logicalAndExpression(0);
 }
@@ -5289,6 +5666,14 @@ void CppParser::LogicalOrExpressionContext::exitRule(tree::ParseTreeListener *li
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitLogicalOrExpression(this);
+}
+
+
+antlrcpp::Any CppParser::LogicalOrExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitLogicalOrExpression(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 
@@ -5389,6 +5774,14 @@ void CppParser::ConditionalExpressionContext::exitRule(tree::ParseTreeListener *
     parserListener->exitConditionalExpression(this);
 }
 
+
+antlrcpp::Any CppParser::ConditionalExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitConditionalExpression(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::ConditionalExpressionContext* CppParser::conditionalExpression() {
   ConditionalExpressionContext *_localctx = _tracker.createInstance<ConditionalExpressionContext>(_ctx, getState());
   enterRule(_localctx, 96, CppParser::RuleConditionalExpression);
@@ -5465,6 +5858,14 @@ void CppParser::ThrowExpressionContext::exitRule(tree::ParseTreeListener *listen
     parserListener->exitThrowExpression(this);
 }
 
+
+antlrcpp::Any CppParser::ThrowExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitThrowExpression(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::ThrowExpressionContext* CppParser::throwExpression() {
   ThrowExpressionContext *_localctx = _tracker.createInstance<ThrowExpressionContext>(_ctx, getState());
   enterRule(_localctx, 98, CppParser::RuleThrowExpression);
@@ -5539,6 +5940,14 @@ void CppParser::AssignmentExpressionContext::exitRule(tree::ParseTreeListener *l
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitAssignmentExpression(this);
+}
+
+
+antlrcpp::Any CppParser::AssignmentExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitAssignmentExpression(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::AssignmentExpressionContext* CppParser::assignmentExpression() {
@@ -5656,6 +6065,14 @@ void CppParser::AssignmentOperatorContext::exitRule(tree::ParseTreeListener *lis
     parserListener->exitAssignmentOperator(this);
 }
 
+
+antlrcpp::Any CppParser::AssignmentOperatorContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitAssignmentOperator(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::AssignmentOperatorContext* CppParser::assignmentOperator() {
   AssignmentOperatorContext *_localctx = _tracker.createInstance<AssignmentOperatorContext>(_ctx, getState());
   enterRule(_localctx, 102, CppParser::RuleAssignmentOperator);
@@ -5730,6 +6147,14 @@ void CppParser::ExpressionContext::exitRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitExpression(this);
+}
+
+
+antlrcpp::Any CppParser::ExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitExpression(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 
@@ -5814,6 +6239,14 @@ void CppParser::ConstantExpressionContext::exitRule(tree::ParseTreeListener *lis
     parserListener->exitConstantExpression(this);
 }
 
+
+antlrcpp::Any CppParser::ConstantExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitConstantExpression(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::ConstantExpressionContext* CppParser::constantExpression() {
   ConstantExpressionContext *_localctx = _tracker.createInstance<ConstantExpressionContext>(_ctx, getState());
   enterRule(_localctx, 106, CppParser::RuleConstantExpression);
@@ -5893,6 +6326,14 @@ void CppParser::StatementContext::exitRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitStatement(this);
+}
+
+
+antlrcpp::Any CppParser::StatementContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitStatement(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::StatementContext* CppParser::statement() {
@@ -6057,6 +6498,14 @@ void CppParser::InitializerStatementContext::exitRule(tree::ParseTreeListener *l
     parserListener->exitInitializerStatement(this);
 }
 
+
+antlrcpp::Any CppParser::InitializerStatementContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitInitializerStatement(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::InitializerStatementContext* CppParser::initializerStatement() {
   InitializerStatementContext *_localctx = _tracker.createInstance<InitializerStatementContext>(_ctx, getState());
   enterRule(_localctx, 110, CppParser::RuleInitializerStatement);
@@ -6135,6 +6584,14 @@ void CppParser::ConditionContext::exitRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitCondition(this);
+}
+
+
+antlrcpp::Any CppParser::ConditionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitCondition(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::ConditionContext* CppParser::condition() {
@@ -6236,6 +6693,14 @@ void CppParser::LabeledStatementContext::exitRule(tree::ParseTreeListener *liste
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitLabeledStatement(this);
+}
+
+
+antlrcpp::Any CppParser::LabeledStatementContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitLabeledStatement(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::LabeledStatementContext* CppParser::labeledStatement() {
@@ -6350,6 +6815,14 @@ void CppParser::ExpressionStatementContext::exitRule(tree::ParseTreeListener *li
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitExpressionStatement(this);
+}
+
+
+antlrcpp::Any CppParser::ExpressionStatementContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitExpressionStatement(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::ExpressionStatementContext* CppParser::expressionStatement() {
@@ -6475,6 +6948,14 @@ void CppParser::CompoundStatementContext::exitRule(tree::ParseTreeListener *list
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitCompoundStatement(this);
+}
+
+
+antlrcpp::Any CppParser::CompoundStatementContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitCompoundStatement(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::CompoundStatementContext* CppParser::compoundStatement() {
@@ -6630,6 +7111,14 @@ void CppParser::StatementSequenceContext::exitRule(tree::ParseTreeListener *list
 }
 
 
+antlrcpp::Any CppParser::StatementSequenceContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitStatementSequence(this);
+  else
+    return visitor->visitChildren(this);
+}
+
+
 CppParser::StatementSequenceContext* CppParser::statementSequence() {
    return statementSequence(0);
 }
@@ -6743,6 +7232,14 @@ void CppParser::SelectionStatementContext::exitRule(tree::ParseTreeListener *lis
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitSelectionStatement(this);
+}
+
+
+antlrcpp::Any CppParser::SelectionStatementContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitSelectionStatement(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::SelectionStatementContext* CppParser::selectionStatement() {
@@ -6940,6 +7437,14 @@ void CppParser::IterationStatementContext::exitRule(tree::ParseTreeListener *lis
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitIterationStatement(this);
+}
+
+
+antlrcpp::Any CppParser::IterationStatementContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitIterationStatement(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::IterationStatementContext* CppParser::iterationStatement() {
@@ -7232,6 +7737,14 @@ void CppParser::ForInitializerStatementContext::exitRule(tree::ParseTreeListener
     parserListener->exitForInitializerStatement(this);
 }
 
+
+antlrcpp::Any CppParser::ForInitializerStatementContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitForInitializerStatement(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::ForInitializerStatementContext* CppParser::forInitializerStatement() {
   ForInitializerStatementContext *_localctx = _tracker.createInstance<ForInitializerStatementContext>(_ctx, getState());
   enterRule(_localctx, 126, CppParser::RuleForInitializerStatement);
@@ -7337,6 +7850,14 @@ void CppParser::ForRangeDeclarationContext::exitRule(tree::ParseTreeListener *li
     parserListener->exitForRangeDeclaration(this);
 }
 
+
+antlrcpp::Any CppParser::ForRangeDeclarationContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitForRangeDeclaration(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::ForRangeDeclarationContext* CppParser::forRangeDeclaration() {
   ForRangeDeclarationContext *_localctx = _tracker.createInstance<ForRangeDeclarationContext>(_ctx, getState());
   enterRule(_localctx, 128, CppParser::RuleForRangeDeclaration);
@@ -7395,6 +7916,14 @@ void CppParser::ForRangeInitializerContext::exitRule(tree::ParseTreeListener *li
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitForRangeInitializer(this);
+}
+
+
+antlrcpp::Any CppParser::ForRangeInitializerContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitForRangeInitializer(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::ForRangeInitializerContext* CppParser::forRangeInitializer() {
@@ -7468,6 +7997,14 @@ void CppParser::JumpStatementContext::exitRule(tree::ParseTreeListener *listener
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitJumpStatement(this);
+}
+
+
+antlrcpp::Any CppParser::JumpStatementContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitJumpStatement(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::JumpStatementContext* CppParser::jumpStatement() {
@@ -7629,6 +8166,14 @@ void CppParser::DeclarationStatementContext::exitRule(tree::ParseTreeListener *l
     parserListener->exitDeclarationStatement(this);
 }
 
+
+antlrcpp::Any CppParser::DeclarationStatementContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitDeclarationStatement(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::DeclarationStatementContext* CppParser::declarationStatement() {
   DeclarationStatementContext *_localctx = _tracker.createInstance<DeclarationStatementContext>(_ctx, getState());
   enterRule(_localctx, 134, CppParser::RuleDeclarationStatement);
@@ -7680,6 +8225,14 @@ void CppParser::DeclarationSequenceContext::exitRule(tree::ParseTreeListener *li
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitDeclarationSequence(this);
+}
+
+
+antlrcpp::Any CppParser::DeclarationSequenceContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitDeclarationSequence(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 
@@ -7800,6 +8353,14 @@ void CppParser::DeclarationContext::exitRule(tree::ParseTreeListener *listener) 
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitDeclaration(this);
+}
+
+
+antlrcpp::Any CppParser::DeclarationContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitDeclaration(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::DeclarationContext* CppParser::declaration() {
@@ -7957,6 +8518,14 @@ void CppParser::BlockDeclarationContext::exitRule(tree::ParseTreeListener *liste
     parserListener->exitBlockDeclaration(this);
 }
 
+
+antlrcpp::Any CppParser::BlockDeclarationContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitBlockDeclaration(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::BlockDeclarationContext* CppParser::blockDeclaration() {
   BlockDeclarationContext *_localctx = _tracker.createInstance<BlockDeclarationContext>(_ctx, getState());
   enterRule(_localctx, 140, CppParser::RuleBlockDeclaration);
@@ -8071,6 +8640,14 @@ void CppParser::NoDeclarationSpecifierFunctionDeclarationContext::exitRule(tree:
     parserListener->exitNoDeclarationSpecifierFunctionDeclaration(this);
 }
 
+
+antlrcpp::Any CppParser::NoDeclarationSpecifierFunctionDeclarationContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitNoDeclarationSpecifierFunctionDeclaration(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::NoDeclarationSpecifierFunctionDeclarationContext* CppParser::noDeclarationSpecifierFunctionDeclaration() {
   NoDeclarationSpecifierFunctionDeclarationContext *_localctx = _tracker.createInstance<NoDeclarationSpecifierFunctionDeclarationContext>(_ctx, getState());
   enterRule(_localctx, 142, CppParser::RuleNoDeclarationSpecifierFunctionDeclaration);
@@ -8149,6 +8726,14 @@ void CppParser::AliasDeclarationContext::exitRule(tree::ParseTreeListener *liste
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitAliasDeclaration(this);
+}
+
+
+antlrcpp::Any CppParser::AliasDeclarationContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitAliasDeclaration(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::AliasDeclarationContext* CppParser::aliasDeclaration() {
@@ -8247,6 +8832,14 @@ void CppParser::SimpleDeclarationContext::exitRule(tree::ParseTreeListener *list
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitSimpleDeclaration(this);
+}
+
+
+antlrcpp::Any CppParser::SimpleDeclarationContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitSimpleDeclaration(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::SimpleDeclarationContext* CppParser::simpleDeclaration() {
@@ -8397,6 +8990,14 @@ void CppParser::StaticAssertDeclarationContext::exitRule(tree::ParseTreeListener
     parserListener->exitStaticAssertDeclaration(this);
 }
 
+
+antlrcpp::Any CppParser::StaticAssertDeclarationContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitStaticAssertDeclaration(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::StaticAssertDeclarationContext* CppParser::staticAssertDeclaration() {
   StaticAssertDeclarationContext *_localctx = _tracker.createInstance<StaticAssertDeclarationContext>(_ctx, getState());
   enterRule(_localctx, 148, CppParser::RuleStaticAssertDeclaration);
@@ -8481,6 +9082,14 @@ void CppParser::EmptyDeclarationContext::exitRule(tree::ParseTreeListener *liste
     parserListener->exitEmptyDeclaration(this);
 }
 
+
+antlrcpp::Any CppParser::EmptyDeclarationContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitEmptyDeclaration(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::EmptyDeclarationContext* CppParser::emptyDeclaration() {
   EmptyDeclarationContext *_localctx = _tracker.createInstance<EmptyDeclarationContext>(_ctx, getState());
   enterRule(_localctx, 150, CppParser::RuleEmptyDeclaration);
@@ -8532,6 +9141,14 @@ void CppParser::AttributeDeclarationContext::exitRule(tree::ParseTreeListener *l
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitAttributeDeclaration(this);
+}
+
+
+antlrcpp::Any CppParser::AttributeDeclarationContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitAttributeDeclaration(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::AttributeDeclarationContext* CppParser::attributeDeclaration() {
@@ -8607,6 +9224,14 @@ void CppParser::DeclarationSpecifierContext::exitRule(tree::ParseTreeListener *l
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitDeclarationSpecifier(this);
+}
+
+
+antlrcpp::Any CppParser::DeclarationSpecifierContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitDeclarationSpecifier(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::DeclarationSpecifierContext* CppParser::declarationSpecifier() {
@@ -8745,6 +9370,14 @@ void CppParser::DeclarationSpecifierSequenceContext::exitRule(tree::ParseTreeLis
     parserListener->exitDeclarationSpecifierSequence(this);
 }
 
+
+antlrcpp::Any CppParser::DeclarationSpecifierSequenceContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitDeclarationSpecifierSequence(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::DeclarationSpecifierSequenceContext* CppParser::declarationSpecifierSequence() {
   DeclarationSpecifierSequenceContext *_localctx = _tracker.createInstance<DeclarationSpecifierSequenceContext>(_ctx, getState());
   enterRule(_localctx, 156, CppParser::RuleDeclarationSpecifierSequence);
@@ -8834,6 +9467,14 @@ void CppParser::StorageClassSpecifierContext::exitRule(tree::ParseTreeListener *
     parserListener->exitStorageClassSpecifier(this);
 }
 
+
+antlrcpp::Any CppParser::StorageClassSpecifierContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitStorageClassSpecifier(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::StorageClassSpecifierContext* CppParser::storageClassSpecifier() {
   StorageClassSpecifierContext *_localctx = _tracker.createInstance<StorageClassSpecifierContext>(_ctx, getState());
   enterRule(_localctx, 158, CppParser::RuleStorageClassSpecifier);
@@ -8897,6 +9538,14 @@ void CppParser::FunctionSpecifierContext::exitRule(tree::ParseTreeListener *list
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitFunctionSpecifier(this);
+}
+
+
+antlrcpp::Any CppParser::FunctionSpecifierContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitFunctionSpecifier(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::FunctionSpecifierContext* CppParser::functionSpecifier() {
@@ -8968,6 +9617,14 @@ void CppParser::TypeSpecifierContext::exitRule(tree::ParseTreeListener *listener
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitTypeSpecifier(this);
+}
+
+
+antlrcpp::Any CppParser::TypeSpecifierContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitTypeSpecifier(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::TypeSpecifierContext* CppParser::typeSpecifier() {
@@ -9078,6 +9735,14 @@ void CppParser::TypeSpecifierSequenceContext::exitRule(tree::ParseTreeListener *
     parserListener->exitTypeSpecifierSequence(this);
 }
 
+
+antlrcpp::Any CppParser::TypeSpecifierSequenceContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitTypeSpecifierSequence(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::TypeSpecifierSequenceContext* CppParser::typeSpecifierSequence() {
   TypeSpecifierSequenceContext *_localctx = _tracker.createInstance<TypeSpecifierSequenceContext>(_ctx, getState());
   enterRule(_localctx, 164, CppParser::RuleTypeSpecifierSequence);
@@ -9163,6 +9828,14 @@ void CppParser::DefiningTypeSpecifierContext::exitRule(tree::ParseTreeListener *
     parserListener->exitDefiningTypeSpecifier(this);
 }
 
+
+antlrcpp::Any CppParser::DefiningTypeSpecifierContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitDefiningTypeSpecifier(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::DefiningTypeSpecifierContext* CppParser::definingTypeSpecifier() {
   DefiningTypeSpecifierContext *_localctx = _tracker.createInstance<DefiningTypeSpecifierContext>(_ctx, getState());
   enterRule(_localctx, 166, CppParser::RuleDefiningTypeSpecifier);
@@ -9240,6 +9913,14 @@ void CppParser::DefiningTypeSpecifierSequenceContext::exitRule(tree::ParseTreeLi
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitDefiningTypeSpecifierSequence(this);
+}
+
+
+antlrcpp::Any CppParser::DefiningTypeSpecifierSequenceContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitDefiningTypeSpecifierSequence(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::DefiningTypeSpecifierSequenceContext* CppParser::definingTypeSpecifierSequence() {
@@ -9393,6 +10074,14 @@ void CppParser::SimpleTypeSpecifierContext::exitRule(tree::ParseTreeListener *li
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitSimpleTypeSpecifier(this);
+}
+
+
+antlrcpp::Any CppParser::SimpleTypeSpecifierContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitSimpleTypeSpecifier(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::SimpleTypeSpecifierContext* CppParser::simpleTypeSpecifier() {
@@ -9609,6 +10298,14 @@ void CppParser::TypeNameContext::exitRule(tree::ParseTreeListener *listener) {
     parserListener->exitTypeName(this);
 }
 
+
+antlrcpp::Any CppParser::TypeNameContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitTypeName(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::TypeNameContext* CppParser::typeName() {
   TypeNameContext *_localctx = _tracker.createInstance<TypeNameContext>(_ctx, getState());
   enterRule(_localctx, 172, CppParser::RuleTypeName);
@@ -9701,6 +10398,14 @@ void CppParser::DeclarationTypeSpecifierContext::exitRule(tree::ParseTreeListene
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitDeclarationTypeSpecifier(this);
+}
+
+
+antlrcpp::Any CppParser::DeclarationTypeSpecifierContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitDeclarationTypeSpecifier(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::DeclarationTypeSpecifierContext* CppParser::declarationTypeSpecifier() {
@@ -9801,6 +10506,14 @@ void CppParser::ElaboratedTypeSpecifierContext::exitRule(tree::ParseTreeListener
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitElaboratedTypeSpecifier(this);
+}
+
+
+antlrcpp::Any CppParser::ElaboratedTypeSpecifierContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitElaboratedTypeSpecifier(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::ElaboratedTypeSpecifierContext* CppParser::elaboratedTypeSpecifier() {
@@ -9946,6 +10659,14 @@ void CppParser::EnumSpecifierContext::exitRule(tree::ParseTreeListener *listener
     parserListener->exitEnumSpecifier(this);
 }
 
+
+antlrcpp::Any CppParser::EnumSpecifierContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitEnumSpecifier(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::EnumSpecifierContext* CppParser::enumSpecifier() {
   EnumSpecifierContext *_localctx = _tracker.createInstance<EnumSpecifierContext>(_ctx, getState());
   enterRule(_localctx, 178, CppParser::RuleEnumSpecifier);
@@ -10043,6 +10764,14 @@ void CppParser::EnumHeadContext::exitRule(tree::ParseTreeListener *listener) {
     parserListener->exitEnumHead(this);
 }
 
+
+antlrcpp::Any CppParser::EnumHeadContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitEnumHead(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::EnumHeadContext* CppParser::enumHead() {
   EnumHeadContext *_localctx = _tracker.createInstance<EnumHeadContext>(_ctx, getState());
   enterRule(_localctx, 180, CppParser::RuleEnumHead);
@@ -10123,6 +10852,14 @@ void CppParser::EnumHeadNameContext::exitRule(tree::ParseTreeListener *listener)
     parserListener->exitEnumHeadName(this);
 }
 
+
+antlrcpp::Any CppParser::EnumHeadNameContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitEnumHeadName(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::EnumHeadNameContext* CppParser::enumHeadName() {
   EnumHeadNameContext *_localctx = _tracker.createInstance<EnumHeadNameContext>(_ctx, getState());
   enterRule(_localctx, 182, CppParser::RuleEnumHeadName);
@@ -10201,6 +10938,14 @@ void CppParser::OpaqueEnumDeclarationContext::exitRule(tree::ParseTreeListener *
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitOpaqueEnumDeclaration(this);
+}
+
+
+antlrcpp::Any CppParser::OpaqueEnumDeclarationContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitOpaqueEnumDeclaration(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::OpaqueEnumDeclarationContext* CppParser::opaqueEnumDeclaration() {
@@ -10292,6 +11037,14 @@ void CppParser::EnumKeyContext::exitRule(tree::ParseTreeListener *listener) {
     parserListener->exitEnumKey(this);
 }
 
+
+antlrcpp::Any CppParser::EnumKeyContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitEnumKey(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::EnumKeyContext* CppParser::enumKey() {
   EnumKeyContext *_localctx = _tracker.createInstance<EnumKeyContext>(_ctx, getState());
   enterRule(_localctx, 186, CppParser::RuleEnumKey);
@@ -10371,6 +11124,14 @@ void CppParser::EnumBaseContext::exitRule(tree::ParseTreeListener *listener) {
     parserListener->exitEnumBase(this);
 }
 
+
+antlrcpp::Any CppParser::EnumBaseContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitEnumBase(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::EnumBaseContext* CppParser::enumBase() {
   EnumBaseContext *_localctx = _tracker.createInstance<EnumBaseContext>(_ctx, getState());
   enterRule(_localctx, 188, CppParser::RuleEnumBase);
@@ -10428,6 +11189,14 @@ void CppParser::EnumeratorListContext::exitRule(tree::ParseTreeListener *listene
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitEnumeratorList(this);
+}
+
+
+antlrcpp::Any CppParser::EnumeratorListContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitEnumeratorList(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 
@@ -10520,6 +11289,14 @@ void CppParser::EnumeratorDefinitionContext::exitRule(tree::ParseTreeListener *l
     parserListener->exitEnumeratorDefinition(this);
 }
 
+
+antlrcpp::Any CppParser::EnumeratorDefinitionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitEnumeratorDefinition(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::EnumeratorDefinitionContext* CppParser::enumeratorDefinition() {
   EnumeratorDefinitionContext *_localctx = _tracker.createInstance<EnumeratorDefinitionContext>(_ctx, getState());
   enterRule(_localctx, 192, CppParser::RuleEnumeratorDefinition);
@@ -10592,6 +11369,14 @@ void CppParser::EnumeratorContext::exitRule(tree::ParseTreeListener *listener) {
     parserListener->exitEnumerator(this);
 }
 
+
+antlrcpp::Any CppParser::EnumeratorContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitEnumerator(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::EnumeratorContext* CppParser::enumerator() {
   EnumeratorContext *_localctx = _tracker.createInstance<EnumeratorContext>(_ctx, getState());
   enterRule(_localctx, 194, CppParser::RuleEnumerator);
@@ -10658,6 +11443,14 @@ void CppParser::NamespaceDefinitionContext::exitRule(tree::ParseTreeListener *li
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitNamespaceDefinition(this);
+}
+
+
+antlrcpp::Any CppParser::NamespaceDefinitionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitNamespaceDefinition(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::NamespaceDefinitionContext* CppParser::namespaceDefinition() {
@@ -10755,6 +11548,14 @@ void CppParser::NamedNamespaceDefinitionContext::exitRule(tree::ParseTreeListene
     parserListener->exitNamedNamespaceDefinition(this);
 }
 
+
+antlrcpp::Any CppParser::NamedNamespaceDefinitionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitNamedNamespaceDefinition(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::NamedNamespaceDefinitionContext* CppParser::namedNamespaceDefinition() {
   NamedNamespaceDefinitionContext *_localctx = _tracker.createInstance<NamedNamespaceDefinitionContext>(_ctx, getState());
   enterRule(_localctx, 198, CppParser::RuleNamedNamespaceDefinition);
@@ -10847,6 +11648,14 @@ void CppParser::UnnamedNamespaceDefinitionContext::exitRule(tree::ParseTreeListe
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitUnnamedNamespaceDefinition(this);
+}
+
+
+antlrcpp::Any CppParser::UnnamedNamespaceDefinitionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitUnnamedNamespaceDefinition(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::UnnamedNamespaceDefinitionContext* CppParser::unnamedNamespaceDefinition() {
@@ -10945,6 +11754,14 @@ void CppParser::NestedNamespaceDefinitionContext::exitRule(tree::ParseTreeListen
     parserListener->exitNestedNamespaceDefinition(this);
 }
 
+
+antlrcpp::Any CppParser::NestedNamespaceDefinitionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitNestedNamespaceDefinition(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::NestedNamespaceDefinitionContext* CppParser::nestedNamespaceDefinition() {
   NestedNamespaceDefinitionContext *_localctx = _tracker.createInstance<NestedNamespaceDefinitionContext>(_ctx, getState());
   enterRule(_localctx, 202, CppParser::RuleNestedNamespaceDefinition);
@@ -11018,6 +11835,14 @@ void CppParser::EnclosingNamespaceSpecifierContext::exitRule(tree::ParseTreeList
     parserListener->exitEnclosingNamespaceSpecifier(this);
 }
 
+
+antlrcpp::Any CppParser::EnclosingNamespaceSpecifierContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitEnclosingNamespaceSpecifier(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::EnclosingNamespaceSpecifierContext* CppParser::enclosingNamespaceSpecifier() {
   EnclosingNamespaceSpecifierContext *_localctx = _tracker.createInstance<EnclosingNamespaceSpecifierContext>(_ctx, getState());
   enterRule(_localctx, 204, CppParser::RuleEnclosingNamespaceSpecifier);
@@ -11071,6 +11896,14 @@ void CppParser::NamespaceBodyContext::exitRule(tree::ParseTreeListener *listener
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitNamespaceBody(this);
+}
+
+
+antlrcpp::Any CppParser::NamespaceBodyContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitNamespaceBody(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::NamespaceBodyContext* CppParser::namespaceBody() {
@@ -11193,6 +12026,14 @@ void CppParser::NamespaceAliasDefinitionContext::exitRule(tree::ParseTreeListene
     parserListener->exitNamespaceAliasDefinition(this);
 }
 
+
+antlrcpp::Any CppParser::NamespaceAliasDefinitionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitNamespaceAliasDefinition(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::NamespaceAliasDefinitionContext* CppParser::namespaceAliasDefinition() {
   NamespaceAliasDefinitionContext *_localctx = _tracker.createInstance<NamespaceAliasDefinitionContext>(_ctx, getState());
   enterRule(_localctx, 208, CppParser::RuleNamespaceAliasDefinition);
@@ -11252,6 +12093,14 @@ void CppParser::QualifiedNamespaceSpecifierContext::exitRule(tree::ParseTreeList
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitQualifiedNamespaceSpecifier(this);
+}
+
+
+antlrcpp::Any CppParser::QualifiedNamespaceSpecifierContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitQualifiedNamespaceSpecifier(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::QualifiedNamespaceSpecifierContext* CppParser::qualifiedNamespaceSpecifier() {
@@ -11322,6 +12171,14 @@ void CppParser::UsingDeclarationContext::exitRule(tree::ParseTreeListener *liste
     parserListener->exitUsingDeclaration(this);
 }
 
+
+antlrcpp::Any CppParser::UsingDeclarationContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitUsingDeclaration(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::UsingDeclarationContext* CppParser::usingDeclaration() {
   UsingDeclarationContext *_localctx = _tracker.createInstance<UsingDeclarationContext>(_ctx, getState());
   enterRule(_localctx, 212, CppParser::RuleUsingDeclaration);
@@ -11385,6 +12242,14 @@ void CppParser::UsingDeclaratorListContext::exitRule(tree::ParseTreeListener *li
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitUsingDeclaratorList(this);
+}
+
+
+antlrcpp::Any CppParser::UsingDeclaratorListContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitUsingDeclaratorList(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 
@@ -11499,6 +12364,14 @@ void CppParser::UsingDeclaratorContext::exitRule(tree::ParseTreeListener *listen
     parserListener->exitUsingDeclarator(this);
 }
 
+
+antlrcpp::Any CppParser::UsingDeclaratorContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitUsingDeclarator(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::UsingDeclaratorContext* CppParser::usingDeclarator() {
   UsingDeclaratorContext *_localctx = _tracker.createInstance<UsingDeclaratorContext>(_ctx, getState());
   enterRule(_localctx, 216, CppParser::RuleUsingDeclarator);
@@ -11579,6 +12452,14 @@ void CppParser::UsingDirectiveContext::exitRule(tree::ParseTreeListener *listene
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitUsingDirective(this);
+}
+
+
+antlrcpp::Any CppParser::UsingDirectiveContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitUsingDirective(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::UsingDirectiveContext* CppParser::usingDirective() {
@@ -11676,6 +12557,14 @@ void CppParser::AsmDefinitionContext::exitRule(tree::ParseTreeListener *listener
     parserListener->exitAsmDefinition(this);
 }
 
+
+antlrcpp::Any CppParser::AsmDefinitionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitAsmDefinition(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::AsmDefinitionContext* CppParser::asmDefinition() {
   AsmDefinitionContext *_localctx = _tracker.createInstance<AsmDefinitionContext>(_ctx, getState());
   enterRule(_localctx, 220, CppParser::RuleAsmDefinition);
@@ -11760,6 +12649,14 @@ void CppParser::LinkageSpecificationContext::exitRule(tree::ParseTreeListener *l
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitLinkageSpecification(this);
+}
+
+
+antlrcpp::Any CppParser::LinkageSpecificationContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitLinkageSpecification(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::LinkageSpecificationContext* CppParser::linkageSpecification() {
@@ -11898,6 +12795,14 @@ void CppParser::AttributeSpecifierSequenceContext::exitRule(tree::ParseTreeListe
 }
 
 
+antlrcpp::Any CppParser::AttributeSpecifierSequenceContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitAttributeSpecifierSequence(this);
+  else
+    return visitor->visitChildren(this);
+}
+
+
 CppParser::AttributeSpecifierSequenceContext* CppParser::attributeSpecifierSequence() {
    return attributeSpecifierSequence(0);
 }
@@ -11999,6 +12904,14 @@ void CppParser::AttributeSpecifierContext::exitRule(tree::ParseTreeListener *lis
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitAttributeSpecifier(this);
+}
+
+
+antlrcpp::Any CppParser::AttributeSpecifierContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitAttributeSpecifier(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::AttributeSpecifierContext* CppParser::attributeSpecifier() {
@@ -12110,6 +13023,14 @@ void CppParser::AlignmentSpecifierContext::exitRule(tree::ParseTreeListener *lis
     parserListener->exitAlignmentSpecifier(this);
 }
 
+
+antlrcpp::Any CppParser::AlignmentSpecifierContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitAlignmentSpecifier(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::AlignmentSpecifierContext* CppParser::alignmentSpecifier() {
   AlignmentSpecifierContext *_localctx = _tracker.createInstance<AlignmentSpecifierContext>(_ctx, getState());
   enterRule(_localctx, 228, CppParser::RuleAlignmentSpecifier);
@@ -12211,6 +13132,14 @@ void CppParser::AttributeUsingPrefixContext::exitRule(tree::ParseTreeListener *l
     parserListener->exitAttributeUsingPrefix(this);
 }
 
+
+antlrcpp::Any CppParser::AttributeUsingPrefixContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitAttributeUsingPrefix(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::AttributeUsingPrefixContext* CppParser::attributeUsingPrefix() {
   AttributeUsingPrefixContext *_localctx = _tracker.createInstance<AttributeUsingPrefixContext>(_ctx, getState());
   enterRule(_localctx, 230, CppParser::RuleAttributeUsingPrefix);
@@ -12274,6 +13203,14 @@ void CppParser::AttributeListContext::exitRule(tree::ParseTreeListener *listener
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitAttributeList(this);
+}
+
+
+antlrcpp::Any CppParser::AttributeListContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitAttributeList(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 
@@ -12419,6 +13356,14 @@ void CppParser::AttributeContext::exitRule(tree::ParseTreeListener *listener) {
     parserListener->exitAttribute(this);
 }
 
+
+antlrcpp::Any CppParser::AttributeContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitAttribute(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::AttributeContext* CppParser::attribute() {
   AttributeContext *_localctx = _tracker.createInstance<AttributeContext>(_ctx, getState());
   enterRule(_localctx, 234, CppParser::RuleAttribute);
@@ -12481,6 +13426,14 @@ void CppParser::AttributeTokenContext::exitRule(tree::ParseTreeListener *listene
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitAttributeToken(this);
+}
+
+
+antlrcpp::Any CppParser::AttributeTokenContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitAttributeToken(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::AttributeTokenContext* CppParser::attributeToken() {
@@ -12555,6 +13508,14 @@ void CppParser::AttributeScopedTokenContext::exitRule(tree::ParseTreeListener *l
     parserListener->exitAttributeScopedToken(this);
 }
 
+
+antlrcpp::Any CppParser::AttributeScopedTokenContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitAttributeScopedToken(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::AttributeScopedTokenContext* CppParser::attributeScopedToken() {
   AttributeScopedTokenContext *_localctx = _tracker.createInstance<AttributeScopedTokenContext>(_ctx, getState());
   enterRule(_localctx, 238, CppParser::RuleAttributeScopedToken);
@@ -12606,6 +13567,14 @@ void CppParser::AttributeNamespaceContext::exitRule(tree::ParseTreeListener *lis
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitAttributeNamespace(this);
+}
+
+
+antlrcpp::Any CppParser::AttributeNamespaceContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitAttributeNamespace(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::AttributeNamespaceContext* CppParser::attributeNamespace() {
@@ -12663,6 +13632,14 @@ void CppParser::AttributeArgumentClauseContext::exitRule(tree::ParseTreeListener
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitAttributeArgumentClause(this);
+}
+
+
+antlrcpp::Any CppParser::AttributeArgumentClauseContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitAttributeArgumentClause(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::AttributeArgumentClauseContext* CppParser::attributeArgumentClause() {
@@ -12865,6 +13842,14 @@ void CppParser::BalancedTokenSequenceContext::exitRule(tree::ParseTreeListener *
 }
 
 
+antlrcpp::Any CppParser::BalancedTokenSequenceContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitBalancedTokenSequence(this);
+  else
+    return visitor->visitChildren(this);
+}
+
+
 CppParser::BalancedTokenSequenceContext* CppParser::balancedTokenSequence() {
    return balancedTokenSequence(0);
 }
@@ -12966,6 +13951,14 @@ void CppParser::BalancedTokenContext::exitRule(tree::ParseTreeListener *listener
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitBalancedToken(this);
+}
+
+
+antlrcpp::Any CppParser::BalancedTokenContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitBalancedToken(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::BalancedTokenContext* CppParser::balancedToken() {
@@ -13637,6 +14630,14 @@ void CppParser::InitializerDeclaratorListContext::exitRule(tree::ParseTreeListen
 }
 
 
+antlrcpp::Any CppParser::InitializerDeclaratorListContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitInitializerDeclaratorList(this);
+  else
+    return visitor->visitChildren(this);
+}
+
+
 CppParser::InitializerDeclaratorListContext* CppParser::initializerDeclaratorList() {
    return initializerDeclaratorList(0);
 }
@@ -13722,6 +14723,14 @@ void CppParser::InitializerDeclaratorContext::exitRule(tree::ParseTreeListener *
     parserListener->exitInitializerDeclarator(this);
 }
 
+
+antlrcpp::Any CppParser::InitializerDeclaratorContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitInitializerDeclarator(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::InitializerDeclaratorContext* CppParser::initializerDeclarator() {
   InitializerDeclaratorContext *_localctx = _tracker.createInstance<InitializerDeclaratorContext>(_ctx, getState());
   enterRule(_localctx, 250, CppParser::RuleInitializerDeclarator);
@@ -13784,6 +14793,14 @@ void CppParser::DeclaratorContext::exitRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitDeclarator(this);
+}
+
+
+antlrcpp::Any CppParser::DeclaratorContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitDeclarator(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::DeclaratorContext* CppParser::declarator() {
@@ -13852,6 +14869,14 @@ void CppParser::PointerDeclaratorContext::exitRule(tree::ParseTreeListener *list
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitPointerDeclarator(this);
+}
+
+
+antlrcpp::Any CppParser::PointerDeclaratorContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitPointerDeclarator(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::PointerDeclaratorContext* CppParser::pointerDeclarator() {
@@ -13943,6 +14968,14 @@ void CppParser::NoPointerDeclaratorContext::exitRule(tree::ParseTreeListener *li
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitNoPointerDeclarator(this);
+}
+
+
+antlrcpp::Any CppParser::NoPointerDeclaratorContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitNoPointerDeclarator(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 
@@ -14171,6 +15204,14 @@ void CppParser::ParametersAndQualifiersContext::exitRule(tree::ParseTreeListener
     parserListener->exitParametersAndQualifiers(this);
 }
 
+
+antlrcpp::Any CppParser::ParametersAndQualifiersContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitParametersAndQualifiers(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::ParametersAndQualifiersContext* CppParser::parametersAndQualifiers() {
   ParametersAndQualifiersContext *_localctx = _tracker.createInstance<ParametersAndQualifiersContext>(_ctx, getState());
   enterRule(_localctx, 258, CppParser::RuleParametersAndQualifiers);
@@ -14228,6 +15269,14 @@ void CppParser::FunctionParametersContext::exitRule(tree::ParseTreeListener *lis
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitFunctionParameters(this);
+}
+
+
+antlrcpp::Any CppParser::FunctionParametersContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitFunctionParameters(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::FunctionParametersContext* CppParser::functionParameters() {
@@ -14293,6 +15342,14 @@ void CppParser::FunctionQualifiersContext::exitRule(tree::ParseTreeListener *lis
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitFunctionQualifiers(this);
+}
+
+
+antlrcpp::Any CppParser::FunctionQualifiersContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitFunctionQualifiers(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::FunctionQualifiersContext* CppParser::functionQualifiers() {
@@ -14390,6 +15447,14 @@ void CppParser::TrailingReturnTypeContext::exitRule(tree::ParseTreeListener *lis
     parserListener->exitTrailingReturnType(this);
 }
 
+
+antlrcpp::Any CppParser::TrailingReturnTypeContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitTrailingReturnType(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::TrailingReturnTypeContext* CppParser::trailingReturnType() {
   TrailingReturnTypeContext *_localctx = _tracker.createInstance<TrailingReturnTypeContext>(_ctx, getState());
   enterRule(_localctx, 264, CppParser::RuleTrailingReturnType);
@@ -14459,6 +15524,14 @@ void CppParser::PointerOperatorContext::exitRule(tree::ParseTreeListener *listen
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitPointerOperator(this);
+}
+
+
+antlrcpp::Any CppParser::PointerOperatorContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitPointerOperator(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::PointerOperatorContext* CppParser::pointerOperator() {
@@ -14615,6 +15688,14 @@ void CppParser::ConstVolatileQualifierSequenceContext::exitRule(tree::ParseTreeL
     parserListener->exitConstVolatileQualifierSequence(this);
 }
 
+
+antlrcpp::Any CppParser::ConstVolatileQualifierSequenceContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitConstVolatileQualifierSequence(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::ConstVolatileQualifierSequenceContext* CppParser::constVolatileQualifierSequence() {
   ConstVolatileQualifierSequenceContext *_localctx = _tracker.createInstance<ConstVolatileQualifierSequenceContext>(_ctx, getState());
   enterRule(_localctx, 268, CppParser::RuleConstVolatileQualifierSequence);
@@ -14677,6 +15758,14 @@ void CppParser::ConstVolatileQualifierContext::exitRule(tree::ParseTreeListener 
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitConstVolatileQualifier(this);
+}
+
+
+antlrcpp::Any CppParser::ConstVolatileQualifierContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitConstVolatileQualifier(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::ConstVolatileQualifierContext* CppParser::constVolatileQualifier() {
@@ -14742,6 +15831,14 @@ void CppParser::ReferenceQualifierContext::exitRule(tree::ParseTreeListener *lis
     parserListener->exitReferenceQualifier(this);
 }
 
+
+antlrcpp::Any CppParser::ReferenceQualifierContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitReferenceQualifier(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::ReferenceQualifierContext* CppParser::referenceQualifier() {
   ReferenceQualifierContext *_localctx = _tracker.createInstance<ReferenceQualifierContext>(_ctx, getState());
   enterRule(_localctx, 272, CppParser::RuleReferenceQualifier);
@@ -14795,6 +15892,14 @@ void CppParser::TypeIdentifierContext::exitRule(tree::ParseTreeListener *listene
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitTypeIdentifier(this);
+}
+
+
+antlrcpp::Any CppParser::TypeIdentifierContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitTypeIdentifier(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::TypeIdentifierContext* CppParser::typeIdentifier() {
@@ -14859,6 +15964,14 @@ void CppParser::DefiningTypeIdentifierContext::exitRule(tree::ParseTreeListener 
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitDefiningTypeIdentifier(this);
+}
+
+
+antlrcpp::Any CppParser::DefiningTypeIdentifierContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitDefiningTypeIdentifier(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::DefiningTypeIdentifierContext* CppParser::definingTypeIdentifier() {
@@ -14941,6 +16054,14 @@ void CppParser::AbstractDeclaratorContext::exitRule(tree::ParseTreeListener *lis
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitAbstractDeclarator(this);
+}
+
+
+antlrcpp::Any CppParser::AbstractDeclaratorContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitAbstractDeclarator(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::AbstractDeclaratorContext* CppParser::abstractDeclarator() {
@@ -15033,6 +16154,14 @@ void CppParser::PointerAbstractDeclaratorContext::exitRule(tree::ParseTreeListen
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitPointerAbstractDeclarator(this);
+}
+
+
+antlrcpp::Any CppParser::PointerAbstractDeclaratorContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitPointerAbstractDeclarator(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::PointerAbstractDeclaratorContext* CppParser::pointerAbstractDeclarator() {
@@ -15148,6 +16277,14 @@ void CppParser::NoPointerAbstractDeclaratorContext::exitRule(tree::ParseTreeList
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitNoPointerAbstractDeclarator(this);
+}
+
+
+antlrcpp::Any CppParser::NoPointerAbstractDeclaratorContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitNoPointerAbstractDeclarator(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 
@@ -15439,6 +16576,14 @@ void CppParser::AbstractPackDeclaratorContext::exitRule(tree::ParseTreeListener 
     parserListener->exitAbstractPackDeclarator(this);
 }
 
+
+antlrcpp::Any CppParser::AbstractPackDeclaratorContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitAbstractPackDeclarator(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::AbstractPackDeclaratorContext* CppParser::abstractPackDeclarator() {
   AbstractPackDeclaratorContext *_localctx = _tracker.createInstance<AbstractPackDeclaratorContext>(_ctx, getState());
   enterRule(_localctx, 284, CppParser::RuleAbstractPackDeclarator);
@@ -15534,6 +16679,14 @@ void CppParser::NoPointerAbstractPackDeclaratorContext::exitRule(tree::ParseTree
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitNoPointerAbstractPackDeclarator(this);
+}
+
+
+antlrcpp::Any CppParser::NoPointerAbstractPackDeclaratorContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitNoPointerAbstractPackDeclarator(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 
@@ -15722,6 +16875,14 @@ void CppParser::ParameterDeclarationClauseContext::exitRule(tree::ParseTreeListe
     parserListener->exitParameterDeclarationClause(this);
 }
 
+
+antlrcpp::Any CppParser::ParameterDeclarationClauseContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitParameterDeclarationClause(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::ParameterDeclarationClauseContext* CppParser::parameterDeclarationClause() {
   ParameterDeclarationClauseContext *_localctx = _tracker.createInstance<ParameterDeclarationClauseContext>(_ctx, getState());
   enterRule(_localctx, 288, CppParser::RuleParameterDeclarationClause);
@@ -15849,6 +17010,14 @@ void CppParser::ParameterDeclarationListContext::exitRule(tree::ParseTreeListene
 }
 
 
+antlrcpp::Any CppParser::ParameterDeclarationListContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitParameterDeclarationList(this);
+  else
+    return visitor->visitChildren(this);
+}
+
+
 CppParser::ParameterDeclarationListContext* CppParser::parameterDeclarationList() {
    return parameterDeclarationList(0);
 }
@@ -15948,6 +17117,14 @@ void CppParser::ParameterDeclarationContext::exitRule(tree::ParseTreeListener *l
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitParameterDeclaration(this);
+}
+
+
+antlrcpp::Any CppParser::ParameterDeclarationContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitParameterDeclaration(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::ParameterDeclarationContext* CppParser::parameterDeclaration() {
@@ -16116,6 +17293,14 @@ void CppParser::FunctionDefinitionContext::exitRule(tree::ParseTreeListener *lis
     parserListener->exitFunctionDefinition(this);
 }
 
+
+antlrcpp::Any CppParser::FunctionDefinitionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitFunctionDefinition(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::FunctionDefinitionContext* CppParser::functionDefinition() {
   FunctionDefinitionContext *_localctx = _tracker.createInstance<FunctionDefinitionContext>(_ctx, getState());
   enterRule(_localctx, 294, CppParser::RuleFunctionDefinition);
@@ -16209,6 +17394,14 @@ void CppParser::FunctionDeclaratorContext::exitRule(tree::ParseTreeListener *lis
     parserListener->exitFunctionDeclarator(this);
 }
 
+
+antlrcpp::Any CppParser::FunctionDeclaratorContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitFunctionDeclarator(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::FunctionDeclaratorContext* CppParser::functionDeclarator() {
   FunctionDeclaratorContext *_localctx = _tracker.createInstance<FunctionDeclaratorContext>(_ctx, getState());
   enterRule(_localctx, 296, CppParser::RuleFunctionDeclarator);
@@ -16281,6 +17474,14 @@ void CppParser::FunctionBodyContext::exitRule(tree::ParseTreeListener *listener)
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitFunctionBody(this);
+}
+
+
+antlrcpp::Any CppParser::FunctionBodyContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitFunctionBody(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::FunctionBodyContext* CppParser::functionBody() {
@@ -16365,6 +17566,14 @@ void CppParser::RegularFunctionBodyContext::exitRule(tree::ParseTreeListener *li
     parserListener->exitRegularFunctionBody(this);
 }
 
+
+antlrcpp::Any CppParser::RegularFunctionBodyContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitRegularFunctionBody(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::RegularFunctionBodyContext* CppParser::regularFunctionBody() {
   RegularFunctionBodyContext *_localctx = _tracker.createInstance<RegularFunctionBodyContext>(_ctx, getState());
   enterRule(_localctx, 300, CppParser::RuleRegularFunctionBody);
@@ -16431,6 +17640,14 @@ void CppParser::ExplicitlyDefaultedFunctionContext::exitRule(tree::ParseTreeList
     parserListener->exitExplicitlyDefaultedFunction(this);
 }
 
+
+antlrcpp::Any CppParser::ExplicitlyDefaultedFunctionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitExplicitlyDefaultedFunction(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::ExplicitlyDefaultedFunctionContext* CppParser::explicitlyDefaultedFunction() {
   ExplicitlyDefaultedFunctionContext *_localctx = _tracker.createInstance<ExplicitlyDefaultedFunctionContext>(_ctx, getState());
   enterRule(_localctx, 302, CppParser::RuleExplicitlyDefaultedFunction);
@@ -16492,6 +17709,14 @@ void CppParser::DeletedFunctionContext::exitRule(tree::ParseTreeListener *listen
     parserListener->exitDeletedFunction(this);
 }
 
+
+antlrcpp::Any CppParser::DeletedFunctionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitDeletedFunction(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::DeletedFunctionContext* CppParser::deletedFunction() {
   DeletedFunctionContext *_localctx = _tracker.createInstance<DeletedFunctionContext>(_ctx, getState());
   enterRule(_localctx, 304, CppParser::RuleDeletedFunction);
@@ -16543,6 +17768,14 @@ void CppParser::InitializerContext::exitRule(tree::ParseTreeListener *listener) 
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitInitializer(this);
+}
+
+
+antlrcpp::Any CppParser::InitializerContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitInitializer(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::InitializerContext* CppParser::initializer() {
@@ -16600,6 +17833,14 @@ void CppParser::BraceOrEqualInitializerContext::exitRule(tree::ParseTreeListener
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitBraceOrEqualInitializer(this);
+}
+
+
+antlrcpp::Any CppParser::BraceOrEqualInitializerContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitBraceOrEqualInitializer(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::BraceOrEqualInitializerContext* CppParser::braceOrEqualInitializer() {
@@ -16672,6 +17913,14 @@ void CppParser::InitializerClauseContext::exitRule(tree::ParseTreeListener *list
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitInitializerClause(this);
+}
+
+
+antlrcpp::Any CppParser::InitializerClauseContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitInitializerClause(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::InitializerClauseContext* CppParser::initializerClause() {
@@ -16811,6 +18060,14 @@ void CppParser::InitializerListContext::exitRule(tree::ParseTreeListener *listen
 }
 
 
+antlrcpp::Any CppParser::InitializerListContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitInitializerList(this);
+  else
+    return visitor->visitChildren(this);
+}
+
+
 CppParser::InitializerListContext* CppParser::initializerList() {
    return initializerList(0);
 }
@@ -16926,6 +18183,14 @@ void CppParser::BracedInitializerListContext::exitRule(tree::ParseTreeListener *
     parserListener->exitBracedInitializerList(this);
 }
 
+
+antlrcpp::Any CppParser::BracedInitializerListContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitBracedInitializerList(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::BracedInitializerListContext* CppParser::bracedInitializerList() {
   BracedInitializerListContext *_localctx = _tracker.createInstance<BracedInitializerListContext>(_ctx, getState());
   enterRule(_localctx, 314, CppParser::RuleBracedInitializerList);
@@ -17007,6 +18272,14 @@ void CppParser::ExpressionOrBracedInitializerListContext::exitRule(tree::ParseTr
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitExpressionOrBracedInitializerList(this);
+}
+
+
+antlrcpp::Any CppParser::ExpressionOrBracedInitializerListContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitExpressionOrBracedInitializerList(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::ExpressionOrBracedInitializerListContext* CppParser::expressionOrBracedInitializerList() {
@@ -17145,6 +18418,14 @@ void CppParser::ClassSpecifierContext::exitRule(tree::ParseTreeListener *listene
     parserListener->exitClassSpecifier(this);
 }
 
+
+antlrcpp::Any CppParser::ClassSpecifierContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitClassSpecifier(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::ClassSpecifierContext* CppParser::classSpecifier() {
   ClassSpecifierContext *_localctx = _tracker.createInstance<ClassSpecifierContext>(_ctx, getState());
   enterRule(_localctx, 318, CppParser::RuleClassSpecifier);
@@ -17277,6 +18558,14 @@ void CppParser::ClassHeadContext::exitRule(tree::ParseTreeListener *listener) {
     parserListener->exitClassHead(this);
 }
 
+
+antlrcpp::Any CppParser::ClassHeadContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitClassHead(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::ClassHeadContext* CppParser::classHead() {
   ClassHeadContext *_localctx = _tracker.createInstance<ClassHeadContext>(_ctx, getState());
   enterRule(_localctx, 320, CppParser::RuleClassHead);
@@ -17388,6 +18677,14 @@ void CppParser::ClassHeadNameContext::exitRule(tree::ParseTreeListener *listener
     parserListener->exitClassHeadName(this);
 }
 
+
+antlrcpp::Any CppParser::ClassHeadNameContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitClassHeadName(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::ClassHeadNameContext* CppParser::classHeadName() {
   ClassHeadNameContext *_localctx = _tracker.createInstance<ClassHeadNameContext>(_ctx, getState());
   enterRule(_localctx, 322, CppParser::RuleClassHeadName);
@@ -17448,6 +18745,14 @@ void CppParser::ClassVirtualSpecifierContext::exitRule(tree::ParseTreeListener *
     parserListener->exitClassVirtualSpecifier(this);
 }
 
+
+antlrcpp::Any CppParser::ClassVirtualSpecifierContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitClassVirtualSpecifier(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::ClassVirtualSpecifierContext* CppParser::classVirtualSpecifier() {
   ClassVirtualSpecifierContext *_localctx = _tracker.createInstance<ClassVirtualSpecifierContext>(_ctx, getState());
   enterRule(_localctx, 324, CppParser::RuleClassVirtualSpecifier);
@@ -17503,6 +18808,14 @@ void CppParser::ClassKeyContext::exitRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitClassKey(this);
+}
+
+
+antlrcpp::Any CppParser::ClassKeyContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitClassKey(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::ClassKeyContext* CppParser::classKey() {
@@ -17575,6 +18888,14 @@ void CppParser::MemberSpecificationContext::exitRule(tree::ParseTreeListener *li
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitMemberSpecification(this);
+}
+
+
+antlrcpp::Any CppParser::MemberSpecificationContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitMemberSpecification(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::MemberSpecificationContext* CppParser::memberSpecification() {
@@ -17851,6 +19172,14 @@ void CppParser::MemberDeclarationContext::exitRule(tree::ParseTreeListener *list
     parserListener->exitMemberDeclaration(this);
 }
 
+
+antlrcpp::Any CppParser::MemberDeclarationContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitMemberDeclaration(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::MemberDeclarationContext* CppParser::memberDeclaration() {
   MemberDeclarationContext *_localctx = _tracker.createInstance<MemberDeclarationContext>(_ctx, getState());
   enterRule(_localctx, 330, CppParser::RuleMemberDeclaration);
@@ -18010,6 +19339,14 @@ void CppParser::MemberDeclaratorListContext::exitRule(tree::ParseTreeListener *l
 }
 
 
+antlrcpp::Any CppParser::MemberDeclaratorListContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitMemberDeclaratorList(this);
+  else
+    return visitor->visitChildren(this);
+}
+
+
 CppParser::MemberDeclaratorListContext* CppParser::memberDeclaratorList() {
    return memberDeclaratorList(0);
 }
@@ -18117,6 +19454,14 @@ void CppParser::MemberDeclaratorContext::exitRule(tree::ParseTreeListener *liste
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitMemberDeclarator(this);
+}
+
+
+antlrcpp::Any CppParser::MemberDeclaratorContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitMemberDeclarator(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::MemberDeclaratorContext* CppParser::memberDeclarator() {
@@ -18247,6 +19592,14 @@ void CppParser::VirtualSpecifierSequenceContext::exitRule(tree::ParseTreeListene
 }
 
 
+antlrcpp::Any CppParser::VirtualSpecifierSequenceContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitVirtualSpecifierSequence(this);
+  else
+    return visitor->visitChildren(this);
+}
+
+
 CppParser::VirtualSpecifierSequenceContext* CppParser::virtualSpecifierSequence() {
    return virtualSpecifierSequence(0);
 }
@@ -18330,6 +19683,14 @@ void CppParser::VirtualSpecifierContext::exitRule(tree::ParseTreeListener *liste
     parserListener->exitVirtualSpecifier(this);
 }
 
+
+antlrcpp::Any CppParser::VirtualSpecifierContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitVirtualSpecifier(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::VirtualSpecifierContext* CppParser::virtualSpecifier() {
   VirtualSpecifierContext *_localctx = _tracker.createInstance<VirtualSpecifierContext>(_ctx, getState());
   enterRule(_localctx, 338, CppParser::RuleVirtualSpecifier);
@@ -18393,6 +19754,14 @@ void CppParser::PureSpecifierContext::exitRule(tree::ParseTreeListener *listener
     parserListener->exitPureSpecifier(this);
 }
 
+
+antlrcpp::Any CppParser::PureSpecifierContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitPureSpecifier(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::PureSpecifierContext* CppParser::pureSpecifier() {
   PureSpecifierContext *_localctx = _tracker.createInstance<PureSpecifierContext>(_ctx, getState());
   enterRule(_localctx, 340, CppParser::RulePureSpecifier);
@@ -18446,6 +19815,14 @@ void CppParser::BaseClauseContext::exitRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitBaseClause(this);
+}
+
+
+antlrcpp::Any CppParser::BaseClauseContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitBaseClause(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::BaseClauseContext* CppParser::baseClause() {
@@ -18509,6 +19886,14 @@ void CppParser::BaseSpecifierListContext::exitRule(tree::ParseTreeListener *list
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitBaseSpecifierList(this);
+}
+
+
+antlrcpp::Any CppParser::BaseSpecifierListContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitBaseSpecifierList(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 
@@ -18625,6 +20010,14 @@ void CppParser::BaseSpecifierContext::exitRule(tree::ParseTreeListener *listener
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitBaseSpecifier(this);
+}
+
+
+antlrcpp::Any CppParser::BaseSpecifierContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitBaseSpecifier(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::BaseSpecifierContext* CppParser::baseSpecifier() {
@@ -18762,6 +20155,14 @@ void CppParser::ClassOrDecltypeContext::exitRule(tree::ParseTreeListener *listen
     parserListener->exitClassOrDecltype(this);
 }
 
+
+antlrcpp::Any CppParser::ClassOrDecltypeContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitClassOrDecltype(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::ClassOrDecltypeContext* CppParser::classOrDecltype() {
   ClassOrDecltypeContext *_localctx = _tracker.createInstance<ClassOrDecltypeContext>(_ctx, getState());
   enterRule(_localctx, 348, CppParser::RuleClassOrDecltype);
@@ -18856,6 +20257,14 @@ void CppParser::AccessSpecifierContext::exitRule(tree::ParseTreeListener *listen
     parserListener->exitAccessSpecifier(this);
 }
 
+
+antlrcpp::Any CppParser::AccessSpecifierContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitAccessSpecifier(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::AccessSpecifierContext* CppParser::accessSpecifier() {
   AccessSpecifierContext *_localctx = _tracker.createInstance<AccessSpecifierContext>(_ctx, getState());
   enterRule(_localctx, 350, CppParser::RuleAccessSpecifier);
@@ -18920,6 +20329,14 @@ void CppParser::ConversionFunctionIdentifierContext::exitRule(tree::ParseTreeLis
     parserListener->exitConversionFunctionIdentifier(this);
 }
 
+
+antlrcpp::Any CppParser::ConversionFunctionIdentifierContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitConversionFunctionIdentifier(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::ConversionFunctionIdentifierContext* CppParser::conversionFunctionIdentifier() {
   ConversionFunctionIdentifierContext *_localctx = _tracker.createInstance<ConversionFunctionIdentifierContext>(_ctx, getState());
   enterRule(_localctx, 352, CppParser::RuleConversionFunctionIdentifier);
@@ -18973,6 +20390,14 @@ void CppParser::ConversionTypeIdentifierContext::exitRule(tree::ParseTreeListene
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitConversionTypeIdentifier(this);
+}
+
+
+antlrcpp::Any CppParser::ConversionTypeIdentifierContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitConversionTypeIdentifier(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::ConversionTypeIdentifierContext* CppParser::conversionTypeIdentifier() {
@@ -19039,6 +20464,14 @@ void CppParser::ConversionDeclaratorContext::exitRule(tree::ParseTreeListener *l
     parserListener->exitConversionDeclarator(this);
 }
 
+
+antlrcpp::Any CppParser::ConversionDeclaratorContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitConversionDeclarator(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::ConversionDeclaratorContext* CppParser::conversionDeclarator() {
   ConversionDeclaratorContext *_localctx = _tracker.createInstance<ConversionDeclaratorContext>(_ctx, getState());
   enterRule(_localctx, 356, CppParser::RuleConversionDeclarator);
@@ -19103,6 +20536,14 @@ void CppParser::ConstructorInitializerContext::exitRule(tree::ParseTreeListener 
     parserListener->exitConstructorInitializer(this);
 }
 
+
+antlrcpp::Any CppParser::ConstructorInitializerContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitConstructorInitializer(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::ConstructorInitializerContext* CppParser::constructorInitializer() {
   ConstructorInitializerContext *_localctx = _tracker.createInstance<ConstructorInitializerContext>(_ctx, getState());
   enterRule(_localctx, 358, CppParser::RuleConstructorInitializer);
@@ -19164,6 +20605,14 @@ void CppParser::MemberInitializerListContext::exitRule(tree::ParseTreeListener *
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitMemberInitializerList(this);
+}
+
+
+antlrcpp::Any CppParser::MemberInitializerListContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitMemberInitializerList(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 
@@ -19288,6 +20737,14 @@ void CppParser::MemberInitializerContext::exitRule(tree::ParseTreeListener *list
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitMemberInitializer(this);
+}
+
+
+antlrcpp::Any CppParser::MemberInitializerContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitMemberInitializer(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::MemberInitializerContext* CppParser::memberInitializer() {
@@ -19420,6 +20877,14 @@ void CppParser::MemberInitializerIdentifierContext::exitRule(tree::ParseTreeList
     parserListener->exitMemberInitializerIdentifier(this);
 }
 
+
+antlrcpp::Any CppParser::MemberInitializerIdentifierContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitMemberInitializerIdentifier(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::MemberInitializerIdentifierContext* CppParser::memberInitializerIdentifier() {
   MemberInitializerIdentifierContext *_localctx = _tracker.createInstance<MemberInitializerIdentifierContext>(_ctx, getState());
   enterRule(_localctx, 364, CppParser::RuleMemberInitializerIdentifier);
@@ -19486,6 +20951,14 @@ void CppParser::OperatorFunctionIdentifierContext::exitRule(tree::ParseTreeListe
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitOperatorFunctionIdentifier(this);
+}
+
+
+antlrcpp::Any CppParser::OperatorFunctionIdentifierContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitOperatorFunctionIdentifier(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::OperatorFunctionIdentifierContext* CppParser::operatorFunctionIdentifier() {
@@ -19705,6 +21178,14 @@ void CppParser::AnyOperatorContext::exitRule(tree::ParseTreeListener *listener) 
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitAnyOperator(this);
+}
+
+
+antlrcpp::Any CppParser::AnyOperatorContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitAnyOperator(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::AnyOperatorContext* CppParser::anyOperator() {
@@ -20075,6 +21556,14 @@ void CppParser::LiteralOperatorIdentifierContext::exitRule(tree::ParseTreeListen
     parserListener->exitLiteralOperatorIdentifier(this);
 }
 
+
+antlrcpp::Any CppParser::LiteralOperatorIdentifierContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitLiteralOperatorIdentifier(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::LiteralOperatorIdentifierContext* CppParser::literalOperatorIdentifier() {
   LiteralOperatorIdentifierContext *_localctx = _tracker.createInstance<LiteralOperatorIdentifierContext>(_ctx, getState());
   enterRule(_localctx, 370, CppParser::RuleLiteralOperatorIdentifier);
@@ -20161,6 +21650,14 @@ void CppParser::TemplateDeclarationContext::exitRule(tree::ParseTreeListener *li
     parserListener->exitTemplateDeclaration(this);
 }
 
+
+antlrcpp::Any CppParser::TemplateDeclarationContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitTemplateDeclaration(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::TemplateDeclarationContext* CppParser::templateDeclaration() {
   TemplateDeclarationContext *_localctx = _tracker.createInstance<TemplateDeclarationContext>(_ctx, getState());
   enterRule(_localctx, 372, CppParser::RuleTemplateDeclaration);
@@ -20224,6 +21721,14 @@ void CppParser::TemplateParameterListContext::exitRule(tree::ParseTreeListener *
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitTemplateParameterList(this);
+}
+
+
+antlrcpp::Any CppParser::TemplateParameterListContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitTemplateParameterList(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 
@@ -20310,6 +21815,14 @@ void CppParser::TemplateParameterContext::exitRule(tree::ParseTreeListener *list
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitTemplateParameter(this);
+}
+
+
+antlrcpp::Any CppParser::TemplateParameterContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitTemplateParameter(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::TemplateParameterContext* CppParser::templateParameter() {
@@ -20410,6 +21923,14 @@ void CppParser::TypeParameterContext::exitRule(tree::ParseTreeListener *listener
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitTypeParameter(this);
+}
+
+
+antlrcpp::Any CppParser::TypeParameterContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitTypeParameter(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::TypeParameterContext* CppParser::typeParameter() {
@@ -20579,6 +22100,14 @@ void CppParser::TypeParameterKeyContext::exitRule(tree::ParseTreeListener *liste
     parserListener->exitTypeParameterKey(this);
 }
 
+
+antlrcpp::Any CppParser::TypeParameterKeyContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitTypeParameterKey(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::TypeParameterKeyContext* CppParser::typeParameterKey() {
   TypeParameterKeyContext *_localctx = _tracker.createInstance<TypeParameterKeyContext>(_ctx, getState());
   enterRule(_localctx, 380, CppParser::RuleTypeParameterKey);
@@ -20648,6 +22177,14 @@ void CppParser::SimpleTemplateIdentifierContext::exitRule(tree::ParseTreeListene
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitSimpleTemplateIdentifier(this);
+}
+
+
+antlrcpp::Any CppParser::SimpleTemplateIdentifierContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitSimpleTemplateIdentifier(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::SimpleTemplateIdentifierContext* CppParser::simpleTemplateIdentifier() {
@@ -20788,6 +22325,14 @@ void CppParser::TemplateIdentifierContext::exitRule(tree::ParseTreeListener *lis
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitTemplateIdentifier(this);
+}
+
+
+antlrcpp::Any CppParser::TemplateIdentifierContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitTemplateIdentifier(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::TemplateIdentifierContext* CppParser::templateIdentifier() {
@@ -21015,6 +22560,14 @@ void CppParser::TemplateArgumentListContext::exitRule(tree::ParseTreeListener *l
 }
 
 
+antlrcpp::Any CppParser::TemplateArgumentListContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitTemplateArgumentList(this);
+  else
+    return visitor->visitChildren(this);
+}
+
+
 CppParser::TemplateArgumentListContext* CppParser::templateArgumentList() {
    return templateArgumentList(0);
 }
@@ -21126,6 +22679,14 @@ void CppParser::TemplateArgumentContext::exitRule(tree::ParseTreeListener *liste
     parserListener->exitTemplateArgument(this);
 }
 
+
+antlrcpp::Any CppParser::TemplateArgumentContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitTemplateArgument(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::TemplateArgumentContext* CppParser::templateArgument() {
   TemplateArgumentContext *_localctx = _tracker.createInstance<TemplateArgumentContext>(_ctx, getState());
   enterRule(_localctx, 388, CppParser::RuleTemplateArgument);
@@ -21211,6 +22772,14 @@ void CppParser::TypenameSpecifierContext::exitRule(tree::ParseTreeListener *list
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitTypenameSpecifier(this);
+}
+
+
+antlrcpp::Any CppParser::TypenameSpecifierContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitTypenameSpecifier(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::TypenameSpecifierContext* CppParser::typenameSpecifier() {
@@ -21302,6 +22871,14 @@ void CppParser::ExplicitInstantiationContext::exitRule(tree::ParseTreeListener *
     parserListener->exitExplicitInstantiation(this);
 }
 
+
+antlrcpp::Any CppParser::ExplicitInstantiationContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitExplicitInstantiation(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::ExplicitInstantiationContext* CppParser::explicitInstantiation() {
   ExplicitInstantiationContext *_localctx = _tracker.createInstance<ExplicitInstantiationContext>(_ctx, getState());
   enterRule(_localctx, 392, CppParser::RuleExplicitInstantiation);
@@ -21372,6 +22949,14 @@ void CppParser::ExplicitSpecializationContext::exitRule(tree::ParseTreeListener 
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitExplicitSpecialization(this);
+}
+
+
+antlrcpp::Any CppParser::ExplicitSpecializationContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitExplicitSpecialization(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::ExplicitSpecializationContext* CppParser::explicitSpecialization() {
@@ -21457,6 +23042,14 @@ void CppParser::DeductionGuideContext::exitRule(tree::ParseTreeListener *listene
     parserListener->exitDeductionGuide(this);
 }
 
+
+antlrcpp::Any CppParser::DeductionGuideContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitDeductionGuide(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::DeductionGuideContext* CppParser::deductionGuide() {
   DeductionGuideContext *_localctx = _tracker.createInstance<DeductionGuideContext>(_ctx, getState());
   enterRule(_localctx, 396, CppParser::RuleDeductionGuide);
@@ -21535,6 +23128,14 @@ void CppParser::TryBlockContext::exitRule(tree::ParseTreeListener *listener) {
     parserListener->exitTryBlock(this);
 }
 
+
+antlrcpp::Any CppParser::TryBlockContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitTryBlock(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::TryBlockContext* CppParser::tryBlock() {
   TryBlockContext *_localctx = _tracker.createInstance<TryBlockContext>(_ctx, getState());
   enterRule(_localctx, 398, CppParser::RuleTryBlock);
@@ -21598,6 +23199,14 @@ void CppParser::FunctionTryBlockContext::exitRule(tree::ParseTreeListener *liste
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitFunctionTryBlock(this);
+}
+
+
+antlrcpp::Any CppParser::FunctionTryBlockContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitFunctionTryBlock(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::FunctionTryBlockContext* CppParser::functionTryBlock() {
@@ -21664,6 +23273,14 @@ void CppParser::HandlerSequenceContext::exitRule(tree::ParseTreeListener *listen
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitHandlerSequence(this);
+}
+
+
+antlrcpp::Any CppParser::HandlerSequenceContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitHandlerSequence(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::HandlerSequenceContext* CppParser::handlerSequence() {
@@ -21742,6 +23359,14 @@ void CppParser::HandlerContext::exitRule(tree::ParseTreeListener *listener) {
     parserListener->exitHandler(this);
 }
 
+
+antlrcpp::Any CppParser::HandlerContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitHandler(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::HandlerContext* CppParser::handler() {
   HandlerContext *_localctx = _tracker.createInstance<HandlerContext>(_ctx, getState());
   enterRule(_localctx, 404, CppParser::RuleHandler);
@@ -21813,6 +23438,14 @@ void CppParser::ExceptionDeclarationContext::exitRule(tree::ParseTreeListener *l
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitExceptionDeclaration(this);
+}
+
+
+antlrcpp::Any CppParser::ExceptionDeclarationContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitExceptionDeclaration(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::ExceptionDeclarationContext* CppParser::exceptionDeclaration() {
@@ -21937,6 +23570,14 @@ void CppParser::NoExceptionSpecifierContext::exitRule(tree::ParseTreeListener *l
     parserListener->exitNoExceptionSpecifier(this);
 }
 
+
+antlrcpp::Any CppParser::NoExceptionSpecifierContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitNoExceptionSpecifier(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::NoExceptionSpecifierContext* CppParser::noExceptionSpecifier() {
   NoExceptionSpecifierContext *_localctx = _tracker.createInstance<NoExceptionSpecifierContext>(_ctx, getState());
   enterRule(_localctx, 408, CppParser::RuleNoExceptionSpecifier);
@@ -22024,6 +23665,14 @@ void CppParser::IdentifierListContext::exitRule(tree::ParseTreeListener *listene
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitIdentifierList(this);
+}
+
+
+antlrcpp::Any CppParser::IdentifierListContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitIdentifierList(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 
@@ -22130,6 +23779,14 @@ void CppParser::LiteralContext::exitRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitLiteral(this);
+}
+
+
+antlrcpp::Any CppParser::LiteralContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitLiteral(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::LiteralContext* CppParser::literal() {
@@ -22242,6 +23899,14 @@ void CppParser::IntegerLiteralContext::exitRule(tree::ParseTreeListener *listene
     parserListener->exitIntegerLiteral(this);
 }
 
+
+antlrcpp::Any CppParser::IntegerLiteralContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitIntegerLiteral(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::IntegerLiteralContext* CppParser::integerLiteral() {
   IntegerLiteralContext *_localctx = _tracker.createInstance<IntegerLiteralContext>(_ctx, getState());
   enterRule(_localctx, 414, CppParser::RuleIntegerLiteral);
@@ -22305,6 +23970,14 @@ void CppParser::BooleanLiteralContext::exitRule(tree::ParseTreeListener *listene
     parserListener->exitBooleanLiteral(this);
 }
 
+
+antlrcpp::Any CppParser::BooleanLiteralContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitBooleanLiteral(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CppParser::BooleanLiteralContext* CppParser::booleanLiteral() {
   BooleanLiteralContext *_localctx = _tracker.createInstance<BooleanLiteralContext>(_ctx, getState());
   enterRule(_localctx, 416, CppParser::RuleBooleanLiteral);
@@ -22362,6 +24035,14 @@ void CppParser::PointerLiteralContext::exitRule(tree::ParseTreeListener *listene
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitPointerLiteral(this);
+}
+
+
+antlrcpp::Any CppParser::PointerLiteralContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitPointerLiteral(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::PointerLiteralContext* CppParser::pointerLiteral() {
@@ -22423,6 +24104,14 @@ void CppParser::UserDefinedLiteralContext::exitRule(tree::ParseTreeListener *lis
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitUserDefinedLiteral(this);
+}
+
+
+antlrcpp::Any CppParser::UserDefinedLiteralContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
+    return parserVisitor->visitUserDefinedLiteral(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CppParser::UserDefinedLiteralContext* CppParser::userDefinedLiteral() {

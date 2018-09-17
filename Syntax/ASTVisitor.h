@@ -1,4 +1,5 @@
-﻿
+﻿#pragma once
+#include "CppParserBaseVisitor.h"
 
 namespace Soup::StaticAnalysis
 {
