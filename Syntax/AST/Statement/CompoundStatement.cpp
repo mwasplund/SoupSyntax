@@ -1,22 +1,18 @@
 ﻿
+module SoupSyntax;
+using namespace Soup::Syntax;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Soup::Syntax
-
-const std::vector<Statement>& GetStatements() const
+const std::vector<Statement>& CompoundStatement::GetStatements() const
 {
-    return this->statments;
+    return this->statements;
 }
 
-bool operator ==(const CompoundStatement& rhs)
+bool CompoundStatement::operator ==(const CompoundStatement& rhs) const
 {
     return this->statements == rhs.statements;
 }
 
-bool operator !=(const CompoundStatement& rhs)
+bool CompoundStatement::operator !=(const CompoundStatement& rhs) const
 {
     return !(*this == rhs);
 }

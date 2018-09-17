@@ -10,8 +10,8 @@ namespace Soup::Syntax
     export class QualifiedName : public Node
     {
     private:
-        LiteralNode qualifier;
-        Node name;
+        std::unique_ptr<LiteralNode> qualifier;
+        std::unique_ptr<Node> name;
 
     public:
         /// <summary>
@@ -38,5 +38,11 @@ namespace Soup::Syntax
         /// Inequality operator
         /// </summary>
         bool operator !=(const QualifiedName& rhs) const;
+
+    protected:
+        /// <summary>
+        /// Node Equals
+        /// </summary>
+        virtual bool Equals(const Node& rhs) const final;
     };
 }

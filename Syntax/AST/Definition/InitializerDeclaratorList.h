@@ -8,6 +8,9 @@ namespace Soup::Syntax
     /// </summary>
     export class InitializerDeclaratorList : public Node
     {
+    private:
+        std::vector<InitializerDeclarator> items;
+
     public:
         /// <summary>
         /// Gets or sets the list of items
@@ -33,5 +36,11 @@ namespace Soup::Syntax
         /// Inequality operator
         /// </summary>
         bool operator !=(const InitializerDeclaratorList& rhs) const;
+
+    protected:
+        /// <summary>
+        /// Node Equals
+        /// </summary>
+        virtual bool Equals(const Node& rhs) const final;
     };
 }

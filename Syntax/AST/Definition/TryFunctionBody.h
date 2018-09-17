@@ -26,5 +26,11 @@ namespace Soup::Syntax
         /// Inequality operator
         /// </summary>
         bool operator !=(const TryFunctionBody& rhs) const;
+
+    protected:
+        /// <summary>
+        /// Node Equals
+        /// </summary>
+        virtual bool Equals(const Node& rhs) const final;
     };
 }

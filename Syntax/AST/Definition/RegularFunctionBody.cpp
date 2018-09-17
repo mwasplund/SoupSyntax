@@ -7,7 +7,7 @@ const CompoundStatement& RegularFunctionBody::GetStatements() const
     return this->statements;
 }
 
-bool RegularFunctionBody::operator ==(const, RegularFunctionBody& rhs) const
+bool RegularFunctionBody::operator ==(const RegularFunctionBody& rhs) const
 {
     return this->statements == rhs.statements;
 }

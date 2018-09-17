@@ -4,10 +4,10 @@ using namespace Soup::Syntax;
 
 const ExpressionNode& ArithmeticExpression::GetLeft() const
 {
-    return this->left;
+    return *this->left;
 }
 
 const ExpressionNode& ArithmeticExpression::GetRight() const
 {
-    return this->right;
+    return *this->right;
 }

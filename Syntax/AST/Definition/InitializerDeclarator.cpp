@@ -1,22 +1,24 @@
 ﻿
+module SoupSyntax;
+using namespace Soup::Syntax;
 
-namespace Soup::Syntax
+const Node& InitializerDeclarator::GetDeclarator() const
 {
-                export class  : public Node
-    {
-public Node InitializerDeclarator::Declarator { get; set; }
-
-public Node InitializerDeclarator::Initializer { get; set; }
-
-public static bool InitializerDeclarator::operator ==(InitializerDeclarator lhs, InitializerDeclarator rhs)
-{
-    if (object.ReferenceEquals(lhs, null))
-        return object.ReferenceEquals(rhs, null);
-    else
-        return lhs.Equals(rhs);
+    return *this->declarator;
 }
 
-public static bool InitializerDeclarator::operator !=(InitializerDeclarator lhs, InitializerDeclarator rhs)
+const Node& InitializerDeclarator::GetInitializer() const
+{
+    return *this->initializer;
+}
+
+bool InitializerDeclarator::operator ==(const InitializerDeclarator& rhs) const
+{
+    return this->declarator == rhs.declarator &&
+        this->initializer == rhs.initializer;
+}
+
+bool InitializerDeclarator::operator !=(const InitializerDeclarator& rhs) const
 {
     return !(*this == rhs);
 }

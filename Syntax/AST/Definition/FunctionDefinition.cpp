@@ -2,24 +2,24 @@
 module SoupSyntax;
 using namespace Soup::Syntax;
 
-const DeclarationSpecifierSequence& FunctionDefinition::ReturnType() const
+const DeclarationSpecifierSequence& FunctionDefinition::GetReturnType() const
 {
     return this->returnType;
 }
 
-const Identifier& FunctionDefinition::Identifier() const
+const Identifier& FunctionDefinition::GetIdentifier() const
 {
     return this->identifier;
 }
 
-const ParameterList& FunctionDefinition::ParameterList() const
+const ParameterList& FunctionDefinition::GetParameterList() const
 {
     return this->parameterList;
 }
 
-const Node& FunctionDefinition::Body() const
+const Node& FunctionDefinition::GetBody() const
 {
-    return this->body;
+    return *this->body;
 }
 
 bool FunctionDefinition::operator ==(const FunctionDefinition& rhs) const

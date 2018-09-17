@@ -4,12 +4,12 @@ using namespace Soup::Syntax;
 
 const LiteralNode& QualifiedName::GetQualifier() const
 {
-    return this->qualifier;
+    return *this->qualifier;
 }
 
 const Node& QualifiedName::GetName() const
 {
-    return this->name;
+    return *this->name;
 }
 
 QualifiedName::QualifiedName()

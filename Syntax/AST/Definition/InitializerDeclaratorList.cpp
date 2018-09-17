@@ -1,75 +1,28 @@
 ﻿
+module SoupSyntax;
+using namespace Soup::Syntax;
 
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Soup::Syntax
+const std::vector<InitializerDeclarator>& InitializerDeclaratorList::GetItems() const
 {
-    /// <summary>
-    /// The initializer declarator list node
-    /// </summary>
-    export class InitializerDeclaratorList : public Node
-    {
-        /// <summary>
-        /// Gets or sets the list of items
-        /// </summary>
-        public IList<InitializerDeclarator> Items { get; set; }
+    return this->items;
+}
 
-        /// <summary>
-        /// Initialize
-        /// </summary>
-        public InitializerDeclaratorList() :
-            this(new List<InitializerDeclarator>())
-        {
-        }
+InitializerDeclaratorList::InitializerDeclaratorList() :
+    items()
+{
+}
 
-        /// <summary>
-        /// Initialize
-        /// </summary>
-        public InitializerDeclaratorList(IList<InitializerDeclarator> items)
-        {
-            Items = items;
-        }
+InitializerDeclaratorList::InitializerDeclaratorList(std::vector<InitializerDeclarator>&& items)
+{
+    this->items = std::move(items);
+}
 
-        /// <summary>
-        /// Equality operator
-        /// </summary>
-        public static bool operator ==(InitializerDeclaratorList lhs, InitializerDeclaratorList rhs)
-        {
-            if (object.ReferenceEquals(lhs, null))
-                return object.ReferenceEquals(rhs, null);
-            else
-                return lhs.Equals(rhs);
-        }
+bool InitializerDeclaratorList::operator ==(const InitializerDeclaratorList& rhs) const
+{
+    return this->items == rhs.items;
+}
 
-        /// <summary>
-        /// Inequality operator
-        /// </summary>
-        public static bool operator !=(InitializerDeclaratorList lhs, InitializerDeclaratorList rhs)
-        {
-            return !(*this == rhs);
-        }
-
-        /// <summary>
-        /// Equals
-        /// </summary>
-        public override bool Equals(object obj)
-        {
-            var other = obj as InitializerDeclaratorList;
-            if (object.ReferenceEquals(other, null))
-            {
-                return false;
-            }
-
-            return Items.SequenceEqual(other.Items);
-        }
-
-        /// <summary>
-        /// Get hash code
-        /// </summary>
-        public override int GetHashCode()
-        {
-            return Items.GetHashCode();
-        }
-    }
+bool InitializerDeclaratorList::operator !=(const InitializerDeclaratorList& rhs) const
+{
+    return !(*this == rhs);
 }

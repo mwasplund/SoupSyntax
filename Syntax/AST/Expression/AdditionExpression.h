@@ -6,7 +6,7 @@ namespace Soup::Syntax
     /// <summary>
     /// Addition
     /// </summary>
-    export class AdditionExpression : ArithmeticExpression
+    export class AdditionExpression : public ArithmeticExpression
     {
     public:
         /// <summary>
@@ -18,5 +18,11 @@ namespace Soup::Syntax
         /// Inequality operator
         /// </summary>
         bool operator !=(const AdditionExpression& rhs) const;
+
+    protected:
+        /// <summary>
+        /// Node Equals
+        /// </summary>
+        virtual bool Equals(const Node& rhs) const final;
     };
 }

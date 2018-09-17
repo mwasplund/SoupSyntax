@@ -9,6 +9,9 @@ namespace Soup::Syntax
     /// </summary>
     export class RegularFunctionBody : public Node
     {
+    private:
+        CompoundStatement statements;
+
     public:
         /// <summary>
         /// Gets or sets the statements
@@ -24,5 +27,11 @@ namespace Soup::Syntax
         /// Inequality operator
         /// </summary>
         bool operator !=(const RegularFunctionBody& rhs) const;
+
+    protected:
+        /// <summary>
+        /// Node Equals
+        /// </summary>
+        virtual bool Equals(const Node& rhs) const final;
     };
 }

@@ -6,8 +6,11 @@ namespace Soup::Syntax
     /// <summary>
     /// Arithmetic Expression
     /// </summary>
-    export class ArithmeticExpression : ExpressionNode
+    export class ArithmeticExpression : public ExpressionNode
     {
+    protected:
+        std::unique_ptr<ExpressionNode> left;
+        std::unique_ptr<ExpressionNode> right;
     public:
         /// <summary>
         /// The left expression

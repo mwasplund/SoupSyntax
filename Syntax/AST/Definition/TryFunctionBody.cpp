@@ -4,15 +4,15 @@ using namespace Soup::Syntax;
 
 const CompoundStatement& TryFunctionBody::GetStatements() const
 {
-    return this->statments;
+    return this->statements;
 }
 
-bool TryFunctionBody::operator ==(const TryFunctionBody& rhs)
+bool TryFunctionBody::operator ==(const TryFunctionBody& rhs) const
 {
-    return this->statments == rhs.statments;
+    return this->statements == rhs.statements;
 }
 
-bool TryFunctionBody::operator !=(const TryFunctionBody& rhs)
+bool TryFunctionBody::operator !=(const TryFunctionBody& rhs) const
 {
     return !(*this == rhs);
 }

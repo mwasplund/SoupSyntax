@@ -15,7 +15,7 @@ namespace Soup::Syntax
         DeclarationSpecifierSequence returnType;
         Identifier identifier;
         ParameterList parameterList;
-        Node body;
+        std::unique_ptr<Node> body;
 
     public:
         /// <summary>
@@ -31,7 +31,7 @@ namespace Soup::Syntax
         /// <summary>
         /// Gets or sets the parameter list
         /// </summary>
-        const ParameterList& ParameterList() const;
+        const ParameterList& GetParameterList() const;
 
         /// <summary>
         /// Gets or sets the body
@@ -47,5 +47,11 @@ namespace Soup::Syntax
         /// Inequality operator
         /// </summary>
         bool operator !=(const FunctionDefinition& rhs) const;
+
+    protected:
+        /// <summary>
+        /// Node Equals
+        /// </summary>
+        virtual bool Equals(const Node& rhs) const final;
     };
 }

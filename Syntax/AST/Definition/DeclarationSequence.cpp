@@ -17,7 +17,7 @@ DeclarationSequence::DeclarationSequence(std::vector<Declaration>&& declarations
     this->declarations = std::move(declarations);
 }
 
-bool DeclarationSequence::operator ==(cont DeclarationSequence& rhs) const
+bool DeclarationSequence::operator ==(const DeclarationSequence& rhs) const
 {
     return this->declarations == rhs.declarations;
 }

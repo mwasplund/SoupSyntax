@@ -1,52 +1,14 @@
 ﻿
+module SoupSyntax;
+using namespace Soup::Syntax;
 
-namespace Soup::Syntax
+bool AdditionExpression::operator ==(const AdditionExpression& rhs) const
 {
-    /// <summary>
-    /// Addition
-    /// </summary>
-    public class AdditionExpression : ArithmeticExpression
-    {
-        /// <summary>
-        /// Equality operator
-        /// </summary>
-        public static bool operator ==(AdditionExpression lhs, AdditionExpression rhs)
-        {
-            if (object.ReferenceEquals(lhs, null))
-                return object.ReferenceEquals(rhs, null);
-            else
-                return lhs.Equals(rhs);
-        }
+    return this->left == rhs.left &&
+        this->right == rhs.right;
+}
 
-        /// <summary>
-        /// Inequality operator
-        /// </summary>
-        public static bool operator !=(AdditionExpression lhs, AdditionExpression rhs)
-        {
-            return !(*this == rhs);
-        }
-
-        /// <summary>
-        /// Equals
-        /// </summary>
-        public override bool Equals(object obj)
-        {
-            var other = obj as AdditionExpression;
-            if (object.ReferenceEquals(other, null))
-            {
-                return false;
-            }
-
-            return Left.Equals(other.Left) &&
-                Right.Equals(other.Right);
-        }
-
-        /// <summary>
-        /// Get hash code
-        /// </summary>
-        public override int GetHashCode()
-        {
-            return Left.GetHashCode() ^ Right.GetHashCode();
-        }
-    }
+bool AdditionExpression::operator !=(const AdditionExpression& rhs) const
+{
+    return !(*this == rhs);
 }

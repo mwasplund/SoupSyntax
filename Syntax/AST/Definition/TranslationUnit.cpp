@@ -9,10 +9,7 @@ const DeclarationSequence& TranslationUnit::GetDeclarations() const
 
 bool TranslationUnit::operator ==(const TranslationUnit& rhs) const
 {
-    if (object.ReferenceEquals(lhs, null))
-        return object.ReferenceEquals(rhs, null);
-    else
-        return lhs.Equals(rhs);
+    return this->declarations == rhs.declarations;
 }
 
 bool TranslationUnit::operator !=(const TranslationUnit& rhs) const

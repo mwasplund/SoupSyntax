@@ -9,8 +9,8 @@ namespace Soup::Syntax
     export class InitializerDeclarator : public Node
     {
     private:
-        Node declarator;
-        Node initializer;
+        std::unique_ptr<Node> declarator;
+        std::unique_ptr<Node> initializer;
 
     public:
         /// <summary>
@@ -32,5 +32,11 @@ namespace Soup::Syntax
         /// Inequality operator
         /// </summary>
         bool operator !=(const InitializerDeclarator& rhs) const;
+
+    protected:
+        /// <summary>
+        /// Node Equals
+        /// </summary>
+        virtual bool Equals(const Node& rhs) const final;
     };
 }
