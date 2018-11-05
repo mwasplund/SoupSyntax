@@ -2,12 +2,10 @@
   "name": "SoupSyntax",
   "version": "1.0.0",
   "dependencies": [
+    "D:/Repos/antlr4/runtime/cpp/runtime"
   ],
-  "public": "Module.cpp",
+  "public": "Module.cppm",
   "source": [
-    "ASTVisitor.cpp",
-    "LexerExceptionErrorListener.cpp",
-    "ParserExceptionErrorListener.cpp",
     "SyntaxTree.cpp",
     "AST/Identifier.cpp",
     "AST/IntegerLiteral.cpp",
@@ -33,13 +31,6 @@
     "AST/Expression/ExpressionNode.cpp",
     "AST/Statement/CompoundStatement.cpp",
     "AST/Statement/ReturnStatement.cpp",
-    "AST/Statement/Statement.cpp",
-    "Grammar/CppLexer.cpp",
-    "Grammar/CppParser.cpp",
-    "Grammar/CppParserBaseListener.cpp",
-    "Grammar/CppParserBaseVisitor.cpp",
-    "Grammar/CppParserListener.cpp",
-    "Grammar/CppParserVisitor.cpp",
-    "Grammar/CppLexer.cpp"
+    "AST/Statement/Statement.cpp"
   ]
 }
