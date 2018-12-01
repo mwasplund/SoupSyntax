@@ -1,5 +1,6 @@
 ﻿
 export module SoupSyntax;
+import Antlr4.Runtime;
 
 #include "SyntaxTree.h"
 #include "AST\Identifier.h"
@@ -27,3 +28,4 @@ export module SoupSyntax;
 #include "AST\Statement\CompoundStatement.h"
 #include "AST\Statement\ReturnStatement.h"
 #include "AST\Statement\Statement.h"
+#include "Parser\Grammar\CppLexer.h"

@@ -1,11 +1,11 @@
 ﻿#pragma once
-#include <memory>
+//#include <memory>
 
 namespace Soup::Syntax
 {
   export class SyntaxTree
   {
   public:
-    static std::unique_ptr<SyntaxTree> Parse();
+    static SyntaxTree Parse();
   };
 }
