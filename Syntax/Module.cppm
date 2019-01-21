@@ -1,5 +1,7 @@
 ﻿
 export module SoupSyntax;
+
+import std.core;
 import Antlr4.Runtime;
 
 #include "SyntaxTree.h"

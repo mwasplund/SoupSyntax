@@ -1,7 +1,6 @@
 ﻿#pragma once
 #include "Node.h"
 #include "Statement.h"
-#include <vector>
 
 namespace Soup::Syntax
 {
