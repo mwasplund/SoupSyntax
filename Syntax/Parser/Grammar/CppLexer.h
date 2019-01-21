@@ -3,7 +3,7 @@
 
 #pragma once
 
-class  CppLexer : public antlr4::Lexer {
+export class  CppLexer : public antlr4::Lexer {
 public:
   enum {
     BlockComment = 1, LineComment = 2, Whitespace = 3, Newline = 4, AlignAs = 5, 

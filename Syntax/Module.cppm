@@ -30,4 +30,5 @@ import Antlr4.Runtime;
 #include "AST\Statement\CompoundStatement.h"
 #include "AST\Statement\ReturnStatement.h"
 #include "AST\Statement\Statement.h"
+#include "Parser\LexerExceptionErrorListener.h"
 #include "Parser\Grammar\CppLexer.h"

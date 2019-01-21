@@ -1,8 +1,11 @@
 {
   "name": "SoupSyntaxTests",
   "version": "1.0.0",
+  "type": "executable",
   "dependencies": [
-    "../Syntax/Recipe.json"
+    "../Syntax/"
   ],
-  "source": []
+  "source": [
+    "Main.cpp"
+  ]
 }

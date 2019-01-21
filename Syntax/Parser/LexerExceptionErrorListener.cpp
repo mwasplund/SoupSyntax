@@ -1,13 +1,18 @@
-﻿#include "LexerExceptionErrorListener.h"
+﻿module SoupSyntax;
+
+using namespace antlr4;
 using namespace Soup::Syntax;
 
-void LexerExceptionErrorListener::SyntaxError(
-    IRecognizer recognizer,
-    int offendingSymbol,
-    int line,
-    int charPositionInLine,
-    string msg,
-    RecognitionException e)
+void LexerExceptionErrorListener::syntaxError(
+    Recognizer* recognizer,
+    Token* offendingSymbol,
+    size_t line,
+    size_t charPositionInLine,
+    const std::string& msg,
+    std::exception_ptr e)
 {
-    throw new ParseCanceledException("line " + line + ":" + charPositionInLine + " " + msg);
+    std::stringstream errorMessage;
+    errorMessage << "line " << line << ":" << charPositionInLine << " " << msg;
+
+    throw new ParseCancellationException(errorMessage.str());
 }

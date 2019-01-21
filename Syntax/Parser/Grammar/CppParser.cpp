@@ -1,12 +1,7 @@
 
 // Generated from Grammar\CppParser.g4 by ANTLR 4.7.1
 
-
-#include "CppParserListener.h"
-#include "CppParserVisitor.h"
-
-#include "CppParser.h"
-
+module SoupSyntax;
 
 using namespace antlrcpp;
 using namespace antlr4;

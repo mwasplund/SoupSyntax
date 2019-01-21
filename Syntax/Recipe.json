@@ -31,6 +31,8 @@
     "AST/Expression/ExpressionNode.cpp",
     "AST/Statement/CompoundStatement.cpp",
     "AST/Statement/ReturnStatement.cpp",
-    "AST/Statement/Statement.cpp"
+    "AST/Statement/Statement.cpp",
+    "Parser/LexerExceptionErrorListener.cpp",
+    "Parser/Grammar/CppLexer.cpp"
   ]
 }
