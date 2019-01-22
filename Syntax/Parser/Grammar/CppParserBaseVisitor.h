@@ -10,7 +10,7 @@
  * This class provides an empty implementation of CppParserVisitor, which can be
  * extended to create a visitor which only needs to handle a subset of the available methods.
  */
-class  CppParserBaseVisitor : public CppParserVisitor {
+export class  CppParserBaseVisitor : public CppParserVisitor {
 public:
 
   virtual antlrcpp::Any visitTypedefName(CppParser::TypedefNameContext *ctx) override {

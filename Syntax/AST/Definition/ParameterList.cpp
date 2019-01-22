@@ -17,3 +17,8 @@ bool ParameterList::operator !=(const ParameterList& rhs) const
 {
     return !(*this == rhs);
 }
+
+bool ParameterList::Equals(const Node& rhs) const
+{
+    throw std::runtime_error("NotImplemented");
+}

@@ -9,23 +9,21 @@ namespace Soup::Syntax
     export class TranslationUnit : public Node
     {
     private:
-        DeclarationSequence declarations;
+        std::shared_ptr<DeclarationSequence> m_declarations;
 
     public:
-        /// <summary>
-        /// Gets or sets the option declaration sequence
-        /// </summary>
-        const DeclarationSequence& GetDeclarations() const;
+        TranslationUnit(std::shared_ptr<DeclarationSequence>&& declarations);
 
         /// <summary>
         /// Equality operator
         /// </summary>
         bool operator ==(const TranslationUnit& rhs) const;
+        bool operator !=(const TranslationUnit& rhs) const;
 
         /// <summary>
-        /// Inequality operator
+        /// Gets or sets the option declaration sequence
         /// </summary>
-        bool operator !=(const TranslationUnit& rhs) const;
+        const DeclarationSequence& GetDeclarations() const;
 
     protected:
         /// <summary>

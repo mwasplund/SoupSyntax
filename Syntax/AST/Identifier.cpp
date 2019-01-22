@@ -21,3 +21,8 @@ bool Identifier::operator !=(const Identifier& rhs) const
 {
     return !(*this == rhs);
 }
+
+bool Identifier::Equals(const Node& rhs) const
+{
+    throw std::runtime_error("NotImplemented");
+}

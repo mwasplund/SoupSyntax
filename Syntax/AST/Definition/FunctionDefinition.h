@@ -12,12 +12,18 @@ namespace Soup::Syntax
     export class FunctionDefinition : public Declaration
     {
     private:
-        DeclarationSpecifierSequence returnType;
-        Identifier identifier;
-        ParameterList parameterList;
-        std::unique_ptr<Node> body;
+        std::shared_ptr<DeclarationSpecifierSequence> m_returnType;
+        std::shared_ptr<Identifier> m_identifier;
+        std::shared_ptr<ParameterList> m_parameterList;
+        std::shared_ptr<Node> m_body;
 
     public:
+        FunctionDefinition(
+            std::shared_ptr<DeclarationSpecifierSequence>&& returnType,
+            std::shared_ptr<Identifier>&& identifier,
+            std::shared_ptr<ParameterList>&& parameterList,
+            std::shared_ptr<Node>&& body);
+
         /// <summary>
         /// Gets or sets the return type
         /// </summary>
@@ -42,10 +48,6 @@ namespace Soup::Syntax
         /// Equality operator
         /// </summary>
         bool operator ==(const FunctionDefinition& rhs) const;
-
-        /// <summary>
-        /// Inequality operator
-        /// </summary>
         bool operator !=(const FunctionDefinition& rhs) const;
 
     protected:

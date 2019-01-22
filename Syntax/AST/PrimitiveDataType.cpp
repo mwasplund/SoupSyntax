@@ -21,3 +21,8 @@ bool PrimitiveDataTypeNode::operator !=(const PrimitiveDataTypeNode& rhs) const
 {
     return !(*this == rhs);
 }
+
+bool PrimitiveDataTypeNode::Equals(const Node& rhs) const
+{
+    throw std::runtime_error("NotImplemented");
+}

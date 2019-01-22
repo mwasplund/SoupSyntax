@@ -13,10 +13,6 @@ namespace Soup::Syntax
         /// Equality operator
         /// </summary>
         bool operator ==(const ReturnStatement& rhs) const;
-
-        /// <summary>
-        /// Inequality operator
-        /// </summary>
         bool operator !=(const ReturnStatement& rhs) const;
 
     protected:

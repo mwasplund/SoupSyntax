@@ -6,9 +6,9 @@ namespace Soup::Syntax::UnitTests
     class ParserTests
     {
     public:
-        [[Theory]]
-        [[InlineData("true")]]
-        [[InlineData("false")]]
+        // [[Theory]]
+        // [[InlineData("true")]]
+        // [[InlineData("false")]]
         void SingleRule_BooleanLiterals(std::string sourceCode)
         {
             Run(
@@ -20,8 +20,8 @@ namespace Soup::Syntax::UnitTests
                 });
         }
 
-        [[Theory]]
-        [[InlineData("nullptr")]]
+        // [[Theory]]
+        // [[InlineData("nullptr")]]
         void SingleRule_PointerLiterals(std::string sourceCode)
         {
             Run(
@@ -33,13 +33,13 @@ namespace Soup::Syntax::UnitTests
                 });
         }
 
-        [[Theory]]
-        [[InlineData("1")]] // Integer
-        [[InlineData("1.0")]] // FloatingPoint
-        [[InlineData("'c'")]] // Character
-        [[InlineData("\"s\"")]] // String
-        [[InlineData("true")]] // Boolean
-        [[InlineData("nullptr")]] // Pointer
+        // [[Theory]]
+        // [[InlineData("1")]] // Integer
+        // [[InlineData("1.0")]] // FloatingPoint
+        // [[InlineData("'c'")]] // Character
+        // [[InlineData("\"s\"")]] // String
+        // [[InlineData("true")]] // Boolean
+        // [[InlineData("nullptr")]] // Pointer
         void SingleRule_Literals(std::string sourceCode)
         {
             Run(

@@ -1,6 +1,6 @@
 #pragma once
 
-static class Assert
+class Assert
 {
 public:
   static void Fail()

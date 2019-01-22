@@ -9,33 +9,38 @@ namespace Soup::Syntax
     export class DeclarationSequence : public Node
     {
     private:
-        std::vector<Declaration> declarations;
+        std::vector<std::shared_ptr<Declaration>> m_declarations;
 
     public:
-        /// <summary>
-        /// Gets or sets the list of declarations
-        /// </summary>
-        const std::vector<Declaration>& GetDeclarations() const;
-
         /// <summary>
         /// Initialize
         /// </summary>
         DeclarationSequence();
+        DeclarationSequence(std::vector<std::shared_ptr<Declaration>>&& declarations);
+        DeclarationSequence(DeclarationSequence&& other);
 
         /// <summary>
-        /// Initialize
+        /// Assign
         /// </summary>
-        DeclarationSequence(std::vector<Declaration>&& declarations);
+        DeclarationSequence& operator =(DeclarationSequence&& rhs);
+
+        /// <summary>
+        /// Disable copy
+        /// </summary>
+        DeclarationSequence(const DeclarationSequence&) = delete;
+        DeclarationSequence& operator =(const DeclarationSequence& rhs) = delete;
 
         /// <summary>
         /// Equality operator
         /// </summary>
         bool operator ==(const DeclarationSequence& rhs) const;
+        bool operator !=(const DeclarationSequence& rhs) const;
 
         /// <summary>
-        /// Inequality operator
+        /// Gets or sets the list of declarations
         /// </summary>
-        bool operator !=(const DeclarationSequence& rhs) const;
+        const std::vector<std::shared_ptr<Declaration>>& GetDeclarations() const;
+        std::vector<std::shared_ptr<Declaration>>& GetDeclarations();
 
     protected:
         /// <summary>

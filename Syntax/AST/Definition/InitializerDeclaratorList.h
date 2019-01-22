@@ -9,33 +9,26 @@ namespace Soup::Syntax
     export class InitializerDeclaratorList : public Node
     {
     private:
-        std::vector<InitializerDeclarator> items;
+        std::vector<std::shared_ptr<InitializerDeclarator>> m_items;
 
     public:
-        /// <summary>
-        /// Gets or sets the list of items
-        /// </summary>
-        const std::vector<InitializerDeclarator>& GetItems() const;
-
         /// <summary>
         /// Initialize
         /// </summary>
         InitializerDeclaratorList();
-
-        /// <summary>
-        /// Initialize
-        /// </summary>
-        InitializerDeclaratorList(std::vector<InitializerDeclarator>&& items);
+        InitializerDeclaratorList(std::vector<std::shared_ptr<InitializerDeclarator>>&& items);
 
         /// <summary>
         /// Equality operator
         /// </summary>
         bool operator ==(const InitializerDeclaratorList& rhs) const;
+        bool operator !=(const InitializerDeclaratorList& rhs) const;
 
         /// <summary>
-        /// Inequality operator
+        /// Gets or sets the list of items
         /// </summary>
-        bool operator !=(const InitializerDeclaratorList& rhs) const;
+        const std::vector<std::shared_ptr<InitializerDeclarator>>& GetItems() const;
+        std::vector<std::shared_ptr<InitializerDeclarator>>& GetItems();
 
     protected:
         /// <summary>

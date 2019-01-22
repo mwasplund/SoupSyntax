@@ -11,3 +11,8 @@ bool ReturnStatement::operator !=(const ReturnStatement& rhs) const
 {
     return !(*this == rhs);
 }
+
+bool ReturnStatement::Equals(const Node& rhs) const
+{
+    throw std::runtime_error("NotImplemented");
+}

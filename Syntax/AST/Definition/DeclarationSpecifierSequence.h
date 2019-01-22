@@ -9,33 +9,26 @@ namespace Soup::Syntax
     export class DeclarationSpecifierSequence : public Node
     {
     private:
-        std::vector<Node> specifiers;
+        std::vector<std::shared_ptr<Node>> m_specifiers;
 
     public:
-        /// <summary>
-        /// Gets or sets the list of declaration specifiers
-        /// </summary>
-        const std::vector<Node>& GetSpecifiers() const;
-
         /// <summary>
         /// Initialize
         /// </summary>
         DeclarationSpecifierSequence();
-
-        /// <summary>
-        /// Initialize
-        /// </summary>
-        DeclarationSpecifierSequence(std::vector<Node>&& specifiers);
+        DeclarationSpecifierSequence(std::vector<std::shared_ptr<Node>>&& specifiers);
 
         /// <summary>
         /// Equality operator
         /// </summary>
         bool operator ==(const DeclarationSpecifierSequence& rhs) const;
+        bool operator !=(const DeclarationSpecifierSequence& rhs) const;
 
         /// <summary>
-        /// Inequality operator
+        /// Gets or sets the list of declaration specifiers
         /// </summary>
-        bool operator !=(const DeclarationSpecifierSequence& rhs) const;
+        const std::vector<std::shared_ptr<Node>>& GetSpecifiers() const;
+        std::vector<std::shared_ptr<Node>>& GetSpecifiers();
 
     protected:
         /// <summary>

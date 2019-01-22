@@ -23,7 +23,7 @@
     "AST/Definition/InitializerDeclaratorList.cpp",
     "AST/Definition/ParameterList.cpp",
     "AST/Definition/RegularFunctionBody.cpp",
-    "AST/Definition/SimpleDeclaration.cpp",
+    "AST/Definition/SimpleDefinition.cpp",
     "AST/Definition/TranslationUnit.cpp",
     "AST/Definition/TryFunctionBody.cpp",
     "AST/Expression/AdditionExpression.cpp",
@@ -32,11 +32,13 @@
     "AST/Statement/CompoundStatement.cpp",
     "AST/Statement/ReturnStatement.cpp",
     "AST/Statement/Statement.cpp",
-    "Parser/LexerExceptionErrorListener.cpp",
-    "Parser/ParserExceptionErrorListener.cpp",
     "Parser/Grammar/CppLexer.cpp",
     "Parser/Grammar/CppParser.cpp",
+    "Parser/Grammar/CppParserBaseVisitor.cpp",
     "Parser/Grammar/CppParserListener.cpp",
-    "Parser/Grammar/CppParserVisitor.cpp"
+    "Parser/Grammar/CppParserVisitor.cpp",
+    "Parser/ASTVisitor.cpp",
+    "Parser/LexerExceptionErrorListener.cpp",
+    "Parser/ParserExceptionErrorListener.cpp"
   ]
 }

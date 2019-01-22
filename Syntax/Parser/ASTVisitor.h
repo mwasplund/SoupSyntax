@@ -6,1798 +6,1389 @@ namespace Soup::Syntax
     /// <summary>
     /// Abstract syntax tree visitor
     /// </summary>
-    class ASTVisitor : public CppParserBaseVisitor<Node>
+    export class ASTVisitor : public CppParserBaseVisitor
     {
     public:
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.typedefName()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::typedefName()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitTypedefName(CppParser.TypedefNameContext context) override;
+        virtual antlrcpp::Any visitTypedefName(CppParser::TypedefNameContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.namespaceName()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::namespaceName()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        ode VisitNamespaceName(CppParser.NamespaceNameContext context) override;
+        virtual antlrcpp::Any visitNamespaceName(CppParser::NamespaceNameContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.namespaceAlias()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::namespaceAlias()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitNamespaceAlias(CppParser.NamespaceAliasContext context) override;
+        virtual antlrcpp::Any visitNamespaceAlias(CppParser::NamespaceAliasContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.className()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::className()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitClassName(CppParser.ClassNameContext context) override;
+        virtual antlrcpp::Any visitClassName(CppParser::ClassNameContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.enumName()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::enumName()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitEnumName(CppParser.EnumNameContext context)  override;
+        virtual antlrcpp::Any visitEnumName(CppParser::EnumNameContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.templateName()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::templateName()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitTemplateName(CppParser.TemplateNameContext context)  override;
+        virtual antlrcpp::Any visitTemplateName(CppParser::TemplateNameContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.translationUnit()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::translationUnit()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitTranslationUnit(CppParser.TranslationUnitContext context)  override;
+        virtual antlrcpp::Any visitTranslationUnit(CppParser::TranslationUnitContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.primaryExpression()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::primaryExpression()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitPrimaryExpression(CppParser.PrimaryExpressionContext context)  override;
+        virtual antlrcpp::Any visitPrimaryExpression(CppParser::PrimaryExpressionContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.unqualifiedIdentifier()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::unqualifiedIdentifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitUnqualifiedIdentifier(CppParser.UnqualifiedIdentifierContext context)  override;
+        virtual antlrcpp::Any visitUnqualifiedIdentifier(CppParser::UnqualifiedIdentifierContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.qualifiedIdentifier()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::qualifiedIdentifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitQualifiedIdentifier(CppParser.QualifiedIdentifierContext context)  override;
+        virtual antlrcpp::Any visitQualifiedIdentifier(CppParser::QualifiedIdentifierContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.nestedNameSpecifier()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::nestedNameSpecifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitNestedNameSpecifier(CppParser.NestedNameSpecifierContext context)  override;
+        virtual antlrcpp::Any visitNestedNameSpecifier(CppParser::NestedNameSpecifierContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.lambdaExpression()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::lambdaExpression()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitLambdaExpression(CppParser.LambdaExpressionContext context)  override;
+        virtual antlrcpp::Any visitLambdaExpression(CppParser::LambdaExpressionContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.lambdaIntroducer()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::lambdaIntroducer()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitLambdaIntroducer(CppParser.LambdaIntroducerContext context)  override;
+        virtual antlrcpp::Any visitLambdaIntroducer(CppParser::LambdaIntroducerContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.lambdaDeclarator()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::lambdaDeclarator()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitLambdaDeclarator(CppParser.LambdaDeclaratorContext context)  override;
+        virtual antlrcpp::Any visitLambdaDeclarator(CppParser::LambdaDeclaratorContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.lambdaCapture()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::lambdaCapture()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitLambdaCapture(CppParser.LambdaCaptureContext context)  override;
+        virtual antlrcpp::Any visitLambdaCapture(CppParser::LambdaCaptureContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.captureDefault()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::captureDefault()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitCaptureDefault(CppParser.CaptureDefaultContext context)  override;
+        virtual antlrcpp::Any visitCaptureDefault(CppParser::CaptureDefaultContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.captureList()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::captureList()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitCaptureList(CppParser.CaptureListContext context)  override;
+        virtual antlrcpp::Any visitCaptureList(CppParser::CaptureListContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.capture()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::capture()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitCapture(CppParser.CaptureContext context)  override;
+        virtual antlrcpp::Any visitCapture(CppParser::CaptureContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.simpleCapture()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::simpleCapture()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitSimpleCapture(CppParser.SimpleCaptureContext context)  override;
+        virtual antlrcpp::Any visitSimpleCapture(CppParser::SimpleCaptureContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.initializerCapture()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::initializerCapture()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitInitializerCapture(CppParser.InitializerCaptureContext context)  override;
+        virtual antlrcpp::Any visitInitializerCapture(CppParser::InitializerCaptureContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.foldExpression()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::foldExpression()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitFoldExpression(CppParser.FoldExpressionContext context)  override;
+        virtual antlrcpp::Any visitFoldExpression(CppParser::FoldExpressionContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.foldOperator()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::foldOperator()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitFoldOperator(CppParser.FoldOperatorContext context)  override;
+        virtual antlrcpp::Any visitFoldOperator(CppParser::FoldOperatorContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.postfixExpression()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::postfixExpression()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitPostfixExpression(CppParser.PostfixExpressionContext context)  override;
+        virtual antlrcpp::Any visitPostfixExpression(CppParser::PostfixExpressionContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.expressionList()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::expressionList()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitExpressionList(CppParser.ExpressionListContext context)  override;
+        virtual antlrcpp::Any visitExpressionList(CppParser::ExpressionListContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.pseudoDestructorName()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::pseudoDestructorName()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitPseudoDestructorName(CppParser.PseudoDestructorNameContext context)  override;
+        virtual antlrcpp::Any visitPseudoDestructorName(CppParser::PseudoDestructorNameContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.unaryExpression()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::unaryExpression()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitUnaryExpression(CppParser.UnaryExpressionContext context)  override;
+        virtual antlrcpp::Any visitUnaryExpression(CppParser::UnaryExpressionContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.unaryOperator()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::unaryOperator()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitUnaryOperator(CppParser.UnaryOperatorContext context)  override;
+        virtual antlrcpp::Any visitUnaryOperator(CppParser::UnaryOperatorContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.newExpression()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::newExpression()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitNewExpression(CppParser.NewExpressionContext context)  override;
+        virtual antlrcpp::Any visitNewExpression(CppParser::NewExpressionContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.newPlacement()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::newPlacement()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitNewPlacement(CppParser.NewPlacementContext context)  override;
+        virtual antlrcpp::Any visitNewPlacement(CppParser::NewPlacementContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.newTypeIdentifier()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::newTypeIdentifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitNewTypeIdentifier(CppParser.NewTypeIdentifierContext context)  override;
+        virtual antlrcpp::Any visitNewTypeIdentifier(CppParser::NewTypeIdentifierContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.newDeclarator()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::newDeclarator()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitNewDeclarator(CppParser.NewDeclaratorContext context)  override;
+        virtual antlrcpp::Any visitNewDeclarator(CppParser::NewDeclaratorContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.noPointerNewDeclarator()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::noPointerNewDeclarator()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitNoPointerNewDeclarator(CppParser.NoPointerNewDeclaratorContext context)  override;
+        virtual antlrcpp::Any visitNoPointerNewDeclarator(CppParser::NoPointerNewDeclaratorContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.newInitializer()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::newInitializer()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitNewInitializer(CppParser.NewInitializerContext context)  override;
+        virtual antlrcpp::Any visitNewInitializer(CppParser::NewInitializerContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.deleteExpression()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::deleteExpression()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitDeleteExpression(CppParser.DeleteExpressionContext context)  override;
+        virtual antlrcpp::Any visitDeleteExpression(CppParser::DeleteExpressionContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.noExceptionExpression()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::noExceptionExpression()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitNoExceptionExpression(CppParser.NoExceptionExpressionContext context)  override;
+        virtual antlrcpp::Any visitNoExceptionExpression(CppParser::NoExceptionExpressionContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.castExpression()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::castExpression()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitCastExpression(CppParser.CastExpressionContext context)  override;
-        {
-            if (context.LeftParenthesis() != null)
-            {
-                throw new NotImplementedException();
-            }
-            else
-            {
-                return Visit(context.unaryExpression());
-            }
-        }
+        virtual antlrcpp::Any visitCastExpression(CppParser::CastExpressionContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.pointerManipulationExpression()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::pointerManipulationExpression()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitPointerManipulationExpression(CppParser.PointerManipulationExpressionContext context)  override;
-        {
-            if (context.PeriodAsterisk() != null)
-            {
-                throw new NotImplementedException();
-            }
-            else if (context.ArrowAsterisk() != null)
-            {
-                throw new NotImplementedException();
-            }
-            else
-            {
-                return Visit(context.castExpression());
-            }
-        }
+        virtual antlrcpp::Any visitPointerManipulationExpression(CppParser::PointerManipulationExpressionContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.multiplicativeExpression()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::multiplicativeExpression()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitMultiplicativeExpression(CppParser.MultiplicativeExpressionContext context)  override;
-        {
-            if (context.Asterisk() != null)
-            {
-                throw new NotImplementedException();
-            }
-            else if (context.ForwardSlash() != null)
-            {
-                throw new NotImplementedException();
-            }
-            else if (context.Percent() != null)
-            {
-                throw new NotImplementedException();
-            }
-            else
-            {
-                return Visit(context.pointerManipulationExpression());
-            }
-        }
+        virtual antlrcpp::Any visitMultiplicativeExpression(CppParser::MultiplicativeExpressionContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.additiveExpression()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::additiveExpression()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitAdditiveExpression(CppParser.AdditiveExpressionContext context)  override;
-        {
-            if (context.Plus() != null)
-            {
-                throw new NotImplementedException();
-            }
-            else if (context.Minus() != null)
-            {
-                throw new NotImplementedException();
-            }
-            else
-            {
-                return Visit(context.multiplicativeExpression());
-            }
-        }
+        virtual antlrcpp::Any visitAdditiveExpression(CppParser::AdditiveExpressionContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.shiftExpression()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::shiftExpression()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitShiftExpression(CppParser.ShiftExpressionContext context)  override;
-        {
-            if (context.DoubleLessThan() != null)
-            {
-                throw new NotImplementedException();
-            }
-            else if (context.DoubleGreaterThan() != null)
-            {
-                throw new NotImplementedException();
-            }
-            else
-            {
-                return Visit(context.additiveExpression());
-            }
-        }
+        virtual antlrcpp::Any visitShiftExpression(CppParser::ShiftExpressionContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.relationalExpression()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::relationalExpression()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitRelationalExpression(CppParser.RelationalExpressionContext context)  override;
-        {
-            if (context.LessThan() != null)
-            {
-                throw new NotImplementedException();
-            }
-            else if (context.GreaterThan() != null)
-            {
-                throw new NotImplementedException();
-            }
-            else if (context.LessThanEqual() != null)
-            {
-                throw new NotImplementedException();
-            }
-            else if (context.GreaterThanEqual() != null)
-            {
-                throw new NotImplementedException();
-            }
-            else
-            {
-                return Visit(context.shiftExpression());
-            }
-        }
+        virtual antlrcpp::Any visitRelationalExpression(CppParser::RelationalExpressionContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.equalityExpression()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::equalityExpression()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitEqualityExpression(CppParser.EqualityExpressionContext context)  override;
-        {
-            if (context.DoubleEqual() != null)
-            {
-                throw new NotImplementedException();
-            }
-            else if (context.ExclamationMarkEqual() != null)
-            {
-                throw new NotImplementedException();
-            }
-            else
-            {
-                return Visit(context.relationalExpression());
-            }
-        }
+        virtual antlrcpp::Any visitEqualityExpression(CppParser::EqualityExpressionContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.andExpression()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::andExpression()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitAndExpression(CppParser.AndExpressionContext context)  override;
-        {
-            if (context.Ampersand() != null)
-            {
-                throw new NotImplementedException();
-            }
-            else
-            {
-                return Visit(context.equalityExpression());
-            }
-        }
+        virtual antlrcpp::Any visitAndExpression(CppParser::AndExpressionContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.exclusiveOrExpression()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::exclusiveOrExpression()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitExclusiveOrExpression(CppParser.ExclusiveOrExpressionContext context)  override;
-        {
-            if (context.Caret() != null)
-            {
-                throw new NotImplementedException();
-            }
-            else
-            {
-                return Visit(context.andExpression());
-            }
-        }
+        virtual antlrcpp::Any visitExclusiveOrExpression(CppParser::ExclusiveOrExpressionContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.inclusiveOrExpression()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::inclusiveOrExpression()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitInclusiveOrExpression(CppParser.InclusiveOrExpressionContext context)  override;
-        {
-            if (context.VerticalBar() != null)
-            {
-                throw new NotImplementedException();
-            }
-            else
-            {
-                return Visit(context.exclusiveOrExpression());
-            }
-        }
+        virtual antlrcpp::Any visitInclusiveOrExpression(CppParser::InclusiveOrExpressionContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.logicalAndExpression()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::logicalAndExpression()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitLogicalAndExpression(CppParser.LogicalAndExpressionContext context)  override;
-        {
-            if (context.DoubleAmpersand() != null)
-            {
-                throw new NotImplementedException();
-            }
-            else
-            {
-                return Visit(context.inclusiveOrExpression());
-            }
-        }
+        virtual antlrcpp::Any visitLogicalAndExpression(CppParser::LogicalAndExpressionContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.logicalOrExpression()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::logicalOrExpression()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitLogicalOrExpression(CppParser.LogicalOrExpressionContext context)  override;
-        {
-            if (context.DoubleVerticalBar() != null)
-            {
-                throw new NotImplementedException();
-            }
-            else
-            {
-                return Visit(context.logicalAndExpression());
-            }
-        }
+        virtual antlrcpp::Any visitLogicalOrExpression(CppParser::LogicalOrExpressionContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.conditionalExpression()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::conditionalExpression()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitConditionalExpression(CppParser.ConditionalExpressionContext context)  override;
-        {
-            if (context.QuestionMark() != null)
-            {
-                throw new NotImplementedException();
-            }
-            else
-            {
-                return Visit(context.logicalOrExpression());
-            }
-        }
+        virtual antlrcpp::Any visitConditionalExpression(CppParser::ConditionalExpressionContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.throwExpression()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::throwExpression()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitThrowExpression(CppParser.ThrowExpressionContext context)  override;
+        virtual antlrcpp::Any visitThrowExpression(CppParser::ThrowExpressionContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.assignmentExpression()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::assignmentExpression()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitAssignmentExpression(CppParser.AssignmentExpressionContext context)  override;
-        {
-            if (context.conditionalExpression() != null)
-            {
-                return Visit(context.conditionalExpression());
-            }
-            else
-            {
-                throw new NotImplementedException();
-            }
-        }
+        virtual antlrcpp::Any visitAssignmentExpression(CppParser::AssignmentExpressionContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.assignmentOperator()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::assignmentOperator()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitAssignmentOperator(CppParser.AssignmentOperatorContext context)  override;
+        virtual antlrcpp::Any visitAssignmentOperator(CppParser::AssignmentOperatorContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.expression()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::expression()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitExpression(CppParser.ExpressionContext context)  override;
+        virtual antlrcpp::Any visitExpression(CppParser::ExpressionContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.constantExpression()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::constantExpression()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitConstantExpression(CppParser.ConstantExpressionContext context)  override;
+        virtual antlrcpp::Any visitConstantExpression(CppParser::ConstantExpressionContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.initializerStatement()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::initializerStatement()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitInitializerStatement(CppParser.InitializerStatementContext context)  override;
+        virtual antlrcpp::Any visitInitializerStatement(CppParser::InitializerStatementContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.condition()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::condition()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitCondition(CppParser.ConditionContext context)  override;
+        virtual antlrcpp::Any visitCondition(CppParser::ConditionContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.labeledStatement()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::labeledStatement()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitLabeledStatement(CppParser.LabeledStatementContext context)  override;
+        virtual antlrcpp::Any visitLabeledStatement(CppParser::LabeledStatementContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.expressionStatement()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::expressionStatement()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitExpressionStatement(CppParser.ExpressionStatementContext context)  override;
+        virtual antlrcpp::Any visitExpressionStatement(CppParser::ExpressionStatementContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.compoundStatement()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::compoundStatement()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitCompoundStatement(CppParser.CompoundStatementContext context)  override;
-        {
-            // Check for optional sequence
-            CompoundStatement result = null;
-            var sequence = context.statementSequence();
-            if (sequence != null)
-            {
-                result = (CompoundStatement)Visit(sequence);
-            }
-            else
-            {
-                result = new CompoundStatement();
-            }
+        virtual antlrcpp::Any visitCompoundStatement(CppParser::CompoundStatementContext* context) override final;
 
-            // TODO: Reference the source braces
-            return result;
-        }
-
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.statementSequence()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::statementSequence()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitStatementSequence(CppParser.StatementSequenceContext context)  override;
-        {
-            // Handle the recursive rule
-            CompoundStatement sequence;
-            var childSequence = context.statementSequence();
-            if (childSequence != null)
-            {
-                sequence = (CompoundStatement)Visit(childSequence);
-            }
-            else
-            {
-                sequence = new CompoundStatement();
-            }
-
-            // Handle the new item
-            var statement = (Statement)Visit(context.statement());
-            sequence.Statements.Add(statement);
+        virtual antlrcpp::Any visitStatementSequence(CppParser::StatementSequenceContext* context) override final;
 
-            return sequence;
-        }
-
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.selectionStatement()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::selectionStatement()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitSelectionStatement(CppParser.SelectionStatementContext context)  override;
+        virtual antlrcpp::Any visitSelectionStatement(CppParser::SelectionStatementContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.iterationStatement()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::iterationStatement()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitIterationStatement(CppParser.IterationStatementContext context)  override;
+        virtual antlrcpp::Any visitIterationStatement(CppParser::IterationStatementContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.forInitializerStatement()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::forInitializerStatement()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitForInitializerStatement(CppParser.ForInitializerStatementContext context)  override;
+        virtual antlrcpp::Any visitForInitializerStatement(CppParser::ForInitializerStatementContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.forRangeDeclaration()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::forRangeDeclaration()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitForRangeDeclaration(CppParser.ForRangeDeclarationContext context)  override;
+        virtual antlrcpp::Any visitForRangeDeclaration(CppParser::ForRangeDeclarationContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.forRangeInitializer()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::forRangeInitializer()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitForRangeInitializer(CppParser.ForRangeInitializerContext context)  override;
+        virtual antlrcpp::Any visitForRangeInitializer(CppParser::ForRangeInitializerContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.jumpStatement()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::jumpStatement()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitJumpStatement(CppParser.JumpStatementContext context)  override;
+        virtual antlrcpp::Any visitJumpStatement(CppParser::JumpStatementContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.declarationStatement()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::declarationStatement()"/>.
         /// </summary>
-        Node VisitDeclarationStatement(CppParser.DeclarationStatementContext context)  override;
+        virtual antlrcpp::Any visitDeclarationStatement(CppParser::DeclarationStatementContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.declarationSequence()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::declarationSequence()"/>.
         /// </summary>
-        Node VisitDeclarationSequence(CppParser.DeclarationSequenceContext context)  override;
-        {
-            // Handle the recursive rule
-            DeclarationSequence sequence;
-            var childSequence = context.declarationSequence();
-            if (childSequence != null)
-            {
-                sequence = (DeclarationSequence)Visit(childSequence);
-            }
-            else
-            {
-                sequence = new DeclarationSequence();
-            }
-
-            // Handle the new item
-            var declaration = context.declaration();
-            sequence.Declarations.Add((Declaration)Visit(declaration));
+        virtual antlrcpp::Any visitDeclarationSequence(CppParser::DeclarationSequenceContext* context) override final;
 
-            return sequence;
-        }
-
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.noDeclarationSpecifierFunctionDeclaration()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::noDeclarationSpecifierFunctionDeclaration()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitNoDeclarationSpecifierFunctionDeclaration(CppParser.NoDeclarationSpecifierFunctionDeclarationContext context)  override;
+        virtual antlrcpp::Any visitNoDeclarationSpecifierFunctionDeclaration(CppParser::NoDeclarationSpecifierFunctionDeclarationContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.aliasDeclaration()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::aliasDeclaration()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitAliasDeclaration(CppParser.AliasDeclarationContext context)  override;
+        virtual antlrcpp::Any visitAliasDeclaration(CppParser::AliasDeclarationContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.simpleDeclaration()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::simpleDeclaration()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitSimpleDeclaration(CppParser.SimpleDeclarationContext context)  override;
-        {
-            return new SimpleDefinition()
-            {
-                DeclarationSpecifierSequence = (DeclarationSpecifierSequence)Visit(context.declarationSpecifierSequence()),
-                InitializerDeclaratorList = (InitializerDeclaratorList)Visit(context.initializerDeclaratorList()),
-            };
-        }
+        virtual antlrcpp::Any visitSimpleDeclaration(CppParser::SimpleDeclarationContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.staticAssertDeclaration()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::staticAssertDeclaration()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitStaticAssertDeclaration(CppParser.StaticAssertDeclarationContext context)  override;
+        virtual antlrcpp::Any visitStaticAssertDeclaration(CppParser::StaticAssertDeclarationContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.emptyDeclaration()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::emptyDeclaration()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitEmptyDeclaration(CppParser.EmptyDeclarationContext context)  override;
+        virtual antlrcpp::Any visitEmptyDeclaration(CppParser::EmptyDeclarationContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.attributeDeclaration()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::attributeDeclaration()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitAttributeDeclaration(CppParser.AttributeDeclarationContext context)  override;
+        virtual antlrcpp::Any visitAttributeDeclaration(CppParser::AttributeDeclarationContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.declarationSpecifier()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::declarationSpecifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitDeclarationSpecifier(CppParser.DeclarationSpecifierContext context)  override;
-        {
-            if (context.definingTypeSpecifier() != null)
-            {
-                return Visit(context.definingTypeSpecifier());
-            }
-            else
-            {
-                throw new InvalidOperationException("Unexpected declaration specifier");
-            }
-        }
+        virtual antlrcpp::Any visitDeclarationSpecifier(CppParser::DeclarationSpecifierContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.declarationSpecifierSequence()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::declarationSpecifierSequence()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitDeclarationSpecifierSequence(CppParser.DeclarationSpecifierSequenceContext context)  override;
-        {
-            // Handle the recursive rule
-            DeclarationSpecifierSequence sequence;
-            var childSequence = context.declarationSpecifierSequence();
-            if (childSequence != null)
-            {
-                sequence = (DeclarationSpecifierSequence)Visit(childSequence);
-            }
-            else
-            {
-                sequence = new DeclarationSpecifierSequence();
-            }
-
-            // Handle the new item
-            var specifier = context.declarationSpecifier();
-            sequence.Specifiers.Add(Visit(specifier));
+        virtual antlrcpp::Any visitDeclarationSpecifierSequence(CppParser::DeclarationSpecifierSequenceContext* context) override final;
 
-            return sequence;
-        }
-
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.storageClassSpecifier()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::storageClassSpecifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitStorageClassSpecifier(CppParser.StorageClassSpecifierContext context)  override;
+        virtual antlrcpp::Any visitStorageClassSpecifier(CppParser::StorageClassSpecifierContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.functionSpecifier()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::functionSpecifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitFunctionSpecifier(CppParser.FunctionSpecifierContext context)  override;
+        virtual antlrcpp::Any visitFunctionSpecifier(CppParser::FunctionSpecifierContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.typeSpecifierSequence()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::typeSpecifierSequence()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitTypeSpecifierSequence(CppParser.TypeSpecifierSequenceContext context)  override;
+        virtual antlrcpp::Any visitTypeSpecifierSequence(CppParser::TypeSpecifierSequenceContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.definingTypeSpecifierSequence()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::definingTypeSpecifierSequence()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitDefiningTypeSpecifierSequence(CppParser.DefiningTypeSpecifierSequenceContext context)  override;
+        virtual antlrcpp::Any visitDefiningTypeSpecifierSequence(CppParser::DefiningTypeSpecifierSequenceContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.simpleTypeSpecifier()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::simpleTypeSpecifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitSimpleTypeSpecifier(CppParser.SimpleTypeSpecifierContext context)  override;
-        {
-            if (context.Char() != null)
-                return new PrimitiveDataTypeNode(PrimitiveDataType.Char);
-            else if (context.Char16() != null)
-                return new PrimitiveDataTypeNode(PrimitiveDataType.Char16);
-            else if (context.Char32() != null)
-                return new PrimitiveDataTypeNode(PrimitiveDataType.Char32);
-            else if (context.WChar() != null)
-                return new PrimitiveDataTypeNode(PrimitiveDataType.WChar);
-            else if (context.Bool() != null)
-                return new PrimitiveDataTypeNode(PrimitiveDataType.Bool);
-            else if (context.Short() != null)
-                return new PrimitiveDataTypeNode(PrimitiveDataType.Short);
-            else if (context.Int() != null)
-                return new PrimitiveDataTypeNode(PrimitiveDataType.Int);
-            else if (context.Long() != null)
-                return new PrimitiveDataTypeNode(PrimitiveDataType.Long);
-            else if (context.Signed() != null)
-                return new PrimitiveDataTypeNode(PrimitiveDataType.Signed);
-            else if (context.Unsigned() != null)
-                return new PrimitiveDataTypeNode(PrimitiveDataType.Unsigned);
-            else if (context.Float() != null)
-                return new PrimitiveDataTypeNode(PrimitiveDataType.Float);
-            else if (context.Double() != null)
-                return new PrimitiveDataTypeNode(PrimitiveDataType.Double);
-            else if (context.Void() != null)
-                return new PrimitiveDataTypeNode(PrimitiveDataType.Void);
-            else if (context.Auto() != null)
-                return new PrimitiveDataTypeNode(PrimitiveDataType.Auto);
-
-            throw new InvalidOperationException("Unexpected simple type.");
-        }
+        virtual antlrcpp::Any visitSimpleTypeSpecifier(CppParser::SimpleTypeSpecifierContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.typeName()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::typeName()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitTypeName(CppParser.TypeNameContext context)  override;
+        virtual antlrcpp::Any visitTypeName(CppParser::TypeNameContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.declarationTypeSpecifier()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::declarationTypeSpecifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitDeclarationTypeSpecifier(CppParser.DeclarationTypeSpecifierContext context)  override;
+        virtual antlrcpp::Any visitDeclarationTypeSpecifier(CppParser::DeclarationTypeSpecifierContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.elaboratedTypeSpecifier()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::elaboratedTypeSpecifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitElaboratedTypeSpecifier(CppParser.ElaboratedTypeSpecifierContext context)  override;
+        virtual antlrcpp::Any visitElaboratedTypeSpecifier(CppParser::ElaboratedTypeSpecifierContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.enumSpecifier()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::enumSpecifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitEnumSpecifier(CppParser.EnumSpecifierContext context)  override;
+        virtual antlrcpp::Any visitEnumSpecifier(CppParser::EnumSpecifierContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.enumHead()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::enumHead()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitEnumHead(CppParser.EnumHeadContext context)  override;
+        virtual antlrcpp::Any visitEnumHead(CppParser::EnumHeadContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.enumHeadName()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::enumHeadName()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitEnumHeadName(CppParser.EnumHeadNameContext context)  override;
+        virtual antlrcpp::Any visitEnumHeadName(CppParser::EnumHeadNameContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.opaqueEnumDeclaration()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::opaqueEnumDeclaration()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitOpaqueEnumDeclaration(CppParser.OpaqueEnumDeclarationContext context)  override;
+        virtual antlrcpp::Any visitOpaqueEnumDeclaration(CppParser::OpaqueEnumDeclarationContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.enumKey()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::enumKey()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitEnumKey(CppParser.EnumKeyContext context)  override;
+        virtual antlrcpp::Any visitEnumKey(CppParser::EnumKeyContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.enumBase()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::enumBase()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitEnumBase(CppParser.EnumBaseContext context)  override;
+        virtual antlrcpp::Any visitEnumBase(CppParser::EnumBaseContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.enumeratorList()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::enumeratorList()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitEnumeratorList(CppParser.EnumeratorListContext context)  override;
+        virtual antlrcpp::Any visitEnumeratorList(CppParser::EnumeratorListContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.enumeratorDefinition()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::enumeratorDefinition()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitEnumeratorDefinition(CppParser.EnumeratorDefinitionContext context)  override;
+        virtual antlrcpp::Any visitEnumeratorDefinition(CppParser::EnumeratorDefinitionContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.enumerator()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::enumerator()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitEnumerator(CppParser.EnumeratorContext context)  override;
+        virtual antlrcpp::Any visitEnumerator(CppParser::EnumeratorContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.namespaceDefinition()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::namespaceDefinition()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitNamespaceDefinition(CppParser.NamespaceDefinitionContext context)  override;
+        virtual antlrcpp::Any visitNamespaceDefinition(CppParser::NamespaceDefinitionContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.namedNamespaceDefinition()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::namedNamespaceDefinition()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitNamedNamespaceDefinition(CppParser.NamedNamespaceDefinitionContext context)  override;
+        virtual antlrcpp::Any visitNamedNamespaceDefinition(CppParser::NamedNamespaceDefinitionContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.unnamedNamespaceDefinition()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::unnamedNamespaceDefinition()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitUnnamedNamespaceDefinition(CppParser.UnnamedNamespaceDefinitionContext context)  override;
+        virtual antlrcpp::Any visitUnnamedNamespaceDefinition(CppParser::UnnamedNamespaceDefinitionContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.nestedNamespaceDefinition()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::nestedNamespaceDefinition()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitNestedNamespaceDefinition(CppParser.NestedNamespaceDefinitionContext context)  override;
+        virtual antlrcpp::Any visitNestedNamespaceDefinition(CppParser::NestedNamespaceDefinitionContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.enclosingNamespaceSpecifier()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::enclosingNamespaceSpecifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitEnclosingNamespaceSpecifier(CppParser.EnclosingNamespaceSpecifierContext context)  override;
+        virtual antlrcpp::Any visitEnclosingNamespaceSpecifier(CppParser::EnclosingNamespaceSpecifierContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.namespaceBody()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::namespaceBody()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitNamespaceBody(CppParser.NamespaceBodyContext context)  override;
+        virtual antlrcpp::Any visitNamespaceBody(CppParser::NamespaceBodyContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.namespaceAliasDefinition()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::namespaceAliasDefinition()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitNamespaceAliasDefinition(CppParser.NamespaceAliasDefinitionContext context)  override;
+        virtual antlrcpp::Any visitNamespaceAliasDefinition(CppParser::NamespaceAliasDefinitionContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.qualifiedNamespaceSpecifier()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::qualifiedNamespaceSpecifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitQualifiedNamespaceSpecifier(CppParser.QualifiedNamespaceSpecifierContext context)  override;
+        virtual antlrcpp::Any visitQualifiedNamespaceSpecifier(CppParser::QualifiedNamespaceSpecifierContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.usingDeclaration()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::usingDeclaration()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitUsingDeclaration(CppParser.UsingDeclarationContext context)  override;
+        virtual antlrcpp::Any visitUsingDeclaration(CppParser::UsingDeclarationContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.usingDeclaratorList()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::usingDeclaratorList()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitUsingDeclaratorList(CppParser.UsingDeclaratorListContext context)  override;
+        virtual antlrcpp::Any visitUsingDeclaratorList(CppParser::UsingDeclaratorListContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.usingDeclarator()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::usingDeclarator()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitUsingDeclarator(CppParser.UsingDeclaratorContext context)  override;
+        virtual antlrcpp::Any visitUsingDeclarator(CppParser::UsingDeclaratorContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.usingDirective()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::usingDirective()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitUsingDirective(CppParser.UsingDirectiveContext context)  override;
+        virtual antlrcpp::Any visitUsingDirective(CppParser::UsingDirectiveContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.asmDefinition()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::asmDefinition()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitAsmDefinition(CppParser.AsmDefinitionContext context)  override;
+        virtual antlrcpp::Any visitAsmDefinition(CppParser::AsmDefinitionContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.linkageSpecification()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::linkageSpecification()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitLinkageSpecification(CppParser.LinkageSpecificationContext context)  override;
+        virtual antlrcpp::Any visitLinkageSpecification(CppParser::LinkageSpecificationContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.attributeSpecifierSequence()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::attributeSpecifierSequence()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitAttributeSpecifierSequence(CppParser.AttributeSpecifierSequenceContext context)  override;
+        virtual antlrcpp::Any visitAttributeSpecifierSequence(CppParser::AttributeSpecifierSequenceContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.attributeSpecifier()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::attributeSpecifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitAttributeSpecifier(CppParser.AttributeSpecifierContext context)  override;
+        virtual antlrcpp::Any visitAttributeSpecifier(CppParser::AttributeSpecifierContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.alignmentSpecifier()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::alignmentSpecifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitAlignmentSpecifier(CppParser.AlignmentSpecifierContext context)  override;
+        virtual antlrcpp::Any visitAlignmentSpecifier(CppParser::AlignmentSpecifierContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.attributeUsingPrefix()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::attributeUsingPrefix()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitAttributeUsingPrefix(CppParser.AttributeUsingPrefixContext context)  override;
+        virtual antlrcpp::Any visitAttributeUsingPrefix(CppParser::AttributeUsingPrefixContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.attributeList()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::attributeList()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitAttributeList(CppParser.AttributeListContext context)  override;
+        virtual antlrcpp::Any visitAttributeList(CppParser::AttributeListContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.attribute()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::attribute()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitAttribute(CppParser.AttributeContext context)  override;
+        virtual antlrcpp::Any visitAttribute(CppParser::AttributeContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.attributeToken()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::attributeToken()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitAttributeToken(CppParser.AttributeTokenContext context)  override;
+        virtual antlrcpp::Any visitAttributeToken(CppParser::AttributeTokenContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.attributeScopedToken()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::attributeScopedToken()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitAttributeScopedToken(CppParser.AttributeScopedTokenContext context)  override;
+        virtual antlrcpp::Any visitAttributeScopedToken(CppParser::AttributeScopedTokenContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.attributeNamespace()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::attributeNamespace()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitAttributeNamespace(CppParser.AttributeNamespaceContext context)  override;
+        virtual antlrcpp::Any visitAttributeNamespace(CppParser::AttributeNamespaceContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.attributeArgumentClause()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::attributeArgumentClause()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitAttributeArgumentClause(CppParser.AttributeArgumentClauseContext context)  override;
+        virtual antlrcpp::Any visitAttributeArgumentClause(CppParser::AttributeArgumentClauseContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.balancedTokenSequence()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::balancedTokenSequence()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitBalancedTokenSequence(CppParser.BalancedTokenSequenceContext context)  override;
+        virtual antlrcpp::Any visitBalancedTokenSequence(CppParser::BalancedTokenSequenceContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.balancedToken()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::balancedToken()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitBalancedToken(CppParser.BalancedTokenContext context)  override;
+        virtual antlrcpp::Any visitBalancedToken(CppParser::BalancedTokenContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.initializerDeclaratorList()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::initializerDeclaratorList()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitInitializerDeclaratorList(CppParser.InitializerDeclaratorListContext context)  override;
-        {
-            // Handle the recursive rule
-            InitializerDeclaratorList list;
-            var childList = context.initializerDeclaratorList();
-            if (childList != null)
-            {
-                list = (InitializerDeclaratorList)Visit(childList);
-            }
-            else
-            {
-                list = new InitializerDeclaratorList();
-            }
+        virtual antlrcpp::Any visitInitializerDeclaratorList(CppParser::InitializerDeclaratorListContext* context) override final;
 
-            // Handle the new item
-            var item = (InitializerDeclarator)Visit(context.initializerDeclarator());
-            list.Items.Add(item);
-
-            return list;
-        }
-
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.initializerDeclarator()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::initializerDeclarator()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitInitializerDeclarator(CppParser.InitializerDeclaratorContext context)  override;
-        {
-            // Check for optional initializer
-            Node initializer = null;
-            if (context.initializer() != null)
-            {
-                initializer = Visit(context.initializer());
-            }
+        virtual antlrcpp::Any visitInitializerDeclarator(CppParser::InitializerDeclaratorContext* context) override final;
 
-            return new InitializerDeclarator()
-            {
-                Declarator = Visit(context.declarator()),
-                Initializer = initializer,
-            };
-        }
-
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.pointerDeclarator()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::pointerDeclarator()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitPointerDeclarator(CppParser.PointerDeclaratorContext context)  override;
+        virtual antlrcpp::Any visitPointerDeclarator(CppParser::PointerDeclaratorContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.noPointerDeclarator()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::noPointerDeclarator()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitNoPointerDeclarator(CppParser.NoPointerDeclaratorContext context)  override;
-        {
-            // Check if it was an identifier declarator
-            var identifierExpression = context.identifierExpression();
-            if (identifierExpression != null)
-            {
-                return Visit(identifierExpression);
-            }
-
-            throw new InvalidOperationException("Unknown sub type.");
-        }
+        virtual antlrcpp::Any visitNoPointerDeclarator(CppParser::NoPointerDeclaratorContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.parametersAndQualifiers()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::parametersAndQualifiers()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitParametersAndQualifiers(CppParser.ParametersAndQualifiersContext context)  override;
+        virtual antlrcpp::Any visitParametersAndQualifiers(CppParser::ParametersAndQualifiersContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.trailingReturnType()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::trailingReturnType()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitTrailingReturnType(CppParser.TrailingReturnTypeContext context)  override;
+        virtual antlrcpp::Any visitTrailingReturnType(CppParser::TrailingReturnTypeContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.pointerOperator()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::pointerOperator()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitPointerOperator(CppParser.PointerOperatorContext context)  override;
+        virtual antlrcpp::Any visitPointerOperator(CppParser::PointerOperatorContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.constVolatileQualifierSequence()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::constVolatileQualifierSequence()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitConstVolatileQualifierSequence(CppParser.ConstVolatileQualifierSequenceContext context)  override;
+        virtual antlrcpp::Any visitConstVolatileQualifierSequence(CppParser::ConstVolatileQualifierSequenceContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.constVolatileQualifier()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::constVolatileQualifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitConstVolatileQualifier(CppParser.ConstVolatileQualifierContext context)  override;
+        virtual antlrcpp::Any visitConstVolatileQualifier(CppParser::ConstVolatileQualifierContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.referenceQualifier()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::referenceQualifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitReferenceQualifier(CppParser.ReferenceQualifierContext context)  override;
+        virtual antlrcpp::Any visitReferenceQualifier(CppParser::ReferenceQualifierContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.typeIdentifier()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::typeIdentifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitTypeIdentifier(CppParser.TypeIdentifierContext context)  override;
+        virtual antlrcpp::Any visitTypeIdentifier(CppParser::TypeIdentifierContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.definingTypeIdentifier()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::definingTypeIdentifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitDefiningTypeIdentifier(CppParser.DefiningTypeIdentifierContext context)  override;
+        virtual antlrcpp::Any visitDefiningTypeIdentifier(CppParser::DefiningTypeIdentifierContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.abstractDeclarator()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::abstractDeclarator()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitAbstractDeclarator(CppParser.AbstractDeclaratorContext context)  override;
+        virtual antlrcpp::Any visitAbstractDeclarator(CppParser::AbstractDeclaratorContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.pointerAbstractDeclarator()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::pointerAbstractDeclarator()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitPointerAbstractDeclarator(CppParser.PointerAbstractDeclaratorContext context)  override;
+        virtual antlrcpp::Any visitPointerAbstractDeclarator(CppParser::PointerAbstractDeclaratorContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.noPointerAbstractDeclarator()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::noPointerAbstractDeclarator()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitNoPointerAbstractDeclarator(CppParser.NoPointerAbstractDeclaratorContext context)  override;
+        virtual antlrcpp::Any visitNoPointerAbstractDeclarator(CppParser::NoPointerAbstractDeclaratorContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.abstractPackDeclarator()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::abstractPackDeclarator()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitAbstractPackDeclarator(CppParser.AbstractPackDeclaratorContext context)  override;
+        virtual antlrcpp::Any visitAbstractPackDeclarator(CppParser::AbstractPackDeclaratorContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.noPointerAbstractPackDeclarator()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::noPointerAbstractPackDeclarator()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitNoPointerAbstractPackDeclarator(CppParser.NoPointerAbstractPackDeclaratorContext context)  override;
+        virtual antlrcpp::Any visitNoPointerAbstractPackDeclarator(CppParser::NoPointerAbstractPackDeclaratorContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.parameterDeclarationClause()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::parameterDeclarationClause()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitParameterDeclarationClause(CppParser.ParameterDeclarationClauseContext context)  override;
-        {
-            // TODO Items
-            return new ParameterList();
-        }
+        virtual antlrcpp::Any visitParameterDeclarationClause(CppParser::ParameterDeclarationClauseContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.parameterDeclarationList()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::parameterDeclarationList()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitParameterDeclarationList(CppParser.ParameterDeclarationListContext context)  override;
+        virtual antlrcpp::Any visitParameterDeclarationList(CppParser::ParameterDeclarationListContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.parameterDeclaration()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::parameterDeclaration()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitParameterDeclaration(CppParser.ParameterDeclarationContext context)  override;
+        virtual antlrcpp::Any visitParameterDeclaration(CppParser::ParameterDeclarationContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.functionDefinition()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::functionDefinition()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitFunctionDefinition(CppParser.FunctionDefinitionContext context)  override;
-        {
-            // Check for optional return type
-            DeclarationSpecifierSequence returnType = null;
-            if (context.declarationSpecifierSequence() != null)
-            {
-                returnType = (DeclarationSpecifierSequence)Visit(context.declarationSpecifierSequence());
-            }
+        virtual antlrcpp::Any visitFunctionDefinition(CppParser::FunctionDefinitionContext* context) override final;
 
-            // Analyze the declarator
-            var declaratorContext = context.functionDeclarator();
-            var identifier = (Identifier)Visit(declaratorContext.identifierExpression());
-            var parameterList = (ParameterList)Visit(declaratorContext.functionParameters());
-            // TODO Qualifiers
-            // TODO Trailiing return type
-
-            var body = Visit(context.functionBody());
-
-            return new FunctionDefinition()
-            {
-                ReturnType = returnType,
-                Identifier = identifier,
-                ParameterList = parameterList,
-                Body = body,
-            };
-        }
-
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.regularFunctionBody()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::regularFunctionBody()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitRegularFunctionBody(CppParser.RegularFunctionBodyContext context)  override;
-        {
-            return new RegularFunctionBody()
-            {
-                Statements = (CompoundStatement)Visit(context.compoundStatement()),
-            };
-        }
+        virtual antlrcpp::Any visitRegularFunctionBody(CppParser::RegularFunctionBodyContext* context) override final;
 
-
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.explicitlyDefaultedFunction()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::explicitlyDefaultedFunction()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitExplicitlyDefaultedFunction(CppParser.ExplicitlyDefaultedFunctionContext context)  override;
-        {
-            return new DefaultFunctionBody();
-        }
+        virtual antlrcpp::Any visitExplicitlyDefaultedFunction(CppParser::ExplicitlyDefaultedFunctionContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.deletedFunction()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::deletedFunction()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitDeletedFunction(CppParser.DeletedFunctionContext context)  override;
-        {
-            return new DeleteFunctionBody();
-        }
+        virtual antlrcpp::Any visitDeletedFunction(CppParser::DeletedFunctionContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.braceOrEqualInitializer()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::braceOrEqualInitializer()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitBraceOrEqualInitializer(CppParser.BraceOrEqualInitializerContext context)  override;
-        {
-            if (context.Equal() != null)
-            {
-                return Visit(context.initializerClause());
-            }
-            else
-            {
-                return Visit(context.bracedInitializerList());
-            }
-        }
+        virtual antlrcpp::Any visitBraceOrEqualInitializer(CppParser::BraceOrEqualInitializerContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.initializerList()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::initializerList()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitInitializerList(CppParser.InitializerListContext context)  override;
+        virtual antlrcpp::Any visitInitializerList(CppParser::InitializerListContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.bracedInitializerList()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::bracedInitializerList()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitBracedInitializerList(CppParser.BracedInitializerListContext context)  override;
+        virtual antlrcpp::Any visitBracedInitializerList(CppParser::BracedInitializerListContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.expressionOrBracedInitializerList()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::expressionOrBracedInitializerList()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitExpressionOrBracedInitializerList(CppParser.ExpressionOrBracedInitializerListContext context)  override;
+        virtual antlrcpp::Any visitExpressionOrBracedInitializerList(CppParser::ExpressionOrBracedInitializerListContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.classSpecifier()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::classSpecifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitClassSpecifier(CppParser.ClassSpecifierContext context)  override;
+        virtual antlrcpp::Any visitClassSpecifier(CppParser::ClassSpecifierContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.classHead()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::classHead()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitClassHead(CppParser.ClassHeadContext context)  override;
+        virtual antlrcpp::Any visitClassHead(CppParser::ClassHeadContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.classHeadName()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::classHeadName()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitClassHeadName(CppParser.ClassHeadNameContext context)  override;
+        virtual antlrcpp::Any visitClassHeadName(CppParser::ClassHeadNameContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.classVirtualSpecifier()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::classVirtualSpecifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitClassVirtualSpecifier(CppParser.ClassVirtualSpecifierContext context)  override;
+        virtual antlrcpp::Any visitClassVirtualSpecifier(CppParser::ClassVirtualSpecifierContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.classKey()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::classKey()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitClassKey(CppParser.ClassKeyContext context)  override;
+        virtual antlrcpp::Any visitClassKey(CppParser::ClassKeyContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.memberSpecification()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::memberSpecification()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitMemberSpecification(CppParser.MemberSpecificationContext context)  override;
+        virtual antlrcpp::Any visitMemberSpecification(CppParser::MemberSpecificationContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.memberDeclaration()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::memberDeclaration()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitMemberDeclaration(CppParser.MemberDeclarationContext context)  override;
+        virtual antlrcpp::Any visitMemberDeclaration(CppParser::MemberDeclarationContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.memberDeclaratorList()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::memberDeclaratorList()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitMemberDeclaratorList(CppParser.MemberDeclaratorListContext context)  override;
+        virtual antlrcpp::Any visitMemberDeclaratorList(CppParser::MemberDeclaratorListContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.memberDeclarator()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::memberDeclarator()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitMemberDeclarator(CppParser.MemberDeclaratorContext context)  override;
+        virtual antlrcpp::Any visitMemberDeclarator(CppParser::MemberDeclaratorContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.virtualSpecifierSequence()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::virtualSpecifierSequence()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitVirtualSpecifierSequence(CppParser.VirtualSpecifierSequenceContext context)  override;
+        virtual antlrcpp::Any visitVirtualSpecifierSequence(CppParser::VirtualSpecifierSequenceContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.virtualSpecifier()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::virtualSpecifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitVirtualSpecifier(CppParser.VirtualSpecifierContext context)  override;
+        virtual antlrcpp::Any visitVirtualSpecifier(CppParser::VirtualSpecifierContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.pureSpecifier()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::pureSpecifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitPureSpecifier(CppParser.PureSpecifierContext context)  override;
+        virtual antlrcpp::Any visitPureSpecifier(CppParser::PureSpecifierContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.baseClause()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::baseClause()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitBaseClause(CppParser.BaseClauseContext context)  override;
+        virtual antlrcpp::Any visitBaseClause(CppParser::BaseClauseContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.baseSpecifierList()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::baseSpecifierList()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitBaseSpecifierList(CppParser.BaseSpecifierListContext context)  override;
+        virtual antlrcpp::Any visitBaseSpecifierList(CppParser::BaseSpecifierListContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.baseSpecifier()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::baseSpecifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitBaseSpecifier(CppParser.BaseSpecifierContext context)  override;
+        virtual antlrcpp::Any visitBaseSpecifier(CppParser::BaseSpecifierContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.classOrDecltype()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::classOrDecltype()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitClassOrDecltype(CppParser.ClassOrDecltypeContext context)  override;
+        virtual antlrcpp::Any visitClassOrDecltype(CppParser::ClassOrDecltypeContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.accessSpecifier()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::accessSpecifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitAccessSpecifier(CppParser.AccessSpecifierContext context)  override;
+        virtual antlrcpp::Any visitAccessSpecifier(CppParser::AccessSpecifierContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.conversionFunctionIdentifier()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::conversionFunctionIdentifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitConversionFunctionIdentifier(CppParser.ConversionFunctionIdentifierContext context)  override;
+        virtual antlrcpp::Any visitConversionFunctionIdentifier(CppParser::ConversionFunctionIdentifierContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.conversionTypeIdentifier()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::conversionTypeIdentifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitConversionTypeIdentifier(CppParser.ConversionTypeIdentifierContext context)  override;
+        virtual antlrcpp::Any visitConversionTypeIdentifier(CppParser::ConversionTypeIdentifierContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.conversionDeclarator()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::conversionDeclarator()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitConversionDeclarator(CppParser.ConversionDeclaratorContext context)  override;
+        virtual antlrcpp::Any visitConversionDeclarator(CppParser::ConversionDeclaratorContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.constructorInitializer()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::constructorInitializer()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitConstructorInitializer(CppParser.ConstructorInitializerContext context)  override;
+        virtual antlrcpp::Any visitConstructorInitializer(CppParser::ConstructorInitializerContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.memberInitializerList()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::memberInitializerList()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitMemberInitializerList(CppParser.MemberInitializerListContext context)  override;
+        virtual antlrcpp::Any visitMemberInitializerList(CppParser::MemberInitializerListContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.memberInitializer()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::memberInitializer()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitMemberInitializer(CppParser.MemberInitializerContext context)  override;
+        virtual antlrcpp::Any visitMemberInitializer(CppParser::MemberInitializerContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.memberInitializerIdentifier()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::memberInitializerIdentifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitMemberInitializerIdentifier(CppParser.MemberInitializerIdentifierContext context)  override;
+        virtual antlrcpp::Any visitMemberInitializerIdentifier(CppParser::MemberInitializerIdentifierContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.operatorFunctionIdentifier()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::operatorFunctionIdentifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitOperatorFunctionIdentifier(CppParser.OperatorFunctionIdentifierContext context)  override;
+        virtual antlrcpp::Any visitOperatorFunctionIdentifier(CppParser::OperatorFunctionIdentifierContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.anyOperator()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::anyOperator()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitAnyOperator(CppParser.AnyOperatorContext context)  override;
+        virtual antlrcpp::Any visitAnyOperator(CppParser::AnyOperatorContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.literalOperatorIdentifier()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::literalOperatorIdentifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitLiteralOperatorIdentifier(CppParser.LiteralOperatorIdentifierContext context)  override;
+        virtual antlrcpp::Any visitLiteralOperatorIdentifier(CppParser::LiteralOperatorIdentifierContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.templateDeclaration()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::templateDeclaration()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitTemplateDeclaration(CppParser.TemplateDeclarationContext context)  override;
+        virtual antlrcpp::Any visitTemplateDeclaration(CppParser::TemplateDeclarationContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.templateParameterList()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::templateParameterList()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitTemplateParameterList(CppParser.TemplateParameterListContext context)  override;
+        virtual antlrcpp::Any visitTemplateParameterList(CppParser::TemplateParameterListContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.templateParameter()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::templateParameter()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitTemplateParameter(CppParser.TemplateParameterContext context)  override;
+        virtual antlrcpp::Any visitTemplateParameter(CppParser::TemplateParameterContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.typeParameter()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::typeParameter()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitTypeParameter(CppParser.TypeParameterContext context)  override;
+        virtual antlrcpp::Any visitTypeParameter(CppParser::TypeParameterContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.typeParameterKey()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::typeParameterKey()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitTypeParameterKey(CppParser.TypeParameterKeyContext context)  override;
+        virtual antlrcpp::Any visitTypeParameterKey(CppParser::TypeParameterKeyContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.simpleTemplateIdentifier()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::simpleTemplateIdentifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitSimpleTemplateIdentifier(CppParser.SimpleTemplateIdentifierContext context)  override;
+        virtual antlrcpp::Any visitSimpleTemplateIdentifier(CppParser::SimpleTemplateIdentifierContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.templateIdentifier()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::templateIdentifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitTemplateIdentifier(CppParser.TemplateIdentifierContext context)  override;
+        virtual antlrcpp::Any visitTemplateIdentifier(CppParser::TemplateIdentifierContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.templateArgumentList()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::templateArgumentList()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitTemplateArgumentList(CppParser.TemplateArgumentListContext context)  override;
+        virtual antlrcpp::Any visitTemplateArgumentList(CppParser::TemplateArgumentListContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.templateArgument()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::templateArgument()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitTemplateArgument(CppParser.TemplateArgumentContext context)  override;
+        virtual antlrcpp::Any visitTemplateArgument(CppParser::TemplateArgumentContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.typenameSpecifier()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::typenameSpecifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitTypenameSpecifier(CppParser.TypenameSpecifierContext context)  override;
+        virtual antlrcpp::Any visitTypenameSpecifier(CppParser::TypenameSpecifierContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.explicitInstantiation()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::explicitInstantiation()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitExplicitInstantiation(CppParser.ExplicitInstantiationContext context)  override;
+        virtual antlrcpp::Any visitExplicitInstantiation(CppParser::ExplicitInstantiationContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.explicitSpecialization()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::explicitSpecialization()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitExplicitSpecialization(CppParser.ExplicitSpecializationContext context)  override;
+        virtual antlrcpp::Any visitExplicitSpecialization(CppParser::ExplicitSpecializationContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.deductionGuide()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::deductionGuide()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitDeductionGuide(CppParser.DeductionGuideContext context)  override;
+        virtual antlrcpp::Any visitDeductionGuide(CppParser::DeductionGuideContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.tryBlock()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::tryBlock()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitTryBlock(CppParser.TryBlockContext context)  override;
+        virtual antlrcpp::Any visitTryBlock(CppParser::TryBlockContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.functionTryBlock()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::functionTryBlock()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitFunctionTryBlock(CppParser.FunctionTryBlockContext context)  override;
+        virtual antlrcpp::Any visitFunctionTryBlock(CppParser::FunctionTryBlockContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.handlerSequence()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::handlerSequence()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitHandlerSequence(CppParser.HandlerSequenceContext context)  override;
+        virtual antlrcpp::Any visitHandlerSequence(CppParser::HandlerSequenceContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.handler()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::handler()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitHandler(CppParser.HandlerContext context)  override;
+        virtual antlrcpp::Any visitHandler(CppParser::HandlerContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.exceptionDeclaration()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::exceptionDeclaration()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitExceptionDeclaration(CppParser.ExceptionDeclarationContext context)  override;
+        virtual antlrcpp::Any visitExceptionDeclaration(CppParser::ExceptionDeclarationContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.noExceptionSpecifier()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::noExceptionSpecifier()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitNoExceptionSpecifier(CppParser.NoExceptionSpecifierContext context)  override;
+        virtual antlrcpp::Any visitNoExceptionSpecifier(CppParser::NoExceptionSpecifierContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.identifierList()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::identifierList()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitIdentifierList(CppParser.IdentifierListContext context)  override;
+        virtual antlrcpp::Any visitIdentifierList(CppParser::IdentifierListContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.literal()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::literal()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitLiteral(CppParser.LiteralContext context)  override;
-        {
-            if (context.FloatingPointLiteral() != null)
-                throw new NotImplementedException();
-            else if (context.CharacterLiteral() != null)
-                throw new NotImplementedException();
-            else if (context.StringLiteral() != null)
-                throw new NotImplementedException();
-            else
-                return VisitChildren(context);
-        }
+        virtual antlrcpp::Any visitLiteral(CppParser::LiteralContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.integerLiteral()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::integerLiteral()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitIntegerLiteral(CppParser.IntegerLiteralContext context)  override;
-        {
-            // Parse the integer value
-            int value = int.Parse(context.GetText());
-
-            return new IntegerLiteral(value);
-        }
+        virtual antlrcpp::Any visitIntegerLiteral(CppParser::IntegerLiteralContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.booleanLiteral()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::booleanLiteral()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitBooleanLiteral(CppParser.BooleanLiteralContext context)  override;
+        virtual antlrcpp::Any visitBooleanLiteral(CppParser::BooleanLiteralContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.pointerLiteral()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::pointerLiteral()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitPointerLiteral(CppParser.PointerLiteralContext context)  override;
+        virtual antlrcpp::Any visitPointerLiteral(CppParser::PointerLiteralContext* context) override final;
 
         /// <summary>
-        /// Visit a parse tree produced by <see cref="CppParser.userDefinedLiteral()"/>.
+        /// Visit a parse tree produced by <see cref="CppParser::userDefinedLiteral()"/>.
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <return>The visitor result.</return>
-        Node VisitUserDefinedLiteral(CppParser.UserDefinedLiteralContext context)  override;
-    }
+        virtual antlrcpp::Any visitUserDefinedLiteral(CppParser::UserDefinedLiteralContext* context) override final;
+    };
 }

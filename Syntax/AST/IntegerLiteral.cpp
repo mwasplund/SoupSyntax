@@ -21,3 +21,8 @@ bool IntegerLiteral::operator !=(const IntegerLiteral& rhs) const
 {
     return !(*this == rhs);
 }
+
+bool IntegerLiteral::Equals(const Node& rhs) const
+{
+    throw std::runtime_error("NotImplemented");
+}

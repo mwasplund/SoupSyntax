@@ -1,1336 +1,1341 @@
 ﻿module SoupSyntax;
 using namespace Soup::Syntax;
 
-Node ASTVisitor::VisitTypedefName(CppParser.TypedefNameContext context)
+antlrcpp::Any ASTVisitor::visitTypedefName(CppParser::TypedefNameContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitNamespaceName(CppParser.NamespaceNameContext context)
+antlrcpp::Any ASTVisitor::visitNamespaceName(CppParser::NamespaceNameContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitNamespaceAlias(CppParser.NamespaceAliasContext context)
+antlrcpp::Any ASTVisitor::visitNamespaceAlias(CppParser::NamespaceAliasContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitClassName(CppParser.ClassNameContext context)
+antlrcpp::Any ASTVisitor::visitClassName(CppParser::ClassNameContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitEnumName(CppParser.EnumNameContext context)
+antlrcpp::Any ASTVisitor::visitEnumName(CppParser::EnumNameContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitTemplateName(CppParser.TemplateNameContext context)
+antlrcpp::Any ASTVisitor::visitTemplateName(CppParser::TemplateNameContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitTranslationUnit(CppParser.TranslationUnitContext context)
+antlrcpp::Any ASTVisitor::visitTranslationUnit(CppParser::TranslationUnitContext* context)
 {
-    var result = new TranslationUnit();
-
     // Check for the optional declaration sequences
-    var declarationSequence = context.declarationSequence();
-    if (declarationSequence != null)
+    std::shared_ptr<DeclarationSequence> declarationSequence = nullptr;
+    if (context->declarationSequence() != nullptr)
     {
-        result.Declarations = (DeclarationSequence)Visit(declarationSequence);
+        declarationSequence = visit(context->declarationSequence())
+            .as<std::shared_ptr<DeclarationSequence>>();
     }
 
-    return result;
+    return std::make_shared<TranslationUnit>(std::move(declarationSequence));
 }
 
-Node ASTVisitor::VisitPrimaryExpression(CppParser.PrimaryExpressionContext context)
+antlrcpp::Any ASTVisitor::visitPrimaryExpression(CppParser::PrimaryExpressionContext* context)
 {
-    if (context.literal () != null)
+    if (context->literal () != nullptr)
     {
-        return Visit(context.literal());
-    }
-    else
-    {
-        throw new NotImplementedException();
-    }
-}
-
-Node ASTVisitor::VisitUnqualifiedIdentifier(CppParser.UnqualifiedIdentifierContext context)
-{
-    var identifier = context.Identifier();
-    return new Identifier(identifier.GetText());
-}
-
-Node ASTVisitor::VisitQualifiedIdentifier(CppParser.QualifiedIdentifierContext context)
-{
-    throw new NotImplementedException();
-}
-
-Node ASTVisitor::VisitNestedNameSpecifier(CppParser.NestedNameSpecifierContext context)
-{
-    throw new NotImplementedException();
-}
-
-Node ASTVisitor::VisitLambdaExpression(CppParser.LambdaExpressionContext context)
-{
-    throw new NotImplementedException();
-}
-
-Node ASTVisitor::VisitLambdaIntroducer(CppParser.LambdaIntroducerContext context)
-{
-    throw new NotImplementedException();
-}
-
-Node ASTVisitor::VisitLambdaDeclarator(CppParser.LambdaDeclaratorContext context)
-{
-    throw new NotImplementedException();
-}
-
-Node ASTVisitor::VisitLambdaCapture(CppParser.LambdaCaptureContext context)
-{
-    throw new NotImplementedException();
-}
-
-Node ASTVisitor::VisitCaptureDefault(CppParser.CaptureDefaultContext context)
-{
-    throw new NotImplementedException();
-}
-
-Node ASTVisitor::VisitCaptureList(CppParser.CaptureListContext context)
-{
-    throw new NotImplementedException();
-}
-
-Node ASTVisitor::VisitCapture(CppParser.CaptureContext context)
-{
-    throw new NotImplementedException();
-}
-
-Node ASTVisitor::VisitSimpleCapture(CppParser.SimpleCaptureContext context)
-{
-    throw new NotImplementedException();
-}
-
-Node ASTVisitor::VisitInitializerCapture(CppParser.InitializerCaptureContext context)
-{
-    throw new NotImplementedException();
-}
-
-Node ASTVisitor::VisitFoldExpression(CppParser.FoldExpressionContext context)
-{
-    throw new NotImplementedException();
-}
-
-Node ASTVisitor::VisitFoldOperator(CppParser.FoldOperatorContext context)
-{
-    throw new NotImplementedException();
-}
-
-Node ASTVisitor::VisitPostfixExpression(CppParser.PostfixExpressionContext context)
-{
-    if (context.primaryExpression() != null)
-    {
-        return Visit(context.primaryExpression());
+        return visit(context->literal());
     }
     else
     {
-        throw new NotImplementedException();
+        throw std::logic_error("NotImplemented");
     }
 }
 
-Node ASTVisitor::VisitExpressionList(CppParser.ExpressionListContext context)
+antlrcpp::Any ASTVisitor::visitUnqualifiedIdentifier(CppParser::UnqualifiedIdentifierContext* context)
 {
-    throw new NotImplementedException();
+    auto identifier = context->Identifier();
+    return std::make_shared<Identifier>(identifier->getText());
 }
 
-Node ASTVisitor::VisitPseudoDestructorName(CppParser.PseudoDestructorNameContext context)
+antlrcpp::Any ASTVisitor::visitQualifiedIdentifier(CppParser::QualifiedIdentifierContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitUnaryExpression(CppParser.UnaryExpressionContext context)
+antlrcpp::Any ASTVisitor::visitNestedNameSpecifier(CppParser::NestedNameSpecifierContext* context)
 {
-    if (context.postfixExpression() != null)
+    throw std::logic_error("NotImplemented");
+}
+
+antlrcpp::Any ASTVisitor::visitLambdaExpression(CppParser::LambdaExpressionContext* context)
+{
+    throw std::logic_error("NotImplemented");
+}
+
+antlrcpp::Any ASTVisitor::visitLambdaIntroducer(CppParser::LambdaIntroducerContext* context)
+{
+    throw std::logic_error("NotImplemented");
+}
+
+antlrcpp::Any ASTVisitor::visitLambdaDeclarator(CppParser::LambdaDeclaratorContext* context)
+{
+    throw std::logic_error("NotImplemented");
+}
+
+antlrcpp::Any ASTVisitor::visitLambdaCapture(CppParser::LambdaCaptureContext* context)
+{
+    throw std::logic_error("NotImplemented");
+}
+
+antlrcpp::Any ASTVisitor::visitCaptureDefault(CppParser::CaptureDefaultContext* context)
+{
+    throw std::logic_error("NotImplemented");
+}
+
+antlrcpp::Any ASTVisitor::visitCaptureList(CppParser::CaptureListContext* context)
+{
+    throw std::logic_error("NotImplemented");
+}
+
+antlrcpp::Any ASTVisitor::visitCapture(CppParser::CaptureContext* context)
+{
+    throw std::logic_error("NotImplemented");
+}
+
+antlrcpp::Any ASTVisitor::visitSimpleCapture(CppParser::SimpleCaptureContext* context)
+{
+    throw std::logic_error("NotImplemented");
+}
+
+antlrcpp::Any ASTVisitor::visitInitializerCapture(CppParser::InitializerCaptureContext* context)
+{
+    throw std::logic_error("NotImplemented");
+}
+
+antlrcpp::Any ASTVisitor::visitFoldExpression(CppParser::FoldExpressionContext* context)
+{
+    throw std::logic_error("NotImplemented");
+}
+
+antlrcpp::Any ASTVisitor::visitFoldOperator(CppParser::FoldOperatorContext* context)
+{
+    throw std::logic_error("NotImplemented");
+}
+
+antlrcpp::Any ASTVisitor::visitPostfixExpression(CppParser::PostfixExpressionContext* context)
+{
+    if (context->primaryExpression() != nullptr)
     {
-        return Visit(context.postfixExpression());
+        return visit(context->primaryExpression());
     }
     else
     {
-        throw new NotImplementedException();
+        throw std::logic_error("NotImplemented");
     }
 }
 
-Node ASTVisitor::VisitUnaryOperator(CppParser.UnaryOperatorContext context)
+antlrcpp::Any ASTVisitor::visitExpressionList(CppParser::ExpressionListContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitNewExpression(CppParser.NewExpressionContext context)
+antlrcpp::Any ASTVisitor::visitPseudoDestructorName(CppParser::PseudoDestructorNameContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitNewPlacement(CppParser.NewPlacementContext context)
+antlrcpp::Any ASTVisitor::visitUnaryExpression(CppParser::UnaryExpressionContext* context)
 {
-    throw new NotImplementedException();
-}
-
-Node ASTVisitor::VisitNewTypeIdentifier(CppParser.NewTypeIdentifierContext context)
-{
-    throw new NotImplementedException();
-}
-
-Node ASTVisitor::VisitNewDeclarator(CppParser.NewDeclaratorContext context)
-{
-    throw new NotImplementedException();
-}
-
-Node ASTVisitor::VisitNoPointerNewDeclarator(CppParser.NoPointerNewDeclaratorContext context)
-{
-    throw new NotImplementedException();
-}
-
-Node ASTVisitor::VisitNewInitializer(CppParser.NewInitializerContext context)
-{
-    throw new NotImplementedException();
-}
-
-Node ASTVisitor::VisitDeleteExpression(CppParser.DeleteExpressionContext context)
-{
-    throw new NotImplementedException();
-}
-
-Node ASTVisitor::VisitNoExceptionExpression(CppParser.NoExceptionExpressionContext context)
-{
-    throw new NotImplementedException();
-}
-
-Node ASTVisitor::VisitCastExpression(CppParser.CastExpressionContext context)
-{
-    if (context.LeftParenthesis() != null)
+    if (context->postfixExpression() != nullptr)
     {
-        throw new NotImplementedException();
+        return visit(context->postfixExpression());
     }
     else
     {
-        return Visit(context.unaryExpression());
+        throw std::logic_error("NotImplemented");
     }
 }
 
-Node ASTVisitor::VisitPointerManipulationExpression(CppParser.PointerManipulationExpressionContext context)
+antlrcpp::Any ASTVisitor::visitUnaryOperator(CppParser::UnaryOperatorContext* context)
 {
-    if (context.PeriodAsterisk() != null)
+    throw std::logic_error("NotImplemented");
+}
+
+antlrcpp::Any ASTVisitor::visitNewExpression(CppParser::NewExpressionContext* context)
+{
+    throw std::logic_error("NotImplemented");
+}
+
+antlrcpp::Any ASTVisitor::visitNewPlacement(CppParser::NewPlacementContext* context)
+{
+    throw std::logic_error("NotImplemented");
+}
+
+antlrcpp::Any ASTVisitor::visitNewTypeIdentifier(CppParser::NewTypeIdentifierContext* context)
+{
+    throw std::logic_error("NotImplemented");
+}
+
+antlrcpp::Any ASTVisitor::visitNewDeclarator(CppParser::NewDeclaratorContext* context)
+{
+    throw std::logic_error("NotImplemented");
+}
+
+antlrcpp::Any ASTVisitor::visitNoPointerNewDeclarator(CppParser::NoPointerNewDeclaratorContext* context)
+{
+    throw std::logic_error("NotImplemented");
+}
+
+antlrcpp::Any ASTVisitor::visitNewInitializer(CppParser::NewInitializerContext* context)
+{
+    throw std::logic_error("NotImplemented");
+}
+
+antlrcpp::Any ASTVisitor::visitDeleteExpression(CppParser::DeleteExpressionContext* context)
+{
+    throw std::logic_error("NotImplemented");
+}
+
+antlrcpp::Any ASTVisitor::visitNoExceptionExpression(CppParser::NoExceptionExpressionContext* context)
+{
+    throw std::logic_error("NotImplemented");
+}
+
+antlrcpp::Any ASTVisitor::visitCastExpression(CppParser::CastExpressionContext* context)
+{
+    if (context->LeftParenthesis() != nullptr)
     {
-        throw new NotImplementedException();
-    }
-    else if (context.ArrowAsterisk() != null)
-    {
-        throw new NotImplementedException();
+        throw std::logic_error("NotImplemented");
     }
     else
     {
-        return Visit(context.castExpression());
+        return visit(context->unaryExpression());
     }
 }
 
-Node ASTVisitor::VisitMultiplicativeExpression(CppParser.MultiplicativeExpressionContext context)
+antlrcpp::Any ASTVisitor::visitPointerManipulationExpression(CppParser::PointerManipulationExpressionContext* context)
 {
-    if (context.Asterisk() != null)
+    if (context->PeriodAsterisk() != nullptr)
     {
-        throw new NotImplementedException();
+        throw std::logic_error("NotImplemented");
     }
-    else if (context.ForwardSlash() != null)
+    else if (context->ArrowAsterisk() != nullptr)
     {
-        throw new NotImplementedException();
-    }
-    else if (context.Percent() != null)
-    {
-        throw new NotImplementedException();
+        throw std::logic_error("NotImplemented");
     }
     else
     {
-        return Visit(context.pointerManipulationExpression());
+        return visit(context->castExpression());
     }
 }
 
-Node ASTVisitor::VisitAdditiveExpression(CppParser.AdditiveExpressionContext context)
+antlrcpp::Any ASTVisitor::visitMultiplicativeExpression(CppParser::MultiplicativeExpressionContext* context)
 {
-    if (context.Plus() != null)
+    if (context->Asterisk() != nullptr)
     {
-        throw new NotImplementedException();
+        throw std::logic_error("NotImplemented");
     }
-    else if (context.Minus() != null)
+    else if (context->ForwardSlash() != nullptr)
     {
-        throw new NotImplementedException();
+        throw std::logic_error("NotImplemented");
+    }
+    else if (context->Percent() != nullptr)
+    {
+        throw std::logic_error("NotImplemented");
     }
     else
     {
-        return Visit(context.multiplicativeExpression());
+        return visit(context->pointerManipulationExpression());
     }
 }
 
-Node ASTVisitor::VisitShiftExpression(CppParser.ShiftExpressionContext context)
+antlrcpp::Any ASTVisitor::visitAdditiveExpression(CppParser::AdditiveExpressionContext* context)
 {
-    if (context.DoubleLessThan() != null)
+    if (context->Plus() != nullptr)
     {
-        throw new NotImplementedException();
+        throw std::logic_error("NotImplemented");
     }
-    else if (context.DoubleGreaterThan() != null)
+    else if (context->Minus() != nullptr)
     {
-        throw new NotImplementedException();
+        throw std::logic_error("NotImplemented");
     }
     else
     {
-        return Visit(context.additiveExpression());
+        return visit(context->multiplicativeExpression());
     }
 }
 
-Node ASTVisitor::VisitRelationalExpression(CppParser.RelationalExpressionContext context)
+antlrcpp::Any ASTVisitor::visitShiftExpression(CppParser::ShiftExpressionContext* context)
 {
-    if (context.LessThan() != null)
+    if (context->DoubleLessThan() != nullptr)
     {
-        throw new NotImplementedException();
+        throw std::logic_error("NotImplemented");
     }
-    else if (context.GreaterThan() != null)
+    else if (context->DoubleGreaterThan() != nullptr)
     {
-        throw new NotImplementedException();
-    }
-    else if (context.LessThanEqual() != null)
-    {
-        throw new NotImplementedException();
-    }
-    else if (context.GreaterThanEqual() != null)
-    {
-        throw new NotImplementedException();
+        throw std::logic_error("NotImplemented");
     }
     else
     {
-        return Visit(context.shiftExpression());
+        return visit(context->additiveExpression());
     }
 }
 
-Node ASTVisitor::VisitEqualityExpression(CppParser.EqualityExpressionContext context)
+antlrcpp::Any ASTVisitor::visitRelationalExpression(CppParser::RelationalExpressionContext* context)
 {
-    if (context.DoubleEqual() != null)
+    if (context->LessThan() != nullptr)
     {
-        throw new NotImplementedException();
+        throw std::logic_error("NotImplemented");
     }
-    else if (context.ExclamationMarkEqual() != null)
+    else if (context->GreaterThan() != nullptr)
     {
-        throw new NotImplementedException();
+        throw std::logic_error("NotImplemented");
+    }
+    else if (context->LessThanEqual() != nullptr)
+    {
+        throw std::logic_error("NotImplemented");
+    }
+    else if (context->GreaterThanEqual() != nullptr)
+    {
+        throw std::logic_error("NotImplemented");
     }
     else
     {
-        return Visit(context.relationalExpression());
+        return visit(context->shiftExpression());
     }
 }
 
-Node ASTVisitor::VisitAndExpression(CppParser.AndExpressionContext context)
+antlrcpp::Any ASTVisitor::visitEqualityExpression(CppParser::EqualityExpressionContext* context)
 {
-    if (context.Ampersand() != null)
+    if (context->DoubleEqual() != nullptr)
     {
-        throw new NotImplementedException();
+        throw std::logic_error("NotImplemented");
+    }
+    else if (context->ExclamationMarkEqual() != nullptr)
+    {
+        throw std::logic_error("NotImplemented");
     }
     else
     {
-        return Visit(context.equalityExpression());
+        return visit(context->relationalExpression());
     }
 }
 
-Node ASTVisitor::VisitExclusiveOrExpression(CppParser.ExclusiveOrExpressionContext context)
+antlrcpp::Any ASTVisitor::visitAndExpression(CppParser::AndExpressionContext* context)
 {
-    if (context.Caret() != null)
+    if (context->Ampersand() != nullptr)
     {
-        throw new NotImplementedException();
+        throw std::logic_error("NotImplemented");
     }
     else
     {
-        return Visit(context.andExpression());
+        return visit(context->equalityExpression());
     }
 }
 
-Node ASTVisitor::VisitInclusiveOrExpression(CppParser.InclusiveOrExpressionContext context)
+antlrcpp::Any ASTVisitor::visitExclusiveOrExpression(CppParser::ExclusiveOrExpressionContext* context)
 {
-    if (context.VerticalBar() != null)
+    if (context->Caret() != nullptr)
     {
-        throw new NotImplementedException();
+        throw std::logic_error("NotImplemented");
     }
     else
     {
-        return Visit(context.exclusiveOrExpression());
+        return visit(context->andExpression());
     }
 }
 
-Node ASTVisitor::VisitLogicalAndExpression(CppParser.LogicalAndExpressionContext context)
+antlrcpp::Any ASTVisitor::visitInclusiveOrExpression(CppParser::InclusiveOrExpressionContext* context)
 {
-    if (context.DoubleAmpersand() != null)
+    if (context->VerticalBar() != nullptr)
     {
-        throw new NotImplementedException();
+        throw std::logic_error("NotImplemented");
     }
     else
     {
-        return Visit(context.inclusiveOrExpression());
+        return visit(context->exclusiveOrExpression());
     }
 }
 
-Node ASTVisitor::VisitLogicalOrExpression(CppParser.LogicalOrExpressionContext context)
+antlrcpp::Any ASTVisitor::visitLogicalAndExpression(CppParser::LogicalAndExpressionContext* context)
 {
-    if (context.DoubleVerticalBar() != null)
+    if (context->DoubleAmpersand() != nullptr)
     {
-        throw new NotImplementedException();
+        throw std::logic_error("NotImplemented");
     }
     else
     {
-        return Visit(context.logicalAndExpression());
+        return visit(context->inclusiveOrExpression());
     }
 }
 
-Node ASTVisitor::VisitConditionalExpression(CppParser.ConditionalExpressionContext context)
+antlrcpp::Any ASTVisitor::visitLogicalOrExpression(CppParser::LogicalOrExpressionContext* context)
 {
-    if (context.QuestionMark() != null)
+    if (context->DoubleVerticalBar() != nullptr)
     {
-        throw new NotImplementedException();
+        throw std::logic_error("NotImplemented");
     }
     else
     {
-        return Visit(context.logicalOrExpression());
+        return visit(context->logicalAndExpression());
     }
 }
 
-Node ASTVisitor::VisitThrowExpression(CppParser.ThrowExpressionContext context)
+antlrcpp::Any ASTVisitor::visitConditionalExpression(CppParser::ConditionalExpressionContext* context)
 {
-    throw new NotImplementedException();
-}
-
-Node ASTVisitor::VisitAssignmentExpression(CppParser.AssignmentExpressionContext context)
-{
-    if (context.conditionalExpression() != null)
+    if (context->QuestionMark() != nullptr)
     {
-        return Visit(context.conditionalExpression());
+        throw std::logic_error("NotImplemented");
     }
     else
     {
-        throw new NotImplementedException();
+        return visit(context->logicalOrExpression());
     }
 }
 
-Node ASTVisitor::VisitAssignmentOperator(CppParser.AssignmentOperatorContext context)
+antlrcpp::Any ASTVisitor::visitThrowExpression(CppParser::ThrowExpressionContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitExpression(CppParser.ExpressionContext context)
+antlrcpp::Any ASTVisitor::visitAssignmentExpression(CppParser::AssignmentExpressionContext* context)
 {
-    throw new NotImplementedException();
+    if (context->conditionalExpression() != nullptr)
+    {
+        return visit(context->conditionalExpression());
+    }
+    else
+    {
+        throw std::logic_error("NotImplemented");
+    }
 }
 
-Node ASTVisitor::VisitConstantExpression(CppParser.ConstantExpressionContext context)
+antlrcpp::Any ASTVisitor::visitAssignmentOperator(CppParser::AssignmentOperatorContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitInitializerStatement(CppParser.InitializerStatementContext context)
+antlrcpp::Any ASTVisitor::visitExpression(CppParser::ExpressionContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitCondition(CppParser.ConditionContext context)
+antlrcpp::Any ASTVisitor::visitConstantExpression(CppParser::ConstantExpressionContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitLabeledStatement(CppParser.LabeledStatementContext context)
+antlrcpp::Any ASTVisitor::visitInitializerStatement(CppParser::InitializerStatementContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitExpressionStatement(CppParser.ExpressionStatementContext context)
+antlrcpp::Any ASTVisitor::visitCondition(CppParser::ConditionContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitCompoundStatement(CppParser.CompoundStatementContext context)
+antlrcpp::Any ASTVisitor::visitLabeledStatement(CppParser::LabeledStatementContext* context)
+{
+    throw std::logic_error("NotImplemented");
+}
+
+antlrcpp::Any ASTVisitor::visitExpressionStatement(CppParser::ExpressionStatementContext* context)
+{
+    throw std::logic_error("NotImplemented");
+}
+
+antlrcpp::Any ASTVisitor::visitCompoundStatement(CppParser::CompoundStatementContext* context)
 {
     // Check for optional sequence
-    CompoundStatement result = null;
-    var sequence = context.statementSequence();
-    if (sequence != null)
+    std::shared_ptr<CompoundStatement> result = nullptr;
+    auto sequence = context->statementSequence();
+    if (sequence != nullptr)
     {
-        result = (CompoundStatement)Visit(sequence);
+        result = visit(sequence);
     }
     else
     {
-        result = new CompoundStatement();
+        result = std::make_shared<CompoundStatement>();
     }
 
     // TODO: Reference the source braces
     return result;
 }
 
-Node ASTVisitor::VisitStatementSequence(CppParser.StatementSequenceContext context)
+antlrcpp::Any ASTVisitor::visitStatementSequence(CppParser::StatementSequenceContext* context)
 {
     // Handle the recursive rule
-    CompoundStatement sequence;
-    var childSequence = context.statementSequence();
-    if (childSequence != null)
+    std::shared_ptr<CompoundStatement> sequence;
+    auto childSequence = context->statementSequence();
+    if (childSequence != nullptr)
     {
-        sequence = (CompoundStatement)Visit(childSequence);
+        sequence = visit(childSequence).as<std::shared_ptr<CompoundStatement>>();
     }
     else
     {
-        sequence = new CompoundStatement();
+        sequence = std::make_shared<CompoundStatement>();
     }
 
     // Handle the new item
-    var statement = (Statement)Visit(context.statement());
-    sequence.Statements.Add(statement);
+    auto statement = visit(context->statement()).as<std::shared_ptr<Statement>>();
+    sequence->GetStatements().push_back(std::move(statement));
 
     return sequence;
 }
 
-Node ASTVisitor::VisitSelectionStatement(CppParser.SelectionStatementContext context)
+antlrcpp::Any ASTVisitor::visitSelectionStatement(CppParser::SelectionStatementContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitIterationStatement(CppParser.IterationStatementContext context)
+antlrcpp::Any ASTVisitor::visitIterationStatement(CppParser::IterationStatementContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitForInitializerStatement(CppParser.ForInitializerStatementContext context)
+antlrcpp::Any ASTVisitor::visitForInitializerStatement(CppParser::ForInitializerStatementContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitForRangeDeclaration(CppParser.ForRangeDeclarationContext context)
+antlrcpp::Any ASTVisitor::visitForRangeDeclaration(CppParser::ForRangeDeclarationContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitForRangeInitializer(CppParser.ForRangeInitializerContext context)
+antlrcpp::Any ASTVisitor::visitForRangeInitializer(CppParser::ForRangeInitializerContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitJumpStatement(CppParser.JumpStatementContext context)
+antlrcpp::Any ASTVisitor::visitJumpStatement(CppParser::JumpStatementContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitDeclarationStatement(CppParser.DeclarationStatementContext context)
+antlrcpp::Any ASTVisitor::visitDeclarationStatement(CppParser::DeclarationStatementContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitDeclarationSequence(CppParser.DeclarationSequenceContext context)
+antlrcpp::Any ASTVisitor::visitDeclarationSequence(CppParser::DeclarationSequenceContext* context)
 {
     // Handle the recursive rule
-    DeclarationSequence sequence;
-    var childSequence = context.declarationSequence();
-    if (childSequence != null)
+    std::shared_ptr<DeclarationSequence> sequence;
+    auto childSequence = context->declarationSequence();
+    if (childSequence != nullptr)
     {
-        sequence = (DeclarationSequence)Visit(childSequence);
+        sequence = visit(childSequence);
     }
     else
     {
-        sequence = new DeclarationSequence();
+        sequence = std::make_shared<DeclarationSequence>();
     }
 
     // Handle the new item
-    var declaration = context.declaration();
-    sequence.Declarations.Add((Declaration)Visit(declaration));
+    auto declaration = context->declaration();
+    sequence->GetDeclarations().push_back(
+        visit(declaration).as<std::shared_ptr<Declaration>>());
 
     return sequence;
 }
 
-Node ASTVisitor::VisitNoDeclarationSpecifierFunctionDeclaration(CppParser.NoDeclarationSpecifierFunctionDeclarationContext context)
+antlrcpp::Any ASTVisitor::visitNoDeclarationSpecifierFunctionDeclaration(CppParser::NoDeclarationSpecifierFunctionDeclarationContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitAliasDeclaration(CppParser.AliasDeclarationContext context)
+antlrcpp::Any ASTVisitor::visitAliasDeclaration(CppParser::AliasDeclarationContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitSimpleDeclaration(CppParser.SimpleDeclarationContext context)
+antlrcpp::Any ASTVisitor::visitSimpleDeclaration(CppParser::SimpleDeclarationContext* context)
 {
-    return new SimpleDefinition()
+    auto declarationSpecifierSequence = visit(context->declarationSpecifierSequence())
+        .as<std::shared_ptr<DeclarationSpecifierSequence>>();
+    auto initializerDeclaratorList = visit(context->initializerDeclaratorList())
+        .as<std::shared_ptr<InitializerDeclaratorList>>();
+
+    // TODO
+    return std::make_shared<SimpleDefinition>(
+        std::move(declarationSpecifierSequence),
+        std::move(initializerDeclaratorList));
+}
+
+antlrcpp::Any ASTVisitor::visitStaticAssertDeclaration(CppParser::StaticAssertDeclarationContext* context)
+{
+    throw std::logic_error("NotImplemented");
+}
+
+antlrcpp::Any ASTVisitor::visitEmptyDeclaration(CppParser::EmptyDeclarationContext* context)
+{
+    throw std::logic_error("NotImplemented");
+}
+
+antlrcpp::Any ASTVisitor::visitAttributeDeclaration(CppParser::AttributeDeclarationContext* context)
+{
+    throw std::logic_error("NotImplemented");
+}
+
+antlrcpp::Any ASTVisitor::visitDeclarationSpecifier(CppParser::DeclarationSpecifierContext* context)
+{
+    if (context->definingTypeSpecifier() != nullptr)
     {
-        DeclarationSpecifierSequence = (DeclarationSpecifierSequence)Visit(context.declarationSpecifierSequence()),
-        InitializerDeclaratorList = (InitializerDeclaratorList)Visit(context.initializerDeclaratorList()),
-    };
-}
-
-Node ASTVisitor::VisitStaticAssertDeclaration(CppParser.StaticAssertDeclarationContext context)
-{
-    throw new NotImplementedException();
-}
-
-Node ASTVisitor::VisitEmptyDeclaration(CppParser.EmptyDeclarationContext context)
-{
-    throw new NotImplementedException();
-}
-
-Node ASTVisitor::VisitAttributeDeclaration(CppParser.AttributeDeclarationContext context)
-{
-    throw new NotImplementedException();
-}
-
-Node ASTVisitor::VisitDeclarationSpecifier(CppParser.DeclarationSpecifierContext context)
-{
-    if (context.definingTypeSpecifier() != null)
-    {
-        return Visit(context.definingTypeSpecifier());
+        return visit(context->definingTypeSpecifier());
     }
     else
     {
-        throw new InvalidOperationException("Unexpected declaration specifier");
+        throw std::logic_error("Unexpected declaration specifier");
     }
 }
 
-Node ASTVisitor::VisitDeclarationSpecifierSequence(CppParser.DeclarationSpecifierSequenceContext context)
+antlrcpp::Any ASTVisitor::visitDeclarationSpecifierSequence(CppParser::DeclarationSpecifierSequenceContext* context)
 {
     // Handle the recursive rule
-    DeclarationSpecifierSequence sequence;
-    var childSequence = context.declarationSpecifierSequence();
-    if (childSequence != null)
+    std::shared_ptr<DeclarationSpecifierSequence> sequence;
+    auto childSequence = context->declarationSpecifierSequence();
+    if (childSequence != nullptr)
     {
-        sequence = (DeclarationSpecifierSequence)Visit(childSequence);
+        sequence = visit(childSequence);
     }
     else
     {
-        sequence = new DeclarationSpecifierSequence();
+        sequence = std::make_shared<DeclarationSpecifierSequence>();
     }
 
     // Handle the new item
-    var specifier = context.declarationSpecifier();
-    sequence.Specifiers.Add(Visit(specifier));
+    auto specifier = context->declarationSpecifier();
+    sequence->GetSpecifiers().push_back(
+        visit(specifier));
 
     return sequence;
 }
 
-Node ASTVisitor::VisitStorageClassSpecifier(CppParser.StorageClassSpecifierContext context)
+antlrcpp::Any ASTVisitor::visitStorageClassSpecifier(CppParser::StorageClassSpecifierContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitFunctionSpecifier(CppParser.FunctionSpecifierContext context)
+antlrcpp::Any ASTVisitor::visitFunctionSpecifier(CppParser::FunctionSpecifierContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitTypeSpecifierSequence(CppParser.TypeSpecifierSequenceContext context)
+antlrcpp::Any ASTVisitor::visitTypeSpecifierSequence(CppParser::TypeSpecifierSequenceContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitDefiningTypeSpecifierSequence(CppParser.DefiningTypeSpecifierSequenceContext context)
+antlrcpp::Any ASTVisitor::visitDefiningTypeSpecifierSequence(CppParser::DefiningTypeSpecifierSequenceContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitSimpleTypeSpecifier(CppParser.SimpleTypeSpecifierContext context)
+antlrcpp::Any ASTVisitor::visitSimpleTypeSpecifier(CppParser::SimpleTypeSpecifierContext* context)
 {
-    if (context.Char() != null)
-        return new PrimitiveDataTypeNode(PrimitiveDataType.Char);
-    else if (context.Char16() != null)
-        return new PrimitiveDataTypeNode(PrimitiveDataType.Char16);
-    else if (context.Char32() != null)
-        return new PrimitiveDataTypeNode(PrimitiveDataType.Char32);
-    else if (context.WChar() != null)
-        return new PrimitiveDataTypeNode(PrimitiveDataType.WChar);
-    else if (context.Bool() != null)
-        return new PrimitiveDataTypeNode(PrimitiveDataType.Bool);
-    else if (context.Short() != null)
-        return new PrimitiveDataTypeNode(PrimitiveDataType.Short);
-    else if (context.Int() != null)
-        return new PrimitiveDataTypeNode(PrimitiveDataType.Int);
-    else if (context.Long() != null)
-        return new PrimitiveDataTypeNode(PrimitiveDataType.Long);
-    else if (context.Signed() != null)
-        return new PrimitiveDataTypeNode(PrimitiveDataType.Signed);
-    else if (context.Unsigned() != null)
-        return new PrimitiveDataTypeNode(PrimitiveDataType.Unsigned);
-    else if (context.Float() != null)
-        return new PrimitiveDataTypeNode(PrimitiveDataType.Float);
-    else if (context.Double() != null)
-        return new PrimitiveDataTypeNode(PrimitiveDataType.Double);
-    else if (context.Void() != null)
-        return new PrimitiveDataTypeNode(PrimitiveDataType.Void);
-    else if (context.Auto() != null)
-        return new PrimitiveDataTypeNode(PrimitiveDataType.Auto);
+    if (context->Char() != nullptr)
+        return std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Char);
+    else if (context->Char16() != nullptr)
+        return std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Char16);
+    else if (context->Char32() != nullptr)
+        return std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Char32);
+    else if (context->WChar() != nullptr)
+        return std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::WChar);
+    else if (context->Bool() != nullptr)
+        return std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Bool);
+    else if (context->Short() != nullptr)
+        return std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Short);
+    else if (context->Int() != nullptr)
+        return std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Int);
+    else if (context->Long() != nullptr)
+        return std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Long);
+    else if (context->Signed() != nullptr)
+        return std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Signed);
+    else if (context->Unsigned() != nullptr)
+        return std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Unsigned);
+    else if (context->Float() != nullptr)
+        return std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Float);
+    else if (context->Double() != nullptr)
+        return std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Double);
+    else if (context->Void() != nullptr)
+        return std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Void);
+    else if (context->Auto() != nullptr)
+        return std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Auto);
 
-    throw new InvalidOperationException("Unexpected simple type.");
+    throw std::logic_error("Unexpected simple type.");
 }
 
-Node ASTVisitor::VisitTypeName(CppParser.TypeNameContext context)
+antlrcpp::Any ASTVisitor::visitTypeName(CppParser::TypeNameContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitDeclarationTypeSpecifier(CppParser.DeclarationTypeSpecifierContext context)
+antlrcpp::Any ASTVisitor::visitDeclarationTypeSpecifier(CppParser::DeclarationTypeSpecifierContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitElaboratedTypeSpecifier(CppParser.ElaboratedTypeSpecifierContext context)
+antlrcpp::Any ASTVisitor::visitElaboratedTypeSpecifier(CppParser::ElaboratedTypeSpecifierContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitEnumSpecifier(CppParser.EnumSpecifierContext context)
+antlrcpp::Any ASTVisitor::visitEnumSpecifier(CppParser::EnumSpecifierContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitEnumHead(CppParser.EnumHeadContext context)
+antlrcpp::Any ASTVisitor::visitEnumHead(CppParser::EnumHeadContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitEnumHeadName(CppParser.EnumHeadNameContext context)
+antlrcpp::Any ASTVisitor::visitEnumHeadName(CppParser::EnumHeadNameContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitOpaqueEnumDeclaration(CppParser.OpaqueEnumDeclarationContext context)
+antlrcpp::Any ASTVisitor::visitOpaqueEnumDeclaration(CppParser::OpaqueEnumDeclarationContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitEnumKey(CppParser.EnumKeyContext context)
+antlrcpp::Any ASTVisitor::visitEnumKey(CppParser::EnumKeyContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitEnumBase(CppParser.EnumBaseContext context)
+antlrcpp::Any ASTVisitor::visitEnumBase(CppParser::EnumBaseContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitEnumeratorList(CppParser.EnumeratorListContext context)
+antlrcpp::Any ASTVisitor::visitEnumeratorList(CppParser::EnumeratorListContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitEnumeratorDefinition(CppParser.EnumeratorDefinitionContext context)
+antlrcpp::Any ASTVisitor::visitEnumeratorDefinition(CppParser::EnumeratorDefinitionContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitEnumerator(CppParser.EnumeratorContext context)
+antlrcpp::Any ASTVisitor::visitEnumerator(CppParser::EnumeratorContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitNamespaceDefinition(CppParser.NamespaceDefinitionContext context)
+antlrcpp::Any ASTVisitor::visitNamespaceDefinition(CppParser::NamespaceDefinitionContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitNamedNamespaceDefinition(CppParser.NamedNamespaceDefinitionContext context)
+antlrcpp::Any ASTVisitor::visitNamedNamespaceDefinition(CppParser::NamedNamespaceDefinitionContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitUnnamedNamespaceDefinition(CppParser.UnnamedNamespaceDefinitionContext context)
+antlrcpp::Any ASTVisitor::visitUnnamedNamespaceDefinition(CppParser::UnnamedNamespaceDefinitionContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitNestedNamespaceDefinition(CppParser.NestedNamespaceDefinitionContext context)
+antlrcpp::Any ASTVisitor::visitNestedNamespaceDefinition(CppParser::NestedNamespaceDefinitionContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitEnclosingNamespaceSpecifier(CppParser.EnclosingNamespaceSpecifierContext context)
+antlrcpp::Any ASTVisitor::visitEnclosingNamespaceSpecifier(CppParser::EnclosingNamespaceSpecifierContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitNamespaceBody(CppParser.NamespaceBodyContext context)
+antlrcpp::Any ASTVisitor::visitNamespaceBody(CppParser::NamespaceBodyContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitNamespaceAliasDefinition(CppParser.NamespaceAliasDefinitionContext context)
+antlrcpp::Any ASTVisitor::visitNamespaceAliasDefinition(CppParser::NamespaceAliasDefinitionContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitQualifiedNamespaceSpecifier(CppParser.QualifiedNamespaceSpecifierContext context)
+antlrcpp::Any ASTVisitor::visitQualifiedNamespaceSpecifier(CppParser::QualifiedNamespaceSpecifierContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitUsingDeclaration(CppParser.UsingDeclarationContext context)
+antlrcpp::Any ASTVisitor::visitUsingDeclaration(CppParser::UsingDeclarationContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitUsingDeclaratorList(CppParser.UsingDeclaratorListContext context)
+antlrcpp::Any ASTVisitor::visitUsingDeclaratorList(CppParser::UsingDeclaratorListContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitUsingDeclarator(CppParser.UsingDeclaratorContext context)
+antlrcpp::Any ASTVisitor::visitUsingDeclarator(CppParser::UsingDeclaratorContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitUsingDirective(CppParser.UsingDirectiveContext context)
+antlrcpp::Any ASTVisitor::visitUsingDirective(CppParser::UsingDirectiveContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitAsmDefinition(CppParser.AsmDefinitionContext context)
+antlrcpp::Any ASTVisitor::visitAsmDefinition(CppParser::AsmDefinitionContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitLinkageSpecification(CppParser.LinkageSpecificationContext context)
+antlrcpp::Any ASTVisitor::visitLinkageSpecification(CppParser::LinkageSpecificationContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitAttributeSpecifierSequence(CppParser.AttributeSpecifierSequenceContext context)
+antlrcpp::Any ASTVisitor::visitAttributeSpecifierSequence(CppParser::AttributeSpecifierSequenceContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitAttributeSpecifier(CppParser.AttributeSpecifierContext context)
+antlrcpp::Any ASTVisitor::visitAttributeSpecifier(CppParser::AttributeSpecifierContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitAlignmentSpecifier(CppParser.AlignmentSpecifierContext context)
+antlrcpp::Any ASTVisitor::visitAlignmentSpecifier(CppParser::AlignmentSpecifierContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitAttributeUsingPrefix(CppParser.AttributeUsingPrefixContext context)
+antlrcpp::Any ASTVisitor::visitAttributeUsingPrefix(CppParser::AttributeUsingPrefixContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitAttributeList(CppParser.AttributeListContext context)
+antlrcpp::Any ASTVisitor::visitAttributeList(CppParser::AttributeListContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitAttribute(CppParser.AttributeContext context)
+antlrcpp::Any ASTVisitor::visitAttribute(CppParser::AttributeContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitAttributeToken(CppParser.AttributeTokenContext context)
+antlrcpp::Any ASTVisitor::visitAttributeToken(CppParser::AttributeTokenContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitAttributeScopedToken(CppParser.AttributeScopedTokenContext context)
+antlrcpp::Any ASTVisitor::visitAttributeScopedToken(CppParser::AttributeScopedTokenContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitAttributeNamespace(CppParser.AttributeNamespaceContext context)
+antlrcpp::Any ASTVisitor::visitAttributeNamespace(CppParser::AttributeNamespaceContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitAttributeArgumentClause(CppParser.AttributeArgumentClauseContext context)
+antlrcpp::Any ASTVisitor::visitAttributeArgumentClause(CppParser::AttributeArgumentClauseContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitBalancedTokenSequence(CppParser.BalancedTokenSequenceContext context)
+antlrcpp::Any ASTVisitor::visitBalancedTokenSequence(CppParser::BalancedTokenSequenceContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitBalancedToken(CppParser.BalancedTokenContext context)
+antlrcpp::Any ASTVisitor::visitBalancedToken(CppParser::BalancedTokenContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitInitializerDeclaratorList(CppParser.InitializerDeclaratorListContext context)
+antlrcpp::Any ASTVisitor::visitInitializerDeclaratorList(CppParser::InitializerDeclaratorListContext* context)
 {
     // Handle the recursive rule
-    InitializerDeclaratorList list;
-    var childList = context.initializerDeclaratorList();
-    if (childList != null)
+    std::shared_ptr<InitializerDeclaratorList> list;
+    auto childList = context->initializerDeclaratorList();
+    if (childList != nullptr)
     {
-        list = (InitializerDeclaratorList)Visit(childList);
+        list = visit(childList);
     }
     else
     {
-        list = new InitializerDeclaratorList();
+        list = std::make_shared<InitializerDeclaratorList>();
     }
 
     // Handle the new item
-    var item = (InitializerDeclarator)Visit(context.initializerDeclarator());
-    list.Items.Add(item);
+    auto item = visit(context->initializerDeclarator());
+    list->GetItems().push_back(item);
 
     return list;
 }
 
-Node ASTVisitor::VisitInitializerDeclarator(CppParser.InitializerDeclaratorContext context)
+antlrcpp::Any ASTVisitor::visitInitializerDeclarator(CppParser::InitializerDeclaratorContext* context)
 {
     // Check for optional initializer
-    Node ASTVisitor::initializer = null;
-    if (context.initializer() != null)
+    std::shared_ptr<Node> initializer = nullptr;
+    if (context->initializer() != nullptr)
     {
-        initializer = Visit(context.initializer());
+        initializer = visit(context->initializer())
+            .as<std::shared_ptr<Node>>();
     }
 
-    return new InitializerDeclarator()
-    {
-        Declarator = Visit(context.declarator()),
-        Initializer = initializer,
-    };
+    auto declarator = visit(context->declarator())
+        .as<std::shared_ptr<Node>>();
+
+    return std::make_shared<InitializerDeclarator>(
+        std::move(initializer),
+        std::move(declarator));
 }
 
-Node ASTVisitor::VisitPointerDeclarator(CppParser.PointerDeclaratorContext context)
+antlrcpp::Any ASTVisitor::visitPointerDeclarator(CppParser::PointerDeclaratorContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitNoPointerDeclarator(CppParser.NoPointerDeclaratorContext context)
+antlrcpp::Any ASTVisitor::visitNoPointerDeclarator(CppParser::NoPointerDeclaratorContext* context)
 {
     // Check if it was an identifier declarator
-    var identifierExpression = context.identifierExpression();
-    if (identifierExpression != null)
+    auto identifierExpression = context->identifierExpression();
+    if (identifierExpression != nullptr)
     {
-        return Visit(identifierExpression);
+        return visit(identifierExpression);
     }
 
-    throw new InvalidOperationException("Unknown sub type.");
+    throw std::logic_error("Unknown sub type.");
 }
 
-Node ASTVisitor::VisitParametersAndQualifiers(CppParser.ParametersAndQualifiersContext context)
+antlrcpp::Any ASTVisitor::visitParametersAndQualifiers(CppParser::ParametersAndQualifiersContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitTrailingReturnType(CppParser.TrailingReturnTypeContext context)
+antlrcpp::Any ASTVisitor::visitTrailingReturnType(CppParser::TrailingReturnTypeContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitPointerOperator(CppParser.PointerOperatorContext context)
+antlrcpp::Any ASTVisitor::visitPointerOperator(CppParser::PointerOperatorContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitConstVolatileQualifierSequence(CppParser.ConstVolatileQualifierSequenceContext context)
+antlrcpp::Any ASTVisitor::visitConstVolatileQualifierSequence(CppParser::ConstVolatileQualifierSequenceContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitConstVolatileQualifier(CppParser.ConstVolatileQualifierContext context)
+antlrcpp::Any ASTVisitor::visitConstVolatileQualifier(CppParser::ConstVolatileQualifierContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitReferenceQualifier(CppParser.ReferenceQualifierContext context)
+antlrcpp::Any ASTVisitor::visitReferenceQualifier(CppParser::ReferenceQualifierContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitTypeIdentifier(CppParser.TypeIdentifierContext context)
+antlrcpp::Any ASTVisitor::visitTypeIdentifier(CppParser::TypeIdentifierContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitDefiningTypeIdentifier(CppParser.DefiningTypeIdentifierContext context)
+antlrcpp::Any ASTVisitor::visitDefiningTypeIdentifier(CppParser::DefiningTypeIdentifierContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitAbstractDeclarator(CppParser.AbstractDeclaratorContext context)
+antlrcpp::Any ASTVisitor::visitAbstractDeclarator(CppParser::AbstractDeclaratorContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitPointerAbstractDeclarator(CppParser.PointerAbstractDeclaratorContext context)
+antlrcpp::Any ASTVisitor::visitPointerAbstractDeclarator(CppParser::PointerAbstractDeclaratorContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitNoPointerAbstractDeclarator(CppParser.NoPointerAbstractDeclaratorContext context)
+antlrcpp::Any ASTVisitor::visitNoPointerAbstractDeclarator(CppParser::NoPointerAbstractDeclaratorContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitAbstractPackDeclarator(CppParser.AbstractPackDeclaratorContext context)
+antlrcpp::Any ASTVisitor::visitAbstractPackDeclarator(CppParser::AbstractPackDeclaratorContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitNoPointerAbstractPackDeclarator(CppParser.NoPointerAbstractPackDeclaratorContext context)
+antlrcpp::Any ASTVisitor::visitNoPointerAbstractPackDeclarator(CppParser::NoPointerAbstractPackDeclaratorContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitParameterDeclarationClause(CppParser.ParameterDeclarationClauseContext context)
+antlrcpp::Any ASTVisitor::visitParameterDeclarationClause(CppParser::ParameterDeclarationClauseContext* context)
 {
     // TODO Items
-    return new ParameterList();
+    return std::make_shared<ParameterList>();
 }
 
-Node ASTVisitor::VisitParameterDeclarationList(CppParser.ParameterDeclarationListContext context)
+antlrcpp::Any ASTVisitor::visitParameterDeclarationList(CppParser::ParameterDeclarationListContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitParameterDeclaration(CppParser.ParameterDeclarationContext context)
+antlrcpp::Any ASTVisitor::visitParameterDeclaration(CppParser::ParameterDeclarationContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitFunctionDefinition(CppParser.FunctionDefinitionContext context)
+antlrcpp::Any ASTVisitor::visitFunctionDefinition(CppParser::FunctionDefinitionContext* context)
 {
     // Check for optional return type
-    DeclarationSpecifierSequence returnType = null;
-    if (context.declarationSpecifierSequence() != null)
+    std::shared_ptr<DeclarationSpecifierSequence> returnType = nullptr;
+    if (context->declarationSpecifierSequence() != nullptr)
     {
-        returnType = (DeclarationSpecifierSequence)Visit(context.declarationSpecifierSequence());
+        returnType = visit(context->declarationSpecifierSequence());
     }
 
     // Analyze the declarator
-    var declaratorContext = context.functionDeclarator();
-    var identifier = (Identifier)Visit(declaratorContext.identifierExpression());
-    var parameterList = (ParameterList)Visit(declaratorContext.functionParameters());
+    auto declaratorContext = context->functionDeclarator();
+    auto identifier = visit(declaratorContext->identifierExpression())
+        .as<std::shared_ptr<Identifier>>();
+    auto parameterList = visit(declaratorContext->functionParameters())
+        .as<std::shared_ptr<ParameterList>>();
     // TODO Qualifiers
     // TODO Trailiing return type
 
-    var body = Visit(context.functionBody());
+    auto body = visit(context->functionBody())
+        .as<std::shared_ptr<Node>>();
 
-    return new FunctionDefinition()
+    return std::make_shared<FunctionDefinition>(
+        std::move(returnType),
+        std::move(identifier),
+        std::move(parameterList),
+        std::move(body));
+}
+
+antlrcpp::Any ASTVisitor::visitRegularFunctionBody(CppParser::RegularFunctionBodyContext* context)
+{
+    return std::make_shared<RegularFunctionBody>(
+        visit(context->compoundStatement()));
+}
+
+antlrcpp::Any ASTVisitor::visitExplicitlyDefaultedFunction(CppParser::ExplicitlyDefaultedFunctionContext* context)
+{
+    return std::make_shared<DefaultFunctionBody>();
+}
+
+antlrcpp::Any ASTVisitor::visitDeletedFunction(CppParser::DeletedFunctionContext* context)
+{
+    return std::make_shared<DeleteFunctionBody>();
+}
+
+antlrcpp::Any ASTVisitor::visitBraceOrEqualInitializer(CppParser::BraceOrEqualInitializerContext* context)
+{
+    if (context->Equal() != nullptr)
     {
-        ReturnType = returnType,
-        Identifier = identifier,
-        ParameterList = parameterList,
-        Body = body,
-    };
-}
-
-Node ASTVisitor::VisitRegularFunctionBody(CppParser.RegularFunctionBodyContext context)
-{
-    return new RegularFunctionBody()
-    {
-        Statements = (CompoundStatement)Visit(context.compoundStatement()),
-    };
-}
-
-
-Node ASTVisitor::VisitExplicitlyDefaultedFunction(CppParser.ExplicitlyDefaultedFunctionContext context)
-{
-    return new DefaultFunctionBody();
-}
-
-Node ASTVisitor::VisitDeletedFunction(CppParser.DeletedFunctionContext context)
-{
-    return new DeleteFunctionBody();
-}
-
-Node ASTVisitor::VisitBraceOrEqualInitializer(CppParser.BraceOrEqualInitializerContext context)
-{
-    if (context.Equal() != null)
-    {
-        return Visit(context.initializerClause());
+        return visit(context->initializerClause());
     }
     else
     {
-        return Visit(context.bracedInitializerList());
+        return visit(context->bracedInitializerList());
     }
 }
 
-Node ASTVisitor::VisitInitializerList(CppParser.InitializerListContext context)
+antlrcpp::Any ASTVisitor::visitInitializerList(CppParser::InitializerListContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitBracedInitializerList(CppParser.BracedInitializerListContext context)
+antlrcpp::Any ASTVisitor::visitBracedInitializerList(CppParser::BracedInitializerListContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitExpressionOrBracedInitializerList(CppParser.ExpressionOrBracedInitializerListContext context)
+antlrcpp::Any ASTVisitor::visitExpressionOrBracedInitializerList(CppParser::ExpressionOrBracedInitializerListContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitClassSpecifier(CppParser.ClassSpecifierContext context)
+antlrcpp::Any ASTVisitor::visitClassSpecifier(CppParser::ClassSpecifierContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitClassHead(CppParser.ClassHeadContext context)
+antlrcpp::Any ASTVisitor::visitClassHead(CppParser::ClassHeadContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitClassHeadName(CppParser.ClassHeadNameContext context)
+antlrcpp::Any ASTVisitor::visitClassHeadName(CppParser::ClassHeadNameContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitClassVirtualSpecifier(CppParser.ClassVirtualSpecifierContext context)
+antlrcpp::Any ASTVisitor::visitClassVirtualSpecifier(CppParser::ClassVirtualSpecifierContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitClassKey(CppParser.ClassKeyContext context)
+antlrcpp::Any ASTVisitor::visitClassKey(CppParser::ClassKeyContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitMemberSpecification(CppParser.MemberSpecificationContext context)
+antlrcpp::Any ASTVisitor::visitMemberSpecification(CppParser::MemberSpecificationContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitMemberDeclaration(CppParser.MemberDeclarationContext context)
+antlrcpp::Any ASTVisitor::visitMemberDeclaration(CppParser::MemberDeclarationContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitMemberDeclaratorList(CppParser.MemberDeclaratorListContext context)
+antlrcpp::Any ASTVisitor::visitMemberDeclaratorList(CppParser::MemberDeclaratorListContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitMemberDeclarator(CppParser.MemberDeclaratorContext context)
+antlrcpp::Any ASTVisitor::visitMemberDeclarator(CppParser::MemberDeclaratorContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitVirtualSpecifierSequence(CppParser.VirtualSpecifierSequenceContext context)
+antlrcpp::Any ASTVisitor::visitVirtualSpecifierSequence(CppParser::VirtualSpecifierSequenceContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitVirtualSpecifier(CppParser.VirtualSpecifierContext context)
+antlrcpp::Any ASTVisitor::visitVirtualSpecifier(CppParser::VirtualSpecifierContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitPureSpecifier(CppParser.PureSpecifierContext context)
+antlrcpp::Any ASTVisitor::visitPureSpecifier(CppParser::PureSpecifierContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitBaseClause(CppParser.BaseClauseContext context)
+antlrcpp::Any ASTVisitor::visitBaseClause(CppParser::BaseClauseContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitBaseSpecifierList(CppParser.BaseSpecifierListContext context)
+antlrcpp::Any ASTVisitor::visitBaseSpecifierList(CppParser::BaseSpecifierListContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitBaseSpecifier(CppParser.BaseSpecifierContext context)
+antlrcpp::Any ASTVisitor::visitBaseSpecifier(CppParser::BaseSpecifierContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitClassOrDecltype(CppParser.ClassOrDecltypeContext context)
+antlrcpp::Any ASTVisitor::visitClassOrDecltype(CppParser::ClassOrDecltypeContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitAccessSpecifier(CppParser.AccessSpecifierContext context)
+antlrcpp::Any ASTVisitor::visitAccessSpecifier(CppParser::AccessSpecifierContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitConversionFunctionIdentifier(CppParser.ConversionFunctionIdentifierContext context)
+antlrcpp::Any ASTVisitor::visitConversionFunctionIdentifier(CppParser::ConversionFunctionIdentifierContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitConversionTypeIdentifier(CppParser.ConversionTypeIdentifierContext context)
+antlrcpp::Any ASTVisitor::visitConversionTypeIdentifier(CppParser::ConversionTypeIdentifierContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitConversionDeclarator(CppParser.ConversionDeclaratorContext context)
+antlrcpp::Any ASTVisitor::visitConversionDeclarator(CppParser::ConversionDeclaratorContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitConstructorInitializer(CppParser.ConstructorInitializerContext context)
+antlrcpp::Any ASTVisitor::visitConstructorInitializer(CppParser::ConstructorInitializerContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitMemberInitializerList(CppParser.MemberInitializerListContext context)
+antlrcpp::Any ASTVisitor::visitMemberInitializerList(CppParser::MemberInitializerListContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitMemberInitializer(CppParser.MemberInitializerContext context)
+antlrcpp::Any ASTVisitor::visitMemberInitializer(CppParser::MemberInitializerContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitMemberInitializerIdentifier(CppParser.MemberInitializerIdentifierContext context)
+antlrcpp::Any ASTVisitor::visitMemberInitializerIdentifier(CppParser::MemberInitializerIdentifierContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitOperatorFunctionIdentifier(CppParser.OperatorFunctionIdentifierContext context)
+antlrcpp::Any ASTVisitor::visitOperatorFunctionIdentifier(CppParser::OperatorFunctionIdentifierContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitAnyOperator(CppParser.AnyOperatorContext context)
+antlrcpp::Any ASTVisitor::visitAnyOperator(CppParser::AnyOperatorContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitLiteralOperatorIdentifier(CppParser.LiteralOperatorIdentifierContext context)
+antlrcpp::Any ASTVisitor::visitLiteralOperatorIdentifier(CppParser::LiteralOperatorIdentifierContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitTemplateDeclaration(CppParser.TemplateDeclarationContext context)
+antlrcpp::Any ASTVisitor::visitTemplateDeclaration(CppParser::TemplateDeclarationContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitTemplateParameterList(CppParser.TemplateParameterListContext context)
+antlrcpp::Any ASTVisitor::visitTemplateParameterList(CppParser::TemplateParameterListContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitTemplateParameter(CppParser.TemplateParameterContext context)
+antlrcpp::Any ASTVisitor::visitTemplateParameter(CppParser::TemplateParameterContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitTypeParameter(CppParser.TypeParameterContext context)
+antlrcpp::Any ASTVisitor::visitTypeParameter(CppParser::TypeParameterContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitTypeParameterKey(CppParser.TypeParameterKeyContext context)
+antlrcpp::Any ASTVisitor::visitTypeParameterKey(CppParser::TypeParameterKeyContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitSimpleTemplateIdentifier(CppParser.SimpleTemplateIdentifierContext context)
+antlrcpp::Any ASTVisitor::visitSimpleTemplateIdentifier(CppParser::SimpleTemplateIdentifierContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitTemplateIdentifier(CppParser.TemplateIdentifierContext context)
+antlrcpp::Any ASTVisitor::visitTemplateIdentifier(CppParser::TemplateIdentifierContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitTemplateArgumentList(CppParser.TemplateArgumentListContext context)
+antlrcpp::Any ASTVisitor::visitTemplateArgumentList(CppParser::TemplateArgumentListContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitTemplateArgument(CppParser.TemplateArgumentContext context)
+antlrcpp::Any ASTVisitor::visitTemplateArgument(CppParser::TemplateArgumentContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitTypenameSpecifier(CppParser.TypenameSpecifierContext context)
+antlrcpp::Any ASTVisitor::visitTypenameSpecifier(CppParser::TypenameSpecifierContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitExplicitInstantiation(CppParser.ExplicitInstantiationContext context)
+antlrcpp::Any ASTVisitor::visitExplicitInstantiation(CppParser::ExplicitInstantiationContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitExplicitSpecialization(CppParser.ExplicitSpecializationContext context)
+antlrcpp::Any ASTVisitor::visitExplicitSpecialization(CppParser::ExplicitSpecializationContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitDeductionGuide(CppParser.DeductionGuideContext context)
+antlrcpp::Any ASTVisitor::visitDeductionGuide(CppParser::DeductionGuideContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitTryBlock(CppParser.TryBlockContext context)
+antlrcpp::Any ASTVisitor::visitTryBlock(CppParser::TryBlockContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitFunctionTryBlock(CppParser.FunctionTryBlockContext context)
+antlrcpp::Any ASTVisitor::visitFunctionTryBlock(CppParser::FunctionTryBlockContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitHandlerSequence(CppParser.HandlerSequenceContext context)
+antlrcpp::Any ASTVisitor::visitHandlerSequence(CppParser::HandlerSequenceContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitHandler(CppParser.HandlerContext context)
+antlrcpp::Any ASTVisitor::visitHandler(CppParser::HandlerContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitExceptionDeclaration(CppParser.ExceptionDeclarationContext context)
+antlrcpp::Any ASTVisitor::visitExceptionDeclaration(CppParser::ExceptionDeclarationContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitNoExceptionSpecifier(CppParser.NoExceptionSpecifierContext context)
+antlrcpp::Any ASTVisitor::visitNoExceptionSpecifier(CppParser::NoExceptionSpecifierContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitIdentifierList(CppParser.IdentifierListContext context)
+antlrcpp::Any ASTVisitor::visitIdentifierList(CppParser::IdentifierListContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitLiteral(CppParser.LiteralContext context)
+antlrcpp::Any ASTVisitor::visitLiteral(CppParser::LiteralContext* context)
 {
-    if (context.FloatingPointLiteral() != null)
-        throw new NotImplementedException();
-    else if (context.CharacterLiteral() != null)
-        throw new NotImplementedException();
-    else if (context.StringLiteral() != null)
-        throw new NotImplementedException();
+    if (context->FloatingPointLiteral() != nullptr)
+        throw std::logic_error("NotImplemented");
+    else if (context->CharacterLiteral() != nullptr)
+        throw std::logic_error("NotImplemented");
+    else if (context->StringLiteral() != nullptr)
+        throw std::logic_error("NotImplemented");
     else
-        return VisitChildren(context);
+        return visitChildren(context);
 }
 
-Node ASTVisitor::VisitIntegerLiteral(CppParser.IntegerLiteralContext context)
+antlrcpp::Any ASTVisitor::visitIntegerLiteral(CppParser::IntegerLiteralContext* context)
 {
     // Parse the integer value
-    int value = int.Parse(context.GetText());
+    int value = std::stoi(context->getText());
 
-    return new IntegerLiteral(value);
+    return std::make_shared<IntegerLiteral>(value);
 }
 
-Node ASTVisitor::VisitBooleanLiteral(CppParser.BooleanLiteralContext context)
+antlrcpp::Any ASTVisitor::visitBooleanLiteral(CppParser::BooleanLiteralContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitPointerLiteral(CppParser.PointerLiteralContext context)
+antlrcpp::Any ASTVisitor::visitPointerLiteral(CppParser::PointerLiteralContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }
 
-Node ASTVisitor::VisitUserDefinedLiteral(CppParser.UserDefinedLiteralContext context)
+antlrcpp::Any ASTVisitor::visitUserDefinedLiteral(CppParser::UserDefinedLiteralContext* context)
 {
-    throw new NotImplementedException();
+    throw std::logic_error("NotImplemented");
 }

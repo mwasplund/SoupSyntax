@@ -2,17 +2,27 @@
 module SoupSyntax;
 using namespace Soup::Syntax;
 
-const DeclarationSequence& TranslationUnit::GetDeclarations() const
+TranslationUnit::TranslationUnit(std::shared_ptr<DeclarationSequence>&& declarations) :
+    m_declarations(std::move(declarations))
 {
-    return this->declarations;
 }
 
 bool TranslationUnit::operator ==(const TranslationUnit& rhs) const
 {
-    return this->declarations == rhs.declarations;
+    return m_declarations == rhs.m_declarations;
 }
 
 bool TranslationUnit::operator !=(const TranslationUnit& rhs) const
 {
     return !(*this == rhs);
+}
+
+const DeclarationSequence& TranslationUnit::GetDeclarations() const
+{
+    return *m_declarations;
+}
+
+bool TranslationUnit::Equals(const Node& rhs) const
+{
+    throw std::runtime_error("NotImplemented");
 }

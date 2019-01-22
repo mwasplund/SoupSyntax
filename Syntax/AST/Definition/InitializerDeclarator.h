@@ -9,10 +9,14 @@ namespace Soup::Syntax
     export class InitializerDeclarator : public Node
     {
     private:
-        std::unique_ptr<Node> declarator;
-        std::unique_ptr<Node> initializer;
+        std::shared_ptr<Node> m_declarator;
+        std::shared_ptr<Node> m_initializer;
 
     public:
+        InitializerDeclarator(
+            std::shared_ptr<Node>&& declarator,
+            std::shared_ptr<Node>&& initializer);
+
         /// <summary>
         /// Gets or sets the declarator
         /// </summary>
@@ -27,10 +31,6 @@ namespace Soup::Syntax
         /// Equality operator
         /// </summary>
         bool operator ==(const InitializerDeclarator& rhs) const;
-
-        /// <summary>
-        /// Inequality operator
-        /// </summary>
         bool operator !=(const InitializerDeclarator& rhs) const;
 
     protected:

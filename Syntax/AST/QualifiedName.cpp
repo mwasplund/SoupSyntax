@@ -2,27 +2,31 @@
 module SoupSyntax;
 using namespace Soup::Syntax;
 
-const LiteralNode& QualifiedName::GetQualifier() const
-{
-    return *this->qualifier;
-}
-
-const Node& QualifiedName::GetName() const
-{
-    return *this->name;
-}
-
-QualifiedName::QualifiedName()
+QualifiedName::QualifiedName(
+    std::shared_ptr<LiteralNode>&& qualifier,
+    std::shared_ptr<Node>&& name) :
+    m_qualifier(std::move(qualifier)),
+    m_name(std::move(name))
 {
 }
 
-bool QualifiedName::operator ==(const QualifiedName& rhs) const
+bool QualifiedName::operator==(const QualifiedName &rhs) const
 {
-    return this->qualifier == rhs.qualifier &&
-        this->name == rhs.name;
+    return m_qualifier == rhs.m_qualifier &&
+           m_name == rhs.m_name;
 }
 
-bool QualifiedName::operator !=(const QualifiedName& rhs) const
+bool QualifiedName::operator!=(const QualifiedName &rhs) const
 {
     return !(*this == rhs);
+}
+
+const LiteralNode &QualifiedName::GetQualifier() const
+{
+    return *m_qualifier;
+}
+
+const Node &QualifiedName::GetName() const
+{
+    return *m_name;
 }

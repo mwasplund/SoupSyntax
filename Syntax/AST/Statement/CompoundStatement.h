@@ -10,23 +10,20 @@ namespace Soup::Syntax
     export class CompoundStatement : public Node
     {
     private:
-        std::vector<Statement> statements;
+        std::vector<std::shared_ptr<Statement>> m_statements;
 
     public:
-        /// <summary>
-        /// Gets or sets the list of statements
-        /// </summary>
-        const std::vector<Statement>& GetStatements() const;
-
         /// <summary>
         /// Equality operator
         /// </summary>
         bool operator ==(const CompoundStatement& rhs) const;
+        bool operator !=(const CompoundStatement& rhs) const;
 
         /// <summary>
-        /// Inequality operator
+        /// Gets or sets the list of statements
         /// </summary>
-        bool operator !=(const CompoundStatement& rhs) const;
+        const std::vector<std::shared_ptr<Statement>>& GetStatements() const;
+        std::vector<std::shared_ptr<Statement>>& GetStatements();
 
     protected:
         /// <summary>
