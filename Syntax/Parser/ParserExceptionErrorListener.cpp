@@ -1,44 +1,56 @@
 ﻿module SoupSyntax;
 
+using namespace antlr4;
+using namespace antlr4::atn;
+using namespace antlr4::dfa;
+using namespace antlrcpp;
 using namespace Soup::Syntax;
 
-void ParserExceptionErrorListener::ReportAmbiguity(
-    Parser recognizer,
-    DFA dfa,
-    int startIndex,
-    int stopIndex,
-    bool exact,
-    BitSet ambigAlts,
-    ATNConfigSet configs)
+void ParserExceptionErrorListener::reportAmbiguity(
+        Parser *recognizer,
+        const DFA &dfa,
+        size_t startIndex,
+        size_t stopIndex,
+        bool exact,
+        const BitSet &ambigAlts,
+        ATNConfigSet *configs)
 {
-    throw new ParseCanceledException();
+    throw new ParseCancellationException();
 }
 
-void ParserExceptionErrorListener::ReportAttemptingFullContext(
-    Parser recognizer,
-    DFA dfa,
-    int startIndex,
-    int stopIndex,
-    BitSet conflictingAlts,
-    SimulatorState conflictState)
+void ParserExceptionErrorListener::reportAttemptingFullContext(
+        Parser *recognizer,
+        const DFA &dfa,
+        size_t startIndex,
+        size_t stopIndex,
+        const BitSet &conflictingAlts,
+        ATNConfigSet *configs)
 {
-    throw new ParseCanceledException();
+    throw new ParseCancellationException();
 }
 
-void ParserExceptionErrorListenerReportContextSensitivity(
-    Parser recogni::zer, DFA dfa, int startIndex, int stopIndex, int prediction, SimulatorState acceptState)
+void ParserExceptionErrorListener::reportContextSensitivity(
+        Parser *recognizer,
+        const DFA &dfa,
+        size_t startIndex,
+        size_t stopIndex,
+        size_t prediction,
+        ATNConfigSet *configs)
 {
-    Debug.WriteLine("Hmm");
-    //throw new ParseCanceledException();
+    // TODO: Debug.WriteLine("Hmm");
+    //throw new ParseCancellationException();
 }
 
-void ParserExceptionErrorListener::SyntaxError(
-    IRecognizer recognizer,
-    IToken offendingSymbol,
-    int line,
-    int charPositionInLine,
-    string msg,
-    RecognitionException e)
+void ParserExceptionErrorListener::syntaxError(
+        Recognizer *recognizer,
+        Token *offendingSymbol,
+        size_t line,
+        size_t charPositionInLine,
+        const std::string &msg,
+        std::exception_ptr e)
 {
-    throw new ParseCanceledException("line " + line + ":" + charPositionInLine + " " + msg);
+    std::stringstream errorMessage;
+    errorMessage << "line " << line << ":" << charPositionInLine << " " << msg;
+
+    throw new ParseCancellationException(errorMessage.str());
 }

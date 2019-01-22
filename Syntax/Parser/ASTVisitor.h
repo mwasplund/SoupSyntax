@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "Grammar\CppParserBaseVisitor.h"
 
-namespace Soup::StaticAnalysis
+namespace Soup::Syntax
 {
     /// <summary>
     /// Abstract syntax tree visitor

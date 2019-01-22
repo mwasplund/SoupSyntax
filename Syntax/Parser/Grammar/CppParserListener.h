@@ -9,7 +9,7 @@
 /**
  * This interface defines an abstract listener for a parse tree produced by CppParser.
  */
-class  CppParserListener : public antlr4::tree::ParseTreeListener {
+export class CppParserListener : public antlr4::tree::ParseTreeListener {
 public:
 
   virtual void enterTypedefName(CppParser::TypedefNameContext *ctx) = 0;

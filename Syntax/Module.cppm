@@ -31,4 +31,8 @@ import Antlr4.Runtime;
 #include "AST\Statement\ReturnStatement.h"
 #include "AST\Statement\Statement.h"
 #include "Parser\LexerExceptionErrorListener.h"
+#include "Parser\ParserExceptionErrorListener.h"
 #include "Parser\Grammar\CppLexer.h"
+#include "Parser\Grammar\CppParser.h"
+#include "Parser\Grammar\CppParserListener.h"
+#include "Parser\Grammar\CppParservisitor.h"

@@ -9,7 +9,7 @@
  * This class defines an abstract visitor for a parse tree
  * produced by CppParser.
  */
-class  CppParserVisitor : public antlr4::tree::AbstractParseTreeVisitor {
+export class  CppParserVisitor : public antlr4::tree::AbstractParseTreeVisitor {
 public:
 
   /**

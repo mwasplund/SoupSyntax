@@ -1,3 +1,5 @@
+#pragma once
+#include "SoupAssert.h"
 
 namespace Soup::Syntax::UnitTests
 {
@@ -283,7 +285,7 @@ namespace Soup::Syntax::UnitTests
         }
 
     private:
-        void RunTest(const std::string& sourceCode, int expectedToken)
+        void RunTest(const std::string& sourceCode, size_t expectedToken)
         {
             // Parse the file
             auto inputStream = std::make_unique<antlr4::ANTLRInputStream>(sourceCode);
@@ -298,13 +300,8 @@ namespace Soup::Syntax::UnitTests
             auto tokens = lexer->getAllTokens();
 
             // Verify we got the single expected token
-            //Assert.Equal(1, tokens.Count);
-            //Assert.Equal(expectedToken, tokens[0].Type);
-            // TODO:
-            if (tokens.size() != 1)
-                throw std::exception();
-            if (tokens[0]->getType() != expectedToken)
-                throw std::exception();
+            Assert::AreEqual((size_t)1, tokens.size());
+            Assert::AreEqual(expectedToken, tokens[0]->getType());
         }
     };
 }

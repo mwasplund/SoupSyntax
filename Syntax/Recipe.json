@@ -33,6 +33,10 @@
     "AST/Statement/ReturnStatement.cpp",
     "AST/Statement/Statement.cpp",
     "Parser/LexerExceptionErrorListener.cpp",
-    "Parser/Grammar/CppLexer.cpp"
+    "Parser/ParserExceptionErrorListener.cpp",
+    "Parser/Grammar/CppLexer.cpp",
+    "Parser/Grammar/CppParser.cpp",
+    "Parser/Grammar/CppParserListener.cpp",
+    "Parser/Grammar/CppParserVisitor.cpp"
   ]
 }
