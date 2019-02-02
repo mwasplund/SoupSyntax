@@ -14,5 +14,5 @@ void LexerExceptionErrorListener::syntaxError(
     std::stringstream errorMessage;
     errorMessage << "line " << line << ":" << charPositionInLine << " " << msg;
 
-    throw new ParseCancellationException(errorMessage.str());
+    throw ParseCancellationException(errorMessage.str());
 }

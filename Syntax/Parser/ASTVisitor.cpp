@@ -59,7 +59,8 @@ antlrcpp::Any ASTVisitor::visitPrimaryExpression(CppParser::PrimaryExpressionCon
 antlrcpp::Any ASTVisitor::visitUnqualifiedIdentifier(CppParser::UnqualifiedIdentifierContext* context)
 {
     auto identifier = context->Identifier();
-    return std::make_shared<Identifier>(identifier->getText());
+    return std::dynamic_pointer_cast<Node>(
+        std::make_shared<Identifier>(identifier->getText()));
 }
 
 antlrcpp::Any ASTVisitor::visitQualifiedIdentifier(CppParser::QualifiedIdentifierContext* context)
@@ -400,6 +401,7 @@ antlrcpp::Any ASTVisitor::visitConditionalExpression(CppParser::ConditionalExpre
 
 antlrcpp::Any ASTVisitor::visitThrowExpression(CppParser::ThrowExpressionContext* context)
 {
+    // Tracer::Log::Error(L"visitThrowExpression: Not Impletement!");
     throw std::logic_error("NotImplemented");
 }
 
@@ -417,36 +419,43 @@ antlrcpp::Any ASTVisitor::visitAssignmentExpression(CppParser::AssignmentExpress
 
 antlrcpp::Any ASTVisitor::visitAssignmentOperator(CppParser::AssignmentOperatorContext* context)
 {
+    // Tracer::Log::Error(L"visitAssignmentOperator: Not Impletement!");
     throw std::logic_error("NotImplemented");
 }
 
 antlrcpp::Any ASTVisitor::visitExpression(CppParser::ExpressionContext* context)
 {
+    // Tracer::Log::Error(L"visitExpression: Not Impletement!");
     throw std::logic_error("NotImplemented");
 }
 
 antlrcpp::Any ASTVisitor::visitConstantExpression(CppParser::ConstantExpressionContext* context)
 {
+    // Tracer::Log::Error(L"visitConstantExpression: Not Impletement!");
     throw std::logic_error("NotImplemented");
 }
 
 antlrcpp::Any ASTVisitor::visitInitializerStatement(CppParser::InitializerStatementContext* context)
 {
+    // Tracer::Log::Error(L"visitInitializerStatement: Not Impletement!");
     throw std::logic_error("NotImplemented");
 }
 
 antlrcpp::Any ASTVisitor::visitCondition(CppParser::ConditionContext* context)
 {
+    // Tracer::Log::Error(L"visitCondition: Not Impletement!");
     throw std::logic_error("NotImplemented");
 }
 
 antlrcpp::Any ASTVisitor::visitLabeledStatement(CppParser::LabeledStatementContext* context)
 {
+    // Tracer::Log::Error(L"visitLabeledStatement: Not Impletement!");
     throw std::logic_error("NotImplemented");
 }
 
 antlrcpp::Any ASTVisitor::visitExpressionStatement(CppParser::ExpressionStatementContext* context)
 {
+    // Tracer::Log::Error(L"visitExpressionStatement: Not Impletement!");
     throw std::logic_error("NotImplemented");
 }
 
@@ -457,7 +466,7 @@ antlrcpp::Any ASTVisitor::visitCompoundStatement(CppParser::CompoundStatementCon
     auto sequence = context->statementSequence();
     if (sequence != nullptr)
     {
-        result = visit(sequence);
+        result = visit(sequence).as<std::shared_ptr<CompoundStatement>>();
     }
     else
     {
@@ -491,36 +500,43 @@ antlrcpp::Any ASTVisitor::visitStatementSequence(CppParser::StatementSequenceCon
 
 antlrcpp::Any ASTVisitor::visitSelectionStatement(CppParser::SelectionStatementContext* context)
 {
+    // Tracer::Log::Error(L"visitSelectionStatement: Not Impletement!");
     throw std::logic_error("NotImplemented");
 }
 
 antlrcpp::Any ASTVisitor::visitIterationStatement(CppParser::IterationStatementContext* context)
 {
+    // Tracer::Log::Error(L"visitSelectionStatement: Not Impletement!");
     throw std::logic_error("NotImplemented");
 }
 
 antlrcpp::Any ASTVisitor::visitForInitializerStatement(CppParser::ForInitializerStatementContext* context)
 {
+    // Tracer::Log::Error(L"visitForInitializerStatement: Not Impletement!");
     throw std::logic_error("NotImplemented");
 }
 
 antlrcpp::Any ASTVisitor::visitForRangeDeclaration(CppParser::ForRangeDeclarationContext* context)
 {
+    // Tracer::Log::Error(L"visitForRangeDeclaration: Not Impletement!");
     throw std::logic_error("NotImplemented");
 }
 
 antlrcpp::Any ASTVisitor::visitForRangeInitializer(CppParser::ForRangeInitializerContext* context)
 {
+    // Tracer::Log::Error(L"visitForRangeInitializer: Not Impletement!");
     throw std::logic_error("NotImplemented");
 }
 
 antlrcpp::Any ASTVisitor::visitJumpStatement(CppParser::JumpStatementContext* context)
 {
+    // Tracer::Log::Error(L"visitJumpStatement: Not Impletement!");
     throw std::logic_error("NotImplemented");
 }
 
 antlrcpp::Any ASTVisitor::visitDeclarationStatement(CppParser::DeclarationStatementContext* context)
 {
+    // Tracer::Log::Error(L"visitDeclarationStatement: Not Impletement!");
     throw std::logic_error("NotImplemented");
 }
 
@@ -531,7 +547,7 @@ antlrcpp::Any ASTVisitor::visitDeclarationSequence(CppParser::DeclarationSequenc
     auto childSequence = context->declarationSequence();
     if (childSequence != nullptr)
     {
-        sequence = visit(childSequence);
+        sequence = visit(childSequence).as<std::shared_ptr<DeclarationSequence>>();
     }
     else
     {
@@ -540,8 +556,9 @@ antlrcpp::Any ASTVisitor::visitDeclarationSequence(CppParser::DeclarationSequenc
 
     // Handle the new item
     auto declaration = context->declaration();
+    auto declarationNode = visit(declaration).as<std::shared_ptr<Node>>();
     sequence->GetDeclarations().push_back(
-        visit(declaration).as<std::shared_ptr<Declaration>>());
+        std::dynamic_pointer_cast<Declaration>(declarationNode));
 
     return sequence;
 }
@@ -564,9 +581,10 @@ antlrcpp::Any ASTVisitor::visitSimpleDeclaration(CppParser::SimpleDeclarationCon
         .as<std::shared_ptr<InitializerDeclaratorList>>();
 
     // TODO
-    return std::make_shared<SimpleDefinition>(
-        std::move(declarationSpecifierSequence),
-        std::move(initializerDeclaratorList));
+    return std::dynamic_pointer_cast<Node>(
+        std::make_shared<SimpleDefinition>(
+            std::move(declarationSpecifierSequence),
+            std::move(initializerDeclaratorList)));
 }
 
 antlrcpp::Any ASTVisitor::visitStaticAssertDeclaration(CppParser::StaticAssertDeclarationContext* context)
@@ -603,7 +621,7 @@ antlrcpp::Any ASTVisitor::visitDeclarationSpecifierSequence(CppParser::Declarati
     auto childSequence = context->declarationSpecifierSequence();
     if (childSequence != nullptr)
     {
-        sequence = visit(childSequence);
+        sequence = visit(childSequence).as<std::shared_ptr<DeclarationSpecifierSequence>>();
     }
     else
     {
@@ -641,33 +659,47 @@ antlrcpp::Any ASTVisitor::visitDefiningTypeSpecifierSequence(CppParser::Defining
 antlrcpp::Any ASTVisitor::visitSimpleTypeSpecifier(CppParser::SimpleTypeSpecifierContext* context)
 {
     if (context->Char() != nullptr)
-        return std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Char);
+        return std::dynamic_pointer_cast<Node>(
+            std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Char));
     else if (context->Char16() != nullptr)
-        return std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Char16);
+        return std::dynamic_pointer_cast<Node>(
+            std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Char16));
     else if (context->Char32() != nullptr)
-        return std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Char32);
+        return std::dynamic_pointer_cast<Node>(
+            std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Char32));
     else if (context->WChar() != nullptr)
-        return std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::WChar);
+        return std::dynamic_pointer_cast<Node>(
+            std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::WChar));
     else if (context->Bool() != nullptr)
-        return std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Bool);
+        return std::dynamic_pointer_cast<Node>(
+            std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Bool));
     else if (context->Short() != nullptr)
-        return std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Short);
+        return std::dynamic_pointer_cast<Node>(
+            std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Short));
     else if (context->Int() != nullptr)
-        return std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Int);
+        return std::dynamic_pointer_cast<Node>(
+            std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Int));
     else if (context->Long() != nullptr)
-        return std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Long);
+        return std::dynamic_pointer_cast<Node>(
+            std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Long));
     else if (context->Signed() != nullptr)
-        return std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Signed);
+        return std::dynamic_pointer_cast<Node>(
+            std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Signed));
     else if (context->Unsigned() != nullptr)
-        return std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Unsigned);
+        return std::dynamic_pointer_cast<Node>(
+            std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Unsigned));
     else if (context->Float() != nullptr)
-        return std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Float);
+        return std::dynamic_pointer_cast<Node>(
+            std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Float));
     else if (context->Double() != nullptr)
-        return std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Double);
+        return std::dynamic_pointer_cast<Node>(
+            std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Double));
     else if (context->Void() != nullptr)
-        return std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Void);
+        return std::dynamic_pointer_cast<Node>(
+            std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Void));
     else if (context->Auto() != nullptr)
-        return std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Auto);
+        return std::dynamic_pointer_cast<Node>(
+            std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Auto));
 
     throw std::logic_error("Unexpected simple type.");
 }
@@ -869,7 +901,7 @@ antlrcpp::Any ASTVisitor::visitInitializerDeclaratorList(CppParser::InitializerD
     auto childList = context->initializerDeclaratorList();
     if (childList != nullptr)
     {
-        list = visit(childList);
+        list = visit(childList).as<std::shared_ptr<InitializerDeclaratorList>>();
     }
     else
     {
@@ -877,7 +909,7 @@ antlrcpp::Any ASTVisitor::visitInitializerDeclaratorList(CppParser::InitializerD
     }
 
     // Handle the new item
-    auto item = visit(context->initializerDeclarator());
+    auto item = visit(context->initializerDeclarator()).as<std::shared_ptr<InitializerDeclarator>>();
     list->GetItems().push_back(item);
 
     return list;
@@ -1005,7 +1037,7 @@ antlrcpp::Any ASTVisitor::visitFunctionDefinition(CppParser::FunctionDefinitionC
     std::shared_ptr<DeclarationSpecifierSequence> returnType = nullptr;
     if (context->declarationSpecifierSequence() != nullptr)
     {
-        returnType = visit(context->declarationSpecifierSequence());
+        returnType = visit(context->declarationSpecifierSequence()).as<std::shared_ptr<DeclarationSpecifierSequence>>();
     }
 
     // Analyze the declarator
@@ -1322,7 +1354,8 @@ antlrcpp::Any ASTVisitor::visitIntegerLiteral(CppParser::IntegerLiteralContext* 
     // Parse the integer value
     int value = std::stoi(context->getText());
 
-    return std::make_shared<IntegerLiteral>(value);
+    return std::dynamic_pointer_cast<Node>(
+        std::make_shared<IntegerLiteral>(value));
 }
 
 antlrcpp::Any ASTVisitor::visitBooleanLiteral(CppParser::BooleanLiteralContext* context)

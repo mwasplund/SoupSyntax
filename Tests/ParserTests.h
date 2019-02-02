@@ -16,7 +16,7 @@ namespace Soup::Syntax::UnitTests
                 [](CppParser& parser)
                 {
                     auto context = parser.booleanLiteral();
-                    Assert::NotNull(context);
+                    Assert::NotNull(context, "Verify the context is non-null.");
                 });
         }
 
@@ -29,7 +29,7 @@ namespace Soup::Syntax::UnitTests
                 [](CppParser& parser)
                 {
                     auto context = parser.pointerLiteral();
-                    Assert::NotNull(context);
+                    Assert::NotNull(context, "Verify the context is non-null.");
                 });
         }
 
@@ -47,7 +47,7 @@ namespace Soup::Syntax::UnitTests
                 [](CppParser& parser)
                 {
                     auto context = parser.literal();
-                    Assert::NotNull(context);
+                    Assert::NotNull(context, "Verify the context is non-null.");
                 });
         }
 

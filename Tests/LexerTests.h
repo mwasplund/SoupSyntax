@@ -300,8 +300,8 @@ namespace Soup::Syntax::UnitTests
             auto tokens = lexer->getAllTokens();
 
             // Verify we got the single expected token
-            Assert::AreEqual((size_t)1, tokens.size());
-            Assert::AreEqual(expectedToken, tokens[0]->getType());
+            Assert::AreEqual((size_t)1, tokens.size(), "Verify one token.");
+            Assert::AreEqual(expectedToken, tokens[0]->getType(), "Verify token type.");
         }
     };
 }

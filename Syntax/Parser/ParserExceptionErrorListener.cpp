@@ -15,7 +15,7 @@ void ParserExceptionErrorListener::reportAmbiguity(
         const BitSet &ambigAlts,
         ATNConfigSet *configs)
 {
-    throw new ParseCancellationException();
+    throw ParseCancellationException();
 }
 
 void ParserExceptionErrorListener::reportAttemptingFullContext(
@@ -26,7 +26,7 @@ void ParserExceptionErrorListener::reportAttemptingFullContext(
         const BitSet &conflictingAlts,
         ATNConfigSet *configs)
 {
-    throw new ParseCancellationException();
+    throw ParseCancellationException();
 }
 
 void ParserExceptionErrorListener::reportContextSensitivity(
@@ -38,7 +38,7 @@ void ParserExceptionErrorListener::reportContextSensitivity(
         ATNConfigSet *configs)
 {
     // TODO: Debug.WriteLine("Hmm");
-    //throw new ParseCancellationException();
+    //throw ParseCancellationException();
 }
 
 void ParserExceptionErrorListener::syntaxError(
@@ -52,5 +52,5 @@ void ParserExceptionErrorListener::syntaxError(
     std::stringstream errorMessage;
     errorMessage << "line " << line << ":" << charPositionInLine << " " << msg;
 
-    throw new ParseCancellationException(errorMessage.str());
+    throw ParseCancellationException(errorMessage.str());
 }

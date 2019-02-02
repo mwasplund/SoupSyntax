@@ -30,7 +30,7 @@ namespace Soup::Syntax::UnitTests
                         })));
 
             auto actual = TestUtils::GenerateAST(source.get());
-            Assert::AreEqual(expected, actual);
+            Assert::AreEqual(expected, actual, "Verify AST matches.");
         }
 
         // [[Fact]]
@@ -55,7 +55,7 @@ namespace Soup::Syntax::UnitTests
                         })));
 
             auto actual = TestUtils::GenerateAST(source.get());
-            Assert::AreEqual(expected, actual);
+            Assert::AreEqual(expected, actual, "Verify AST matches.");
         }
 
         // [[Theory]]
@@ -75,8 +75,8 @@ namespace Soup::Syntax::UnitTests
         // [[InlineData("auto", PrimitiveDataType.Auto)]]
         void GlobalPrimitiveVariable(std::string typeString, PrimitiveDataType type)
         {
-            auto source = std::make_unique<antlr4::ANTLRInputStream>(
-                "{typeString} GlobalVariable = 1;");
+            auto globalType = typeString + " GlobalVariable = 1;";
+            auto source = std::make_unique<antlr4::ANTLRInputStream>(globalType);
 
             auto expected = TestUtils::CreateSingleDeclaration(
                 std::make_shared<SimpleDefinition>(
@@ -94,7 +94,7 @@ namespace Soup::Syntax::UnitTests
                         })));
 
             auto actual = TestUtils::GenerateAST(source.get());
-            Assert::AreEqual(expected, actual);
+            Assert::AreEqual(expected, actual, "Verify AST matches.");
         }
 
         // [[Fact]]
@@ -122,7 +122,7 @@ namespace Soup::Syntax::UnitTests
                         })));
 
             auto actual = TestUtils::GenerateAST(source.get());
-            Assert::AreEqual(expected, actual);
+            Assert::AreEqual(expected, actual, "Verify AST matches.");
         }
     };
 }
