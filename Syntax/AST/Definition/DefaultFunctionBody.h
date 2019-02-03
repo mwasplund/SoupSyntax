@@ -6,18 +6,19 @@ namespace Soup::Syntax
     /// <summary>
     /// The default function body
     /// </summary>
-    export class DefaultFunctionBody : public Node
+    export class DefaultFunctionBody final : public Node
     {
     public:
         /// <summary>
         /// Equality operator
         /// </summary>
         bool operator ==(const DefaultFunctionBody& rhs) const;
+        bool operator !=(const DefaultFunctionBody& rhs) const;
 
         /// <summary>
-        /// Inequality operator
+        /// Convert to string representation
         /// </summary>
-        bool operator !=(const DefaultFunctionBody& rhs) const;
+        virtual std::string ToString() const override final;
 
     protected:
         /// <summary>

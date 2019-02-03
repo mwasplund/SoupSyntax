@@ -6,7 +6,7 @@ namespace Soup::Syntax
     /// <summary>
     /// An identifier
     /// </summary>
-    export class Identifier : public Node
+    export class Identifier final : public Node
     {
     private:
         std::string value;
@@ -26,11 +26,12 @@ namespace Soup::Syntax
         /// Equality operator
         /// </summary>
         bool operator ==(const Identifier& rhs) const;
+        bool operator !=(const Identifier& rhs) const;
 
         /// <summary>
-        /// Inequality operator
+        /// Convert to string representation
         /// </summary>
-        bool operator !=(const Identifier& rhs) const;
+        virtual std::string ToString() const override final;
 
     protected:
         /// <summary>

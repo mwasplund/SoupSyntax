@@ -12,7 +12,12 @@ bool ReturnStatement::operator !=(const ReturnStatement& rhs) const
     return !(*this == rhs);
 }
 
+std::string ReturnStatement::ToString() const
+{
+    return "ReturnStatement";
+}
+
 bool ReturnStatement::Equals(const Node& rhs) const
 {
-    throw std::runtime_error("NotImplemented");
+    return *this == static_cast<const ReturnStatement&>(rhs);
 }

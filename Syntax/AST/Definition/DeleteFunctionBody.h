@@ -6,18 +6,19 @@ namespace Soup::Syntax
     /// <summary>
     /// The delete function body
     /// </summary>
-    export class DeleteFunctionBody : public Node
+    export class DeleteFunctionBody final : public Node
     {
     public:
         /// <summary>
         /// Equality operator
         /// </summary>
         bool operator ==(const DeleteFunctionBody& rhs) const;
+        bool operator !=(const DeleteFunctionBody& rhs) const;
 
         /// <summary>
-        /// Inequality operator
+        /// Convert to string representation
         /// </summary>
-        bool operator !=(const DeleteFunctionBody& rhs) const;
+        virtual std::string ToString() const override final;
 
     protected:
         /// <summary>

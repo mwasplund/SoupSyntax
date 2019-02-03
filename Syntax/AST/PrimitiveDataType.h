@@ -82,7 +82,7 @@ namespace Soup::Syntax
     /// <summary>
     /// Primitive data type node
     /// </summary>
-    export class PrimitiveDataTypeNode : public Node
+    export class PrimitiveDataTypeNode final : public Node
     {
     private:
         PrimitiveDataType type;
@@ -102,11 +102,12 @@ namespace Soup::Syntax
         /// Equality operator
         /// </summary>
         bool operator ==(const PrimitiveDataTypeNode& rhs) const;
+        bool operator !=(const PrimitiveDataTypeNode& rhs) const;
 
         /// <summary>
-        /// Inequality operator
+        /// Convert to string representation
         /// </summary>
-        bool operator !=(const PrimitiveDataTypeNode& rhs) const;
+        virtual std::string ToString() const override final;
 
     protected:
         /// <summary>

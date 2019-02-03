@@ -9,7 +9,7 @@ TranslationUnit::TranslationUnit(std::shared_ptr<DeclarationSequence>&& declarat
 
 bool TranslationUnit::operator ==(const TranslationUnit& rhs) const
 {
-    return m_declarations == rhs.m_declarations;
+    return *m_declarations == *rhs.m_declarations;
 }
 
 bool TranslationUnit::operator !=(const TranslationUnit& rhs) const
@@ -22,7 +22,18 @@ const DeclarationSequence& TranslationUnit::GetDeclarations() const
     return *m_declarations;
 }
 
+std::string TranslationUnit::ToString() const
+{
+    std::string result = "TranslationUnit";
+    if (m_declarations != nullptr)
+    {
+        result += "\n" + m_declarations->ToString();
+    }
+
+    return result;
+}
+
 bool TranslationUnit::Equals(const Node& rhs) const
 {
-    throw std::runtime_error("NotImplemented");
+    return *this == static_cast<const TranslationUnit&>(rhs);
 }

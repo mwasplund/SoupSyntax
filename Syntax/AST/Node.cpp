@@ -4,7 +4,7 @@ using namespace Soup::Syntax;
 bool Node::operator==(const Node &rhs) const
 {
   return typeid(*this) == typeid(rhs) &&
-         this->Equals(rhs);
+         Equals(rhs);
 }
 
 bool Node::operator!=(const Node &rhs) const

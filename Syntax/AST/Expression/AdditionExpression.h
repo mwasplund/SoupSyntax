@@ -6,18 +6,19 @@ namespace Soup::Syntax
     /// <summary>
     /// Addition
     /// </summary>
-    export class AdditionExpression : public ArithmeticExpression
+    export class AdditionExpression final : public ArithmeticExpression
     {
     public:
         /// <summary>
         /// Equality operator
         /// </summary>
         bool operator ==(const AdditionExpression& rhs) const;
+        bool operator !=(const AdditionExpression& rhs) const;
 
         /// <summary>
-        /// Inequality operator
+        /// Convert to string representation
         /// </summary>
-        bool operator !=(const AdditionExpression& rhs) const;
+        virtual std::string ToString() const override final;
 
     protected:
         /// <summary>

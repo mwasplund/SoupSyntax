@@ -6,7 +6,7 @@ namespace Soup::Syntax
     /// <summary>
     /// The initializer declarator node
     /// </summary>
-    export class InitializerDeclarator : public Node
+    export class InitializerDeclarator final : public Node
     {
     private:
         std::shared_ptr<Node> m_declarator;
@@ -32,6 +32,11 @@ namespace Soup::Syntax
         /// </summary>
         bool operator ==(const InitializerDeclarator& rhs) const;
         bool operator !=(const InitializerDeclarator& rhs) const;
+
+        /// <summary>
+        /// Convert to string representation
+        /// </summary>
+        virtual std::string ToString() const override final;
 
     protected:
         /// <summary>

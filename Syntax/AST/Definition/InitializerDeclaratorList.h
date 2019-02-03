@@ -6,7 +6,7 @@ namespace Soup::Syntax
     /// <summary>
     /// The initializer declarator list node
     /// </summary>
-    export class InitializerDeclaratorList : public Node
+    export class InitializerDeclaratorList final : public Node
     {
     private:
         std::vector<std::shared_ptr<InitializerDeclarator>> m_items;
@@ -29,6 +29,11 @@ namespace Soup::Syntax
         /// </summary>
         const std::vector<std::shared_ptr<InitializerDeclarator>>& GetItems() const;
         std::vector<std::shared_ptr<InitializerDeclarator>>& GetItems();
+
+        /// <summary>
+        /// Convert to string representation
+        /// </summary>
+        virtual std::string ToString() const override final;
 
     protected:
         /// <summary>

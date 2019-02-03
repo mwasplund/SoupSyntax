@@ -7,7 +7,7 @@ namespace Soup::Syntax
     /// <summary>
     /// The regular function body
     /// </summary>
-    export class RegularFunctionBody : public Node
+    export class RegularFunctionBody final : public Node
     {
     private:
         CompoundStatement statements;
@@ -22,11 +22,12 @@ namespace Soup::Syntax
         /// Equality operator
         /// </summary>
         bool operator ==(const RegularFunctionBody& rhs) const;
+        bool operator !=(const RegularFunctionBody& rhs) const;
 
         /// <summary>
-        /// Inequality operator
+        /// Convert to string representation
         /// </summary>
-        bool operator !=(const RegularFunctionBody& rhs) const;
+        virtual std::string ToString() const override final;
 
     protected:
         /// <summary>

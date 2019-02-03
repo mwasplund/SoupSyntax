@@ -6,31 +6,32 @@ namespace Soup::Syntax
     /// <summary>
     /// An integer value
     /// </summary>
-    export class IntegerLiteral : public LiteralNode
+    export class IntegerLiteral final : public LiteralNode
     {
     private:
         int value;
 
     public:
         /// <summary>
-        /// Gets or sets the value
-        /// </summary>
-        int GetValue() const;
-
-        /// <summary>
         /// Initialize
         /// </summary>
         IntegerLiteral(int value);
 
         /// <summary>
+        /// Gets or sets the value
+        /// </summary>
+        int GetValue() const;
+
+        /// <summary>
         /// Equality operator
         /// </summary>
         bool operator ==(const IntegerLiteral& rhs) const;
+        bool operator !=(const IntegerLiteral& rhs) const;
 
         /// <summary>
-        /// Inequality operator
+        /// Convert to string representation
         /// </summary>
-        bool operator !=(const IntegerLiteral& rhs) const;
+        virtual std::string ToString() const override final;
 
     protected:
         /// <summary>

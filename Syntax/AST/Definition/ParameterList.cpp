@@ -18,7 +18,12 @@ bool ParameterList::operator !=(const ParameterList& rhs) const
     return !(*this == rhs);
 }
 
+std::string ParameterList::ToString() const
+{
+    return "ParameterList";
+}
+
 bool ParameterList::Equals(const Node& rhs) const
 {
-    throw std::runtime_error("NotImplemented");
+    return *this == static_cast<const ParameterList&>(rhs);
 }

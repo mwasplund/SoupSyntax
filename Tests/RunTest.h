@@ -11,7 +11,14 @@ int RunTest(std::function<void(void)> test)
   catch (std::exception& ex)
   {
     std::wcout << L"Tests FAIL!" << std::endl;
-    std::wcout << ex.what() << std::endl;
+    if (std::string(ex.what()).empty())
+    {
+      std::wcout << typeid(ex).name() << std::endl;
+    }
+    else
+    {
+      std::wcout << ex.what() << std::endl;
+    }
   }
   catch (...)
   {

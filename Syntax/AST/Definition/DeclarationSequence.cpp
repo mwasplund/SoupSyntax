@@ -25,7 +25,15 @@ DeclarationSequence& DeclarationSequence::operator =(DeclarationSequence&& rhs)
 
 bool DeclarationSequence::operator ==(const DeclarationSequence& rhs) const
 {
-    return m_declarations == rhs.m_declarations;
+    return std::equal(
+        begin(m_declarations),
+        end(m_declarations),
+        begin(rhs.m_declarations),
+        end(rhs.m_declarations),
+        [](const std::shared_ptr<Declaration>& lhs, const std::shared_ptr<Declaration>& rhs)
+        {
+            return *lhs == *rhs;
+        });
 }
 
 bool DeclarationSequence::operator !=(const DeclarationSequence& rhs) const
@@ -43,7 +51,18 @@ std::vector<std::shared_ptr<Declaration>>& DeclarationSequence::GetDeclarations(
     return m_declarations;
 }
 
+std::string DeclarationSequence::ToString() const
+{
+    std::string result = "DeclarationSequence";
+    for (auto declaration : m_declarations)
+    {
+        result += "\n" + declaration->ToString();
+    }
+
+    return result;
+}
+
 bool DeclarationSequence::Equals(const Node& rhs) const
 {
-    throw std::runtime_error("NotImplemented");
+    return *this == static_cast<const DeclarationSequence&>(rhs);
 }

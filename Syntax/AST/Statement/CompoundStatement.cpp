@@ -22,7 +22,12 @@ std::vector<std::shared_ptr<Statement>>& CompoundStatement::GetStatements()
     return m_statements;
 }
 
+std::string CompoundStatement::ToString() const
+{
+    return "CompoundStatement";
+}
+
 bool CompoundStatement::Equals(const Node& rhs) const
 {
-    throw std::runtime_error("NotImplemented");
+    return *this == static_cast<const CompoundStatement&>(rhs);
 }

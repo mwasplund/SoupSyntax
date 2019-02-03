@@ -15,7 +15,15 @@ DeclarationSpecifierSequence::DeclarationSpecifierSequence(
 
 bool DeclarationSpecifierSequence::operator ==(const DeclarationSpecifierSequence& rhs) const
 {
-    return m_specifiers == rhs.m_specifiers;
+    return std::equal(
+        begin(m_specifiers),
+        end(m_specifiers),
+        begin(rhs.m_specifiers),
+        end(rhs.m_specifiers),
+        [](const std::shared_ptr<Node>& lhs, const std::shared_ptr<Node>& rhs)
+        {
+            return *lhs == *rhs;
+        });
 }
 
 bool DeclarationSpecifierSequence::operator !=(const DeclarationSpecifierSequence& rhs) const
@@ -33,7 +41,18 @@ std::vector<std::shared_ptr<Node>>& DeclarationSpecifierSequence::GetSpecifiers(
     return m_specifiers;
 }
 
+std::string DeclarationSpecifierSequence::ToString() const
+{
+    std::string result = "DeclarationSpecifierSequence";
+    for (auto specifier : m_specifiers)
+    {
+        result += "\n" + specifier->ToString();
+    }
+
+    return result;
+}
+
 bool DeclarationSpecifierSequence::Equals(const Node& rhs) const
 {
-    throw std::runtime_error("NotImplemented");
+    return *this == static_cast<const DeclarationSpecifierSequence&>(rhs);
 }

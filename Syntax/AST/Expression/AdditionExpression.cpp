@@ -12,3 +12,13 @@ bool AdditionExpression::operator !=(const AdditionExpression& rhs) const
 {
     return !(*this == rhs);
 }
+
+std::string AdditionExpression::ToString() const
+{
+    return "AdditionExpression";
+}
+
+bool AdditionExpression::Equals(const Node& rhs) const
+{
+    return *this == static_cast<const AdditionExpression&>(rhs);
+}

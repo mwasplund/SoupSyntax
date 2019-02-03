@@ -7,7 +7,7 @@ namespace Soup::Syntax
     /// <summary>
     /// Compound statement node
     /// </summary>
-    export class CompoundStatement : public Node
+    export class CompoundStatement final : public Node
     {
     private:
         std::vector<std::shared_ptr<Statement>> m_statements;
@@ -24,6 +24,11 @@ namespace Soup::Syntax
         /// </summary>
         const std::vector<std::shared_ptr<Statement>>& GetStatements() const;
         std::vector<std::shared_ptr<Statement>>& GetStatements();
+
+        /// <summary>
+        /// Convert to string representation
+        /// </summary>
+        virtual std::string ToString() const override final;
 
     protected:
         /// <summary>

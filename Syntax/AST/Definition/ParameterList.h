@@ -6,7 +6,7 @@ namespace Soup::Syntax
     /// <summary>
     /// The function definition
     /// </summary>
-    export class ParameterList : public Node
+    export class ParameterList final : public Node
     {
     private:
         std::vector<Node> parameters;
@@ -21,11 +21,12 @@ namespace Soup::Syntax
         /// Equality operator
         /// </summary>
         bool operator ==(const ParameterList& rhs) const;
+        bool operator !=(const ParameterList& rhs) const;
 
         /// <summary>
-        /// Inequality operator
+        /// Convert to string representation
         /// </summary>
-        bool operator !=(const ParameterList& rhs) const;
+        virtual std::string ToString() const override final;
 
     protected:
         /// <summary>

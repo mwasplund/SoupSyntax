@@ -6,7 +6,7 @@ namespace Soup::Syntax
     /// <summary>
     /// Return statement node
     /// </summary>
-    export class ReturnStatement : Statement
+    export class ReturnStatement final : Statement
     {
     public:
         /// <summary>
@@ -14,6 +14,11 @@ namespace Soup::Syntax
         /// </summary>
         bool operator ==(const ReturnStatement& rhs) const;
         bool operator !=(const ReturnStatement& rhs) const;
+
+        /// <summary>
+        /// Convert to string representation
+        /// </summary>
+        virtual std::string ToString() const override final;
 
     protected:
         /// <summary>

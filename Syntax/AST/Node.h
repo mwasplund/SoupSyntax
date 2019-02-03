@@ -13,13 +13,14 @@ namespace Soup::Syntax
         /// Equality operator
         /// </summary>
         bool operator ==(const Node& rhs) const;
-
-        /// <summary>
-        /// Inequality operator
-        /// </summary>
         bool operator !=(const Node& rhs) const;
 
-    protected:
+        /// <summary>
+        /// Convert to string representation
+        /// </summary>
+        virtual std::string ToString() const = 0;
+
+    private:
         /// <summary>
         /// Shared equality check
         /// Only called when the types are verified to be equal

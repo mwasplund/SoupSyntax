@@ -7,7 +7,7 @@ namespace Soup::Syntax
     /// <summary>
     /// An integer value
     /// </summary>
-    export class QualifiedName : public Node
+    export class QualifiedName final : public Node
     {
     private:
         std::shared_ptr<LiteralNode> m_qualifier;
@@ -36,6 +36,11 @@ namespace Soup::Syntax
         /// Gets or sets the Qualifier
         /// </summary>
         const Node& GetName() const;
+
+        /// <summary>
+        /// Convert to string representation
+        /// </summary>
+        virtual std::string ToString() const override final;
 
     protected:
         /// <summary>

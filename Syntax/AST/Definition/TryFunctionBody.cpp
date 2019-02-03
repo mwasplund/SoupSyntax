@@ -16,3 +16,8 @@ bool TryFunctionBody::operator !=(const TryFunctionBody& rhs) const
 {
     return !(*this == rhs);
 }
+
+std::string TryFunctionBody::ToString() const
+{
+    return "TryFunctionBody";
+}

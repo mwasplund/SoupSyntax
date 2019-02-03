@@ -6,7 +6,7 @@ namespace Soup::Syntax
     /// <summary>
     /// Declaration specifier sequence
     /// </summary>
-    export class DeclarationSpecifierSequence : public Node
+    export class DeclarationSpecifierSequence final : public Node
     {
     private:
         std::vector<std::shared_ptr<Node>> m_specifiers;
@@ -29,6 +29,11 @@ namespace Soup::Syntax
         /// </summary>
         const std::vector<std::shared_ptr<Node>>& GetSpecifiers() const;
         std::vector<std::shared_ptr<Node>>& GetSpecifiers();
+
+        /// <summary>
+        /// Convert to string representation
+        /// </summary>
+        virtual std::string ToString() const override final;
 
     protected:
         /// <summary>

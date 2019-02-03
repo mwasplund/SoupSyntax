@@ -18,19 +18,21 @@ namespace Soup::Syntax::UnitTests
                     std::make_shared<DeclarationSpecifierSequence>(
                         std::vector<std::shared_ptr<Node>>
                         {
-                            std::shared_ptr<Node>(
-                                new PrimitiveDataTypeNode(PrimitiveDataType::Int)),
+                            std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Int),
                         }),
                     std::make_shared<InitializerDeclaratorList>(
                         std::vector<std::shared_ptr<InitializerDeclarator>>
                         {
                             std::make_shared<InitializerDeclarator>(
-                                    nullptr,
-                                    std::shared_ptr<Node>(new Identifier("GlobalVariable"))),
+                                std::make_shared<Identifier>("GlobalVariable"),
+                                nullptr),
                         })));
 
             auto actual = TestUtils::GenerateAST(source.get());
-            Assert::AreEqual(expected, actual, "Verify AST matches.");
+            Assert::AreEqual(
+                expected,
+                actual,
+                "Verify AST matches: \n" + expected->ToString() + "\n\n" + actual->ToString());
         }
 
         // [[Fact]]
@@ -55,7 +57,10 @@ namespace Soup::Syntax::UnitTests
                         })));
 
             auto actual = TestUtils::GenerateAST(source.get());
-            Assert::AreEqual(expected, actual, "Verify AST matches.");
+            Assert::AreEqual(
+                expected,
+                actual,
+                "Verify AST matches: \n" + expected->ToString() + "\n\n" + actual->ToString());
         }
 
         // [[Theory]]
@@ -94,7 +99,10 @@ namespace Soup::Syntax::UnitTests
                         })));
 
             auto actual = TestUtils::GenerateAST(source.get());
-            Assert::AreEqual(expected, actual, "Verify AST matches.");
+            Assert::AreEqual(
+                expected,
+                actual,
+                "Verify AST matches: \n" + expected->ToString() + "\n\n" + actual->ToString());
         }
 
         // [[Fact]]
@@ -122,7 +130,10 @@ namespace Soup::Syntax::UnitTests
                         })));
 
             auto actual = TestUtils::GenerateAST(source.get());
-            Assert::AreEqual(expected, actual, "Verify AST matches.");
+            Assert::AreEqual(
+                expected,
+                actual,
+                "Verify AST matches: \n" + expected->ToString() + "\n\n" + actual->ToString());
         }
     };
 }

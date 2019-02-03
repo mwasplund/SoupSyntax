@@ -59,7 +59,7 @@ antlrcpp::Any ASTVisitor::visitPrimaryExpression(CppParser::PrimaryExpressionCon
 antlrcpp::Any ASTVisitor::visitUnqualifiedIdentifier(CppParser::UnqualifiedIdentifierContext* context)
 {
     auto identifier = context->Identifier();
-    return std::dynamic_pointer_cast<Node>(
+    return std::static_pointer_cast<Node>(
         std::make_shared<Identifier>(identifier->getText()));
 }
 
@@ -558,7 +558,7 @@ antlrcpp::Any ASTVisitor::visitDeclarationSequence(CppParser::DeclarationSequenc
     auto declaration = context->declaration();
     auto declarationNode = visit(declaration).as<std::shared_ptr<Node>>();
     sequence->GetDeclarations().push_back(
-        std::dynamic_pointer_cast<Declaration>(declarationNode));
+        std::static_pointer_cast<Declaration>(declarationNode));
 
     return sequence;
 }
@@ -581,7 +581,7 @@ antlrcpp::Any ASTVisitor::visitSimpleDeclaration(CppParser::SimpleDeclarationCon
         .as<std::shared_ptr<InitializerDeclaratorList>>();
 
     // TODO
-    return std::dynamic_pointer_cast<Node>(
+    return std::static_pointer_cast<Node>(
         std::make_shared<SimpleDefinition>(
             std::move(declarationSpecifierSequence),
             std::move(initializerDeclaratorList)));
@@ -659,46 +659,46 @@ antlrcpp::Any ASTVisitor::visitDefiningTypeSpecifierSequence(CppParser::Defining
 antlrcpp::Any ASTVisitor::visitSimpleTypeSpecifier(CppParser::SimpleTypeSpecifierContext* context)
 {
     if (context->Char() != nullptr)
-        return std::dynamic_pointer_cast<Node>(
+        return std::static_pointer_cast<Node>(
             std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Char));
     else if (context->Char16() != nullptr)
-        return std::dynamic_pointer_cast<Node>(
+        return std::static_pointer_cast<Node>(
             std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Char16));
     else if (context->Char32() != nullptr)
-        return std::dynamic_pointer_cast<Node>(
+        return std::static_pointer_cast<Node>(
             std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Char32));
     else if (context->WChar() != nullptr)
-        return std::dynamic_pointer_cast<Node>(
+        return std::static_pointer_cast<Node>(
             std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::WChar));
     else if (context->Bool() != nullptr)
-        return std::dynamic_pointer_cast<Node>(
+        return std::static_pointer_cast<Node>(
             std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Bool));
     else if (context->Short() != nullptr)
-        return std::dynamic_pointer_cast<Node>(
+        return std::static_pointer_cast<Node>(
             std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Short));
     else if (context->Int() != nullptr)
-        return std::dynamic_pointer_cast<Node>(
+        return std::static_pointer_cast<Node>(
             std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Int));
     else if (context->Long() != nullptr)
-        return std::dynamic_pointer_cast<Node>(
+        return std::static_pointer_cast<Node>(
             std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Long));
     else if (context->Signed() != nullptr)
-        return std::dynamic_pointer_cast<Node>(
+        return std::static_pointer_cast<Node>(
             std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Signed));
     else if (context->Unsigned() != nullptr)
-        return std::dynamic_pointer_cast<Node>(
+        return std::static_pointer_cast<Node>(
             std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Unsigned));
     else if (context->Float() != nullptr)
-        return std::dynamic_pointer_cast<Node>(
+        return std::static_pointer_cast<Node>(
             std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Float));
     else if (context->Double() != nullptr)
-        return std::dynamic_pointer_cast<Node>(
+        return std::static_pointer_cast<Node>(
             std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Double));
     else if (context->Void() != nullptr)
-        return std::dynamic_pointer_cast<Node>(
+        return std::static_pointer_cast<Node>(
             std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Void));
     else if (context->Auto() != nullptr)
-        return std::dynamic_pointer_cast<Node>(
+        return std::static_pointer_cast<Node>(
             std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Auto));
 
     throw std::logic_error("Unexpected simple type.");
@@ -917,6 +917,9 @@ antlrcpp::Any ASTVisitor::visitInitializerDeclaratorList(CppParser::InitializerD
 
 antlrcpp::Any ASTVisitor::visitInitializerDeclarator(CppParser::InitializerDeclaratorContext* context)
 {
+    auto declarator = visit(context->declarator())
+        .as<std::shared_ptr<Node>>();
+
     // Check for optional initializer
     std::shared_ptr<Node> initializer = nullptr;
     if (context->initializer() != nullptr)
@@ -925,12 +928,9 @@ antlrcpp::Any ASTVisitor::visitInitializerDeclarator(CppParser::InitializerDecla
             .as<std::shared_ptr<Node>>();
     }
 
-    auto declarator = visit(context->declarator())
-        .as<std::shared_ptr<Node>>();
-
     return std::make_shared<InitializerDeclarator>(
-        std::move(initializer),
-        std::move(declarator));
+        std::move(declarator),
+        std::move(initializer));
 }
 
 antlrcpp::Any ASTVisitor::visitPointerDeclarator(CppParser::PointerDeclaratorContext* context)
@@ -1354,7 +1354,7 @@ antlrcpp::Any ASTVisitor::visitIntegerLiteral(CppParser::IntegerLiteralContext* 
     // Parse the integer value
     int value = std::stoi(context->getText());
 
-    return std::dynamic_pointer_cast<Node>(
+    return std::static_pointer_cast<Node>(
         std::make_shared<IntegerLiteral>(value));
 }
 

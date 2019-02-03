@@ -22,7 +22,12 @@ bool PrimitiveDataTypeNode::operator !=(const PrimitiveDataTypeNode& rhs) const
     return !(*this == rhs);
 }
 
+std::string PrimitiveDataTypeNode::ToString() const
+{
+    return "PrimitiveDataTypeNode<" + std::to_string(static_cast<int>(type)) + ">";
+}
+
 bool PrimitiveDataTypeNode::Equals(const Node& rhs) const
 {
-    throw std::runtime_error("NotImplemented");
+    return *this == static_cast<const PrimitiveDataTypeNode&>(rhs);
 }

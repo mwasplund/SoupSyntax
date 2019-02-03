@@ -48,7 +48,12 @@ bool FunctionDefinition::operator !=(const FunctionDefinition& rhs) const
     return !(*this == rhs);
 }
 
+std::string FunctionDefinition::ToString() const
+{
+    return "FunctionDefinition";
+}
+
 bool FunctionDefinition::Equals(const Node& rhs) const
 {
-    throw std::runtime_error("NotImplemented");
+    return *this == static_cast<const FunctionDefinition&>(rhs);
 }

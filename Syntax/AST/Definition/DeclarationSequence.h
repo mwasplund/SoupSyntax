@@ -6,7 +6,7 @@ namespace Soup::Syntax
     /// <summary>
     /// Declaration sequence
     /// </summary>
-    export class DeclarationSequence : public Node
+    export class DeclarationSequence final : public Node
     {
     private:
         std::vector<std::shared_ptr<Declaration>> m_declarations;
@@ -42,7 +42,12 @@ namespace Soup::Syntax
         const std::vector<std::shared_ptr<Declaration>>& GetDeclarations() const;
         std::vector<std::shared_ptr<Declaration>>& GetDeclarations();
 
-    protected:
+        /// <summary>
+        /// Convert to string representation
+        /// </summary>
+        virtual std::string ToString() const override final;
+
+    private:
         /// <summary>
         /// Node Equals
         /// </summary>

@@ -12,7 +12,12 @@ bool DeleteFunctionBody::operator !=(const DeleteFunctionBody& rhs) const
     return !(*this == rhs);
 }
 
+std::string DeleteFunctionBody::ToString() const
+{
+    return "DeleteFunctionBody";
+}
+
 bool DeleteFunctionBody::Equals(const Node& rhs) const
 {
-    throw std::runtime_error("NotImplemented");
+    return *this == static_cast<const DeleteFunctionBody&>(rhs);
 }

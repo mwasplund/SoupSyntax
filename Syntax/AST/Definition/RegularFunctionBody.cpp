@@ -17,7 +17,12 @@ bool RegularFunctionBody::operator !=(const RegularFunctionBody& rhs) const
     return !(*this == rhs);
 }
 
+std::string RegularFunctionBody::ToString() const
+{
+    return "RegularFunctionBody";
+}
+
 bool RegularFunctionBody::Equals(const Node& rhs) const
 {
-    throw std::runtime_error("NotImplemented");
+    return *this == static_cast<const RegularFunctionBody&>(rhs);
 }

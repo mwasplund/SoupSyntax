@@ -30,3 +30,13 @@ const Node &QualifiedName::GetName() const
 {
     return *m_name;
 }
+
+std::string QualifiedName::ToString() const
+{
+    return "QualifiedName";
+}
+
+bool QualifiedName::Equals(const Node& rhs) const
+{
+    return *this == static_cast<const QualifiedName&>(rhs);
+}

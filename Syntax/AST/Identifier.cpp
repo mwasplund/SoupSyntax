@@ -22,7 +22,12 @@ bool Identifier::operator !=(const Identifier& rhs) const
     return !(*this == rhs);
 }
 
+std::string Identifier::ToString() const
+{
+    return "Identifier<" + value + ">";
+}
+
 bool Identifier::Equals(const Node& rhs) const
 {
-    throw std::runtime_error("NotImplemented");
+    return *this == static_cast<const Identifier&>(rhs);
 }

@@ -25,6 +25,11 @@ namespace Soup::Syntax
         /// </summary>
         const DeclarationSequence& GetDeclarations() const;
 
+        /// <summary>
+        /// Convert to string representation
+        /// </summary>
+        virtual std::string ToString() const override final;
+
     protected:
         /// <summary>
         /// Node Equals

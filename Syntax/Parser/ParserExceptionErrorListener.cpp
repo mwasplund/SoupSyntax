@@ -15,7 +15,7 @@ void ParserExceptionErrorListener::reportAmbiguity(
         const BitSet &ambigAlts,
         ATNConfigSet *configs)
 {
-    throw ParseCancellationException();
+    throw ParseCancellationException("ParserExceptionErrorListener::reportAmbiguity");
 }
 
 void ParserExceptionErrorListener::reportAttemptingFullContext(
@@ -26,7 +26,9 @@ void ParserExceptionErrorListener::reportAttemptingFullContext(
         const BitSet &conflictingAlts,
         ATNConfigSet *configs)
 {
-    throw ParseCancellationException();
+    std::stringstream errorMessage;
+    errorMessage << "index " << startIndex << ":" << stopIndex << " " << "ParserExceptionErrorListener::reportAttemptingFullContext";
+    throw ParseCancellationException(errorMessage.str());
 }
 
 void ParserExceptionErrorListener::reportContextSensitivity(

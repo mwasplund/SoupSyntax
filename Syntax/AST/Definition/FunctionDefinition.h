@@ -9,7 +9,7 @@ namespace Soup::Syntax
     /// <summary>
     /// The function definition
     /// </summary>
-    export class FunctionDefinition : public Declaration
+    export class FunctionDefinition final : public Declaration
     {
     private:
         std::shared_ptr<DeclarationSpecifierSequence> m_returnType;
@@ -49,6 +49,11 @@ namespace Soup::Syntax
         /// </summary>
         bool operator ==(const FunctionDefinition& rhs) const;
         bool operator !=(const FunctionDefinition& rhs) const;
+
+        /// <summary>
+        /// Convert to string representation
+        /// </summary>
+        virtual std::string ToString() const override final;
 
     protected:
         /// <summary>

@@ -22,8 +22,8 @@ const InitializerDeclaratorList& SimpleDefinition::GetInitializerDeclaratorList(
 
 bool SimpleDefinition::operator ==(const SimpleDefinition& rhs) const
 {
-    return m_declarationSpecifierSequence == rhs.m_declarationSpecifierSequence &&
-        m_initializerDeclaratorList == rhs.m_initializerDeclaratorList;
+    return *m_declarationSpecifierSequence == *rhs.m_declarationSpecifierSequence &&
+        *m_initializerDeclaratorList == *rhs.m_initializerDeclaratorList;
 }
 
 bool SimpleDefinition::operator !=(const SimpleDefinition& rhs) const
@@ -31,7 +31,15 @@ bool SimpleDefinition::operator !=(const SimpleDefinition& rhs) const
     return !(*this == rhs);
 }
 
+std::string SimpleDefinition::ToString() const
+{
+    std::string result = "SimpleDefinition";
+    result += "\n" + m_declarationSpecifierSequence->ToString();
+    result += "\n" + m_initializerDeclaratorList->ToString();
+    return result;
+}
+
 bool SimpleDefinition::Equals(const Node& rhs) const
 {
-    throw std::runtime_error("NotImplemented");
+    return *this == static_cast<const SimpleDefinition&>(rhs);
 }

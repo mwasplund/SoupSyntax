@@ -6,7 +6,7 @@ namespace Soup::Syntax
     /// <summary>
     /// The simple definition
     /// </summary>
-    export class SimpleDefinition : public Declaration
+    export class SimpleDefinition final : public Declaration
     {
     private:
         std::shared_ptr<DeclarationSpecifierSequence> m_declarationSpecifierSequence;
@@ -32,6 +32,11 @@ namespace Soup::Syntax
         /// </summary>
         bool operator ==(const SimpleDefinition& rhs) const;
         bool operator !=(const SimpleDefinition& rhs) const;
+
+        /// <summary>
+        /// Convert to string representation
+        /// </summary>
+        virtual std::string ToString() const override final;
 
     protected:
         /// <summary>

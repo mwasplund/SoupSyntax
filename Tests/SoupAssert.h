@@ -34,8 +34,34 @@ public:
     }
   }
 
+  template<typename T> struct is_shared_ptr : std::false_type {};
+  template<typename T> struct is_shared_ptr<std::shared_ptr<T>> : std::true_type {};
+
   template<typename T>
-  static void AreEqual(T expected, T actual, std::string message)
+  static typename std::enable_if<std::is_pointer<T>::value || is_shared_ptr<T>::value>::type AreEqual(
+    T expected,
+    T actual,
+    std::string message)
+  {
+    if (expected == nullptr)
+    {
+      Fail("Expected was null, use IsNull instead.");
+    }
+    else if (actual == nullptr)
+    {
+      Fail("Actual was null, use IsNull if this is expected.");
+    }
+    else if (*expected != *actual)
+    {
+      Fail(message);
+    }
+  }
+
+  template<typename T>
+  static typename std::enable_if<!std::is_pointer<T>::value && !is_shared_ptr<T>::value>::type AreEqual(
+    T expected,
+    T actual,
+    std::string message)
   {
     if (expected != actual)
     {

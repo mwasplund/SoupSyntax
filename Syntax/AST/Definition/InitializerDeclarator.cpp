@@ -22,8 +22,18 @@ const Node& InitializerDeclarator::GetInitializer() const
 
 bool InitializerDeclarator::operator ==(const InitializerDeclarator& rhs) const
 {
-    return m_declarator == rhs.m_declarator &&
-        m_initializer == rhs.m_initializer;
+    if (*m_declarator != *rhs.m_declarator)
+    {
+        return false;
+    }
+    else if (m_initializer == nullptr || rhs.m_initializer == nullptr)
+    {
+        return m_initializer == nullptr && rhs.m_initializer == nullptr;
+    }
+    else
+    {
+        return *m_initializer == *rhs.m_initializer;
+    }
 }
 
 bool InitializerDeclarator::operator !=(const InitializerDeclarator& rhs) const
@@ -31,7 +41,19 @@ bool InitializerDeclarator::operator !=(const InitializerDeclarator& rhs) const
     return !(*this == rhs);
 }
 
+std::string InitializerDeclarator::ToString() const
+{
+    std::string result = "InitializerDeclarator";
+    result += "\n" + m_declarator->ToString();
+    if (m_initializer != nullptr)
+    {
+        result += "\n" + m_initializer->ToString();
+    }
+
+    return result;
+}
+
 bool InitializerDeclarator::Equals(const Node& rhs) const
 {
-    throw std::runtime_error("NotImplemented");
+    return *this == static_cast<const InitializerDeclarator&>(rhs);
 }

@@ -6,7 +6,7 @@ namespace Soup::Syntax
     /// <summary>
     /// The try function body
     /// </summary>
-    export class TryFunctionBody : public Node
+    export class TryFunctionBody final : public Node
     {
     private:
         CompoundStatement statements;
@@ -21,11 +21,12 @@ namespace Soup::Syntax
         /// Equality operator
         /// </summary>
         bool operator ==(const TryFunctionBody& rhs) const;
+        bool operator !=(const TryFunctionBody& rhs) const;
 
         /// <summary>
-        /// Inequality operator
+        /// Convert to string representation
         /// </summary>
-        bool operator !=(const TryFunctionBody& rhs) const;
+        virtual std::string ToString() const override final;
 
     protected:
         /// <summary>
