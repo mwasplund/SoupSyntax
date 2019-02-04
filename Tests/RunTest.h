@@ -5,12 +5,12 @@ int RunTest(std::function<void(void)> test)
   try
   {
     test();
-    std::wcout << L"Tests PASS!" << std::endl;
+    std::wcout << L"Test PASS!" << std::endl;
     return 0;
   }
   catch (std::exception& ex)
   {
-    std::wcout << L"Tests FAIL!" << std::endl;
+    std::wcout << L"Test FAIL!" << std::endl;
     if (std::string(ex.what()).empty())
     {
       std::wcout << typeid(ex).name() << std::endl;
@@ -22,7 +22,7 @@ int RunTest(std::function<void(void)> test)
   }
   catch (...)
   {
-    std::wcout << L"Tests FAIL!" << std::endl;
+    std::wcout << L"Test FAIL!" << std::endl;
     std::wcout << L"Unknown error..." << std::endl;
   }
 

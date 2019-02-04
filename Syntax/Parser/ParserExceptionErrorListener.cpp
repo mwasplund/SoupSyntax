@@ -47,19 +47,6 @@ void ParserExceptionErrorListener::reportAttemptingFullContext(
 {
     std::stringstream errorMessage;
     errorMessage << "ParserExceptionErrorListener::reportAttemptingFullContext" << " index " << startIndex << ":" << stopIndex;
-    if (configs != nullptr)
-    {
-        auto alts = configs->getAlts();
-        size_t index = alts.nextSetBit(0);
-        while (index != std::numeric_limits<size_t>::max())
-        {
-            errorMessage << "\n" << index;
-            auto config = configs->get(index);
-            errorMessage << config->toString();
-            index = alts.nextSetBit(index+1);
-        }
-    }
-
     errorMessage << "\n" << getDecisionDescription(recognizer, dfa) << std::endl;
 
     throw ParseCancellationException(errorMessage.str());

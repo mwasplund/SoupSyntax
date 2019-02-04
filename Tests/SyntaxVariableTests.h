@@ -10,7 +10,7 @@ namespace Soup::Syntax::UnitTests
         // [[Fact]]
         void GlobalVariableDeclaration()
         {
-            auto source = std::make_unique<antlr4::ANTLRInputStream>(
+            auto source = std::string(
                 "int GlobalVariable;");
 
             auto expected = TestUtils::CreateSingleDeclaration(
@@ -28,7 +28,7 @@ namespace Soup::Syntax::UnitTests
                                 nullptr),
                         })));
 
-            auto actual = TestUtils::GenerateAST(source.get());
+            auto actual = TestUtils::GenerateAST(source);
             Assert::AreEqual(
                 expected,
                 actual,
@@ -38,7 +38,7 @@ namespace Soup::Syntax::UnitTests
         // [[Fact]]
         void GlobalVariableDeclarationInitializer()
         {
-            auto source = std::make_unique<antlr4::ANTLRInputStream>(
+            auto source = std::string(
                 "int GlobalVariable = 1;");
 
             auto expected = TestUtils::CreateSingleDeclaration(
@@ -56,7 +56,7 @@ namespace Soup::Syntax::UnitTests
                                 std::make_shared<IntegerLiteral>(1)),
                         })));
 
-            auto actual = TestUtils::GenerateAST(source.get());
+            auto actual = TestUtils::GenerateAST(source);
             Assert::AreEqual(
                 expected,
                 actual,
@@ -81,7 +81,6 @@ namespace Soup::Syntax::UnitTests
         void GlobalPrimitiveVariable(std::string typeString, PrimitiveDataType type)
         {
             auto globalType = typeString + " GlobalVariable = 1;";
-            auto source = std::make_unique<antlr4::ANTLRInputStream>(globalType);
 
             auto expected = TestUtils::CreateSingleDeclaration(
                 std::make_shared<SimpleDefinition>(
@@ -98,7 +97,7 @@ namespace Soup::Syntax::UnitTests
                                 std::make_shared<IntegerLiteral>(1)),
                         })));
 
-            auto actual = TestUtils::GenerateAST(source.get());
+            auto actual = TestUtils::GenerateAST(globalType);
             Assert::AreEqual(
                 expected,
                 actual,
@@ -108,7 +107,7 @@ namespace Soup::Syntax::UnitTests
         // [[Fact]]
         void GlobalTwoVariableDeclarationInitializer()
         {
-            auto source = std::make_unique<antlr4::ANTLRInputStream>(
+            auto source = std::string(
                 "int GlobalVariable1 = 1, GlobalVariable2 = 2;");
 
             auto expected = TestUtils::CreateSingleDeclaration(
@@ -129,7 +128,7 @@ namespace Soup::Syntax::UnitTests
                                 std::make_shared<IntegerLiteral>(2)),
                         })));
 
-            auto actual = TestUtils::GenerateAST(source.get());
+            auto actual = TestUtils::GenerateAST(source);
             Assert::AreEqual(
                 expected,
                 actual,
