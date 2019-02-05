@@ -10,9 +10,11 @@ namespace Soup::Syntax
     export class RegularFunctionBody final : public Node
     {
     private:
-        CompoundStatement statements;
+        std::shared_ptr<CompoundStatement> m_statements;
 
     public:
+        RegularFunctionBody(std::shared_ptr<CompoundStatement> statements);
+
         /// <summary>
         /// Gets or sets the statements
         /// </summary>

@@ -6,6 +6,9 @@ import SoupSyntax;
 #include "ParserAttributesTests.gen.h"
 #include "ParserExpressionTests.gen.h"
 #include "ParserTests.gen.h"
+#include "SyntaxFunctionTests.gen.h"
+#include "SyntaxMiscTests.gen.h"
+#include "SyntaxNamespaceTests.gen.h"
 #include "SyntaxVariableTests.gen.h"
 
 int main()
@@ -17,6 +20,9 @@ int main()
   failedCount += RunParserAttributesTests();
   failedCount += RunParserExpressionTests();
   failedCount += RunParserTests();
+  failedCount += RunSyntaxFunctionTests();
+  failedCount += RunSyntaxMiscTests();
+  failedCount += RunSyntaxNamespaceTests();
   failedCount += RunSyntaxVariableTests();
 
   std::wcout << failedCount << L" FAILED." << std::endl;

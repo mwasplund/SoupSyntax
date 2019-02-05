@@ -2,14 +2,19 @@
 module SoupSyntax;
 using namespace Soup::Syntax;
 
+RegularFunctionBody::RegularFunctionBody(std::shared_ptr<CompoundStatement> statements) :
+    m_statements(statements)
+{
+}
+
 const CompoundStatement& RegularFunctionBody::GetStatements() const
 {
-    return this->statements;
+    return *m_statements;
 }
 
 bool RegularFunctionBody::operator ==(const RegularFunctionBody& rhs) const
 {
-    return this->statements == rhs.statements;
+    return *m_statements == *rhs.m_statements;
 }
 
 bool RegularFunctionBody::operator !=(const RegularFunctionBody& rhs) const
