@@ -3,6 +3,8 @@
 
 #pragma once
 
+
+//#include "antlr4-runtime.h"
 #include "CppParserVisitor.h"
 
 
@@ -58,6 +60,10 @@ public:
   }
 
   virtual antlrcpp::Any visitNestedNameSpecifier(CppParser::NestedNameSpecifierContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitNestedNameSpecifierList(CppParser::NestedNameSpecifierListContext *ctx) override {
     return visitChildren(ctx);
   }
 

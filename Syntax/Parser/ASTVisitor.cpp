@@ -1182,8 +1182,8 @@ antlrcpp::Any ASTVisitor::visitFunctionDefinition(CppParser::FunctionDefinitionC
 
     // Analyze the declarator
     auto declaratorContext = context->functionDeclarator();
-    auto identifier = visit(declaratorContext->identifierExpression())
-        .as<std::shared_ptr<Identifier>>();
+    auto identifier = std::static_pointer_cast<Identifier>(
+        visit(declaratorContext->identifierExpression()).as<std::shared_ptr<Node>>());
     auto parameterList = visit(declaratorContext->functionParameters())
         .as<std::shared_ptr<ParameterList>>();
     // TODO Qualifiers

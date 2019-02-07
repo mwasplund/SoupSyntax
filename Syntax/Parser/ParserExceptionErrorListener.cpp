@@ -6,21 +6,30 @@ using namespace antlr4::dfa;
 using namespace antlrcpp;
 using namespace Soup::Syntax;
 
-std::string getDecisionDescription(Parser *recognizer, const dfa::DFA &dfa) {
-  size_t decision = dfa.decision;
-  size_t ruleIndex = (reinterpret_cast<atn::ATNState*>(dfa.atnStartState))->ruleIndex;
+std::string GetDecisionDescription(Parser *recognizer, const dfa::DFA &dfa)
+{
+    size_t decision = dfa.decision;
+    size_t ruleIndex = (reinterpret_cast<atn::ATNState*>(dfa.atnStartState))->ruleIndex;
 
-  const std::vector<std::string>& ruleNames = recognizer->getRuleNames();
-  if (ruleIndex == std::numeric_limits<size_t>::max() || ruleIndex >= ruleNames.size()) {
-    return std::to_string(decision);
-  }
+    const std::vector<std::string>& ruleNames = recognizer->getRuleNames();
+    if (ruleIndex == std::numeric_limits<size_t>::max() || ruleIndex >= ruleNames.size())
+    {
+        return std::to_string(decision);
+    }
 
-  std::string ruleName = ruleNames[ruleIndex];
-  if (ruleName == "" || ruleName.empty())  {
-    return std::to_string(decision);
-  }
+    std::string ruleName = ruleNames[ruleIndex];
+    if (ruleName == "" || ruleName.empty())
+    {
+        return std::to_string(decision);
+    }
 
-  return std::to_string(decision) + " (" + ruleName + ")";
+    return std::to_string(decision) + " (" + ruleName + ")";
+}
+
+std::string GetAlternatesDescription(
+    ATNConfigSet *configs)
+{
+    return configs->getAlts().toString();
 }
 
 void ParserExceptionErrorListener::reportAmbiguity(
@@ -47,7 +56,8 @@ void ParserExceptionErrorListener::reportAttemptingFullContext(
 {
     std::stringstream errorMessage;
     errorMessage << "ParserExceptionErrorListener::reportAttemptingFullContext" << " index " << startIndex << ":" << stopIndex;
-    errorMessage << "\n" << getDecisionDescription(recognizer, dfa) << std::endl;
+    errorMessage << "\n" << GetDecisionDescription(recognizer, dfa) << std::endl;
+    errorMessage << "\n" << GetAlternatesDescription(configs) << std::endl;
 
     throw ParseCancellationException(errorMessage.str());
 }

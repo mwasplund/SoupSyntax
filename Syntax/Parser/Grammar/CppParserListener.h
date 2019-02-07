@@ -3,13 +3,15 @@
 
 #pragma once
 
+
+//#include "antlr4-runtime.h"
 #include "CppParser.h"
 
 
 /**
  * This interface defines an abstract listener for a parse tree produced by CppParser.
  */
-export class CppParserListener : public antlr4::tree::ParseTreeListener {
+export class  CppParserListener : public antlr4::tree::ParseTreeListener {
 public:
 
   virtual void enterTypedefName(CppParser::TypedefNameContext *ctx) = 0;
@@ -47,6 +49,9 @@ public:
 
   virtual void enterNestedNameSpecifier(CppParser::NestedNameSpecifierContext *ctx) = 0;
   virtual void exitNestedNameSpecifier(CppParser::NestedNameSpecifierContext *ctx) = 0;
+
+  virtual void enterNestedNameSpecifierList(CppParser::NestedNameSpecifierListContext *ctx) = 0;
+  virtual void exitNestedNameSpecifierList(CppParser::NestedNameSpecifierListContext *ctx) = 0;
 
   virtual void enterLambdaExpression(CppParser::LambdaExpressionContext *ctx) = 0;
   virtual void exitLambdaExpression(CppParser::LambdaExpressionContext *ctx) = 0;

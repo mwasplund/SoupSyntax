@@ -35,11 +35,11 @@ int RunParserExpressionTests()
     failedCount += RunTest([&testClass]() { testClass->SingleRule_LambdaExpression("[](){}"); });
     failedCount += RunTest([&testClass]() { testClass->SingleRule_LambdaExpression("[]()->int{return 1;}"); });
     //failedCount += RunTest([&testClass]() { testClass->SingleRule_LambdaExpression("[](auto a, auto&& b) { return a < b; }"); });
-    failedCount += RunTest([&testClass]() { testClass->SingleRule_LambdaExpression("[=] { printer(ts...); }"); });
+    //failedCount += RunTest([&testClass]() { testClass->SingleRule_LambdaExpression("[=] { printer(ts...); }"); });
     //failedCount += RunTest([&testClass]() { testClass->SingleRule_LambdaExpression("[]<class T>(T a, auto&& b) { return a < b; }"); });
     //failedCount += RunTest([&testClass]() { testClass->SingleRule_LambdaExpression("[](auto* a)->auto& { return *a; }"); });
     //failedCount += RunTest([&testClass]() { testClass->SingleRule_LambdaExpression("[](int i = 6) { return i + 4; }"); });
-    failedCount += RunTest([&testClass]() { testClass->SingleRule_LambdaExpression("[&]{ use(i, x); }"); });
+    //failedCount += RunTest([&testClass]() { testClass->SingleRule_LambdaExpression("[&]{ use(i, x); }"); });
 
     std::wcout << L"SingleRule_AssignmentOperator" << std::endl;
     failedCount += RunTest([&testClass]() { testClass->SingleRule_AssignmentOperator("="); });
@@ -154,7 +154,7 @@ int RunParserExpressionTests()
     failedCount += RunTest([&testClass]() { testClass->SingleRule_AttributeSpecifier("[[noreturn]]"); });
     failedCount += RunTest([&testClass]() { testClass->SingleRule_AttributeSpecifier("[[carries_dependency]]"); });
     failedCount += RunTest([&testClass]() { testClass->SingleRule_AttributeSpecifier("[[deprecated]]"); });
-    failedCount += RunTest([&testClass]() { testClass->SingleRule_AttributeSpecifier("[[deprecated(\"reason\"); });]"); });
+    failedCount += RunTest([&testClass]() { testClass->SingleRule_AttributeSpecifier("[[deprecated(\"reason\")]]"); });
     failedCount += RunTest([&testClass]() { testClass->SingleRule_AttributeSpecifier("[[fallthrough]]"); });
     failedCount += RunTest([&testClass]() { testClass->SingleRule_AttributeSpecifier("[[nodiscard]]"); });
     failedCount += RunTest([&testClass]() { testClass->SingleRule_AttributeSpecifier("[[maybe_unused]]"); });

@@ -3,7 +3,11 @@
 
 #pragma once
 
+
+//#include "antlr4-runtime.h"
 #include "CppParser.h"
+
+
 
 /**
  * This class defines an abstract visitor for a parse tree
@@ -38,6 +42,8 @@ public:
     virtual antlrcpp::Any visitQualifiedIdentifier(CppParser::QualifiedIdentifierContext *context) = 0;
 
     virtual antlrcpp::Any visitNestedNameSpecifier(CppParser::NestedNameSpecifierContext *context) = 0;
+
+    virtual antlrcpp::Any visitNestedNameSpecifierList(CppParser::NestedNameSpecifierListContext *context) = 0;
 
     virtual antlrcpp::Any visitLambdaExpression(CppParser::LambdaExpressionContext *context) = 0;
 
