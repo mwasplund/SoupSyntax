@@ -1,5 +1,5 @@
 ﻿#pragma once
-#include "Node.h"
+#include "SyntaxNode.h"
 #include "CompoundStatement.h"
 
 namespace Soup::Syntax
@@ -7,7 +7,7 @@ namespace Soup::Syntax
     /// <summary>
     /// The regular function body
     /// </summary>
-    export class RegularFunctionBody final : public Node
+    export class RegularFunctionBody final : public SyntaxNode
     {
     private:
         std::shared_ptr<CompoundStatement> m_statements;
@@ -33,8 +33,8 @@ namespace Soup::Syntax
 
     protected:
         /// <summary>
-        /// Node Equals
+        /// SyntaxNode Equals
         /// </summary>
-        virtual bool Equals(const Node& rhs) const final;
+        virtual bool Equals(const SyntaxNode& rhs) const final;
     };
 }

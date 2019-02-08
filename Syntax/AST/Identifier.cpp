@@ -27,7 +27,7 @@ std::string Identifier::ToString() const
     return "Identifier<" + value + ">";
 }
 
-bool Identifier::Equals(const Node& rhs) const
+bool Identifier::Equals(const SyntaxNode& rhs) const
 {
     return *this == static_cast<const Identifier&>(rhs);
 }

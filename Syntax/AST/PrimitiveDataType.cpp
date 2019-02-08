@@ -27,7 +27,7 @@ std::string PrimitiveDataTypeNode::ToString() const
     return "PrimitiveDataTypeNode<" + std::to_string(static_cast<int>(type)) + ">";
 }
 
-bool PrimitiveDataTypeNode::Equals(const Node& rhs) const
+bool PrimitiveDataTypeNode::Equals(const SyntaxNode& rhs) const
 {
     return *this == static_cast<const PrimitiveDataTypeNode&>(rhs);
 }

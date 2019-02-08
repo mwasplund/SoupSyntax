@@ -17,7 +17,7 @@ std::string ReturnStatement::ToString() const
     return "ReturnStatement";
 }
 
-bool ReturnStatement::Equals(const Node& rhs) const
+bool ReturnStatement::Equals(const SyntaxNode& rhs) const
 {
     return *this == static_cast<const ReturnStatement&>(rhs);
 }

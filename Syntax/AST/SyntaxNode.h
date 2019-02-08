@@ -4,16 +4,16 @@
 namespace Soup::Syntax
 {
     /// <summary>
-    /// Base node
+    /// Base syntax node
     /// </summary>
-    export class Node
+    export class SyntaxNode
     {
     public:
         /// <summary>
         /// Equality operator
         /// </summary>
-        bool operator ==(const Node& rhs) const;
-        bool operator !=(const Node& rhs) const;
+        bool operator ==(const SyntaxNode& rhs) const;
+        bool operator !=(const SyntaxNode& rhs) const;
 
         /// <summary>
         /// Convert to string representation
@@ -25,6 +25,6 @@ namespace Soup::Syntax
         /// Shared equality check
         /// Only called when the types are verified to be equal
         /// </summary>
-        virtual bool Equals(const Node& rhs) const = 0;
+        virtual bool Equals(const SyntaxNode& rhs) const = 0;
     };
 }

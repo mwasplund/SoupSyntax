@@ -1,5 +1,5 @@
 ﻿#pragma once
-#include "Node.h"
+#include "SyntaxNode.h"
 #include "Statement.h"
 
 namespace Soup::Syntax
@@ -7,7 +7,7 @@ namespace Soup::Syntax
     /// <summary>
     /// Compound statement node
     /// </summary>
-    export class CompoundStatement final : public Node
+    export class CompoundStatement final : public SyntaxNode
     {
     private:
         std::vector<std::shared_ptr<Statement>> m_statements;
@@ -32,8 +32,8 @@ namespace Soup::Syntax
 
     protected:
         /// <summary>
-        /// Node Equals
+        /// SyntaxNode Equals
         /// </summary>
-        virtual bool Equals(const Node& rhs) const final;
+        virtual bool Equals(const SyntaxNode& rhs) const final;
     };
 }

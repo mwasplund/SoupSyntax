@@ -1,12 +1,12 @@
-#pragma once
+﻿#pragma once
 #include "SyntaxNode.h"
 
 namespace Soup::Syntax
 {
     /// <summary>
-    /// Compound statement node
+    /// The base expression node
     /// </summary>
-    export class Statement : public SyntaxNode
+    export class Expression : public SyntaxNode
     {
     };
 }

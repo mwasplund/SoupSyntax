@@ -1,12 +1,12 @@
 ﻿#pragma once
-#include "LiteralNode.h"
+#include "Literal.h"
 
 namespace Soup::Syntax
 {
     /// <summary>
     /// An integer value
     /// </summary>
-    export class IntegerLiteral final : public LiteralNode
+    export class IntegerLiteral final : public Literal
     {
     private:
         int value;
@@ -35,8 +35,8 @@ namespace Soup::Syntax
 
     protected:
         /// <summary>
-        /// Node Equals
+        /// SyntaxNode Equals
         /// </summary>
-        virtual bool Equals(const Node& rhs) const final;
+        virtual bool Equals(const SyntaxNode& rhs) const final;
     };
 }

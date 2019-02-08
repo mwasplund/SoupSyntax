@@ -1,12 +1,12 @@
 ﻿#pragma once
-#include "Node.h"
+#include "SyntaxNode.h"
 
 namespace Soup::Syntax
 {
     /// <summary>
     /// The delete function body
     /// </summary>
-    export class DeleteFunctionBody final : public Node
+    export class DeleteFunctionBody final : public SyntaxNode
     {
     public:
         /// <summary>
@@ -22,8 +22,8 @@ namespace Soup::Syntax
 
     protected:
         /// <summary>
-        /// Node Equals
+        /// SyntaxNode Equals
         /// </summary>
-        virtual bool Equals(const Node& rhs) const final;
+        virtual bool Equals(const SyntaxNode& rhs) const final;
     };
 }

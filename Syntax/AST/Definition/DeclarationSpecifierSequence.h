@@ -1,22 +1,22 @@
 ﻿#pragma once
-#include "Node.h"
+#include "SyntaxNode.h"
 
 namespace Soup::Syntax
 {
     /// <summary>
     /// Declaration specifier sequence
     /// </summary>
-    export class DeclarationSpecifierSequence final : public Node
+    export class DeclarationSpecifierSequence final : public SyntaxNode
     {
     private:
-        std::vector<std::shared_ptr<Node>> m_specifiers;
+        std::vector<std::shared_ptr<SyntaxNode>> m_specifiers;
 
     public:
         /// <summary>
         /// Initialize
         /// </summary>
         DeclarationSpecifierSequence();
-        DeclarationSpecifierSequence(std::vector<std::shared_ptr<Node>>&& specifiers);
+        DeclarationSpecifierSequence(std::vector<std::shared_ptr<SyntaxNode>>&& specifiers);
 
         /// <summary>
         /// Equality operator
@@ -27,8 +27,8 @@ namespace Soup::Syntax
         /// <summary>
         /// Gets or sets the list of declaration specifiers
         /// </summary>
-        const std::vector<std::shared_ptr<Node>>& GetSpecifiers() const;
-        std::vector<std::shared_ptr<Node>>& GetSpecifiers();
+        const std::vector<std::shared_ptr<SyntaxNode>>& GetSpecifiers() const;
+        std::vector<std::shared_ptr<SyntaxNode>>& GetSpecifiers();
 
         /// <summary>
         /// Convert to string representation
@@ -37,8 +37,8 @@ namespace Soup::Syntax
 
     protected:
         /// <summary>
-        /// Node Equals
+        /// SyntaxNode Equals
         /// </summary>
-        virtual bool Equals(const Node& rhs) const final;
+        virtual bool Equals(const SyntaxNode& rhs) const final;
     };
 }

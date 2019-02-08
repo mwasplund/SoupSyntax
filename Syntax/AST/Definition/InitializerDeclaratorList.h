@@ -1,12 +1,12 @@
 ﻿#pragma once
-#include "Node.h"
+#include "SyntaxNode.h"
 
 namespace Soup::Syntax
 {
     /// <summary>
     /// The initializer declarator list node
     /// </summary>
-    export class InitializerDeclaratorList final : public Node
+    export class InitializerDeclaratorList final : public SyntaxNode
     {
     private:
         std::vector<std::shared_ptr<InitializerDeclarator>> m_items;
@@ -37,8 +37,8 @@ namespace Soup::Syntax
 
     protected:
         /// <summary>
-        /// Node Equals
+        /// SyntaxNode Equals
         /// </summary>
-        virtual bool Equals(const Node& rhs) const final;
+        virtual bool Equals(const SyntaxNode& rhs) const final;
     };
 }

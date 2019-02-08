@@ -1,12 +1,12 @@
 ﻿#pragma once
-#include "Node.h"
+#include "SyntaxNode.h"
 
 namespace Soup::Syntax
 {
     /// <summary>
     /// Declaration sequence
     /// </summary>
-    export class DeclarationSequence final : public Node
+    export class DeclarationSequence final : public SyntaxNode
     {
     private:
         std::vector<std::shared_ptr<Declaration>> m_declarations;
@@ -49,8 +49,8 @@ namespace Soup::Syntax
 
     private:
         /// <summary>
-        /// Node Equals
+        /// SyntaxNode Equals
         /// </summary>
-        virtual bool Equals(const Node& rhs) const final;
+        virtual bool Equals(const SyntaxNode& rhs) const final;
     };
 }

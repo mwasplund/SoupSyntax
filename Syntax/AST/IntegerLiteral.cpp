@@ -27,7 +27,7 @@ std::string IntegerLiteral::ToString() const
     return std::string("IntegerLiteral<") + std::to_string(value) + ">";
 }
 
-bool IntegerLiteral::Equals(const Node& rhs) const
+bool IntegerLiteral::Equals(const SyntaxNode& rhs) const
 {
     return *this == static_cast<const IntegerLiteral&>(rhs);
 }

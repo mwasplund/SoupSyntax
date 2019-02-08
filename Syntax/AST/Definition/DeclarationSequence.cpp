@@ -62,7 +62,7 @@ std::string DeclarationSequence::ToString() const
     return result;
 }
 
-bool DeclarationSequence::Equals(const Node& rhs) const
+bool DeclarationSequence::Equals(const SyntaxNode& rhs) const
 {
     return *this == static_cast<const DeclarationSequence&>(rhs);
 }

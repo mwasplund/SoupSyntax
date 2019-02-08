@@ -21,3 +21,8 @@ std::string TryFunctionBody::ToString() const
 {
     return "TryFunctionBody";
 }
+
+bool TryFunctionBody::Equals(const SyntaxNode& rhs) const
+{
+    return *this == static_cast<const TryFunctionBody&>(rhs);
+}

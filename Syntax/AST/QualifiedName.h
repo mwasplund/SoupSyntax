@@ -1,25 +1,25 @@
 ﻿#pragma once
-#include "Node.h"
-#include "LiteralNode.h"
+#include "SyntaxNode.h"
+#include "Literal.h"
 
 namespace Soup::Syntax
 {
     /// <summary>
     /// An integer value
     /// </summary>
-    export class QualifiedName final : public Node
+    export class QualifiedName final : public SyntaxNode
     {
     private:
-        std::shared_ptr<LiteralNode> m_qualifier;
-        std::shared_ptr<Node> m_name;
+        std::shared_ptr<Literal> m_qualifier;
+        std::shared_ptr<SyntaxNode> m_name;
 
     public:
         /// <summary>
         /// Initialize
         /// </summary>
         QualifiedName(
-            std::shared_ptr<LiteralNode>&& qualifier,
-            std::shared_ptr<Node>&& name);
+            std::shared_ptr<Literal>&& qualifier,
+            std::shared_ptr<SyntaxNode>&& name);
 
         /// <summary>
         /// Equality operator
@@ -30,12 +30,12 @@ namespace Soup::Syntax
         /// <summary>
         /// Gets or sets the Qualifier
         /// </summary>
-        const LiteralNode& GetQualifier() const;
+        const Literal& GetQualifier() const;
 
         /// <summary>
         /// Gets or sets the Qualifier
         /// </summary>
-        const Node& GetName() const;
+        const SyntaxNode& GetName() const;
 
         /// <summary>
         /// Convert to string representation
@@ -44,8 +44,8 @@ namespace Soup::Syntax
 
     protected:
         /// <summary>
-        /// Node Equals
+        /// SyntaxNode Equals
         /// </summary>
-        virtual bool Equals(const Node& rhs) const final;
+        virtual bool Equals(const SyntaxNode& rhs) const final;
     };
 }

@@ -52,7 +52,7 @@ std::string InitializerDeclaratorList::ToString() const
     return result;
 }
 
-bool InitializerDeclaratorList::Equals(const Node& rhs) const
+bool InitializerDeclaratorList::Equals(const SyntaxNode& rhs) const
 {
     return *this == static_cast<const InitializerDeclaratorList&>(rhs);
 }

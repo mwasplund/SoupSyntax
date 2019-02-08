@@ -1,12 +1,12 @@
 ﻿#pragma once
-#include "Node.h"
+#include "SyntaxNode.h"
 
 namespace Soup::Syntax
 {
     /// <summary>
     /// The try function body
     /// </summary>
-    export class TryFunctionBody final : public Node
+    export class TryFunctionBody final : public SyntaxNode
     {
     private:
         CompoundStatement statements;
@@ -30,8 +30,8 @@ namespace Soup::Syntax
 
     protected:
         /// <summary>
-        /// Node Equals
+        /// SyntaxNode Equals
         /// </summary>
-        virtual bool Equals(const Node& rhs) const final;
+        virtual bool Equals(const SyntaxNode& rhs) const final;
     };
 }

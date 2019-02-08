@@ -1,25 +1,25 @@
 ﻿#pragma once
-#include "ExpressionNode.h"
+#include "Expression.h"
 
 namespace Soup::Syntax
 {
     /// <summary>
     /// Arithmetic Expression
     /// </summary>
-    export class ArithmeticExpression : public ExpressionNode
+    export class ArithmeticExpression : public Expression
     {
     protected:
-        std::unique_ptr<ExpressionNode> left;
-        std::unique_ptr<ExpressionNode> right;
+        std::unique_ptr<Expression> left;
+        std::unique_ptr<Expression> right;
     public:
         /// <summary>
         /// The left expression
         /// </summary>
-        const ExpressionNode& GetLeft() const;
+        const Expression& GetLeft() const;
 
         /// <summary>
         /// The right expression
         /// </summary>
-        const ExpressionNode& GetRight() const;
+        const Expression& GetRight() const;
     };
 }

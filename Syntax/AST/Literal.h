@@ -1,12 +1,12 @@
 ﻿#pragma once
-#include "SyntaxNode.h"
+#include "Expression.h"
 
 namespace Soup::Syntax
 {
     /// <summary>
-    /// Declaration
+    /// A literal node
     /// </summary>
-    export class Declaration : public SyntaxNode
+    export class Literal : public Expression
     {
     };
 }

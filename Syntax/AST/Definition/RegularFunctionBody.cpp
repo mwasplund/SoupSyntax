@@ -27,7 +27,7 @@ std::string RegularFunctionBody::ToString() const
     return "RegularFunctionBody";
 }
 
-bool RegularFunctionBody::Equals(const Node& rhs) const
+bool RegularFunctionBody::Equals(const SyntaxNode& rhs) const
 {
     return *this == static_cast<const RegularFunctionBody&>(rhs);
 }

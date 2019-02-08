@@ -17,7 +17,7 @@ std::string DeleteFunctionBody::ToString() const
     return "DeleteFunctionBody";
 }
 
-bool DeleteFunctionBody::Equals(const Node& rhs) const
+bool DeleteFunctionBody::Equals(const SyntaxNode& rhs) const
 {
     return *this == static_cast<const DeleteFunctionBody&>(rhs);
 }

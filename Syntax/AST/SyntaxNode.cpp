@@ -1,13 +1,13 @@
 ﻿module SoupSyntax;
 using namespace Soup::Syntax;
 
-bool Node::operator==(const Node &rhs) const
+bool SyntaxNode::operator==(const SyntaxNode &rhs) const
 {
   return typeid(*this) == typeid(rhs) &&
          Equals(rhs);
 }
 
-bool Node::operator!=(const Node &rhs) const
+bool SyntaxNode::operator!=(const SyntaxNode &rhs) const
 {
   return !(*this == rhs);
 }

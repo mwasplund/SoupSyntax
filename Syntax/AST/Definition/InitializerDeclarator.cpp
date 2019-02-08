@@ -3,19 +3,19 @@ module SoupSyntax;
 using namespace Soup::Syntax;
 
 InitializerDeclarator::InitializerDeclarator(
-    std::shared_ptr<Node>&& declarator,
-    std::shared_ptr<Node>&& initializer) :
+    std::shared_ptr<SyntaxNode>&& declarator,
+    std::shared_ptr<SyntaxNode>&& initializer) :
     m_declarator(std::move(declarator)),
     m_initializer(std::move(initializer))
 {
 }
 
-const Node& InitializerDeclarator::GetDeclarator() const
+const SyntaxNode& InitializerDeclarator::GetDeclarator() const
 {
     return *m_declarator;
 }
 
-const Node& InitializerDeclarator::GetInitializer() const
+const SyntaxNode& InitializerDeclarator::GetInitializer() const
 {
     return *m_initializer;
 }
@@ -53,7 +53,7 @@ std::string InitializerDeclarator::ToString() const
     return result;
 }
 
-bool InitializerDeclarator::Equals(const Node& rhs) const
+bool InitializerDeclarator::Equals(const SyntaxNode& rhs) const
 {
     return *this == static_cast<const InitializerDeclarator&>(rhs);
 }

@@ -1,21 +1,21 @@
 ﻿#pragma once
-#include "Node.h"
+#include "SyntaxNode.h"
 
 namespace Soup::Syntax
 {
     /// <summary>
     /// The function definition
     /// </summary>
-    export class ParameterList final : public Node
+    export class ParameterList final : public SyntaxNode
     {
     private:
-        std::vector<Node> parameters;
+        std::vector<SyntaxNode> parameters;
 
     public:
         /// <summary>
         /// Gets or sets the list of parameters
         /// </summary>
-        const std::vector<Node>& GetParameters() const;
+        const std::vector<SyntaxNode>& GetParameters() const;
 
         /// <summary>
         /// Equality operator
@@ -30,8 +30,8 @@ namespace Soup::Syntax
 
     protected:
         /// <summary>
-        /// Node Equals
+        /// SyntaxNode Equals
         /// </summary>
-        virtual bool Equals(const Node& rhs) const final;
+        virtual bool Equals(const SyntaxNode& rhs) const final;
     };
 }

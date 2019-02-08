@@ -33,7 +33,7 @@ std::string TranslationUnit::ToString() const
     return result;
 }
 
-bool TranslationUnit::Equals(const Node& rhs) const
+bool TranslationUnit::Equals(const SyntaxNode& rhs) const
 {
     return *this == static_cast<const TranslationUnit&>(rhs);
 }

@@ -1,31 +1,31 @@
 ﻿#pragma once
-#include "Node.h"
+#include "SyntaxNode.h"
 
 namespace Soup::Syntax
 {
     /// <summary>
     /// The initializer declarator node
     /// </summary>
-    export class InitializerDeclarator final : public Node
+    export class InitializerDeclarator final : public SyntaxNode
     {
     private:
-        std::shared_ptr<Node> m_declarator;
-        std::shared_ptr<Node> m_initializer;
+        std::shared_ptr<SyntaxNode> m_declarator;
+        std::shared_ptr<SyntaxNode> m_initializer;
 
     public:
         InitializerDeclarator(
-            std::shared_ptr<Node>&& declarator,
-            std::shared_ptr<Node>&& initializer);
+            std::shared_ptr<SyntaxNode>&& declarator,
+            std::shared_ptr<SyntaxNode>&& initializer);
 
         /// <summary>
         /// Gets or sets the declarator
         /// </summary>
-        const Node& GetDeclarator() const;
+        const SyntaxNode& GetDeclarator() const;
 
         /// <summary>
         /// Gets or sets the optional initializer
         /// </summary>
-        const Node& GetInitializer() const;
+        const SyntaxNode& GetInitializer() const;
 
         /// <summary>
         /// Equality operator
@@ -40,8 +40,8 @@ namespace Soup::Syntax
 
     protected:
         /// <summary>
-        /// Node Equals
+        /// SyntaxNode Equals
         /// </summary>
-        virtual bool Equals(const Node& rhs) const final;
+        virtual bool Equals(const SyntaxNode& rhs) const final;
     };
 }

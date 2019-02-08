@@ -8,7 +8,7 @@ DeclarationSpecifierSequence::DeclarationSpecifierSequence() :
 }
 
 DeclarationSpecifierSequence::DeclarationSpecifierSequence(
-    std::vector<std::shared_ptr<Node>>&& specifiers) :
+    std::vector<std::shared_ptr<SyntaxNode>>&& specifiers) :
     m_specifiers(std::move(specifiers))
 {
 }
@@ -20,7 +20,7 @@ bool DeclarationSpecifierSequence::operator ==(const DeclarationSpecifierSequenc
         end(m_specifiers),
         begin(rhs.m_specifiers),
         end(rhs.m_specifiers),
-        [](const std::shared_ptr<Node>& lhs, const std::shared_ptr<Node>& rhs)
+        [](const std::shared_ptr<SyntaxNode>& lhs, const std::shared_ptr<SyntaxNode>& rhs)
         {
             return *lhs == *rhs;
         });
@@ -31,12 +31,12 @@ bool DeclarationSpecifierSequence::operator !=(const DeclarationSpecifierSequenc
     return !(*this == rhs);
 }
 
-const std::vector<std::shared_ptr<Node>>& DeclarationSpecifierSequence::GetSpecifiers() const
+const std::vector<std::shared_ptr<SyntaxNode>>& DeclarationSpecifierSequence::GetSpecifiers() const
 {
     return m_specifiers;
 }
 
-std::vector<std::shared_ptr<Node>>& DeclarationSpecifierSequence::GetSpecifiers()
+std::vector<std::shared_ptr<SyntaxNode>>& DeclarationSpecifierSequence::GetSpecifiers()
 {
     return m_specifiers;
 }
@@ -52,7 +52,7 @@ std::string DeclarationSpecifierSequence::ToString() const
     return result;
 }
 
-bool DeclarationSpecifierSequence::Equals(const Node& rhs) const
+bool DeclarationSpecifierSequence::Equals(const SyntaxNode& rhs) const
 {
     return *this == static_cast<const DeclarationSpecifierSequence&>(rhs);
 }

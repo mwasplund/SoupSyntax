@@ -27,7 +27,7 @@ std::string CompoundStatement::ToString() const
     return "CompoundStatement";
 }
 
-bool CompoundStatement::Equals(const Node& rhs) const
+bool CompoundStatement::Equals(const SyntaxNode& rhs) const
 {
     return *this == static_cast<const CompoundStatement&>(rhs);
 }

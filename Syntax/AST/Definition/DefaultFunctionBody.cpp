@@ -17,7 +17,7 @@ std::string DefaultFunctionBody::ToString() const
     return "DefaultFunctionBody";
 }
 
-bool DefaultFunctionBody::Equals(const Node& rhs) const
+bool DefaultFunctionBody::Equals(const SyntaxNode& rhs) const
 {
     return *this == static_cast<const DefaultFunctionBody&>(rhs);
 }

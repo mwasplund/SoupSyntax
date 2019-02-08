@@ -3,8 +3,8 @@ module SoupSyntax;
 using namespace Soup::Syntax;
 
 QualifiedName::QualifiedName(
-    std::shared_ptr<LiteralNode>&& qualifier,
-    std::shared_ptr<Node>&& name) :
+    std::shared_ptr<Literal>&& qualifier,
+    std::shared_ptr<SyntaxNode>&& name) :
     m_qualifier(std::move(qualifier)),
     m_name(std::move(name))
 {
@@ -21,12 +21,12 @@ bool QualifiedName::operator!=(const QualifiedName &rhs) const
     return !(*this == rhs);
 }
 
-const LiteralNode &QualifiedName::GetQualifier() const
+const Literal &QualifiedName::GetQualifier() const
 {
     return *m_qualifier;
 }
 
-const Node &QualifiedName::GetName() const
+const SyntaxNode &QualifiedName::GetName() const
 {
     return *m_name;
 }
@@ -36,7 +36,7 @@ std::string QualifiedName::ToString() const
     return "QualifiedName";
 }
 
-bool QualifiedName::Equals(const Node& rhs) const
+bool QualifiedName::Equals(const SyntaxNode& rhs) const
 {
     return *this == static_cast<const QualifiedName&>(rhs);
 }

@@ -1,5 +1,4 @@
 ﻿#pragma once
-#include "Node.h"
 #include "Declaration.h"
 #include "DeclarationSpecifierSequence.h"
 #include "ParameterList.h"
@@ -15,14 +14,14 @@ namespace Soup::Syntax
         std::shared_ptr<DeclarationSpecifierSequence> m_returnType;
         std::shared_ptr<Identifier> m_identifier;
         std::shared_ptr<ParameterList> m_parameterList;
-        std::shared_ptr<Node> m_body;
+        std::shared_ptr<SyntaxNode> m_body;
 
     public:
         FunctionDefinition(
             std::shared_ptr<DeclarationSpecifierSequence>&& returnType,
             std::shared_ptr<Identifier>&& identifier,
             std::shared_ptr<ParameterList>&& parameterList,
-            std::shared_ptr<Node>&& body);
+            std::shared_ptr<SyntaxNode>&& body);
 
         /// <summary>
         /// Gets or sets the return type
@@ -42,7 +41,7 @@ namespace Soup::Syntax
         /// <summary>
         /// Gets or sets the body
         /// </summary>
-        const Node& GetBody() const;
+        const SyntaxNode& GetBody() const;
 
         /// <summary>
         /// Equality operator
@@ -57,8 +56,8 @@ namespace Soup::Syntax
 
     protected:
         /// <summary>
-        /// Node Equals
+        /// SyntaxNode Equals
         /// </summary>
-        virtual bool Equals(const Node& rhs) const final;
+        virtual bool Equals(const SyntaxNode& rhs) const final;
     };
 }

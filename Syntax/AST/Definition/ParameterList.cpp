@@ -3,7 +3,7 @@
 module SoupSyntax;
 using namespace Soup::Syntax;
 
-const std::vector<Node>& ParameterList::GetParameters() const
+const std::vector<SyntaxNode>& ParameterList::GetParameters() const
 {
     return this->parameters;
 }
@@ -23,7 +23,7 @@ std::string ParameterList::ToString() const
     return "ParameterList";
 }
 
-bool ParameterList::Equals(const Node& rhs) const
+bool ParameterList::Equals(const SyntaxNode& rhs) const
 {
     return *this == static_cast<const ParameterList&>(rhs);
 }

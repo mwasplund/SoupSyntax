@@ -16,7 +16,7 @@ namespace Soup::Syntax::UnitTests
             auto expected = TestUtils::CreateSingleDeclaration(
                 std::make_shared<SimpleDefinition>(
                     std::make_shared<DeclarationSpecifierSequence>(
-                        std::vector<std::shared_ptr<Node>>
+                        std::vector<std::shared_ptr<SyntaxNode>>
                         {
                             std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Int),
                         }),
@@ -44,7 +44,7 @@ namespace Soup::Syntax::UnitTests
             auto expected = TestUtils::CreateSingleDeclaration(
                 std::make_shared<SimpleDefinition>(
                     std::make_shared<DeclarationSpecifierSequence>(
-                        std::vector<std::shared_ptr<Node>>
+                        std::vector<std::shared_ptr<SyntaxNode>>
                         {
                             std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Int),
                         }),
@@ -85,7 +85,7 @@ namespace Soup::Syntax::UnitTests
             auto expected = TestUtils::CreateSingleDeclaration(
                 std::make_shared<SimpleDefinition>(
                     std::make_shared<DeclarationSpecifierSequence>(
-                        std::vector<std::shared_ptr<Node>>
+                        std::vector<std::shared_ptr<SyntaxNode>>
                         {
                             std::make_shared<PrimitiveDataTypeNode>(type),
                         }),
@@ -113,7 +113,7 @@ namespace Soup::Syntax::UnitTests
             auto expected = TestUtils::CreateSingleDeclaration(
                 std::make_shared<SimpleDefinition>(
                     std::make_shared<DeclarationSpecifierSequence>(
-                        std::vector<std::shared_ptr<Node>>
+                        std::vector<std::shared_ptr<SyntaxNode>>
                         {
                             std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Int),
                         }),

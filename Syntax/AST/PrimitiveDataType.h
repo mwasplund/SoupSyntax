@@ -1,5 +1,5 @@
 ﻿#pragma once
-#include "Node.h"
+#include "SyntaxNode.h"
 
 namespace Soup::Syntax
 {
@@ -80,9 +80,9 @@ namespace Soup::Syntax
     };
 
     /// <summary>
-    /// Primitive data type node
+    /// Primitive data type
     /// </summary>
-    export class PrimitiveDataTypeNode final : public Node
+    export class PrimitiveDataTypeNode final : public SyntaxNode
     {
     private:
         PrimitiveDataType type;
@@ -111,8 +111,8 @@ namespace Soup::Syntax
 
     protected:
         /// <summary>
-        /// Node Equals
+        /// SyntaxNode Equals
         /// </summary>
-        virtual bool Equals(const Node& rhs) const final;
+        virtual bool Equals(const SyntaxNode& rhs) const final;
     };
 }

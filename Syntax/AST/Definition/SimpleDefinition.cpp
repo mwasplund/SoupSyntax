@@ -39,7 +39,7 @@ std::string SimpleDefinition::ToString() const
     return result;
 }
 
-bool SimpleDefinition::Equals(const Node& rhs) const
+bool SimpleDefinition::Equals(const SyntaxNode& rhs) const
 {
     return *this == static_cast<const SimpleDefinition&>(rhs);
 }

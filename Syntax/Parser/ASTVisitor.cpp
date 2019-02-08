@@ -3,7 +3,7 @@ using namespace Soup::Syntax;
 
 void Trace(const wchar_t* message)
 {
-    // std::wcout << message << std::endl;
+    std::wcout << message << std::endl;
 }
 
 antlrcpp::Any ASTVisitor::visitTypedefName(CppParser::TypedefNameContext* context)
@@ -80,7 +80,7 @@ antlrcpp::Any ASTVisitor::visitUnqualifiedIdentifier(CppParser::UnqualifiedIdent
 {
     Trace(L"VisitUnqualifiedIdentifier");
     auto identifier = context->Identifier();
-    return std::static_pointer_cast<Node>(
+    return std::static_pointer_cast<SyntaxNode>(
         std::make_shared<Identifier>(identifier->getText()));
 }
 
@@ -635,7 +635,7 @@ antlrcpp::Any ASTVisitor::visitDeclarationSequence(CppParser::DeclarationSequenc
 
     // Handle the new item
     auto declaration = context->declaration();
-    auto declarationNode = visit(declaration).as<std::shared_ptr<Node>>();
+    auto declarationNode = visit(declaration).as<std::shared_ptr<SyntaxNode>>();
     sequence->GetDeclarations().push_back(
         std::static_pointer_cast<Declaration>(declarationNode));
 
@@ -676,7 +676,7 @@ antlrcpp::Any ASTVisitor::visitSimpleDeclaration(CppParser::SimpleDeclarationCon
         .as<std::shared_ptr<InitializerDeclaratorList>>();
 
     // TODO
-    return std::static_pointer_cast<Node>(
+    return std::static_pointer_cast<SyntaxNode>(
         std::make_shared<SimpleDefinition>(
             std::move(declarationSpecifierSequence),
             std::move(initializerDeclaratorList)));
@@ -777,46 +777,46 @@ antlrcpp::Any ASTVisitor::visitSimpleTypeSpecifier(CppParser::SimpleTypeSpecifie
 {
     Trace(L"VisitSimpleTypeSpecifier");
     if (context->Char() != nullptr)
-        return std::static_pointer_cast<Node>(
+        return std::static_pointer_cast<SyntaxNode>(
             std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Char));
     else if (context->Char16() != nullptr)
-        return std::static_pointer_cast<Node>(
+        return std::static_pointer_cast<SyntaxNode>(
             std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Char16));
     else if (context->Char32() != nullptr)
-        return std::static_pointer_cast<Node>(
+        return std::static_pointer_cast<SyntaxNode>(
             std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Char32));
     else if (context->WChar() != nullptr)
-        return std::static_pointer_cast<Node>(
+        return std::static_pointer_cast<SyntaxNode>(
             std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::WChar));
     else if (context->Bool() != nullptr)
-        return std::static_pointer_cast<Node>(
+        return std::static_pointer_cast<SyntaxNode>(
             std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Bool));
     else if (context->Short() != nullptr)
-        return std::static_pointer_cast<Node>(
+        return std::static_pointer_cast<SyntaxNode>(
             std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Short));
     else if (context->Int() != nullptr)
-        return std::static_pointer_cast<Node>(
+        return std::static_pointer_cast<SyntaxNode>(
             std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Int));
     else if (context->Long() != nullptr)
-        return std::static_pointer_cast<Node>(
+        return std::static_pointer_cast<SyntaxNode>(
             std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Long));
     else if (context->Signed() != nullptr)
-        return std::static_pointer_cast<Node>(
+        return std::static_pointer_cast<SyntaxNode>(
             std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Signed));
     else if (context->Unsigned() != nullptr)
-        return std::static_pointer_cast<Node>(
+        return std::static_pointer_cast<SyntaxNode>(
             std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Unsigned));
     else if (context->Float() != nullptr)
-        return std::static_pointer_cast<Node>(
+        return std::static_pointer_cast<SyntaxNode>(
             std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Float));
     else if (context->Double() != nullptr)
-        return std::static_pointer_cast<Node>(
+        return std::static_pointer_cast<SyntaxNode>(
             std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Double));
     else if (context->Void() != nullptr)
-        return std::static_pointer_cast<Node>(
+        return std::static_pointer_cast<SyntaxNode>(
             std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Void));
     else if (context->Auto() != nullptr)
-        return std::static_pointer_cast<Node>(
+        return std::static_pointer_cast<SyntaxNode>(
             std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Auto));
 
     throw std::logic_error("Unexpected simple type.");
@@ -897,7 +897,7 @@ antlrcpp::Any ASTVisitor::visitEnumerator(CppParser::EnumeratorContext* context)
 antlrcpp::Any ASTVisitor::visitNamespaceDefinition(CppParser::NamespaceDefinitionContext* context)
 {
     Trace(L"VisitNamespaceDefinition");
-    throw std::logic_error("NotImplemented");
+    return visitChildren(context);
 }
 
 antlrcpp::Any ASTVisitor::visitNamedNamespaceDefinition(CppParser::NamedNamespaceDefinitionContext* context)
@@ -1078,14 +1078,14 @@ antlrcpp::Any ASTVisitor::visitInitializerDeclarator(CppParser::InitializerDecla
     Trace(L"VisitInitializerDeclarator");
 
     auto declarator = visit(context->declarator())
-        .as<std::shared_ptr<Node>>();
+        .as<std::shared_ptr<SyntaxNode>>();
 
     // Check for optional initializer
-    std::shared_ptr<Node> initializer = nullptr;
+    std::shared_ptr<SyntaxNode> initializer = nullptr;
     if (context->initializer() != nullptr)
     {
         initializer = visit(context->initializer())
-            .as<std::shared_ptr<Node>>();
+            .as<std::shared_ptr<SyntaxNode>>();
     }
 
     return std::make_shared<InitializerDeclarator>(
@@ -1128,7 +1128,9 @@ antlrcpp::Any ASTVisitor::visitParametersAndQualifiers(CppParser::ParametersAndQ
 antlrcpp::Any ASTVisitor::visitFunctionParameters(CppParser::FunctionParametersContext *context)
 {
     Trace(L"visitFunctionParameters");
-    throw std::logic_error("NotImplemented");
+    
+    return visit(context->parameterDeclarationClause());
+
 }
 
 antlrcpp::Any ASTVisitor::visitFunctionQualifiers(CppParser::FunctionQualifiersContext *context)
@@ -1243,14 +1245,14 @@ antlrcpp::Any ASTVisitor::visitFunctionDefinition(CppParser::FunctionDefinitionC
     // Analyze the declarator
     auto declaratorContext = context->functionDeclarator();
     auto identifier = std::static_pointer_cast<Identifier>(
-        visit(declaratorContext->identifierExpression()).as<std::shared_ptr<Node>>());
+        visit(declaratorContext->identifierExpression()).as<std::shared_ptr<SyntaxNode>>());
     auto parameterList = visit(declaratorContext->functionParameters())
         .as<std::shared_ptr<ParameterList>>();
     // TODO Qualifiers
     // TODO Trailiing return type
 
     auto body = visit(context->functionBody())
-        .as<std::shared_ptr<Node>>();
+        .as<std::shared_ptr<SyntaxNode>>();
 
     return std::make_shared<FunctionDefinition>(
         std::move(returnType),
@@ -1635,7 +1637,7 @@ antlrcpp::Any ASTVisitor::visitIntegerLiteral(CppParser::IntegerLiteralContext* 
     // Parse the integer value
     int value = std::stoi(context->getText());
 
-    return std::static_pointer_cast<Node>(
+    return std::static_pointer_cast<SyntaxNode>(
         std::make_shared<IntegerLiteral>(value));
 }
 
