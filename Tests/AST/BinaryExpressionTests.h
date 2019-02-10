@@ -11,12 +11,12 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = std::make_shared<BinaryExpression>(
                 BinaryOperator::Addition,
-                std::make_shared<IntegerLiteralExpression>(1),
-                std::make_shared<IntegerLiteralExpression>(2));
+                std::make_shared<LiteralExpression>(LiteralType::Integer, "1"),
+                std::make_shared<LiteralExpression>(LiteralType::Integer, "2"));
 
             Assert::AreEqual(BinaryOperator::Addition, uut->GetOperator(), "Verify operator matches.");
-            Assert::AreEqual<Expression>(IntegerLiteralExpression(1), uut->GetLeft(), "Verify left expression matches.");
-            Assert::AreEqual<Expression>(IntegerLiteralExpression(2), uut->GetRight(), "Verify right expression matches.");
+            Assert::AreEqual<Expression>(LiteralExpression(LiteralType::Integer, "1"), uut->GetLeft(), "Verify left expression matches.");
+            Assert::AreEqual<Expression>(LiteralExpression(LiteralType::Integer, "2"), uut->GetRight(), "Verify right expression matches.");
         }
     };
 }

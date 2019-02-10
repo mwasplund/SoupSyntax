@@ -3,7 +3,7 @@ import Antlr4.Runtime;
 import SoupSyntax;
 
 #include "AST\BinaryExpressionTests.gen.h"
-#include "AST\IntegerLiteralExpressionTests.gen.h"
+#include "AST\LiteralExpressionTests.gen.h"
 
 #include "Parser\LexerTests.gen.h"
 #include "Parser\ParserAttributesTests.gen.h"
@@ -14,6 +14,9 @@ import SoupSyntax;
 #include "Parser\SyntaxNamespaceTests.gen.h"
 #include "Parser\SyntaxVariableTests.gen.h"
 
+
+#include "Parser\Expression\ParserLiteralExpressionTests.gen.h"
+
 int main()
 {
   std::wcout << L"Running Tests..." << std::endl;
@@ -21,7 +24,7 @@ int main()
   int failedCount = 0;
 
   failedCount += RunBinaryExpressionTests();
-  failedCount += RunIntegerLiteralExpressionTests();
+  failedCount += RunLiteralExpressionTests();
 
   failedCount += RunLexerTests();
   failedCount += RunParserAttributesTests();
@@ -31,6 +34,8 @@ int main()
   failedCount += RunSyntaxMiscTests();
   failedCount += RunSyntaxNamespaceTests();
   failedCount += RunSyntaxVariableTests();
+
+  failedCount += RunParserLiteralExpressionTests();
 
   std::wcout << failedCount << L" FAILED." << std::endl;
   return 0;

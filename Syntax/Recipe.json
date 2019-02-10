@@ -29,7 +29,6 @@
     "AST/Definition/TryFunctionBody.cpp",
     "AST/Expression/BinaryExpression.cpp",
     "AST/Expression/Expression.cpp",
-    "AST/Expression/IntegerLiteralExpression.cpp",
     "AST/Expression/LiteralExpression.cpp",
     "AST/Statement/CompoundStatement.cpp",
     "AST/Statement/ReturnStatement.cpp",

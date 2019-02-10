@@ -1621,11 +1621,20 @@ antlrcpp::Any ASTVisitor::visitLiteral(CppParser::LiteralContext* context)
 {
     Trace(L"VisitLiteral");
     if (context->FloatingPointLiteral() != nullptr)
-        throw std::logic_error("NotImplemented");
+    {
+        return std::static_pointer_cast<SyntaxNode>(
+            std::make_shared<LiteralExpression>(LiteralType::Floating, context->getText()));
+    }
     else if (context->CharacterLiteral() != nullptr)
-        throw std::logic_error("NotImplemented");
+    {
+        return std::static_pointer_cast<SyntaxNode>(
+            std::make_shared<LiteralExpression>(LiteralType::Character, context->getText()));
+    }
     else if (context->StringLiteral() != nullptr)
-        throw std::logic_error("NotImplemented");
+    {
+        return std::static_pointer_cast<SyntaxNode>(
+            std::make_shared<LiteralExpression>(LiteralType::String, context->getText()));
+    }
     else
         return visitChildren(context);
 }
@@ -1633,28 +1642,27 @@ antlrcpp::Any ASTVisitor::visitLiteral(CppParser::LiteralContext* context)
 antlrcpp::Any ASTVisitor::visitIntegerLiteral(CppParser::IntegerLiteralContext* context)
 {
     Trace(L"VisitIntegerLiteral");
-
-    // Parse the integer value
-    int value = std::stoi(context->getText());
-
     return std::static_pointer_cast<SyntaxNode>(
-        std::make_shared<IntegerLiteralExpression>(value));
+        std::make_shared<LiteralExpression>(LiteralType::Integer, context->getText()));
 }
 
 antlrcpp::Any ASTVisitor::visitBooleanLiteral(CppParser::BooleanLiteralContext* context)
 {
     Trace(L"VisitBooleanLiteral");
-    throw std::logic_error("NotImplemented");
+    return std::static_pointer_cast<SyntaxNode>(
+        std::make_shared<LiteralExpression>(LiteralType::Boolean, context->getText()));
 }
 
 antlrcpp::Any ASTVisitor::visitPointerLiteral(CppParser::PointerLiteralContext* context)
 {
     Trace(L"VisitPointerLiteral");
-    throw std::logic_error("NotImplemented");
+    return std::static_pointer_cast<SyntaxNode>(
+        std::make_shared<LiteralExpression>(LiteralType::Pointer, context->getText()));
 }
 
 antlrcpp::Any ASTVisitor::visitUserDefinedLiteral(CppParser::UserDefinedLiteralContext* context)
 {
     Trace(L"VisitUserDefinedLiteral");
-    throw std::logic_error("NotImplemented");
+    return std::static_pointer_cast<SyntaxNode>(
+        std::make_shared<LiteralExpression>(LiteralType::UserDefined, context->getText()));
 }
