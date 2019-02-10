@@ -1,5 +1,5 @@
 #pragma once
-#include "RunTest.h"
+#include "../RunTest.h"
 #include "SyntaxMiscTests.h"
 
 int RunSyntaxMiscTests()

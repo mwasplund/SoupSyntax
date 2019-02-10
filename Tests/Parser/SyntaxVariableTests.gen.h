@@ -1,6 +1,6 @@
 #pragma once
 #include "SyntaxVariableTests.h"
-#include "RunTest.h"
+#include "../RunTest.h"
 
 using namespace Soup::Syntax;
 
@@ -12,7 +12,7 @@ int RunSyntaxVariableTests()
     std::wcout << L"Running SyntaxVariableTests:" << std::endl;
 
     std::wcout << L"Running GlobalVariableDeclaration:" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->GlobalVariableDeclaration(); });
+    //failedCount += RunTest([&testClass]() { testClass->GlobalVariableDeclaration(); });
 
     std::wcout << L"Running GlobalVariableDeclarationInitializer:" << std::endl;
     failedCount += RunTest([&testClass]() { testClass->GlobalVariableDeclarationInitializer(); });

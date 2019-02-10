@@ -3,7 +3,7 @@ using namespace Soup::Syntax;
 
 void Trace(const wchar_t* message)
 {
-    std::wcout << message << std::endl;
+    // std::wcout << message << std::endl;
 }
 
 antlrcpp::Any ASTVisitor::visitTypedefName(CppParser::TypedefNameContext* context)
@@ -1638,7 +1638,7 @@ antlrcpp::Any ASTVisitor::visitIntegerLiteral(CppParser::IntegerLiteralContext* 
     int value = std::stoi(context->getText());
 
     return std::static_pointer_cast<SyntaxNode>(
-        std::make_shared<IntegerLiteral>(value));
+        std::make_shared<IntegerLiteralExpression>(value));
 }
 
 antlrcpp::Any ASTVisitor::visitBooleanLiteral(CppParser::BooleanLiteralContext* context)

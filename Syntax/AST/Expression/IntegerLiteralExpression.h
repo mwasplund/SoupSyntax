@@ -1,21 +1,18 @@
 ﻿#pragma once
-#include "Literal.h"
+#include "LiteralExpression.h"
 
 namespace Soup::Syntax
 {
     /// <summary>
-    /// An integer value
+    /// An integer literal expression
     /// </summary>
-    export class IntegerLiteral final : public Literal
+    export class IntegerLiteralExpression final : public LiteralExpression
     {
-    private:
-        int value;
-
     public:
         /// <summary>
         /// Initialize
         /// </summary>
-        IntegerLiteral(int value);
+        IntegerLiteralExpression(int value);
 
         /// <summary>
         /// Gets or sets the value
@@ -25,8 +22,8 @@ namespace Soup::Syntax
         /// <summary>
         /// Equality operator
         /// </summary>
-        bool operator ==(const IntegerLiteral& rhs) const;
-        bool operator !=(const IntegerLiteral& rhs) const;
+        bool operator ==(const IntegerLiteralExpression& rhs) const;
+        bool operator !=(const IntegerLiteralExpression& rhs) const;
 
         /// <summary>
         /// Convert to string representation
@@ -38,5 +35,8 @@ namespace Soup::Syntax
         /// SyntaxNode Equals
         /// </summary>
         virtual bool Equals(const SyntaxNode& rhs) const final;
+
+    private:
+        int m_value;
     };
 }

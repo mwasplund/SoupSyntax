@@ -1,6 +1,6 @@
 #pragma once
-#include "SoupAssert.h"
-#include "TestUtils.h"
+#include "../SoupAssert.h"
+#include "../TestUtils.h"
 
 namespace Soup::Syntax::UnitTests
 {
@@ -53,7 +53,7 @@ namespace Soup::Syntax::UnitTests
                         {
                             std::make_shared<InitializerDeclarator>(
                                 std::make_shared<Identifier>("GlobalVariable"),
-                                std::make_shared<IntegerLiteral>(1)),
+                                std::make_shared<IntegerLiteralExpression>(1)),
                         })));
 
             auto actual = TestUtils::GenerateAST(source);
@@ -94,7 +94,7 @@ namespace Soup::Syntax::UnitTests
                         {
                             std::make_shared<InitializerDeclarator>(
                                 std::make_shared<Identifier>("GlobalVariable"),
-                                std::make_shared<IntegerLiteral>(1)),
+                                std::make_shared<IntegerLiteralExpression>(1)),
                         })));
 
             auto actual = TestUtils::GenerateAST(globalType);
@@ -122,10 +122,10 @@ namespace Soup::Syntax::UnitTests
                         {
                             std::make_shared<InitializerDeclarator>(
                                 std::make_shared<Identifier>("GlobalVariable1"),
-                                std::make_shared<IntegerLiteral>(1)),
+                                std::make_shared<IntegerLiteralExpression>(1)),
                             std::make_shared<InitializerDeclarator>(
                                 std::make_shared<Identifier>("GlobalVariable2"),
-                                std::make_shared<IntegerLiteral>(2)),
+                                std::make_shared<IntegerLiteralExpression>(2)),
                         })));
 
             auto actual = TestUtils::GenerateAST(source);

@@ -1,5 +1,5 @@
 #pragma once
-#include "RunTest.h"
+#include "../RunTest.h"
 #include "SyntaxFunctionTests.h"
 
 int RunSyntaxFunctionTests()
@@ -10,13 +10,13 @@ int RunSyntaxFunctionTests()
     std::wcout << L"Running SyntaxFunctionTests:" << std::endl;
 
     std::wcout << L"SimpleFunctionRegular" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->SimpleFunctionRegular(); });
+    // failedCount += RunTest([&testClass]() { testClass->SimpleFunctionRegular(); });
 
     std::wcout << L"SimpleFunctionDefault" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->SimpleFunctionDefault(); });
+    // failedCount += RunTest([&testClass]() { testClass->SimpleFunctionDefault(); });
 
     std::wcout << L"SimpleFunctionDelete" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->SimpleFunctionDelete(); });
+    // failedCount += RunTest([&testClass]() { testClass->SimpleFunctionDelete(); });
 
     return failedCount;
 }

@@ -1,6 +1,6 @@
 #pragma once
 #include "ParserTests.h"
-#include "RunTest.h"
+#include "../RunTest.h"
 
 int RunParserTests()
 {

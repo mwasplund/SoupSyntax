@@ -59,8 +59,8 @@ public:
 
   template<typename T>
   static typename std::enable_if<!std::is_pointer<T>::value && !is_shared_ptr<T>::value>::type AreEqual(
-    T expected,
-    T actual,
+    const T& expected,
+    const T& actual,
     std::string message)
   {
     if (expected != actual)

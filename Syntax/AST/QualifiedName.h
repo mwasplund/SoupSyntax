@@ -1,6 +1,6 @@
 ﻿#pragma once
 #include "SyntaxNode.h"
-#include "Literal.h"
+#include "Expression/LiteralExpression.h"
 
 namespace Soup::Syntax
 {
@@ -10,7 +10,7 @@ namespace Soup::Syntax
     export class QualifiedName final : public SyntaxNode
     {
     private:
-        std::shared_ptr<Literal> m_qualifier;
+        std::shared_ptr<LiteralExpression> m_qualifier;
         std::shared_ptr<SyntaxNode> m_name;
 
     public:
@@ -18,7 +18,7 @@ namespace Soup::Syntax
         /// Initialize
         /// </summary>
         QualifiedName(
-            std::shared_ptr<Literal>&& qualifier,
+            std::shared_ptr<LiteralExpression>&& qualifier,
             std::shared_ptr<SyntaxNode>&& name);
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace Soup::Syntax
         /// <summary>
         /// Gets or sets the Qualifier
         /// </summary>
-        const Literal& GetQualifier() const;
+        const LiteralExpression& GetQualifier() const;
 
         /// <summary>
         /// Gets or sets the Qualifier

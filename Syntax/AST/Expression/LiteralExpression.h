@@ -4,9 +4,9 @@
 namespace Soup::Syntax
 {
     /// <summary>
-    /// A literal node
+    /// A literal expression root type
     /// </summary>
-    export class Literal : public Expression
+    export class LiteralExpression : public Expression
     {
     };
 }

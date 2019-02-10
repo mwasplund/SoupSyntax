@@ -3,7 +3,7 @@ module SoupSyntax;
 using namespace Soup::Syntax;
 
 QualifiedName::QualifiedName(
-    std::shared_ptr<Literal>&& qualifier,
+    std::shared_ptr<LiteralExpression>&& qualifier,
     std::shared_ptr<SyntaxNode>&& name) :
     m_qualifier(std::move(qualifier)),
     m_name(std::move(name))
@@ -21,7 +21,7 @@ bool QualifiedName::operator!=(const QualifiedName &rhs) const
     return !(*this == rhs);
 }
 
-const Literal &QualifiedName::GetQualifier() const
+const LiteralExpression &QualifiedName::GetQualifier() const
 {
     return *m_qualifier;
 }

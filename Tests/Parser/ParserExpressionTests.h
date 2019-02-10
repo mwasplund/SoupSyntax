@@ -1,6 +1,6 @@
 #pragma once
-#include "TestUtils.h"
-#include "SoupAssert.h"
+#include "../TestUtils.h"
+#include "../SoupAssert.h"
 
 namespace Soup::Syntax::UnitTests
 {
