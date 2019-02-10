@@ -35,6 +35,33 @@ namespace Soup::Syntax::UnitTests
             Assert::NotNull(expression, "Verify cast.");
         }
 
+        // [Fact]
+        void SingleSimpleNameExpression()
+        {
+            auto sourceCode = std::string("Name");
+            auto expression = std::dynamic_pointer_cast<SimpleNameExpression>(
+                ParsePrimaryExpression(sourceCode));
+
+            Assert::NotNull(expression, "Verify cast.");
+            Assert::AreEqual(std::string("Name"), expression->GetIdentifier(), "Verify identifier matches expected.");
+        }
+
+        // [Fact]
+        void SingleQualifiedNameExpression()
+        {
+            auto sourceCode = std::string("NameLeft::NameRight");
+            auto expression = std::dynamic_pointer_cast<QualifiedNameExpression>(
+                ParsePrimaryExpression(sourceCode));
+
+            Assert::NotNull(expression, "Verify cast.");
+
+            auto left = dynamic_cast<const SimpleNameExpression&>(expression->GetLeft());
+            auto right = expression->GetRight();
+
+            Assert::AreEqual(std::string("NameLeft"), left.GetIdentifier(), "Verify left identifier matches expected.");
+            Assert::AreEqual(std::string("NameRight"), right.GetIdentifier(), "Verify right identifier matches expected.");
+        }
+
     private:
         std::shared_ptr<SyntaxNode> ParsePrimaryExpression(std::string& sourceCode)
         {

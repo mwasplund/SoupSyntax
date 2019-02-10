@@ -11,6 +11,11 @@ QualifiedNameExpression::QualifiedNameExpression(
 {
 }
 
+bool QualifiedNameExpression::HasLeft() const
+{
+    return m_left != nullptr;
+}
+
 const NameExpression& QualifiedNameExpression::GetLeft() const
 {
     return *m_left;

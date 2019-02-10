@@ -5,6 +5,7 @@ import std.core;
 import Antlr4.Runtime;
 
 #include "SyntaxTree.h"
+#include "AST\ASTBuilder.h"
 #include "AST\PrimitiveDataType.h"
 #include "AST\QualifiedName.h"
 #include "AST\SyntaxNode.h"

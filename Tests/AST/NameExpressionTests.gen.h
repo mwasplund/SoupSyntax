@@ -15,5 +15,8 @@ int RunNameExpressionTests()
     std::wcout << L"InitializeSingleQualifiedNameExpression" << std::endl;
     failedCount += RunTest([&testClass]() { testClass->InitializeSingleQualifiedNameExpression(); });
 
+    std::wcout << L"InitializeGlobalDoubleQualifiedNameExpression" << std::endl;
+    failedCount += RunTest([&testClass]() { testClass->InitializeGlobalDoubleQualifiedNameExpression(); });
+    
     return failedCount;
 }

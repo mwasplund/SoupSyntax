@@ -21,5 +21,11 @@ int RunPrimaryExpressionTests()
     std::wcout << L"SingleThisExpression" << std::endl;
     failedCount += RunTest([&testClass]() { testClass->SingleThisExpression(); });
 
+    std::wcout << L"SingleSimpleNameExpression" << std::endl;
+    failedCount += RunTest([&testClass]() { testClass->SingleSimpleNameExpression(); });
+    
+    std::wcout << L"SingleQualifiedNameExpression" << std::endl;
+    failedCount += RunTest([&testClass]() { testClass->SingleQualifiedNameExpression(); });
+
     return failedCount;
 }

@@ -5,9 +5,14 @@ namespace Soup::Syntax
 {
     /// <summary>
     /// A Qualified name expression
+    /// Includes a double colon qualifier for a simple name along with
+    /// an optional recursive name expression that can be either another
+    /// qualified name or a simple name.
     /// </summary>
     export class QualifiedNameExpression final : public NameExpression
     {
+        friend class ASTBuilder;
+
     public:
         /// <summary>
         /// Initialize
@@ -15,6 +20,11 @@ namespace Soup::Syntax
         QualifiedNameExpression(
             std::shared_ptr<NameExpression> left,
             std::shared_ptr<SimpleNameExpression> right);
+
+        /// <summary>
+        /// Checks if there is an optional left
+        /// </summary>
+        bool HasLeft() const;
 
         /// <summary>
         /// Gets the left name expression
