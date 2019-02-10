@@ -4,7 +4,7 @@ using namespace Soup::Syntax;
 
 FunctionDefinition::FunctionDefinition(
     std::shared_ptr<DeclarationSpecifierSequence>&& returnType,
-    std::shared_ptr<Identifier>&& identifier,
+    std::shared_ptr<NameExpression>&& identifier,
     std::shared_ptr<ParameterList>&& parameterList,
     std::shared_ptr<SyntaxNode>&& body) :
     m_returnType(std::move(returnType)),
@@ -19,7 +19,7 @@ const DeclarationSpecifierSequence& FunctionDefinition::GetReturnType() const
     return *m_returnType;
 }
 
-const Identifier& FunctionDefinition::GetIdentifier() const
+const NameExpression& FunctionDefinition::GetIdentifier() const
 {
     return *m_identifier;
 }

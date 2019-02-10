@@ -19,7 +19,7 @@ namespace Soup::Syntax::UnitTests
                         {
                             std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Void),
                         }),
-                    std::make_shared<Identifier>("Function"),
+                    std::make_shared<SimpleNameExpression>("Function"),
                     nullptr,
                     std::make_shared<RegularFunctionBody>(
                         std::make_shared<CompoundStatement>())));
@@ -41,7 +41,7 @@ namespace Soup::Syntax::UnitTests
                         {
                             std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Void),
                         }),
-                    std::make_shared<Identifier>("Function"),
+                    std::make_shared<SimpleNameExpression>("Function"),
                     nullptr,
                     std::make_shared<DefaultFunctionBody>()));
 
@@ -62,7 +62,7 @@ namespace Soup::Syntax::UnitTests
                         {
                             std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Void),
                         }),
-                    std::make_shared<Identifier>("Function"),
+                    std::make_shared<SimpleNameExpression>("Function"),
                     nullptr,
                     std::make_shared<DeleteFunctionBody>()));
 

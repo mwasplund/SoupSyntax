@@ -1,32 +1,29 @@
 ﻿#pragma once
-#include "SyntaxNode.h"
+#include "NameExpression.h"
 
 namespace Soup::Syntax
 {
     /// <summary>
-    /// An identifier
+    /// A simple name expression referencing a single Identifier
     /// </summary>
-    export class Identifier final : public SyntaxNode
+    export class SimpleNameExpression final : public NameExpression
     {
-    private:
-        std::string value;
-
     public:
         /// <summary>
         /// Initialize
         /// </summary>
-        Identifier(std::string value);
+        SimpleNameExpression(std::string identifier);
 
         /// <summary>
-        /// Gets or sets the value
+        /// Gets the left name expression
         /// </summary>
-        const std::string& GetValue() const;
+        const std::string& GetIdentifier() const;
 
         /// <summary>
         /// Equality operator
         /// </summary>
-        bool operator ==(const Identifier& rhs) const;
-        bool operator !=(const Identifier& rhs) const;
+        bool operator ==(const SimpleNameExpression& rhs) const;
+        bool operator !=(const SimpleNameExpression& rhs) const;
 
         /// <summary>
         /// Convert to string representation
@@ -38,5 +35,8 @@ namespace Soup::Syntax
         /// SyntaxNode Equals
         /// </summary>
         virtual bool Equals(const SyntaxNode& rhs) const final;
+
+    private:
+        std::string m_identifier;
     };
 }

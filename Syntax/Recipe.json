@@ -7,7 +7,6 @@
   "public": "Module.cppm",
   "source": [
     "SyntaxTree.cpp",
-    "AST/Identifier.cpp",
     "AST/PrimitiveDataType.cpp",
     "AST/QualifiedName.cpp",
     "AST/SyntaxNode.cpp",
@@ -30,7 +29,10 @@
     "AST/Expression/BinaryExpression.cpp",
     "AST/Expression/Expression.cpp",
     "AST/Expression/LiteralExpression.cpp",
+    "AST/Expression/NameExpression.cpp",
+    "AST/Expression/SimpleNameExpression.cpp",
     "AST/Expression/ThisExpression.cpp",
+    "AST/Expression/QualifiedNameExpression.cpp",
     "AST/Statement/CompoundStatement.cpp",
     "AST/Statement/ReturnStatement.cpp",
     "AST/Statement/Statement.cpp",

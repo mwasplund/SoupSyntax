@@ -24,7 +24,7 @@ namespace Soup::Syntax::UnitTests
                         std::vector<std::shared_ptr<InitializerDeclarator>>
                         {
                             std::make_shared<InitializerDeclarator>(
-                                std::make_shared<Identifier>("GlobalVariable"),
+                                std::make_shared<SimpleNameExpression>("GlobalVariable"),
                                 nullptr),
                         })));
 
@@ -52,7 +52,7 @@ namespace Soup::Syntax::UnitTests
                         std::vector<std::shared_ptr<InitializerDeclarator>>
                         {
                             std::make_shared<InitializerDeclarator>(
-                                std::make_shared<Identifier>("GlobalVariable"),
+                                std::make_shared<SimpleNameExpression>("GlobalVariable"),
                                 std::make_shared<LiteralExpression>(LiteralType::Integer, "1")),
                         })));
 
@@ -93,7 +93,7 @@ namespace Soup::Syntax::UnitTests
                         std::vector<std::shared_ptr<InitializerDeclarator>>
                         {
                             std::make_shared<InitializerDeclarator>(
-                                std::make_shared<Identifier>("GlobalVariable"),
+                                std::make_shared<SimpleNameExpression>("GlobalVariable"),
                                 std::make_shared<LiteralExpression>(LiteralType::Integer, "1")),
                         })));
 
@@ -121,10 +121,10 @@ namespace Soup::Syntax::UnitTests
                         std::vector<std::shared_ptr<InitializerDeclarator>>
                         {
                             std::make_shared<InitializerDeclarator>(
-                                std::make_shared<Identifier>("GlobalVariable1"),
+                                std::make_shared<SimpleNameExpression>("GlobalVariable1"),
                                 std::make_shared<LiteralExpression>(LiteralType::Integer, "1")),
                             std::make_shared<InitializerDeclarator>(
-                                std::make_shared<Identifier>("GlobalVariable2"),
+                                std::make_shared<SimpleNameExpression>("GlobalVariable2"),
                                 std::make_shared<LiteralExpression>(LiteralType::Integer, "2")),
                         })));
 

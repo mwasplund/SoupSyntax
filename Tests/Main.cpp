@@ -4,6 +4,7 @@ import SoupSyntax;
 
 #include "AST\BinaryExpressionTests.gen.h"
 #include "AST\LiteralExpressionTests.gen.h"
+#include "AST\NameExpressionTests.gen.h"
 
 #include "Parser\LexerTests.gen.h"
 #include "Parser\ParserAttributesTests.gen.h"
@@ -23,6 +24,7 @@ int main()
 
   failedCount += RunBinaryExpressionTests();
   failedCount += RunLiteralExpressionTests();
+  failedCount += RunNameExpressionTests();
 
   failedCount += RunLexerTests();
   failedCount += RunParserAttributesTests();

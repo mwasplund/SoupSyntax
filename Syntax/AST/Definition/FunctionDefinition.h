@@ -2,6 +2,7 @@
 #include "Declaration.h"
 #include "DeclarationSpecifierSequence.h"
 #include "ParameterList.h"
+#include "SimpleNameExpression.h"
 
 namespace Soup::Syntax
 {
@@ -10,16 +11,10 @@ namespace Soup::Syntax
     /// </summary>
     export class FunctionDefinition final : public Declaration
     {
-    private:
-        std::shared_ptr<DeclarationSpecifierSequence> m_returnType;
-        std::shared_ptr<Identifier> m_identifier;
-        std::shared_ptr<ParameterList> m_parameterList;
-        std::shared_ptr<SyntaxNode> m_body;
-
     public:
         FunctionDefinition(
             std::shared_ptr<DeclarationSpecifierSequence>&& returnType,
-            std::shared_ptr<Identifier>&& identifier,
+            std::shared_ptr<NameExpression>&& identifier,
             std::shared_ptr<ParameterList>&& parameterList,
             std::shared_ptr<SyntaxNode>&& body);
 
@@ -31,7 +26,7 @@ namespace Soup::Syntax
         /// <summary>
         /// Gets or sets the identifier
         /// </summary>
-        const Identifier& GetIdentifier() const;
+        const NameExpression& GetIdentifier() const;
 
         /// <summary>
         /// Gets or sets the parameter list
@@ -59,5 +54,12 @@ namespace Soup::Syntax
         /// SyntaxNode Equals
         /// </summary>
         virtual bool Equals(const SyntaxNode& rhs) const final;
+
+    private:
+        std::shared_ptr<DeclarationSpecifierSequence> m_returnType;
+        std::shared_ptr<NameExpression> m_identifier;
+        std::shared_ptr<ParameterList> m_parameterList;
+        std::shared_ptr<SyntaxNode> m_body;
+
     };
 }

@@ -5,7 +5,6 @@ import std.core;
 import Antlr4.Runtime;
 
 #include "SyntaxTree.h"
-#include "AST\Identifier.h"
 #include "AST\PrimitiveDataType.h"
 #include "AST\QualifiedName.h"
 #include "AST\SyntaxNode.h"
@@ -30,7 +29,10 @@ import Antlr4.Runtime;
 #include "AST\Expression\Expression.h"
 #include "AST\Expression\LiteralExpression.h"
 #include "AST\Expression\LiteralType.h"
+#include "AST\Expression\NameExpression.h"
+#include "AST\Expression\SimpleNameExpression.h"
 #include "AST\Expression\ThisExpression.h"
+#include "AST\Expression\QualifiedNameExpression.h"
 #include "AST\Expression\UnaryOperator.h"
 #include "AST\Statement\CompoundStatement.h"
 #include "AST\Statement\ReturnStatement.h"

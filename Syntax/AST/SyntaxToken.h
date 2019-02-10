@@ -10,6 +10,9 @@ namespace Soup::Syntax
     export class SyntaxToken
     {
     public:
+        /// <summary>
+        /// Initialize
+        /// </summary>
         SyntaxToken();
 
         /// <summary>

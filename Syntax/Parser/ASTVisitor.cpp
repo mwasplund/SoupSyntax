@@ -86,13 +86,21 @@ antlrcpp::Any ASTVisitor::visitUnqualifiedIdentifier(CppParser::UnqualifiedIdent
     Trace(L"VisitUnqualifiedIdentifier");
     auto identifier = context->Identifier();
     return std::static_pointer_cast<SyntaxNode>(
-        std::make_shared<Identifier>(identifier->getText()));
+        std::make_shared<SimpleNameExpression>(identifier->getText()));
 }
 
 antlrcpp::Any ASTVisitor::visitQualifiedIdentifier(CppParser::QualifiedIdentifierContext* context)
 {
     Trace(L"VisitQualifiedIdentifier");
-    throw std::logic_error("NotImplemented");
+    auto nestedName = visit(context->nestedNameSpecifier())
+        .as<std::shared_ptr<SyntaxNode>>();
+    auto simpleName = visit(context->unqualifiedIdentifier())
+        .as<std::shared_ptr<SyntaxNode>>();
+
+    return std::static_pointer_cast<SyntaxNode>(
+        std::make_shared<QualifiedNameExpression>(
+            std::dynamic_pointer_cast<NameExpression>(nestedName),
+            std::dynamic_pointer_cast<SimpleNameExpression>(simpleName)));
 }
 
 antlrcpp::Any ASTVisitor::visitNestedNameSpecifier(CppParser::NestedNameSpecifierContext* context)
@@ -1249,7 +1257,7 @@ antlrcpp::Any ASTVisitor::visitFunctionDefinition(CppParser::FunctionDefinitionC
 
     // Analyze the declarator
     auto declaratorContext = context->functionDeclarator();
-    auto identifier = std::static_pointer_cast<Identifier>(
+    auto identifier = std::static_pointer_cast<NameExpression>(
         visit(declaratorContext->identifierExpression()).as<std::shared_ptr<SyntaxNode>>());
     auto parameterList = visit(declaratorContext->functionParameters())
         .as<std::shared_ptr<ParameterList>>();
