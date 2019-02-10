@@ -60,9 +60,14 @@ antlrcpp::Any ASTVisitor::visitTranslationUnit(CppParser::TranslationUnitContext
 antlrcpp::Any ASTVisitor::visitPrimaryExpression(CppParser::PrimaryExpressionContext* context)
 {
     Trace(L"VisitPrimaryExpression");
-    if (context->literal () != nullptr)
+    if (context->literal() != nullptr)
     {
         return visit(context->literal());
+    }
+    else if (context->This() != nullptr)
+    {
+        return std::static_pointer_cast<SyntaxNode>(
+            std::make_shared<ThisExpression>());
     }
     else
     {
@@ -72,7 +77,7 @@ antlrcpp::Any ASTVisitor::visitPrimaryExpression(CppParser::PrimaryExpressionCon
 
 antlrcpp::Any ASTVisitor::visitIdentifierExpression(CppParser::IdentifierExpressionContext *context)
 {
-    Trace(L"visitIdentifierExpression");
+    Trace(L"VisitIdentifierExpression");
     return visitChildren(context);
 }
 
@@ -98,7 +103,7 @@ antlrcpp::Any ASTVisitor::visitNestedNameSpecifier(CppParser::NestedNameSpecifie
 
 antlrcpp::Any ASTVisitor::visitNestedNameSpecifierList(CppParser::NestedNameSpecifierListContext *context)
 {
-    Trace(L"visitNestedNameSpecifierList");
+    Trace(L"VisitNestedNameSpecifierList");
     throw std::logic_error("NotImplemented");
 }
 
@@ -504,7 +509,7 @@ antlrcpp::Any ASTVisitor::visitConstantExpression(CppParser::ConstantExpressionC
 
 antlrcpp::Any ASTVisitor::visitStatement(CppParser::StatementContext *context)
 {
-    Trace(L"visitStatement");
+    Trace(L"VisitStatement");
     return visitChildren(context);
 }
 
@@ -644,13 +649,13 @@ antlrcpp::Any ASTVisitor::visitDeclarationSequence(CppParser::DeclarationSequenc
 
 antlrcpp::Any ASTVisitor::visitDeclaration(CppParser::DeclarationContext *context)
 {
-    Trace(L"visitDeclaration");
+    Trace(L"VisitDeclaration");
     return visitChildren(context);
 }
 
 antlrcpp::Any ASTVisitor::visitBlockDeclaration(CppParser::BlockDeclarationContext *context)
 {
-    Trace(L"visitBlockDeclaration");
+    Trace(L"VisitBlockDeclaration");
     return visitChildren(context);
 }
 
@@ -751,7 +756,7 @@ antlrcpp::Any ASTVisitor::visitFunctionSpecifier(CppParser::FunctionSpecifierCon
 
 antlrcpp::Any ASTVisitor::visitTypeSpecifier(CppParser::TypeSpecifierContext *context)
 {
-    Trace(L"visitTypeSpecifier");
+    Trace(L"VisitTypeSpecifier");
     return visitChildren(context);
 }
 
@@ -763,7 +768,7 @@ antlrcpp::Any ASTVisitor::visitTypeSpecifierSequence(CppParser::TypeSpecifierSeq
 
 antlrcpp::Any ASTVisitor::visitDefiningTypeSpecifier(CppParser::DefiningTypeSpecifierContext *context)
 {
-    Trace(L"visitDefiningTypeSpecifier");
+    Trace(L"VisitDefiningTypeSpecifier");
     return visitChildren(context);
 }
 
@@ -1095,7 +1100,7 @@ antlrcpp::Any ASTVisitor::visitInitializerDeclarator(CppParser::InitializerDecla
 
 antlrcpp::Any ASTVisitor::visitDeclarator(CppParser::DeclaratorContext *context)
 {
-    Trace(L"visitDeclarator");
+    Trace(L"VisitDeclarator");
     return visitChildren(context);
 }
 
@@ -1127,7 +1132,7 @@ antlrcpp::Any ASTVisitor::visitParametersAndQualifiers(CppParser::ParametersAndQ
 
 antlrcpp::Any ASTVisitor::visitFunctionParameters(CppParser::FunctionParametersContext *context)
 {
-    Trace(L"visitFunctionParameters");
+    Trace(L"VisitFunctionParameters");
     
     return visit(context->parameterDeclarationClause());
 
@@ -1135,7 +1140,7 @@ antlrcpp::Any ASTVisitor::visitFunctionParameters(CppParser::FunctionParametersC
 
 antlrcpp::Any ASTVisitor::visitFunctionQualifiers(CppParser::FunctionQualifiersContext *context)
 {
-    Trace(L"visitFunctionQualifiers");
+    Trace(L"VisitFunctionQualifiers");
     throw std::logic_error("NotImplemented");
 }
 
@@ -1263,13 +1268,13 @@ antlrcpp::Any ASTVisitor::visitFunctionDefinition(CppParser::FunctionDefinitionC
 
 antlrcpp::Any ASTVisitor::visitFunctionDeclarator(CppParser::FunctionDeclaratorContext *context)
 {
-    Trace(L"visitFunctionDeclarator");
+    Trace(L"VisitFunctionDeclarator");
     throw std::logic_error("NotImplemented");
 }
 
 antlrcpp::Any ASTVisitor::visitFunctionBody(CppParser::FunctionBodyContext *context)
 {
-    Trace(L"visitFunctionBody");
+    Trace(L"VisitFunctionBody");
     throw std::logic_error("NotImplemented");
 }
 
@@ -1294,7 +1299,7 @@ antlrcpp::Any ASTVisitor::visitDeletedFunction(CppParser::DeletedFunctionContext
 
 antlrcpp::Any ASTVisitor::visitInitializer(CppParser::InitializerContext *context)
 {
-    Trace(L"visitInitializer");
+    Trace(L"VisitInitializer");
     return visitChildren(context);
 }
 
@@ -1313,7 +1318,7 @@ antlrcpp::Any ASTVisitor::visitBraceOrEqualInitializer(CppParser::BraceOrEqualIn
 
 antlrcpp::Any ASTVisitor::visitInitializerClause(CppParser::InitializerClauseContext *context)
 {
-    Trace(L"visitInitializerClause");
+    Trace(L"VisitInitializerClause");
     return visitChildren(context);
 }
 

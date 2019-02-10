@@ -30,6 +30,7 @@
     "AST/Expression/BinaryExpression.cpp",
     "AST/Expression/Expression.cpp",
     "AST/Expression/LiteralExpression.cpp",
+    "AST/Expression/ThisExpression.cpp",
     "AST/Statement/CompoundStatement.cpp",
     "AST/Statement/ReturnStatement.cpp",
     "AST/Statement/Statement.cpp",

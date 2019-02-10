@@ -8,14 +8,12 @@ import SoupSyntax;
 #include "Parser\LexerTests.gen.h"
 #include "Parser\ParserAttributesTests.gen.h"
 #include "Parser\ParserExpressionTests.gen.h"
-#include "Parser\ParserTests.gen.h"
 #include "Parser\SyntaxFunctionTests.gen.h"
 #include "Parser\SyntaxMiscTests.gen.h"
 #include "Parser\SyntaxNamespaceTests.gen.h"
 #include "Parser\SyntaxVariableTests.gen.h"
 
-
-#include "Parser\Expression\ParserLiteralExpressionTests.gen.h"
+#include "Parser\Expression\PrimaryExpressionTests.gen.h"
 
 int main()
 {
@@ -29,13 +27,12 @@ int main()
   failedCount += RunLexerTests();
   failedCount += RunParserAttributesTests();
   failedCount += RunParserExpressionTests();
-  failedCount += RunParserTests();
   failedCount += RunSyntaxFunctionTests();
   failedCount += RunSyntaxMiscTests();
   failedCount += RunSyntaxNamespaceTests();
   failedCount += RunSyntaxVariableTests();
 
-  failedCount += RunParserLiteralExpressionTests();
+  failedCount += RunPrimaryExpressionTests();
 
   std::wcout << failedCount << L" FAILED." << std::endl;
   return 0;

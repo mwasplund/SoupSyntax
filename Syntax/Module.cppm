@@ -30,6 +30,7 @@ import Antlr4.Runtime;
 #include "AST\Expression\Expression.h"
 #include "AST\Expression\LiteralExpression.h"
 #include "AST\Expression\LiteralType.h"
+#include "AST\Expression\ThisExpression.h"
 #include "AST\Expression\UnaryOperator.h"
 #include "AST\Statement\CompoundStatement.h"
 #include "AST\Statement\ReturnStatement.h"
