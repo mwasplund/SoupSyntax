@@ -1,6 +1,7 @@
 ﻿
 #pragma once
 #include "SyntaxTrivia.h"
+#include "SyntaxTokenType.h"
 
 namespace Soup::Syntax
 {
@@ -13,7 +14,19 @@ namespace Soup::Syntax
         /// <summary>
         /// Initialize
         /// </summary>
-        SyntaxToken();
+        SyntaxToken(
+            SyntaxTokenType type,
+            std::string value);
+
+        /// <summary>
+        /// Get the token type
+        /// </summary>
+        SyntaxTokenType GetType() const;
+
+        /// <summary>
+        /// Get the raw token value
+        /// </summary>
+        const std::string& GetValue() const;
 
         /// <summary>
         /// Get the leading Trivia
@@ -31,6 +44,8 @@ namespace Soup::Syntax
         std::string ToString() const;
 
     private:
+        SyntaxTokenType m_type;
+        std::string m_value;
         std::vector<SyntaxTrivia> m_leadingTrivia;
         std::vector<SyntaxTrivia> m_trailingTrivia;
     };

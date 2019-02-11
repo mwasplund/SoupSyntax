@@ -10,6 +10,7 @@ import Antlr4.Runtime;
 #include "AST\QualifiedName.h"
 #include "AST\SyntaxNode.h"
 #include "AST\SyntaxToken.h"
+#include "AST\SyntaxTokenType.h"
 #include "AST\SyntaxTrivia.h"
 #include "AST\TextSpan.h"
 #include "AST\Definition\Declaration.h"
