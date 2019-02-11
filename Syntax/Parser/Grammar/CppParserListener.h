@@ -86,6 +86,24 @@ public:
   virtual void enterFoldOperator(CppParser::FoldOperatorContext *ctx) = 0;
   virtual void exitFoldOperator(CppParser::FoldOperatorContext *ctx) = 0;
 
+  virtual void enterExplicitTypeCoversionOperatorExpression(CppParser::ExplicitTypeCoversionOperatorExpressionContext *ctx) = 0;
+  virtual void exitExplicitTypeCoversionOperatorExpression(CppParser::ExplicitTypeCoversionOperatorExpressionContext *ctx) = 0;
+
+  virtual void enterPostfixOperator(CppParser::PostfixOperatorContext *ctx) = 0;
+  virtual void exitPostfixOperator(CppParser::PostfixOperatorContext *ctx) = 0;
+
+  virtual void enterNamedCastExpression(CppParser::NamedCastExpressionContext *ctx) = 0;
+  virtual void exitNamedCastExpression(CppParser::NamedCastExpressionContext *ctx) = 0;
+
+  virtual void enterMemberAccessOperator(CppParser::MemberAccessOperatorContext *ctx) = 0;
+  virtual void exitMemberAccessOperator(CppParser::MemberAccessOperatorContext *ctx) = 0;
+
+  virtual void enterNamedCastType(CppParser::NamedCastTypeContext *ctx) = 0;
+  virtual void exitNamedCastType(CppParser::NamedCastTypeContext *ctx) = 0;
+
+  virtual void enterTypeIdentificationExpression(CppParser::TypeIdentificationExpressionContext *ctx) = 0;
+  virtual void exitTypeIdentificationExpression(CppParser::TypeIdentificationExpressionContext *ctx) = 0;
+
   virtual void enterPostfixExpression(CppParser::PostfixExpressionContext *ctx) = 0;
   virtual void exitPostfixExpression(CppParser::PostfixExpressionContext *ctx) = 0;
 

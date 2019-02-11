@@ -32,6 +32,7 @@ import Antlr4.Runtime;
 #include "AST\Expression\LiteralType.h"
 #include "AST\Expression\NameExpression.h"
 #include "AST\Expression\SimpleNameExpression.h"
+#include "AST\Expression\SubscriptExpression.h"
 #include "AST\Expression\ThisExpression.h"
 #include "AST\Expression\QualifiedNameExpression.h"
 #include "AST\Expression\UnaryOperator.h"

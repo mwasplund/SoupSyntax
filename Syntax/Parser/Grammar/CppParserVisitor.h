@@ -67,6 +67,18 @@ public:
 
     virtual antlrcpp::Any visitFoldOperator(CppParser::FoldOperatorContext *context) = 0;
 
+    virtual antlrcpp::Any visitExplicitTypeCoversionOperatorExpression(CppParser::ExplicitTypeCoversionOperatorExpressionContext *context) = 0;
+
+    virtual antlrcpp::Any visitPostfixOperator(CppParser::PostfixOperatorContext *context) = 0;
+
+    virtual antlrcpp::Any visitNamedCastExpression(CppParser::NamedCastExpressionContext *context) = 0;
+
+    virtual antlrcpp::Any visitMemberAccessOperator(CppParser::MemberAccessOperatorContext *context) = 0;
+
+    virtual antlrcpp::Any visitNamedCastType(CppParser::NamedCastTypeContext *context) = 0;
+
+    virtual antlrcpp::Any visitTypeIdentificationExpression(CppParser::TypeIdentificationExpressionContext *context) = 0;
+
     virtual antlrcpp::Any visitPostfixExpression(CppParser::PostfixExpressionContext *context) = 0;
 
     virtual antlrcpp::Any visitExpressionList(CppParser::ExpressionListContext *context) = 0;

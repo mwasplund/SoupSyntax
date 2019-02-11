@@ -208,6 +208,44 @@ antlrcpp::Any ASTVisitor::visitFoldOperator(CppParser::FoldOperatorContext* cont
     throw std::logic_error(std::string(__func__) + " NotImplemented");
 }
 
+antlrcpp::Any ASTVisitor::visitExplicitTypeCoversionOperatorExpression(
+    CppParser::ExplicitTypeCoversionOperatorExpressionContext *context)
+{
+    Trace(L"VisitExplicitTypeCoversionOperatorExpression");
+    throw std::logic_error(std::string(__func__) + " NotImplemented");
+}
+
+antlrcpp::Any ASTVisitor::visitPostfixOperator(CppParser::PostfixOperatorContext *context)
+{
+    Trace(L"VisitPostfixOperator");
+    throw std::logic_error(std::string(__func__) + " NotImplemented");
+}
+
+antlrcpp::Any ASTVisitor::visitNamedCastExpression(CppParser::NamedCastExpressionContext *context)
+{
+    Trace(L"VisitNamedCastExpression");
+    throw std::logic_error(std::string(__func__) + " NotImplemented");
+}
+
+antlrcpp::Any ASTVisitor::visitMemberAccessOperator(CppParser::MemberAccessOperatorContext *context)
+{
+    Trace(L"VisitMemberAccessOperator");
+    throw std::logic_error(std::string(__func__) + " NotImplemented");
+}
+
+antlrcpp::Any ASTVisitor::visitNamedCastType(CppParser::NamedCastTypeContext *context)
+{
+    Trace(L"VisitNamedCastType");
+    throw std::logic_error(std::string(__func__) + " NotImplemented");
+}
+
+antlrcpp::Any ASTVisitor::visitTypeIdentificationExpression(
+    CppParser::TypeIdentificationExpressionContext *context)
+{
+    Trace(L"VisitTypeIdentificationExpression");
+    throw std::logic_error(std::string(__func__) + " NotImplemented");
+}
+
 antlrcpp::Any ASTVisitor::visitPostfixExpression(CppParser::PostfixExpressionContext* context)
 {
     Trace(L"VisitPostfixExpression");
@@ -215,10 +253,64 @@ antlrcpp::Any ASTVisitor::visitPostfixExpression(CppParser::PostfixExpressionCon
     {
         return visit(context->primaryExpression());
     }
+    else if(context->postfixExpression() != nullptr)
+    {
+        // Handle all recursive expressions
+        auto recursiveExpression = std::dynamic_pointer_cast<Expression>(
+            visit(context->postfixExpression())
+                .as<std::shared_ptr<SyntaxNode>>());
+
+        if (context->LeftBracket() != nullptr)
+        {
+            // Subscript operator expression
+            // postfixExpression LeftBracket expressionOrBracedInitializerList RightBracket
+            auto initializerList = std::dynamic_pointer_cast<Expression>(
+                visit(context->expressionOrBracedInitializerList())
+                    .as<std::shared_ptr<SyntaxNode>>());
+            return std::static_pointer_cast<SyntaxNode>(
+                std::make_shared<SubscriptExpression>(
+                    std::move(recursiveExpression),
+                    std::move(initializerList)));
+        }
+        else if (context->LeftParenthesis() != nullptr)
+        {
+            // postfixExpression LeftParenthesis expressionList? RightParenthesis
+        }
+        else if (context->memberAccessOperator() != nullptr)
+        {
+            // postfixExpression memberAccessOperator Template? identifierExpression
+            // postfixExpression memberAccessOperator pseudoDestructorName
+        }
+        else if (context->memberAccessOperator() != nullptr)
+        {
+            // postfixExpression postfixOperator
+        }
+    }
     else
     {
-        throw std::logic_error(std::string(__func__) + " NotImplemented");
+        if (context->explicitTypeCoversionOperatorExpression() != nullptr)
+        {
+            // explicitTypeCoversionOperatorExpression
+        }
+        else if (context->simpleTypeSpecifier() != nullptr)
+        {
+            // simpleTypeSpecifier bracedInitializerList
+        }
+        else if (context->typenameSpecifier() != nullptr)
+        {
+            // typenameSpecifier bracedInitializerList
+        }
+        else if (context->namedCastExpression() != nullptr)
+        {
+            // namedCastExpression
+        }
+        else if (context->typeIdentificationExpression() != nullptr)
+        {
+            // typeIdentificationExpression
+        }
     }
+
+    throw std::logic_error(std::string(__func__) + " NotImplemented");
 }
 
 antlrcpp::Any ASTVisitor::visitExpressionList(CppParser::ExpressionListContext* context)
@@ -533,7 +625,18 @@ antlrcpp::Any ASTVisitor::visitAssignmentOperator(CppParser::AssignmentOperatorC
 antlrcpp::Any ASTVisitor::visitExpression(CppParser::ExpressionContext* context)
 {
     Trace(L"VisitExpression");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+    auto assignmentExpression = visit(context->assignmentExpression());
+
+    // Handle recursive
+    if (context->expression() != nullptr)
+    {
+        // expression Comma assignmentExpression
+        throw std::logic_error(std::string(__func__) + " NotImplemented");
+    }
+    else
+    {
+        return assignmentExpression;
+    }
 }
 
 antlrcpp::Any ASTVisitor::visitConstantExpression(CppParser::ConstantExpressionContext* context)
@@ -1372,7 +1475,7 @@ antlrcpp::Any ASTVisitor::visitBracedInitializerList(CppParser::BracedInitialize
 antlrcpp::Any ASTVisitor::visitExpressionOrBracedInitializerList(CppParser::ExpressionOrBracedInitializerListContext* context)
 {
     Trace(L"VisitExpressionOrBracedInitializerList");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+    return visitChildren(context);
 }
 
 antlrcpp::Any ASTVisitor::visitClassSpecifier(CppParser::ClassSpecifierContext* context)

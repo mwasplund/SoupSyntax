@@ -111,6 +111,30 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual antlrcpp::Any visitExplicitTypeCoversionOperatorExpression(CppParser::ExplicitTypeCoversionOperatorExpressionContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitPostfixOperator(CppParser::PostfixOperatorContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitNamedCastExpression(CppParser::NamedCastExpressionContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitMemberAccessOperator(CppParser::MemberAccessOperatorContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitNamedCastType(CppParser::NamedCastTypeContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitTypeIdentificationExpression(CppParser::TypeIdentificationExpressionContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual antlrcpp::Any visitPostfixExpression(CppParser::PostfixExpressionContext *ctx) override {
     return visitChildren(ctx);
   }

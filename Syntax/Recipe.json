@@ -31,6 +31,7 @@
     "AST/Expression/LiteralExpression.cpp",
     "AST/Expression/NameExpression.cpp",
     "AST/Expression/SimpleNameExpression.cpp",
+    "AST/Expression/SubscriptExpression.cpp",
     "AST/Expression/ThisExpression.cpp",
     "AST/Expression/QualifiedNameExpression.cpp",
     "AST/Statement/CompoundStatement.cpp",

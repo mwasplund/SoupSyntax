@@ -88,6 +88,24 @@ public:
   virtual void enterFoldOperator(CppParser::FoldOperatorContext * /*ctx*/) override { }
   virtual void exitFoldOperator(CppParser::FoldOperatorContext * /*ctx*/) override { }
 
+  virtual void enterExplicitTypeCoversionOperatorExpression(CppParser::ExplicitTypeCoversionOperatorExpressionContext * /*ctx*/) override { }
+  virtual void exitExplicitTypeCoversionOperatorExpression(CppParser::ExplicitTypeCoversionOperatorExpressionContext * /*ctx*/) override { }
+
+  virtual void enterPostfixOperator(CppParser::PostfixOperatorContext * /*ctx*/) override { }
+  virtual void exitPostfixOperator(CppParser::PostfixOperatorContext * /*ctx*/) override { }
+
+  virtual void enterNamedCastExpression(CppParser::NamedCastExpressionContext * /*ctx*/) override { }
+  virtual void exitNamedCastExpression(CppParser::NamedCastExpressionContext * /*ctx*/) override { }
+
+  virtual void enterMemberAccessOperator(CppParser::MemberAccessOperatorContext * /*ctx*/) override { }
+  virtual void exitMemberAccessOperator(CppParser::MemberAccessOperatorContext * /*ctx*/) override { }
+
+  virtual void enterNamedCastType(CppParser::NamedCastTypeContext * /*ctx*/) override { }
+  virtual void exitNamedCastType(CppParser::NamedCastTypeContext * /*ctx*/) override { }
+
+  virtual void enterTypeIdentificationExpression(CppParser::TypeIdentificationExpressionContext * /*ctx*/) override { }
+  virtual void exitTypeIdentificationExpression(CppParser::TypeIdentificationExpressionContext * /*ctx*/) override { }
+
   virtual void enterPostfixExpression(CppParser::PostfixExpressionContext * /*ctx*/) override { }
   virtual void exitPostfixExpression(CppParser::PostfixExpressionContext * /*ctx*/) override { }
 

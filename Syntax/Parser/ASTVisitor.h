@@ -33,6 +33,12 @@ namespace Soup::Syntax
         virtual antlrcpp::Any visitInitializerCapture(CppParser::InitializerCaptureContext *context) override final;
         virtual antlrcpp::Any visitFoldExpression(CppParser::FoldExpressionContext *context) override final;
         virtual antlrcpp::Any visitFoldOperator(CppParser::FoldOperatorContext *context) override final;
+        virtual antlrcpp::Any visitExplicitTypeCoversionOperatorExpression(CppParser::ExplicitTypeCoversionOperatorExpressionContext *context) override final;
+        virtual antlrcpp::Any visitPostfixOperator(CppParser::PostfixOperatorContext *context) override final;
+        virtual antlrcpp::Any visitNamedCastExpression(CppParser::NamedCastExpressionContext *context) override final;
+        virtual antlrcpp::Any visitMemberAccessOperator(CppParser::MemberAccessOperatorContext *context) override final;
+        virtual antlrcpp::Any visitNamedCastType(CppParser::NamedCastTypeContext *context) override final;
+        virtual antlrcpp::Any visitTypeIdentificationExpression(CppParser::TypeIdentificationExpressionContext *context) override final;
         virtual antlrcpp::Any visitPostfixExpression(CppParser::PostfixExpressionContext *context) override final;
         virtual antlrcpp::Any visitExpressionList(CppParser::ExpressionListContext *context) override final;
         virtual antlrcpp::Any visitPseudoDestructorName(CppParser::PseudoDestructorNameContext *context) override final;

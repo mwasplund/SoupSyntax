@@ -152,26 +152,43 @@ foldOperator:
 	PeriodAsterisk |
 	ArrowAsterisk;
 
+explicitTypeCoversionOperatorExpression:
+	simpleTypeSpecifier LeftParenthesis expressionList? RightParenthesis |
+	typenameSpecifier LeftParenthesis expressionList? RightParenthesis;
+
+postfixOperator:
+	DoublePlus |
+	DoubleMinus;
+
+namedCastExpression:
+	namedCastType LessThan typeIdentifier GreaterThan LeftParenthesis expression RightParenthesis;
+
+memberAccessOperator:
+	Period |
+	Arrow;
+
+namedCastType:
+	DynamicCast |
+	StaticCast |
+	ReinterpretCast |
+	ConstCast;
+
+typeIdentificationExpression:
+	TypeId LeftParenthesis expression RightParenthesis |
+	TypeId LeftParenthesis typeIdentifier RightParenthesis;
+
 postfixExpression:
 	primaryExpression |
 	postfixExpression LeftBracket expressionOrBracedInitializerList RightBracket |
 	postfixExpression LeftParenthesis expressionList? RightParenthesis |
-	simpleTypeSpecifier LeftParenthesis expressionList? RightParenthesis |
-	typenameSpecifier LeftParenthesis expressionList? RightParenthesis |
+	explicitTypeCoversionOperatorExpression |
 	simpleTypeSpecifier bracedInitializerList |
 	typenameSpecifier bracedInitializerList |
-	postfixExpression Period Template? identifierExpression |
-	postfixExpression Arrow Template?  identifierExpression |
-	postfixExpression Period pseudoDestructorName |
-	postfixExpression Arrow pseudoDestructorName |
-	postfixExpression DoublePlus |
-	postfixExpression DoubleMinus |
-	DynamicCast LessThan typeIdentifier GreaterThan LeftParenthesis expression RightParenthesis |
-	StaticCast LessThan typeIdentifier GreaterThan LeftParenthesis expression RightParenthesis |
-	ReinterpretCast GreaterThan LeftParenthesis expression RightParenthesis |
-	ConstCast GreaterThan LeftParenthesis expression RightParenthesis |
-	typeIdentifier LeftParenthesis expression RightParenthesis |
-	typeIdentifier LeftParenthesis typeIdentifier RightParenthesis;
+	postfixExpression memberAccessOperator Template? identifierExpression |
+	postfixExpression memberAccessOperator pseudoDestructorName |
+	postfixExpression postfixOperator |
+	namedCastExpression |
+	typeIdentificationExpression;
 
 expressionList:
 	initializerList;
