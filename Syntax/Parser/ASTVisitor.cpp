@@ -287,13 +287,20 @@ antlrcpp::Any ASTVisitor::visitPostfixExpression(CppParser::PostfixExpressionCon
             // postfixExpression postfixOperator
             auto operatorContext = context->postfixOperator();
             UnaryOperator unaryOperator;
+            std::shared_ptr<SyntaxToken> operatorToken;
             if (operatorContext->DoublePlus() != nullptr)
             {
                 unaryOperator = UnaryOperator::PostIncrement;
+                operatorToken = std::make_shared<SyntaxToken>(
+                    SyntaxTokenType::DoublePlus,
+                    operatorContext->DoublePlus()->getText());
             }
             else if (operatorContext->DoubleMinus() != nullptr)
             {
                 unaryOperator = UnaryOperator::PostDecrement;
+                operatorToken = std::make_shared<SyntaxToken>(
+                    SyntaxTokenType::DoubleMinus,
+                    operatorContext->DoubleMinus()->getText());
             }
             else
             {
@@ -303,6 +310,7 @@ antlrcpp::Any ASTVisitor::visitPostfixExpression(CppParser::PostfixExpressionCon
             return std::static_pointer_cast<SyntaxNode>(
                 std::make_shared<UnaryExpression>(
                     unaryOperator,
+                    std::move(operatorToken),
                     std::move(recursiveExpression)));
         }
     }

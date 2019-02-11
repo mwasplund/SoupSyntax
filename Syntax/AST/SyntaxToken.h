@@ -39,6 +39,12 @@ namespace Soup::Syntax
         const std::vector<SyntaxTrivia>& GetTrailingTrivia() const;
 
         /// <summary>
+        /// Equality operator
+        /// </summary>
+        bool operator ==(const SyntaxToken& rhs) const;
+        bool operator !=(const SyntaxToken& rhs) const;
+
+        /// <summary>
         /// Convert to string representation
         /// </summary>
         std::string ToString() const;

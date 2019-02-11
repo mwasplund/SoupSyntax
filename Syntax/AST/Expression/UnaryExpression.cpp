@@ -4,8 +4,10 @@ using namespace Soup::Syntax;
 
 UnaryExpression::UnaryExpression(
     UnaryOperator unaryOperator,
+    std::shared_ptr<SyntaxToken> operatorToken,
     std::shared_ptr<Expression> operand) :
     m_operator(unaryOperator),
+    m_operatorToken(std::move(operatorToken)),
     m_operand(std::move(operand))
 {
 }
@@ -13,6 +15,11 @@ UnaryExpression::UnaryExpression(
 UnaryOperator UnaryExpression::GetOperator() const
 {
     return m_operator;
+}
+
+const SyntaxToken& UnaryExpression::GetOperatorToken() const
+{
+    return *m_operatorToken;
 }
 
 const Expression& UnaryExpression::GetOperand() const
@@ -23,6 +30,7 @@ const Expression& UnaryExpression::GetOperand() const
 bool UnaryExpression::operator ==(const UnaryExpression& rhs) const
 {
     return m_operator == rhs.m_operator &&
+        *m_operatorToken == *rhs.m_operatorToken &&
         *m_operand == *rhs.m_operand;
 }
 

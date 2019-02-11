@@ -32,6 +32,7 @@ namespace Soup::Syntax::UnitTests
 
             auto expected = std::make_shared<UnaryExpression>(
                 UnaryOperator::PostIncrement,
+                std::make_shared<SyntaxToken>(SyntaxTokenType::DoublePlus, "++"),
                 std::make_shared<LiteralExpression>(LiteralType::Integer, "1"));
 
             Assert::AreEqual(expected, actual, "Verify matches expected.");
@@ -47,6 +48,7 @@ namespace Soup::Syntax::UnitTests
 
             auto expected = std::make_shared<UnaryExpression>(
                 UnaryOperator::PostDecrement,
+                std::make_shared<SyntaxToken>(SyntaxTokenType::DoubleMinus, "--"),
                 std::make_shared<LiteralExpression>(LiteralType::Integer, "1"));
 
             Assert::AreEqual(expected, actual, "Verify matches expected.");

@@ -15,13 +15,19 @@ namespace Soup::Syntax
         /// Initialize
         /// </summary>
         UnaryExpression(
-            UnaryOperator binaryOperator,
+            UnaryOperator unaryOperator,
+            std::shared_ptr<SyntaxToken> operatorToken,
             std::shared_ptr<Expression> operand);
 
         /// <summary>
         /// The operator
         /// </summary>
         UnaryOperator GetOperator() const;
+
+        /// <summary>
+        /// The operator token
+        /// </summary>
+        const SyntaxToken& GetOperatorToken() const;
 
         /// <summary>
         /// The operand expression
@@ -47,6 +53,7 @@ namespace Soup::Syntax
 
     private:
         UnaryOperator m_operator;
+        std::shared_ptr<SyntaxToken> m_operatorToken;
         std::shared_ptr<Expression> m_operand;
     };
 }

@@ -4,9 +4,11 @@ using namespace Soup::Syntax;
 
 BinaryExpression::BinaryExpression(
     BinaryOperator binaryOperator,
+    std::shared_ptr<SyntaxToken> operatorToken,
     std::shared_ptr<Expression> leftOperand,
     std::shared_ptr<Expression> rightOperand) :
     m_operator(binaryOperator),
+    m_operatorToken(std::move(operatorToken)),
     m_leftOperand(std::move(leftOperand)),
     m_rightOperand(std::move(rightOperand))
 {
@@ -15,6 +17,11 @@ BinaryExpression::BinaryExpression(
 BinaryOperator BinaryExpression::GetOperator() const
 {
     return m_operator;
+}
+
+const SyntaxToken& BinaryExpression::GetOperatorToken() const
+{
+    return *m_operatorToken;
 }
 
 const Expression& BinaryExpression::GetLeftOperand() const
@@ -30,6 +37,7 @@ const Expression& BinaryExpression::GetRightOperand() const
 bool BinaryExpression::operator ==(const BinaryExpression& rhs) const
 {
     return m_operator == rhs.m_operator &&
+        *m_operatorToken == *rhs.m_operatorToken &&
         *m_leftOperand == *rhs.m_leftOperand &&
         *m_rightOperand == *rhs.m_rightOperand;
 }
