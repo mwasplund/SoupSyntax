@@ -35,6 +35,7 @@ import Antlr4.Runtime;
 #include "AST\Expression\SubscriptExpression.h"
 #include "AST\Expression\ThisExpression.h"
 #include "AST\Expression\QualifiedNameExpression.h"
+#include "AST\Expression\UnaryExpression.h"
 #include "AST\Expression\UnaryOperator.h"
 #include "AST\Statement\CompoundStatement.h"
 #include "AST\Statement\ReturnStatement.h"

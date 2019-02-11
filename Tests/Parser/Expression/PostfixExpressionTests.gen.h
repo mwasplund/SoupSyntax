@@ -12,5 +12,11 @@ int RunPostfixExpressionTests()
     std::wcout << L"SingleSubscriptExpression" << std::endl;
     failedCount += RunTest([&testClass]() { testClass->SingleSubscriptExpression(); });
 
+    std::wcout << L"SingleLiteralPostIncrement" << std::endl;
+    failedCount += RunTest([&testClass]() { testClass->SingleLiteralPostIncrement(); });
+
+    std::wcout << L"SingleLiteralPostDecrement" << std::endl;
+    failedCount += RunTest([&testClass]() { testClass->SingleLiteralPostDecrement(); });
+
     return failedCount;
 }

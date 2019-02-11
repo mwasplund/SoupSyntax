@@ -6,6 +6,7 @@ import SoupSyntax;
 #include "AST\LiteralExpressionTests.gen.h"
 #include "AST\NameExpressionTests.gen.h"
 #include "AST\SubscriptExpressionTests.gen.h"
+#include "AST\UnaryExpressionTests.gen.h"
 
 #include "Parser\LexerTests.gen.h"
 #include "Parser\ParserAttributesTests.gen.h"

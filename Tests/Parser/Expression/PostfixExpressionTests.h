@@ -12,14 +12,44 @@ namespace Soup::Syntax::UnitTests
         {
             auto sourceCode = std::string("a[1]");
 
-            auto expression = std::dynamic_pointer_cast<SubscriptExpression>(
+            auto actual = std::dynamic_pointer_cast<SubscriptExpression>(
                 ParsePostfixExpression(sourceCode));
 
             auto expected = std::make_shared<SubscriptExpression>(
                 std::make_shared<SimpleNameExpression>("a"),
                 std::make_shared<LiteralExpression>(LiteralType::Integer, "1"));
 
-            Assert::AreEqual(expected, expression, "Verify matches expected.");
+            Assert::AreEqual(expected, actual, "Verify matches expected.");
+        }
+
+        // [Theory]
+        void SingleLiteralPostIncrement()
+        {
+            auto sourceCode = std::string("1++");
+
+            auto actual = std::dynamic_pointer_cast<UnaryExpression>(
+                ParsePostfixExpression(sourceCode));
+
+            auto expected = std::make_shared<UnaryExpression>(
+                UnaryOperator::PostIncrement,
+                std::make_shared<LiteralExpression>(LiteralType::Integer, "1"));
+
+            Assert::AreEqual(expected, actual, "Verify matches expected.");
+        }
+
+        // [Theory]
+        void SingleLiteralPostDecrement()
+        {
+            auto sourceCode = std::string("1--");
+
+            auto actual = std::dynamic_pointer_cast<UnaryExpression>(
+                ParsePostfixExpression(sourceCode));
+
+            auto expected = std::make_shared<UnaryExpression>(
+                UnaryOperator::PostDecrement,
+                std::make_shared<LiteralExpression>(LiteralType::Integer, "1"));
+
+            Assert::AreEqual(expected, actual, "Verify matches expected.");
         }
 
     private:

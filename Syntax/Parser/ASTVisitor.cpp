@@ -281,9 +281,29 @@ antlrcpp::Any ASTVisitor::visitPostfixExpression(CppParser::PostfixExpressionCon
             // postfixExpression memberAccessOperator Template? identifierExpression
             // postfixExpression memberAccessOperator pseudoDestructorName
         }
-        else if (context->memberAccessOperator() != nullptr)
+        else if (context->postfixOperator() != nullptr)
         {
+            // Unary expression
             // postfixExpression postfixOperator
+            auto operatorContext = context->postfixOperator();
+            UnaryOperator unaryOperator;
+            if (operatorContext->DoublePlus() != nullptr)
+            {
+                unaryOperator = UnaryOperator::PostIncrement;
+            }
+            else if (operatorContext->DoubleMinus() != nullptr)
+            {
+                unaryOperator = UnaryOperator::PostDecrement;
+            }
+            else
+            {
+                throw std::runtime_error("Unknown postfix operator.");
+            }
+            
+            return std::static_pointer_cast<SyntaxNode>(
+                std::make_shared<UnaryExpression>(
+                    unaryOperator,
+                    std::move(recursiveExpression)));
         }
     }
     else

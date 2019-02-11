@@ -16,8 +16,8 @@ namespace Soup::Syntax
         /// </summary>
         BinaryExpression(
             BinaryOperator binaryOperator,
-            std::shared_ptr<Expression> left,
-            std::shared_ptr<Expression> right);
+            std::shared_ptr<Expression> leftOperand,
+            std::shared_ptr<Expression> rightOperand);
 
         /// <summary>
         /// The operator
@@ -25,14 +25,14 @@ namespace Soup::Syntax
         BinaryOperator GetOperator() const;
 
         /// <summary>
-        /// The left expression
+        /// The left operand expression
         /// </summary>
-        const Expression& GetLeft() const;
+        const Expression& GetLeftOperand() const;
 
         /// <summary>
-        /// The right expression
+        /// The right operand expression
         /// </summary>
-        const Expression& GetRight() const;
+        const Expression& GetRightOperand() const;
 
         /// <summary>
         /// Equality operator
@@ -53,7 +53,7 @@ namespace Soup::Syntax
 
     private:
         BinaryOperator m_operator;
-        std::shared_ptr<Expression> m_left;
-        std::shared_ptr<Expression> m_right;
+        std::shared_ptr<Expression> m_leftOperand;
+        std::shared_ptr<Expression> m_rightOperand;
     };
 }

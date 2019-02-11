@@ -34,6 +34,7 @@
     "AST/Expression/SubscriptExpression.cpp",
     "AST/Expression/ThisExpression.cpp",
     "AST/Expression/QualifiedNameExpression.cpp",
+    "AST/Expression/UnaryExpression.cpp",
     "AST/Statement/CompoundStatement.cpp",
     "AST/Statement/ReturnStatement.cpp",
     "AST/Statement/Statement.cpp",

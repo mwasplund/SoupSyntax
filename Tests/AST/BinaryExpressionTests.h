@@ -15,8 +15,8 @@ namespace Soup::Syntax::UnitTests
                 std::make_shared<LiteralExpression>(LiteralType::Integer, "2"));
 
             Assert::AreEqual(BinaryOperator::Addition, uut->GetOperator(), "Verify operator matches.");
-            Assert::AreEqual<Expression>(LiteralExpression(LiteralType::Integer, "1"), uut->GetLeft(), "Verify left expression matches.");
-            Assert::AreEqual<Expression>(LiteralExpression(LiteralType::Integer, "2"), uut->GetRight(), "Verify right expression matches.");
+            Assert::AreEqual<Expression>(LiteralExpression(LiteralType::Integer, "1"), uut->GetLeftOperand(), "Verify left expression matches.");
+            Assert::AreEqual<Expression>(LiteralExpression(LiteralType::Integer, "2"), uut->GetRightOperand(), "Verify right expression matches.");
         }
     };
 }
