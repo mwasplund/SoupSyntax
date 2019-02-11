@@ -1,5 +1,5 @@
 #pragma once
-#include "QualifiedNameExpression.h"
+#include "Expression/QualifiedNameExpression.h"
 
 namespace Soup::Syntax
 {

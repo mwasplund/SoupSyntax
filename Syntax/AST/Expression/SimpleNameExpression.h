@@ -12,29 +12,48 @@ namespace Soup::Syntax
         /// <summary>
         /// Initialize
         /// </summary>
-        SimpleNameExpression(std::string identifier);
+        SimpleNameExpression(std::string identifier) :
+            m_identifier(std::move(identifier))
+        {
+        }
 
         /// <summary>
         /// Gets the left name expression
         /// </summary>
-        const std::string& GetIdentifier() const;
+        const std::string& GetIdentifier() const
+        {
+            return m_identifier;
+        }
 
         /// <summary>
         /// Equality operator
         /// </summary>
-        bool operator ==(const SimpleNameExpression& rhs) const;
-        bool operator !=(const SimpleNameExpression& rhs) const;
+        bool operator ==(const SimpleNameExpression& rhs) const
+        {
+            return m_identifier == rhs.m_identifier;
+        }
+
+        bool operator !=(const SimpleNameExpression& rhs) const
+        {
+            return !(*this == rhs);
+        }
 
         /// <summary>
         /// Convert to string representation
         /// </summary>
-        virtual std::string ToString() const override final;
+        virtual std::string ToString() const override final
+        {
+            return "SimpleNameExpression<" + m_identifier + ">";
+        }
 
     protected:
         /// <summary>
         /// SyntaxNode Equals
         /// </summary>
-        virtual bool Equals(const SyntaxNode& rhs) const final;
+        virtual bool Equals(const SyntaxNode& rhs) const final
+        {
+            return *this == static_cast<const SimpleNameExpression&>(rhs);
+        }
 
     private:
         std::string m_identifier;
