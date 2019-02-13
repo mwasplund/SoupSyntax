@@ -8,21 +8,110 @@ namespace Soup::Syntax::UnitTests
     {
     public:
         // [Theory]
-        // [InlineData("0", LiteralType::Integer)]
-        // [InlineData("1", LiteralType::Integer)]
-        // [[InlineData("0.0f", LiteralType::Floating)]]
-        // [[InlineData("'1'", LiteralType::Character)]]
-        // [[InlineData("nullptr, LiteralType::Pointer)]]
-        // [[InlineData("\" \"", LiteralType::String)]]
-        // [[InlineData("2h", LiteralType::UserDefined)]]
-        void SingleLiteralType(std::string sourceCode, LiteralType expectedType)
+        // [InlineData("0")]
+        // [InlineData("1")]
+        void SingleIntegerLiteralType(std::string sourceCode)
         {
             auto expression = std::dynamic_pointer_cast<LiteralExpression>(
                 ParsePrimaryExpression(sourceCode));
 
             Assert::NotNull(expression, "Verify cast.");
-            Assert::AreEqual(expectedType, expression->GetType(), "Verify type matches expected.");
-            Assert::AreEqual(sourceCode, expression->GetValue(), "Verify value matches entire source.");
+            Assert::AreEqual(LiteralType::Integer, expression->GetType(), "Verify type matches expected.");
+            Assert::AreEqual(
+                SyntaxToken(SyntaxTokenType::IntegerLiteral, sourceCode),
+                expression->GetToken(),
+                "Verify value matches entire source.");
+        }
+
+        // [Theory]
+        // [[InlineData("0.0f")]]
+        void SingleFloatingLiteralType(std::string sourceCode)
+        {
+            auto expression = std::dynamic_pointer_cast<LiteralExpression>(
+                ParsePrimaryExpression(sourceCode));
+
+            Assert::NotNull(expression, "Verify cast.");
+            Assert::AreEqual(LiteralType::Floating, expression->GetType(), "Verify type matches expected.");
+            Assert::AreEqual(
+                SyntaxToken(SyntaxTokenType::FloatingPointLiteral, sourceCode),
+                expression->GetToken(),
+                "Verify value matches entire source.");
+        }
+
+        // [Theory]
+        // [[InlineData("'1'")]]
+        void SingleCharacterLiteralType(std::string sourceCode)
+        {
+            auto expression = std::dynamic_pointer_cast<LiteralExpression>(
+                ParsePrimaryExpression(sourceCode));
+
+            Assert::NotNull(expression, "Verify cast.");
+            Assert::AreEqual(LiteralType::Character, expression->GetType(), "Verify type matches expected.");
+            Assert::AreEqual(
+                SyntaxToken(SyntaxTokenType::CharacterLiteral, sourceCode),
+                expression->GetToken(),
+                "Verify value matches entire source.");
+        }
+
+        // [Theory]
+        // [[InlineData("nullptr")]]
+        void SinglePointerLiteralType(std::string sourceCode)
+        {
+            auto expression = std::dynamic_pointer_cast<LiteralExpression>(
+                ParsePrimaryExpression(sourceCode));
+
+            Assert::NotNull(expression, "Verify cast.");
+            Assert::AreEqual(LiteralType::Pointer, expression->GetType(), "Verify type matches expected.");
+            Assert::AreEqual(
+                SyntaxToken(SyntaxTokenType::Nullptr, sourceCode),
+                expression->GetToken(),
+                "Verify value matches entire source.");
+        }
+
+        // [Theory]
+        // [[InlineData("\" \"")]]
+        void SingleStringLiteralType(std::string sourceCode)
+        {
+            auto expression = std::dynamic_pointer_cast<LiteralExpression>(
+                ParsePrimaryExpression(sourceCode));
+
+            Assert::NotNull(expression, "Verify cast.");
+            Assert::AreEqual(LiteralType::String, expression->GetType(), "Verify type matches expected.");
+            Assert::AreEqual(
+                SyntaxToken(SyntaxTokenType::StringLiteral, sourceCode),
+                expression->GetToken(),
+                "Verify value matches entire source.");
+        }
+
+        // [Theory]
+        // [[InlineData("true", SyntaxTokenType::True)]]
+        // [[InlineData("false", SyntaxTokenType::False)]]
+        void SingleBooleanLiteralType(std::string sourceCode, SyntaxTokenType type)
+        {
+            auto expression = std::dynamic_pointer_cast<LiteralExpression>(
+                ParsePrimaryExpression(sourceCode));
+
+            Assert::NotNull(expression, "Verify cast.");
+            Assert::AreEqual(LiteralType::Boolean, expression->GetType(), "Verify type matches expected.");
+            Assert::AreEqual(
+                SyntaxToken(type, sourceCode),
+                expression->GetToken(),
+                "Verify value matches entire source.");
+        }
+
+        // [Theory]
+        // [[InlineData("2h")]]
+        void SingleUserDefinedLiteralType(std::string sourceCode)
+        {
+            auto expression = std::dynamic_pointer_cast<LiteralExpression>(
+                ParsePrimaryExpression(sourceCode));
+
+            Assert::NotNull(expression, "Verify cast.");
+            Assert::AreEqual(LiteralType::UserDefined, expression->GetType(), "Verify type matches expected.");
+            Assert::AreEqual(
+                SyntaxToken(SyntaxTokenType::UserDefinedLiteral, sourceCode),
+                expression->GetToken(),
+                "Verify value matches entire source.");
         }
 
         // [Fact]
@@ -43,7 +132,10 @@ namespace Soup::Syntax::UnitTests
                 ParsePrimaryExpression(sourceCode));
 
             Assert::NotNull(expression, "Verify cast.");
-            Assert::AreEqual(std::string("Name"), expression->GetIdentifier(), "Verify identifier matches expected.");
+            Assert::AreEqual(
+                SyntaxToken(SyntaxTokenType::Identifier, sourceCode),
+                expression->GetIdentifier(),
+                "Verify identifier matches expected.");
         }
 
         // [Fact]
@@ -58,8 +150,18 @@ namespace Soup::Syntax::UnitTests
             auto left = dynamic_cast<const SimpleNameExpression&>(expression->GetLeft());
             auto right = expression->GetRight();
 
-            Assert::AreEqual(std::string("NameLeft"), left.GetIdentifier(), "Verify left identifier matches expected.");
-            Assert::AreEqual(std::string("NameRight"), right.GetIdentifier(), "Verify right identifier matches expected.");
+            Assert::AreEqual(
+                SyntaxToken(SyntaxTokenType::Identifier, "NameLeft"),
+                left.GetIdentifier(),
+                "Verify left identifier matches expected.");
+            Assert::AreEqual(
+                SyntaxToken(SyntaxTokenType::DoubleColon, "::"),
+                expression->GetDoubleColonToken(),
+                "Verify double colon token matches expected.");
+            Assert::AreEqual(
+                SyntaxToken(SyntaxTokenType::Identifier, "NameRight"),
+                right.GetIdentifier(),
+                "Verify right identifier matches expected.");
         }
 
     private:

@@ -75,7 +75,7 @@ namespace Soup::Syntax
         /// </summary>
         std::string ToString() const
         {
-            return "SyntaxToken<" + m_value + ">";
+            return std::to_string((int)m_type) + ", " + m_value;
         }
 
     private:

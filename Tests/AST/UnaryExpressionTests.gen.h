@@ -12,5 +12,17 @@ int RunUnaryExpressionTests()
     std::wcout << L"InitializeSimple" << std::endl;
     failedCount += RunTest([&testClass]() { testClass->InitializeSimple(); });
 
+    std::wcout << L"OperatorEqual" << std::endl;
+    failedCount += RunTest([&testClass]() { testClass->OperatorEqual(); });
+
+    std::wcout << L"OperatorNotEqualOperator" << std::endl;
+    failedCount += RunTest([&testClass]() { testClass->OperatorNotEqualOperator(); });
+
+    std::wcout << L"OperatorNotEqualOperand" << std::endl;
+    failedCount += RunTest([&testClass]() { testClass->OperatorNotEqualOperand(); });
+
+    std::wcout << L"OperatorNotEqualOperatorToken" << std::endl;
+    failedCount += RunTest([&testClass]() { testClass->OperatorNotEqualOperatorToken(); });
+
     return failedCount;
 }

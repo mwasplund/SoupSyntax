@@ -19,8 +19,10 @@ namespace Soup::Syntax
         /// </summary>
         QualifiedNameExpression(
             std::shared_ptr<NameExpression> left,
+            std::shared_ptr<SyntaxToken> doubleColonToken,
             std::shared_ptr<SimpleNameExpression> right) :
             m_left(std::move(left)),
+            m_doubleColonToken(std::move(doubleColonToken)),
             m_right(std::move(right))
         {
         }
@@ -43,6 +45,14 @@ namespace Soup::Syntax
         }
 
         /// <summary>
+        /// Gets the double colon nested name specifier
+        /// </summary>
+        const SyntaxToken& GetDoubleColonToken() const
+        {
+            return *m_doubleColonToken;
+        }
+
+        /// <summary>
         /// Gets the right simple name expressions
         /// </summary>
         const SimpleNameExpression& GetRight() const
@@ -55,7 +65,19 @@ namespace Soup::Syntax
         /// </summary>
         bool operator ==(const QualifiedNameExpression& rhs) const
         {
-            return *m_left == *rhs.m_left &&
+            // The left expression is optional
+            bool leftEqual = false;
+            if (!HasLeft() || !rhs.HasLeft())
+            {
+                leftEqual = !HasLeft() && !rhs.HasLeft();
+            }
+            else
+            {
+                leftEqual = *m_left == *rhs.m_left;
+            }
+
+            return leftEqual &&
+                *m_doubleColonToken == *rhs.m_doubleColonToken &&
                 *m_right == *rhs.m_right;
         }
 
@@ -83,6 +105,7 @@ namespace Soup::Syntax
 
     private:
         std::shared_ptr<NameExpression> m_left;
+        std::shared_ptr<SyntaxToken> m_doubleColonToken;
         std::shared_ptr<SimpleNameExpression> m_right;
     };
 }

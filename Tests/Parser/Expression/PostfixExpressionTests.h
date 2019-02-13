@@ -16,8 +16,13 @@ namespace Soup::Syntax::UnitTests
                 ParsePostfixExpression(sourceCode));
 
             auto expected = std::make_shared<SubscriptExpression>(
-                std::make_shared<SimpleNameExpression>("a"),
-                std::make_shared<LiteralExpression>(LiteralType::Integer, "1"));
+                std::make_shared<SimpleNameExpression>(
+                    std::make_shared<SyntaxToken>(SyntaxTokenType::Identifier, "a")),
+                std::make_shared<SyntaxToken>(SyntaxTokenType::LeftBracket, "["),
+                std::make_shared<LiteralExpression>(
+                    LiteralType::Integer,
+                    std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1")),
+                std::make_shared<SyntaxToken>(SyntaxTokenType::RightBracket, "]"));
 
             Assert::AreEqual(expected, actual, "Verify matches expected.");
         }
@@ -33,7 +38,9 @@ namespace Soup::Syntax::UnitTests
             auto expected = std::make_shared<UnaryExpression>(
                 UnaryOperator::PostIncrement,
                 std::make_shared<SyntaxToken>(SyntaxTokenType::DoublePlus, "++"),
-                std::make_shared<LiteralExpression>(LiteralType::Integer, "1"));
+                std::make_shared<LiteralExpression>(
+                    LiteralType::Integer,
+                    std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1")));
 
             Assert::AreEqual(expected, actual, "Verify matches expected.");
         }
@@ -49,7 +56,9 @@ namespace Soup::Syntax::UnitTests
             auto expected = std::make_shared<UnaryExpression>(
                 UnaryOperator::PostDecrement,
                 std::make_shared<SyntaxToken>(SyntaxTokenType::DoubleMinus, "--"),
-                std::make_shared<LiteralExpression>(LiteralType::Integer, "1"));
+                std::make_shared<LiteralExpression>(
+                    LiteralType::Integer,
+                    std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1")));
 
             Assert::AreEqual(expected, actual, "Verify matches expected.");
         }

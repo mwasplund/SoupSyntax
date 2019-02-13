@@ -9,14 +9,28 @@ int RunPrimaryExpressionTests()
 
     std::wcout << L"Running PrimaryExpressionTests:" << std::endl;
 
-    std::wcout << L"SingleLiteralType" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->SingleLiteralType("0", LiteralType::Integer); });
-    failedCount += RunTest([&testClass]() { testClass->SingleLiteralType("1", LiteralType::Integer); });
-    failedCount += RunTest([&testClass]() { testClass->SingleLiteralType("0.0f", LiteralType::Floating); });
-    failedCount += RunTest([&testClass]() { testClass->SingleLiteralType("'1'", LiteralType::Character); });
-    failedCount += RunTest([&testClass]() { testClass->SingleLiteralType("nullptr", LiteralType::Pointer); });
-    failedCount += RunTest([&testClass]() { testClass->SingleLiteralType("\" \"", LiteralType::String); });
-    failedCount += RunTest([&testClass]() { testClass->SingleLiteralType("2h", LiteralType::UserDefined); });
+    std::wcout << L"SingleIntegerLiteralType" << std::endl;
+    failedCount += RunTest([&testClass]() { testClass->SingleIntegerLiteralType("0"); });
+    failedCount += RunTest([&testClass]() { testClass->SingleIntegerLiteralType("1"); });
+
+    std::wcout << L"SingleFloatingLiteralType" << std::endl;
+    failedCount += RunTest([&testClass]() { testClass->SingleFloatingLiteralType("0.0f"); });
+
+    std::wcout << L"SingleCharacterLiteralType" << std::endl;
+    failedCount += RunTest([&testClass]() { testClass->SingleCharacterLiteralType("'1'"); });
+
+    std::wcout << L"SinglePointerLiteralType" << std::endl;
+    failedCount += RunTest([&testClass]() { testClass->SinglePointerLiteralType("nullptr"); });
+
+    std::wcout << L"SingleStringLiteralType" << std::endl;
+    failedCount += RunTest([&testClass]() { testClass->SingleStringLiteralType("\" \""); });
+
+    std::wcout << L"SingleBooleanLiteralType" << std::endl;
+    failedCount += RunTest([&testClass]() { testClass->SingleBooleanLiteralType("true", SyntaxTokenType::True); });
+    failedCount += RunTest([&testClass]() { testClass->SingleBooleanLiteralType("false", SyntaxTokenType::False); });
+
+    std::wcout << L"SingleUserDefinedLiteralType" << std::endl;
+    failedCount += RunTest([&testClass]() { testClass->SingleUserDefinedLiteralType("2h"); });
 
     std::wcout << L"SingleThisExpression" << std::endl;
     failedCount += RunTest([&testClass]() { testClass->SingleThisExpression(); });

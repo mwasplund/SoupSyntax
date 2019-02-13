@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "NameExpression.h"
+#include "SyntaxToken.h"
 
 namespace Soup::Syntax
 {
@@ -12,17 +13,17 @@ namespace Soup::Syntax
         /// <summary>
         /// Initialize
         /// </summary>
-        SimpleNameExpression(std::string identifier) :
+        SimpleNameExpression(std::shared_ptr<SyntaxToken> identifier) :
             m_identifier(std::move(identifier))
         {
         }
 
         /// <summary>
-        /// Gets the left name expression
+        /// Gets the identifier token
         /// </summary>
-        const std::string& GetIdentifier() const
+        const SyntaxToken& GetIdentifier() const
         {
-            return m_identifier;
+            return *m_identifier;
         }
 
         /// <summary>
@@ -30,7 +31,7 @@ namespace Soup::Syntax
         /// </summary>
         bool operator ==(const SimpleNameExpression& rhs) const
         {
-            return m_identifier == rhs.m_identifier;
+            return *m_identifier == *rhs.m_identifier;
         }
 
         bool operator !=(const SimpleNameExpression& rhs) const
@@ -43,7 +44,7 @@ namespace Soup::Syntax
         /// </summary>
         virtual std::string ToString() const override final
         {
-            return "SimpleNameExpression<" + m_identifier + ">";
+            return "SimpleNameExpression<" + m_identifier->ToString() + ">";
         }
 
     protected:
@@ -56,6 +57,6 @@ namespace Soup::Syntax
         }
 
     private:
-        std::string m_identifier;
+        std::shared_ptr<SyntaxToken> m_identifier;
     };
 }

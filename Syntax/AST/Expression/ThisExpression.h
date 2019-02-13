@@ -13,8 +13,17 @@ namespace Soup::Syntax
         /// <summary>
         /// Initialize
         /// </summary>
-        ThisExpression()
+        ThisExpression(std::shared_ptr<SyntaxToken> token) :
+            m_token(std::move(token))
         {
+        }
+
+        /// <summary>
+        /// Gets the token
+        /// </summary>
+        const SyntaxToken& GetToken() const
+        {
+            return *m_token;
         }
 
         /// <summary>
@@ -22,7 +31,7 @@ namespace Soup::Syntax
         /// </summary>
         bool operator ==(const ThisExpression& rhs) const
         {
-            return true;
+            return *m_token == *rhs.m_token;
         }
 
         bool operator !=(const ThisExpression& rhs) const
@@ -46,5 +55,8 @@ namespace Soup::Syntax
         {
             return *this == static_cast<const ThisExpression&>(rhs);
         }
+
+    private:
+        std::shared_ptr<SyntaxToken> m_token;
     };
 }

@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "Expression.h"
 #include "BinaryOperator.h"
+#include "SyntaxToken.h"
 
 namespace Soup::Syntax
 {
@@ -14,10 +15,14 @@ namespace Soup::Syntax
         /// Initialize
         /// </summary>
         SubscriptExpression(
-            std::shared_ptr<Expression> left,
-            std::shared_ptr<Expression> right) :
-            m_left(std::move(left)),
-            m_right(std::move(right))
+            std::shared_ptr<Expression> leftExpression,
+            std::shared_ptr<SyntaxToken> leftBracket, 
+            std::shared_ptr<Expression> rightExpression,
+            std::shared_ptr<SyntaxToken> rightBracket) :
+            m_leftExpression(std::move(leftExpression)),
+            m_leftBracket(std::move(leftBracket)),
+            m_rightExpression(std::move(rightExpression)),
+            m_rightBracket(std::move(rightBracket))
         {
         }
 
@@ -26,7 +31,15 @@ namespace Soup::Syntax
         /// </summary>
         const Expression& GetLeft() const
         {
-            return *m_left;
+            return *m_leftExpression;
+        }
+
+        /// <summary>
+        /// The left bracket token
+        /// </summary>
+        const SyntaxToken& GetLeftBracket() const
+        {
+            return *m_leftBracket;
         }
 
         /// <summary>
@@ -34,7 +47,15 @@ namespace Soup::Syntax
         /// </summary>
         const Expression& GetRight() const
         {
-            return *m_right;
+            return *m_rightExpression;
+        }
+
+        /// <summary>
+        /// The right bracket token
+        /// </summary>
+        const SyntaxToken& GetRightBracket() const
+        {
+            return *m_rightBracket;
         }
 
         /// <summary>
@@ -42,8 +63,10 @@ namespace Soup::Syntax
         /// </summary>
         bool operator ==(const SubscriptExpression& rhs) const
         {
-            return *m_left == *rhs.m_left &&
-                *m_right == *rhs.m_right;
+            return *m_leftExpression == *rhs.m_leftExpression &&
+                *m_leftBracket == *rhs.m_leftBracket &&
+                *m_rightExpression == *rhs.m_rightExpression &&
+                *m_rightBracket == *rhs.m_rightBracket;
         }
 
         bool operator !=(const SubscriptExpression& rhs) const
@@ -69,7 +92,9 @@ namespace Soup::Syntax
         }
 
     private:
-        std::shared_ptr<Expression> m_left;
-        std::shared_ptr<Expression> m_right;
+        std::shared_ptr<Expression> m_leftExpression;
+        std::shared_ptr<SyntaxToken> m_leftBracket;
+        std::shared_ptr<Expression> m_rightExpression;
+        std::shared_ptr<SyntaxToken> m_rightBracket;
     };
 }

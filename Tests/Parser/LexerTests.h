@@ -79,7 +79,7 @@ namespace Soup::Syntax::UnitTests
         // [[InlineData("volatile", CppLexer::Volatile)]]
         // [[InlineData("wchar_t", CppLexer::WChar)]]
         // [[InlineData("while", CppLexer::While)]]
-        void SingleToken_Keywoard(std::string value, int expectedToken)
+        void SingleToken_Keyword(std::string value, int expectedToken)
         {
             RunTest(value, expectedToken);
         }

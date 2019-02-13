@@ -138,10 +138,7 @@ namespace Soup::Syntax
         FloatingPointLiteral,
         CharacterLiteral,
         StringLiteral,
-        UserDefinedIntegerLiteral,
-        UserDefinedFloatingPointLiteral,
-        UserDefinedCharacterLiteral,
-        UserDefinedStringLiteral,
+        UserDefinedLiteral,
         Identifier
     };
 } // namespace Soup::Syntax

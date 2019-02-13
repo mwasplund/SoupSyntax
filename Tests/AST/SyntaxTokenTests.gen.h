@@ -12,5 +12,14 @@ int RunSyntaxTokenTests()
     std::wcout << L"InitializeSimple" << std::endl;
     failedCount += RunTest([&testClass]() { testClass->InitializeSimple(); });
 
+    std::wcout << L"OperatorEqual" << std::endl;
+    failedCount += RunTest([&testClass]() { testClass->OperatorEqual(); });
+
+    std::wcout << L"OperatorNotEqualType" << std::endl;
+    failedCount += RunTest([&testClass]() { testClass->OperatorNotEqualType(); });
+
+    std::wcout << L"OperatorNotEqualValue" << std::endl;
+    failedCount += RunTest([&testClass]() { testClass->OperatorNotEqualValue(); });
+
     return failedCount;
 }

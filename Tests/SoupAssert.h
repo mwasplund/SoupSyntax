@@ -68,4 +68,36 @@ public:
       Fail(message);
     }
   }
+
+    template<typename T>
+  static typename std::enable_if<std::is_pointer<T>::value || is_shared_ptr<T>::value>::type AreNotEqual(
+    T expected,
+    T actual,
+    std::string message)
+  {
+    if (expected == nullptr)
+    {
+      Fail("Expected was null, use IsNull instead.");
+    }
+    else if (actual == nullptr)
+    {
+      Fail("Actual was null, use IsNull if this is expected.");
+    }
+    else if (*expected == *actual)
+    {
+      Fail(message);
+    }
+  }
+
+  template<typename T>
+  static typename std::enable_if<!std::is_pointer<T>::value && !is_shared_ptr<T>::value>::type AreNotEqual(
+    const T& expected,
+    const T& actual,
+    std::string message)
+  {
+    if (expected == actual)
+    {
+      Fail(message);
+    }
+  }
 };

@@ -24,7 +24,8 @@ namespace Soup::Syntax::UnitTests
                         std::vector<std::shared_ptr<InitializerDeclarator>>
                         {
                             std::make_shared<InitializerDeclarator>(
-                                std::make_shared<SimpleNameExpression>("GlobalVariable"),
+                                std::make_shared<SimpleNameExpression>(
+                                    std::make_shared<SyntaxToken>(SyntaxTokenType::Identifier, "GlobalVariable")),
                                 nullptr),
                         })));
 
@@ -52,8 +53,11 @@ namespace Soup::Syntax::UnitTests
                         std::vector<std::shared_ptr<InitializerDeclarator>>
                         {
                             std::make_shared<InitializerDeclarator>(
-                                std::make_shared<SimpleNameExpression>("GlobalVariable"),
-                                std::make_shared<LiteralExpression>(LiteralType::Integer, "1")),
+                                std::make_shared<SimpleNameExpression>(
+                                    std::make_shared<SyntaxToken>(SyntaxTokenType::Identifier, "GlobalVariable")),
+                                std::make_shared<LiteralExpression>(
+                                    LiteralType::Integer,
+                                    std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1"))),
                         })));
 
             auto actual = TestUtils::GenerateAST(source);
@@ -93,8 +97,11 @@ namespace Soup::Syntax::UnitTests
                         std::vector<std::shared_ptr<InitializerDeclarator>>
                         {
                             std::make_shared<InitializerDeclarator>(
-                                std::make_shared<SimpleNameExpression>("GlobalVariable"),
-                                std::make_shared<LiteralExpression>(LiteralType::Integer, "1")),
+                                std::make_shared<SimpleNameExpression>(
+                                    std::make_shared<SyntaxToken>(SyntaxTokenType::Identifier, "GlobalVariable")),
+                                std::make_shared<LiteralExpression>(
+                                    LiteralType::Integer,
+                                    std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1"))),
                         })));
 
             auto actual = TestUtils::GenerateAST(globalType);
@@ -121,11 +128,17 @@ namespace Soup::Syntax::UnitTests
                         std::vector<std::shared_ptr<InitializerDeclarator>>
                         {
                             std::make_shared<InitializerDeclarator>(
-                                std::make_shared<SimpleNameExpression>("GlobalVariable1"),
-                                std::make_shared<LiteralExpression>(LiteralType::Integer, "1")),
+                                std::make_shared<SimpleNameExpression>(
+                                    std::make_shared<SyntaxToken>(SyntaxTokenType::Identifier, "GlobalVariable1")),
+                                std::make_shared<LiteralExpression>(
+                                    LiteralType::Integer,
+                                    std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1"))),
                             std::make_shared<InitializerDeclarator>(
-                                std::make_shared<SimpleNameExpression>("GlobalVariable2"),
-                                std::make_shared<LiteralExpression>(LiteralType::Integer, "2")),
+                                std::make_shared<SimpleNameExpression>(
+                                    std::make_shared<SyntaxToken>(SyntaxTokenType::Identifier, "GlobalVariable2")),
+                                std::make_shared<LiteralExpression>(
+                                    LiteralType::Integer,
+                                    std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "2"))),
                         })));
 
             auto actual = TestUtils::GenerateAST(source);

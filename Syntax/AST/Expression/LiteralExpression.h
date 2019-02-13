@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "Expression.h"
 #include "LiteralType.h"
+#include "SyntaxToken.h"
 
 namespace Soup::Syntax
 {
@@ -13,14 +14,14 @@ namespace Soup::Syntax
         /// <summary>
         /// Initialize
         /// </summary>
-        LiteralExpression(LiteralType type, std::string value) :
+        LiteralExpression(LiteralType type, std::shared_ptr<SyntaxToken> token) :
             m_type(type),
-            m_value(std::move(value))
+            m_token(std::move(token))
         {
         }
 
         /// <summary>
-        /// Gets or sets the type
+        /// Gets the type
         /// </summary>
         LiteralType GetType() const
         {
@@ -28,11 +29,11 @@ namespace Soup::Syntax
         }
 
         /// <summary>
-        /// Gets or sets the value
+        /// Gets the token
         /// </summary>
-        const std::string& GetValue() const
+        const SyntaxToken& GetToken() const
         {
-            return m_value;
+            return *m_token;
         }
 
         /// <summary>
@@ -41,7 +42,7 @@ namespace Soup::Syntax
         bool operator ==(const LiteralExpression& rhs) const
         {
             return m_type == rhs.m_type &&
-                m_value == rhs.m_value;
+                *m_token == *rhs.m_token;
         }
 
         bool operator !=(const LiteralExpression& rhs) const
@@ -54,7 +55,7 @@ namespace Soup::Syntax
         /// </summary>
         virtual std::string ToString() const override final
         {
-            return std::string("LiteralExpression<") + m_value + ">";
+            return "LiteralExpression<" + m_token->ToString() + ">";
         }
 
     protected:
@@ -68,6 +69,6 @@ namespace Soup::Syntax
 
     private:
         LiteralType m_type;
-        std::string m_value;
+        std::shared_ptr<SyntaxToken> m_token;
     };
 }
