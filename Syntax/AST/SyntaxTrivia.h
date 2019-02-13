@@ -11,17 +11,26 @@ namespace Soup::Syntax
     export class SyntaxTrivia
     {
     public:
-        SyntaxTrivia();
+        SyntaxTrivia() :
+            m_span()
+        {
+        }
 
         /// <summary>
         /// Convert to string representation
         /// </summary>
-        TextSpan GetSpan() const;
+        TextSpan GetSpan() const
+        {
+            return m_span;
+        }
 
         /// <summary>
         /// Convert to string representation
         /// </summary>
-        std::string ToString() const;
+        std::string ToString() const
+        {
+            return "SyntaxTrivia";
+        }
 
     private:
         TextSpan m_span;

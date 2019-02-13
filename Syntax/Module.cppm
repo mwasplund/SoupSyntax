@@ -7,7 +7,7 @@ import Antlr4.Runtime;
 #include "SyntaxTree.h"
 #include "AST\ASTBuilder.h"
 #include "AST\PrimitiveDataType.h"
-#include "AST\QualifiedName.h"
+#include "AST\PrimitiveDataTypeNode.h"
 #include "AST\SyntaxNode.h"
 #include "AST\SyntaxToken.h"
 #include "AST\SyntaxTokenType.h"

@@ -16,38 +16,67 @@ namespace Soup::Syntax
         /// </summary>
         SyntaxToken(
             SyntaxTokenType type,
-            std::string value);
+            std::string value) :
+            m_type(type),
+            m_value(std::move(value)),
+            m_leadingTrivia(),
+            m_trailingTrivia()
+        {
+        }
 
         /// <summary>
         /// Get the token type
         /// </summary>
-        SyntaxTokenType GetType() const;
+        SyntaxTokenType GetType() const
+        {
+            return m_type;
+        }
 
         /// <summary>
         /// Get the raw token value
         /// </summary>
-        const std::string& GetValue() const;
+        const std::string& GetValue() const
+        {
+            return m_value;
+        }
 
         /// <summary>
         /// Get the leading Trivia
         /// </summary>
-        const std::vector<SyntaxTrivia>& GetLeadingTrivia() const;
+        const std::vector<SyntaxTrivia>& GetLeadingTrivia() const
+        {
+            return m_leadingTrivia;
+        }
 
         /// <summary>
         /// Get the trailing Trivia
         /// </summary>
-        const std::vector<SyntaxTrivia>& GetTrailingTrivia() const;
+        const std::vector<SyntaxTrivia>& GetTrailingTrivia() const
+        {
+            return m_trailingTrivia;
+        }
 
         /// <summary>
         /// Equality operator
         /// </summary>
-        bool operator ==(const SyntaxToken& rhs) const;
-        bool operator !=(const SyntaxToken& rhs) const;
+        bool operator==(const SyntaxToken &rhs) const
+        {
+            return m_type == rhs.m_type &&
+                m_value == rhs.m_value;
+        }
+
+        bool operator!=(const SyntaxToken &rhs) const
+        {
+            return !(*this == rhs);
+        }
 
         /// <summary>
         /// Convert to string representation
         /// </summary>
-        std::string ToString() const;
+        std::string ToString() const
+        {
+            return "SyntaxToken<" + m_value + ">";
+        }
 
     private:
         SyntaxTokenType m_type;

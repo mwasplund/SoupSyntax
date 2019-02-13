@@ -12,8 +12,16 @@ namespace Soup::Syntax
         /// <summary>
         /// Equality operator
         /// </summary>
-        bool operator ==(const SyntaxNode& rhs) const;
-        bool operator !=(const SyntaxNode& rhs) const;
+        bool operator==(const SyntaxNode &rhs) const
+        {
+            return typeid(*this) == typeid(rhs) &&
+                Equals(rhs);
+        }
+
+        bool operator!=(const SyntaxNode &rhs) const
+        {
+            return !(*this == rhs);
+        }
 
         /// <summary>
         /// Convert to string representation

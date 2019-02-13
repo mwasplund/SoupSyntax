@@ -78,41 +78,4 @@ namespace Soup::Syntax
         /// </summary>
         Auto,
     };
-
-    /// <summary>
-    /// Primitive data type
-    /// </summary>
-    export class PrimitiveDataTypeNode final : public SyntaxNode
-    {
-    private:
-        PrimitiveDataType type;
-
-    public:
-        /// <summary>
-        /// Gets or sets the type
-        /// </summary>
-        PrimitiveDataType GetType() const;
-
-        /// <summary>
-        /// Initialize
-        /// </summary>
-        PrimitiveDataTypeNode(PrimitiveDataType type);
-
-        /// <summary>
-        /// Equality operator
-        /// </summary>
-        bool operator ==(const PrimitiveDataTypeNode& rhs) const;
-        bool operator !=(const PrimitiveDataTypeNode& rhs) const;
-
-        /// <summary>
-        /// Convert to string representation
-        /// </summary>
-        virtual std::string ToString() const override final;
-
-    protected:
-        /// <summary>
-        /// SyntaxNode Equals
-        /// </summary>
-        virtual bool Equals(const SyntaxNode& rhs) const final;
-    };
 }
