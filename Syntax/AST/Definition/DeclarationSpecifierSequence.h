@@ -15,30 +15,72 @@ namespace Soup::Syntax
         /// <summary>
         /// Initialize
         /// </summary>
-        DeclarationSpecifierSequence();
-        DeclarationSpecifierSequence(std::vector<std::shared_ptr<SyntaxNode>>&& specifiers);
+        DeclarationSpecifierSequence() :
+            m_specifiers()
+        {
+        }
+
+        DeclarationSpecifierSequence(
+            std::vector<std::shared_ptr<SyntaxNode>>&& specifiers) :
+            m_specifiers(std::move(specifiers))
+        {
+        }
 
         /// <summary>
         /// Equality operator
         /// </summary>
-        bool operator ==(const DeclarationSpecifierSequence& rhs) const;
-        bool operator !=(const DeclarationSpecifierSequence& rhs) const;
+        bool operator ==(const DeclarationSpecifierSequence& rhs) const
+        {
+            return std::equal(
+                begin(m_specifiers),
+                end(m_specifiers),
+                begin(rhs.m_specifiers),
+                end(rhs.m_specifiers),
+                [](const std::shared_ptr<SyntaxNode>& lhs, const std::shared_ptr<SyntaxNode>& rhs)
+                {
+                    return *lhs == *rhs;
+                });
+        }
+
+        bool operator !=(const DeclarationSpecifierSequence& rhs) const
+        {
+            return !(*this == rhs);
+        }
 
         /// <summary>
         /// Gets or sets the list of declaration specifiers
         /// </summary>
-        const std::vector<std::shared_ptr<SyntaxNode>>& GetSpecifiers() const;
-        std::vector<std::shared_ptr<SyntaxNode>>& GetSpecifiers();
+        const std::vector<std::shared_ptr<SyntaxNode>>& GetSpecifiers() const
+        {
+            return m_specifiers;
+        }
+
+        std::vector<std::shared_ptr<SyntaxNode>>& GetSpecifiers()
+        {
+            return m_specifiers;
+        }
 
         /// <summary>
         /// Convert to string representation
         /// </summary>
-        virtual std::string ToString() const override final;
+        virtual std::string ToString() const override final
+        {
+            std::string result = "DeclarationSpecifierSequence";
+            for (auto specifier : m_specifiers)
+            {
+                result += "\n" + specifier->ToString();
+            }
+
+            return result;
+        }
 
     protected:
         /// <summary>
         /// SyntaxNode Equals
         /// </summary>
-        virtual bool Equals(const SyntaxNode& rhs) const final;
+        virtual bool Equals(const SyntaxNode& rhs) const final
+        {
+            return *this == static_cast<const DeclarationSpecifierSequence&>(rhs);
+        }
     };
 }

@@ -12,18 +12,31 @@ namespace Soup::Syntax
         /// <summary>
         /// Equality operator
         /// </summary>
-        bool operator ==(const DeleteFunctionBody& rhs) const;
-        bool operator !=(const DeleteFunctionBody& rhs) const;
+        bool operator ==(const DeleteFunctionBody& rhs) const
+        {
+            return true;
+        }
+
+        bool operator !=(const DeleteFunctionBody& rhs) const
+        {
+            return false;
+        }
 
         /// <summary>
         /// Convert to string representation
         /// </summary>
-        virtual std::string ToString() const override final;
+        virtual std::string ToString() const override final
+        {
+            return "DeleteFunctionBody";
+        }
 
     protected:
         /// <summary>
         /// SyntaxNode Equals
         /// </summary>
-        virtual bool Equals(const SyntaxNode& rhs) const final;
+        virtual bool Equals(const SyntaxNode& rhs) const final
+        {
+            return *this == static_cast<const DeleteFunctionBody&>(rhs);
+        }
     };
 }

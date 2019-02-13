@@ -16,44 +16,79 @@ namespace Soup::Syntax
             std::shared_ptr<DeclarationSpecifierSequence>&& returnType,
             std::shared_ptr<NameExpression>&& identifier,
             std::shared_ptr<ParameterList>&& parameterList,
-            std::shared_ptr<SyntaxNode>&& body);
+            std::shared_ptr<SyntaxNode>&& body) :
+            m_returnType(std::move(returnType)),
+            m_identifier(std::move(identifier)),
+            m_parameterList(std::move(parameterList)),
+            m_body(std::move(body))
+        {
+        }
 
         /// <summary>
         /// Gets or sets the return type
         /// </summary>
-        const DeclarationSpecifierSequence& GetReturnType() const;
+        const DeclarationSpecifierSequence& GetReturnType() const
+        {
+            return *m_returnType;
+        }
 
         /// <summary>
         /// Gets or sets the identifier
         /// </summary>
-        const NameExpression& GetIdentifier() const;
+        const NameExpression& GetIdentifier() const
+        {
+            return *m_identifier;
+        }
 
         /// <summary>
         /// Gets or sets the parameter list
         /// </summary>
-        const ParameterList& GetParameterList() const;
+        const ParameterList& GetParameterList() const
+        {
+            return *m_parameterList;
+        }
 
         /// <summary>
         /// Gets or sets the body
         /// </summary>
-        const SyntaxNode& GetBody() const;
+        const SyntaxNode& GetBody() const
+        {
+            return *m_body;
+        }
 
         /// <summary>
         /// Equality operator
         /// </summary>
-        bool operator ==(const FunctionDefinition& rhs) const;
-        bool operator !=(const FunctionDefinition& rhs) const;
+        bool operator ==(const FunctionDefinition& rhs) const
+        {
+            return 
+                m_returnType == rhs.m_returnType &&
+                m_identifier == rhs.m_identifier &&
+                m_parameterList == rhs.m_parameterList &&
+                m_body == rhs.m_body;
+        }
+
+        bool operator !=(const FunctionDefinition& rhs) const
+        {
+            return !(*this == rhs);
+        }
 
         /// <summary>
         /// Convert to string representation
         /// </summary>
-        virtual std::string ToString() const override final;
+        virtual std::string ToString() const override final
+        {
+            return "FunctionDefinition";
+        }
 
     protected:
         /// <summary>
         /// SyntaxNode Equals
         /// </summary>
-        virtual bool Equals(const SyntaxNode& rhs) const final;
+        virtual bool Equals(const SyntaxNode& rhs) const final
+        {
+            return *this == static_cast<const FunctionDefinition&>(rhs);
+        }
 
     private:
         std::shared_ptr<DeclarationSpecifierSequence> m_returnType;
