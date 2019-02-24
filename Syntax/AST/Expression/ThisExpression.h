@@ -9,15 +9,18 @@ namespace Soup::Syntax
     /// </summary>
     export class ThisExpression final : public Expression
     {
-    public:
+        friend class SyntaxFactory;
+
+    private:
         /// <summary>
         /// Initialize
         /// </summary>
-        ThisExpression(std::shared_ptr<SyntaxToken> token) :
+        ThisExpression(std::shared_ptr<const SyntaxToken> token) :
             m_token(std::move(token))
         {
         }
 
+    public:
         /// <summary>
         /// Gets the token
         /// </summary>
@@ -57,6 +60,6 @@ namespace Soup::Syntax
         }
 
     private:
-        std::shared_ptr<SyntaxToken> m_token;
+        std::shared_ptr<const SyntaxToken> m_token;
     };
 }

@@ -50,8 +50,8 @@ public:
   virtual void enterNestedNameSpecifier(CppParser::NestedNameSpecifierContext *ctx) = 0;
   virtual void exitNestedNameSpecifier(CppParser::NestedNameSpecifierContext *ctx) = 0;
 
-  virtual void enterNestedNameSpecifierList(CppParser::NestedNameSpecifierListContext *ctx) = 0;
-  virtual void exitNestedNameSpecifierList(CppParser::NestedNameSpecifierListContext *ctx) = 0;
+  virtual void enterNestedNameSpecifierSequence(CppParser::NestedNameSpecifierSequenceContext *ctx) = 0;
+  virtual void exitNestedNameSpecifierSequence(CppParser::NestedNameSpecifierSequenceContext *ctx) = 0;
 
   virtual void enterLambdaExpression(CppParser::LambdaExpressionContext *ctx) = 0;
   virtual void exitLambdaExpression(CppParser::LambdaExpressionContext *ctx) = 0;

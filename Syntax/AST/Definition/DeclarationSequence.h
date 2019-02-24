@@ -8,9 +8,6 @@ namespace Soup::Syntax
     /// </summary>
     export class DeclarationSequence final : public SyntaxNode
     {
-    private:
-        std::vector<std::shared_ptr<Declaration>> m_declarations;
-
     public:
         /// <summary>
         /// Initialize
@@ -20,13 +17,8 @@ namespace Soup::Syntax
         {
         }
 
-        DeclarationSequence(std::vector<std::shared_ptr<Declaration>>&& declarations) :
+        DeclarationSequence(std::vector<std::shared_ptr<const Declaration>> declarations) :
             m_declarations(std::move(declarations))
-        {
-        }
-
-        DeclarationSequence(DeclarationSequence&& other) :
-            m_declarations(std::move(other.m_declarations))
         {
         }
 
@@ -55,7 +47,7 @@ namespace Soup::Syntax
                 end(m_declarations),
                 begin(rhs.m_declarations),
                 end(rhs.m_declarations),
-                [](const std::shared_ptr<Declaration>& lhs, const std::shared_ptr<Declaration>& rhs)
+                [](const std::shared_ptr<const Declaration>& lhs, const std::shared_ptr<const Declaration>& rhs)
                 {
                     return *lhs == *rhs;
                 });
@@ -69,12 +61,7 @@ namespace Soup::Syntax
         /// <summary>
         /// Gets or sets the list of declarations
         /// </summary>
-        const std::vector<std::shared_ptr<Declaration>>& GetDeclarations() const
-        {
-            return m_declarations;
-        }
-
-        std::vector<std::shared_ptr<Declaration>>& GetDeclarations()
+        const std::vector<std::shared_ptr<const Declaration>>& GetDeclarations() const
         {
             return m_declarations;
         }
@@ -101,5 +88,8 @@ namespace Soup::Syntax
         {
             return *this == static_cast<const DeclarationSequence&>(rhs);
         }
+        
+    private:
+        std::vector<std::shared_ptr<const Declaration>> m_declarations;
     };
 }

@@ -13,10 +13,10 @@ namespace Soup::Syntax
     {
     public:
         FunctionDefinition(
-            std::shared_ptr<DeclarationSpecifierSequence>&& returnType,
-            std::shared_ptr<NameExpression>&& identifier,
-            std::shared_ptr<ParameterList>&& parameterList,
-            std::shared_ptr<SyntaxNode>&& body) :
+            std::shared_ptr<const DeclarationSpecifierSequence>&& returnType,
+            std::shared_ptr<const NameExpression>&& identifier,
+            std::shared_ptr<const ParameterList>&& parameterList,
+            std::shared_ptr<const SyntaxNode>&& body) :
             m_returnType(std::move(returnType)),
             m_identifier(std::move(identifier)),
             m_parameterList(std::move(parameterList)),
@@ -91,10 +91,9 @@ namespace Soup::Syntax
         }
 
     private:
-        std::shared_ptr<DeclarationSpecifierSequence> m_returnType;
-        std::shared_ptr<NameExpression> m_identifier;
-        std::shared_ptr<ParameterList> m_parameterList;
-        std::shared_ptr<SyntaxNode> m_body;
-
+        std::shared_ptr<const DeclarationSpecifierSequence> m_returnType;
+        std::shared_ptr<const NameExpression> m_identifier;
+        std::shared_ptr<const ParameterList> m_parameterList;
+        std::shared_ptr<const SyntaxNode> m_body;
     };
 }

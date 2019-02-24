@@ -8,9 +8,6 @@ namespace Soup::Syntax
     /// </summary>
     export class DeclarationSpecifierSequence final : public SyntaxNode
     {
-    private:
-        std::vector<std::shared_ptr<SyntaxNode>> m_specifiers;
-
     public:
         /// <summary>
         /// Initialize
@@ -21,7 +18,7 @@ namespace Soup::Syntax
         }
 
         DeclarationSpecifierSequence(
-            std::vector<std::shared_ptr<SyntaxNode>>&& specifiers) :
+            std::vector<std::shared_ptr<const SyntaxNode>> specifiers) :
             m_specifiers(std::move(specifiers))
         {
         }
@@ -36,7 +33,7 @@ namespace Soup::Syntax
                 end(m_specifiers),
                 begin(rhs.m_specifiers),
                 end(rhs.m_specifiers),
-                [](const std::shared_ptr<SyntaxNode>& lhs, const std::shared_ptr<SyntaxNode>& rhs)
+                [](const std::shared_ptr<const SyntaxNode>& lhs, const std::shared_ptr<const SyntaxNode>& rhs)
                 {
                     return *lhs == *rhs;
                 });
@@ -50,12 +47,7 @@ namespace Soup::Syntax
         /// <summary>
         /// Gets or sets the list of declaration specifiers
         /// </summary>
-        const std::vector<std::shared_ptr<SyntaxNode>>& GetSpecifiers() const
-        {
-            return m_specifiers;
-        }
-
-        std::vector<std::shared_ptr<SyntaxNode>>& GetSpecifiers()
+        const std::vector<std::shared_ptr<const SyntaxNode>>& GetSpecifiers() const
         {
             return m_specifiers;
         }
@@ -82,5 +74,8 @@ namespace Soup::Syntax
         {
             return *this == static_cast<const DeclarationSpecifierSequence&>(rhs);
         }
+
+    private:
+        std::vector<std::shared_ptr<const SyntaxNode>> m_specifiers;
     };
 }

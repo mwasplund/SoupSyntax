@@ -11,11 +11,32 @@ namespace Soup::Syntax
     {
     public:
         /// <summary>
+        /// Initialize
+        /// </summary>
+        CompoundStatement() :
+            m_statements()
+        {
+        }
+
+        CompoundStatement(std::vector<std::shared_ptr<const Statement>> statements) :
+            m_statements(std::move(statements))
+        {
+        }
+
+        /// <summary>
         /// Equality operator
         /// </summary>
         bool operator ==(const CompoundStatement& rhs) const
         {
-            return m_statements == rhs.m_statements;
+            return std::equal(
+                begin(m_statements),
+                end(m_statements),
+                begin(rhs.m_statements),
+                end(rhs.m_statements),
+                [](const std::shared_ptr<const Statement>& lhs, const std::shared_ptr<const Statement>& rhs)
+                {
+                    return *lhs == *rhs;
+                });
         }
 
         bool operator !=(const CompoundStatement& rhs) const
@@ -26,12 +47,7 @@ namespace Soup::Syntax
         /// <summary>
         /// Gets or sets the list of statements
         /// </summary>
-        const std::vector<std::shared_ptr<Statement>>& GetStatements() const
-        {
-            return m_statements;
-        }
-
-        std::vector<std::shared_ptr<Statement>>& GetStatements()
+        const std::vector<std::shared_ptr<const Statement>>& GetStatements() const
         {
             return m_statements;
         }
@@ -54,6 +70,6 @@ namespace Soup::Syntax
         }
 
     private:
-        std::vector<std::shared_ptr<Statement>> m_statements;
+        std::vector<std::shared_ptr<const Statement>> m_statements;
     };
 }

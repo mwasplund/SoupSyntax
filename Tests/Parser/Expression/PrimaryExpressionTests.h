@@ -12,7 +12,7 @@ namespace Soup::Syntax::UnitTests
         // [InlineData("1")]
         void SingleIntegerLiteralType(std::string sourceCode)
         {
-            auto expression = std::dynamic_pointer_cast<LiteralExpression>(
+            auto expression = std::dynamic_pointer_cast<const LiteralExpression>(
                 ParsePrimaryExpression(sourceCode));
 
             Assert::NotNull(expression, "Verify cast.");
@@ -27,7 +27,7 @@ namespace Soup::Syntax::UnitTests
         // [[InlineData("0.0f")]]
         void SingleFloatingLiteralType(std::string sourceCode)
         {
-            auto expression = std::dynamic_pointer_cast<LiteralExpression>(
+            auto expression = std::dynamic_pointer_cast<const LiteralExpression>(
                 ParsePrimaryExpression(sourceCode));
 
             Assert::NotNull(expression, "Verify cast.");
@@ -42,7 +42,7 @@ namespace Soup::Syntax::UnitTests
         // [[InlineData("'1'")]]
         void SingleCharacterLiteralType(std::string sourceCode)
         {
-            auto expression = std::dynamic_pointer_cast<LiteralExpression>(
+            auto expression = std::dynamic_pointer_cast<const LiteralExpression>(
                 ParsePrimaryExpression(sourceCode));
 
             Assert::NotNull(expression, "Verify cast.");
@@ -57,7 +57,7 @@ namespace Soup::Syntax::UnitTests
         // [[InlineData("nullptr")]]
         void SinglePointerLiteralType(std::string sourceCode)
         {
-            auto expression = std::dynamic_pointer_cast<LiteralExpression>(
+            auto expression = std::dynamic_pointer_cast<const LiteralExpression>(
                 ParsePrimaryExpression(sourceCode));
 
             Assert::NotNull(expression, "Verify cast.");
@@ -72,7 +72,7 @@ namespace Soup::Syntax::UnitTests
         // [[InlineData("\" \"")]]
         void SingleStringLiteralType(std::string sourceCode)
         {
-            auto expression = std::dynamic_pointer_cast<LiteralExpression>(
+            auto expression = std::dynamic_pointer_cast<const LiteralExpression>(
                 ParsePrimaryExpression(sourceCode));
 
             Assert::NotNull(expression, "Verify cast.");
@@ -88,7 +88,7 @@ namespace Soup::Syntax::UnitTests
         // [[InlineData("false", SyntaxTokenType::False)]]
         void SingleBooleanLiteralType(std::string sourceCode, SyntaxTokenType type)
         {
-            auto expression = std::dynamic_pointer_cast<LiteralExpression>(
+            auto expression = std::dynamic_pointer_cast<const LiteralExpression>(
                 ParsePrimaryExpression(sourceCode));
 
             Assert::NotNull(expression, "Verify cast.");
@@ -103,7 +103,7 @@ namespace Soup::Syntax::UnitTests
         // [[InlineData("2h")]]
         void SingleUserDefinedLiteralType(std::string sourceCode)
         {
-            auto expression = std::dynamic_pointer_cast<LiteralExpression>(
+            auto expression = std::dynamic_pointer_cast<const LiteralExpression>(
                 ParsePrimaryExpression(sourceCode));
 
             Assert::NotNull(expression, "Verify cast.");
@@ -118,7 +118,7 @@ namespace Soup::Syntax::UnitTests
         void SingleThisExpression()
         {
             auto sourceCode = std::string("this");
-            auto expression = std::dynamic_pointer_cast<ThisExpression>(
+            auto expression = std::dynamic_pointer_cast<const ThisExpression>(
                 ParsePrimaryExpression(sourceCode));
 
             Assert::NotNull(expression, "Verify cast.");
@@ -128,7 +128,7 @@ namespace Soup::Syntax::UnitTests
         void SingleSimpleNameExpression()
         {
             auto sourceCode = std::string("Name");
-            auto expression = std::dynamic_pointer_cast<SimpleNameExpression>(
+            auto expression = std::dynamic_pointer_cast<const SimpleNameExpression>(
                 ParsePrimaryExpression(sourceCode));
 
             Assert::NotNull(expression, "Verify cast.");
@@ -142,7 +142,7 @@ namespace Soup::Syntax::UnitTests
         void SingleQualifiedNameExpression()
         {
             auto sourceCode = std::string("NameLeft::NameRight");
-            auto expression = std::dynamic_pointer_cast<QualifiedNameExpression>(
+            auto expression = std::dynamic_pointer_cast<const QualifiedNameExpression>(
                 ParsePrimaryExpression(sourceCode));
 
             Assert::NotNull(expression, "Verify cast.");
@@ -156,7 +156,7 @@ namespace Soup::Syntax::UnitTests
                 "Verify left identifier matches expected.");
             Assert::AreEqual(
                 SyntaxToken(SyntaxTokenType::DoubleColon, "::"),
-                expression->GetDoubleColonToken(),
+                expression->GetScopeResolutionToken(),
                 "Verify double colon token matches expected.");
             Assert::AreEqual(
                 SyntaxToken(SyntaxTokenType::Identifier, "NameRight"),
@@ -165,14 +165,15 @@ namespace Soup::Syntax::UnitTests
         }
 
     private:
-        std::shared_ptr<SyntaxNode> ParsePrimaryExpression(std::string& sourceCode)
+        std::shared_ptr<const SyntaxNode> ParsePrimaryExpression(std::string& sourceCode)
         {
             auto uut = TestUtils::BuildParser(sourceCode);
             auto context = uut.Parser->primaryExpression();
 
             // Convert the the abstract syntax tree
             auto visitor = ASTVisitor();
-            auto node = visitor.visit(context).as<std::shared_ptr<SyntaxNode>>();
+            auto node = visitor.visit(context)
+                .as<std::shared_ptr<const SyntaxNode>>();
 
             return node;
         }

@@ -48,7 +48,7 @@ public:
     RuleTypedefName = 0, RuleNamespaceName = 1, RuleNamespaceAlias = 2, 
     RuleClassName = 3, RuleEnumName = 4, RuleTemplateName = 5, RuleTranslationUnit = 6, 
     RulePrimaryExpression = 7, RuleIdentifierExpression = 8, RuleUnqualifiedIdentifier = 9, 
-    RuleQualifiedIdentifier = 10, RuleNestedNameSpecifier = 11, RuleNestedNameSpecifierList = 12, 
+    RuleQualifiedIdentifier = 10, RuleNestedNameSpecifier = 11, RuleNestedNameSpecifierSequence = 12, 
     RuleLambdaExpression = 13, RuleLambdaIntroducer = 14, RuleLambdaDeclarator = 15, 
     RuleLambdaCapture = 16, RuleCaptureDefault = 17, RuleCaptureList = 18, 
     RuleCapture = 19, RuleSimpleCapture = 20, RuleInitializerCapture = 21, 
@@ -145,7 +145,7 @@ public:
   class UnqualifiedIdentifierContext;
   class QualifiedIdentifierContext;
   class NestedNameSpecifierContext;
-  class NestedNameSpecifierListContext;
+  class NestedNameSpecifierSequenceContext;
   class LambdaExpressionContext;
   class LambdaIntroducerContext;
   class LambdaDeclaratorContext;
@@ -541,8 +541,10 @@ public:
   public:
     NestedNameSpecifierContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    NestedNameSpecifierListContext *nestedNameSpecifierList();
     antlr4::tree::TerminalNode *DoubleColon();
+    NestedNameSpecifierSequenceContext *nestedNameSpecifierSequence();
+    antlr4::tree::TerminalNode *Identifier();
+    DeclarationTypeSpecifierContext *declarationTypeSpecifier();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -553,13 +555,15 @@ public:
 
   NestedNameSpecifierContext* nestedNameSpecifier();
 
-  class  NestedNameSpecifierListContext : public antlr4::ParserRuleContext {
+  class  NestedNameSpecifierSequenceContext : public antlr4::ParserRuleContext {
   public:
-    NestedNameSpecifierListContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    NestedNameSpecifierSequenceContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *Identifier();
     antlr4::tree::TerminalNode *DoubleColon();
-    NestedNameSpecifierListContext *nestedNameSpecifierList();
+    NestedNameSpecifierSequenceContext *nestedNameSpecifierSequence();
+    SimpleTemplateIdentifierContext *simpleTemplateIdentifier();
+    antlr4::tree::TerminalNode *Template();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -568,8 +572,8 @@ public:
    
   };
 
-  NestedNameSpecifierListContext* nestedNameSpecifierList();
-  NestedNameSpecifierListContext* nestedNameSpecifierList(int precedence);
+  NestedNameSpecifierSequenceContext* nestedNameSpecifierSequence();
+
   class  LambdaExpressionContext : public antlr4::ParserRuleContext {
   public:
     LambdaExpressionContext(antlr4::ParserRuleContext *parent, size_t invokingState);
@@ -4379,7 +4383,6 @@ public:
 
 
   virtual bool sempred(antlr4::RuleContext *_localctx, size_t ruleIndex, size_t predicateIndex) override;
-  bool nestedNameSpecifierListSempred(NestedNameSpecifierListContext *_localctx, size_t predicateIndex);
   bool captureListSempred(CaptureListContext *_localctx, size_t predicateIndex);
   bool postfixExpressionSempred(PostfixExpressionContext *_localctx, size_t predicateIndex);
   bool noPointerNewDeclaratorSempred(NoPointerNewDeclaratorContext *_localctx, size_t predicateIndex);

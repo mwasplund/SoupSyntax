@@ -16,15 +16,15 @@ namespace Soup::Syntax::UnitTests
             auto expected = TestUtils::CreateSingleDeclaration(
                 std::make_shared<SimpleDefinition>(
                     std::make_shared<DeclarationSpecifierSequence>(
-                        std::vector<std::shared_ptr<SyntaxNode>>
+                        std::vector<std::shared_ptr<const SyntaxNode>>
                         {
                             std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Int),
                         }),
                     std::make_shared<InitializerDeclaratorList>(
-                        std::vector<std::shared_ptr<InitializerDeclarator>>
+                        std::vector<std::shared_ptr<const InitializerDeclarator>>
                         {
                             std::make_shared<InitializerDeclarator>(
-                                std::make_shared<SimpleNameExpression>(
+                                SyntaxFactory::CreateSimpleNameExpression(
                                     std::make_shared<SyntaxToken>(SyntaxTokenType::Identifier, "GlobalVariable")),
                                 nullptr),
                         })));
@@ -45,17 +45,17 @@ namespace Soup::Syntax::UnitTests
             auto expected = TestUtils::CreateSingleDeclaration(
                 std::make_shared<SimpleDefinition>(
                     std::make_shared<DeclarationSpecifierSequence>(
-                        std::vector<std::shared_ptr<SyntaxNode>>
+                        std::vector<std::shared_ptr<const SyntaxNode>>
                         {
                             std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Int),
                         }),
                     std::make_shared<InitializerDeclaratorList>(
-                        std::vector<std::shared_ptr<InitializerDeclarator>>
+                        std::vector<std::shared_ptr<const InitializerDeclarator>>
                         {
                             std::make_shared<InitializerDeclarator>(
-                                std::make_shared<SimpleNameExpression>(
+                                SyntaxFactory::CreateSimpleNameExpression(
                                     std::make_shared<SyntaxToken>(SyntaxTokenType::Identifier, "GlobalVariable")),
-                                std::make_shared<LiteralExpression>(
+                                SyntaxFactory::CreateLiteralExpression(
                                     LiteralType::Integer,
                                     std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1"))),
                         })));
@@ -89,17 +89,17 @@ namespace Soup::Syntax::UnitTests
             auto expected = TestUtils::CreateSingleDeclaration(
                 std::make_shared<SimpleDefinition>(
                     std::make_shared<DeclarationSpecifierSequence>(
-                        std::vector<std::shared_ptr<SyntaxNode>>
+                        std::vector<std::shared_ptr<const SyntaxNode>>
                         {
                             std::make_shared<PrimitiveDataTypeNode>(type),
                         }),
                     std::make_shared<InitializerDeclaratorList>(
-                        std::vector<std::shared_ptr<InitializerDeclarator>>
+                        std::vector<std::shared_ptr<const InitializerDeclarator>>
                         {
                             std::make_shared<InitializerDeclarator>(
-                                std::make_shared<SimpleNameExpression>(
+                                SyntaxFactory::CreateSimpleNameExpression(
                                     std::make_shared<SyntaxToken>(SyntaxTokenType::Identifier, "GlobalVariable")),
-                                std::make_shared<LiteralExpression>(
+                                SyntaxFactory::CreateLiteralExpression(
                                     LiteralType::Integer,
                                     std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1"))),
                         })));
@@ -120,23 +120,23 @@ namespace Soup::Syntax::UnitTests
             auto expected = TestUtils::CreateSingleDeclaration(
                 std::make_shared<SimpleDefinition>(
                     std::make_shared<DeclarationSpecifierSequence>(
-                        std::vector<std::shared_ptr<SyntaxNode>>
+                        std::vector<std::shared_ptr<const SyntaxNode>>
                         {
                             std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Int),
                         }),
                     std::make_shared<InitializerDeclaratorList>(
-                        std::vector<std::shared_ptr<InitializerDeclarator>>
+                        std::vector<std::shared_ptr<const InitializerDeclarator>>
                         {
                             std::make_shared<InitializerDeclarator>(
-                                std::make_shared<SimpleNameExpression>(
+                                SyntaxFactory::CreateSimpleNameExpression(
                                     std::make_shared<SyntaxToken>(SyntaxTokenType::Identifier, "GlobalVariable1")),
-                                std::make_shared<LiteralExpression>(
+                                SyntaxFactory::CreateLiteralExpression(
                                     LiteralType::Integer,
                                     std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1"))),
                             std::make_shared<InitializerDeclarator>(
-                                std::make_shared<SimpleNameExpression>(
+                                SyntaxFactory::CreateSimpleNameExpression(
                                     std::make_shared<SyntaxToken>(SyntaxTokenType::Identifier, "GlobalVariable2")),
-                                std::make_shared<LiteralExpression>(
+                                SyntaxFactory::CreateLiteralExpression(
                                     LiteralType::Integer,
                                     std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "2"))),
                         })));

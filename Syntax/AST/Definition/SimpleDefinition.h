@@ -10,8 +10,8 @@ namespace Soup::Syntax
     {
     public:
         SimpleDefinition(
-            std::shared_ptr<DeclarationSpecifierSequence>&& declarationSpecifierSequence,
-            std::shared_ptr<InitializerDeclaratorList>&& initializerDeclaratorList) :
+            std::shared_ptr<const DeclarationSpecifierSequence>&& declarationSpecifierSequence,
+            std::shared_ptr<const InitializerDeclaratorList>&& initializerDeclaratorList) :
             m_declarationSpecifierSequence(std::move(declarationSpecifierSequence)),
             m_initializerDeclaratorList(std::move(initializerDeclaratorList))
         {
@@ -68,7 +68,7 @@ namespace Soup::Syntax
         }
 
     private:
-        std::shared_ptr<DeclarationSpecifierSequence> m_declarationSpecifierSequence;
-        std::shared_ptr<InitializerDeclaratorList> m_initializerDeclaratorList;
+        std::shared_ptr<const DeclarationSpecifierSequence> m_declarationSpecifierSequence;
+        std::shared_ptr<const InitializerDeclaratorList> m_initializerDeclaratorList;
     };
 }

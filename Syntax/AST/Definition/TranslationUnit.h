@@ -9,7 +9,7 @@ namespace Soup::Syntax
     export class TranslationUnit : public SyntaxNode
     {
     public:
-        TranslationUnit(std::shared_ptr<DeclarationSequence>&& declarations) :
+        TranslationUnit(std::shared_ptr<const DeclarationSequence>&& declarations) :
             m_declarations(std::move(declarations))
         {
         }
@@ -59,6 +59,6 @@ namespace Soup::Syntax
         }
 
     private:
-        std::shared_ptr<DeclarationSequence> m_declarations;
+        std::shared_ptr<const DeclarationSequence> m_declarations;
     };
 }

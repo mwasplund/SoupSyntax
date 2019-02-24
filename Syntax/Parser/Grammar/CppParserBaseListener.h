@@ -52,8 +52,8 @@ public:
   virtual void enterNestedNameSpecifier(CppParser::NestedNameSpecifierContext * /*ctx*/) override { }
   virtual void exitNestedNameSpecifier(CppParser::NestedNameSpecifierContext * /*ctx*/) override { }
 
-  virtual void enterNestedNameSpecifierList(CppParser::NestedNameSpecifierListContext * /*ctx*/) override { }
-  virtual void exitNestedNameSpecifierList(CppParser::NestedNameSpecifierListContext * /*ctx*/) override { }
+  virtual void enterNestedNameSpecifierSequence(CppParser::NestedNameSpecifierSequenceContext * /*ctx*/) override { }
+  virtual void exitNestedNameSpecifierSequence(CppParser::NestedNameSpecifierSequenceContext * /*ctx*/) override { }
 
   virtual void enterLambdaExpression(CppParser::LambdaExpressionContext * /*ctx*/) override { }
   virtual void exitLambdaExpression(CppParser::LambdaExpressionContext * /*ctx*/) override { }

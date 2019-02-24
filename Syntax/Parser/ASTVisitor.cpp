@@ -47,14 +47,14 @@ antlrcpp::Any ASTVisitor::visitTranslationUnit(CppParser::TranslationUnitContext
     Trace(L"VisitTranslationUnit");
 
     // Check for the optional declaration sequences
-    std::shared_ptr<DeclarationSequence> declarationSequence = nullptr;
+    std::shared_ptr<const DeclarationSequence> declarationSequence = nullptr;
     if (context->declarationSequence() != nullptr)
     {
         declarationSequence = visit(context->declarationSequence())
-            .as<std::shared_ptr<DeclarationSequence>>();
+            .as<std::shared_ptr<const DeclarationSequence>>();
     }
 
-    return std::make_shared<TranslationUnit>(std::move(declarationSequence));
+    return std::make_shared<const TranslationUnit>(std::move(declarationSequence));
 }
 
 antlrcpp::Any ASTVisitor::visitPrimaryExpression(CppParser::PrimaryExpressionContext* context)
@@ -62,11 +62,11 @@ antlrcpp::Any ASTVisitor::visitPrimaryExpression(CppParser::PrimaryExpressionCon
     Trace(L"VisitPrimaryExpression");
     if (context->This() != nullptr)
     {
-        auto thisToken = std::make_shared<SyntaxToken>(
+        auto thisToken = std::make_shared<const SyntaxToken>(
             SyntaxTokenType::This,
             context->This()->getText());
-        return std::static_pointer_cast<SyntaxNode>(
-            std::make_shared<ThisExpression>(
+        return std::static_pointer_cast<const SyntaxNode>(
+            SyntaxFactory::CreateThisExpression(
                 std::move(thisToken)));
     }
     else
@@ -84,88 +84,162 @@ antlrcpp::Any ASTVisitor::visitIdentifierExpression(CppParser::IdentifierExpress
 antlrcpp::Any ASTVisitor::visitUnqualifiedIdentifier(CppParser::UnqualifiedIdentifierContext* context)
 {
     Trace(L"VisitUnqualifiedIdentifier");
-    auto identifier = std::make_shared<SyntaxToken>(
-        SyntaxTokenType::Identifier,
-        context->Identifier()->getText());
-    return std::static_pointer_cast<SyntaxNode>(
-        std::make_shared<SimpleNameExpression>(std::move(identifier)));
+    if (context->Identifier() != nullptr)
+    {
+        auto identifier = std::make_shared<const SyntaxToken>(
+            SyntaxTokenType::Identifier,
+            context->Identifier()->getText());
+        return std::static_pointer_cast<const SyntaxNode>(
+            SyntaxFactory::CreateSimpleNameExpression(std::move(identifier)));
+    }
+    else
+    {
+        throw std::logic_error(std::string(__func__) + " NotImplemented");
+    }
 }
 
-antlrcpp::Any ASTVisitor::visitQualifiedIdentifier(CppParser::QualifiedIdentifierContext* context)
+antlrcpp::Any ASTVisitor::visitQualifiedIdentifier(
+    CppParser::QualifiedIdentifierContext* context)
 {
     Trace(L"VisitQualifiedIdentifier");
-    auto nestedName = visit(context->nestedNameSpecifier())
-        .as<std::shared_ptr<SyntaxNode>>();
-    auto simpleName = visit(context->unqualifiedIdentifier())
-        .as<std::shared_ptr<SyntaxNode>>();
+    auto qualifiedName = std::dynamic_pointer_cast<const QualifiedNameExpression>(
+        visit(context->nestedNameSpecifier())
+            .as<std::shared_ptr<const SyntaxNode>>());
+    auto simpleName = std::dynamic_pointer_cast<const SimpleNameExpression>(
+        visit(context->unqualifiedIdentifier())
+            .as<std::shared_ptr<const SyntaxNode>>());
 
-    auto doubleColonToken = std::make_shared<SyntaxToken>(
-        SyntaxTokenType::DoubleColon,
-        "::"); // TODO: context->DoubleColon()->getText());
-    return std::static_pointer_cast<SyntaxNode>(
-        std::make_shared<QualifiedNameExpression>(
-            std::dynamic_pointer_cast<NameExpression>(nestedName),
+    if (context->Template() != nullptr)
+    {
+        throw std::logic_error(std::string(__func__) + " NotImplemented");
+    }
+
+    // Replace the right name with the current unqlaified name
+    return std::static_pointer_cast<const SyntaxNode>(
+        qualifiedName->WithRight(std::move(simpleName)));
+}
+
+std::shared_ptr<const SimpleNameExpression> GetNextSimpleName(
+    CppParser::NestedNameSpecifierSequenceContext* context)
+{
+    Trace(L"GetNextSimpleName");
+
+    if (context->Identifier() != nullptr)
+    {
+        // Simple name qualified expression
+        return SyntaxFactory::CreateSimpleNameExpression(
+            std::make_shared<const SyntaxToken>(
+                SyntaxTokenType::Identifier,
+                context->Identifier()->getText()));
+    }
+    else if (context->simpleTemplateIdentifier() != nullptr)
+    {
+        throw std::logic_error(std::string(__func__) + " NotImplemented");
+    }
+    else
+    {
+        throw std::logic_error(std::string(__func__) + " Unknown type.");
+    }
+}
+
+std::shared_ptr<const QualifiedNameExpression> visitNextRightQualifiedNestedNames(
+    std::shared_ptr<const QualifiedNameExpression> leftQualifiedName,
+    CppParser::NestedNameSpecifierSequenceContext* context)
+{
+    Trace(L"VisitNextRightQualifiedNestedNames");
+
+    // Jump through hoops to convert antlr right recursion into the tree left recursion
+    std::shared_ptr<const SimpleNameExpression> rightName = nullptr;
+    if (context->nestedNameSpecifierSequence() != nullptr)
+    {
+        rightName = GetNextSimpleName(context->nestedNameSpecifierSequence());
+    }
+
+    // Build the actual qualified expression
+    auto doubleColonToken = std::make_shared<const SyntaxToken>(
+                SyntaxTokenType::DoubleColon,
+                context->DoubleColon()->getText());
+    auto qualifiedName = 
+        SyntaxFactory::CreateQualifiedNameExpression(
+            std::move(leftQualifiedName),
             std::move(doubleColonToken),
-            std::dynamic_pointer_cast<SimpleNameExpression>(simpleName)));
+            std::move(rightName));
+
+    // If the recursive right element exists then this must be parented to it
+    // More oddity from right recursion mixing with left recursion
+    if (context->nestedNameSpecifierSequence() != nullptr)
+    {
+        return visitNextRightQualifiedNestedNames(
+            std::move(qualifiedName),
+            context->nestedNameSpecifierSequence());
+    }
+    else
+    {
+        // Otherwise just return this element
+        return qualifiedName;
+    }
 }
 
 antlrcpp::Any ASTVisitor::visitNestedNameSpecifier(CppParser::NestedNameSpecifierContext* context)
 {
     Trace(L"VisitNestedNameSpecifier");
 
-    auto nameSpecifierList = visit(context->nestedNameSpecifierList())
-        .as<std::shared_ptr<SyntaxNode>>();
+    auto doubleColonToken = std::make_shared<const SyntaxToken>(
+                SyntaxTokenType::DoubleColon,
+                context->DoubleColon()->getText());
 
-    // Check if there is an optional global qualifier
-    if (context->DoubleColon() != nullptr)
+    // Jump through hoops to convert antlr right recursion into the tree left recursion
+    std::shared_ptr<const SimpleNameExpression> rightName = nullptr;
+    if (context->nestedNameSpecifierSequence() != nullptr)
     {
-        // Add a gobal qualified name indicated by a null left name
-        auto nameExpression = std::dynamic_pointer_cast<NameExpression>(nameSpecifierList);
-        auto doubleColonToken = std::make_shared<SyntaxToken>(
-            SyntaxTokenType::DoubleColon,
-            context->DoubleColon()->getText());
-        return std::static_pointer_cast<SyntaxNode>(
-            ASTBuilder::AddNameLeft(
-                nullptr,
-                std::move(doubleColonToken),
-                nameExpression));
+        rightName = GetNextSimpleName(context->nestedNameSpecifierSequence());
+    }
+
+    // Build the actual qualified expression
+    std::shared_ptr<const QualifiedNameExpression> qualifiedName = nullptr;
+    if (context->Identifier() != nullptr)
+    {
+        // Simple name qualified expression
+        auto leftName = SyntaxFactory::CreateSimpleNameExpression(
+            std::make_shared<const SyntaxToken>(
+                SyntaxTokenType::Identifier,
+                context->Identifier()->getText()));
+        qualifiedName = SyntaxFactory::CreateQualifiedNameExpression(
+            std::move(leftName),
+            std::move(doubleColonToken),
+            std::move(rightName));
+    }
+    else if (context->declarationTypeSpecifier() != nullptr)
+    {
+        throw std::logic_error(std::string(__func__) + " NotImplemented");
     }
     else
     {
-        return nameSpecifierList;
+        // Global qualified expression
+        qualifiedName = SyntaxFactory::CreateQualifiedNameExpression(
+            nullptr,
+            std::move(doubleColonToken),
+            std::move(rightName));
+    }
+
+    // If the recursive right element exists then this must be parented to it
+    // More oddity from right recursion mixing with left recursion
+    if (context->nestedNameSpecifierSequence() != nullptr)
+    {
+        return visitNextRightQualifiedNestedNames(
+            std::move(qualifiedName),
+            context->nestedNameSpecifierSequence());
+    }
+    else
+    {
+        // Otherwise just return this element
+        return std::static_pointer_cast<const SyntaxNode>(qualifiedName);
     }
 }
 
-antlrcpp::Any ASTVisitor::visitNestedNameSpecifierList(CppParser::NestedNameSpecifierListContext *context)
+antlrcpp::Any ASTVisitor::visitNestedNameSpecifierSequence(CppParser::NestedNameSpecifierSequenceContext *context)
 {
-    Trace(L"VisitNestedNameSpecifierList");
-
-    auto identifier = std::make_shared<SyntaxToken>(
-        SyntaxTokenType::Identifier,
-        context->Identifier()->getText());
-    auto simpleName = std::make_shared<SimpleNameExpression>(
-        std::move(identifier));
-
-    // Check recursive left name
-    if (context->nestedNameSpecifierList() != nullptr)
-    {
-        auto leftName = std::dynamic_pointer_cast<NameExpression>(
-            visit(context->nestedNameSpecifierList()).as<std::shared_ptr<SyntaxNode>>());
-
-        // Add the new simple name to the right
-        auto doubleColonToken = std::make_shared<SyntaxToken>(
-            SyntaxTokenType::DoubleColon,
-            "::"); // TODO context->Identifier()->getText());
-        return std::static_pointer_cast<SyntaxNode>(
-            std::make_shared<QualifiedNameExpression>(
-                std::move(leftName),
-                std::move(doubleColonToken),
-                std::move(simpleName)));
-    }
-    else
-    {
-        return std::static_pointer_cast<SyntaxNode>(simpleName);
-    }
+    throw std::logic_error("NestedNameSpecifierSequence is handled manually.");
 }
 
 antlrcpp::Any ASTVisitor::visitLambdaExpression(CppParser::LambdaExpressionContext* context)
@@ -282,25 +356,25 @@ antlrcpp::Any ASTVisitor::visitPostfixExpression(CppParser::PostfixExpressionCon
     else if(context->postfixExpression() != nullptr)
     {
         // Handle all recursive expressions
-        auto recursiveExpression = std::dynamic_pointer_cast<Expression>(
+        auto recursiveExpression = std::dynamic_pointer_cast<const Expression>(
             visit(context->postfixExpression())
-                .as<std::shared_ptr<SyntaxNode>>());
+                .as<std::shared_ptr<const SyntaxNode>>());
 
         if (context->LeftBracket() != nullptr)
         {
             // Subscript operator expression
             // postfixExpression LeftBracket expressionOrBracedInitializerList RightBracket
-            auto leftBracketToken = std::make_shared<SyntaxToken>(
+            auto leftBracketToken = std::make_shared<const SyntaxToken>(
                 SyntaxTokenType::LeftBracket,
                 context->LeftBracket()->getText());
-            auto initializerList = std::dynamic_pointer_cast<Expression>(
+            auto initializerList = std::dynamic_pointer_cast<const Expression>(
                 visit(context->expressionOrBracedInitializerList())
-                    .as<std::shared_ptr<SyntaxNode>>());
-            auto rightBracketToken = std::make_shared<SyntaxToken>(
+                    .as<std::shared_ptr<const SyntaxNode>>());
+            auto rightBracketToken = std::make_shared<const SyntaxToken>(
                 SyntaxTokenType::RightBracket,
                 context->RightBracket()->getText());
-            return std::static_pointer_cast<SyntaxNode>(
-                std::make_shared<SubscriptExpression>(
+            return std::static_pointer_cast<const SyntaxNode>(
+                SyntaxFactory::CreateSubscriptExpression(
                     std::move(recursiveExpression),
                     std::move(leftBracketToken),
                     std::move(initializerList),
@@ -321,18 +395,18 @@ antlrcpp::Any ASTVisitor::visitPostfixExpression(CppParser::PostfixExpressionCon
             // postfixExpression postfixOperator
             auto operatorContext = context->postfixOperator();
             UnaryOperator unaryOperator;
-            std::shared_ptr<SyntaxToken> operatorToken;
+            std::shared_ptr<const SyntaxToken> operatorToken;
             if (operatorContext->DoublePlus() != nullptr)
             {
                 unaryOperator = UnaryOperator::PostIncrement;
-                operatorToken = std::make_shared<SyntaxToken>(
+                operatorToken = std::make_shared<const SyntaxToken>(
                     SyntaxTokenType::DoublePlus,
                     operatorContext->DoublePlus()->getText());
             }
             else if (operatorContext->DoubleMinus() != nullptr)
             {
                 unaryOperator = UnaryOperator::PostDecrement;
-                operatorToken = std::make_shared<SyntaxToken>(
+                operatorToken = std::make_shared<const SyntaxToken>(
                     SyntaxTokenType::DoubleMinus,
                     operatorContext->DoubleMinus()->getText());
             }
@@ -341,8 +415,8 @@ antlrcpp::Any ASTVisitor::visitPostfixExpression(CppParser::PostfixExpressionCon
                 throw std::runtime_error("Unknown postfix operator.");
             }
             
-            return std::static_pointer_cast<SyntaxNode>(
-                std::make_shared<UnaryExpression>(
+            return std::static_pointer_cast<const SyntaxNode>(
+                SyntaxFactory::CreateUnaryExpression(
                     unaryOperator,
                     std::move(operatorToken),
                     std::move(recursiveExpression)));
@@ -742,15 +816,16 @@ antlrcpp::Any ASTVisitor::visitCompoundStatement(CppParser::CompoundStatementCon
     Trace(L"VisitCompoundStatement");
 
     // Check for optional sequence
-    std::shared_ptr<CompoundStatement> result = nullptr;
+    std::shared_ptr<const CompoundStatement> result = nullptr;
     auto sequence = context->statementSequence();
     if (sequence != nullptr)
     {
-        result = visit(sequence).as<std::shared_ptr<CompoundStatement>>();
+        result = visit(sequence)
+            .as<std::shared_ptr<const CompoundStatement>>();
     }
     else
     {
-        result = std::make_shared<CompoundStatement>();
+        result = std::make_shared<const CompoundStatement>();
     }
 
     // TODO: Reference the source braces
@@ -762,20 +837,25 @@ antlrcpp::Any ASTVisitor::visitStatementSequence(CppParser::StatementSequenceCon
     Trace(L"VisitStatementSequence");
 
     // Handle the recursive rule
-    std::shared_ptr<CompoundStatement> sequence;
+    std::shared_ptr<const CompoundStatement> sequence;
     auto childSequence = context->statementSequence();
     if (childSequence != nullptr)
     {
-        sequence = visit(childSequence).as<std::shared_ptr<CompoundStatement>>();
+        sequence = visit(childSequence)
+            .as<std::shared_ptr<const CompoundStatement>>();
     }
     else
     {
-        sequence = std::make_shared<CompoundStatement>();
+        sequence = std::make_shared<const CompoundStatement>();
     }
 
     // Handle the new item
-    auto statement = visit(context->statement()).as<std::shared_ptr<Statement>>();
-    sequence->GetStatements().push_back(std::move(statement));
+    auto statement = visit(context->statement())
+        .as<std::shared_ptr<const Statement>>();
+    std::vector<std::shared_ptr<const Statement>> statements = sequence->GetStatements();
+    statements.push_back(std::move(statement));
+    sequence = std::make_shared<const CompoundStatement>(
+        std::move(statements));
 
     return sequence;
 }
@@ -827,24 +907,28 @@ antlrcpp::Any ASTVisitor::visitDeclarationSequence(CppParser::DeclarationSequenc
     Trace(L"VisitDeclarationSequence");
 
     // Handle the recursive rule
-    std::shared_ptr<DeclarationSequence> sequence;
+    std::shared_ptr<const DeclarationSequence> sequence;
     auto childSequence = context->declarationSequence();
     if (childSequence != nullptr)
     {
-        sequence = visit(childSequence).as<std::shared_ptr<DeclarationSequence>>();
+        sequence = visit(childSequence)
+            .as<std::shared_ptr<const DeclarationSequence>>();
     }
     else
     {
-        sequence = std::make_shared<DeclarationSequence>();
+        sequence = std::make_shared<const DeclarationSequence>();
     }
 
     // Handle the new item
     auto declaration = context->declaration();
-    auto declarationNode = visit(declaration).as<std::shared_ptr<SyntaxNode>>();
-    sequence->GetDeclarations().push_back(
-        std::static_pointer_cast<Declaration>(declarationNode));
+    auto declarationNode = visit(declaration)
+        .as<std::shared_ptr<const SyntaxNode>>();
+    auto declarations = sequence->GetDeclarations();
+    declarations.push_back(
+        std::static_pointer_cast<const Declaration>(declarationNode));
 
-    return sequence;
+    return std::make_shared<const DeclarationSequence>(
+        std::move(declarations));
 }
 
 antlrcpp::Any ASTVisitor::visitDeclaration(CppParser::DeclarationContext *context)
@@ -876,13 +960,13 @@ antlrcpp::Any ASTVisitor::visitSimpleDeclaration(CppParser::SimpleDeclarationCon
     Trace(L"VisitSimpleDeclaration");
 
     auto declarationSpecifierSequence = visit(context->declarationSpecifierSequence())
-        .as<std::shared_ptr<DeclarationSpecifierSequence>>();
+        .as<std::shared_ptr<const DeclarationSpecifierSequence>>();
     auto initializerDeclaratorList = visit(context->initializerDeclaratorList())
-        .as<std::shared_ptr<InitializerDeclaratorList>>();
+        .as<std::shared_ptr<const InitializerDeclaratorList>>();
 
     // TODO
-    return std::static_pointer_cast<SyntaxNode>(
-        std::make_shared<SimpleDefinition>(
+    return std::static_pointer_cast<const SyntaxNode>(
+        std::make_shared<const SimpleDefinition>(
             std::move(declarationSpecifierSequence),
             std::move(initializerDeclaratorList)));
 }
@@ -923,21 +1007,25 @@ antlrcpp::Any ASTVisitor::visitDeclarationSpecifierSequence(CppParser::Declarati
     Trace(L"VisitDeclarationSpecifierSequence");
     
     // Handle the recursive rule
-    std::shared_ptr<DeclarationSpecifierSequence> sequence;
+    std::shared_ptr<const DeclarationSpecifierSequence> sequence;
     auto childSequence = context->declarationSpecifierSequence();
     if (childSequence != nullptr)
     {
-        sequence = visit(childSequence).as<std::shared_ptr<DeclarationSpecifierSequence>>();
+        sequence = visit(childSequence)
+            .as<std::shared_ptr<const DeclarationSpecifierSequence>>();
     }
     else
     {
-        sequence = std::make_shared<DeclarationSpecifierSequence>();
+        sequence = std::make_shared<const DeclarationSpecifierSequence>();
     }
 
     // Handle the new item
     auto specifier = context->declarationSpecifier();
-    sequence->GetSpecifiers().push_back(
+    auto specifiers = sequence->GetSpecifiers();
+    specifiers.push_back(
         visit(specifier));
+    sequence = std::make_shared<const DeclarationSpecifierSequence>(
+        std::move(specifiers));
 
     return sequence;
 }
@@ -982,47 +1070,47 @@ antlrcpp::Any ASTVisitor::visitSimpleTypeSpecifier(CppParser::SimpleTypeSpecifie
 {
     Trace(L"VisitSimpleTypeSpecifier");
     if (context->Char() != nullptr)
-        return std::static_pointer_cast<SyntaxNode>(
-            std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Char));
+        return std::static_pointer_cast<const SyntaxNode>(
+            std::make_shared<const PrimitiveDataTypeNode>(PrimitiveDataType::Char));
     else if (context->Char16() != nullptr)
-        return std::static_pointer_cast<SyntaxNode>(
-            std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Char16));
+        return std::static_pointer_cast<const SyntaxNode>(
+            std::make_shared<const PrimitiveDataTypeNode>(PrimitiveDataType::Char16));
     else if (context->Char32() != nullptr)
-        return std::static_pointer_cast<SyntaxNode>(
-            std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Char32));
+        return std::static_pointer_cast<const SyntaxNode>(
+            std::make_shared<const PrimitiveDataTypeNode>(PrimitiveDataType::Char32));
     else if (context->WChar() != nullptr)
-        return std::static_pointer_cast<SyntaxNode>(
-            std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::WChar));
+        return std::static_pointer_cast<const SyntaxNode>(
+            std::make_shared<const PrimitiveDataTypeNode>(PrimitiveDataType::WChar));
     else if (context->Bool() != nullptr)
-        return std::static_pointer_cast<SyntaxNode>(
-            std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Bool));
+        return std::static_pointer_cast<const SyntaxNode>(
+            std::make_shared<const PrimitiveDataTypeNode>(PrimitiveDataType::Bool));
     else if (context->Short() != nullptr)
-        return std::static_pointer_cast<SyntaxNode>(
-            std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Short));
+        return std::static_pointer_cast<const SyntaxNode>(
+            std::make_shared<const PrimitiveDataTypeNode>(PrimitiveDataType::Short));
     else if (context->Int() != nullptr)
-        return std::static_pointer_cast<SyntaxNode>(
-            std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Int));
+        return std::static_pointer_cast<const SyntaxNode>(
+            std::make_shared<const PrimitiveDataTypeNode>(PrimitiveDataType::Int));
     else if (context->Long() != nullptr)
-        return std::static_pointer_cast<SyntaxNode>(
-            std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Long));
+        return std::static_pointer_cast<const SyntaxNode>(
+            std::make_shared<const PrimitiveDataTypeNode>(PrimitiveDataType::Long));
     else if (context->Signed() != nullptr)
-        return std::static_pointer_cast<SyntaxNode>(
-            std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Signed));
+        return std::static_pointer_cast<const SyntaxNode>(
+            std::make_shared<const PrimitiveDataTypeNode>(PrimitiveDataType::Signed));
     else if (context->Unsigned() != nullptr)
-        return std::static_pointer_cast<SyntaxNode>(
-            std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Unsigned));
+        return std::static_pointer_cast<const SyntaxNode>(
+            std::make_shared<const PrimitiveDataTypeNode>(PrimitiveDataType::Unsigned));
     else if (context->Float() != nullptr)
-        return std::static_pointer_cast<SyntaxNode>(
-            std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Float));
+        return std::static_pointer_cast<const SyntaxNode>(
+            std::make_shared<const PrimitiveDataTypeNode>(PrimitiveDataType::Float));
     else if (context->Double() != nullptr)
-        return std::static_pointer_cast<SyntaxNode>(
-            std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Double));
+        return std::static_pointer_cast<const SyntaxNode>(
+            std::make_shared<const PrimitiveDataTypeNode>(PrimitiveDataType::Double));
     else if (context->Void() != nullptr)
-        return std::static_pointer_cast<SyntaxNode>(
-            std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Void));
+        return std::static_pointer_cast<const SyntaxNode>(
+            std::make_shared<const PrimitiveDataTypeNode>(PrimitiveDataType::Void));
     else if (context->Auto() != nullptr)
-        return std::static_pointer_cast<SyntaxNode>(
-            std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Auto));
+        return std::static_pointer_cast<const SyntaxNode>(
+            std::make_shared<const PrimitiveDataTypeNode>(PrimitiveDataType::Auto));
 
     throw std::logic_error("Unexpected simple type.");
 }
@@ -1260,20 +1348,25 @@ antlrcpp::Any ASTVisitor::visitInitializerDeclaratorList(CppParser::InitializerD
     Trace(L"VisitInitializerDeclaratorList");
 
     // Handle the recursive rule
-    std::shared_ptr<InitializerDeclaratorList> list;
+    std::shared_ptr<const InitializerDeclaratorList> list;
     auto childList = context->initializerDeclaratorList();
     if (childList != nullptr)
     {
-        list = visit(childList).as<std::shared_ptr<InitializerDeclaratorList>>();
+        list = visit(childList)
+            .as<std::shared_ptr<const InitializerDeclaratorList>>();
     }
     else
     {
-        list = std::make_shared<InitializerDeclaratorList>();
+        list = std::make_shared<const InitializerDeclaratorList>();
     }
 
     // Handle the new item
-    auto item = visit(context->initializerDeclarator()).as<std::shared_ptr<InitializerDeclarator>>();
-    list->GetItems().push_back(item);
+    auto item = visit(context->initializerDeclarator())
+        .as<std::shared_ptr<const InitializerDeclarator>>();
+    auto items = list->GetItems();
+    items.push_back(item);
+    list = std::make_shared<const InitializerDeclaratorList>(
+        std::move(items));
 
     return list;
 }
@@ -1283,17 +1376,17 @@ antlrcpp::Any ASTVisitor::visitInitializerDeclarator(CppParser::InitializerDecla
     Trace(L"VisitInitializerDeclarator");
 
     auto declarator = visit(context->declarator())
-        .as<std::shared_ptr<SyntaxNode>>();
+        .as<std::shared_ptr<const SyntaxNode>>();
 
     // Check for optional initializer
-    std::shared_ptr<SyntaxNode> initializer = nullptr;
+    std::shared_ptr<const SyntaxNode> initializer = nullptr;
     if (context->initializer() != nullptr)
     {
         initializer = visit(context->initializer())
-            .as<std::shared_ptr<SyntaxNode>>();
+            .as<std::shared_ptr<const SyntaxNode>>();
     }
 
-    return std::make_shared<InitializerDeclarator>(
+    return std::make_shared<const InitializerDeclarator>(
         std::move(declarator),
         std::move(initializer));
 }
@@ -1421,7 +1514,7 @@ antlrcpp::Any ASTVisitor::visitParameterDeclarationClause(CppParser::ParameterDe
     Trace(L"VisitParameterDeclarationClause");
 
     // TODO Items
-    return std::make_shared<ParameterList>();
+    return std::make_shared<const ParameterList>();
 }
 
 antlrcpp::Any ASTVisitor::visitParameterDeclarationList(CppParser::ParameterDeclarationListContext* context)
@@ -1441,25 +1534,27 @@ antlrcpp::Any ASTVisitor::visitFunctionDefinition(CppParser::FunctionDefinitionC
     Trace(L"VisitFunctionDefinition");
 
     // Check for optional return type
-    std::shared_ptr<DeclarationSpecifierSequence> returnType = nullptr;
+    std::shared_ptr<const DeclarationSpecifierSequence> returnType = nullptr;
     if (context->declarationSpecifierSequence() != nullptr)
     {
-        returnType = visit(context->declarationSpecifierSequence()).as<std::shared_ptr<DeclarationSpecifierSequence>>();
+        returnType = visit(context->declarationSpecifierSequence())
+            .as<std::shared_ptr<const DeclarationSpecifierSequence>>();
     }
 
     // Analyze the declarator
     auto declaratorContext = context->functionDeclarator();
-    auto identifier = std::static_pointer_cast<NameExpression>(
-        visit(declaratorContext->identifierExpression()).as<std::shared_ptr<SyntaxNode>>());
+    auto identifier = std::static_pointer_cast<const NameExpression>(
+        visit(declaratorContext->identifierExpression())
+            .as<std::shared_ptr<const SyntaxNode>>());
     auto parameterList = visit(declaratorContext->functionParameters())
-        .as<std::shared_ptr<ParameterList>>();
+        .as<std::shared_ptr<const ParameterList>>();
     // TODO Qualifiers
     // TODO Trailiing return type
 
     auto body = visit(context->functionBody())
-        .as<std::shared_ptr<SyntaxNode>>();
+        .as<std::shared_ptr<const SyntaxNode>>();
 
-    return std::make_shared<FunctionDefinition>(
+    return std::make_shared<const FunctionDefinition>(
         std::move(returnType),
         std::move(identifier),
         std::move(parameterList),
@@ -1481,20 +1576,20 @@ antlrcpp::Any ASTVisitor::visitFunctionBody(CppParser::FunctionBodyContext *cont
 antlrcpp::Any ASTVisitor::visitRegularFunctionBody(CppParser::RegularFunctionBodyContext* context)
 {
     Trace(L"VisitRegularFunctionBody");
-    return std::make_shared<RegularFunctionBody>(
+    return std::make_shared<const RegularFunctionBody>(
         visit(context->compoundStatement()));
 }
 
 antlrcpp::Any ASTVisitor::visitExplicitlyDefaultedFunction(CppParser::ExplicitlyDefaultedFunctionContext* context)
 {
     Trace(L"VisitExplicitlyDefaultedFunction");
-    return std::make_shared<DefaultFunctionBody>();
+    return std::make_shared<const DefaultFunctionBody>();
 }
 
 antlrcpp::Any ASTVisitor::visitDeletedFunction(CppParser::DeletedFunctionContext* context)
 {
     Trace(L"VisitDeletedFunction");
-    return std::make_shared<DeleteFunctionBody>();
+    return std::make_shared<const DeleteFunctionBody>();
 }
 
 antlrcpp::Any ASTVisitor::visitInitializer(CppParser::InitializerContext *context)
@@ -1827,31 +1922,31 @@ antlrcpp::Any ASTVisitor::visitLiteral(CppParser::LiteralContext* context)
     Trace(L"VisitLiteral");
     if (context->FloatingPointLiteral() != nullptr)
     {
-        auto literal = std::make_shared<SyntaxToken>(
+        auto literal = std::make_shared<const SyntaxToken>(
             SyntaxTokenType::FloatingPointLiteral,
             context->getText());
-        return std::static_pointer_cast<SyntaxNode>(
-            std::make_shared<LiteralExpression>(
+        return std::static_pointer_cast<const SyntaxNode>(
+            SyntaxFactory::CreateLiteralExpression(
                 LiteralType::Floating,
                 std::move(literal)));
     }
     else if (context->CharacterLiteral() != nullptr)
     {
-        auto literal = std::make_shared<SyntaxToken>(
+        auto literal = std::make_shared<const SyntaxToken>(
             SyntaxTokenType::CharacterLiteral,
             context->getText());
-        return std::static_pointer_cast<SyntaxNode>(
-            std::make_shared<LiteralExpression>(
+        return std::static_pointer_cast<const SyntaxNode>(
+            SyntaxFactory::CreateLiteralExpression(
                 LiteralType::Character,
                 std::move(literal)));
     }
     else if (context->StringLiteral() != nullptr)
     {
-        auto literal = std::make_shared<SyntaxToken>(
+        auto literal = std::make_shared<const SyntaxToken>(
             SyntaxTokenType::StringLiteral,
             context->getText());
-        return std::static_pointer_cast<SyntaxNode>(
-            std::make_shared<LiteralExpression>(
+        return std::static_pointer_cast<const SyntaxNode>(
+            SyntaxFactory::CreateLiteralExpression(
                 LiteralType::String,
                 std::move(literal)));
     }
@@ -1864,11 +1959,11 @@ antlrcpp::Any ASTVisitor::visitLiteral(CppParser::LiteralContext* context)
 antlrcpp::Any ASTVisitor::visitIntegerLiteral(CppParser::IntegerLiteralContext* context)
 {
     Trace(L"VisitIntegerLiteral");
-    auto literal = std::make_shared<SyntaxToken>(
+    auto literal = std::make_shared<const SyntaxToken>(
         SyntaxTokenType::IntegerLiteral,
         context->getText());
-    return std::static_pointer_cast<SyntaxNode>(
-        std::make_shared<LiteralExpression>(
+    return std::static_pointer_cast<const SyntaxNode>(
+        SyntaxFactory::CreateLiteralExpression(
             LiteralType::Integer,
             std::move(literal)));
 }
@@ -1876,16 +1971,16 @@ antlrcpp::Any ASTVisitor::visitIntegerLiteral(CppParser::IntegerLiteralContext* 
 antlrcpp::Any ASTVisitor::visitBooleanLiteral(CppParser::BooleanLiteralContext* context)
 {
     Trace(L"VisitBooleanLiteral");
-    std::shared_ptr<SyntaxToken> literal = nullptr;
+    std::shared_ptr<const SyntaxToken> literal = nullptr;
     if (context->True() != nullptr)
     {
-        literal = std::make_shared<SyntaxToken>(
+        literal = std::make_shared<const SyntaxToken>(
             SyntaxTokenType::True,
             context->True()->getText());
     }
     else if (context->False() != nullptr)
     {
-        literal = std::make_shared<SyntaxToken>(
+        literal = std::make_shared<const SyntaxToken>(
             SyntaxTokenType::False,
             context->False()->getText());
     }
@@ -1895,8 +1990,8 @@ antlrcpp::Any ASTVisitor::visitBooleanLiteral(CppParser::BooleanLiteralContext* 
     }
     
         
-    return std::static_pointer_cast<SyntaxNode>(
-        std::make_shared<LiteralExpression>(
+    return std::static_pointer_cast<const SyntaxNode>(
+        SyntaxFactory::CreateLiteralExpression(
             LiteralType::Boolean,
             std::move(literal)));
 }
@@ -1904,11 +1999,11 @@ antlrcpp::Any ASTVisitor::visitBooleanLiteral(CppParser::BooleanLiteralContext* 
 antlrcpp::Any ASTVisitor::visitPointerLiteral(CppParser::PointerLiteralContext* context)
 {
     Trace(L"VisitPointerLiteral");
-    auto literal = std::make_shared<SyntaxToken>(
+    auto literal = std::make_shared<const SyntaxToken>(
         SyntaxTokenType::Nullptr,
         context->getText());
-    return std::static_pointer_cast<SyntaxNode>(
-        std::make_shared<LiteralExpression>(
+    return std::static_pointer_cast<const SyntaxNode>(
+        SyntaxFactory::CreateLiteralExpression(
             LiteralType::Pointer,
             std::move(literal)));
 }
@@ -1916,11 +2011,11 @@ antlrcpp::Any ASTVisitor::visitPointerLiteral(CppParser::PointerLiteralContext* 
 antlrcpp::Any ASTVisitor::visitUserDefinedLiteral(CppParser::UserDefinedLiteralContext* context)
 {
     Trace(L"VisitUserDefinedLiteral");
-    auto literal = std::make_shared<SyntaxToken>(
+    auto literal = std::make_shared<const SyntaxToken>(
         SyntaxTokenType::UserDefinedLiteral,
         context->getText());
-    return std::static_pointer_cast<SyntaxNode>(
-        std::make_shared<LiteralExpression>(
+    return std::static_pointer_cast<const SyntaxNode>(
+        SyntaxFactory::CreateLiteralExpression(
             LiteralType::UserDefined,
             std::move(literal)));
 }

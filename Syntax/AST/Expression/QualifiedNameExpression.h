@@ -11,22 +11,38 @@ namespace Soup::Syntax
     /// </summary>
     export class QualifiedNameExpression final : public NameExpression
     {
-        friend class ASTBuilder;
+        friend class SyntaxFactory;
 
-    public:
+    private:
         /// <summary>
         /// Initialize
         /// </summary>
         QualifiedNameExpression(
-            std::shared_ptr<NameExpression> left,
-            std::shared_ptr<SyntaxToken> doubleColonToken,
-            std::shared_ptr<SimpleNameExpression> right) :
+            std::shared_ptr<const NameExpression> left,
+            std::shared_ptr<const SyntaxToken> scopeResolutionToken,
+            std::shared_ptr<const SimpleNameExpression> right) :
             m_left(std::move(left)),
-            m_doubleColonToken(std::move(doubleColonToken)),
+            m_scopeResolutionToken(std::move(scopeResolutionToken)),
             m_right(std::move(right))
         {
         }
 
+    public:
+        /// <summary>
+        /// Create a clone with the right name replaced
+        /// </summary>
+        std::shared_ptr<const QualifiedNameExpression> WithRight(
+            std::shared_ptr<const SimpleNameExpression> right) const
+        {
+            // TODO : Use syntax factory
+            return std::shared_ptr<const QualifiedNameExpression>(
+                new QualifiedNameExpression(
+                    m_left,
+                    m_scopeResolutionToken,
+                    std::move(right)));
+        }
+
+    public:
         /// <summary>
         /// Checks if there is an optional left
         /// </summary>
@@ -45,11 +61,11 @@ namespace Soup::Syntax
         }
 
         /// <summary>
-        /// Gets the double colon nested name specifier
+        /// Gets the scope resolution operator nested name specifier
         /// </summary>
-        const SyntaxToken& GetDoubleColonToken() const
+        const SyntaxToken& GetScopeResolutionToken() const
         {
-            return *m_doubleColonToken;
+            return *m_scopeResolutionToken;
         }
 
         /// <summary>
@@ -77,7 +93,7 @@ namespace Soup::Syntax
             }
 
             return leftEqual &&
-                *m_doubleColonToken == *rhs.m_doubleColonToken &&
+                *m_scopeResolutionToken == *rhs.m_scopeResolutionToken &&
                 *m_right == *rhs.m_right;
         }
 
@@ -104,8 +120,8 @@ namespace Soup::Syntax
         }
 
     private:
-        std::shared_ptr<NameExpression> m_left;
-        std::shared_ptr<SyntaxToken> m_doubleColonToken;
-        std::shared_ptr<SimpleNameExpression> m_right;
+        std::shared_ptr<const NameExpression> m_left;
+        std::shared_ptr<const SyntaxToken> m_scopeResolutionToken;
+        std::shared_ptr<const SimpleNameExpression> m_right;
     };
 }

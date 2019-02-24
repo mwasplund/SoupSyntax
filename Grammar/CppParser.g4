@@ -68,13 +68,15 @@ qualifiedIdentifier:
 	nestedNameSpecifier Template? unqualifiedIdentifier;
 
 nestedNameSpecifier:
-	DoubleColon? nestedNameSpecifierList;
+	// Global scoped
+	DoubleColon nestedNameSpecifierSequence? |
+	// NOTE: Identifier in this context must be type name or namespace name
+	Identifier DoubleColon nestedNameSpecifierSequence? |
+	declarationTypeSpecifier DoubleColon nestedNameSpecifierSequence?;
 
-nestedNameSpecifierList:
-	Identifier DoubleColon |
-	//TODO declarationTypeSpecifier DoubleColon |
-	nestedNameSpecifierList Identifier DoubleColon;// |
-	//nestedNameSpecifierList Template? simpleTemplateIdentifier DoubleColon;
+nestedNameSpecifierSequence:
+	Identifier DoubleColon nestedNameSpecifierSequence? |
+	Template? simpleTemplateIdentifier DoubleColon nestedNameSpecifierSequence?;
 
 // Lambda Expression
 // https://en.cppreference.com/w/cpp/language/lambda

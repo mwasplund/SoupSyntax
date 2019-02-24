@@ -8,6 +8,7 @@ import Antlr4.Runtime;
 #include "AST\ASTBuilder.h"
 #include "AST\PrimitiveDataType.h"
 #include "AST\PrimitiveDataTypeNode.h"
+#include "AST\SyntaxFactory.h"
 #include "AST\SyntaxNode.h"
 #include "AST\SyntaxToken.h"
 #include "AST\SyntaxTokenType.h"

@@ -9,15 +9,18 @@ namespace Soup::Syntax
     /// </summary>
     export class SimpleNameExpression final : public NameExpression
     {
-    public:
+        friend class SyntaxFactory;
+
+    private:
         /// <summary>
         /// Initialize
         /// </summary>
-        SimpleNameExpression(std::shared_ptr<SyntaxToken> identifier) :
+        SimpleNameExpression(std::shared_ptr<const SyntaxToken> identifier) :
             m_identifier(std::move(identifier))
         {
         }
 
+    public:
         /// <summary>
         /// Gets the identifier token
         /// </summary>
@@ -57,6 +60,6 @@ namespace Soup::Syntax
         }
 
     private:
-        std::shared_ptr<SyntaxToken> m_identifier;
+        std::shared_ptr<const SyntaxToken> m_identifier;
     };
 }

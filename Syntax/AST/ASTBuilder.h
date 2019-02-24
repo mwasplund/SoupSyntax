@@ -9,39 +9,39 @@ namespace Soup::Syntax
     export class ASTBuilder
     {
     public:
-        static std::shared_ptr<QualifiedNameExpression> AddNameLeft(
-            std::shared_ptr<SimpleNameExpression> newName,
-            std::shared_ptr<SyntaxToken> newDoubleColonToken,
-            std::shared_ptr<NameExpression>& current)
-        {
-            auto simpleCurrent = std::dynamic_pointer_cast<SimpleNameExpression>(current);
-            if (simpleCurrent != nullptr)
-            {
-                return std::make_shared<QualifiedNameExpression>(
-                  std::move(newName),
-                  std::move(newDoubleColonToken),
-                  std::move(simpleCurrent));
-            }
-            else
-            {
-                auto qualifiedCurrent = std::dynamic_pointer_cast<QualifiedNameExpression>(current);
-                auto& currentLeft = qualifiedCurrent->m_left;
-                auto& currentDoubleColonToken = qualifiedCurrent->m_doubleColonToken;
-                auto& currentRight = qualifiedCurrent->m_right;
+        // static std::shared_ptr<QualifiedNameExpression> AddNameLeft(
+        //     std::shared_ptr<SimpleNameExpression> newName,
+        //     std::shared_ptr<SyntaxToken> newDoubleColonToken,
+        //     std::shared_ptr<NameExpression>& current)
+        // {
+        //     auto simpleCurrent = std::dynamic_pointer_cast<SimpleNameExpression>(current);
+        //     if (simpleCurrent != nullptr)
+        //     {
+        //         return std::make_shared<QualifiedNameExpression>(
+        //           std::move(newName),
+        //           std::move(newDoubleColonToken),
+        //           std::move(simpleCurrent));
+        //     }
+        //     else
+        //     {
+        //         auto qualifiedCurrent = std::dynamic_pointer_cast<QualifiedNameExpression>(current);
+        //         auto& currentLeft = qualifiedCurrent->m_left;
+        //         auto& currentScopeResolutionToken = qualifiedCurrent->m_scopeResolutionToken;
+        //         auto& currentRight = qualifiedCurrent->m_right;
 
-                // Recursively replace the current left until we find another
-                // SimpleName to attach to
-                auto result = AddNameLeft(
-                    std::move(newName),
-                    std::move(newDoubleColonToken),
-                    currentLeft);
+        //         // Recursively replace the current left until we find another
+        //         // SimpleName to attach to
+        //         auto result = AddNameLeft(
+        //             std::move(newName),
+        //             std::move(newDoubleColonToken),
+        //             currentLeft);
 
-                // Rebuild the qualified names left to right
-                return std::make_shared<QualifiedNameExpression>(
-                  std::move(result),
-                  currentDoubleColonToken,
-                  currentRight);
-            }
-        }
+        //         // Rebuild the qualified names left to right
+        //         return std::make_shared<QualifiedNameExpression>(
+        //           std::move(result),
+        //           currentScopeResolutionToken,
+        //           currentRight);
+        //     }
+        // }
     };
 }

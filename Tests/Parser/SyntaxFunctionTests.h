@@ -15,11 +15,11 @@ namespace Soup::Syntax::UnitTests
             auto expected = TestUtils::CreateSingleDeclaration(
                 std::make_shared<FunctionDefinition>(
                     std::make_shared<DeclarationSpecifierSequence>(
-                        std::vector<std::shared_ptr<SyntaxNode>>
+                        std::vector<std::shared_ptr<const SyntaxNode>>
                         {
                             std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Void),
                         }),
-                    std::make_shared<SimpleNameExpression>(
+                    SyntaxFactory::CreateSimpleNameExpression(
                         std::make_shared<SyntaxToken>(SyntaxTokenType::Identifier, "Function")),
                     nullptr,
                     std::make_shared<RegularFunctionBody>(
@@ -38,11 +38,11 @@ namespace Soup::Syntax::UnitTests
             auto expected = TestUtils::CreateSingleDeclaration(
                 std::make_shared<FunctionDefinition>(
                     std::make_shared<DeclarationSpecifierSequence>(
-                        std::vector<std::shared_ptr<SyntaxNode>>
+                        std::vector<std::shared_ptr<const SyntaxNode>>
                         {
                             std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Void),
                         }),
-                    std::make_shared<SimpleNameExpression>(
+                    SyntaxFactory::CreateSimpleNameExpression(
                         std::make_shared<SyntaxToken>(SyntaxTokenType::Identifier, "Function")),
                     nullptr,
                     std::make_shared<DefaultFunctionBody>()));
@@ -60,11 +60,11 @@ namespace Soup::Syntax::UnitTests
             auto expected = TestUtils::CreateSingleDeclaration(
                 std::make_shared<FunctionDefinition>(
                     std::make_shared<DeclarationSpecifierSequence>(
-                        std::vector<std::shared_ptr<SyntaxNode>>
+                        std::vector<std::shared_ptr<const SyntaxNode>>
                         {
                             std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Void),
                         }),
-                    std::make_shared<SimpleNameExpression>(
+                    SyntaxFactory::CreateSimpleNameExpression(
                         std::make_shared<SyntaxToken>(SyntaxTokenType::Identifier, "Function")),
                     nullptr,
                     std::make_shared<DeleteFunctionBody>()));

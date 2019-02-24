@@ -10,16 +10,21 @@ namespace Soup::Syntax
     /// </summary>
     export class LiteralExpression final : public Expression
     {
-    public:
+        friend class SyntaxFactory;
+
+    private:
         /// <summary>
         /// Initialize
         /// </summary>
-        LiteralExpression(LiteralType type, std::shared_ptr<SyntaxToken> token) :
+        LiteralExpression(
+            LiteralType type,
+            std::shared_ptr<const SyntaxToken> token) :
             m_type(type),
             m_token(std::move(token))
         {
         }
 
+    public:
         /// <summary>
         /// Gets the type
         /// </summary>
@@ -69,6 +74,6 @@ namespace Soup::Syntax
 
     private:
         LiteralType m_type;
-        std::shared_ptr<SyntaxToken> m_token;
+        std::shared_ptr<const SyntaxToken> m_token;
     };
 }

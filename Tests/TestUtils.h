@@ -40,7 +40,7 @@ class TestUtils
         return container;
     }
 
-    static std::shared_ptr<TranslationUnit> GenerateAST(const std::string& source)
+    static std::shared_ptr<const TranslationUnit> GenerateAST(const std::string& source)
     {
         auto container = BuildParser(source);
 
@@ -49,17 +49,18 @@ class TestUtils
 
         // Convert the the abstract syntax tree
         auto visitor = std::make_unique<ASTVisitor>();
-        auto ast = visitor->visit(translationUnit).as<std::shared_ptr<TranslationUnit>>();
+        auto ast = visitor->visit(translationUnit)
+            .as<std::shared_ptr<const TranslationUnit>>();
 
         return ast;
     }
 
-    static std::shared_ptr<TranslationUnit> CreateSingleDeclaration(
-        std::shared_ptr<Declaration> &&declaration)
+    static std::shared_ptr<const TranslationUnit> CreateSingleDeclaration(
+        std::shared_ptr<const Declaration> &&declaration)
     {
-        return std::make_unique<TranslationUnit>(
-            std::make_shared<DeclarationSequence>(
-                std::vector<std::shared_ptr<Declaration>>{
+        return std::make_unique<const TranslationUnit>(
+            std::make_shared<const DeclarationSequence>(
+                std::vector<std::shared_ptr<const Declaration>>{
                     std::move(declaration)}));
     }
 };

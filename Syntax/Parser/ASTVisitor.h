@@ -21,7 +21,7 @@ namespace Soup::Syntax
         virtual antlrcpp::Any visitUnqualifiedIdentifier(CppParser::UnqualifiedIdentifierContext *context) override final;
         virtual antlrcpp::Any visitQualifiedIdentifier(CppParser::QualifiedIdentifierContext *context) override final;
         virtual antlrcpp::Any visitNestedNameSpecifier(CppParser::NestedNameSpecifierContext *context) override final;
-        virtual antlrcpp::Any visitNestedNameSpecifierList(CppParser::NestedNameSpecifierListContext *context) override final;
+        virtual antlrcpp::Any visitNestedNameSpecifierSequence(CppParser::NestedNameSpecifierSequenceContext *context) override final;
         virtual antlrcpp::Any visitLambdaExpression(CppParser::LambdaExpressionContext *context) override final;
         virtual antlrcpp::Any visitLambdaIntroducer(CppParser::LambdaIntroducerContext *context) override final;
         virtual antlrcpp::Any visitLambdaDeclarator(CppParser::LambdaDeclaratorContext *context) override final;

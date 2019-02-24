@@ -43,7 +43,7 @@ public:
 
     virtual antlrcpp::Any visitNestedNameSpecifier(CppParser::NestedNameSpecifierContext *context) = 0;
 
-    virtual antlrcpp::Any visitNestedNameSpecifierList(CppParser::NestedNameSpecifierListContext *context) = 0;
+    virtual antlrcpp::Any visitNestedNameSpecifierSequence(CppParser::NestedNameSpecifierSequenceContext *context) = 0;
 
     virtual antlrcpp::Any visitLambdaExpression(CppParser::LambdaExpressionContext *context) = 0;
 

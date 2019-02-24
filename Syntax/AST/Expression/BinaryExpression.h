@@ -10,15 +10,17 @@ namespace Soup::Syntax
     /// </summary>
     export class BinaryExpression : public Expression
     {
-    public:
+        friend class SyntaxFactory;
+
+    private:
         /// <summary>
         /// Initialize
         /// </summary>
         BinaryExpression(
             BinaryOperator binaryOperator,
-            std::shared_ptr<SyntaxToken> operatorToken,
-            std::shared_ptr<Expression> leftOperand,
-            std::shared_ptr<Expression> rightOperand) :
+            std::shared_ptr<const SyntaxToken> operatorToken,
+            std::shared_ptr<const Expression> leftOperand,
+            std::shared_ptr<const Expression> rightOperand) :
             m_operator(binaryOperator),
             m_operatorToken(std::move(operatorToken)),
             m_leftOperand(std::move(leftOperand)),
@@ -26,6 +28,7 @@ namespace Soup::Syntax
         {
         }
 
+    public:
         /// <summary>
         /// The operator
         /// </summary>
@@ -93,8 +96,8 @@ namespace Soup::Syntax
 
     private:
         BinaryOperator m_operator;
-        std::shared_ptr<SyntaxToken> m_operatorToken;
-        std::shared_ptr<Expression> m_leftOperand;
-        std::shared_ptr<Expression> m_rightOperand;
+        std::shared_ptr<const SyntaxToken> m_operatorToken;
+        std::shared_ptr<const Expression> m_leftOperand;
+        std::shared_ptr<const Expression> m_rightOperand;
     };
 }

@@ -12,14 +12,14 @@ namespace Soup::Syntax::UnitTests
         {
             auto sourceCode = std::string("a[1]");
 
-            auto actual = std::dynamic_pointer_cast<SubscriptExpression>(
+            auto actual = std::dynamic_pointer_cast<const SubscriptExpression>(
                 ParsePostfixExpression(sourceCode));
 
-            auto expected = std::make_shared<SubscriptExpression>(
-                std::make_shared<SimpleNameExpression>(
+            auto expected = SyntaxFactory::CreateSubscriptExpression(
+                SyntaxFactory::CreateSimpleNameExpression(
                     std::make_shared<SyntaxToken>(SyntaxTokenType::Identifier, "a")),
                 std::make_shared<SyntaxToken>(SyntaxTokenType::LeftBracket, "["),
-                std::make_shared<LiteralExpression>(
+                SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
                     std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1")),
                 std::make_shared<SyntaxToken>(SyntaxTokenType::RightBracket, "]"));
@@ -32,13 +32,13 @@ namespace Soup::Syntax::UnitTests
         {
             auto sourceCode = std::string("1++");
 
-            auto actual = std::dynamic_pointer_cast<UnaryExpression>(
+            auto actual = std::dynamic_pointer_cast<const UnaryExpression>(
                 ParsePostfixExpression(sourceCode));
 
-            auto expected = std::make_shared<UnaryExpression>(
+            auto expected = SyntaxFactory::CreateUnaryExpression(
                 UnaryOperator::PostIncrement,
                 std::make_shared<SyntaxToken>(SyntaxTokenType::DoublePlus, "++"),
-                std::make_shared<LiteralExpression>(
+                SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
                     std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1")));
 
@@ -50,13 +50,13 @@ namespace Soup::Syntax::UnitTests
         {
             auto sourceCode = std::string("1--");
 
-            auto actual = std::dynamic_pointer_cast<UnaryExpression>(
+            auto actual = std::dynamic_pointer_cast<const UnaryExpression>(
                 ParsePostfixExpression(sourceCode));
 
-            auto expected = std::make_shared<UnaryExpression>(
+            auto expected = SyntaxFactory::CreateUnaryExpression(
                 UnaryOperator::PostDecrement,
                 std::make_shared<SyntaxToken>(SyntaxTokenType::DoubleMinus, "--"),
-                std::make_shared<LiteralExpression>(
+                SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
                     std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1")));
 
@@ -64,14 +64,15 @@ namespace Soup::Syntax::UnitTests
         }
 
     private:
-        std::shared_ptr<SyntaxNode> ParsePostfixExpression(std::string& sourceCode)
+        std::shared_ptr<const SyntaxNode> ParsePostfixExpression(std::string& sourceCode)
         {
             auto uut = TestUtils::BuildParser(sourceCode);
             auto context = uut.Parser->postfixExpression();
 
             // Convert the the abstract syntax tree
             auto visitor = ASTVisitor();
-            auto node = visitor.visit(context).as<std::shared_ptr<SyntaxNode>>();
+            auto node = visitor.visit(context)
+                .as<std::shared_ptr<const SyntaxNode>>();
 
             return node;
         }

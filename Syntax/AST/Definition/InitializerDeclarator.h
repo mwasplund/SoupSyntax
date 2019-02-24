@@ -8,14 +8,10 @@ namespace Soup::Syntax
     /// </summary>
     export class InitializerDeclarator final : public SyntaxNode
     {
-    private:
-        std::shared_ptr<SyntaxNode> m_declarator;
-        std::shared_ptr<SyntaxNode> m_initializer;
-
     public:
         InitializerDeclarator(
-            std::shared_ptr<SyntaxNode>&& declarator,
-            std::shared_ptr<SyntaxNode>&& initializer) :
+            std::shared_ptr<const SyntaxNode>&& declarator,
+            std::shared_ptr<const SyntaxNode>&& initializer) :
             m_declarator(std::move(declarator)),
             m_initializer(std::move(initializer))
         {
@@ -84,5 +80,9 @@ namespace Soup::Syntax
         {
             return *this == static_cast<const InitializerDeclarator&>(rhs);
         }
+
+    private:
+        std::shared_ptr<const SyntaxNode> m_declarator;
+        std::shared_ptr<const SyntaxNode> m_initializer;
     };
 }

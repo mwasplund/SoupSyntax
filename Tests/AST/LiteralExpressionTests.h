@@ -9,7 +9,7 @@ namespace Soup::Syntax::UnitTests
         // [[Fact]]
         void InitializeSimple()
         {
-            auto uut = std::make_shared<LiteralExpression>(
+            auto uut = SyntaxFactory::CreateLiteralExpression(
                 LiteralType::Integer,
                 std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1"));
 
@@ -20,45 +20,45 @@ namespace Soup::Syntax::UnitTests
         // [[Fact]]
         void OperatorEqual()
         {
-            auto uut = std::make_shared<LiteralExpression>(
+            auto uut = SyntaxFactory::CreateLiteralExpression(
                 LiteralType::Integer,
                 std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1"));
 
             Assert::AreEqual(
-                LiteralExpression(
+                SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
                     std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1")),
-                *uut,
+                uut,
                 "Verify matches.");
         }
 
         // [[Fact]]
         void OperatorNotEqualType()
         {
-            auto uut = std::make_shared<LiteralExpression>(
+            auto uut = SyntaxFactory::CreateLiteralExpression(
                 LiteralType::Integer,
                 std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1"));
 
             Assert::AreNotEqual(
-                LiteralExpression(
+                SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Floating,
                     std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1")),
-                *uut,
+                uut,
                 "Verify do not match.");
         }
 
         // [[Fact]]
         void OperatorNotEqualToken()
         {
-            auto uut = std::make_shared<LiteralExpression>(
+            auto uut = SyntaxFactory::CreateLiteralExpression(
                 LiteralType::Integer,
                 std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1"));
 
             Assert::AreNotEqual(
-                LiteralExpression(
+                SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
                     std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "2")),
-                *uut,
+                uut,
                 "Verify do not match.");
         }
     };

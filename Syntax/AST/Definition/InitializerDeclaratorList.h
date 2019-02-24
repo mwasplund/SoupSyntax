@@ -8,9 +8,6 @@ namespace Soup::Syntax
     /// </summary>
     export class InitializerDeclaratorList final : public SyntaxNode
     {
-    private:
-        std::vector<std::shared_ptr<InitializerDeclarator>> m_items;
-
     public:
         /// <summary>
         /// Initialize
@@ -21,7 +18,7 @@ namespace Soup::Syntax
         }
 
         InitializerDeclaratorList(
-            std::vector<std::shared_ptr<InitializerDeclarator>>&& items) :
+            std::vector<std::shared_ptr<const InitializerDeclarator>> items) :
             m_items(std::move(items))
         {
         }
@@ -36,7 +33,7 @@ namespace Soup::Syntax
                 end(m_items),
                 begin(rhs.m_items),
                 end(rhs.m_items),
-                [](const std::shared_ptr<InitializerDeclarator>& lhs, const std::shared_ptr<InitializerDeclarator>& rhs)
+                [](const std::shared_ptr<const InitializerDeclarator>& lhs, const std::shared_ptr<const InitializerDeclarator>& rhs)
                 {
                     return *lhs == *rhs;
                 });
@@ -50,12 +47,7 @@ namespace Soup::Syntax
         /// <summary>
         /// Gets or sets the list of items
         /// </summary>
-        const std::vector<std::shared_ptr<InitializerDeclarator>>& GetItems() const
-        {
-            return m_items;
-        }
-
-        std::vector<std::shared_ptr<InitializerDeclarator>>& GetItems()
+        const std::vector<std::shared_ptr<const InitializerDeclarator>>& GetItems() const
         {
             return m_items;
         }
@@ -82,5 +74,8 @@ namespace Soup::Syntax
         {
             return *this == static_cast<const InitializerDeclaratorList&>(rhs);
         }
+
+    private:
+        std::vector<std::shared_ptr<const InitializerDeclarator>> m_items;
     };
 }

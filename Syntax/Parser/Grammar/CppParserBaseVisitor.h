@@ -63,7 +63,7 @@ public:
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitNestedNameSpecifierList(CppParser::NestedNameSpecifierListContext *ctx) override {
+  virtual antlrcpp::Any visitNestedNameSpecifierSequence(CppParser::NestedNameSpecifierSequenceContext *ctx) override {
     return visitChildren(ctx);
   }
 

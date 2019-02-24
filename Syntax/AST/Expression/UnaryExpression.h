@@ -10,20 +10,23 @@ namespace Soup::Syntax
     /// </summary>
     export class UnaryExpression : public Expression
     {
-    public:
+        friend class SyntaxFactory;
+
+    private:
         /// <summary>
         /// Initialize
         /// </summary>
         UnaryExpression(
             UnaryOperator unaryOperator,
-            std::shared_ptr<SyntaxToken> operatorToken,
-            std::shared_ptr<Expression> operand) :
+            std::shared_ptr<const SyntaxToken> operatorToken,
+            std::shared_ptr<const Expression> operand) :
             m_operator(unaryOperator),
             m_operatorToken(std::move(operatorToken)),
             m_operand(std::move(operand))
         {
         }
 
+    public:
         /// <summary>
         /// The operator
         /// </summary>
@@ -82,7 +85,7 @@ namespace Soup::Syntax
 
     private:
         UnaryOperator m_operator;
-        std::shared_ptr<SyntaxToken> m_operatorToken;
-        std::shared_ptr<Expression> m_operand;
+        std::shared_ptr<const SyntaxToken> m_operatorToken;
+        std::shared_ptr<const Expression> m_operand;
     };
 }

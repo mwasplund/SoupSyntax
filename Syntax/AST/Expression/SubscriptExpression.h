@@ -10,15 +10,17 @@ namespace Soup::Syntax
     /// </summary>
     export class SubscriptExpression : public Expression
     {
-    public:
+        friend class SyntaxFactory;
+
+    private:
         /// <summary>
         /// Initialize
         /// </summary>
         SubscriptExpression(
-            std::shared_ptr<Expression> leftExpression,
-            std::shared_ptr<SyntaxToken> leftBracket, 
-            std::shared_ptr<Expression> rightExpression,
-            std::shared_ptr<SyntaxToken> rightBracket) :
+            std::shared_ptr<const Expression> leftExpression,
+            std::shared_ptr<const SyntaxToken> leftBracket, 
+            std::shared_ptr<const Expression> rightExpression,
+            std::shared_ptr<const SyntaxToken> rightBracket) :
             m_leftExpression(std::move(leftExpression)),
             m_leftBracket(std::move(leftBracket)),
             m_rightExpression(std::move(rightExpression)),
@@ -26,6 +28,7 @@ namespace Soup::Syntax
         {
         }
 
+    public:
         /// <summary>
         /// The left expression
         /// </summary>
@@ -92,9 +95,9 @@ namespace Soup::Syntax
         }
 
     private:
-        std::shared_ptr<Expression> m_leftExpression;
-        std::shared_ptr<SyntaxToken> m_leftBracket;
-        std::shared_ptr<Expression> m_rightExpression;
-        std::shared_ptr<SyntaxToken> m_rightBracket;
+        std::shared_ptr<const Expression> m_leftExpression;
+        std::shared_ptr<const SyntaxToken> m_leftBracket;
+        std::shared_ptr<const Expression> m_rightExpression;
+        std::shared_ptr<const SyntaxToken> m_rightBracket;
     };
 }
