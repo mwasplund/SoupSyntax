@@ -38,12 +38,12 @@ namespace Soup::Syntax
         /// <summary>
         /// Convert to string representation
         /// </summary>
-        virtual std::string ToString() const override final
+        virtual std::wstring ToString() const override final
         {
-            std::string result = "TranslationUnit";
+            std::wstring result = L"TranslationUnit";
             if (m_declarations != nullptr)
             {
-                result += "\n" + m_declarations->ToString();
+                result += L"\n" + m_declarations->ToString();
             }
 
             return result;

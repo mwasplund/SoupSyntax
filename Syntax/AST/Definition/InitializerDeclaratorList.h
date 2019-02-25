@@ -55,12 +55,12 @@ namespace Soup::Syntax
         /// <summary>
         /// Convert to string representation
         /// </summary>
-        virtual std::string ToString() const override final
+        virtual std::wstring ToString() const override final
         {
-            std::string result = "InitializerDeclaratorList";
+            std::wstring result = L"InitializerDeclaratorList";
             for (auto item : m_items)
             {
-                result += "\n" + item->ToString();
+                result += L"\n" + item->ToString();
             }
 
             return result;

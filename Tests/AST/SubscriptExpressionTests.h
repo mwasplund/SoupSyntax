@@ -11,29 +11,32 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateSubscriptExpression(
                 SyntaxFactory::CreateSimpleNameExpression(
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::Identifier, "a")),
-                std::make_shared<SyntaxToken>(SyntaxTokenType::LeftBracket, "["),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateToken(SyntaxTokenType::LeftBracket, L"["),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "2")),
-                std::make_shared<SyntaxToken>(SyntaxTokenType::RightBracket, "]"));
+                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")),
+                SyntaxFactory::CreateToken(SyntaxTokenType::RightBracket, L"]"));
 
             Assert::AreEqual<Expression>(
-                *SyntaxFactory::CreateSimpleNameExpression(std::make_shared<SyntaxToken>(SyntaxTokenType::Identifier, "a")),
+                *SyntaxFactory::CreateSimpleNameExpression(
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
                 uut->GetLeft(),
-                "Verify left expression matches.");
+                L"Verify left expression matches.");
             Assert::AreEqual(
-                SyntaxToken(SyntaxTokenType::LeftBracket, "["),
+                *SyntaxFactory::CreateToken(SyntaxTokenType::LeftBracket, L"["),
                 uut->GetLeftBracket(),
-                "Verify left bracket token matches.");
+                L"Verify left bracket token matches.");
             Assert::AreEqual<Expression>(
-                *SyntaxFactory::CreateLiteralExpression(LiteralType::Integer, std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "2")),
+                *SyntaxFactory::CreateLiteralExpression(
+                    LiteralType::Integer, 
+                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")),
                 uut->GetRight(),
-                "Verify right expression matches.");
+                L"Verify right expression matches.");
             Assert::AreEqual(
-                SyntaxToken(SyntaxTokenType::RightBracket, "]"),
+                *SyntaxFactory::CreateToken(SyntaxTokenType::RightBracket, L"]"),
                 uut->GetRightBracket(),
-                "Verify right bracket token matches.");
+                L"Verify right bracket token matches.");
         }
 
         // [[Fact]]
@@ -41,24 +44,24 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateSubscriptExpression(
                 SyntaxFactory::CreateSimpleNameExpression(
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::Identifier, "a")),
-                std::make_shared<SyntaxToken>(SyntaxTokenType::LeftBracket, "["),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateToken(SyntaxTokenType::LeftBracket, L"["),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "2")),
-                std::make_shared<SyntaxToken>(SyntaxTokenType::RightBracket, "]"));
+                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")),
+                SyntaxFactory::CreateToken(SyntaxTokenType::RightBracket, L"]"));
 
             Assert::AreEqual(
                 SyntaxFactory::CreateSubscriptExpression(
                     SyntaxFactory::CreateSimpleNameExpression(
-                        std::make_shared<SyntaxToken>(SyntaxTokenType::Identifier, "a")),
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::LeftBracket, "["),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::LeftBracket, L"["),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
-                        std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "2")),
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::RightBracket, "]")),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::RightBracket, L"]")),
                 uut,
-                "Verify matches.");
+                L"Verify matches.");
         }
 
         // [[Fact]]
@@ -66,24 +69,24 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateSubscriptExpression(
                 SyntaxFactory::CreateSimpleNameExpression(
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::Identifier, "a")),
-                std::make_shared<SyntaxToken>(SyntaxTokenType::LeftBracket, "["),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateToken(SyntaxTokenType::LeftBracket, L"["),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "2")),
-                std::make_shared<SyntaxToken>(SyntaxTokenType::RightBracket, "]"));
+                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")),
+                SyntaxFactory::CreateToken(SyntaxTokenType::RightBracket, L"]"));
 
             Assert::AreNotEqual(
                 SyntaxFactory::CreateSubscriptExpression(
                     SyntaxFactory::CreateSimpleNameExpression(
-                        std::make_shared<SyntaxToken>(SyntaxTokenType::Identifier, "b")),
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::LeftBracket, "["),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"b")),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::LeftBracket, L"["),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
-                        std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "2")),
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::RightBracket, "]")),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::RightBracket, L"]")),
                 uut,
-                "Verify do not match.");
+                L"Verify do not match.");
         }
 
         // [[Fact]]
@@ -91,24 +94,24 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateSubscriptExpression(
                 SyntaxFactory::CreateSimpleNameExpression(
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::Identifier, "a")),
-                std::make_shared<SyntaxToken>(SyntaxTokenType::LeftBracket, "["),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateToken(SyntaxTokenType::LeftBracket, L"["),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "2")),
-                std::make_shared<SyntaxToken>(SyntaxTokenType::RightBracket, "]"));
+                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")),
+                SyntaxFactory::CreateToken(SyntaxTokenType::RightBracket, L"]"));
 
             Assert::AreNotEqual(
                 SyntaxFactory::CreateSubscriptExpression(
                     SyntaxFactory::CreateSimpleNameExpression(
-                        std::make_shared<SyntaxToken>(SyntaxTokenType::Identifier, "a")),
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::LeftBracket, "[ "),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::LeftBracket, L"[ L"),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
-                        std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "2")),
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::RightBracket, "]")),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::RightBracket, L"]")),
                 uut,
-                "Verify do not match.");
+                L"Verify do not match.");
         }
 
         // [[Fact]]
@@ -116,24 +119,24 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateSubscriptExpression(
                 SyntaxFactory::CreateSimpleNameExpression(
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::Identifier, "a")),
-                std::make_shared<SyntaxToken>(SyntaxTokenType::LeftBracket, "["),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateToken(SyntaxTokenType::LeftBracket, L"["),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "2")),
-                std::make_shared<SyntaxToken>(SyntaxTokenType::RightBracket, "]"));
+                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")),
+                SyntaxFactory::CreateToken(SyntaxTokenType::RightBracket, L"]"));
 
             Assert::AreNotEqual(
                 SyntaxFactory::CreateSubscriptExpression(
                     SyntaxFactory::CreateSimpleNameExpression(
-                        std::make_shared<SyntaxToken>(SyntaxTokenType::Identifier, "a")),
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::LeftBracket, "["),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::LeftBracket, L"["),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
-                        std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "3")),
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::RightBracket, "]")),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"3")),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::RightBracket, L"]")),
                 uut,
-                "Verify do not match.");
+                L"Verify do not match.");
         }
 
         // [[Fact]]
@@ -141,24 +144,24 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateSubscriptExpression(
                 SyntaxFactory::CreateSimpleNameExpression(
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::Identifier, "a")),
-                std::make_shared<SyntaxToken>(SyntaxTokenType::LeftBracket, "["),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateToken(SyntaxTokenType::LeftBracket, L"["),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "2")),
-                std::make_shared<SyntaxToken>(SyntaxTokenType::RightBracket, "]"));
+                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")),
+                SyntaxFactory::CreateToken(SyntaxTokenType::RightBracket, L"]"));
 
             Assert::AreNotEqual(
                 SyntaxFactory::CreateSubscriptExpression(
                     SyntaxFactory::CreateSimpleNameExpression(
-                        std::make_shared<SyntaxToken>(SyntaxTokenType::Identifier, "a")),
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::LeftBracket, "["),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::LeftBracket, L"["),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
-                        std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "2")),
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::RightBracket, " ]")),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::RightBracket, L" ]")),
                 uut,
-                "Verify do not match.");
+                L"Verify do not match.");
         }
     };
 }

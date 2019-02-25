@@ -10,13 +10,15 @@ namespace Soup::Syntax
     /// </summary>
     export class SyntaxToken
     {
-    public:
+        friend class SyntaxFactory;
+
+    private:
         /// <summary>
         /// Initialize
         /// </summary>
         SyntaxToken(
             SyntaxTokenType type,
-            std::string value) :
+            std::wstring value) :
             m_type(type),
             m_value(std::move(value)),
             m_leadingTrivia(),
@@ -24,6 +26,22 @@ namespace Soup::Syntax
         {
         }
 
+        /// <summary>
+        /// Initialize
+        /// </summary>
+        SyntaxToken(
+            SyntaxTokenType type,
+            std::wstring value,
+            std::vector<SyntaxTrivia> leadingTrivia,
+            std::vector<SyntaxTrivia> trailingTrivia) :
+            m_type(type),
+            m_value(std::move(value)),
+            m_leadingTrivia(std::move(leadingTrivia)),
+            m_trailingTrivia(std::move(trailingTrivia))
+        {
+        }
+
+    public:
         /// <summary>
         /// Get the token type
         /// </summary>
@@ -35,7 +53,7 @@ namespace Soup::Syntax
         /// <summary>
         /// Get the raw token value
         /// </summary>
-        const std::string& GetValue() const
+        const std::wstring& GetValue() const
         {
             return m_value;
         }
@@ -62,7 +80,9 @@ namespace Soup::Syntax
         bool operator==(const SyntaxToken &rhs) const
         {
             return m_type == rhs.m_type &&
-                m_value == rhs.m_value;
+                m_value == rhs.m_value &&
+                m_leadingTrivia == rhs.m_leadingTrivia &&
+                m_trailingTrivia == rhs.m_trailingTrivia;
         }
 
         bool operator!=(const SyntaxToken &rhs) const
@@ -73,14 +93,14 @@ namespace Soup::Syntax
         /// <summary>
         /// Convert to string representation
         /// </summary>
-        std::string ToString() const
+        std::wstring ToString() const
         {
-            return std::to_string((int)m_type) + ", " + m_value;
+            return std::to_wstring((int)m_type) + L", " + m_value;
         }
 
     private:
         SyntaxTokenType m_type;
-        std::string m_value;
+        std::wstring m_value;
         std::vector<SyntaxTrivia> m_leadingTrivia;
         std::vector<SyntaxTrivia> m_trailingTrivia;
     };

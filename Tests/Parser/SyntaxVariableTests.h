@@ -25,7 +25,7 @@ namespace Soup::Syntax::UnitTests
                         {
                             std::make_shared<InitializerDeclarator>(
                                 SyntaxFactory::CreateSimpleNameExpression(
-                                    std::make_shared<SyntaxToken>(SyntaxTokenType::Identifier, "GlobalVariable")),
+                                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"GlobalVariable")),
                                 nullptr),
                         })));
 
@@ -33,7 +33,7 @@ namespace Soup::Syntax::UnitTests
             Assert::AreEqual(
                 expected,
                 actual,
-                "Verify AST matches: \n" + expected->ToString() + "\n\n" + actual->ToString());
+                L"Verify AST matches: \n" + expected->ToString() + L"\n\n" + actual->ToString());
         }
 
         // [[Fact]]
@@ -54,17 +54,17 @@ namespace Soup::Syntax::UnitTests
                         {
                             std::make_shared<InitializerDeclarator>(
                                 SyntaxFactory::CreateSimpleNameExpression(
-                                    std::make_shared<SyntaxToken>(SyntaxTokenType::Identifier, "GlobalVariable")),
+                                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"GlobalVariable")),
                                 SyntaxFactory::CreateLiteralExpression(
                                     LiteralType::Integer,
-                                    std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1"))),
+                                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1"))),
                         })));
 
             auto actual = TestUtils::GenerateAST(source);
             Assert::AreEqual(
                 expected,
                 actual,
-                "Verify AST matches: \n" + expected->ToString() + "\n\n" + actual->ToString());
+                L"Verify AST matches: \n" + expected->ToString() + L"\n\n" + actual->ToString());
         }
 
         // [[Theory]]
@@ -98,17 +98,17 @@ namespace Soup::Syntax::UnitTests
                         {
                             std::make_shared<InitializerDeclarator>(
                                 SyntaxFactory::CreateSimpleNameExpression(
-                                    std::make_shared<SyntaxToken>(SyntaxTokenType::Identifier, "GlobalVariable")),
+                                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"GlobalVariable")),
                                 SyntaxFactory::CreateLiteralExpression(
                                     LiteralType::Integer,
-                                    std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1"))),
+                                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1"))),
                         })));
 
             auto actual = TestUtils::GenerateAST(globalType);
             Assert::AreEqual(
                 expected,
                 actual,
-                "Verify AST matches: \n" + expected->ToString() + "\n\n" + actual->ToString());
+                L"Verify AST matches: \n" + expected->ToString() + L"\n\n" + actual->ToString());
         }
 
         // [[Fact]]
@@ -129,23 +129,23 @@ namespace Soup::Syntax::UnitTests
                         {
                             std::make_shared<InitializerDeclarator>(
                                 SyntaxFactory::CreateSimpleNameExpression(
-                                    std::make_shared<SyntaxToken>(SyntaxTokenType::Identifier, "GlobalVariable1")),
+                                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"GlobalVariable1")),
                                 SyntaxFactory::CreateLiteralExpression(
                                     LiteralType::Integer,
-                                    std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1"))),
+                                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1"))),
                             std::make_shared<InitializerDeclarator>(
                                 SyntaxFactory::CreateSimpleNameExpression(
-                                    std::make_shared<SyntaxToken>(SyntaxTokenType::Identifier, "GlobalVariable2")),
+                                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"GlobalVariable2")),
                                 SyntaxFactory::CreateLiteralExpression(
                                     LiteralType::Integer,
-                                    std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "2"))),
+                                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2"))),
                         })));
 
             auto actual = TestUtils::GenerateAST(source);
             Assert::AreEqual(
                 expected,
                 actual,
-                "Verify AST matches: \n" + expected->ToString() + "\n\n" + actual->ToString());
+                L"Verify AST matches: \n" + expected->ToString() + L"\n\n" + actual->ToString());
         }
     };
 }

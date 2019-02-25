@@ -15,12 +15,12 @@ namespace Soup::Syntax::UnitTests
             auto expression = std::dynamic_pointer_cast<const LiteralExpression>(
                 ParsePrimaryExpression(sourceCode));
 
-            Assert::NotNull(expression, "Verify cast.");
-            Assert::AreEqual(LiteralType::Integer, expression->GetType(), "Verify type matches expected.");
+            Assert::NotNull(expression, L"Verify cast.");
+            Assert::AreEqual(LiteralType::Integer, expression->GetType(), L"Verify type matches expected.");
             Assert::AreEqual(
-                SyntaxToken(SyntaxTokenType::IntegerLiteral, sourceCode),
+                *SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, Convert(sourceCode)),
                 expression->GetToken(),
-                "Verify value matches entire source.");
+                L"Verify value matches entire source.");
         }
 
         // [Theory]
@@ -30,12 +30,12 @@ namespace Soup::Syntax::UnitTests
             auto expression = std::dynamic_pointer_cast<const LiteralExpression>(
                 ParsePrimaryExpression(sourceCode));
 
-            Assert::NotNull(expression, "Verify cast.");
-            Assert::AreEqual(LiteralType::Floating, expression->GetType(), "Verify type matches expected.");
+            Assert::NotNull(expression, L"Verify cast.");
+            Assert::AreEqual(LiteralType::Floating, expression->GetType(), L"Verify type matches expected.");
             Assert::AreEqual(
-                SyntaxToken(SyntaxTokenType::FloatingPointLiteral, sourceCode),
+                *SyntaxFactory::CreateToken(SyntaxTokenType::FloatingPointLiteral, Convert(sourceCode)),
                 expression->GetToken(),
-                "Verify value matches entire source.");
+                L"Verify value matches entire source.");
         }
 
         // [Theory]
@@ -45,12 +45,12 @@ namespace Soup::Syntax::UnitTests
             auto expression = std::dynamic_pointer_cast<const LiteralExpression>(
                 ParsePrimaryExpression(sourceCode));
 
-            Assert::NotNull(expression, "Verify cast.");
-            Assert::AreEqual(LiteralType::Character, expression->GetType(), "Verify type matches expected.");
+            Assert::NotNull(expression, L"Verify cast.");
+            Assert::AreEqual(LiteralType::Character, expression->GetType(), L"Verify type matches expected.");
             Assert::AreEqual(
-                SyntaxToken(SyntaxTokenType::CharacterLiteral, sourceCode),
+                *SyntaxFactory::CreateToken(SyntaxTokenType::CharacterLiteral, Convert(sourceCode)),
                 expression->GetToken(),
-                "Verify value matches entire source.");
+                L"Verify value matches entire source.");
         }
 
         // [Theory]
@@ -60,12 +60,12 @@ namespace Soup::Syntax::UnitTests
             auto expression = std::dynamic_pointer_cast<const LiteralExpression>(
                 ParsePrimaryExpression(sourceCode));
 
-            Assert::NotNull(expression, "Verify cast.");
-            Assert::AreEqual(LiteralType::Pointer, expression->GetType(), "Verify type matches expected.");
+            Assert::NotNull(expression, L"Verify cast.");
+            Assert::AreEqual(LiteralType::Pointer, expression->GetType(), L"Verify type matches expected.");
             Assert::AreEqual(
-                SyntaxToken(SyntaxTokenType::Nullptr, sourceCode),
+                *SyntaxFactory::CreateToken(SyntaxTokenType::Nullptr, Convert(sourceCode)),
                 expression->GetToken(),
-                "Verify value matches entire source.");
+                L"Verify value matches entire source.");
         }
 
         // [Theory]
@@ -75,12 +75,12 @@ namespace Soup::Syntax::UnitTests
             auto expression = std::dynamic_pointer_cast<const LiteralExpression>(
                 ParsePrimaryExpression(sourceCode));
 
-            Assert::NotNull(expression, "Verify cast.");
-            Assert::AreEqual(LiteralType::String, expression->GetType(), "Verify type matches expected.");
+            Assert::NotNull(expression, L"Verify cast.");
+            Assert::AreEqual(LiteralType::String, expression->GetType(), L"Verify type matches expected.");
             Assert::AreEqual(
-                SyntaxToken(SyntaxTokenType::StringLiteral, sourceCode),
+                *SyntaxFactory::CreateToken(SyntaxTokenType::StringLiteral, Convert(sourceCode)),
                 expression->GetToken(),
-                "Verify value matches entire source.");
+                L"Verify value matches entire source.");
         }
 
         // [Theory]
@@ -91,12 +91,12 @@ namespace Soup::Syntax::UnitTests
             auto expression = std::dynamic_pointer_cast<const LiteralExpression>(
                 ParsePrimaryExpression(sourceCode));
 
-            Assert::NotNull(expression, "Verify cast.");
-            Assert::AreEqual(LiteralType::Boolean, expression->GetType(), "Verify type matches expected.");
+            Assert::NotNull(expression, L"Verify cast.");
+            Assert::AreEqual(LiteralType::Boolean, expression->GetType(), L"Verify type matches expected.");
             Assert::AreEqual(
-                SyntaxToken(type, sourceCode),
+                *SyntaxFactory::CreateToken(type, Convert(sourceCode)),
                 expression->GetToken(),
-                "Verify value matches entire source.");
+                L"Verify value matches entire source.");
         }
 
         // [Theory]
@@ -106,12 +106,12 @@ namespace Soup::Syntax::UnitTests
             auto expression = std::dynamic_pointer_cast<const LiteralExpression>(
                 ParsePrimaryExpression(sourceCode));
 
-            Assert::NotNull(expression, "Verify cast.");
-            Assert::AreEqual(LiteralType::UserDefined, expression->GetType(), "Verify type matches expected.");
+            Assert::NotNull(expression, L"Verify cast.");
+            Assert::AreEqual(LiteralType::UserDefined, expression->GetType(), L"Verify type matches expected.");
             Assert::AreEqual(
-                SyntaxToken(SyntaxTokenType::UserDefinedLiteral, sourceCode),
+                *SyntaxFactory::CreateToken(SyntaxTokenType::UserDefinedLiteral, Convert(sourceCode)),
                 expression->GetToken(),
-                "Verify value matches entire source.");
+                L"Verify value matches entire source.");
         }
 
         // [Fact]
@@ -121,7 +121,7 @@ namespace Soup::Syntax::UnitTests
             auto expression = std::dynamic_pointer_cast<const ThisExpression>(
                 ParsePrimaryExpression(sourceCode));
 
-            Assert::NotNull(expression, "Verify cast.");
+            Assert::NotNull(expression, L"Verify cast.");
         }
 
         // [Fact]
@@ -131,11 +131,11 @@ namespace Soup::Syntax::UnitTests
             auto expression = std::dynamic_pointer_cast<const SimpleNameExpression>(
                 ParsePrimaryExpression(sourceCode));
 
-            Assert::NotNull(expression, "Verify cast.");
+            Assert::NotNull(expression, L"Verify cast.");
             Assert::AreEqual(
-                SyntaxToken(SyntaxTokenType::Identifier, sourceCode),
+                *SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, Convert(sourceCode)),
                 expression->GetIdentifier(),
-                "Verify identifier matches expected.");
+                L"Verify identifier matches expected.");
         }
 
         // [Fact]
@@ -145,26 +145,33 @@ namespace Soup::Syntax::UnitTests
             auto expression = std::dynamic_pointer_cast<const QualifiedNameExpression>(
                 ParsePrimaryExpression(sourceCode));
 
-            Assert::NotNull(expression, "Verify cast.");
+            Assert::NotNull(expression, L"Verify cast.");
 
             auto left = dynamic_cast<const SimpleNameExpression&>(expression->GetLeft());
             auto right = expression->GetRight();
 
             Assert::AreEqual(
-                SyntaxToken(SyntaxTokenType::Identifier, "NameLeft"),
+                *SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"NameLeft"),
                 left.GetIdentifier(),
-                "Verify left identifier matches expected.");
+                L"Verify left identifier matches expected.");
             Assert::AreEqual(
-                SyntaxToken(SyntaxTokenType::DoubleColon, "::"),
+                *SyntaxFactory::CreateToken(SyntaxTokenType::DoubleColon, L"::"),
                 expression->GetScopeResolutionToken(),
-                "Verify double colon token matches expected.");
+                L"Verify double colon token matches expected.");
             Assert::AreEqual(
-                SyntaxToken(SyntaxTokenType::Identifier, "NameRight"),
+                *SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"NameRight"),
                 right.GetIdentifier(),
-                "Verify right identifier matches expected.");
+                L"Verify right identifier matches expected.");
         }
 
     private:
+        std::wstring Convert(const std::string& value)
+        {
+            // Convert the token text to wide characters
+            std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+            return converter.from_bytes(value);
+        }
+
         std::shared_ptr<const SyntaxNode> ParsePrimaryExpression(std::string& sourceCode)
         {
             auto uut = TestUtils::BuildParser(sourceCode);

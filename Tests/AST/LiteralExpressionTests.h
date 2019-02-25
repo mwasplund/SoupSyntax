@@ -11,10 +11,13 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateLiteralExpression(
                 LiteralType::Integer,
-                std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1"));
+                SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1"));
 
-            Assert::AreEqual(LiteralType::Integer, uut->GetType(), "Verify type matches.");
-            Assert::AreEqual(SyntaxToken(SyntaxTokenType::IntegerLiteral, "1"), uut->GetToken(), "Verify value matches.");
+            Assert::AreEqual(LiteralType::Integer, uut->GetType(), L"Verify type matches.");
+            Assert::AreEqual(
+                *SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1"),
+                uut->GetToken(),
+                L"Verify value matches.");
         }
 
         // [[Fact]]
@@ -22,14 +25,14 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateLiteralExpression(
                 LiteralType::Integer,
-                std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1"));
+                SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1"));
 
             Assert::AreEqual(
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1")),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
                 uut,
-                "Verify matches.");
+                L"Verify matches.");
         }
 
         // [[Fact]]
@@ -37,14 +40,14 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateLiteralExpression(
                 LiteralType::Integer,
-                std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1"));
+                SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1"));
 
             Assert::AreNotEqual(
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Floating,
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1")),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
                 uut,
-                "Verify do not match.");
+                L"Verify do not match.");
         }
 
         // [[Fact]]
@@ -52,14 +55,14 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateLiteralExpression(
                 LiteralType::Integer,
-                std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1"));
+                SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1"));
 
             Assert::AreNotEqual(
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "2")),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")),
                 uut,
-                "Verify do not match.");
+                L"Verify do not match.");
         }
     };
 }

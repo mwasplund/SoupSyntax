@@ -42,9 +42,9 @@ namespace Soup::Syntax
         /// <summary>
         /// Convert to string representation
         /// </summary>
-        virtual std::string ToString() const override final
+        virtual std::wstring ToString() const override final
         {
-            return "PrimitiveDataTypeNode<" + std::to_string(static_cast<int>(m_type)) + ">";
+            return L"PrimitiveDataTypeNode<" + std::to_wstring(static_cast<int>(m_type)) + L">";
         }
 
     protected:

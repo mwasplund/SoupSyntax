@@ -50,11 +50,11 @@ namespace Soup::Syntax
         /// <summary>
         /// Convert to string representation
         /// </summary>
-        virtual std::string ToString() const override final
+        virtual std::wstring ToString() const override final
         {
-            std::string result = "SimpleDefinition";
-            result += "\n" + m_declarationSpecifierSequence->ToString();
-            result += "\n" + m_initializerDeclaratorList->ToString();
+            std::wstring result = L"SimpleDefinition";
+            result += L"\n" + m_declarationSpecifierSequence->ToString();
+            result += L"\n" + m_initializerDeclaratorList->ToString();
             return result;
         }
 

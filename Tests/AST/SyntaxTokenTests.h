@@ -9,53 +9,53 @@ namespace Soup::Syntax::UnitTests
         // [[Fact]]
         void InitializeSimple()
         {
-            auto uut = std::make_shared<SyntaxToken>(
+            auto uut = SyntaxFactory::CreateToken(
                 SyntaxTokenType::Nullptr,
-                "nullptr");
+                L"nullptr");
 
-            Assert::AreEqual(SyntaxTokenType::Nullptr, uut->GetType(), "Verify type matches.");
-            Assert::AreEqual(std::string("nullptr"), uut->GetValue(), "Verify value matches.");
-            Assert::IsTrue(uut->GetLeadingTrivia().empty(), "Verify no leading trivia.");
-            Assert::IsTrue(uut->GetTrailingTrivia().empty(), "Verify no trailing trivia.");
+            Assert::AreEqual(SyntaxTokenType::Nullptr, uut->GetType(), L"Verify type matches.");
+            Assert::AreEqual(std::wstring(L"nullptr"), uut->GetValue(), L"Verify value matches.");
+            Assert::IsTrue(uut->GetLeadingTrivia().empty(), L"Verify no leading trivia.");
+            Assert::IsTrue(uut->GetTrailingTrivia().empty(), L"Verify no trailing trivia.");
         }
 
         // [[Fact]]
         void OperatorEqual()
         {
-            auto uut = std::make_shared<SyntaxToken>(
+            auto uut = SyntaxFactory::CreateToken(
                 SyntaxTokenType::Nullptr,
-                "nullptr");
+                L"nullptr");
 
             Assert::AreEqual(
-                SyntaxToken(SyntaxTokenType::Nullptr, "nullptr"),
-                *uut,
-                "Verify matches.");
+                SyntaxFactory::CreateToken(SyntaxTokenType::Nullptr, L"nullptr"),
+                uut,
+                L"Verify matches.");
         }
 
         // [[Fact]]
         void OperatorNotEqualType()
         {
-            auto uut = std::make_shared<SyntaxToken>(
+            auto uut = SyntaxFactory::CreateToken(
                 SyntaxTokenType::Nullptr,
-                "nullptr");
+                L"nullptr");
 
             Assert::AreNotEqual(
-                SyntaxToken(SyntaxTokenType::Identifier, "nullptr"),
-                *uut,
-                "Verify do not match.");
+                SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"nullptr"),
+                uut,
+                L"Verify do not match.");
         }
 
         // [[Fact]]
         void OperatorNotEqualValue()
         {
-            auto uut = std::make_shared<SyntaxToken>(
+            auto uut = SyntaxFactory::CreateToken(
                 SyntaxTokenType::Nullptr,
-                "nullptr");
+                L"nullptr");
 
             Assert::AreNotEqual(
-                SyntaxToken(SyntaxTokenType::Nullptr, "null"),
-                *uut,
-                "Verify do not match.");
+                SyntaxFactory::CreateToken(SyntaxTokenType::Nullptr, L"null"),
+                uut,
+                L"Verify do not match.");
         }
     };
 }

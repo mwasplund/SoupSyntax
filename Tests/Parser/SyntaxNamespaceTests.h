@@ -20,13 +20,13 @@ namespace Soup::Syntax::UnitTests
                             std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Void),
                         }),
                     SyntaxFactory::CreateSimpleNameExpression(
-                        std::make_shared<SyntaxToken>(SyntaxTokenType::Identifier, "Function")),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
                     nullptr,
                     std::make_shared<RegularFunctionBody>(
                         std::make_shared<CompoundStatement>())));
 
             auto actual = TestUtils::GenerateAST(source);
-            Assert::AreEqual(expected, actual, "Verify AST matches expected.");
+            Assert::AreEqual(expected, actual, L"Verify AST matches expected.");
         }
 
         // [Fact]
@@ -43,13 +43,13 @@ namespace Soup::Syntax::UnitTests
                             std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Void),
                         }),
                     SyntaxFactory::CreateSimpleNameExpression(
-                        std::make_shared<SyntaxToken>(SyntaxTokenType::Identifier, "Function")),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
                     nullptr,
                     std::make_shared<RegularFunctionBody>(
                         std::make_shared<CompoundStatement>())));
 
             auto actual = TestUtils::GenerateAST(source);
-            Assert::AreEqual(expected, actual, "Verify AST matches expected.");
+            Assert::AreEqual(expected, actual, L"Verify AST matches expected.");
         }
 
         // [Fact]
@@ -66,13 +66,13 @@ namespace Soup::Syntax::UnitTests
                             std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Void),
                         }),
                     SyntaxFactory::CreateSimpleNameExpression(
-                        std::make_shared<SyntaxToken>(SyntaxTokenType::Identifier, "Function")),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
                     nullptr,
                     std::make_shared<RegularFunctionBody>(
                         std::make_shared<CompoundStatement>())));
 
             auto actual = TestUtils::GenerateAST(source);
-            Assert::AreEqual(expected, actual, "Verify AST matches expected.");
+            Assert::AreEqual(expected, actual, L"Verify AST matches expected.");
         }
     };
 }

@@ -17,14 +17,14 @@ namespace Soup::Syntax::UnitTests
 
             auto expected = SyntaxFactory::CreateSubscriptExpression(
                 SyntaxFactory::CreateSimpleNameExpression(
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::Identifier, "a")),
-                std::make_shared<SyntaxToken>(SyntaxTokenType::LeftBracket, "["),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateToken(SyntaxTokenType::LeftBracket, L"["),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1")),
-                std::make_shared<SyntaxToken>(SyntaxTokenType::RightBracket, "]"));
+                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
+                SyntaxFactory::CreateToken(SyntaxTokenType::RightBracket, L"]"));
 
-            Assert::AreEqual(expected, actual, "Verify matches expected.");
+            Assert::AreEqual(expected, actual, L"Verify matches expected.");
         }
 
         // [Theory]
@@ -37,12 +37,12 @@ namespace Soup::Syntax::UnitTests
 
             auto expected = SyntaxFactory::CreateUnaryExpression(
                 UnaryOperator::PostIncrement,
-                std::make_shared<SyntaxToken>(SyntaxTokenType::DoublePlus, "++"),
+                SyntaxFactory::CreateToken(SyntaxTokenType::DoublePlus, L"++"),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1")));
+                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")));
 
-            Assert::AreEqual(expected, actual, "Verify matches expected.");
+            Assert::AreEqual(expected, actual, L"Verify matches expected.");
         }
 
         // [Theory]
@@ -55,12 +55,12 @@ namespace Soup::Syntax::UnitTests
 
             auto expected = SyntaxFactory::CreateUnaryExpression(
                 UnaryOperator::PostDecrement,
-                std::make_shared<SyntaxToken>(SyntaxTokenType::DoubleMinus, "--"),
+                SyntaxFactory::CreateToken(SyntaxTokenType::DoubleMinus, L"--"),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1")));
+                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")));
 
-            Assert::AreEqual(expected, actual, "Verify matches expected.");
+            Assert::AreEqual(expected, actual, L"Verify matches expected.");
         }
 
     private:

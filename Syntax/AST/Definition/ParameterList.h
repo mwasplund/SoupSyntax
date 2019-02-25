@@ -36,9 +36,9 @@ namespace Soup::Syntax
         /// <summary>
         /// Convert to string representation
         /// </summary>
-        virtual std::string ToString() const override final
+        virtual std::wstring ToString() const override final
         {
-            return "ParameterList";
+            return L"ParameterList";
         }
 
     protected:

@@ -80,9 +80,9 @@ namespace Soup::Syntax
         /// <summary>
         /// Convert to string representation
         /// </summary>
-        virtual std::string ToString() const override final
+        virtual std::wstring ToString() const override final
         {
-            return std::string("BinaryExpression<") + std::to_string((int)m_operator) + ">";
+            return L"BinaryExpression<" + std::to_wstring((int)m_operator) + L">";
         }
 
     protected:

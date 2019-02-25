@@ -11,17 +11,20 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateUnaryExpression(
                 UnaryOperator::PostIncrement,
-                std::make_shared<SyntaxToken>(SyntaxTokenType::DoublePlus, "++"),
+                SyntaxFactory::CreateToken(SyntaxTokenType::DoublePlus, L"++"),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1")));
+                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")));
 
-            Assert::AreEqual(UnaryOperator::PostIncrement, uut->GetOperator(), "Verify operator matches.");
-            Assert::AreEqual(SyntaxToken(SyntaxTokenType::DoublePlus, "++"), uut->GetOperatorToken(), "Verify operator token matches.");
+            Assert::AreEqual(UnaryOperator::PostIncrement, uut->GetOperator(), L"Verify operator matches.");
+            Assert::AreEqual(
+                *SyntaxFactory::CreateToken(SyntaxTokenType::DoublePlus, L"++"),
+                uut->GetOperatorToken(),
+                L"Verify operator token matches.");
             Assert::AreEqual<Expression>(
-                *SyntaxFactory::CreateLiteralExpression(LiteralType::Integer, std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1")),
+                *SyntaxFactory::CreateLiteralExpression(LiteralType::Integer, SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
                 uut->GetOperand(),
-                "Verify left expression matches.");
+                L"Verify left expression matches.");
         }
 
         // [[Fact]]
@@ -29,20 +32,20 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateUnaryExpression(
                 UnaryOperator::PostIncrement,
-                std::make_shared<SyntaxToken>(SyntaxTokenType::DoublePlus, "++"),
+                SyntaxFactory::CreateToken(SyntaxTokenType::DoublePlus, L"++"),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1")));
+                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")));
 
             Assert::AreEqual(
                 SyntaxFactory::CreateUnaryExpression(
                     UnaryOperator::PostIncrement,
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::DoublePlus, "++"),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::DoublePlus, L"++"),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
-                        std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1"))),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1"))),
                 uut,
-                "Verify matches.");
+                L"Verify matches.");
         }
 
         // [[Fact]]
@@ -50,20 +53,20 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateUnaryExpression(
                 UnaryOperator::PostIncrement,
-                std::make_shared<SyntaxToken>(SyntaxTokenType::DoublePlus, "++"),
+                SyntaxFactory::CreateToken(SyntaxTokenType::DoublePlus, L"++"),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1")));
+                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")));
 
             Assert::AreNotEqual(
                 SyntaxFactory::CreateUnaryExpression(
                     UnaryOperator::PreIncrement,
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::DoublePlus, "++"),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::DoublePlus, L"++"),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
-                        std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1"))),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1"))),
                 uut,
-                "Verify do not match.");
+                L"Verify do not match.");
         }
 
         // [[Fact]]
@@ -71,20 +74,20 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateUnaryExpression(
                 UnaryOperator::PostIncrement,
-                std::make_shared<SyntaxToken>(SyntaxTokenType::DoublePlus, "++"),
+                SyntaxFactory::CreateToken(SyntaxTokenType::DoublePlus, L"++"),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1")));
+                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")));
 
             Assert::AreNotEqual(
                 SyntaxFactory::CreateUnaryExpression(
                     UnaryOperator::PostIncrement,
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::DoublePlus, "++"),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::DoublePlus, L"++"),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
-                        std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "2"))),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2"))),
                 uut,
-                "Verify do not match.");
+                L"Verify do not match.");
         }
 
         // [[Fact]]
@@ -92,20 +95,20 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateUnaryExpression(
                 UnaryOperator::PostIncrement,
-                std::make_shared<SyntaxToken>(SyntaxTokenType::DoublePlus, "++"),
+                SyntaxFactory::CreateToken(SyntaxTokenType::DoublePlus, L"++"),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1")));
+                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")));
 
             Assert::AreNotEqual(
                 SyntaxFactory::CreateUnaryExpression(
                     UnaryOperator::PostIncrement,
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::DoublePlus, "--"),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::DoublePlus, L"--"),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
-                        std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1"))),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1"))),
                 uut,
-                "Verify do not match.");
+                L"Verify do not match.");
         }
     };
 }

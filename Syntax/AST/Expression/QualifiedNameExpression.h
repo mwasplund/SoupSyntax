@@ -105,9 +105,9 @@ namespace Soup::Syntax
         /// <summary>
         /// Convert to string representation
         /// </summary>
-        virtual std::string ToString() const override final
+        virtual std::wstring ToString() const override final
         {
-            return "QualifiedNameExpression<" + m_left->ToString() + ", " + m_right->ToString() + ">";
+            return L"QualifiedNameExpression<" + m_left->ToString() + L", " + m_right->ToString() + L">";
         }
 
     protected:

@@ -3,13 +3,18 @@
 class Assert
 {
 public:
-  static void Fail(std::string message)
+  static void Fail(const std::wstring& message)
   {
-    auto errorMessage = "Test failed: " + message;
-    throw std::logic_error(errorMessage.c_str());
+    auto errorMessage = L"Test failed: " + message;
+
+    // Convert the token text to wide characters
+    std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+    std::string text = converter.to_bytes(errorMessage);
+
+    throw std::logic_error(text.c_str());
   }
 
-  static void IsTrue(bool value, std::string message)
+  static void IsTrue(bool value, const std::wstring& message)
   {
     if (!value)
     {
@@ -17,7 +22,7 @@ public:
     }
   }
 
-  static void IsFalse(bool value, std::string message)
+  static void IsFalse(bool value, const std::wstring& message)
   {
     if (value)
     {
@@ -29,7 +34,7 @@ public:
   template<typename T> struct is_shared_ptr<std::shared_ptr<T>> : std::true_type {};
 
   template<typename T>
-  static typename std::enable_if<std::is_pointer<T>::value || is_shared_ptr<T>::value>::type NotNull(T value, std::string message)
+  static typename std::enable_if<std::is_pointer<T>::value || is_shared_ptr<T>::value>::type NotNull(T value, const std::wstring& message)
   {
     if (value == nullptr)
     {
@@ -41,15 +46,15 @@ public:
   static typename std::enable_if<std::is_pointer<T>::value || is_shared_ptr<T>::value>::type AreEqual(
     T expected,
     T actual,
-    std::string message)
+    const std::wstring& message)
   {
     if (expected == nullptr)
     {
-      Fail("Expected was null, use IsNull instead.");
+      Fail(L"Expected was null, use IsNull instead.");
     }
     else if (actual == nullptr)
     {
-      Fail("Actual was null, use IsNull if this is expected.");
+      Fail(L"Actual was null, use IsNull if this is expected.");
     }
     else if (*expected != *actual)
     {
@@ -61,7 +66,7 @@ public:
   static typename std::enable_if<!std::is_pointer<T>::value && !is_shared_ptr<T>::value>::type AreEqual(
     const T& expected,
     const T& actual,
-    std::string message)
+    const std::wstring& message)
   {
     if (expected != actual)
     {
@@ -73,15 +78,15 @@ public:
   static typename std::enable_if<std::is_pointer<T>::value || is_shared_ptr<T>::value>::type AreNotEqual(
     T expected,
     T actual,
-    std::string message)
+    const std::wstring& message)
   {
     if (expected == nullptr)
     {
-      Fail("Expected was null, use IsNull instead.");
+      Fail(L"Expected was null, use IsNull instead.");
     }
     else if (actual == nullptr)
     {
-      Fail("Actual was null, use IsNull if this is expected.");
+      Fail(L"Actual was null, use IsNull if this is expected.");
     }
     else if (*expected == *actual)
     {
@@ -93,7 +98,7 @@ public:
   static typename std::enable_if<!std::is_pointer<T>::value && !is_shared_ptr<T>::value>::type AreNotEqual(
     const T& expected,
     const T& actual,
-    std::string message)
+    const std::wstring& message)
   {
     if (expected == actual)
     {

@@ -60,13 +60,13 @@ namespace Soup::Syntax
         /// <summary>
         /// Convert to string representation
         /// </summary>
-        virtual std::string ToString() const override final
+        virtual std::wstring ToString() const override final
         {
-            std::string result = "InitializerDeclarator";
-            result += "\n" + m_declarator->ToString();
+            std::wstring result = L"InitializerDeclarator";
+            result += L"\n" + m_declarator->ToString();
             if (m_initializer != nullptr)
             {
-                result += "\n" + m_initializer->ToString();
+                result += L"\n" + m_initializer->ToString();
             }
 
             return result;

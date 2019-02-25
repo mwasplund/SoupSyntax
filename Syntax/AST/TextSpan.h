@@ -37,6 +37,20 @@ namespace Soup::Syntax
             return m_length;
         }
 
+        /// <summary>
+        /// Equality operator
+        /// </summary>
+        bool operator==(const TextSpan &rhs) const
+        {
+            return m_start == rhs.m_start &&
+                m_length == rhs.m_length;
+        }
+
+        bool operator!=(const TextSpan &rhs) const
+        {
+            return !(*this == rhs);
+        }
+
     private:
         uint32_t m_start;
         uint32_t m_length;

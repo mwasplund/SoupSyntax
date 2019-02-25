@@ -55,12 +55,12 @@ namespace Soup::Syntax
         /// <summary>
         /// Convert to string representation
         /// </summary>
-        virtual std::string ToString() const override final
+        virtual std::wstring ToString() const override final
         {
-            std::string result = "DeclarationSpecifierSequence";
+            std::wstring result = L"DeclarationSpecifierSequence";
             for (auto specifier : m_specifiers)
             {
-                result += "\n" + specifier->ToString();
+                result += L"\n" + specifier->ToString();
             }
 
             return result;

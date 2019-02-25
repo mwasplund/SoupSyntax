@@ -6,6 +6,20 @@ void Trace(const wchar_t* message)
     // std::wcout << message << std::endl;
 }
 
+std::shared_ptr<const SyntaxToken> CreateToken(
+    SyntaxTokenType type,
+    antlr4::tree::TerminalNode* terminalNode)
+{
+    auto token = terminalNode->getSymbol();
+    auto location = token->getTokenIndex();
+
+    // Convert the token text to wide characters
+    std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+    std::wstring text = converter.from_bytes(token->getText());
+
+    return SyntaxFactory::CreateToken(type, text);
+}
+
 antlrcpp::Any ASTVisitor::visitTypedefName(CppParser::TypedefNameContext* context)
 {
     Trace(L"VisitTypedefName");
@@ -62,9 +76,9 @@ antlrcpp::Any ASTVisitor::visitPrimaryExpression(CppParser::PrimaryExpressionCon
     Trace(L"VisitPrimaryExpression");
     if (context->This() != nullptr)
     {
-        auto thisToken = std::make_shared<const SyntaxToken>(
+        auto thisToken = CreateToken(
             SyntaxTokenType::This,
-            context->This()->getText());
+            context->This());
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreateThisExpression(
                 std::move(thisToken)));
@@ -86,9 +100,9 @@ antlrcpp::Any ASTVisitor::visitUnqualifiedIdentifier(CppParser::UnqualifiedIdent
     Trace(L"VisitUnqualifiedIdentifier");
     if (context->Identifier() != nullptr)
     {
-        auto identifier = std::make_shared<const SyntaxToken>(
+        auto identifier = CreateToken(
             SyntaxTokenType::Identifier,
-            context->Identifier()->getText());
+            context->Identifier());
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreateSimpleNameExpression(std::move(identifier)));
     }
@@ -128,9 +142,9 @@ std::shared_ptr<const SimpleNameExpression> GetNextSimpleName(
     {
         // Simple name qualified expression
         return SyntaxFactory::CreateSimpleNameExpression(
-            std::make_shared<const SyntaxToken>(
+            CreateToken(
                 SyntaxTokenType::Identifier,
-                context->Identifier()->getText()));
+                context->Identifier()));
     }
     else if (context->simpleTemplateIdentifier() != nullptr)
     {
@@ -156,9 +170,9 @@ std::shared_ptr<const QualifiedNameExpression> visitNextRightQualifiedNestedName
     }
 
     // Build the actual qualified expression
-    auto doubleColonToken = std::make_shared<const SyntaxToken>(
+    auto doubleColonToken = CreateToken(
                 SyntaxTokenType::DoubleColon,
-                context->DoubleColon()->getText());
+                context->DoubleColon());
     auto qualifiedName = 
         SyntaxFactory::CreateQualifiedNameExpression(
             std::move(leftQualifiedName),
@@ -184,9 +198,9 @@ antlrcpp::Any ASTVisitor::visitNestedNameSpecifier(CppParser::NestedNameSpecifie
 {
     Trace(L"VisitNestedNameSpecifier");
 
-    auto doubleColonToken = std::make_shared<const SyntaxToken>(
+    auto doubleColonToken = CreateToken(
                 SyntaxTokenType::DoubleColon,
-                context->DoubleColon()->getText());
+                context->DoubleColon());
 
     // Jump through hoops to convert antlr right recursion into the tree left recursion
     std::shared_ptr<const SimpleNameExpression> rightName = nullptr;
@@ -201,9 +215,9 @@ antlrcpp::Any ASTVisitor::visitNestedNameSpecifier(CppParser::NestedNameSpecifie
     {
         // Simple name qualified expression
         auto leftName = SyntaxFactory::CreateSimpleNameExpression(
-            std::make_shared<const SyntaxToken>(
+            CreateToken(
                 SyntaxTokenType::Identifier,
-                context->Identifier()->getText()));
+                context->Identifier()));
         qualifiedName = SyntaxFactory::CreateQualifiedNameExpression(
             std::move(leftName),
             std::move(doubleColonToken),
@@ -364,15 +378,15 @@ antlrcpp::Any ASTVisitor::visitPostfixExpression(CppParser::PostfixExpressionCon
         {
             // Subscript operator expression
             // postfixExpression LeftBracket expressionOrBracedInitializerList RightBracket
-            auto leftBracketToken = std::make_shared<const SyntaxToken>(
+            auto leftBracketToken = CreateToken(
                 SyntaxTokenType::LeftBracket,
-                context->LeftBracket()->getText());
+                context->LeftBracket());
             auto initializerList = std::dynamic_pointer_cast<const Expression>(
                 visit(context->expressionOrBracedInitializerList())
                     .as<std::shared_ptr<const SyntaxNode>>());
-            auto rightBracketToken = std::make_shared<const SyntaxToken>(
+            auto rightBracketToken = CreateToken(
                 SyntaxTokenType::RightBracket,
-                context->RightBracket()->getText());
+                context->RightBracket());
             return std::static_pointer_cast<const SyntaxNode>(
                 SyntaxFactory::CreateSubscriptExpression(
                     std::move(recursiveExpression),
@@ -399,16 +413,16 @@ antlrcpp::Any ASTVisitor::visitPostfixExpression(CppParser::PostfixExpressionCon
             if (operatorContext->DoublePlus() != nullptr)
             {
                 unaryOperator = UnaryOperator::PostIncrement;
-                operatorToken = std::make_shared<const SyntaxToken>(
+                operatorToken = CreateToken(
                     SyntaxTokenType::DoublePlus,
-                    operatorContext->DoublePlus()->getText());
+                    operatorContext->DoublePlus());
             }
             else if (operatorContext->DoubleMinus() != nullptr)
             {
                 unaryOperator = UnaryOperator::PostDecrement;
-                operatorToken = std::make_shared<const SyntaxToken>(
+                operatorToken = CreateToken(
                     SyntaxTokenType::DoubleMinus,
-                    operatorContext->DoubleMinus()->getText());
+                    operatorContext->DoubleMinus());
             }
             else
             {
@@ -1922,9 +1936,9 @@ antlrcpp::Any ASTVisitor::visitLiteral(CppParser::LiteralContext* context)
     Trace(L"VisitLiteral");
     if (context->FloatingPointLiteral() != nullptr)
     {
-        auto literal = std::make_shared<const SyntaxToken>(
+        auto literal = CreateToken(
             SyntaxTokenType::FloatingPointLiteral,
-            context->getText());
+            context->FloatingPointLiteral());
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreateLiteralExpression(
                 LiteralType::Floating,
@@ -1932,9 +1946,9 @@ antlrcpp::Any ASTVisitor::visitLiteral(CppParser::LiteralContext* context)
     }
     else if (context->CharacterLiteral() != nullptr)
     {
-        auto literal = std::make_shared<const SyntaxToken>(
+        auto literal = CreateToken(
             SyntaxTokenType::CharacterLiteral,
-            context->getText());
+            context->CharacterLiteral());
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreateLiteralExpression(
                 LiteralType::Character,
@@ -1942,9 +1956,9 @@ antlrcpp::Any ASTVisitor::visitLiteral(CppParser::LiteralContext* context)
     }
     else if (context->StringLiteral() != nullptr)
     {
-        auto literal = std::make_shared<const SyntaxToken>(
+        auto literal = CreateToken(
             SyntaxTokenType::StringLiteral,
-            context->getText());
+            context->StringLiteral());
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreateLiteralExpression(
                 LiteralType::String,
@@ -1959,9 +1973,24 @@ antlrcpp::Any ASTVisitor::visitLiteral(CppParser::LiteralContext* context)
 antlrcpp::Any ASTVisitor::visitIntegerLiteral(CppParser::IntegerLiteralContext* context)
 {
     Trace(L"VisitIntegerLiteral");
-    auto literal = std::make_shared<const SyntaxToken>(
-        SyntaxTokenType::IntegerLiteral,
-        context->getText());
+    std::shared_ptr<const SyntaxToken> literal = nullptr;
+    if (context->Zero())
+    {
+        literal = CreateToken(
+            SyntaxTokenType::IntegerLiteral,
+            context->Zero());
+    }
+    else if (context->IntegerLiteral())
+    {
+        literal = CreateToken(
+            SyntaxTokenType::IntegerLiteral,
+            context->IntegerLiteral());
+    }
+    else
+    {
+        throw std::logic_error("Unexpected integer literal.");
+    }
+    
     return std::static_pointer_cast<const SyntaxNode>(
         SyntaxFactory::CreateLiteralExpression(
             LiteralType::Integer,
@@ -1974,15 +2003,15 @@ antlrcpp::Any ASTVisitor::visitBooleanLiteral(CppParser::BooleanLiteralContext* 
     std::shared_ptr<const SyntaxToken> literal = nullptr;
     if (context->True() != nullptr)
     {
-        literal = std::make_shared<const SyntaxToken>(
+        literal = CreateToken(
             SyntaxTokenType::True,
-            context->True()->getText());
+            context->True());
     }
     else if (context->False() != nullptr)
     {
-        literal = std::make_shared<const SyntaxToken>(
+        literal = CreateToken(
             SyntaxTokenType::False,
-            context->False()->getText());
+            context->False());
     }
     else
     {
@@ -1999,9 +2028,9 @@ antlrcpp::Any ASTVisitor::visitBooleanLiteral(CppParser::BooleanLiteralContext* 
 antlrcpp::Any ASTVisitor::visitPointerLiteral(CppParser::PointerLiteralContext* context)
 {
     Trace(L"VisitPointerLiteral");
-    auto literal = std::make_shared<const SyntaxToken>(
+    auto literal = CreateToken(
         SyntaxTokenType::Nullptr,
-        context->getText());
+        context->Nullptr());
     return std::static_pointer_cast<const SyntaxNode>(
         SyntaxFactory::CreateLiteralExpression(
             LiteralType::Pointer,
@@ -2011,9 +2040,36 @@ antlrcpp::Any ASTVisitor::visitPointerLiteral(CppParser::PointerLiteralContext* 
 antlrcpp::Any ASTVisitor::visitUserDefinedLiteral(CppParser::UserDefinedLiteralContext* context)
 {
     Trace(L"VisitUserDefinedLiteral");
-    auto literal = std::make_shared<const SyntaxToken>(
-        SyntaxTokenType::UserDefinedLiteral,
-        context->getText());
+    std::shared_ptr<const SyntaxToken> literal = nullptr;
+    if (context->UserDefinedIntegerLiteral() != nullptr)
+    {
+        literal = CreateToken(
+            SyntaxTokenType::UserDefinedLiteral,
+            context->UserDefinedIntegerLiteral());
+    }
+    else if (context->UserDefinedFloatingPointLiteral() != nullptr)
+    {
+        literal = CreateToken(
+            SyntaxTokenType::UserDefinedLiteral,
+            context->UserDefinedFloatingPointLiteral());
+    }
+    else if (context->UserDefinedCharacterLiteral() != nullptr)
+    {
+        literal = CreateToken(
+            SyntaxTokenType::UserDefinedLiteral,
+            context->UserDefinedCharacterLiteral());
+    }
+    else if (context->UserDefinedStringLiteral() != nullptr)
+    {
+        literal = CreateToken(
+            SyntaxTokenType::UserDefinedLiteral,
+            context->UserDefinedStringLiteral());
+    }
+    else
+    {
+        throw std::runtime_error("Unknown user defined literal.");
+    }
+    
     return std::static_pointer_cast<const SyntaxNode>(
         SyntaxFactory::CreateLiteralExpression(
             LiteralType::UserDefined,

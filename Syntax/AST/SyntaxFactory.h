@@ -100,6 +100,19 @@ namespace Soup::Syntax
         }
 
         /// <summary>
+        /// Create a SyntaxToken
+        /// </summary>
+        static std::shared_ptr<const SyntaxToken> CreateToken(
+            SyntaxTokenType type,
+            std::wstring value)
+        {
+            return std::shared_ptr<const SyntaxToken>(
+                new SyntaxToken(
+                    type,
+                    std::move(value)));
+        }
+
+        /// <summary>
         /// Create a UnaryExpression
         /// </summary>
         static std::shared_ptr<const UnaryExpression> CreateUnaryExpression(

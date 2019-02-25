@@ -11,28 +11,31 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::Addition,
-                std::make_shared<SyntaxToken>(SyntaxTokenType::Plus, "+"),
+                SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1")),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "2")));
+                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")));
 
-            Assert::AreEqual(BinaryOperator::Addition, uut->GetOperator(), "Verify operator matches.");
-            Assert::AreEqual(SyntaxToken(SyntaxTokenType::Plus, "+"), uut->GetOperatorToken(), "Verify operator token matches.");
+            Assert::AreEqual(BinaryOperator::Addition, uut->GetOperator(), L"Verify operator matches.");
+            Assert::AreEqual(
+                *SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
+                uut->GetOperatorToken(),
+                L"Verify operator token matches.");
             Assert::AreEqual<Expression>(
                 *SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1")),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
                 uut->GetLeftOperand(),
-                "Verify left expression matches.");
+                L"Verify left expression matches.");
             Assert::AreEqual<Expression>(
                 *SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "2")),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")),
                 uut->GetRightOperand(),
-                "Verify right expression matches.");
+                L"Verify right expression matches.");
         }
 
         // [[Fact]]
@@ -40,26 +43,26 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::Addition,
-                std::make_shared<SyntaxToken>(SyntaxTokenType::Plus, "+"),
+                SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1")),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "2")));
+                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")));
 
             Assert::AreEqual(
                 SyntaxFactory::CreateBinaryExpression(
                     BinaryOperator::Addition,
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::Plus, "+"),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
-                        std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1")),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
-                        std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "2"))),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2"))),
                 uut,
-                "Verify matches.");
+                L"Verify matches.");
         }
 
         // [[Fact]]
@@ -67,26 +70,26 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::Addition,
-                std::make_shared<SyntaxToken>(SyntaxTokenType::Plus, "+"),
+                SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1")),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "2")));
+                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")));
 
             Assert::AreNotEqual(
                 SyntaxFactory::CreateBinaryExpression(
                     BinaryOperator::Subtraction,
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::Plus, "+"),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
-                        std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1")),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
-                        std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "2"))),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2"))),
                 uut,
-                "Verify do not match.");
+                L"Verify do not match.");
         }
 
         // [[Fact]]
@@ -94,26 +97,26 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::Addition,
-                std::make_shared<SyntaxToken>(SyntaxTokenType::Plus, "+"),
+                SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1")),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "2")));
+                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")));
 
             Assert::AreNotEqual(
                 SyntaxFactory::CreateBinaryExpression(
                     BinaryOperator::Addition,
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::Plus, "+"),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
-                        std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "11")),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"11")),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
-                        std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "2"))),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2"))),
                 uut,
-                "Verify do not match.");
+                L"Verify do not match.");
         }
 
         // [[Fact]]
@@ -121,26 +124,26 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::Addition,
-                std::make_shared<SyntaxToken>(SyntaxTokenType::Minus, "-"),
+                SyntaxFactory::CreateToken(SyntaxTokenType::Minus, L"-"),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1")),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "2")));
+                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")));
 
             Assert::AreNotEqual(
                 SyntaxFactory::CreateBinaryExpression(
                     BinaryOperator::Addition,
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::Plus, "+"),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
-                        std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1")),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
-                        std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "2"))),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2"))),
                 uut,
-                "Verify do not match.");
+                L"Verify do not match.");
         }
 
         // [[Fact]]
@@ -148,26 +151,26 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::Addition,
-                std::make_shared<SyntaxToken>(SyntaxTokenType::Plus, "+"),
+                SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1")),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "2")));
+                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")));
 
             Assert::AreNotEqual(
                 SyntaxFactory::CreateBinaryExpression(
                     BinaryOperator::Addition,
-                    std::make_shared<SyntaxToken>(SyntaxTokenType::Plus, "+"),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
-                        std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "1")),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
-                        std::make_shared<SyntaxToken>(SyntaxTokenType::IntegerLiteral, "22"))),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"22"))),
                 uut,
-                "Verify do not match.");
+                L"Verify do not match.");
         }
     };
 }

@@ -26,7 +26,7 @@ namespace Soup::Syntax
         /// <summary>
         /// Convert to string representation
         /// </summary>
-        virtual std::string ToString() const = 0;
+        virtual std::wstring ToString() const = 0;
 
     private:
         /// <summary>
