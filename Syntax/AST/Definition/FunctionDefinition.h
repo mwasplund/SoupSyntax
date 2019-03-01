@@ -1,8 +1,4 @@
 ﻿#pragma once
-#include "Declaration.h"
-#include "DeclarationSpecifierSequence.h"
-#include "ParameterList.h"
-#include "SimpleNameExpression.h"
 
 namespace Soup::Syntax
 {
@@ -17,6 +13,7 @@ namespace Soup::Syntax
             std::shared_ptr<const NameExpression>&& identifier,
             std::shared_ptr<const ParameterList>&& parameterList,
             std::shared_ptr<const SyntaxNode>&& body) :
+            Declaration(SyntaxNodeType::FunctionDefinition),
             m_returnType(std::move(returnType)),
             m_identifier(std::move(identifier)),
             m_parameterList(std::move(parameterList)),
@@ -57,6 +54,28 @@ namespace Soup::Syntax
         }
 
         /// <summary>
+        /// Get the collection of children nodes and tokens
+        /// </summary>
+        virtual std::vector<SyntaxNodeChild> GetChildren() const override final
+        {
+            return std::vector<SyntaxNodeChild>(
+                {
+                    SyntaxNodeChild(*m_returnType),
+                    SyntaxNodeChild(*m_identifier),
+                    SyntaxNodeChild(*m_parameterList),
+                    SyntaxNodeChild(*m_body),
+                });
+        }
+
+        /// <summary>
+        /// Visitor Accept
+        /// </summary>
+        virtual void Accept(ISyntaxVisitor& visitor) const override final
+        {
+            visitor.Visit(*this);
+        }
+
+        /// <summary>
         /// Equality operator
         /// </summary>
         bool operator ==(const FunctionDefinition& rhs) const
@@ -71,14 +90,6 @@ namespace Soup::Syntax
         bool operator !=(const FunctionDefinition& rhs) const
         {
             return !(*this == rhs);
-        }
-
-        /// <summary>
-        /// Convert to string representation
-        /// </summary>
-        virtual std::wstring ToString() const override final
-        {
-            return L"FunctionDefinition";
         }
 
     protected:

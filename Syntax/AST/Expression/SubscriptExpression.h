@@ -1,7 +1,4 @@
 ﻿#pragma once
-#include "Expression.h"
-#include "BinaryOperator.h"
-#include "SyntaxToken.h"
 
 namespace Soup::Syntax
 {
@@ -21,6 +18,7 @@ namespace Soup::Syntax
             std::shared_ptr<const SyntaxToken> leftBracket, 
             std::shared_ptr<const Expression> rightExpression,
             std::shared_ptr<const SyntaxToken> rightBracket) :
+            Expression(SyntaxNodeType::SubscriptExpression),
             m_leftExpression(std::move(leftExpression)),
             m_leftBracket(std::move(leftBracket)),
             m_rightExpression(std::move(rightExpression)),
@@ -62,6 +60,28 @@ namespace Soup::Syntax
         }
 
         /// <summary>
+        /// Get the collection of children nodes and tokens
+        /// </summary>
+        virtual std::vector<SyntaxNodeChild> GetChildren() const override final
+        {
+            return std::vector<SyntaxNodeChild>(
+                {
+                    SyntaxNodeChild(*m_leftExpression),
+                    SyntaxNodeChild(*m_leftBracket),
+                    SyntaxNodeChild(*m_rightExpression),
+                    SyntaxNodeChild(*m_rightBracket),
+                });
+        }
+
+        /// <summary>
+        /// Visitor Accept
+        /// </summary>
+        virtual void Accept(ISyntaxVisitor& visitor) const override final
+        {
+            visitor.Visit(*this);
+        }
+
+        /// <summary>
         /// Equality operator
         /// </summary>
         bool operator ==(const SubscriptExpression& rhs) const
@@ -75,14 +95,6 @@ namespace Soup::Syntax
         bool operator !=(const SubscriptExpression& rhs) const
         {
             return !(*this == rhs);
-        }
-
-        /// <summary>
-        /// Convert to string representation
-        /// </summary>
-        virtual std::wstring ToString() const override final
-        {
-            return L"SubscriptExpression";
         }
 
     protected:

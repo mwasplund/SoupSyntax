@@ -6,6 +6,7 @@
  ******************************************************************************/
 
 lexer grammar CppLexer;
+channels { TRIVIA }
 
 // Ensure all keywards and operators come before literals and identifiers
 import 
@@ -18,8 +19,8 @@ import
 	CppLexerUserDefinedLiterals,
 	CppLexerIdentifiers;
 
-BlockComment: '/*' .*? '*/' -> channel(1);
-LineComment: '//' ~[\r\n]* -> channel(1);
+BlockComment: '/*' .*? '*/' -> channel(TRIVIA);
+LineComment: '//' ~[\r\n]* -> channel(TRIVIA);
 
-Whitespace: (' ' | '\t')+ -> channel(2);
-Newline: ('\r' '\n'? | '\n') -> channel(2);
+Whitespace: (' ' | '\t')+ -> channel(TRIVIA);
+Newline: ('\r' '\n'? | '\n') -> channel(TRIVIA);

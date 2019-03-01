@@ -1,14 +1,39 @@
 ﻿#pragma once
-#include "Statement.h"
 
 namespace Soup::Syntax
 {
     /// <summary>
     /// Return statement node
     /// </summary>
-    export class ReturnStatement final : Statement
+    export class ReturnStatement final : public Statement
     {
     public:
+        /// <summary>
+        /// Initialize
+        /// </summary>
+        ReturnStatement() :
+            Statement(SyntaxNodeType::ReturnStatement)
+        {
+        }
+
+        /// <summary>
+        /// Get the collection of children nodes and tokens
+        /// </summary>
+        virtual std::vector<SyntaxNodeChild> GetChildren() const override final
+        {
+            return std::vector<SyntaxNodeChild>(
+                {
+                });
+        }
+
+        /// <summary>
+        /// Visitor Accept
+        /// </summary>
+        virtual void Accept(ISyntaxVisitor& visitor) const override final
+        {
+            visitor.Visit(*this);
+        }
+
         /// <summary>
         /// Equality operator
         /// </summary>
@@ -20,14 +45,6 @@ namespace Soup::Syntax
         bool operator !=(const ReturnStatement& rhs) const
         {
             return false;
-        }
-
-        /// <summary>
-        /// Convert to string representation
-        /// </summary>
-        virtual std::wstring ToString() const override final
-        {
-            return L"ReturnStatement";
         }
 
     protected:

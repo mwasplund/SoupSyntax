@@ -1,6 +1,4 @@
 ﻿#pragma once
-#include "NameExpression.h"
-#include "SyntaxToken.h"
 
 namespace Soup::Syntax
 {
@@ -16,6 +14,7 @@ namespace Soup::Syntax
         /// Initialize
         /// </summary>
         SimpleNameExpression(std::shared_ptr<const SyntaxToken> identifier) :
+            NameExpression(SyntaxNodeType::SimpleNameExpression),
             m_identifier(std::move(identifier))
         {
         }
@@ -30,6 +29,25 @@ namespace Soup::Syntax
         }
 
         /// <summary>
+        /// Get the collection of children nodes and tokens
+        /// </summary>
+        virtual std::vector<SyntaxNodeChild> GetChildren() const override final
+        {
+            return std::vector<SyntaxNodeChild>(
+                {
+                    SyntaxNodeChild(*m_identifier),
+                });
+        }
+
+        /// <summary>
+        /// Visitor Accept
+        /// </summary>
+        virtual void Accept(ISyntaxVisitor& visitor) const override final
+        {
+            visitor.Visit(*this);
+        }
+
+        /// <summary>
         /// Equality operator
         /// </summary>
         bool operator ==(const SimpleNameExpression& rhs) const
@@ -40,14 +58,6 @@ namespace Soup::Syntax
         bool operator !=(const SimpleNameExpression& rhs) const
         {
             return !(*this == rhs);
-        }
-
-        /// <summary>
-        /// Convert to string representation
-        /// </summary>
-        virtual std::wstring ToString() const override final
-        {
-            return L"SimpleNameExpression<" + m_identifier->ToString() + L">";
         }
 
     protected:

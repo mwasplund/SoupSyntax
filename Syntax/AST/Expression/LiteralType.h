@@ -1,5 +1,4 @@
 ﻿#pragma once
-#include "LiteralExpression.h"
 
 namespace Soup::Syntax
 {

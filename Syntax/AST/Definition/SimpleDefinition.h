@@ -1,5 +1,4 @@
 ﻿#pragma once
-#include "Declaration.h"
 
 namespace Soup::Syntax
 {
@@ -12,6 +11,7 @@ namespace Soup::Syntax
         SimpleDefinition(
             std::shared_ptr<const DeclarationSpecifierSequence>&& declarationSpecifierSequence,
             std::shared_ptr<const InitializerDeclaratorList>&& initializerDeclaratorList) :
+            Declaration(SyntaxNodeType::SimpleDefinition),
             m_declarationSpecifierSequence(std::move(declarationSpecifierSequence)),
             m_initializerDeclaratorList(std::move(initializerDeclaratorList))
         {
@@ -34,6 +34,26 @@ namespace Soup::Syntax
         }
 
         /// <summary>
+        /// Get the collection of children nodes and tokens
+        /// </summary>
+        virtual std::vector<SyntaxNodeChild> GetChildren() const override final
+        {
+            return std::vector<SyntaxNodeChild>(
+                {
+                    SyntaxNodeChild(*m_declarationSpecifierSequence),
+                    SyntaxNodeChild(*m_initializerDeclaratorList),
+                });
+        }
+
+        /// <summary>
+        /// Visitor Accept
+        /// </summary>
+        virtual void Accept(ISyntaxVisitor& visitor) const override final
+        {
+            visitor.Visit(*this);
+        }
+
+        /// <summary>
         /// Equality operator
         /// </summary>
         bool operator ==(const SimpleDefinition& rhs) const
@@ -45,17 +65,6 @@ namespace Soup::Syntax
         bool operator !=(const SimpleDefinition& rhs) const
         {
             return !(*this == rhs);
-        }
-
-        /// <summary>
-        /// Convert to string representation
-        /// </summary>
-        virtual std::wstring ToString() const override final
-        {
-            std::wstring result = L"SimpleDefinition";
-            result += L"\n" + m_declarationSpecifierSequence->ToString();
-            result += L"\n" + m_initializerDeclaratorList->ToString();
-            return result;
         }
 
     protected:

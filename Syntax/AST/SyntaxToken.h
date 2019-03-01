@@ -1,7 +1,5 @@
 ﻿
 #pragma once
-#include "SyntaxTrivia.h"
-#include "SyntaxTokenType.h"
 
 namespace Soup::Syntax
 {
@@ -13,19 +11,6 @@ namespace Soup::Syntax
         friend class SyntaxFactory;
 
     private:
-        /// <summary>
-        /// Initialize
-        /// </summary>
-        SyntaxToken(
-            SyntaxTokenType type,
-            std::wstring value) :
-            m_type(type),
-            m_value(std::move(value)),
-            m_leadingTrivia(),
-            m_trailingTrivia()
-        {
-        }
-
         /// <summary>
         /// Initialize
         /// </summary>

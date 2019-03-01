@@ -4,11 +4,13 @@
 namespace Soup::Syntax
 {
     /// <summary>
-    /// Abstract syntax tree visitor
+    /// Abstract syntax tree parser visitor
     /// </summary>
-    export class ASTVisitor : public CppParserVisitor
+    export class ASTCppParserVisitor : public CppParserVisitor
     {
     public:
+        ASTCppParserVisitor(antlr4::BufferedTokenStream* tokenStream);
+
         virtual antlrcpp::Any visitTypedefName(CppParser::TypedefNameContext *context) override final;
         virtual antlrcpp::Any visitNamespaceName(CppParser::NamespaceNameContext *context) override final;
         virtual antlrcpp::Any visitNamespaceAlias(CppParser::NamespaceAliasContext *context) override final;
@@ -227,5 +229,18 @@ namespace Soup::Syntax
         virtual antlrcpp::Any visitBooleanLiteral(CppParser::BooleanLiteralContext *context) override final;
         virtual antlrcpp::Any visitPointerLiteral(CppParser::PointerLiteralContext *context) override final;
         virtual antlrcpp::Any visitUserDefinedLiteral(CppParser::UserDefinedLiteralContext *context) override final;
+
+    private:
+        std::shared_ptr<const SyntaxToken> CreateToken(
+            SyntaxTokenType type,
+            antlr4::tree::TerminalNode* terminalNode);
+        std::shared_ptr<const SimpleNameExpression> GetNextSimpleName(
+            CppParser::NestedNameSpecifierSequenceContext* context);
+        std::shared_ptr<const QualifiedNameExpression> visitNextRightQualifiedNestedNames(
+            std::shared_ptr<const QualifiedNameExpression> leftQualifiedName,
+            CppParser::NestedNameSpecifierSequenceContext* context);
+
+    private:
+        antlr4::BufferedTokenStream* m_tokenStream;
     };
 }

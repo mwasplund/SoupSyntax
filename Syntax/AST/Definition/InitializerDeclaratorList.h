@@ -1,5 +1,4 @@
 ﻿#pragma once
-#include "SyntaxNode.h"
 
 namespace Soup::Syntax
 {
@@ -12,15 +11,41 @@ namespace Soup::Syntax
         /// <summary>
         /// Initialize
         /// </summary>
-        InitializerDeclaratorList() :
-            m_items()
+        InitializerDeclaratorList(
+            std::vector<std::shared_ptr<const InitializerDeclarator>> items) :
+            SyntaxNode(SyntaxNodeType::InitializerDeclaratorList),
+            m_items(std::move(items))
         {
         }
 
-        InitializerDeclaratorList(
-            std::vector<std::shared_ptr<const InitializerDeclarator>> items) :
-            m_items(std::move(items))
+        /// <summary>
+        /// Gets or sets the list of items
+        /// </summary>
+        const std::vector<std::shared_ptr<const InitializerDeclarator>>& GetItems() const
         {
+            return m_items;
+        }
+
+        /// <summary>
+        /// Get the collection of children nodes and tokens
+        /// </summary>
+        virtual std::vector<SyntaxNodeChild> GetChildren() const override final
+        {
+            std::vector<SyntaxNodeChild> children;
+            for (auto& item : m_items)
+            {
+                children.push_back(SyntaxNodeChild(*item));
+            }
+
+            return children;
+        }
+
+        /// <summary>
+        /// Visitor Accept
+        /// </summary>
+        virtual void Accept(ISyntaxVisitor& visitor) const override final
+        {
+            visitor.Visit(*this);
         }
 
         /// <summary>
@@ -42,28 +67,6 @@ namespace Soup::Syntax
         bool operator !=(const InitializerDeclaratorList& rhs) const
         {
             return !(*this == rhs);
-        }
-
-        /// <summary>
-        /// Gets or sets the list of items
-        /// </summary>
-        const std::vector<std::shared_ptr<const InitializerDeclarator>>& GetItems() const
-        {
-            return m_items;
-        }
-
-        /// <summary>
-        /// Convert to string representation
-        /// </summary>
-        virtual std::wstring ToString() const override final
-        {
-            std::wstring result = L"InitializerDeclaratorList";
-            for (auto item : m_items)
-            {
-                result += L"\n" + item->ToString();
-            }
-
-            return result;
         }
 
     protected:

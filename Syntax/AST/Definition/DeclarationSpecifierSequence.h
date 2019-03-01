@@ -1,5 +1,4 @@
 ﻿#pragma once
-#include "SyntaxNode.h"
 
 namespace Soup::Syntax
 {
@@ -12,15 +11,41 @@ namespace Soup::Syntax
         /// <summary>
         /// Initialize
         /// </summary>
-        DeclarationSpecifierSequence() :
-            m_specifiers()
+        DeclarationSpecifierSequence(
+            std::vector<std::shared_ptr<const SyntaxNode>> specifiers) :
+            SyntaxNode(SyntaxNodeType::DeclarationSpecifierSequence),
+            m_specifiers(std::move(specifiers))
         {
         }
 
-        DeclarationSpecifierSequence(
-            std::vector<std::shared_ptr<const SyntaxNode>> specifiers) :
-            m_specifiers(std::move(specifiers))
+        /// <summary>
+        /// Gets or sets the list of declaration specifiers
+        /// </summary>
+        const std::vector<std::shared_ptr<const SyntaxNode>>& GetSpecifiers() const
         {
+            return m_specifiers;
+        }
+
+        /// <summary>
+        /// Get the collection of children nodes and tokens
+        /// </summary>
+        virtual std::vector<SyntaxNodeChild> GetChildren() const override final
+        {
+            std::vector<SyntaxNodeChild> children;
+            for (auto& specifier : m_specifiers)
+            {
+                children.push_back(SyntaxNodeChild(*specifier));
+            }
+
+            return children;
+        }
+
+        /// <summary>
+        /// Visitor Accept
+        /// </summary>
+        virtual void Accept(ISyntaxVisitor& visitor) const override final
+        {
+            visitor.Visit(*this);
         }
 
         /// <summary>
@@ -42,28 +67,6 @@ namespace Soup::Syntax
         bool operator !=(const DeclarationSpecifierSequence& rhs) const
         {
             return !(*this == rhs);
-        }
-
-        /// <summary>
-        /// Gets or sets the list of declaration specifiers
-        /// </summary>
-        const std::vector<std::shared_ptr<const SyntaxNode>>& GetSpecifiers() const
-        {
-            return m_specifiers;
-        }
-
-        /// <summary>
-        /// Convert to string representation
-        /// </summary>
-        virtual std::wstring ToString() const override final
-        {
-            std::wstring result = L"DeclarationSpecifierSequence";
-            for (auto specifier : m_specifiers)
-            {
-                result += L"\n" + specifier->ToString();
-            }
-
-            return result;
         }
 
     protected:

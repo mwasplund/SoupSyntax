@@ -1,6 +1,5 @@
 ﻿
 #pragma once
-#include "SyntaxNode.h"
 
 namespace Soup::Syntax
 {
@@ -14,6 +13,7 @@ namespace Soup::Syntax
         /// Initialize
         /// </summary>
         PrimitiveDataTypeNode(PrimitiveDataType type) :
+            SyntaxNode(SyntaxNodeType::PrimitiveDataTypeNode),
             m_type(type)
         {
         }
@@ -21,9 +21,27 @@ namespace Soup::Syntax
         /// <summary>
         /// Gets or sets the type
         /// </summary>
-        PrimitiveDataType GetType() const
+        PrimitiveDataType GetPrimitiveType() const
         {
             return m_type;
+        }
+
+        /// <summary>
+        /// Get the collection of children nodes and tokens
+        /// </summary>
+        virtual std::vector<SyntaxNodeChild> GetChildren() const override final
+        {
+            return std::vector<SyntaxNodeChild>(
+                {
+                });
+        }
+
+        /// <summary>
+        /// Visitor Accept
+        /// </summary>
+        virtual void Accept(ISyntaxVisitor& visitor) const override final
+        {
+            visitor.Visit(*this);
         }
 
         /// <summary>
@@ -37,14 +55,6 @@ namespace Soup::Syntax
         bool operator !=(const PrimitiveDataTypeNode& rhs) const
         {
             return !(*this == rhs);
-        }
-
-        /// <summary>
-        /// Convert to string representation
-        /// </summary>
-        virtual std::wstring ToString() const override final
-        {
-            return L"PrimitiveDataTypeNode<" + std::to_wstring(static_cast<int>(m_type)) + L">";
         }
 
     protected:

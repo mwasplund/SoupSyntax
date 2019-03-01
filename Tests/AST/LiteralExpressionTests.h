@@ -13,7 +13,7 @@ namespace Soup::Syntax::UnitTests
                 LiteralType::Integer,
                 SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1"));
 
-            Assert::AreEqual(LiteralType::Integer, uut->GetType(), L"Verify type matches.");
+            Assert::AreEqual(LiteralType::Integer, uut->GetLiteralType(), L"Verify type matches.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1"),
                 uut->GetToken(),

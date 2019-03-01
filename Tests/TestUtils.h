@@ -13,6 +13,8 @@ struct CppParserContainer
 
     std::unique_ptr<LexerExceptionErrorListener> LexerErrorListener;
     std::unique_ptr<ParserExceptionErrorListener> ParserErrorListener;
+
+    std::unique_ptr<ASTCppParserVisitor> Visitor;
 };
 
 class TestUtils
@@ -37,6 +39,9 @@ class TestUtils
         container.Parser->removeErrorListeners();
         container.Parser->addErrorListener(container.ParserErrorListener.get());
 
+        // Create the final AST visitor
+        container.Visitor = std::make_unique<ASTCppParserVisitor>(container.TokenStream.get());
+
         return container;
     }
 
@@ -48,8 +53,7 @@ class TestUtils
         auto translationUnit = container.Parser->translationUnit();
 
         // Convert the the abstract syntax tree
-        auto visitor = std::make_unique<ASTVisitor>();
-        auto ast = visitor->visit(translationUnit)
+        auto ast = container.Visitor->visit(translationUnit)
             .as<std::shared_ptr<const TranslationUnit>>();
 
         return ast;
@@ -62,6 +66,20 @@ class TestUtils
             std::make_shared<const DeclarationSequence>(
                 std::vector<std::shared_ptr<const Declaration>>{
                     std::move(declaration)}));
+    }
+
+    static void CompareAST(
+        const std::shared_ptr<const TranslationUnit>& expected,
+        const std::shared_ptr<const TranslationUnit>& actual)
+    {
+        std::wstringstream message;
+        SyntaxWriter writer(message);
+        message << L"Verify AST matches: \n";
+        expected->Accept(writer);
+        message << L"\n\n";
+        actual->Accept(writer);
+
+        Assert::AreEqual(expected, actual, message.str());
     }
 };
 } // namespace Soup::Syntax::UnitTests

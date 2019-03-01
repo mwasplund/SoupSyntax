@@ -23,10 +23,14 @@ namespace Soup::Syntax::UnitTests
                         SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
                     nullptr,
                     std::make_shared<RegularFunctionBody>(
-                        std::make_shared<CompoundStatement>())));
+                        std::make_shared<CompoundStatement>(
+                            std::vector<std::shared_ptr<const Statement>>
+                            {
+                            }))));
 
             auto actual = TestUtils::GenerateAST(source);
-            Assert::AreEqual(expected, actual, L"Verify AST matches expected.");
+
+            TestUtils::CompareAST(expected, actual);
         }
 
         // [Fact]
@@ -48,7 +52,8 @@ namespace Soup::Syntax::UnitTests
                     std::make_shared<DefaultFunctionBody>()));
 
             auto actual = TestUtils::GenerateAST(source);
-            Assert::AreEqual(expected, actual, L"Verify AST matches expected.");
+
+            TestUtils::CompareAST(expected, actual);
         }
 
         // [Fact]
@@ -70,7 +75,8 @@ namespace Soup::Syntax::UnitTests
                     std::make_shared<DeleteFunctionBody>()));
 
             auto actual = TestUtils::GenerateAST(source);
-            Assert::AreEqual(expected, actual, L"Verify AST matches expected.");
+
+            TestUtils::CompareAST(expected, actual);
         }
     };
 }

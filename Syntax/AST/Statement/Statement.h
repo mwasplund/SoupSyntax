@@ -1,5 +1,4 @@
 #pragma once
-#include "SyntaxNode.h"
 
 namespace Soup::Syntax
 {
@@ -8,5 +7,13 @@ namespace Soup::Syntax
     /// </summary>
     export class Statement : public SyntaxNode
     {
+    protected:
+        /// <summary>
+        /// Initialize
+        /// </summary>
+        Statement(SyntaxNodeType type) :
+            SyntaxNode(type)
+        {
+        }
     };
 }

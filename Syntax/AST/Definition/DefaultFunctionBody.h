@@ -1,5 +1,4 @@
 ﻿#pragma once
-#include "SyntaxNode.h"
 
 namespace Soup::Syntax
 {
@@ -9,6 +8,32 @@ namespace Soup::Syntax
     export class DefaultFunctionBody final : public SyntaxNode
     {
     public:
+        /// <summary>
+        /// Initialize
+        /// </summary>
+        DefaultFunctionBody() :
+            SyntaxNode(SyntaxNodeType::DefaultFunctionBody)
+        {
+        }
+
+        /// <summary>
+        /// Get the collection of children nodes and tokens
+        /// </summary>
+        virtual std::vector<SyntaxNodeChild> GetChildren() const override final
+        {
+            return std::vector<SyntaxNodeChild>(
+                {
+                });
+        }
+
+        /// <summary>
+        /// Visitor Accept
+        /// </summary>
+        virtual void Accept(ISyntaxVisitor& visitor) const override final
+        {
+            visitor.Visit(*this);
+        }
+
         /// <summary>
         /// Equality operator
         /// </summary>
@@ -20,14 +45,6 @@ namespace Soup::Syntax
         bool operator !=(const DefaultFunctionBody& rhs) const
         {
             return false;
-        }
-
-        /// <summary>
-        /// Convert to string representation
-        /// </summary>
-        virtual std::wstring ToString() const override final
-        {
-            return L"DefaultFunctionBody";
         }
 
     protected:

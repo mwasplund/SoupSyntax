@@ -11,7 +11,7 @@
     "Parser/Grammar/CppParserBaseVisitor.cpp",
     "Parser/Grammar/CppParserListener.cpp",
     "Parser/Grammar/CppParserVisitor.cpp",
-    "Parser/ASTVisitor.cpp",
+    "Parser/ASTCppParserVisitor.cpp",
     "Parser/LexerExceptionErrorListener.cpp",
     "Parser/ParserExceptionErrorListener.cpp"
   ]

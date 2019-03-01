@@ -1,5 +1,4 @@
 ﻿#pragma once
-#include "SyntaxNode.h"
 
 namespace Soup::Syntax
 {
@@ -12,6 +11,7 @@ namespace Soup::Syntax
         InitializerDeclarator(
             std::shared_ptr<const SyntaxNode>&& declarator,
             std::shared_ptr<const SyntaxNode>&& initializer) :
+            SyntaxNode(SyntaxNodeType::InitializerDeclarator),
             m_declarator(std::move(declarator)),
             m_initializer(std::move(initializer))
         {
@@ -31,6 +31,31 @@ namespace Soup::Syntax
         const SyntaxNode& GetInitializer() const
         {
             return *m_initializer;
+        }
+
+        /// <summary>
+        /// Get the collection of children nodes and tokens
+        /// </summary>
+        virtual std::vector<SyntaxNodeChild> GetChildren() const override final
+        {
+            std::vector<SyntaxNodeChild> children;
+
+            children.push_back(SyntaxNodeChild(*m_declarator));
+
+            if (m_initializer != nullptr)
+            {
+                children.push_back(SyntaxNodeChild(*m_initializer));
+            }
+
+            return children;
+        }
+
+        /// <summary>
+        /// Visitor Accept
+        /// </summary>
+        virtual void Accept(ISyntaxVisitor& visitor) const override final
+        {
+            visitor.Visit(*this);
         }
 
         /// <summary>
@@ -55,21 +80,6 @@ namespace Soup::Syntax
         bool operator !=(const InitializerDeclarator& rhs) const
         {
             return !(*this == rhs);
-        }
-
-        /// <summary>
-        /// Convert to string representation
-        /// </summary>
-        virtual std::wstring ToString() const override final
-        {
-            std::wstring result = L"InitializerDeclarator";
-            result += L"\n" + m_declarator->ToString();
-            if (m_initializer != nullptr)
-            {
-                result += L"\n" + m_initializer->ToString();
-            }
-
-            return result;
         }
 
     protected:

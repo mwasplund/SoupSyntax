@@ -16,7 +16,7 @@ namespace Soup::Syntax::UnitTests
                 ParsePrimaryExpression(sourceCode));
 
             Assert::NotNull(expression, L"Verify cast.");
-            Assert::AreEqual(LiteralType::Integer, expression->GetType(), L"Verify type matches expected.");
+            Assert::AreEqual(LiteralType::Integer, expression->GetLiteralType(), L"Verify type matches expected.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, Convert(sourceCode)),
                 expression->GetToken(),
@@ -31,7 +31,7 @@ namespace Soup::Syntax::UnitTests
                 ParsePrimaryExpression(sourceCode));
 
             Assert::NotNull(expression, L"Verify cast.");
-            Assert::AreEqual(LiteralType::Floating, expression->GetType(), L"Verify type matches expected.");
+            Assert::AreEqual(LiteralType::Floating, expression->GetLiteralType(), L"Verify type matches expected.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateToken(SyntaxTokenType::FloatingPointLiteral, Convert(sourceCode)),
                 expression->GetToken(),
@@ -46,7 +46,7 @@ namespace Soup::Syntax::UnitTests
                 ParsePrimaryExpression(sourceCode));
 
             Assert::NotNull(expression, L"Verify cast.");
-            Assert::AreEqual(LiteralType::Character, expression->GetType(), L"Verify type matches expected.");
+            Assert::AreEqual(LiteralType::Character, expression->GetLiteralType(), L"Verify type matches expected.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateToken(SyntaxTokenType::CharacterLiteral, Convert(sourceCode)),
                 expression->GetToken(),
@@ -61,7 +61,7 @@ namespace Soup::Syntax::UnitTests
                 ParsePrimaryExpression(sourceCode));
 
             Assert::NotNull(expression, L"Verify cast.");
-            Assert::AreEqual(LiteralType::Pointer, expression->GetType(), L"Verify type matches expected.");
+            Assert::AreEqual(LiteralType::Pointer, expression->GetLiteralType(), L"Verify type matches expected.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateToken(SyntaxTokenType::Nullptr, Convert(sourceCode)),
                 expression->GetToken(),
@@ -76,7 +76,7 @@ namespace Soup::Syntax::UnitTests
                 ParsePrimaryExpression(sourceCode));
 
             Assert::NotNull(expression, L"Verify cast.");
-            Assert::AreEqual(LiteralType::String, expression->GetType(), L"Verify type matches expected.");
+            Assert::AreEqual(LiteralType::String, expression->GetLiteralType(), L"Verify type matches expected.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateToken(SyntaxTokenType::StringLiteral, Convert(sourceCode)),
                 expression->GetToken(),
@@ -92,7 +92,7 @@ namespace Soup::Syntax::UnitTests
                 ParsePrimaryExpression(sourceCode));
 
             Assert::NotNull(expression, L"Verify cast.");
-            Assert::AreEqual(LiteralType::Boolean, expression->GetType(), L"Verify type matches expected.");
+            Assert::AreEqual(LiteralType::Boolean, expression->GetLiteralType(), L"Verify type matches expected.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateToken(type, Convert(sourceCode)),
                 expression->GetToken(),
@@ -107,7 +107,7 @@ namespace Soup::Syntax::UnitTests
                 ParsePrimaryExpression(sourceCode));
 
             Assert::NotNull(expression, L"Verify cast.");
-            Assert::AreEqual(LiteralType::UserDefined, expression->GetType(), L"Verify type matches expected.");
+            Assert::AreEqual(LiteralType::UserDefined, expression->GetLiteralType(), L"Verify type matches expected.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateToken(SyntaxTokenType::UserDefinedLiteral, Convert(sourceCode)),
                 expression->GetToken(),
@@ -178,8 +178,7 @@ namespace Soup::Syntax::UnitTests
             auto context = uut.Parser->primaryExpression();
 
             // Convert the the abstract syntax tree
-            auto visitor = ASTVisitor();
-            auto node = visitor.visit(context)
+            auto node = uut.Visitor->visit(context)
                 .as<std::shared_ptr<const SyntaxNode>>();
 
             return node;

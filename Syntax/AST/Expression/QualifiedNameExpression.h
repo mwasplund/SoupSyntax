@@ -1,5 +1,4 @@
 ﻿#pragma once
-#include "SimpleNameExpression.h"
 
 namespace Soup::Syntax
 {
@@ -21,6 +20,7 @@ namespace Soup::Syntax
             std::shared_ptr<const NameExpression> left,
             std::shared_ptr<const SyntaxToken> scopeResolutionToken,
             std::shared_ptr<const SimpleNameExpression> right) :
+            NameExpression(SyntaxNodeType::QualifiedNameExpression),
             m_left(std::move(left)),
             m_scopeResolutionToken(std::move(scopeResolutionToken)),
             m_right(std::move(right))
@@ -77,6 +77,27 @@ namespace Soup::Syntax
         }
 
         /// <summary>
+        /// Get the collection of children nodes and tokens
+        /// </summary>
+        virtual std::vector<SyntaxNodeChild> GetChildren() const override final
+        {
+            return std::vector<SyntaxNodeChild>(
+                {
+                    SyntaxNodeChild(*m_left),
+                    SyntaxNodeChild(*m_scopeResolutionToken),
+                    SyntaxNodeChild(*m_right),
+                });
+        }
+
+        /// <summary>
+        /// Visitor Accept
+        /// </summary>
+        virtual void Accept(ISyntaxVisitor& visitor) const override final
+        {
+            visitor.Visit(*this);
+        }
+
+        /// <summary>
         /// Equality operator
         /// </summary>
         bool operator ==(const QualifiedNameExpression& rhs) const
@@ -100,14 +121,6 @@ namespace Soup::Syntax
         bool operator !=(const QualifiedNameExpression& rhs) const
         {
             return !(*this == rhs);
-        }
-
-        /// <summary>
-        /// Convert to string representation
-        /// </summary>
-        virtual std::wstring ToString() const override final
-        {
-            return L"QualifiedNameExpression<" + m_left->ToString() + L", " + m_right->ToString() + L">";
         }
 
     protected:

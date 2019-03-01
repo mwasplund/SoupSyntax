@@ -1,4 +1,4 @@
-// Generated from d:\Repos\SoupSyntax\Grammar/CppLexer.g4 by ANTLR 4.7.1
+// Generated from d:\Repos\SoupSyntax\Grammar\CppLexer.g4 by ANTLR 4.7.1
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;
@@ -41,8 +41,10 @@ public class CppLexer extends Lexer {
 		Arrow=128, Zero=129, IntegerLiteral=130, FloatingPointLiteral=131, CharacterLiteral=132, 
 		StringLiteral=133, UserDefinedIntegerLiteral=134, UserDefinedFloatingPointLiteral=135, 
 		UserDefinedCharacterLiteral=136, UserDefinedStringLiteral=137, Identifier=138;
+	public static final int
+		TRIVIA=2;
 	public static String[] channelNames = {
-		"DEFAULT_TOKEN_CHANNEL", "HIDDEN"
+		"DEFAULT_TOKEN_CHANNEL", "HIDDEN", "TRIVIA"
 	};
 
 	public static String[] modeNames = {
@@ -412,10 +414,10 @@ public class CppLexer extends Lexer {
 		"\2\2\u017b\u017c\3\2\2\2\u017c\u017e\3\2\2\2\u017d\u017b\3\2\2\2\u017e"+
 		"\u017f\b\3\2\2\u017f\6\3\2\2\2\u0180\u0182\t\3\2\2\u0181\u0180\3\2\2\2"+
 		"\u0182\u0183\3\2\2\2\u0183\u0181\3\2\2\2\u0183\u0184\3\2\2\2\u0184\u0185"+
-		"\3\2\2\2\u0185\u0186\b\4\3\2\u0186\b\3\2\2\2\u0187\u0189\7\17\2\2\u0188"+
+		"\3\2\2\2\u0185\u0186\b\4\2\2\u0186\b\3\2\2\2\u0187\u0189\7\17\2\2\u0188"+
 		"\u018a\7\f\2\2\u0189\u0188\3\2\2\2\u0189\u018a\3\2\2\2\u018a\u018d\3\2"+
 		"\2\2\u018b\u018d\7\f\2\2\u018c\u0187\3\2\2\2\u018c\u018b\3\2\2\2\u018d"+
-		"\u018e\3\2\2\2\u018e\u018f\b\5\3\2\u018f\n\3\2\2\2\u0190\u0191\7c\2\2"+
+		"\u018e\3\2\2\2\u018e\u018f\b\5\2\2\u018f\n\3\2\2\2\u0190\u0191\7c\2\2"+
 		"\u0191\u0192\7n\2\2\u0192\u0193\7k\2\2\u0193\u0194\7i\2\2\u0194\u0195"+
 		"\7p\2\2\u0195\u0196\7c\2\2\u0196\u0197\7u\2\2\u0197\f\3\2\2\2\u0198\u0199"+
 		"\7c\2\2\u0199\u019a\7n\2\2\u019a\u019b\7k\2\2\u019b\u019c\7i\2\2\u019c"+
@@ -765,7 +767,7 @@ public class CppLexer extends Lexer {
 		"\u04e7\u04f8\u0500\u0505\u050a\u050f\u0514\u0519\u051c\u051f\u0527\u052c"+
 		"\u0530\u0533\u0539\u0540\u0544\u054a\u054c\u0551\u0557\u0562\u056b\u0574"+
 		"\u0578\u057d\u0583\u0589\u0590\u0597\u059d\u05a3\u05ab\u05b1\u05b7\u05ba"+
-		"\u05ca\u05ce\u05d6\u05e0\u05e5\u05e7\4\2\3\2\2\4\2";
+		"\u05ca\u05ce\u05d6\u05e0\u05e5\u05e7\3\2\4\2";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

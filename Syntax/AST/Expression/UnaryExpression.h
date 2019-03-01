@@ -1,6 +1,4 @@
 ﻿#pragma once
-#include "Expression.h"
-#include "UnaryOperator.h"
 
 namespace Soup::Syntax
 {
@@ -20,6 +18,7 @@ namespace Soup::Syntax
             UnaryOperator unaryOperator,
             std::shared_ptr<const SyntaxToken> operatorToken,
             std::shared_ptr<const Expression> operand) :
+            Expression(SyntaxNodeType::UnaryExpression),
             m_operator(unaryOperator),
             m_operatorToken(std::move(operatorToken)),
             m_operand(std::move(operand))
@@ -52,6 +51,26 @@ namespace Soup::Syntax
         }
 
         /// <summary>
+        /// Get the collection of children nodes and tokens
+        /// </summary>
+        virtual std::vector<SyntaxNodeChild> GetChildren() const override final
+        {
+            return std::vector<SyntaxNodeChild>(
+                {
+                    SyntaxNodeChild(*m_operand),
+                    SyntaxNodeChild(*m_operatorToken),
+                });
+        }
+
+        /// <summary>
+        /// Visitor Accept
+        /// </summary>
+        virtual void Accept(ISyntaxVisitor& visitor) const override final
+        {
+            visitor.Visit(*this);
+        }
+
+        /// <summary>
         /// Equality operator
         /// </summary>
         bool operator ==(const UnaryExpression& rhs) const
@@ -64,14 +83,6 @@ namespace Soup::Syntax
         bool operator !=(const UnaryExpression& rhs) const
         {
             return !(*this == rhs);
-        }
-
-        /// <summary>
-        /// Convert to string representation
-        /// </summary>
-        virtual std::wstring ToString() const override final
-        {
-            return L"UnaryExpression<" + std::to_wstring((int)m_operator) + L">";
         }
 
     protected:

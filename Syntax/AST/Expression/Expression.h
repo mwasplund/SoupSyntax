@@ -1,5 +1,4 @@
 ﻿#pragma once
-#include "SyntaxNode.h"
 
 namespace Soup::Syntax
 {
@@ -8,5 +7,10 @@ namespace Soup::Syntax
     /// </summary>
     export class Expression : public SyntaxNode
     {
+    protected:
+        Expression(SyntaxNodeType type) :
+            SyntaxNode(type)
+        {
+        }
     };
 }

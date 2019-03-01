@@ -1,5 +1,4 @@
 ﻿#pragma once
-#include "SyntaxNode.h"
 
 namespace Soup::Syntax
 {
@@ -10,11 +9,39 @@ namespace Soup::Syntax
     {
     public:
         /// <summary>
+        /// Initialize
+        /// </summary>
+        TryFunctionBody() :
+            SyntaxNode(SyntaxNodeType::TryFunctionBody),
+            m_statements(nullptr)
+        {
+        }
+
+        /// <summary>
         /// Gets or sets the statements
         /// </summary>
         const CompoundStatement& GetStatements() const
         {
-            return m_statements;
+            return *m_statements;
+        }
+
+        /// <summary>
+        /// Get the collection of children nodes and tokens
+        /// </summary>
+        virtual std::vector<SyntaxNodeChild> GetChildren() const override final
+        {
+            return std::vector<SyntaxNodeChild>(
+                {
+                    SyntaxNodeChild(*m_statements),
+                });
+        }
+
+        /// <summary>
+        /// Visitor Accept
+        /// </summary>
+        virtual void Accept(ISyntaxVisitor& visitor) const override final
+        {
+            visitor.Visit(*this);
         }
 
         /// <summary>
@@ -22,20 +49,12 @@ namespace Soup::Syntax
         /// </summary>
         bool operator ==(const TryFunctionBody& rhs) const
         {
-            return m_statements == rhs.m_statements;
+            return *m_statements == *rhs.m_statements;
         }
 
         bool operator !=(const TryFunctionBody& rhs) const
         {
             return !(*this == rhs);
-        }
-
-        /// <summary>
-        /// Convert to string representation
-        /// </summary>
-        virtual std::wstring ToString() const override final
-        {
-            return L"TryFunctionBody";
         }
 
     protected:
@@ -48,6 +67,6 @@ namespace Soup::Syntax
         }
 
     private:
-        CompoundStatement m_statements;
+        std::shared_ptr<const CompoundStatement> m_statements;
     };
 }

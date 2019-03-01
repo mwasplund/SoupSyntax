@@ -30,10 +30,8 @@ namespace Soup::Syntax::UnitTests
                         })));
 
             auto actual = TestUtils::GenerateAST(source);
-            Assert::AreEqual(
-                expected,
-                actual,
-                L"Verify AST matches: \n" + expected->ToString() + L"\n\n" + actual->ToString());
+
+            TestUtils::CompareAST(expected, actual);
         }
 
         // [[Fact]]
@@ -54,17 +52,30 @@ namespace Soup::Syntax::UnitTests
                         {
                             std::make_shared<InitializerDeclarator>(
                                 SyntaxFactory::CreateSimpleNameExpression(
-                                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"GlobalVariable")),
+                                    SyntaxFactory::CreateToken(
+                                        SyntaxTokenType::Identifier,
+                                        L"GlobalVariable",
+                                        {
+                                            SyntaxFactory::CreateTrivia(L" ", TextSpan())
+                                        },
+                                        {
+                                            SyntaxFactory::CreateTrivia(L" ", TextSpan())
+                                        })),
                                 SyntaxFactory::CreateLiteralExpression(
                                     LiteralType::Integer,
-                                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1"))),
+                                    SyntaxFactory::CreateToken(
+                                        SyntaxTokenType::IntegerLiteral,
+                                        L"1",
+                                        {
+                                            SyntaxFactory::CreateTrivia(L" ", TextSpan())
+                                        },
+                                        {
+                                        }))),
                         })));
 
             auto actual = TestUtils::GenerateAST(source);
-            Assert::AreEqual(
-                expected,
-                actual,
-                L"Verify AST matches: \n" + expected->ToString() + L"\n\n" + actual->ToString());
+
+            TestUtils::CompareAST(expected, actual);
         }
 
         // [[Theory]]
@@ -98,17 +109,30 @@ namespace Soup::Syntax::UnitTests
                         {
                             std::make_shared<InitializerDeclarator>(
                                 SyntaxFactory::CreateSimpleNameExpression(
-                                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"GlobalVariable")),
+                                    SyntaxFactory::CreateToken(
+                                        SyntaxTokenType::Identifier,
+                                        L"GlobalVariable",
+                                        {
+                                            SyntaxFactory::CreateTrivia(L" ", TextSpan())
+                                        },
+                                        {
+                                            SyntaxFactory::CreateTrivia(L" ", TextSpan())
+                                        })),
                                 SyntaxFactory::CreateLiteralExpression(
                                     LiteralType::Integer,
-                                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1"))),
+                                    SyntaxFactory::CreateToken(
+                                        SyntaxTokenType::IntegerLiteral,
+                                        L"1",
+                                        {
+                                            SyntaxFactory::CreateTrivia(L" ", TextSpan())
+                                        },
+                                        {
+                                        }))),
                         })));
 
             auto actual = TestUtils::GenerateAST(globalType);
-            Assert::AreEqual(
-                expected,
-                actual,
-                L"Verify AST matches: \n" + expected->ToString() + L"\n\n" + actual->ToString());
+
+            TestUtils::CompareAST(expected, actual);
         }
 
         // [[Fact]]
@@ -129,23 +153,51 @@ namespace Soup::Syntax::UnitTests
                         {
                             std::make_shared<InitializerDeclarator>(
                                 SyntaxFactory::CreateSimpleNameExpression(
-                                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"GlobalVariable1")),
+                                    SyntaxFactory::CreateToken(
+                                        SyntaxTokenType::Identifier,
+                                        L"GlobalVariable1",
+                                        {
+                                            SyntaxFactory::CreateTrivia(L" ", TextSpan())
+                                        },
+                                        {
+                                            SyntaxFactory::CreateTrivia(L" ", TextSpan())
+                                        })),
                                 SyntaxFactory::CreateLiteralExpression(
                                     LiteralType::Integer,
-                                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1"))),
+                                    SyntaxFactory::CreateToken(
+                                        SyntaxTokenType::IntegerLiteral,
+                                        L"1",
+                                        {
+                                            SyntaxFactory::CreateTrivia(L" ", TextSpan())
+                                        },
+                                        {
+                                        }))),
                             std::make_shared<InitializerDeclarator>(
                                 SyntaxFactory::CreateSimpleNameExpression(
-                                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"GlobalVariable2")),
+                                    SyntaxFactory::CreateToken(
+                                        SyntaxTokenType::Identifier,
+                                        L"GlobalVariable2",
+                                        {
+                                            SyntaxFactory::CreateTrivia(L" ", TextSpan())
+                                        },
+                                        {
+                                            SyntaxFactory::CreateTrivia(L" ", TextSpan())
+                                        })),
                                 SyntaxFactory::CreateLiteralExpression(
                                     LiteralType::Integer,
-                                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2"))),
+                                    SyntaxFactory::CreateToken(
+                                        SyntaxTokenType::IntegerLiteral,
+                                        L"2",
+                                        {
+                                            SyntaxFactory::CreateTrivia(L" ", TextSpan())
+                                        },
+                                        {
+                                        }))),
                         })));
 
             auto actual = TestUtils::GenerateAST(source);
-            Assert::AreEqual(
-                expected,
-                actual,
-                L"Verify AST matches: \n" + expected->ToString() + L"\n\n" + actual->ToString());
+
+            TestUtils::CompareAST(expected, actual);
         }
     };
 }

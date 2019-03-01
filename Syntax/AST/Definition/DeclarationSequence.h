@@ -1,5 +1,4 @@
 ﻿#pragma once
-#include "SyntaxNode.h"
 
 namespace Soup::Syntax
 {
@@ -12,30 +11,41 @@ namespace Soup::Syntax
         /// <summary>
         /// Initialize
         /// </summary>
-        DeclarationSequence() :
-            m_declarations()
-        {
-        }
-
         DeclarationSequence(std::vector<std::shared_ptr<const Declaration>> declarations) :
+            SyntaxNode(SyntaxNodeType::DeclarationSequence),
             m_declarations(std::move(declarations))
         {
         }
 
         /// <summary>
-        /// Assign
+        /// Gets or sets the list of declarations
         /// </summary>
-        DeclarationSequence& operator =(DeclarationSequence&& rhs)
+        const std::vector<std::shared_ptr<const Declaration>>& GetDeclarations() const
         {
-            m_declarations = std::move(rhs.m_declarations);
-            return *this;
+            return m_declarations;
         }
 
         /// <summary>
-        /// Disable copy
+        /// Get the collection of children nodes and tokens
         /// </summary>
-        DeclarationSequence(const DeclarationSequence&) = delete;
-        DeclarationSequence& operator =(const DeclarationSequence& rhs) = delete;
+        virtual std::vector<SyntaxNodeChild> GetChildren() const override final
+        {
+            std::vector<SyntaxNodeChild> children;
+            for (auto& declaration : m_declarations)
+            {
+                children.push_back(SyntaxNodeChild(*declaration));
+            }
+
+            return children;
+        }
+
+        /// <summary>
+        /// Visitor Accept
+        /// </summary>
+        virtual void Accept(ISyntaxVisitor& visitor) const override final
+        {
+            visitor.Visit(*this);
+        }
 
         /// <summary>
         /// Equality operator
@@ -56,28 +66,6 @@ namespace Soup::Syntax
         bool operator !=(const DeclarationSequence& rhs) const
         {
             return !(*this == rhs);
-        }
-
-        /// <summary>
-        /// Gets or sets the list of declarations
-        /// </summary>
-        const std::vector<std::shared_ptr<const Declaration>>& GetDeclarations() const
-        {
-            return m_declarations;
-        }
-
-        /// <summary>
-        /// Convert to string representation
-        /// </summary>
-        virtual std::wstring ToString() const override final
-        {
-            std::wstring result = L"DeclarationSequence";
-            for (auto declaration : m_declarations)
-            {
-                result += L"\n" + declaration->ToString();
-            }
-
-            return result;
         }
 
     private:

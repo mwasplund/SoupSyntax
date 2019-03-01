@@ -44,6 +44,10 @@ public:
     UserDefinedStringLiteral = 137, Identifier = 138
   };
 
+  enum {
+    TRIVIA = 2
+  };
+
   CppLexer(antlr4::CharStream *input);
   ~CppLexer();
 

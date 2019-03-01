@@ -1,5 +1,4 @@
 ﻿#pragma once
-#include "SyntaxNode.h"
 
 namespace Soup::Syntax
 {
@@ -8,16 +7,44 @@ namespace Soup::Syntax
     /// </summary>
     export class ParameterList final : public SyntaxNode
     {
-    private:
-        std::vector<SyntaxNode> parameters;
-
     public:
+        /// <summary>
+        /// Initialize
+        /// </summary>
+        ParameterList() :
+            SyntaxNode(SyntaxNodeType::ParameterList),
+            m_parameters()
+        {
+        }
+
         /// <summary>
         /// Gets or sets the list of parameters
         /// </summary>
-        const std::vector<SyntaxNode>& GetParameters() const
+        const std::vector<std::shared_ptr<const SyntaxNode>>& GetParameters() const
         {
-            return this->parameters;
+            return m_parameters;
+        }
+
+        /// <summary>
+        /// Get the collection of children nodes and tokens
+        /// </summary>
+        virtual std::vector<SyntaxNodeChild> GetChildren() const override final
+        {
+            std::vector<SyntaxNodeChild> children;
+            for (auto& parameter : m_parameters)
+            {
+                children.push_back(SyntaxNodeChild(*parameter));
+            }
+
+            return children;
+        }
+
+        /// <summary>
+        /// Visitor Accept
+        /// </summary>
+        virtual void Accept(ISyntaxVisitor& visitor) const override final
+        {
+            visitor.Visit(*this);
         }
 
         /// <summary>
@@ -25,20 +52,20 @@ namespace Soup::Syntax
         /// </summary>
         bool operator ==(const ParameterList& rhs) const
         {
-            return this->parameters == rhs.parameters;
+            return std::equal(
+                begin(m_parameters),
+                end(m_parameters),
+                begin(rhs.m_parameters),
+                end(rhs.m_parameters),
+                [](const std::shared_ptr<const SyntaxNode>& lhs, const std::shared_ptr<const SyntaxNode>& rhs)
+                {
+                    return *lhs == *rhs;
+                });
         }
 
         bool operator !=(const ParameterList& rhs) const
         {
             return !(*this == rhs);
-        }
-
-        /// <summary>
-        /// Convert to string representation
-        /// </summary>
-        virtual std::wstring ToString() const override final
-        {
-            return L"ParameterList";
         }
 
     protected:
@@ -49,5 +76,8 @@ namespace Soup::Syntax
         {
             return *this == static_cast<const ParameterList&>(rhs);
         }
+
+    private:
+        std::vector<std::shared_ptr<const SyntaxNode>> m_parameters;
     };
 }

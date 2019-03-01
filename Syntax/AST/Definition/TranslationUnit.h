@@ -1,5 +1,4 @@
 ﻿#pragma once
-#include "SyntaxNode.h"
 
 namespace Soup::Syntax
 {
@@ -10,8 +9,36 @@ namespace Soup::Syntax
     {
     public:
         TranslationUnit(std::shared_ptr<const DeclarationSequence>&& declarations) :
+            SyntaxNode(SyntaxNodeType::TranslationUnit),
             m_declarations(std::move(declarations))
         {
+        }
+
+        /// <summary>
+        /// Gets or sets the option declaration sequence
+        /// </summary>
+        const DeclarationSequence& GetDeclarations() const
+        {
+            return *m_declarations;
+        }
+
+        /// <summary>
+        /// Get the collection of children nodes and tokens
+        /// </summary>
+        virtual std::vector<SyntaxNodeChild> GetChildren() const override final
+        {
+            return std::vector<SyntaxNodeChild>(
+                {
+                    SyntaxNodeChild(*m_declarations),
+                });
+        }
+
+        /// <summary>
+        /// Visitor Accept
+        /// </summary>
+        virtual void Accept(ISyntaxVisitor& visitor) const override final
+        {
+            visitor.Visit(*this);
         }
 
         /// <summary>
@@ -25,28 +52,6 @@ namespace Soup::Syntax
         bool operator !=(const TranslationUnit& rhs) const
         {
             return !(*this == rhs);
-        }
-
-        /// <summary>
-        /// Gets or sets the option declaration sequence
-        /// </summary>
-        const DeclarationSequence& GetDeclarations() const
-        {
-            return *m_declarations;
-        }
-
-        /// <summary>
-        /// Convert to string representation
-        /// </summary>
-        virtual std::wstring ToString() const override final
-        {
-            std::wstring result = L"TranslationUnit";
-            if (m_declarations != nullptr)
-            {
-                result += L"\n" + m_declarations->ToString();
-            }
-
-            return result;
         }
 
     protected:

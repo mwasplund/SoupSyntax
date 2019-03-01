@@ -1,11 +1,5 @@
 ﻿
 #pragma once
-#include "BinaryExpression.h"
-#include "LiteralExpression.h"
-#include "QualifiedNameExpression.h"
-#include "SubscriptExpression.h"
-#include "ThisExpression.h"
-#include "UnaryExpression.h"
 
 namespace Soup::Syntax
 {
@@ -104,12 +98,43 @@ namespace Soup::Syntax
         /// </summary>
         static std::shared_ptr<const SyntaxToken> CreateToken(
             SyntaxTokenType type,
+            std::wstring value,
+            std::vector<SyntaxTrivia> leadingTrivia,
+            std::vector<SyntaxTrivia> trailingTrivia)
+        {
+            return std::shared_ptr<const SyntaxToken>(
+                new SyntaxToken(
+                    type,
+                    std::move(value),
+                    std::move(leadingTrivia),
+                    std::move(trailingTrivia)));
+        }
+
+        /// <summary>
+        /// Create a SyntaxToken
+        /// </summary>
+        static std::shared_ptr<const SyntaxToken> CreateToken(
+            SyntaxTokenType type,
             std::wstring value)
         {
             return std::shared_ptr<const SyntaxToken>(
                 new SyntaxToken(
                     type,
-                    std::move(value)));
+                    std::move(value),
+                    {},
+                    {}));
+        }
+
+        /// <summary>
+        /// Create a SyntaxTrivia
+        /// </summary>
+        static SyntaxTrivia CreateTrivia(
+            std::wstring value,
+            TextSpan span)
+        {
+            return SyntaxTrivia(
+                std::move(value),
+                span);
         }
 
         /// <summary>

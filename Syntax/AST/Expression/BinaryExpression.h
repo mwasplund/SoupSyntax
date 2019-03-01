@@ -1,6 +1,4 @@
 ﻿#pragma once
-#include "Expression.h"
-#include "BinaryOperator.h"
 
 namespace Soup::Syntax
 {
@@ -21,6 +19,7 @@ namespace Soup::Syntax
             std::shared_ptr<const SyntaxToken> operatorToken,
             std::shared_ptr<const Expression> leftOperand,
             std::shared_ptr<const Expression> rightOperand) :
+            Expression(SyntaxNodeType::BinaryExpression),
             m_operator(binaryOperator),
             m_operatorToken(std::move(operatorToken)),
             m_leftOperand(std::move(leftOperand)),
@@ -62,6 +61,27 @@ namespace Soup::Syntax
         }
 
         /// <summary>
+        /// Get the collection of children nodes and tokens
+        /// </summary>
+        virtual std::vector<SyntaxNodeChild> GetChildren() const override final
+        {
+            return std::vector<SyntaxNodeChild>(
+                {
+                    SyntaxNodeChild(*m_leftOperand),
+                    SyntaxNodeChild(*m_operatorToken),
+                    SyntaxNodeChild(*m_rightOperand),
+                });
+        }
+
+        /// <summary>
+        /// Visitor Accept
+        /// </summary>
+        virtual void Accept(ISyntaxVisitor& visitor) const override final
+        {
+            visitor.Visit(*this);
+        }
+
+        /// <summary>
         /// Equality operator
         /// </summary>
         bool operator ==(const BinaryExpression& rhs) const
@@ -77,14 +97,6 @@ namespace Soup::Syntax
             return !(*this == rhs);
         }
 
-        /// <summary>
-        /// Convert to string representation
-        /// </summary>
-        virtual std::wstring ToString() const override final
-        {
-            return L"BinaryExpression<" + std::to_wstring((int)m_operator) + L">";
-        }
-
     protected:
         /// <summary>
         /// SyntaxNode Equals
@@ -96,8 +108,8 @@ namespace Soup::Syntax
 
     private:
         BinaryOperator m_operator;
-        std::shared_ptr<const SyntaxToken> m_operatorToken;
         std::shared_ptr<const Expression> m_leftOperand;
+        std::shared_ptr<const SyntaxToken> m_operatorToken;
         std::shared_ptr<const Expression> m_rightOperand;
     };
 }

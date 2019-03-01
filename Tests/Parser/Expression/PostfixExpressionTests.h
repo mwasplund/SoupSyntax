@@ -70,8 +70,7 @@ namespace Soup::Syntax::UnitTests
             auto context = uut.Parser->postfixExpression();
 
             // Convert the the abstract syntax tree
-            auto visitor = ASTVisitor();
-            auto node = visitor.visit(context)
+            auto node = uut.Visitor->visit(context)
                 .as<std::shared_ptr<const SyntaxNode>>();
 
             return node;
