@@ -6,6 +6,6 @@
     "../Syntax/"
   ],
   "source": [
-    "Main.cpp"
+    "gen/Main.cpp"
   ]
 }

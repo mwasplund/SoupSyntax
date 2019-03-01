@@ -2,12 +2,12 @@ import std.core;
 import Antlr4.Runtime;
 import SoupSyntax;
 
-#include "AST\BinaryExpressionTests.gen.h"
-#include "AST\LiteralExpressionTests.gen.h"
-#include "AST\NameExpressionTests.gen.h"
-#include "AST\SubscriptExpressionTests.gen.h"
-#include "AST\SyntaxTokenTests.gen.h"
-#include "AST\UnaryExpressionTests.gen.h"
+#include "AST\Expression\BinaryExpressionTests.gen.h"
+#include "AST\Expression\LiteralExpressionTests.gen.h"
+#include "AST\Expression\NameExpressionTests.gen.h"
+#include "AST\Expression\SubscriptExpressionTests.gen.h"
+#include "AST\Expression\SyntaxTokenTests.gen.h"
+#include "AST\Expression\UnaryExpressionTests.gen.h"
 
 #include "Parser\LexerTests.gen.h"
 #include "Parser\ParserAttributesTests.gen.h"
