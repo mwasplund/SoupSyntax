@@ -18,7 +18,7 @@ namespace Soup::Syntax
         }
 
         /// <summary>
-        /// Gets or sets the declarator
+        /// Gets the declarator
         /// </summary>
         const SyntaxNode& GetDeclarator() const
         {
@@ -26,7 +26,7 @@ namespace Soup::Syntax
         }
 
         /// <summary>
-        /// Gets or sets the optional initializer
+        /// Gets the optional initializer
         /// </summary>
         const SyntaxNode& GetInitializer() const
         {

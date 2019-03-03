@@ -3,27 +3,27 @@
 namespace Soup::Syntax
 {
     /// <summary>
-    /// Declaration specifier sequence
+    /// The initializer declarator list node
     /// </summary>
-    export class DeclarationSpecifierSequence final : public SyntaxNode
+    export class InitializerDeclaratorList final : public SyntaxNode
     {
     public:
         /// <summary>
         /// Initialize
         /// </summary>
-        DeclarationSpecifierSequence(
-            std::vector<std::shared_ptr<const SyntaxNode>> specifiers) :
-            SyntaxNode(SyntaxNodeType::DeclarationSpecifierSequence),
-            m_specifiers(std::move(specifiers))
+        InitializerDeclaratorList(
+            std::vector<std::shared_ptr<const InitializerDeclarator>> items) :
+            SyntaxNode(SyntaxNodeType::InitializerDeclaratorList),
+            m_items(std::move(items))
         {
         }
 
         /// <summary>
-        /// Gets or sets the list of declaration specifiers
+        /// Gets the list of items
         /// </summary>
-        const std::vector<std::shared_ptr<const SyntaxNode>>& GetSpecifiers() const
+        const std::vector<std::shared_ptr<const InitializerDeclarator>>& GetItems() const
         {
-            return m_specifiers;
+            return m_items;
         }
 
         /// <summary>
@@ -32,9 +32,9 @@ namespace Soup::Syntax
         virtual std::vector<SyntaxNodeChild> GetChildren() const override final
         {
             std::vector<SyntaxNodeChild> children;
-            for (auto& specifier : m_specifiers)
+            for (auto& item : m_items)
             {
-                children.push_back(SyntaxNodeChild(*specifier));
+                children.push_back(SyntaxNodeChild(*item));
             }
 
             return children;
@@ -51,20 +51,20 @@ namespace Soup::Syntax
         /// <summary>
         /// Equality operator
         /// </summary>
-        bool operator ==(const DeclarationSpecifierSequence& rhs) const
+        bool operator ==(const InitializerDeclaratorList& rhs) const
         {
             return std::equal(
-                begin(m_specifiers),
-                end(m_specifiers),
-                begin(rhs.m_specifiers),
-                end(rhs.m_specifiers),
-                [](const std::shared_ptr<const SyntaxNode>& lhs, const std::shared_ptr<const SyntaxNode>& rhs)
+                begin(m_items),
+                end(m_items),
+                begin(rhs.m_items),
+                end(rhs.m_items),
+                [](const std::shared_ptr<const InitializerDeclarator>& lhs, const std::shared_ptr<const InitializerDeclarator>& rhs)
                 {
                     return *lhs == *rhs;
                 });
         }
 
-        bool operator !=(const DeclarationSpecifierSequence& rhs) const
+        bool operator !=(const InitializerDeclaratorList& rhs) const
         {
             return !(*this == rhs);
         }
@@ -75,10 +75,10 @@ namespace Soup::Syntax
         /// </summary>
         virtual bool Equals(const SyntaxNode& rhs) const final
         {
-            return *this == static_cast<const DeclarationSpecifierSequence&>(rhs);
+            return *this == static_cast<const InitializerDeclaratorList&>(rhs);
         }
 
     private:
-        std::vector<std::shared_ptr<const SyntaxNode>> m_specifiers;
+        std::vector<std::shared_ptr<const InitializerDeclarator>> m_items;
     };
 }

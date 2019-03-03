@@ -13,7 +13,7 @@ namespace Soup::Syntax::UnitTests
                 "namespace MyNamespace{}");
 
             auto expected = TestUtils::CreateSingleDeclaration(
-                std::make_shared<FunctionDefinition>(
+                SyntaxFactory::CreateFunctionDefinition(
                     std::make_shared<DeclarationSpecifierSequence>(
                         std::vector<std::shared_ptr<const SyntaxNode>>
                         {
@@ -30,7 +30,7 @@ namespace Soup::Syntax::UnitTests
 
             auto actual = TestUtils::GenerateAST(source);
 
-            TestUtils::CompareAST(expected, actual);
+            TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
 
         // [Fact]
@@ -40,7 +40,7 @@ namespace Soup::Syntax::UnitTests
                 "namespace{}");
 
             auto expected = TestUtils::CreateSingleDeclaration(
-                std::make_shared<FunctionDefinition>(
+                SyntaxFactory::CreateFunctionDefinition(
                     std::make_shared<DeclarationSpecifierSequence>(
                         std::vector<std::shared_ptr<const SyntaxNode>>
                         {
@@ -57,7 +57,7 @@ namespace Soup::Syntax::UnitTests
 
             auto actual = TestUtils::GenerateAST(source);
 
-            TestUtils::CompareAST(expected, actual);
+            TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
 
         // [Fact]
@@ -67,7 +67,7 @@ namespace Soup::Syntax::UnitTests
                 "namespace MyNamespace::MySubNamespace{}");
 
             auto expected = TestUtils::CreateSingleDeclaration(
-                std::make_shared<FunctionDefinition>(
+                SyntaxFactory::CreateFunctionDefinition(
                     std::make_shared<DeclarationSpecifierSequence>(
                         std::vector<std::shared_ptr<const SyntaxNode>>
                         {
@@ -84,7 +84,7 @@ namespace Soup::Syntax::UnitTests
 
             auto actual = TestUtils::GenerateAST(source);
 
-            TestUtils::CompareAST(expected, actual);
+            TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
     };
 }

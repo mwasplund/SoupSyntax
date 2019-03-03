@@ -13,7 +13,7 @@ namespace Soup::Syntax::UnitTests
                 "void Function(){}");
 
             auto expected = TestUtils::CreateSingleDeclaration(
-                std::make_shared<FunctionDefinition>(
+                SyntaxFactory::CreateFunctionDefinition(
                     std::make_shared<DeclarationSpecifierSequence>(
                         std::vector<std::shared_ptr<const SyntaxNode>>
                         {
@@ -30,7 +30,7 @@ namespace Soup::Syntax::UnitTests
 
             auto actual = TestUtils::GenerateAST(source);
 
-            TestUtils::CompareAST(expected, actual);
+            TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
 
         // [Fact]
@@ -40,7 +40,7 @@ namespace Soup::Syntax::UnitTests
                 "void Function() = default;");
 
             auto expected = TestUtils::CreateSingleDeclaration(
-                std::make_shared<FunctionDefinition>(
+                SyntaxFactory::CreateFunctionDefinition(
                     std::make_shared<DeclarationSpecifierSequence>(
                         std::vector<std::shared_ptr<const SyntaxNode>>
                         {
@@ -49,11 +49,14 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateSimpleNameExpression(
                         SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
                     nullptr,
-                    std::make_shared<DefaultFunctionBody>()));
+                    SyntaxFactory::CreateDefaultFunctionBody(
+                        SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::Default, L"default"),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"))));
 
             auto actual = TestUtils::GenerateAST(source);
 
-            TestUtils::CompareAST(expected, actual);
+            TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
 
         // [Fact]
@@ -63,7 +66,7 @@ namespace Soup::Syntax::UnitTests
                 "void Function() = delete;");
 
             auto expected = TestUtils::CreateSingleDeclaration(
-                std::make_shared<FunctionDefinition>(
+                SyntaxFactory::CreateFunctionDefinition(
                     std::make_shared<DeclarationSpecifierSequence>(
                         std::vector<std::shared_ptr<const SyntaxNode>>
                         {
@@ -72,11 +75,44 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateSimpleNameExpression(
                         SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
                     nullptr,
-                    std::make_shared<DeleteFunctionBody>()));
+                    SyntaxFactory::CreateDeleteFunctionBody(
+                        SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::Delete, L"delete"),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"))));
 
             auto actual = TestUtils::GenerateAST(source);
 
-            TestUtils::CompareAST(expected, actual);
+            TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
+        }
+
+        // [Fact]
+        void SimpleFunctionParameter()
+        {
+            auto source = std::string(
+                "void Function(int parameter) = delete;");
+
+            auto expected = TestUtils::CreateSingleDeclaration(
+                SyntaxFactory::CreateFunctionDefinition(
+                    std::make_shared<DeclarationSpecifierSequence>(
+                        std::vector<std::shared_ptr<const SyntaxNode>>
+                        {
+                            std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Void),
+                        }),
+                    SyntaxFactory::CreateSimpleNameExpression(
+                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
+                    std::make_shared<ParameterList>(
+                        std::vector<std::shared_ptr<const SyntaxNode>>
+                        {
+                            std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Void),
+                        }),
+                    SyntaxFactory::CreateDeleteFunctionBody(
+                        SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::Delete, L"delete"),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"))));
+
+            auto actual = TestUtils::GenerateAST(source);
+
+            TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
     };
 }

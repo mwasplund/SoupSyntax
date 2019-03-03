@@ -3,23 +3,23 @@
 namespace Soup::Syntax
 {
     /// <summary>
-    /// The root translation unit node
+    /// The regular function body
     /// </summary>
-    export class TranslationUnit : public SyntaxNode
+    export class RegularFunctionBody final : public SyntaxNode
     {
     public:
-        TranslationUnit(std::shared_ptr<const DeclarationSequence>&& declarations) :
-            SyntaxNode(SyntaxNodeType::TranslationUnit),
-            m_declarations(std::move(declarations))
+        RegularFunctionBody(std::shared_ptr<const CompoundStatement> statements) :
+            SyntaxNode(SyntaxNodeType::RegularFunctionBody),
+            m_statements(std::move(statements))
         {
         }
 
         /// <summary>
-        /// Gets or sets the option declaration sequence
+        /// Gets the statements
         /// </summary>
-        const DeclarationSequence& GetDeclarations() const
+        const CompoundStatement& GetStatements() const
         {
-            return *m_declarations;
+            return *m_statements;
         }
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace Soup::Syntax
         {
             return std::vector<SyntaxNodeChild>(
                 {
-                    SyntaxNodeChild(*m_declarations),
+                    SyntaxNodeChild(*m_statements),
                 });
         }
 
@@ -44,12 +44,12 @@ namespace Soup::Syntax
         /// <summary>
         /// Equality operator
         /// </summary>
-        bool operator ==(const TranslationUnit& rhs) const
+        bool operator ==(const RegularFunctionBody& rhs) const
         {
-            return *m_declarations == *rhs.m_declarations;
+            return *m_statements == *rhs.m_statements;
         }
 
-        bool operator !=(const TranslationUnit& rhs) const
+        bool operator !=(const RegularFunctionBody& rhs) const
         {
             return !(*this == rhs);
         }
@@ -60,10 +60,10 @@ namespace Soup::Syntax
         /// </summary>
         virtual bool Equals(const SyntaxNode& rhs) const final
         {
-            return *this == static_cast<const TranslationUnit&>(rhs);
+            return *this == static_cast<const RegularFunctionBody&>(rhs);
         }
 
     private:
-        std::shared_ptr<const DeclarationSequence> m_declarations;
+        std::shared_ptr<const CompoundStatement> m_statements;
     };
 }

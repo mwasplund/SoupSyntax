@@ -3,17 +3,23 @@
 namespace Soup::Syntax
 {
     /// <summary>
-    /// The delete function body
+    /// The root translation unit node
     /// </summary>
-    export class DeleteFunctionBody final : public SyntaxNode
+    export class TranslationUnit : public SyntaxNode
     {
     public:
-        /// <summary>
-        /// Initialize
-        /// </summary>
-        DeleteFunctionBody() :
-            SyntaxNode(SyntaxNodeType::DeleteFunctionBody)
+        TranslationUnit(std::shared_ptr<const DeclarationSequence>&& declarations) :
+            SyntaxNode(SyntaxNodeType::TranslationUnit),
+            m_declarations(std::move(declarations))
         {
+        }
+
+        /// <summary>
+        /// Gets the option declaration sequence
+        /// </summary>
+        const DeclarationSequence& GetDeclarations() const
+        {
+            return *m_declarations;
         }
 
         /// <summary>
@@ -23,6 +29,7 @@ namespace Soup::Syntax
         {
             return std::vector<SyntaxNodeChild>(
                 {
+                    SyntaxNodeChild(*m_declarations),
                 });
         }
 
@@ -37,14 +44,14 @@ namespace Soup::Syntax
         /// <summary>
         /// Equality operator
         /// </summary>
-        bool operator ==(const DeleteFunctionBody& rhs) const
+        bool operator ==(const TranslationUnit& rhs) const
         {
-            return true;
+            return *m_declarations == *rhs.m_declarations;
         }
 
-        bool operator !=(const DeleteFunctionBody& rhs) const
+        bool operator !=(const TranslationUnit& rhs) const
         {
-            return false;
+            return !(*this == rhs);
         }
 
     protected:
@@ -53,7 +60,10 @@ namespace Soup::Syntax
         /// </summary>
         virtual bool Equals(const SyntaxNode& rhs) const final
         {
-            return *this == static_cast<const DeleteFunctionBody&>(rhs);
+            return *this == static_cast<const TranslationUnit&>(rhs);
         }
+
+    private:
+        std::shared_ptr<const DeclarationSequence> m_declarations;
     };
 }

@@ -761,11 +761,11 @@ antlrcpp::Any ASTCppParserVisitor::visitCompoundStatement(CppParser::CompoundSta
 
     // Check for optional sequence
     std::shared_ptr<const CompoundStatement> result = nullptr;
-    auto sequence = context->statementSequence();
-    if (sequence != nullptr)
+    if (context->statementSequence() != nullptr)
     {
-        result = visit(sequence)
-            .as<std::shared_ptr<const CompoundStatement>>();
+        result = std::dynamic_pointer_cast<const CompoundStatement>(
+            visit(context->statementSequence())
+                .as<std::shared_ptr<const SyntaxNode>>());
     }
     else
     {
@@ -775,7 +775,7 @@ antlrcpp::Any ASTCppParserVisitor::visitCompoundStatement(CppParser::CompoundSta
     }
 
     // TODO: Reference the source braces
-    return result;
+    return std::static_pointer_cast<const SyntaxNode>(result);
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitStatementSequence(CppParser::StatementSequenceContext* context)
@@ -909,8 +909,9 @@ antlrcpp::Any ASTCppParserVisitor::visitSimpleDeclaration(CppParser::SimpleDecla
 {
     Trace(L"VisitSimpleDeclaration");
 
-    auto declarationSpecifierSequence = visit(context->declarationSpecifierSequence())
-        .as<std::shared_ptr<const DeclarationSpecifierSequence>>();
+    auto declarationSpecifierSequence = std::dynamic_pointer_cast<const DeclarationSpecifierSequence>(
+        visit(context->declarationSpecifierSequence())
+            .as<std::shared_ptr<const SyntaxNode>>());
     auto initializerDeclaratorList = visit(context->initializerDeclaratorList())
         .as<std::shared_ptr<const InitializerDeclaratorList>>();
 
@@ -979,7 +980,7 @@ antlrcpp::Any ASTCppParserVisitor::visitDeclarationSpecifierSequence(CppParser::
     sequence = std::make_shared<const DeclarationSpecifierSequence>(
         std::move(specifiers));
 
-    return sequence;
+    return std::static_pointer_cast<const SyntaxNode>(sequence);
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitStorageClassSpecifier(CppParser::StorageClassSpecifierContext* context)
@@ -1468,7 +1469,11 @@ antlrcpp::Any ASTCppParserVisitor::visitParameterDeclarationClause(CppParser::Pa
     Trace(L"VisitParameterDeclarationClause");
 
     // TODO Items
-    return std::make_shared<const ParameterList>();
+    return std::static_pointer_cast<const SyntaxNode>(
+        std::make_shared<const ParameterList>(
+            std::vector<std::shared_ptr<const SyntaxNode>>(
+            {
+            })));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitParameterDeclarationList(CppParser::ParameterDeclarationListContext* context)
@@ -1491,28 +1496,31 @@ antlrcpp::Any ASTCppParserVisitor::visitFunctionDefinition(CppParser::FunctionDe
     std::shared_ptr<const DeclarationSpecifierSequence> returnType = nullptr;
     if (context->declarationSpecifierSequence() != nullptr)
     {
-        returnType = visit(context->declarationSpecifierSequence())
-            .as<std::shared_ptr<const DeclarationSpecifierSequence>>();
+        returnType = std::dynamic_pointer_cast<const DeclarationSpecifierSequence>(
+            visit(context->declarationSpecifierSequence())
+                .as<std::shared_ptr<const SyntaxNode>>());
     }
 
     // Analyze the declarator
     auto declaratorContext = context->functionDeclarator();
-    auto identifier = std::static_pointer_cast<const NameExpression>(
+    auto identifier = std::dynamic_pointer_cast<const NameExpression>(
         visit(declaratorContext->identifierExpression())
             .as<std::shared_ptr<const SyntaxNode>>());
-    auto parameterList = visit(declaratorContext->functionParameters())
-        .as<std::shared_ptr<const ParameterList>>();
+    auto parameterList = std::dynamic_pointer_cast<const ParameterList>(
+        visit(declaratorContext->functionParameters())
+            .as<std::shared_ptr<const SyntaxNode>>());
     // TODO Qualifiers
     // TODO Trailiing return type
 
     auto body = visit(context->functionBody())
         .as<std::shared_ptr<const SyntaxNode>>();
 
-    return std::make_shared<const FunctionDefinition>(
-        std::move(returnType),
-        std::move(identifier),
-        std::move(parameterList),
-        std::move(body));
+    return std::static_pointer_cast<const SyntaxNode>(
+        SyntaxFactory::CreateFunctionDefinition(
+            std::move(returnType),
+            std::move(identifier),
+            std::move(parameterList),
+            std::move(body)));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitFunctionDeclarator(CppParser::FunctionDeclaratorContext *context)
@@ -1524,26 +1532,37 @@ antlrcpp::Any ASTCppParserVisitor::visitFunctionDeclarator(CppParser::FunctionDe
 antlrcpp::Any ASTCppParserVisitor::visitFunctionBody(CppParser::FunctionBodyContext *context)
 {
     Trace(L"VisitFunctionBody");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+    return visitChildren(context);
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitRegularFunctionBody(CppParser::RegularFunctionBodyContext* context)
 {
     Trace(L"VisitRegularFunctionBody");
-    return std::make_shared<const RegularFunctionBody>(
-        visit(context->compoundStatement()));
+    auto compoundStatment = std::dynamic_pointer_cast<const CompoundStatement>(
+        visit(context->compoundStatement())
+            .as<std::shared_ptr<const SyntaxNode>>());
+    return std::static_pointer_cast<const SyntaxNode>(
+        std::make_shared<const RegularFunctionBody>(
+            std::move(compoundStatment)));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitExplicitlyDefaultedFunction(CppParser::ExplicitlyDefaultedFunctionContext* context)
 {
     Trace(L"VisitExplicitlyDefaultedFunction");
-    return std::make_shared<const DefaultFunctionBody>();
+    return SyntaxFactory::CreateDefaultFunctionBody(
+        CreateToken(SyntaxTokenType::Equal, context->Equal()),
+        CreateToken(SyntaxTokenType::Default, context->Default()),
+        CreateToken(SyntaxTokenType::Semicolon, context->Semicolon()));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitDeletedFunction(CppParser::DeletedFunctionContext* context)
 {
     Trace(L"VisitDeletedFunction");
-    return std::make_shared<const DeleteFunctionBody>();
+    return std::static_pointer_cast<const SyntaxNode>(
+        SyntaxFactory::CreateDeleteFunctionBody(
+            CreateToken(SyntaxTokenType::Equal, context->Equal()),
+            CreateToken(SyntaxTokenType::Delete, context->Delete()),
+            CreateToken(SyntaxTokenType::Semicolon, context->Semicolon())));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitInitializer(CppParser::InitializerContext *context)

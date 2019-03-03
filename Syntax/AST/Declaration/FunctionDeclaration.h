@@ -1,0 +1,130 @@
+﻿#pragma once
+
+namespace Soup::Syntax
+{
+    /// <summary>
+    /// The function declaration class.
+    /// </summary>
+    export class FunctionDeclaration final : public Declaration
+    {
+        friend class SyntaxFactory;
+
+    private:
+        FunctionDeclaration(
+            std::shared_ptr<const DeclarationSpecifierSequence>&& returnType,
+            std::shared_ptr<const NameExpression>&& identifier,
+            std::shared_ptr<const ParameterList>&& parameterList,
+            std::shared_ptr<const SyntaxNode>&& body) :
+            Declaration(SyntaxNodeType::FunctionDeclaration),
+            m_returnType(std::move(returnType)),
+            m_identifier(std::move(identifier)),
+            m_parameterList(std::move(parameterList)),
+            m_body(std::move(body))
+        {
+        }
+
+    public:
+        /// <summary>
+        /// Gets the return type
+        /// </summary>
+        const DeclarationSpecifierSequence& GetReturnType() const
+        {
+            return *m_returnType;
+        }
+
+        /// <summary>
+        /// Gets the identifier
+        /// </summary>
+        const NameExpression& GetIdentifier() const
+        {
+            return *m_identifier;
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether there is a parameter list
+        /// </summary>
+        bool HasParameterList() const
+        {
+            return m_parameterList != nullptr;
+        }
+
+        /// <summary>
+        /// Gets the parameter list
+        /// </summary>
+        const ParameterList& GetParameterList() const
+        {
+            if (!HasParameterList())
+                throw std::runtime_error("Function does not have parameter list.");
+
+            return *m_parameterList;
+        }
+
+        /// <summary>
+        /// Gets the body
+        /// </summary>
+        const SyntaxNode& GetBody() const
+        {
+            return *m_body;
+        }
+
+        /// <summary>
+        /// Get the collection of children nodes and tokens
+        /// </summary>
+        virtual std::vector<SyntaxNodeChild> GetChildren() const override final
+        {
+            std::vector<SyntaxNodeChild> children;
+
+            children.push_back(SyntaxNodeChild(*m_returnType));
+            children.push_back(SyntaxNodeChild(*m_identifier));
+
+            if (HasParameterList())
+            {
+                children.push_back(SyntaxNodeChild(*m_parameterList));
+            }
+
+            children.push_back(SyntaxNodeChild(*m_body));
+
+            return children;
+        }
+
+        /// <summary>
+        /// Visitor Accept
+        /// </summary>
+        virtual void Accept(ISyntaxVisitor& visitor) const override final
+        {
+            visitor.Visit(*this);
+        }
+
+        /// <summary>
+        /// Equality operator
+        /// </summary>
+        bool operator ==(const FunctionDeclaration& rhs) const
+        {
+            return 
+                m_returnType == rhs.m_returnType &&
+                m_identifier == rhs.m_identifier &&
+                m_parameterList == rhs.m_parameterList &&
+                m_body == rhs.m_body;
+        }
+
+        bool operator !=(const FunctionDeclaration& rhs) const
+        {
+            return !(*this == rhs);
+        }
+
+    protected:
+        /// <summary>
+        /// SyntaxNode Equals
+        /// </summary>
+        virtual bool Equals(const SyntaxNode& rhs) const final
+        {
+            return *this == static_cast<const FunctionDeclaration&>(rhs);
+        }
+
+    private:
+        std::shared_ptr<const DeclarationSpecifierSequence> m_returnType;
+        std::shared_ptr<const NameExpression> m_identifier;
+        std::shared_ptr<const ParameterList> m_parameterList;
+        std::shared_ptr<const SyntaxNode> m_body;
+    };
+}

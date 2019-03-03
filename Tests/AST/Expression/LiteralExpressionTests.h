@@ -27,7 +27,7 @@ namespace Soup::Syntax::UnitTests
                 LiteralType::Integer,
                 SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1"));
 
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
                     SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
@@ -42,7 +42,7 @@ namespace Soup::Syntax::UnitTests
                 LiteralType::Integer,
                 SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1"));
 
-            Assert::AreNotEqual(
+            TestUtils::AreNotEqual(
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Floating,
                     SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
@@ -57,7 +57,7 @@ namespace Soup::Syntax::UnitTests
                 LiteralType::Integer,
                 SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1"));
 
-            Assert::AreNotEqual(
+            TestUtils::AreNotEqual(
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
                     SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")),

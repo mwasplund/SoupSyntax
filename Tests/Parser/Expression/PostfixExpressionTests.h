@@ -24,7 +24,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
                 SyntaxFactory::CreateToken(SyntaxTokenType::RightBracket, L"]"));
 
-            Assert::AreEqual(expected, actual, L"Verify matches expected.");
+            TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
 
         // [Theory]
@@ -42,7 +42,7 @@ namespace Soup::Syntax::UnitTests
                     LiteralType::Integer,
                     SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")));
 
-            Assert::AreEqual(expected, actual, L"Verify matches expected.");
+            TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
 
         // [Theory]
@@ -60,7 +60,7 @@ namespace Soup::Syntax::UnitTests
                     LiteralType::Integer,
                     SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")));
 
-            Assert::AreEqual(expected, actual, L"Verify matches expected.");
+            TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
 
     private:

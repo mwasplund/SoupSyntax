@@ -31,7 +31,7 @@ namespace Soup::Syntax::UnitTests
 
             auto actual = TestUtils::GenerateAST(source);
 
-            TestUtils::CompareAST(expected, actual);
+            TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
 
         // [[Fact]]
@@ -75,7 +75,7 @@ namespace Soup::Syntax::UnitTests
 
             auto actual = TestUtils::GenerateAST(source);
 
-            TestUtils::CompareAST(expected, actual);
+            TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
 
         // [[Theory]]
@@ -132,7 +132,7 @@ namespace Soup::Syntax::UnitTests
 
             auto actual = TestUtils::GenerateAST(globalType);
 
-            TestUtils::CompareAST(expected, actual);
+            TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
 
         // [[Fact]]
@@ -197,7 +197,7 @@ namespace Soup::Syntax::UnitTests
 
             auto actual = TestUtils::GenerateAST(source);
 
-            TestUtils::CompareAST(expected, actual);
+            TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
     };
 }

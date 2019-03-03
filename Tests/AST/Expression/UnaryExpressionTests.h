@@ -21,7 +21,7 @@ namespace Soup::Syntax::UnitTests
                 *SyntaxFactory::CreateToken(SyntaxTokenType::DoublePlus, L"++"),
                 uut->GetOperatorToken(),
                 L"Verify operator token matches.");
-            Assert::AreEqual<Expression>(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateLiteralExpression(LiteralType::Integer, SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
                 uut->GetOperand(),
                 L"Verify left expression matches.");
@@ -37,7 +37,7 @@ namespace Soup::Syntax::UnitTests
                     LiteralType::Integer,
                     SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")));
 
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 SyntaxFactory::CreateUnaryExpression(
                     UnaryOperator::PostIncrement,
                     SyntaxFactory::CreateToken(SyntaxTokenType::DoublePlus, L"++"),
@@ -58,7 +58,7 @@ namespace Soup::Syntax::UnitTests
                     LiteralType::Integer,
                     SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")));
 
-            Assert::AreNotEqual(
+            TestUtils::AreNotEqual(
                 SyntaxFactory::CreateUnaryExpression(
                     UnaryOperator::PreIncrement,
                     SyntaxFactory::CreateToken(SyntaxTokenType::DoublePlus, L"++"),
@@ -79,7 +79,7 @@ namespace Soup::Syntax::UnitTests
                     LiteralType::Integer,
                     SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")));
 
-            Assert::AreNotEqual(
+            TestUtils::AreNotEqual(
                 SyntaxFactory::CreateUnaryExpression(
                     UnaryOperator::PostIncrement,
                     SyntaxFactory::CreateToken(SyntaxTokenType::DoublePlus, L"++"),
@@ -100,7 +100,7 @@ namespace Soup::Syntax::UnitTests
                     LiteralType::Integer,
                     SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")));
 
-            Assert::AreNotEqual(
+            TestUtils::AreNotEqual(
                 SyntaxFactory::CreateUnaryExpression(
                     UnaryOperator::PostIncrement,
                     SyntaxFactory::CreateToken(SyntaxTokenType::DoublePlus, L"--"),

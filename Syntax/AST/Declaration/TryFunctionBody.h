@@ -3,19 +3,22 @@
 namespace Soup::Syntax
 {
     /// <summary>
-    /// The regular function body
+    /// The try function body
     /// </summary>
-    export class RegularFunctionBody final : public SyntaxNode
+    export class TryFunctionBody final : public SyntaxNode
     {
     public:
-        RegularFunctionBody(std::shared_ptr<CompoundStatement> statements) :
-            SyntaxNode(SyntaxNodeType::RegularFunctionBody),
-            m_statements(statements)
+        /// <summary>
+        /// Initialize
+        /// </summary>
+        TryFunctionBody() :
+            SyntaxNode(SyntaxNodeType::TryFunctionBody),
+            m_statements(nullptr)
         {
         }
 
         /// <summary>
-        /// Gets or sets the statements
+        /// Gets the statements
         /// </summary>
         const CompoundStatement& GetStatements() const
         {
@@ -44,12 +47,12 @@ namespace Soup::Syntax
         /// <summary>
         /// Equality operator
         /// </summary>
-        bool operator ==(const RegularFunctionBody& rhs) const
+        bool operator ==(const TryFunctionBody& rhs) const
         {
             return *m_statements == *rhs.m_statements;
         }
 
-        bool operator !=(const RegularFunctionBody& rhs) const
+        bool operator !=(const TryFunctionBody& rhs) const
         {
             return !(*this == rhs);
         }
@@ -60,10 +63,10 @@ namespace Soup::Syntax
         /// </summary>
         virtual bool Equals(const SyntaxNode& rhs) const final
         {
-            return *this == static_cast<const RegularFunctionBody&>(rhs);
+            return *this == static_cast<const TryFunctionBody&>(rhs);
         }
 
     private:
-        std::shared_ptr<CompoundStatement> m_statements;
+        std::shared_ptr<const CompoundStatement> m_statements;
     };
 }

@@ -18,7 +18,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")),
                 SyntaxFactory::CreateToken(SyntaxTokenType::RightBracket, L"]"));
 
-            Assert::AreEqual<Expression>(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
                 uut->GetLeft(),
@@ -27,7 +27,7 @@ namespace Soup::Syntax::UnitTests
                 *SyntaxFactory::CreateToken(SyntaxTokenType::LeftBracket, L"["),
                 uut->GetLeftBracket(),
                 L"Verify left bracket token matches.");
-            Assert::AreEqual<Expression>(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer, 
                     SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")),
@@ -76,7 +76,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")),
                 SyntaxFactory::CreateToken(SyntaxTokenType::RightBracket, L"]"));
 
-            Assert::AreNotEqual(
+            TestUtils::AreNotEqual(
                 SyntaxFactory::CreateSubscriptExpression(
                     SyntaxFactory::CreateSimpleNameExpression(
                         SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"b")),
@@ -101,7 +101,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")),
                 SyntaxFactory::CreateToken(SyntaxTokenType::RightBracket, L"]"));
 
-            Assert::AreNotEqual(
+            TestUtils::AreNotEqual(
                 SyntaxFactory::CreateSubscriptExpression(
                     SyntaxFactory::CreateSimpleNameExpression(
                         SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
@@ -126,7 +126,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")),
                 SyntaxFactory::CreateToken(SyntaxTokenType::RightBracket, L"]"));
 
-            Assert::AreNotEqual(
+            TestUtils::AreNotEqual(
                 SyntaxFactory::CreateSubscriptExpression(
                     SyntaxFactory::CreateSimpleNameExpression(
                         SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
@@ -151,7 +151,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")),
                 SyntaxFactory::CreateToken(SyntaxTokenType::RightBracket, L"]"));
 
-            Assert::AreNotEqual(
+            TestUtils::AreNotEqual(
                 SyntaxFactory::CreateSubscriptExpression(
                     SyntaxFactory::CreateSimpleNameExpression(
                         SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),

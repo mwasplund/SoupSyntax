@@ -3,24 +3,34 @@
 
 namespace Soup::Syntax::UnitTests
 {
-    class BinaryExpressionTests
+    class FunctionDefinitionTests
     {
     public:
         // [[Fact]]
         void InitializeSimple()
         {
-            auto uut = SyntaxFactory::CreateBinaryExpression(
-                BinaryOperator::Addition,
-                SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
-                SyntaxFactory::CreateLiteralExpression(
-                    LiteralType::Integer,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
-                SyntaxFactory::CreateLiteralExpression(
-                    LiteralType::Integer,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")));
+            // void Function(int parameter) = delete;
+            auto uut = TestUtils::CreateSingleDeclaration(
+                SyntaxFactory::CreateFunctionDefinition(
+                    std::make_shared<DeclarationSpecifierSequence>(
+                        std::vector<std::shared_ptr<const SyntaxNode>>
+                        {
+                            std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Void),
+                        }),
+                    SyntaxFactory::CreateSimpleNameExpression(
+                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
+                    std::make_shared<DeclarationSpecifierSequence>(
+                        std::vector<std::shared_ptr<const SyntaxNode>>
+                        {
+                            std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Void),
+                        }),
+                    SyntaxFactory::CreateDeleteFunctionBody(
+                        SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::Delete, L"delete"),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"))));
 
             Assert::AreEqual(BinaryOperator::Addition, uut->GetOperator(), L"Verify operator matches.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
                 uut->GetOperatorToken(),
                 L"Verify operator token matches.");

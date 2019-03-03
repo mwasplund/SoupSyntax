@@ -18,7 +18,7 @@ namespace Soup::Syntax
         }
 
         /// <summary>
-        /// Gets or sets the specifiers
+        /// Gets the specifiers
         /// </summary>
         const DeclarationSpecifierSequence& GetDeclarationSpecifierSequence() const
         {
@@ -26,7 +26,7 @@ namespace Soup::Syntax
         }
 
         /// <summary>
-        /// Gets or sets the optional initializer
+        /// Gets the optional initializer
         /// </summary>
         const InitializerDeclaratorList& GetInitializerDeclaratorList() const
         {

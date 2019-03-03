@@ -2,12 +2,16 @@ import std.core;
 import Antlr4.Runtime;
 import SoupSyntax;
 
+#include "AST\Declaration\DefaultFunctionBodyTests.gen.h"
+#include "AST\Declaration\DeleteFunctionBodyTests.gen.h"
+
 #include "AST\Expression\BinaryExpressionTests.gen.h"
 #include "AST\Expression\LiteralExpressionTests.gen.h"
 #include "AST\Expression\NameExpressionTests.gen.h"
 #include "AST\Expression\SubscriptExpressionTests.gen.h"
-#include "AST\Expression\SyntaxTokenTests.gen.h"
 #include "AST\Expression\UnaryExpressionTests.gen.h"
+
+#include "AST\SyntaxTokenTests.gen.h"
 
 #include "Parser\LexerTests.gen.h"
 #include "Parser\ParserAttributesTests.gen.h"
@@ -26,12 +30,16 @@ int main()
 
     int failedCount = 0;
 
+    failedCount += RunDefaultFunctionBodyTests();
+    failedCount += RunDeleteFunctionBodyTests();
+
     failedCount += RunBinaryExpressionTests();
     failedCount += RunLiteralExpressionTests();
     failedCount += RunNameExpressionTests();
-    failedCount += RunSyntaxTokenTests();
     failedCount += RunSubscriptExpressionTests();
     failedCount += RunUnaryExpressionTests();
+
+    failedCount += RunSyntaxTokenTests();
 
     failedCount += RunLexerTests();
     failedCount += RunParserAttributesTests();

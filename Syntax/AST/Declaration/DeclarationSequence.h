@@ -3,27 +3,26 @@
 namespace Soup::Syntax
 {
     /// <summary>
-    /// The initializer declarator list node
+    /// Declaration sequence
     /// </summary>
-    export class InitializerDeclaratorList final : public SyntaxNode
+    export class DeclarationSequence final : public SyntaxNode
     {
     public:
         /// <summary>
         /// Initialize
         /// </summary>
-        InitializerDeclaratorList(
-            std::vector<std::shared_ptr<const InitializerDeclarator>> items) :
-            SyntaxNode(SyntaxNodeType::InitializerDeclaratorList),
-            m_items(std::move(items))
+        DeclarationSequence(std::vector<std::shared_ptr<const Declaration>> declarations) :
+            SyntaxNode(SyntaxNodeType::DeclarationSequence),
+            m_declarations(std::move(declarations))
         {
         }
 
         /// <summary>
-        /// Gets or sets the list of items
+        /// Gets the list of declarations
         /// </summary>
-        const std::vector<std::shared_ptr<const InitializerDeclarator>>& GetItems() const
+        const std::vector<std::shared_ptr<const Declaration>>& GetDeclarations() const
         {
-            return m_items;
+            return m_declarations;
         }
 
         /// <summary>
@@ -32,9 +31,9 @@ namespace Soup::Syntax
         virtual std::vector<SyntaxNodeChild> GetChildren() const override final
         {
             std::vector<SyntaxNodeChild> children;
-            for (auto& item : m_items)
+            for (auto& declaration : m_declarations)
             {
-                children.push_back(SyntaxNodeChild(*item));
+                children.push_back(SyntaxNodeChild(*declaration));
             }
 
             return children;
@@ -51,34 +50,34 @@ namespace Soup::Syntax
         /// <summary>
         /// Equality operator
         /// </summary>
-        bool operator ==(const InitializerDeclaratorList& rhs) const
+        bool operator ==(const DeclarationSequence& rhs) const
         {
             return std::equal(
-                begin(m_items),
-                end(m_items),
-                begin(rhs.m_items),
-                end(rhs.m_items),
-                [](const std::shared_ptr<const InitializerDeclarator>& lhs, const std::shared_ptr<const InitializerDeclarator>& rhs)
+                begin(m_declarations),
+                end(m_declarations),
+                begin(rhs.m_declarations),
+                end(rhs.m_declarations),
+                [](const std::shared_ptr<const Declaration>& lhs, const std::shared_ptr<const Declaration>& rhs)
                 {
                     return *lhs == *rhs;
                 });
         }
 
-        bool operator !=(const InitializerDeclaratorList& rhs) const
+        bool operator !=(const DeclarationSequence& rhs) const
         {
             return !(*this == rhs);
         }
 
-    protected:
+    private:
         /// <summary>
         /// SyntaxNode Equals
         /// </summary>
         virtual bool Equals(const SyntaxNode& rhs) const final
         {
-            return *this == static_cast<const InitializerDeclaratorList&>(rhs);
+            return *this == static_cast<const DeclarationSequence&>(rhs);
         }
-
+        
     private:
-        std::vector<std::shared_ptr<const InitializerDeclarator>> m_items;
+        std::vector<std::shared_ptr<const Declaration>> m_declarations;
     };
 }

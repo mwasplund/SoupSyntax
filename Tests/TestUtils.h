@@ -1,4 +1,5 @@
 #pragma once
+#include "SoupAssert.h"
 
 namespace Soup::Syntax::UnitTests
 {
@@ -68,18 +69,57 @@ class TestUtils
                     std::move(declaration)}));
     }
 
-    static void CompareAST(
-        const std::shared_ptr<const TranslationUnit>& expected,
-        const std::shared_ptr<const TranslationUnit>& actual)
+    static void AreEqual(
+        const std::shared_ptr<const SyntaxNode>& expected,
+        const std::shared_ptr<const SyntaxNode>& actual,
+        const std::wstring& message)
     {
-        std::wstringstream message;
-        SyntaxWriter writer(message);
-        message << L"Verify AST matches: \n";
-        expected->Accept(writer);
-        message << L"\n\n";
-        actual->Accept(writer);
+        if (actual == nullptr)
+        {
+            Assert::Fail(L"Actual was null.");
+        }
+        else if (expected == nullptr)
+        {
+            Assert::Fail(L"Expected was null.");
+        }
 
-        Assert::AreEqual(expected, actual, message.str());
+        AreEqual(*expected, *actual, message);
+    }
+
+    static void AreEqual(
+        const SyntaxNode& expected,
+        const SyntaxNode& actual,
+        const std::wstring& message)
+    {
+        if (expected != actual)
+        {
+            std::wstringstream errorMessage;
+            SyntaxWriter writer(errorMessage);
+            errorMessage << message << L"\n";
+            expected.Accept(writer);
+            errorMessage << L"\n\n";
+            actual.Accept(writer);
+
+            Assert::Fail(errorMessage.str());
+        }
+    }
+
+    static void AreNotEqual(
+        const std::shared_ptr<const SyntaxNode>& expected,
+        const std::shared_ptr<const SyntaxNode>& actual,
+        const std::wstring& message)
+    {
+        if (*expected == *actual)
+        {
+            std::wstringstream errorMessage;
+            SyntaxWriter writer(errorMessage);
+            errorMessage << message << L"\n";
+            expected->Accept(writer);
+            errorMessage << L"\n\n";
+            actual->Accept(writer);
+
+            Assert::Fail(errorMessage.str());
+        }
     }
 };
 } // namespace Soup::Syntax::UnitTests

@@ -3200,7 +3200,6 @@ public:
     AttributeSpecifierSequenceContext *attributeSpecifierSequence();
     antlr4::tree::TerminalNode *Equal();
     InitializerClauseContext *initializerClause();
-    AbstractDeclaratorContext *abstractDeclarator();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;

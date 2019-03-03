@@ -18,7 +18,7 @@ namespace Soup::Syntax
         }
 
         /// <summary>
-        /// Gets or sets the list of statements
+        /// Gets the list of statements
         /// </summary>
         const std::vector<std::shared_ptr<const Statement>>& GetStatements() const
         {

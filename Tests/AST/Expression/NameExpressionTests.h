@@ -104,7 +104,7 @@ namespace Soup::Syntax::UnitTests
             auto uut = SyntaxFactory::CreateSimpleNameExpression(
                 SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"name"));
 
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"name")),
                 uut,
@@ -117,7 +117,7 @@ namespace Soup::Syntax::UnitTests
             auto uut = SyntaxFactory::CreateSimpleNameExpression(
                 SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"name"));
 
-            Assert::AreNotEqual(
+            TestUtils::AreNotEqual(
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"name2")),
                 uut,
@@ -133,7 +133,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Right")));
 
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 SyntaxFactory::CreateQualifiedNameExpression(
                     nullptr,
                     SyntaxFactory::CreateToken(SyntaxTokenType::DoubleColon, L"::"),
@@ -152,7 +152,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Right")));
 
-            Assert::AreNotEqual(
+            TestUtils::AreNotEqual(
                 SyntaxFactory::CreateQualifiedNameExpression(
                     SyntaxFactory::CreateSimpleNameExpression(
                         SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Left")),
@@ -172,7 +172,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Right")));
 
-            Assert::AreNotEqual(
+            TestUtils::AreNotEqual(
                 SyntaxFactory::CreateQualifiedNameExpression(
                     nullptr,
                     SyntaxFactory::CreateToken(SyntaxTokenType::DoubleColon, L":"),
@@ -191,7 +191,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Right")));
 
-            Assert::AreNotEqual(
+            TestUtils::AreNotEqual(
                 SyntaxFactory::CreateQualifiedNameExpression(
                     nullptr,
                     SyntaxFactory::CreateToken(SyntaxTokenType::DoubleColon, L"::"),
@@ -211,7 +211,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Right")));
 
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 SyntaxFactory::CreateQualifiedNameExpression(
                     SyntaxFactory::CreateSimpleNameExpression(
                         SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Left")),
@@ -232,7 +232,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Right")));
 
-            Assert::AreNotEqual(
+            TestUtils::AreNotEqual(
                 SyntaxFactory::CreateQualifiedNameExpression(
                     SyntaxFactory::CreateSimpleNameExpression(
                         SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Left1")),
@@ -253,7 +253,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Right")));
 
-            Assert::AreNotEqual(
+            TestUtils::AreNotEqual(
                 SyntaxFactory::CreateQualifiedNameExpression(
                     nullptr,
                     SyntaxFactory::CreateToken(SyntaxTokenType::DoubleColon, L"::"),
@@ -273,7 +273,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Right")));
 
-            Assert::AreNotEqual(
+            TestUtils::AreNotEqual(
                 SyntaxFactory::CreateQualifiedNameExpression(
                     SyntaxFactory::CreateSimpleNameExpression(
                         SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Left")),
@@ -294,7 +294,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Right")));
 
-            Assert::AreNotEqual(
+            TestUtils::AreNotEqual(
                 SyntaxFactory::CreateQualifiedNameExpression(
                     SyntaxFactory::CreateSimpleNameExpression(
                         SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Left")),

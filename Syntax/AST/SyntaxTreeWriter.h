@@ -22,6 +22,7 @@ namespace Soup::Syntax
                 m_stream << L"  ";
             }
 
+            std::wcout << ToString(node.GetType()) << std::endl;
             m_stream << ToString(node.GetType());
             // if (node is IdentifierNameSyntax name)
             // {
@@ -89,6 +90,8 @@ namespace Soup::Syntax
                     return L"DefaultFunctionBody";
                 case SyntaxNodeType::DeleteFunctionBody:
                     return L"DeleteFunctionBody";
+                case SyntaxNodeType::FunctionDeclaration:
+                    return L"FunctionDeclaration";
                 case SyntaxNodeType::FunctionDefinition:
                     return L"FunctionDefinition";
                 case SyntaxNodeType::InitializerDeclarator:

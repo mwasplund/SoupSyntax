@@ -756,9 +756,9 @@ parameterDeclarationList:
 
 parameterDeclaration:
 	attributeSpecifierSequence? declarationSpecifierSequence declarator |
-	attributeSpecifierSequence? declarationSpecifierSequence declarator Equal initializerClause |
-	attributeSpecifierSequence? declarationSpecifierSequence abstractDeclarator? |
-	attributeSpecifierSequence? declarationSpecifierSequence abstractDeclarator? Equal initializerClause;
+	attributeSpecifierSequence? declarationSpecifierSequence declarator Equal initializerClause; // |
+	// TODO attributeSpecifierSequence? declarationSpecifierSequence abstractDeclarator? |
+	// TODO attributeSpecifierSequence? declarationSpecifierSequence abstractDeclarator? Equal initializerClause;
 
 functionDefinition:
 	attributeSpecifierSequence? declarationSpecifierSequence? functionDeclarator virtualSpecifierSequence? functionBody;

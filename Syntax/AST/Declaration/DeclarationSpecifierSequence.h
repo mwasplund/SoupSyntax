@@ -3,26 +3,27 @@
 namespace Soup::Syntax
 {
     /// <summary>
-    /// Declaration sequence
+    /// Declaration specifier sequence
     /// </summary>
-    export class DeclarationSequence final : public SyntaxNode
+    export class DeclarationSpecifierSequence final : public SyntaxNode
     {
     public:
         /// <summary>
         /// Initialize
         /// </summary>
-        DeclarationSequence(std::vector<std::shared_ptr<const Declaration>> declarations) :
-            SyntaxNode(SyntaxNodeType::DeclarationSequence),
-            m_declarations(std::move(declarations))
+        DeclarationSpecifierSequence(
+            std::vector<std::shared_ptr<const SyntaxNode>> specifiers) :
+            SyntaxNode(SyntaxNodeType::DeclarationSpecifierSequence),
+            m_specifiers(std::move(specifiers))
         {
         }
 
         /// <summary>
-        /// Gets or sets the list of declarations
+        /// Gets the list of declaration specifiers
         /// </summary>
-        const std::vector<std::shared_ptr<const Declaration>>& GetDeclarations() const
+        const std::vector<std::shared_ptr<const SyntaxNode>>& GetSpecifiers() const
         {
-            return m_declarations;
+            return m_specifiers;
         }
 
         /// <summary>
@@ -31,9 +32,9 @@ namespace Soup::Syntax
         virtual std::vector<SyntaxNodeChild> GetChildren() const override final
         {
             std::vector<SyntaxNodeChild> children;
-            for (auto& declaration : m_declarations)
+            for (auto& specifier : m_specifiers)
             {
-                children.push_back(SyntaxNodeChild(*declaration));
+                children.push_back(SyntaxNodeChild(*specifier));
             }
 
             return children;
@@ -50,34 +51,34 @@ namespace Soup::Syntax
         /// <summary>
         /// Equality operator
         /// </summary>
-        bool operator ==(const DeclarationSequence& rhs) const
+        bool operator ==(const DeclarationSpecifierSequence& rhs) const
         {
             return std::equal(
-                begin(m_declarations),
-                end(m_declarations),
-                begin(rhs.m_declarations),
-                end(rhs.m_declarations),
-                [](const std::shared_ptr<const Declaration>& lhs, const std::shared_ptr<const Declaration>& rhs)
+                begin(m_specifiers),
+                end(m_specifiers),
+                begin(rhs.m_specifiers),
+                end(rhs.m_specifiers),
+                [](const std::shared_ptr<const SyntaxNode>& lhs, const std::shared_ptr<const SyntaxNode>& rhs)
                 {
                     return *lhs == *rhs;
                 });
         }
 
-        bool operator !=(const DeclarationSequence& rhs) const
+        bool operator !=(const DeclarationSpecifierSequence& rhs) const
         {
             return !(*this == rhs);
         }
 
-    private:
+    protected:
         /// <summary>
         /// SyntaxNode Equals
         /// </summary>
         virtual bool Equals(const SyntaxNode& rhs) const final
         {
-            return *this == static_cast<const DeclarationSequence&>(rhs);
+            return *this == static_cast<const DeclarationSpecifierSequence&>(rhs);
         }
-        
+
     private:
-        std::vector<std::shared_ptr<const Declaration>> m_declarations;
+        std::vector<std::shared_ptr<const SyntaxNode>> m_specifiers;
     };
 }

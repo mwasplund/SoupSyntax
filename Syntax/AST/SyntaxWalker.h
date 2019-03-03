@@ -17,19 +17,20 @@ namespace Soup::Syntax
 
         virtual void DefaultVisit(const SyntaxNode& node) override
         {
+            m_depth++;
             for (auto& child : node.GetChildren())
             {
                 if (child.IsNode())
                 {
-                    m_depth++;
                     child.AsNode().Accept(*this);
-                    m_depth--;
                 }
                 else
                 {
                     VisitToken(child.AsToken());
                 }
             }
+
+            m_depth--;
         }
 
         virtual void VisitToken(const SyntaxToken& token)

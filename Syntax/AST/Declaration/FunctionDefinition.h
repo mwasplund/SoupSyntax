@@ -3,16 +3,18 @@
 namespace Soup::Syntax
 {
     /// <summary>
-    /// The function definition
+    /// The function definition class.
     /// </summary>
     export class FunctionDefinition final : public Declaration
     {
-    public:
+        friend class SyntaxFactory;
+
+    private:
         FunctionDefinition(
-            std::shared_ptr<const DeclarationSpecifierSequence>&& returnType,
-            std::shared_ptr<const NameExpression>&& identifier,
-            std::shared_ptr<const ParameterList>&& parameterList,
-            std::shared_ptr<const SyntaxNode>&& body) :
+            std::shared_ptr<const DeclarationSpecifierSequence> returnType,
+            std::shared_ptr<const NameExpression> identifier,
+            std::shared_ptr<const ParameterList> parameterList,
+            std::shared_ptr<const SyntaxNode> body) :
             Declaration(SyntaxNodeType::FunctionDefinition),
             m_returnType(std::move(returnType)),
             m_identifier(std::move(identifier)),
@@ -21,8 +23,9 @@ namespace Soup::Syntax
         {
         }
 
+    public:
         /// <summary>
-        /// Gets or sets the return type
+        /// Gets the return type
         /// </summary>
         const DeclarationSpecifierSequence& GetReturnType() const
         {
@@ -30,7 +33,7 @@ namespace Soup::Syntax
         }
 
         /// <summary>
-        /// Gets or sets the identifier
+        /// Gets the identifier
         /// </summary>
         const NameExpression& GetIdentifier() const
         {
@@ -38,15 +41,26 @@ namespace Soup::Syntax
         }
 
         /// <summary>
-        /// Gets or sets the parameter list
+        /// Gets a value indicating whether there is a parameter list
+        /// </summary>
+        bool HasParameterList() const
+        {
+            return m_parameterList != nullptr;
+        }
+
+        /// <summary>
+        /// Gets the parameter list
         /// </summary>
         const ParameterList& GetParameterList() const
         {
+            if (!HasParameterList())
+                throw std::runtime_error("Function does not have parameter list.");
+
             return *m_parameterList;
         }
 
         /// <summary>
-        /// Gets or sets the body
+        /// Gets the body
         /// </summary>
         const SyntaxNode& GetBody() const
         {
@@ -58,13 +72,19 @@ namespace Soup::Syntax
         /// </summary>
         virtual std::vector<SyntaxNodeChild> GetChildren() const override final
         {
-            return std::vector<SyntaxNodeChild>(
-                {
-                    SyntaxNodeChild(*m_returnType),
-                    SyntaxNodeChild(*m_identifier),
-                    SyntaxNodeChild(*m_parameterList),
-                    SyntaxNodeChild(*m_body),
-                });
+            std::vector<SyntaxNodeChild> children;
+
+            children.push_back(SyntaxNodeChild(*m_returnType));
+            children.push_back(SyntaxNodeChild(*m_identifier));
+
+            if (HasParameterList())
+            {
+                children.push_back(SyntaxNodeChild(*m_parameterList));
+            }
+
+            children.push_back(SyntaxNodeChild(*m_body));
+
+            return children;
         }
 
         /// <summary>

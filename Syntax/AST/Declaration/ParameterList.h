@@ -11,14 +11,14 @@ namespace Soup::Syntax
         /// <summary>
         /// Initialize
         /// </summary>
-        ParameterList() :
+        ParameterList(std::vector<std::shared_ptr<const SyntaxNode>> parameters) :
             SyntaxNode(SyntaxNodeType::ParameterList),
-            m_parameters()
+            m_parameters(std::move(parameters))
         {
         }
 
         /// <summary>
-        /// Gets or sets the list of parameters
+        /// Gets the list of parameters
         /// </summary>
         const std::vector<std::shared_ptr<const SyntaxNode>>& GetParameters() const
         {

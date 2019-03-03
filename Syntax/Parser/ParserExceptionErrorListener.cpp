@@ -42,7 +42,11 @@ void ParserExceptionErrorListener::reportAmbiguity(
         ATNConfigSet *configs)
 {
     std::stringstream errorMessage;
-    errorMessage << "ParserExceptionErrorListener::reportAmbiguity" << " index " << startIndex << ":" << stopIndex << " - " << ambigAlts;
+    errorMessage << "ParserExceptionErrorListener::reportAmbiguity" << " index " << startIndex << ":" << stopIndex;
+    errorMessage << "\n" << GetDecisionDescription(recognizer, dfa) << std::endl;
+    errorMessage << "\n" << const_cast<BitSet&>(ambigAlts).toString() << std::endl;
+    errorMessage << "\n" << GetAlternatesDescription(configs) << std::endl;
+
     throw ParseCancellationException(errorMessage.str());
 }
 

@@ -19,7 +19,7 @@ namespace Soup::Syntax
         }
 
         /// <summary>
-        /// Gets or sets the type
+        /// Gets the type
         /// </summary>
         PrimitiveDataType GetPrimitiveType() const
         {

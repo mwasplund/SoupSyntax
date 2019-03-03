@@ -41,7 +41,6 @@ namespace Soup::Syntax::UnitTests
         // [InlineData("::std::count")]
         void SingleRule_QualifiedIdentifier(std::string sourceCode)
         {
-            std::cout << L"SingleRule_QualifiedIdentifier: L" << sourceCode << std::endl;
             auto uut = TestUtils::BuildParser(sourceCode);
             auto context = uut.Parser->qualifiedIdentifier();
             Assert::NotNull(context, L"Verify context is not null.");

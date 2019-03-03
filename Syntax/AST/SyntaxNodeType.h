@@ -14,6 +14,7 @@ namespace Soup::Syntax
         DeclarationSpecifierSequence,
         DefaultFunctionBody,
         DeleteFunctionBody,
+        FunctionDeclaration,
         FunctionDefinition,
         InitializerDeclarator,
         InitializerDeclaratorList,
