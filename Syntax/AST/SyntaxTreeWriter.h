@@ -22,7 +22,6 @@ namespace Soup::Syntax
                 m_stream << L"  ";
             }
 
-            std::wcout << ToString(node.GetType()) << std::endl;
             m_stream << ToString(node.GetType());
             // if (node is IdentifierNameSyntax name)
             // {
@@ -49,9 +48,11 @@ namespace Soup::Syntax
                 m_stream << L"  ";
             }
 
-            m_stream << L"Token: [";
+            m_stream << L"Token: ";
             m_stream << token.GetValue();
-            m_stream << L"]\n";
+            m_stream << L" [";
+            m_stream << token.GetSpan().GetStart() << L", ";
+            m_stream << token.GetSpan().GetEnd() << L")\n";
 
             // Write the trailing trivia
             for (auto& trivia : token.GetTrailingTrivia())
@@ -69,9 +70,11 @@ namespace Soup::Syntax
                 m_stream << L"  ";
             }
 
-            m_stream << location << L"Trivia: [";
+            m_stream << location << L"Trivia: \"";
             m_stream << trivia.GetValue();
-            m_stream << L"]\n";
+            m_stream << L"\" [";
+            m_stream << trivia.GetSpan().GetStart() << L", ";
+            m_stream << trivia.GetSpan().GetEnd() << L")\n";
         }
 
         const wchar_t* ToString(SyntaxNodeType type)

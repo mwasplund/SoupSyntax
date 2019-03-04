@@ -30,6 +30,14 @@ namespace Soup::Syntax
         }
 
         /// <summary>
+        /// Get the first token outside the range of the span
+        /// </summary>
+        uint32_t GetEnd() const
+        {
+            return m_start + m_length;
+        }
+
+        /// <summary>
         /// Get the Span length
         /// </summary>
         uint32_t GetLength() const

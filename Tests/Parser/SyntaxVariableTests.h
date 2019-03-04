@@ -18,7 +18,9 @@ namespace Soup::Syntax::UnitTests
                     std::make_shared<DeclarationSpecifierSequence>(
                         std::vector<std::shared_ptr<const SyntaxNode>>
                         {
-                            std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Int),
+                            std::make_shared<PrimitiveDataTypeNode>(
+                                PrimitiveDataType::Int,
+                                SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
                         }),
                     std::make_shared<InitializerDeclaratorList>(
                         std::vector<std::shared_ptr<const InitializerDeclarator>>
@@ -45,7 +47,9 @@ namespace Soup::Syntax::UnitTests
                     std::make_shared<DeclarationSpecifierSequence>(
                         std::vector<std::shared_ptr<const SyntaxNode>>
                         {
-                            std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Int),
+                            std::make_shared<PrimitiveDataTypeNode>(
+                                PrimitiveDataType::Int,
+                                SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
                         }),
                     std::make_shared<InitializerDeclaratorList>(
                         std::vector<std::shared_ptr<const InitializerDeclarator>>
@@ -58,9 +62,7 @@ namespace Soup::Syntax::UnitTests
                                         {
                                             SyntaxFactory::CreateTrivia(L" ", TextSpan())
                                         },
-                                        {
-                                            SyntaxFactory::CreateTrivia(L" ", TextSpan())
-                                        })),
+                                        {})),
                                 SyntaxFactory::CreateLiteralExpression(
                                     LiteralType::Integer,
                                     SyntaxFactory::CreateToken(
@@ -69,8 +71,7 @@ namespace Soup::Syntax::UnitTests
                                         {
                                             SyntaxFactory::CreateTrivia(L" ", TextSpan())
                                         },
-                                        {
-                                        }))),
+                                        {}))),
                         })));
 
             auto actual = TestUtils::GenerateAST(source);
@@ -93,7 +94,7 @@ namespace Soup::Syntax::UnitTests
         // [[InlineData("double", PrimitiveDataType.Double)]]
         // [[InlineData("void", PrimitiveDataType.Void)]]
         // [[InlineData("auto", PrimitiveDataType.Auto)]]
-        void GlobalPrimitiveVariable(std::string typeString, PrimitiveDataType type)
+        void GlobalPrimitiveVariable(std::string typeString, PrimitiveDataType type, SyntaxTokenType tokenType)
         {
             auto globalType = typeString + " GlobalVariable = 1;";
 
@@ -102,7 +103,9 @@ namespace Soup::Syntax::UnitTests
                     std::make_shared<DeclarationSpecifierSequence>(
                         std::vector<std::shared_ptr<const SyntaxNode>>
                         {
-                            std::make_shared<PrimitiveDataTypeNode>(type),
+                            std::make_shared<PrimitiveDataTypeNode>(
+                                type,
+                                SyntaxFactory::CreateToken(tokenType, Convert(typeString))),
                         }),
                     std::make_shared<InitializerDeclaratorList>(
                         std::vector<std::shared_ptr<const InitializerDeclarator>>
@@ -115,9 +118,7 @@ namespace Soup::Syntax::UnitTests
                                         {
                                             SyntaxFactory::CreateTrivia(L" ", TextSpan())
                                         },
-                                        {
-                                            SyntaxFactory::CreateTrivia(L" ", TextSpan())
-                                        })),
+                                        {})),
                                 SyntaxFactory::CreateLiteralExpression(
                                     LiteralType::Integer,
                                     SyntaxFactory::CreateToken(
@@ -126,8 +127,7 @@ namespace Soup::Syntax::UnitTests
                                         {
                                             SyntaxFactory::CreateTrivia(L" ", TextSpan())
                                         },
-                                        {
-                                        }))),
+                                        {}))),
                         })));
 
             auto actual = TestUtils::GenerateAST(globalType);
@@ -146,7 +146,9 @@ namespace Soup::Syntax::UnitTests
                     std::make_shared<DeclarationSpecifierSequence>(
                         std::vector<std::shared_ptr<const SyntaxNode>>
                         {
-                            std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Int),
+                            std::make_shared<PrimitiveDataTypeNode>(
+                                PrimitiveDataType::Int,
+                                SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
                         }),
                     std::make_shared<InitializerDeclaratorList>(
                         std::vector<std::shared_ptr<const InitializerDeclarator>>
@@ -159,9 +161,7 @@ namespace Soup::Syntax::UnitTests
                                         {
                                             SyntaxFactory::CreateTrivia(L" ", TextSpan())
                                         },
-                                        {
-                                            SyntaxFactory::CreateTrivia(L" ", TextSpan())
-                                        })),
+                                        {})),
                                 SyntaxFactory::CreateLiteralExpression(
                                     LiteralType::Integer,
                                     SyntaxFactory::CreateToken(
@@ -170,8 +170,7 @@ namespace Soup::Syntax::UnitTests
                                         {
                                             SyntaxFactory::CreateTrivia(L" ", TextSpan())
                                         },
-                                        {
-                                        }))),
+                                        {}))),
                             std::make_shared<InitializerDeclarator>(
                                 SyntaxFactory::CreateSimpleNameExpression(
                                     SyntaxFactory::CreateToken(
@@ -180,9 +179,7 @@ namespace Soup::Syntax::UnitTests
                                         {
                                             SyntaxFactory::CreateTrivia(L" ", TextSpan())
                                         },
-                                        {
-                                            SyntaxFactory::CreateTrivia(L" ", TextSpan())
-                                        })),
+                                        {})),
                                 SyntaxFactory::CreateLiteralExpression(
                                     LiteralType::Integer,
                                     SyntaxFactory::CreateToken(
@@ -191,13 +188,21 @@ namespace Soup::Syntax::UnitTests
                                         {
                                             SyntaxFactory::CreateTrivia(L" ", TextSpan())
                                         },
-                                        {
-                                        }))),
+                                        {}))),
                         })));
 
             auto actual = TestUtils::GenerateAST(source);
 
             TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
+
+    private:
+        std::wstring Convert(const std::string& value)
+        {
+            // Convert the token text to wide characters
+            std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+            return converter.from_bytes(value);
+        }
+
     };
 }

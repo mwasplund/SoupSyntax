@@ -32,6 +32,7 @@ namespace Soup::Syntax
     class FunctionDefinition;
     class InitializerDeclarator;
     class InitializerDeclaratorList;
+    class Parameter;
     class ParameterList;
     class RegularFunctionBody;
     class SimpleDefinition;
@@ -70,6 +71,7 @@ namespace Soup::Syntax
 #include "AST\Declaration\DeclarationSpecifierSequence.h"
 #include "AST\Declaration\DefaultFunctionBody.h"
 #include "AST\Declaration\DeleteFunctionBody.h"
+#include "AST\Declaration\Parameter.h"
 #include "AST\Declaration\ParameterList.h"
 #include "AST\Declaration\FunctionDeclaration.h"
 #include "AST\Declaration\FunctionDefinition.h"

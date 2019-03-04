@@ -15,14 +15,18 @@ namespace Soup::Syntax::UnitTests
                     std::make_shared<DeclarationSpecifierSequence>(
                         std::vector<std::shared_ptr<const SyntaxNode>>
                         {
-                            std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Void),
+                            std::make_shared<PrimitiveDataTypeNode>(
+                                PrimitiveDataType::Void,
+                                SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void")),
                         }),
                     SyntaxFactory::CreateSimpleNameExpression(
                         SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
                     std::make_shared<DeclarationSpecifierSequence>(
                         std::vector<std::shared_ptr<const SyntaxNode>>
                         {
-                            std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Void),
+                            std::make_shared<PrimitiveDataTypeNode>(
+                                PrimitiveDataType::Void,
+                                SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void")),
                         }),
                     SyntaxFactory::CreateDeleteFunctionBody(
                         SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),

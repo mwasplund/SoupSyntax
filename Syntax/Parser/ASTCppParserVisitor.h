@@ -231,6 +231,9 @@ namespace Soup::Syntax
         virtual antlrcpp::Any visitUserDefinedLiteral(CppParser::UserDefinedLiteralContext *context) override final;
 
     private:
+        size_t GetFirstNewlinePosition(const std::vector<antlr4::Token*>& tokens);
+        std::vector<SyntaxTrivia> GetLeadingTrivia(size_t index);
+        std::vector<SyntaxTrivia> GetTrailingTrivia(size_t index);
         std::shared_ptr<const SyntaxToken> CreateToken(
             SyntaxTokenType type,
             antlr4::tree::TerminalNode* terminalNode);

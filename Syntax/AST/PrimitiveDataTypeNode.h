@@ -12,9 +12,12 @@ namespace Soup::Syntax
         /// <summary>
         /// Initialize
         /// </summary>
-        PrimitiveDataTypeNode(PrimitiveDataType type) :
+        PrimitiveDataTypeNode(
+            PrimitiveDataType type,
+            std::shared_ptr<const SyntaxToken> token) :
             SyntaxNode(SyntaxNodeType::PrimitiveDataTypeNode),
-            m_type(type)
+            m_type(type),
+            m_token(std::move(token))
         {
         }
 
@@ -27,12 +30,21 @@ namespace Soup::Syntax
         }
 
         /// <summary>
+        /// Gets the token
+        /// </summary>
+        const SyntaxToken& GetToken() const
+        {
+            return *m_token;
+        }
+
+        /// <summary>
         /// Get the collection of children nodes and tokens
         /// </summary>
         virtual std::vector<SyntaxNodeChild> GetChildren() const override final
         {
             return std::vector<SyntaxNodeChild>(
                 {
+                    SyntaxNodeChild(*m_token),
                 });
         }
 
@@ -49,7 +61,8 @@ namespace Soup::Syntax
         /// </summary>
         bool operator ==(const PrimitiveDataTypeNode& rhs) const
         {
-            return m_type == rhs.m_type;
+            return m_type == rhs.m_type &&
+                *m_token == *rhs.m_token;
         }
 
         bool operator !=(const PrimitiveDataTypeNode& rhs) const
@@ -68,5 +81,6 @@ namespace Soup::Syntax
 
     private:
         PrimitiveDataType m_type;
+        std::shared_ptr<const SyntaxToken> m_token;
     };
 }

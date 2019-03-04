@@ -96,8 +96,9 @@ class TestUtils
             std::wstringstream errorMessage;
             SyntaxWriter writer(errorMessage);
             errorMessage << message << L"\n";
+            errorMessage << L"Expected:\n";
             expected.Accept(writer);
-            errorMessage << L"\n\n";
+            errorMessage << L"Actual:\n";
             actual.Accept(writer);
 
             Assert::Fail(errorMessage.str());
@@ -114,8 +115,9 @@ class TestUtils
             std::wstringstream errorMessage;
             SyntaxWriter writer(errorMessage);
             errorMessage << message << L"\n";
+            errorMessage << L"Expected:\n";
             expected->Accept(writer);
-            errorMessage << L"\n\n";
+            errorMessage << L"Actual:\n";
             actual->Accept(writer);
 
             Assert::Fail(errorMessage.str());

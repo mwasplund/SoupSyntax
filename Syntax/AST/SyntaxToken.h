@@ -44,6 +44,14 @@ namespace Soup::Syntax
         }
 
         /// <summary>
+        /// Get the span of the token
+        /// </summary>
+        TextSpan GetSpan() const
+        {
+            return TextSpan();
+        }
+
+        /// <summary>
         /// Get the leading Trivia
         /// </summary>
         const std::vector<SyntaxTrivia>& GetLeadingTrivia() const

@@ -10,18 +10,37 @@ namespace Soup::Syntax::UnitTests
         void SimpleFunctionRegular()
         {
             auto source = std::string(
-                "void Function(){}");
+                "void Function() \n {\n}");
 
             auto expected = TestUtils::CreateSingleDeclaration(
                 SyntaxFactory::CreateFunctionDefinition(
                     std::make_shared<DeclarationSpecifierSequence>(
                         std::vector<std::shared_ptr<const SyntaxNode>>
                         {
-                            std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Void),
+                            std::make_shared<PrimitiveDataTypeNode>(
+                                PrimitiveDataType::Void,
+                                SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void")),
                         }),
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
-                    nullptr,
+                        SyntaxFactory::CreateToken(
+                            SyntaxTokenType::Identifier,
+                            L"Function",
+                            {
+                                SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0)),
+                            },
+                            {})),
+                    std::make_shared<ParameterList>(
+                        SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"("),
+                        std::make_shared<SyntaxList<Parameter>>(
+                            std::vector<std::shared_ptr<const Parameter>>(),
+                            std::vector<std::shared_ptr<const SyntaxToken>>()),
+                        SyntaxFactory::CreateToken(
+                            SyntaxTokenType::RightParenthesis,
+                            L")",
+                            {},
+                            {
+                                SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0)),
+                            })),
                     std::make_shared<RegularFunctionBody>(
                         std::make_shared<CompoundStatement>(
                             std::vector<std::shared_ptr<const Statement>>
@@ -44,14 +63,39 @@ namespace Soup::Syntax::UnitTests
                     std::make_shared<DeclarationSpecifierSequence>(
                         std::vector<std::shared_ptr<const SyntaxNode>>
                         {
-                            std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Void),
+                            std::make_shared<PrimitiveDataTypeNode>(
+                                PrimitiveDataType::Void,
+                                SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void")),
                         }),
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
-                    nullptr,
+                        SyntaxFactory::CreateToken(
+                            SyntaxTokenType::Identifier,
+                            L"Function",
+                            {
+                                SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0)),
+                            },
+                            {})),
+                    std::make_shared<ParameterList>(
+                        SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"("),
+                        std::make_shared<SyntaxList<Parameter>>(
+                            std::vector<std::shared_ptr<const Parameter>>(),
+                            std::vector<std::shared_ptr<const SyntaxToken>>()),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::RightParenthesis, L")")),
                     SyntaxFactory::CreateDefaultFunctionBody(
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Default, L"default"),
+                        SyntaxFactory::CreateToken(
+                            SyntaxTokenType::Equal,
+                            L"=",
+                            {
+                                SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0)),
+                            },
+                            {}),
+                        SyntaxFactory::CreateToken(
+                            SyntaxTokenType::Default,
+                            L"default",
+                            {
+                                SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0)),
+                            },
+                            {}),
                         SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"))));
 
             auto actual = TestUtils::GenerateAST(source);
@@ -70,14 +114,39 @@ namespace Soup::Syntax::UnitTests
                     std::make_shared<DeclarationSpecifierSequence>(
                         std::vector<std::shared_ptr<const SyntaxNode>>
                         {
-                            std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Void),
+                            std::make_shared<PrimitiveDataTypeNode>(
+                                PrimitiveDataType::Void,
+                                SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void")),
                         }),
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
-                    nullptr,
+                        SyntaxFactory::CreateToken(
+                            SyntaxTokenType::Identifier,
+                            L"Function",
+                            {
+                                SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0)),
+                            },
+                            {})),
+                    std::make_shared<ParameterList>(
+                        SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"("),
+                        std::make_shared<SyntaxList<Parameter>>(
+                            std::vector<std::shared_ptr<const Parameter>>(),
+                            std::vector<std::shared_ptr<const SyntaxToken>>()),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::RightParenthesis, L")")),
                     SyntaxFactory::CreateDeleteFunctionBody(
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Delete, L"delete"),
+                        SyntaxFactory::CreateToken(
+                            SyntaxTokenType::Equal,
+                            L"=",
+                            {
+                                SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0)),
+                            },
+                            {}),
+                        SyntaxFactory::CreateToken(
+                            SyntaxTokenType::Delete,
+                            L"delete",
+                            {
+                                SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0)),
+                            },
+                            {}),
                         SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"))));
 
             auto actual = TestUtils::GenerateAST(source);
@@ -96,18 +165,39 @@ namespace Soup::Syntax::UnitTests
                     std::make_shared<DeclarationSpecifierSequence>(
                         std::vector<std::shared_ptr<const SyntaxNode>>
                         {
-                            std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Void),
+                            std::make_shared<PrimitiveDataTypeNode>(
+                                PrimitiveDataType::Void,
+                                SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void")),
                         }),
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
+                        SyntaxFactory::CreateToken(
+                            SyntaxTokenType::Identifier,
+                            L"Function",
+                            {
+                                SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0)),
+                            },
+                            {})),
                     std::make_shared<ParameterList>(
-                        std::vector<std::shared_ptr<const SyntaxNode>>
-                        {
-                            std::make_shared<PrimitiveDataTypeNode>(PrimitiveDataType::Void),
-                        }),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"("),
+                        std::make_shared<SyntaxList<Parameter>>(
+                            std::vector<std::shared_ptr<const Parameter>>(),
+                            std::vector<std::shared_ptr<const SyntaxToken>>()),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::RightParenthesis,L")")),
                     SyntaxFactory::CreateDeleteFunctionBody(
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Delete, L"delete"),
+                        SyntaxFactory::CreateToken(
+                            SyntaxTokenType::Equal,
+                            L"=",
+                            {
+                                SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0)),
+                            },
+                            {}),
+                        SyntaxFactory::CreateToken(
+                            SyntaxTokenType::Delete,
+                            L"delete",
+                            {
+                                SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0)),
+                            },
+                            {}),
                         SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"))));
 
             auto actual = TestUtils::GenerateAST(source);

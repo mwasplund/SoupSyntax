@@ -19,6 +19,7 @@ namespace Soup::Syntax
         InitializerDeclarator,
         InitializerDeclaratorList,
         LiteralExpression,
+        Parameter,
         ParameterList,
         PrimitiveDataTypeNode,
         QualifiedNameExpression,

@@ -1,9 +1,10 @@
 ﻿#pragma once
+#include "SyntaxList.h"
 
 namespace Soup::Syntax
 {
     /// <summary>
-    /// The function definition
+    /// The function parameter list
     /// </summary>
     export class ParameterList final : public SyntaxNode
     {
@@ -11,18 +12,39 @@ namespace Soup::Syntax
         /// <summary>
         /// Initialize
         /// </summary>
-        ParameterList(std::vector<std::shared_ptr<const SyntaxNode>> parameters) :
+        ParameterList(
+            std::shared_ptr<const SyntaxToken> leftParenthesisToken,
+            std::shared_ptr<const SyntaxList<Parameter>> parameters,
+            std::shared_ptr<const SyntaxToken> rightParenthesisToken) :
             SyntaxNode(SyntaxNodeType::ParameterList),
-            m_parameters(std::move(parameters))
+            m_leftParenthesisToken(std::move(leftParenthesisToken)),
+            m_parameters(std::move(parameters)),
+            m_rightParenthesisToken(std::move(rightParenthesisToken))
         {
+        }
+
+        /// <summary>
+        /// Gets the left parenthesis token
+        /// </summary>
+        const SyntaxToken& GetLeftParenthesisToken() const
+        {
+            return *m_leftParenthesisToken;
         }
 
         /// <summary>
         /// Gets the list of parameters
         /// </summary>
-        const std::vector<std::shared_ptr<const SyntaxNode>>& GetParameters() const
+        const SyntaxList<Parameter>& GetParameters() const
         {
-            return m_parameters;
+            return *m_parameters;
+        }
+
+        /// <summary>
+        /// Gets the right parenthesis token
+        /// </summary>
+        const SyntaxToken& GetRightParenthesisToken() const
+        {
+            return *m_rightParenthesisToken;
         }
 
         /// <summary>
@@ -31,10 +53,13 @@ namespace Soup::Syntax
         virtual std::vector<SyntaxNodeChild> GetChildren() const override final
         {
             std::vector<SyntaxNodeChild> children;
-            for (auto& parameter : m_parameters)
-            {
-                children.push_back(SyntaxNodeChild(*parameter));
-            }
+
+            children.push_back(SyntaxNodeChild(*m_leftParenthesisToken));
+
+            auto parameterChildren = m_parameters->GetChildren();
+            children.insert(children.end(), parameterChildren.begin(), parameterChildren.end());
+
+            children.push_back(SyntaxNodeChild(*m_rightParenthesisToken));
 
             return children;
         }
@@ -52,15 +77,9 @@ namespace Soup::Syntax
         /// </summary>
         bool operator ==(const ParameterList& rhs) const
         {
-            return std::equal(
-                begin(m_parameters),
-                end(m_parameters),
-                begin(rhs.m_parameters),
-                end(rhs.m_parameters),
-                [](const std::shared_ptr<const SyntaxNode>& lhs, const std::shared_ptr<const SyntaxNode>& rhs)
-                {
-                    return *lhs == *rhs;
-                });
+            return *m_leftParenthesisToken == *rhs.m_leftParenthesisToken &&
+                *m_parameters == *rhs.m_parameters &&
+                *m_rightParenthesisToken == *rhs.m_rightParenthesisToken;
         }
 
         bool operator !=(const ParameterList& rhs) const
@@ -78,6 +97,8 @@ namespace Soup::Syntax
         }
 
     private:
-        std::vector<std::shared_ptr<const SyntaxNode>> m_parameters;
+        std::shared_ptr<const SyntaxToken> m_leftParenthesisToken;
+        std::shared_ptr<const SyntaxList<Parameter>> m_parameters;
+        std::shared_ptr<const SyntaxToken> m_rightParenthesisToken;
     };
 }

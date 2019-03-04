@@ -41,21 +41,10 @@ namespace Soup::Syntax
         }
 
         /// <summary>
-        /// Gets a value indicating whether there is a parameter list
-        /// </summary>
-        bool HasParameterList() const
-        {
-            return m_parameterList != nullptr;
-        }
-
-        /// <summary>
         /// Gets the parameter list
         /// </summary>
         const ParameterList& GetParameterList() const
         {
-            if (!HasParameterList())
-                throw std::runtime_error("Function does not have parameter list.");
-
             return *m_parameterList;
         }
 
@@ -72,19 +61,13 @@ namespace Soup::Syntax
         /// </summary>
         virtual std::vector<SyntaxNodeChild> GetChildren() const override final
         {
-            std::vector<SyntaxNodeChild> children;
-
-            children.push_back(SyntaxNodeChild(*m_returnType));
-            children.push_back(SyntaxNodeChild(*m_identifier));
-
-            if (HasParameterList())
+            return std::vector<SyntaxNodeChild>(
             {
-                children.push_back(SyntaxNodeChild(*m_parameterList));
-            }
-
-            children.push_back(SyntaxNodeChild(*m_body));
-
-            return children;
+                SyntaxNodeChild(*m_returnType),
+                SyntaxNodeChild(*m_identifier),
+                SyntaxNodeChild(*m_parameterList),
+                SyntaxNodeChild(*m_body),
+            });
         }
 
         /// <summary>
@@ -101,10 +84,10 @@ namespace Soup::Syntax
         bool operator ==(const FunctionDeclaration& rhs) const
         {
             return 
-                m_returnType == rhs.m_returnType &&
-                m_identifier == rhs.m_identifier &&
-                m_parameterList == rhs.m_parameterList &&
-                m_body == rhs.m_body;
+                *m_returnType == *rhs.m_returnType &&
+                *m_identifier == *rhs.m_identifier &&
+                *m_parameterList == *rhs.m_parameterList &&
+                *m_body == *rhs.m_body;
         }
 
         bool operator !=(const FunctionDeclaration& rhs) const

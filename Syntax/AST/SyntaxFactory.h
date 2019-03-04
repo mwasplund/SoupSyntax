@@ -19,11 +19,11 @@ namespace Soup::Syntax
             std::shared_ptr<const Expression> rightOperand)
         {
             if (operatorToken == nullptr)
-                throw std::runtime_error("ArgumentNull");
+                throw std::runtime_error("ArgumentNull - operatorToken");
             if (leftOperand == nullptr)
-                throw std::runtime_error("ArgumentNull");
+                throw std::runtime_error("ArgumentNull - leftOperand");
             if (rightOperand == nullptr)
-                throw std::runtime_error("ArgumentNull");
+                throw std::runtime_error("ArgumentNull - rightOperand");
 
             return std::shared_ptr<const BinaryExpression>(
                 new BinaryExpression(
@@ -42,11 +42,11 @@ namespace Soup::Syntax
             std::shared_ptr<const SyntaxToken> semicolonToken)
         {
             if (equalToken == nullptr)
-                throw std::runtime_error("ArgumentNull");
+                throw std::runtime_error("ArgumentNull - equalToken");
             if (defaultToken == nullptr)
-                throw std::runtime_error("ArgumentNull");
+                throw std::runtime_error("ArgumentNull - defaultToken");
             if (semicolonToken == nullptr)
-                throw std::runtime_error("ArgumentNull");
+                throw std::runtime_error("ArgumentNull - semicolonToken");
 
             return std::shared_ptr<const DefaultFunctionBody>(
                 new DefaultFunctionBody(
@@ -64,11 +64,11 @@ namespace Soup::Syntax
             std::shared_ptr<const SyntaxToken> semicolonToken)
         {
             if (equalToken == nullptr)
-                throw std::runtime_error("ArgumentNull");
+                throw std::runtime_error("ArgumentNull - equalToken");
             if (deleteToken == nullptr)
-                throw std::runtime_error("ArgumentNull");
+                throw std::runtime_error("ArgumentNull - deleteToken");
             if (semicolonToken == nullptr)
-                throw std::runtime_error("ArgumentNull");
+                throw std::runtime_error("ArgumentNull - semicolonToken");
 
             return std::shared_ptr<const DeleteFunctionBody>(
                 new DeleteFunctionBody(
@@ -86,13 +86,14 @@ namespace Soup::Syntax
             std::shared_ptr<const ParameterList> parameterList,
             std::shared_ptr<const SyntaxNode> body)
         {
-            // ParameterList may be null
             if (returnType == nullptr)
-                throw std::runtime_error("ArgumentNull");
+                throw std::runtime_error("ArgumentNull - returnType");
             if (identifier == nullptr)
-                throw std::runtime_error("ArgumentNull");
+                throw std::runtime_error("ArgumentNull - identifier");
+            if (parameterList == nullptr)
+                throw std::runtime_error("ArgumentNull - parameterList");
             if (body == nullptr)
-                throw std::runtime_error("ArgumentNull");
+                throw std::runtime_error("ArgumentNull - body");
 
             return std::shared_ptr<const FunctionDeclaration>(
                 new FunctionDeclaration(
@@ -111,13 +112,14 @@ namespace Soup::Syntax
             std::shared_ptr<const ParameterList> parameterList,
             std::shared_ptr<const SyntaxNode> body)
         {
-            // ParameterList may be null
             if (returnType == nullptr)
-                throw std::runtime_error("ArgumentNull");
+                throw std::runtime_error("ArgumentNull - returnType");
             if (identifier == nullptr)
-                throw std::runtime_error("ArgumentNull");
+                throw std::runtime_error("ArgumentNull - identifier");
+            if (parameterList == nullptr)
+                throw std::runtime_error("ArgumentNull - parameterList");
             if (body == nullptr)
-                throw std::runtime_error("ArgumentNull");
+                throw std::runtime_error("ArgumentNull - body");
 
             return std::shared_ptr<const FunctionDefinition>(
                 new FunctionDefinition(
@@ -135,7 +137,7 @@ namespace Soup::Syntax
             std::shared_ptr<const SyntaxToken> token)
         {
             if (token == nullptr)
-                throw std::runtime_error("ArgumentNull");
+                throw std::runtime_error("ArgumentNull - token");
 
             return std::shared_ptr<const LiteralExpression>(
                 new LiteralExpression(
@@ -151,12 +153,11 @@ namespace Soup::Syntax
             std::shared_ptr<const SyntaxToken> scopeResolutionToken,
             std::shared_ptr<const SimpleNameExpression> right)
         {
-            if (left == nullptr)
-                throw std::runtime_error("ArgumentNull");
+            // A null left identifier indicates a global scope
             if (scopeResolutionToken == nullptr)
-                throw std::runtime_error("ArgumentNull");
-            if (right == nullptr)
-                throw std::runtime_error("ArgumentNull");
+                throw std::runtime_error("ArgumentNull - scopeResolutionToken");
+            // TODO: if (right == nullptr)
+            //     throw std::runtime_error("ArgumentNull - right");
 
             return std::shared_ptr<const QualifiedNameExpression>(
                 new QualifiedNameExpression(
@@ -172,7 +173,7 @@ namespace Soup::Syntax
             std::shared_ptr<const SyntaxToken> identifier)
         {
             if (identifier == nullptr)
-                throw std::runtime_error("ArgumentNull");
+                throw std::runtime_error("ArgumentNull - identifier");
 
             return std::shared_ptr<const SimpleNameExpression>(
                 new SimpleNameExpression(
@@ -189,13 +190,13 @@ namespace Soup::Syntax
             std::shared_ptr<const SyntaxToken> rightBracket)
         {
             if (leftExpression == nullptr)
-                throw std::runtime_error("ArgumentNull");
+                throw std::runtime_error("ArgumentNull - leftExpression");
             if (leftBracket == nullptr)
-                throw std::runtime_error("ArgumentNull");
+                throw std::runtime_error("ArgumentNull - leftBracket");
             if (rightExpression == nullptr)
-                throw std::runtime_error("ArgumentNull");
+                throw std::runtime_error("ArgumentNull - rightExpression");
             if (rightBracket == nullptr)
-                throw std::runtime_error("ArgumentNull");
+                throw std::runtime_error("ArgumentNull - rightBracket");
 
             return std::shared_ptr<const SubscriptExpression>(
                 new SubscriptExpression(
@@ -212,7 +213,7 @@ namespace Soup::Syntax
             std::shared_ptr<const SyntaxToken> token)
         {
             if (token == nullptr)
-                throw std::runtime_error("ArgumentNull");
+                throw std::runtime_error("ArgumentNull - token");
 
             return std::shared_ptr<const ThisExpression>(
                 new ThisExpression(
@@ -272,9 +273,9 @@ namespace Soup::Syntax
             std::shared_ptr<const Expression> operand)
         {
             if (operatorToken == nullptr)
-                throw std::runtime_error("ArgumentNull");
+                throw std::runtime_error("ArgumentNull - operatorToken");
             if (operand == nullptr)
-                throw std::runtime_error("ArgumentNull");
+                throw std::runtime_error("ArgumentNull - operand");
 
             return std::shared_ptr<const UnaryExpression>(
                 new UnaryExpression(

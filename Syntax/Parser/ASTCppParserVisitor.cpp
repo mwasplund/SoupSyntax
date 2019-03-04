@@ -1024,46 +1024,74 @@ antlrcpp::Any ASTCppParserVisitor::visitSimpleTypeSpecifier(CppParser::SimpleTyp
     Trace(L"VisitSimpleTypeSpecifier");
     if (context->Char() != nullptr)
         return std::static_pointer_cast<const SyntaxNode>(
-            std::make_shared<const PrimitiveDataTypeNode>(PrimitiveDataType::Char));
+            std::make_shared<const PrimitiveDataTypeNode>(
+                PrimitiveDataType::Char,
+                CreateToken(SyntaxTokenType::Char, context->Char())));
     else if (context->Char16() != nullptr)
         return std::static_pointer_cast<const SyntaxNode>(
-            std::make_shared<const PrimitiveDataTypeNode>(PrimitiveDataType::Char16));
+            std::make_shared<const PrimitiveDataTypeNode>(
+                PrimitiveDataType::Char16,
+                CreateToken(SyntaxTokenType::Char16, context->Char16())));
     else if (context->Char32() != nullptr)
         return std::static_pointer_cast<const SyntaxNode>(
-            std::make_shared<const PrimitiveDataTypeNode>(PrimitiveDataType::Char32));
+            std::make_shared<const PrimitiveDataTypeNode>(
+                PrimitiveDataType::Char32,
+                CreateToken(SyntaxTokenType::Char32, context->Char32())));
     else if (context->WChar() != nullptr)
         return std::static_pointer_cast<const SyntaxNode>(
-            std::make_shared<const PrimitiveDataTypeNode>(PrimitiveDataType::WChar));
+            std::make_shared<const PrimitiveDataTypeNode>(
+                PrimitiveDataType::WChar,
+                CreateToken(SyntaxTokenType::WChar, context->WChar())));
     else if (context->Bool() != nullptr)
         return std::static_pointer_cast<const SyntaxNode>(
-            std::make_shared<const PrimitiveDataTypeNode>(PrimitiveDataType::Bool));
+            std::make_shared<const PrimitiveDataTypeNode>(
+                PrimitiveDataType::Bool,
+                CreateToken(SyntaxTokenType::Bool, context->Bool())));
     else if (context->Short() != nullptr)
         return std::static_pointer_cast<const SyntaxNode>(
-            std::make_shared<const PrimitiveDataTypeNode>(PrimitiveDataType::Short));
+            std::make_shared<const PrimitiveDataTypeNode>(
+                PrimitiveDataType::Short,
+                CreateToken(SyntaxTokenType::Short, context->Short())));
     else if (context->Int() != nullptr)
         return std::static_pointer_cast<const SyntaxNode>(
-            std::make_shared<const PrimitiveDataTypeNode>(PrimitiveDataType::Int));
+            std::make_shared<const PrimitiveDataTypeNode>(
+                PrimitiveDataType::Int,
+                CreateToken(SyntaxTokenType::Int, context->Int())));
     else if (context->Long() != nullptr)
         return std::static_pointer_cast<const SyntaxNode>(
-            std::make_shared<const PrimitiveDataTypeNode>(PrimitiveDataType::Long));
+            std::make_shared<const PrimitiveDataTypeNode>(
+                PrimitiveDataType::Long,
+                CreateToken(SyntaxTokenType::Long, context->Long())));
     else if (context->Signed() != nullptr)
         return std::static_pointer_cast<const SyntaxNode>(
-            std::make_shared<const PrimitiveDataTypeNode>(PrimitiveDataType::Signed));
+            std::make_shared<const PrimitiveDataTypeNode>(
+                PrimitiveDataType::Signed,
+                CreateToken(SyntaxTokenType::Signed, context->Signed())));
     else if (context->Unsigned() != nullptr)
         return std::static_pointer_cast<const SyntaxNode>(
-            std::make_shared<const PrimitiveDataTypeNode>(PrimitiveDataType::Unsigned));
+            std::make_shared<const PrimitiveDataTypeNode>(
+                PrimitiveDataType::Unsigned,
+                CreateToken(SyntaxTokenType::Unsigned, context->Unsigned())));
     else if (context->Float() != nullptr)
         return std::static_pointer_cast<const SyntaxNode>(
-            std::make_shared<const PrimitiveDataTypeNode>(PrimitiveDataType::Float));
+            std::make_shared<const PrimitiveDataTypeNode>(
+                PrimitiveDataType::Float,
+                CreateToken(SyntaxTokenType::Float, context->Float())));
     else if (context->Double() != nullptr)
         return std::static_pointer_cast<const SyntaxNode>(
-            std::make_shared<const PrimitiveDataTypeNode>(PrimitiveDataType::Double));
+            std::make_shared<const PrimitiveDataTypeNode>(
+                PrimitiveDataType::Double,
+                CreateToken(SyntaxTokenType::Double, context->Double())));
     else if (context->Void() != nullptr)
         return std::static_pointer_cast<const SyntaxNode>(
-            std::make_shared<const PrimitiveDataTypeNode>(PrimitiveDataType::Void));
+            std::make_shared<const PrimitiveDataTypeNode>(
+                PrimitiveDataType::Void,
+                CreateToken(SyntaxTokenType::Void, context->Void())));
     else if (context->Auto() != nullptr)
         return std::static_pointer_cast<const SyntaxNode>(
-            std::make_shared<const PrimitiveDataTypeNode>(PrimitiveDataType::Auto));
+            std::make_shared<const PrimitiveDataTypeNode>(
+                PrimitiveDataType::Auto,
+                CreateToken(SyntaxTokenType::Auto, context->Auto())));
 
     throw std::logic_error("Unexpected simple type.");
 }
@@ -1381,9 +1409,16 @@ antlrcpp::Any ASTCppParserVisitor::visitParametersAndQualifiers(CppParser::Param
 antlrcpp::Any ASTCppParserVisitor::visitFunctionParameters(CppParser::FunctionParametersContext *context)
 {
     Trace(L"VisitFunctionParameters");
-    
-    return visit(context->parameterDeclarationClause());
 
+    auto parameterList = visit(context->parameterDeclarationClause())
+        .as<std::shared_ptr<const SyntaxList<Parameter>>>();
+
+    Trace(L"VisitFunctionParameters2");
+    return std::static_pointer_cast<const SyntaxNode>(
+        std::make_shared<const ParameterList>(
+            CreateToken(SyntaxTokenType::LeftParenthesis, context->LeftParenthesis()),
+            std::move(parameterList),
+            CreateToken(SyntaxTokenType::RightParenthesis, context->RightParenthesis())));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitFunctionQualifiers(CppParser::FunctionQualifiersContext *context)
@@ -1468,18 +1503,26 @@ antlrcpp::Any ASTCppParserVisitor::visitParameterDeclarationClause(CppParser::Pa
 {
     Trace(L"VisitParameterDeclarationClause");
 
-    // TODO Items
-    return std::static_pointer_cast<const SyntaxNode>(
-        std::make_shared<const ParameterList>(
-            std::vector<std::shared_ptr<const SyntaxNode>>(
-            {
-            })));
+    // TODO Ellipsis
+    if (context->parameterDeclarationList() != nullptr)
+    {
+        return visit(context->parameterDeclarationList());
+    }
+    else
+    {
+        return std::make_shared<const SyntaxList<Parameter>>(
+            std::vector<std::shared_ptr<const Parameter>>(),
+            std::vector<std::shared_ptr<const SyntaxToken>>());
+    }
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitParameterDeclarationList(CppParser::ParameterDeclarationListContext* context)
 {
     Trace(L"VisitParameterDeclarationList");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+
+    return std::make_shared<const SyntaxList<Parameter>>(
+        std::vector<std::shared_ptr<const Parameter>>(),
+        std::vector<std::shared_ptr<const SyntaxToken>>());
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitParameterDeclaration(CppParser::ParameterDeclarationContext* context)
@@ -1549,10 +1592,11 @@ antlrcpp::Any ASTCppParserVisitor::visitRegularFunctionBody(CppParser::RegularFu
 antlrcpp::Any ASTCppParserVisitor::visitExplicitlyDefaultedFunction(CppParser::ExplicitlyDefaultedFunctionContext* context)
 {
     Trace(L"VisitExplicitlyDefaultedFunction");
-    return SyntaxFactory::CreateDefaultFunctionBody(
-        CreateToken(SyntaxTokenType::Equal, context->Equal()),
-        CreateToken(SyntaxTokenType::Default, context->Default()),
-        CreateToken(SyntaxTokenType::Semicolon, context->Semicolon()));
+    return std::static_pointer_cast<const SyntaxNode>(
+        SyntaxFactory::CreateDefaultFunctionBody(
+            CreateToken(SyntaxTokenType::Equal, context->Equal()),
+            CreateToken(SyntaxTokenType::Default, context->Default()),
+            CreateToken(SyntaxTokenType::Semicolon, context->Semicolon())));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitDeletedFunction(CppParser::DeletedFunctionContext* context)
@@ -2035,6 +2079,90 @@ antlrcpp::Any ASTCppParserVisitor::visitUserDefinedLiteral(CppParser::UserDefine
             std::move(literal)));
 }
 
+size_t ASTCppParserVisitor::GetFirstNewlinePosition(
+    const std::vector<antlr4::Token*>& tokens)
+{
+    // Find the location of the first newline
+    size_t firstNewline = std::numeric_limits<size_t>::max();
+    for (size_t i = 0u; i < tokens.size(); i++)
+    {
+        if (tokens[i]->getType() == CppLexer::Newline)
+        {
+            firstNewline = i;
+            break;
+        }
+    }
+
+    return firstNewline;
+}
+
+// Get all of the hidden trivia to the left after the first newline
+// Those trivia will be attached as trailing to the previous token
+std::vector<SyntaxTrivia> ASTCppParserVisitor::GetLeadingTrivia(size_t index)
+{
+    // Get the trivia tokens to the left
+    auto leftTriviaTokens = m_tokenStream->getHiddenTokensToLeft(index, CppLexer::TRIVIA);
+
+    // Skip over tokens past the first newline
+    // If no newline all tokens are leading trivia
+    size_t firstToken = GetFirstNewlinePosition(leftTriviaTokens);
+    if (firstToken == std::numeric_limits<size_t>::max())
+    {
+        firstToken = 0;
+    }
+
+    // Convert the token text to wide characters
+    std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+
+    // Convert all the applicable tokens to leading trivia
+    std::vector<SyntaxTrivia> leadingTrivia;
+    for (size_t i = firstToken; i < leftTriviaTokens.size(); i++)
+    {
+        auto& triviaToken = leftTriviaTokens[i];
+
+        std::wstring triviaText =
+            converter.from_bytes(triviaToken->getText());
+        TextSpan triviaSpan = TextSpan(0, 0);
+        leadingTrivia.push_back(
+            SyntaxFactory::CreateTrivia(std::move(triviaText), triviaSpan));
+    }
+
+    return leadingTrivia;
+}
+
+// Get all of the hidden trivia to the right before the first newline
+// All tokens after the first newline will be attached as leading trivia
+// If there is no newline then ALL trivia will be leading
+std::vector<SyntaxTrivia> ASTCppParserVisitor::GetTrailingTrivia(size_t index)
+{
+    // Get the trivia tokens to the right
+    auto rightTriviaTokens = m_tokenStream->getHiddenTokensToRight(index, CppLexer::TRIVIA);
+
+    // All tokens up to the first newline are used
+    size_t lastToken = GetFirstNewlinePosition(rightTriviaTokens);
+
+    // If no newline none of the tokens are trailing trivia
+    std::vector<SyntaxTrivia> trailingTrivia;
+    if (lastToken != std::numeric_limits<size_t>::max())
+    {
+        // Convert the token text to wide characters
+        std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+
+        for (size_t i = 0; i < lastToken; i++)
+        {
+            auto& triviaToken = rightTriviaTokens[i];
+
+            std::wstring triviaText = 
+                converter.from_bytes(triviaToken->getText());
+            TextSpan triviaSpan = TextSpan(0, 0);
+            trailingTrivia.push_back(
+                SyntaxFactory::CreateTrivia(std::move(triviaText), triviaSpan));
+        }
+    }
+
+    return trailingTrivia;
+}
+
 std::shared_ptr<const SyntaxToken> ASTCppParserVisitor::CreateToken(
     SyntaxTokenType type,
     antlr4::tree::TerminalNode* terminalNode)
@@ -2047,33 +2175,14 @@ std::shared_ptr<const SyntaxToken> ASTCppParserVisitor::CreateToken(
     std::wstring tokenText = converter.from_bytes(token->getText());
 
     // Load the leading and trailing trivia stoping at the newline token
-    auto leftTriviaTokens = m_tokenStream->getHiddenTokensToLeft(index, CppLexer::TRIVIA);
-    std::vector<SyntaxTrivia> leftTrivia;
-    for (auto triviaToken : leftTriviaTokens)
-    {
-        std::wstring triviaText = 
-            converter.from_bytes(triviaToken->getText());
-        TextSpan triviaSpan = TextSpan(0, 0);
-        leftTrivia.push_back(
-            SyntaxFactory::CreateTrivia(std::move(triviaText), triviaSpan));
-    }
-
-    auto rightTriviaTokens = m_tokenStream->getHiddenTokensToRight(index, CppLexer::TRIVIA);
-    std::vector<SyntaxTrivia> rightTrivia;
-    for (auto triviaToken : rightTriviaTokens)
-    {
-        std::wstring triviaText = 
-            converter.from_bytes(triviaToken->getText());
-        TextSpan triviaSpan = TextSpan(0, 0);
-        rightTrivia.push_back(
-            SyntaxFactory::CreateTrivia(std::move(triviaText), triviaSpan));
-    }
+    auto leadingTrivia = GetLeadingTrivia(index);
+    auto trailingTrivia = GetTrailingTrivia(index);
 
     return SyntaxFactory::CreateToken(
         type,
         std::move(tokenText),
-        std::move(leftTrivia),
-        std::move(rightTrivia));
+        std::move(leadingTrivia),
+        std::move(trailingTrivia));
 }
 
 std::shared_ptr<const SimpleNameExpression> ASTCppParserVisitor::GetNextSimpleName(
