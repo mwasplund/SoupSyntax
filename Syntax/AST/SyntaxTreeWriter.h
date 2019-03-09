@@ -103,6 +103,8 @@ namespace Soup::Syntax
                     return L"InitializerDeclaratorList";
                 case SyntaxNodeType::LiteralExpression:
                     return L"LiteralExpression";
+                case SyntaxNodeType::Parameter:
+                    return L"Parameter";
                 case SyntaxNodeType::ParameterList:
                     return L"ParameterList";
                 case SyntaxNodeType::PrimitiveDataTypeNode:
@@ -128,7 +130,7 @@ namespace Soup::Syntax
                 case SyntaxNodeType::UnaryExpression:
                     return L"UnaryExpression";
                 default:
-                    throw std::logic_error("Unknown node type.s");
+                    throw std::logic_error(std::string("Unknown node: ") + std::to_string((int)type));
             }
         }
 

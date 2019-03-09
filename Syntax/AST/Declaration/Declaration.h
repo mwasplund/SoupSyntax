@@ -3,7 +3,7 @@
 namespace Soup::Syntax
 {
     /// <summary>
-    /// Declaration
+    /// Declaration introduce names into a C++
     /// </summary>
     export class Declaration : public SyntaxNode
     {

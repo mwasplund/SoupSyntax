@@ -10,7 +10,113 @@ namespace Soup::Syntax::UnitTests
         void InitializeSimple()
         {
             // void Function(int parameter) = delete;
-            auto uut = TestUtils::CreateSingleDeclaration(
+            auto uut = SyntaxFactory::CreateFunctionDefinition(
+                std::make_shared<DeclarationSpecifierSequence>(
+                    std::vector<std::shared_ptr<const SyntaxNode>>
+                    {
+                        std::make_shared<PrimitiveDataTypeNode>(
+                            PrimitiveDataType::Void,
+                            SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void")),
+                    }),
+                SyntaxFactory::CreateSimpleNameExpression(
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
+                std::make_shared<const ParameterList>(
+                    SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"("),
+                    std::make_shared<const SyntaxList<Parameter>>(
+                        std::vector<std::shared_ptr<const Parameter>>(
+                        {
+                            std::make_shared<const Parameter>(
+                                std::make_shared<const PrimitiveDataTypeNode>(
+                                    PrimitiveDataType::Int,
+                                    SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
+                                std::make_shared<const PrimitiveDataTypeNode>(
+                                    PrimitiveDataType::Int,
+                                    SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int"))),
+                        }),
+                        std::vector<std::shared_ptr<const SyntaxToken>>()),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::RightParenthesis, L")")),
+                SyntaxFactory::CreateDeleteFunctionBody(
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Delete, L"delete"),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";")));
+
+            TestUtils::AreEqual(
+                *std::make_shared<DeclarationSpecifierSequence>(
+                    std::vector<std::shared_ptr<const SyntaxNode>>
+                    {
+                        std::make_shared<PrimitiveDataTypeNode>(
+                            PrimitiveDataType::Void,
+                            SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void")),
+                    }),
+                uut->GetReturnType(),
+                L"Verify return type matches.");
+            TestUtils::AreEqual(
+                *SyntaxFactory::CreateSimpleNameExpression(
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
+                uut->GetIdentifier(),
+                L"Verify identifier matches.");
+            TestUtils::AreEqual(
+                *std::make_shared<const ParameterList>(
+                    SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"("),
+                    std::make_shared<const SyntaxList<Parameter>>(
+                        std::vector<std::shared_ptr<const Parameter>>(
+                        {
+                            std::make_shared<const Parameter>(
+                                std::make_shared<const PrimitiveDataTypeNode>(
+                                    PrimitiveDataType::Int,
+                                    SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
+                                std::make_shared<const PrimitiveDataTypeNode>(
+                                    PrimitiveDataType::Int,
+                                    SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int"))),
+                        }),
+                        std::vector<std::shared_ptr<const SyntaxToken>>()),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::RightParenthesis, L")")),
+                uut->GetParameterList(),
+                L"Verify parameter list matches.");
+            TestUtils::AreEqual(
+                *SyntaxFactory::CreateDeleteFunctionBody(
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Delete, L"delete"),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";")),
+                uut->GetBody(),
+                L"Verify body matches.");
+        }
+
+        // [[Fact]]
+        void OperatorEqual()
+        {
+            // void Function(int parameter) = delete;
+            auto uut = SyntaxFactory::CreateFunctionDefinition(
+                std::make_shared<DeclarationSpecifierSequence>(
+                    std::vector<std::shared_ptr<const SyntaxNode>>
+                    {
+                        std::make_shared<PrimitiveDataTypeNode>(
+                            PrimitiveDataType::Void,
+                            SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void")),
+                    }),
+                SyntaxFactory::CreateSimpleNameExpression(
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
+                std::make_shared<const ParameterList>(
+                    SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"("),
+                    std::make_shared<const SyntaxList<Parameter>>(
+                        std::vector<std::shared_ptr<const Parameter>>(
+                        {
+                            std::make_shared<const Parameter>(
+                                std::make_shared<const PrimitiveDataTypeNode>(
+                                    PrimitiveDataType::Int,
+                                    SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
+                                std::make_shared<const PrimitiveDataTypeNode>(
+                                    PrimitiveDataType::Int,
+                                    SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int"))),
+                        }),
+                        std::vector<std::shared_ptr<const SyntaxToken>>()),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::RightParenthesis, L")")),
+                SyntaxFactory::CreateDeleteFunctionBody(
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Delete, L"delete"),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";")));
+
+            TestUtils::AreEqual(
                 SyntaxFactory::CreateFunctionDefinition(
                     std::make_shared<DeclarationSpecifierSequence>(
                         std::vector<std::shared_ptr<const SyntaxNode>>
@@ -21,6 +127,133 @@ namespace Soup::Syntax::UnitTests
                         }),
                     SyntaxFactory::CreateSimpleNameExpression(
                         SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
+                    std::make_shared<const ParameterList>(
+                        SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"("),
+                        std::make_shared<const SyntaxList<Parameter>>(
+                            std::vector<std::shared_ptr<const Parameter>>(
+                            {
+                                std::make_shared<const Parameter>(
+                                    std::make_shared<const PrimitiveDataTypeNode>(
+                                        PrimitiveDataType::Int,
+                                        SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
+                                    std::make_shared<const PrimitiveDataTypeNode>(
+                                        PrimitiveDataType::Int,
+                                        SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int"))),
+                            }),
+                            std::vector<std::shared_ptr<const SyntaxToken>>()),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::RightParenthesis, L")")),
+                    SyntaxFactory::CreateDeleteFunctionBody(
+                        SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::Delete, L"delete"),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"))),
+                uut,
+                L"Verify matches.");
+        }
+
+        // [[Fact]]
+        void OperatorNotEqualReturnType()
+        {
+            // void Function(int parameter) = delete;
+            auto uut = SyntaxFactory::CreateFunctionDefinition(
+                std::make_shared<DeclarationSpecifierSequence>(
+                    std::vector<std::shared_ptr<const SyntaxNode>>
+                    {
+                        std::make_shared<PrimitiveDataTypeNode>(
+                            PrimitiveDataType::Void,
+                            SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void")),
+                    }),
+                SyntaxFactory::CreateSimpleNameExpression(
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
+                std::make_shared<const ParameterList>(
+                    SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"("),
+                    std::make_shared<const SyntaxList<Parameter>>(
+                        std::vector<std::shared_ptr<const Parameter>>(
+                        {
+                            std::make_shared<const Parameter>(
+                                std::make_shared<const PrimitiveDataTypeNode>(
+                                    PrimitiveDataType::Int,
+                                    SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
+                                std::make_shared<const PrimitiveDataTypeNode>(
+                                    PrimitiveDataType::Int,
+                                    SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int"))),
+                        }),
+                        std::vector<std::shared_ptr<const SyntaxToken>>()),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::RightParenthesis, L")")),
+                SyntaxFactory::CreateDeleteFunctionBody(
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Delete, L"delete"),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";")));
+
+            TestUtils::AreNotEqual(
+                SyntaxFactory::CreateFunctionDefinition(
+                    std::make_shared<DeclarationSpecifierSequence>(
+                        std::vector<std::shared_ptr<const SyntaxNode>>
+                        {
+                            std::make_shared<PrimitiveDataTypeNode>(
+                                PrimitiveDataType::Int,
+                                SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
+                        }),
+                    SyntaxFactory::CreateSimpleNameExpression(
+                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
+                    std::make_shared<const ParameterList>(
+                        SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"("),
+                        std::make_shared<const SyntaxList<Parameter>>(
+                            std::vector<std::shared_ptr<const Parameter>>(
+                            {
+                                std::make_shared<const Parameter>(
+                                    std::make_shared<const PrimitiveDataTypeNode>(
+                                        PrimitiveDataType::Int,
+                                        SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
+                                    std::make_shared<const PrimitiveDataTypeNode>(
+                                        PrimitiveDataType::Int,
+                                        SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int"))),
+                            }),
+                            std::vector<std::shared_ptr<const SyntaxToken>>()),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::RightParenthesis, L")")),
+                    SyntaxFactory::CreateDeleteFunctionBody(
+                        SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::Delete, L"delete"),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"))),
+                uut,
+                L"Verify does not match.");
+        }
+
+        // [[Fact]]
+        void OperatorNotEqualIdentifier()
+        {
+            // void Function(int parameter) = delete;
+            auto uut = SyntaxFactory::CreateFunctionDefinition(
+                std::make_shared<DeclarationSpecifierSequence>(
+                    std::vector<std::shared_ptr<const SyntaxNode>>
+                    {
+                        std::make_shared<PrimitiveDataTypeNode>(
+                            PrimitiveDataType::Void,
+                            SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void")),
+                    }),
+                SyntaxFactory::CreateSimpleNameExpression(
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
+                    std::make_shared<const ParameterList>(
+                        SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"("),
+                        std::make_shared<const SyntaxList<Parameter>>(
+                            std::vector<std::shared_ptr<const Parameter>>(
+                            {
+                                std::make_shared<const Parameter>(
+                                    std::make_shared<const PrimitiveDataTypeNode>(
+                                        PrimitiveDataType::Int,
+                                        SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
+                                    std::make_shared<const PrimitiveDataTypeNode>(
+                                        PrimitiveDataType::Int,
+                                        SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int"))),
+                            }),
+                            std::vector<std::shared_ptr<const SyntaxToken>>()),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::RightParenthesis, L")")),
+                SyntaxFactory::CreateDeleteFunctionBody(
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Delete, L"delete"),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";")));
+
+            TestUtils::AreNotEqual(
+                SyntaxFactory::CreateFunctionDefinition(
                     std::make_shared<DeclarationSpecifierSequence>(
                         std::vector<std::shared_ptr<const SyntaxNode>>
                         {
@@ -28,163 +261,156 @@ namespace Soup::Syntax::UnitTests
                                 PrimitiveDataType::Void,
                                 SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void")),
                         }),
+                    SyntaxFactory::CreateSimpleNameExpression(
+                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"OtherFunction")),
+                    std::make_shared<const ParameterList>(
+                        SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"("),
+                        std::make_shared<const SyntaxList<Parameter>>(
+                            std::vector<std::shared_ptr<const Parameter>>(
+                            {
+                                std::make_shared<const Parameter>(
+                                    std::make_shared<const PrimitiveDataTypeNode>(
+                                        PrimitiveDataType::Int,
+                                        SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
+                                    std::make_shared<const PrimitiveDataTypeNode>(
+                                        PrimitiveDataType::Int,
+                                        SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int"))),
+                            }),
+                            std::vector<std::shared_ptr<const SyntaxToken>>()),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::RightParenthesis, L")")),
                     SyntaxFactory::CreateDeleteFunctionBody(
                         SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
                         SyntaxFactory::CreateToken(SyntaxTokenType::Delete, L"delete"),
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"))));
-
-            Assert::AreEqual(BinaryOperator::Addition, uut->GetOperator(), L"Verify operator matches.");
-            TestUtils::AreEqual(
-                *SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
-                uut->GetOperatorToken(),
-                L"Verify operator token matches.");
-            TestUtils::AreEqual(
-                *SyntaxFactory::CreateLiteralExpression(
-                    LiteralType::Integer,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
-                uut->GetLeftOperand(),
-                L"Verify left expression matches.");
-            TestUtils::AreEqual(
-                *SyntaxFactory::CreateLiteralExpression(
-                    LiteralType::Integer,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")),
-                uut->GetRightOperand(),
-                L"Verify right expression matches.");
-        }
-
-        // [[Fact]]
-        void OperatorEqual()
-        {
-            auto uut = SyntaxFactory::CreateBinaryExpression(
-                BinaryOperator::Addition,
-                SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
-                SyntaxFactory::CreateLiteralExpression(
-                    LiteralType::Integer,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
-                SyntaxFactory::CreateLiteralExpression(
-                    LiteralType::Integer,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")));
-
-            TestUtils::AreEqual(
-                SyntaxFactory::CreateBinaryExpression(
-                    BinaryOperator::Addition,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
-                    SyntaxFactory::CreateLiteralExpression(
-                        LiteralType::Integer,
-                        SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
-                    SyntaxFactory::CreateLiteralExpression(
-                        LiteralType::Integer,
-                        SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2"))),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"))),
                 uut,
-                L"Verify matches.");
+                L"Verify does not match.");
         }
 
         // [[Fact]]
-        void OperatorNotEqualOperatorType()
+        void OperatorNotEqualParameterList()
         {
-            auto uut = SyntaxFactory::CreateBinaryExpression(
-                BinaryOperator::Addition,
-                SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
-                SyntaxFactory::CreateLiteralExpression(
-                    LiteralType::Integer,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
-                SyntaxFactory::CreateLiteralExpression(
-                    LiteralType::Integer,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")));
+            // void Function(int parameter) = delete;
+            auto uut = SyntaxFactory::CreateFunctionDefinition(
+                std::make_shared<DeclarationSpecifierSequence>(
+                    std::vector<std::shared_ptr<const SyntaxNode>>
+                    {
+                        std::make_shared<PrimitiveDataTypeNode>(
+                            PrimitiveDataType::Void,
+                            SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void")),
+                    }),
+                SyntaxFactory::CreateSimpleNameExpression(
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
+                std::make_shared<const ParameterList>(
+                    SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"("),
+                    std::make_shared<const SyntaxList<Parameter>>(
+                        std::vector<std::shared_ptr<const Parameter>>(
+                        {
+                            std::make_shared<const Parameter>(
+                                std::make_shared<const PrimitiveDataTypeNode>(
+                                    PrimitiveDataType::Int,
+                                    SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
+                                std::make_shared<const PrimitiveDataTypeNode>(
+                                    PrimitiveDataType::Int,
+                                    SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int"))),
+                        }),
+                        std::vector<std::shared_ptr<const SyntaxToken>>()),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::RightParenthesis, L")")),
+                SyntaxFactory::CreateDeleteFunctionBody(
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Delete, L"delete"),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";")));
 
             TestUtils::AreNotEqual(
-                SyntaxFactory::CreateBinaryExpression(
-                    BinaryOperator::Subtraction,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
-                    SyntaxFactory::CreateLiteralExpression(
-                        LiteralType::Integer,
-                        SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
-                    SyntaxFactory::CreateLiteralExpression(
-                        LiteralType::Integer,
-                        SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2"))),
+                SyntaxFactory::CreateFunctionDefinition(
+                    std::make_shared<DeclarationSpecifierSequence>(
+                        std::vector<std::shared_ptr<const SyntaxNode>>
+                        {
+                            std::make_shared<PrimitiveDataTypeNode>(
+                                PrimitiveDataType::Void,
+                                SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void")),
+                        }),
+                    SyntaxFactory::CreateSimpleNameExpression(
+                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
+                    std::make_shared<const ParameterList>(
+                        SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"("),
+                        std::make_shared<const SyntaxList<Parameter>>(
+                            std::vector<std::shared_ptr<const Parameter>>(),
+                            std::vector<std::shared_ptr<const SyntaxToken>>()),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::RightParenthesis, L")")),
+                    SyntaxFactory::CreateDeleteFunctionBody(
+                        SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::Delete, L"delete"),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"))),
                 uut,
-                L"Verify do not match.");
+                L"Verify does not match.");
         }
 
         // [[Fact]]
-        void OperatorNotEqualLeft()
+        void OperatorNotEqualBody()
         {
-            auto uut = SyntaxFactory::CreateBinaryExpression(
-                BinaryOperator::Addition,
-                SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
-                SyntaxFactory::CreateLiteralExpression(
-                    LiteralType::Integer,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
-                SyntaxFactory::CreateLiteralExpression(
-                    LiteralType::Integer,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")));
+            // void Function(int parameter) = delete;
+            auto uut = SyntaxFactory::CreateFunctionDefinition(
+                std::make_shared<DeclarationSpecifierSequence>(
+                    std::vector<std::shared_ptr<const SyntaxNode>>
+                    {
+                        std::make_shared<PrimitiveDataTypeNode>(
+                            PrimitiveDataType::Void,
+                            SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void")),
+                    }),
+                SyntaxFactory::CreateSimpleNameExpression(
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
+                std::make_shared<const ParameterList>(
+                    SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"("),
+                    std::make_shared<const SyntaxList<Parameter>>(
+                        std::vector<std::shared_ptr<const Parameter>>(
+                        {
+                            std::make_shared<const Parameter>(
+                                std::make_shared<const PrimitiveDataTypeNode>(
+                                    PrimitiveDataType::Int,
+                                    SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
+                                std::make_shared<const PrimitiveDataTypeNode>(
+                                    PrimitiveDataType::Int,
+                                    SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int"))),
+                        }),
+                        std::vector<std::shared_ptr<const SyntaxToken>>()),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::RightParenthesis, L")")),
+                SyntaxFactory::CreateDeleteFunctionBody(
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Delete, L"delete"),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";")));
 
             TestUtils::AreNotEqual(
-                SyntaxFactory::CreateBinaryExpression(
-                    BinaryOperator::Addition,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
-                    SyntaxFactory::CreateLiteralExpression(
-                        LiteralType::Integer,
-                        SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"11")),
-                    SyntaxFactory::CreateLiteralExpression(
-                        LiteralType::Integer,
-                        SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2"))),
+                SyntaxFactory::CreateFunctionDefinition(
+                    std::make_shared<DeclarationSpecifierSequence>(
+                        std::vector<std::shared_ptr<const SyntaxNode>>
+                        {
+                            std::make_shared<PrimitiveDataTypeNode>(
+                                PrimitiveDataType::Void,
+                                SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void")),
+                        }),
+                    SyntaxFactory::CreateSimpleNameExpression(
+                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
+                    std::make_shared<const ParameterList>(
+                        SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"("),
+                        std::make_shared<const SyntaxList<Parameter>>(
+                            std::vector<std::shared_ptr<const Parameter>>(
+                            {
+                                std::make_shared<const Parameter>(
+                                    std::make_shared<const PrimitiveDataTypeNode>(
+                                        PrimitiveDataType::Int,
+                                        SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
+                                    std::make_shared<const PrimitiveDataTypeNode>(
+                                        PrimitiveDataType::Int,
+                                        SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int"))),
+                            }),
+                            std::vector<std::shared_ptr<const SyntaxToken>>()),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::RightParenthesis, L")")),
+                    SyntaxFactory::CreateDefaultFunctionBody(
+                        SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::Default, L"default"),
+                        SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"))),
                 uut,
-                L"Verify do not match.");
-        }
-
-        // [[Fact]]
-        void OperatorNotEqualOperatorToken()
-        {
-            auto uut = SyntaxFactory::CreateBinaryExpression(
-                BinaryOperator::Addition,
-                SyntaxFactory::CreateToken(SyntaxTokenType::Minus, L"-"),
-                SyntaxFactory::CreateLiteralExpression(
-                    LiteralType::Integer,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
-                SyntaxFactory::CreateLiteralExpression(
-                    LiteralType::Integer,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")));
-
-            TestUtils::AreNotEqual(
-                SyntaxFactory::CreateBinaryExpression(
-                    BinaryOperator::Addition,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
-                    SyntaxFactory::CreateLiteralExpression(
-                        LiteralType::Integer,
-                        SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
-                    SyntaxFactory::CreateLiteralExpression(
-                        LiteralType::Integer,
-                        SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2"))),
-                uut,
-                L"Verify do not match.");
-        }
-
-        // [[Fact]]
-        void OperatorNotEqualRight()
-        {
-            auto uut = SyntaxFactory::CreateBinaryExpression(
-                BinaryOperator::Addition,
-                SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
-                SyntaxFactory::CreateLiteralExpression(
-                    LiteralType::Integer,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
-                SyntaxFactory::CreateLiteralExpression(
-                    LiteralType::Integer,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")));
-
-            TestUtils::AreNotEqual(
-                SyntaxFactory::CreateBinaryExpression(
-                    BinaryOperator::Addition,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
-                    SyntaxFactory::CreateLiteralExpression(
-                        LiteralType::Integer,
-                        SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
-                    SyntaxFactory::CreateLiteralExpression(
-                        LiteralType::Integer,
-                        SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"22"))),
-                uut,
-                L"Verify do not match.");
+                L"Verify does not match.");
         }
     };
 }

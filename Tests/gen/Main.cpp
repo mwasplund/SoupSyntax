@@ -4,11 +4,13 @@ import SoupSyntax;
 
 #include "AST\Declaration\DefaultFunctionBodyTests.gen.h"
 #include "AST\Declaration\DeleteFunctionBodyTests.gen.h"
+#include "AST\Declaration\FunctionDefinitionTests.gen.h"
 
 #include "AST\Expression\BinaryExpressionTests.gen.h"
 #include "AST\Expression\LiteralExpressionTests.gen.h"
 #include "AST\Expression\NameExpressionTests.gen.h"
 #include "AST\Expression\SubscriptExpressionTests.gen.h"
+#include "AST\Expression\ThisExpressionTests.gen.h"
 #include "AST\Expression\UnaryExpressionTests.gen.h"
 
 #include "AST\SyntaxTokenTests.gen.h"
@@ -32,11 +34,13 @@ int main()
 
     failedCount += RunDefaultFunctionBodyTests();
     failedCount += RunDeleteFunctionBodyTests();
+    failedCount += RunFunctionDefinitionTests();
 
     failedCount += RunBinaryExpressionTests();
     failedCount += RunLiteralExpressionTests();
     failedCount += RunNameExpressionTests();
     failedCount += RunSubscriptExpressionTests();
+    failedCount += RunThisExpressionTests();
     failedCount += RunUnaryExpressionTests();
 
     failedCount += RunSyntaxTokenTests();

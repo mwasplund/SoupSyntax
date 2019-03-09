@@ -56,9 +56,9 @@ namespace Soup::Syntax
         /// <summary>
         /// Equality operator
         /// </summary>
-        bool operator==(const SyntaxNode &rhs) const
+        bool operator==(const SyntaxNode& rhs) const
         {
-            return typeid(*this) == typeid(rhs) &&
+            return this != nullptr && typeid(*this) == typeid(rhs) &&
                 Equals(rhs);
         }
 
