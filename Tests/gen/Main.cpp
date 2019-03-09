@@ -6,6 +6,7 @@ import SoupSyntax;
 #include "AST\Declaration\DeleteFunctionBodyTests.gen.h"
 #include "AST\Declaration\FunctionDefinitionTests.gen.h"
 #include "AST\Declaration\ParameterListTests.gen.h"
+#include "AST\Declaration\ParameterTests.gen.h"
 
 #include "AST\Expression\BinaryExpressionTests.gen.h"
 #include "AST\Expression\LiteralExpressionTests.gen.h"
@@ -37,6 +38,7 @@ int main()
     failedCount += RunDeleteFunctionBodyTests();
     failedCount += RunFunctionDefinitionTests();
     failedCount += RunParameterListTests();
+    failedCount += RunParameterTests();
 
     failedCount += RunBinaryExpressionTests();
     failedCount += RunLiteralExpressionTests();

@@ -25,7 +25,7 @@ namespace Soup::Syntax::UnitTests
                     std::make_shared<const SyntaxList<Parameter>>(
                         std::vector<std::shared_ptr<const Parameter>>(
                         {
-                            std::make_shared<const Parameter>(
+                            SyntaxFactory::CreateParameter(
                                 std::make_shared<const PrimitiveDataTypeNode>(
                                     PrimitiveDataType::Int,
                                     SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
@@ -61,7 +61,7 @@ namespace Soup::Syntax::UnitTests
                     std::make_shared<const SyntaxList<Parameter>>(
                         std::vector<std::shared_ptr<const Parameter>>(
                         {
-                            std::make_shared<const Parameter>(
+                            SyntaxFactory::CreateParameter(
                                 std::make_shared<const PrimitiveDataTypeNode>(
                                     PrimitiveDataType::Int,
                                     SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
@@ -101,7 +101,7 @@ namespace Soup::Syntax::UnitTests
                     std::make_shared<const SyntaxList<Parameter>>(
                         std::vector<std::shared_ptr<const Parameter>>(
                         {
-                            std::make_shared<const Parameter>(
+                            SyntaxFactory::CreateParameter(
                                 std::make_shared<const PrimitiveDataTypeNode>(
                                     PrimitiveDataType::Int,
                                     SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
@@ -132,7 +132,7 @@ namespace Soup::Syntax::UnitTests
                         std::make_shared<const SyntaxList<Parameter>>(
                             std::vector<std::shared_ptr<const Parameter>>(
                             {
-                                std::make_shared<const Parameter>(
+                                SyntaxFactory::CreateParameter(
                                     std::make_shared<const PrimitiveDataTypeNode>(
                                         PrimitiveDataType::Int,
                                         SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
@@ -169,7 +169,7 @@ namespace Soup::Syntax::UnitTests
                     std::make_shared<const SyntaxList<Parameter>>(
                         std::vector<std::shared_ptr<const Parameter>>(
                         {
-                            std::make_shared<const Parameter>(
+                            SyntaxFactory::CreateParameter(
                                 std::make_shared<const PrimitiveDataTypeNode>(
                                     PrimitiveDataType::Int,
                                     SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
@@ -200,7 +200,7 @@ namespace Soup::Syntax::UnitTests
                         std::make_shared<const SyntaxList<Parameter>>(
                             std::vector<std::shared_ptr<const Parameter>>(
                             {
-                                std::make_shared<const Parameter>(
+                                SyntaxFactory::CreateParameter(
                                     std::make_shared<const PrimitiveDataTypeNode>(
                                         PrimitiveDataType::Int,
                                         SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
@@ -237,7 +237,7 @@ namespace Soup::Syntax::UnitTests
                         std::make_shared<const SyntaxList<Parameter>>(
                             std::vector<std::shared_ptr<const Parameter>>(
                             {
-                                std::make_shared<const Parameter>(
+                                SyntaxFactory::CreateParameter(
                                     std::make_shared<const PrimitiveDataTypeNode>(
                                         PrimitiveDataType::Int,
                                         SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
@@ -268,7 +268,7 @@ namespace Soup::Syntax::UnitTests
                         std::make_shared<const SyntaxList<Parameter>>(
                             std::vector<std::shared_ptr<const Parameter>>(
                             {
-                                std::make_shared<const Parameter>(
+                                SyntaxFactory::CreateParameter(
                                     std::make_shared<const PrimitiveDataTypeNode>(
                                         PrimitiveDataType::Int,
                                         SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
@@ -305,7 +305,7 @@ namespace Soup::Syntax::UnitTests
                     std::make_shared<const SyntaxList<Parameter>>(
                         std::vector<std::shared_ptr<const Parameter>>(
                         {
-                            std::make_shared<const Parameter>(
+                            SyntaxFactory::CreateParameter(
                                 std::make_shared<const PrimitiveDataTypeNode>(
                                     PrimitiveDataType::Int,
                                     SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
@@ -364,7 +364,7 @@ namespace Soup::Syntax::UnitTests
                     std::make_shared<const SyntaxList<Parameter>>(
                         std::vector<std::shared_ptr<const Parameter>>(
                         {
-                            std::make_shared<const Parameter>(
+                            SyntaxFactory::CreateParameter(
                                 std::make_shared<const PrimitiveDataTypeNode>(
                                     PrimitiveDataType::Int,
                                     SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
@@ -395,7 +395,7 @@ namespace Soup::Syntax::UnitTests
                         std::make_shared<const SyntaxList<Parameter>>(
                             std::vector<std::shared_ptr<const Parameter>>(
                             {
-                                std::make_shared<const Parameter>(
+                                SyntaxFactory::CreateParameter(
                                     std::make_shared<const PrimitiveDataTypeNode>(
                                         PrimitiveDataType::Int,
                                         SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),

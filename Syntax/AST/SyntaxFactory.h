@@ -146,6 +146,24 @@ namespace Soup::Syntax
         }
 
         /// <summary>
+        /// Create a Parameter
+        /// </summary>
+        static std::shared_ptr<const Parameter> CreateParameter(
+            std::shared_ptr<const SyntaxNode> declarationSpecifierSequence,
+            std::shared_ptr<const SyntaxNode> declarator)
+        {
+            if (declarationSpecifierSequence == nullptr)
+                throw std::runtime_error("ArgumentNull - declarationSpecifierSequence");
+            if (declarator == nullptr)
+                throw std::runtime_error("ArgumentNull - declarator");
+
+            return std::shared_ptr<const Parameter>(
+                new Parameter(
+                    std::move(declarationSpecifierSequence),
+                    std::move(declarator)));
+        }
+
+        /// <summary>
         /// Create a ParameterList
         /// </summary>
         static std::shared_ptr<const ParameterList> CreateParameterList(

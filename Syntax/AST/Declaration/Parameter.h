@@ -7,7 +7,9 @@ namespace Soup::Syntax
     /// </summary>
     export class Parameter final : public SyntaxNode
     {
-    public:
+        friend class SyntaxFactory;
+
+    private:
         /// <summary>
         /// Initialize
         /// </summary>
@@ -20,6 +22,7 @@ namespace Soup::Syntax
         {
         }
 
+    public:
         /// <summary>
         /// Gets the list of declaration specifier sequence
         /// </summary>
