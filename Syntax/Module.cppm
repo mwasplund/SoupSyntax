@@ -12,7 +12,6 @@ namespace Soup::Syntax
     class SyntaxToken;
 
     class TranslationUnit;
-    class PrimitiveDataTypeNode;
 
     // Expressions
     class BinaryExpression;
@@ -34,6 +33,7 @@ namespace Soup::Syntax
     class InitializerDeclaratorList;
     class Parameter;
     class ParameterList;
+    class PrimitiveDataTypeNode;
     class RegularFunctionBody;
     class SimpleDefinition;
     class TryFunctionBody;
@@ -48,7 +48,7 @@ namespace Soup::Syntax
 #include "AST\SyntaxNodeChild.h"
 #include "AST\SyntaxTokenType.h"
 #include "AST\SyntaxToken.h"
-#include "AST\ISyntaxVisitor.h"
+#include "AST\Visitor\ISyntaxVisitor.h"
 #include "AST\SyntaxNodeType.h"
 #include "AST\SyntaxNode.h"
 #include "AST\Expression\Expression.h"
@@ -73,6 +73,8 @@ namespace Soup::Syntax
 #include "AST\Declaration\DeleteFunctionBody.h"
 #include "AST\Declaration\Parameter.h"
 #include "AST\Declaration\ParameterList.h"
+#include "AST\Declaration\PrimitiveDataType.h"
+#include "AST\Declaration\PrimitiveDataTypeNode.h"
 #include "AST\Declaration\FunctionDeclaration.h"
 #include "AST\Declaration\FunctionDefinition.h"
 #include "AST\Declaration\InitializerDeclarator.h"
@@ -81,12 +83,10 @@ namespace Soup::Syntax
 #include "AST\Declaration\SimpleDefinition.h"
 #include "AST\Declaration\TranslationUnit.h"
 #include "AST\Declaration\TryFunctionBody.h"
-#include "AST\PrimitiveDataType.h"
-#include "AST\PrimitiveDataTypeNode.h"
 #include "AST\SyntaxTree.h"
-#include "AST\DefaultSyntaxVisitor.h"
-#include "AST\SyntaxWalker.h"
-#include "AST\SyntaxTreeWriter.h"
+#include "AST\Visitor\DefaultSyntaxVisitor.h"
+#include "AST\Visitor\SyntaxWalker.h"
+#include "AST\Visitor\SyntaxTreeWriter.h"
 #include "AST\SyntaxFactory.h"
 #include "Parser\Grammar\CppLexer.h"
 #include "Parser\Grammar\CppParser.h"
