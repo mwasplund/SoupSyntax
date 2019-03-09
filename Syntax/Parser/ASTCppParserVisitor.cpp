@@ -1415,7 +1415,7 @@ antlrcpp::Any ASTCppParserVisitor::visitFunctionParameters(CppParser::FunctionPa
 
     Trace(L"VisitFunctionParameters2");
     return std::static_pointer_cast<const SyntaxNode>(
-        std::make_shared<const ParameterList>(
+        SyntaxFactory::CreateParameterList(
             CreateToken(SyntaxTokenType::LeftParenthesis, context->LeftParenthesis()),
             std::move(parameterList),
             CreateToken(SyntaxTokenType::RightParenthesis, context->RightParenthesis())));

@@ -8,7 +8,9 @@ namespace Soup::Syntax
     /// </summary>
     export class ParameterList final : public SyntaxNode
     {
-    public:
+        friend class SyntaxFactory;
+
+    private:
         /// <summary>
         /// Initialize
         /// </summary>
@@ -23,6 +25,7 @@ namespace Soup::Syntax
         {
         }
 
+    public:
         /// <summary>
         /// Gets the left parenthesis token
         /// </summary>

@@ -146,6 +146,28 @@ namespace Soup::Syntax
         }
 
         /// <summary>
+        /// Create a ParameterList
+        /// </summary>
+        static std::shared_ptr<const ParameterList> CreateParameterList(
+            std::shared_ptr<const SyntaxToken> leftParenthesisToken,
+            std::shared_ptr<const SyntaxList<Parameter>> parameters,
+            std::shared_ptr<const SyntaxToken> rightParenthesisToken)
+        {
+            if (leftParenthesisToken == nullptr)
+                throw std::runtime_error("ArgumentNull - leftParenthesisToken");
+            if (parameters == nullptr)
+                throw std::runtime_error("ArgumentNull - parameters");
+            if (rightParenthesisToken == nullptr)
+                throw std::runtime_error("ArgumentNull - rightParenthesisToken");
+
+            return std::shared_ptr<const ParameterList>(
+                new ParameterList(
+                    std::move(leftParenthesisToken),
+                    std::move(parameters),
+                    std::move(rightParenthesisToken)));
+        }
+
+        /// <summary>
         /// Create a QualifiedNameExpression
         /// </summary>
         static std::shared_ptr<const QualifiedNameExpression> CreateQualifiedNameExpression(

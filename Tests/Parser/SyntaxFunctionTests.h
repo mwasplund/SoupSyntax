@@ -29,7 +29,7 @@ namespace Soup::Syntax::UnitTests
                                 SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0)),
                             },
                             {})),
-                    std::make_shared<ParameterList>(
+                    SyntaxFactory::CreateParameterList(
                         SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"("),
                         std::make_shared<SyntaxList<Parameter>>(
                             std::vector<std::shared_ptr<const Parameter>>(),
@@ -75,7 +75,7 @@ namespace Soup::Syntax::UnitTests
                                 SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0)),
                             },
                             {})),
-                    std::make_shared<ParameterList>(
+                    SyntaxFactory::CreateParameterList(
                         SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"("),
                         std::make_shared<SyntaxList<Parameter>>(
                             std::vector<std::shared_ptr<const Parameter>>(),
@@ -126,7 +126,7 @@ namespace Soup::Syntax::UnitTests
                                 SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0)),
                             },
                             {})),
-                    std::make_shared<ParameterList>(
+                    SyntaxFactory::CreateParameterList(
                         SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"("),
                         std::make_shared<SyntaxList<Parameter>>(
                             std::vector<std::shared_ptr<const Parameter>>(),
@@ -177,7 +177,7 @@ namespace Soup::Syntax::UnitTests
                                 SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0)),
                             },
                             {})),
-                    std::make_shared<ParameterList>(
+                    SyntaxFactory::CreateParameterList(
                         SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"("),
                         std::make_shared<SyntaxList<Parameter>>(
                             std::vector<std::shared_ptr<const Parameter>>(),

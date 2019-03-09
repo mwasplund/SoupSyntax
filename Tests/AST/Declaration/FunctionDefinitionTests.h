@@ -20,7 +20,7 @@ namespace Soup::Syntax::UnitTests
                     }),
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
-                std::make_shared<const ParameterList>(
+                SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"("),
                     std::make_shared<const SyntaxList<Parameter>>(
                         std::vector<std::shared_ptr<const Parameter>>(
@@ -56,7 +56,7 @@ namespace Soup::Syntax::UnitTests
                 uut->GetIdentifier(),
                 L"Verify identifier matches.");
             TestUtils::AreEqual(
-                *std::make_shared<const ParameterList>(
+                *SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"("),
                     std::make_shared<const SyntaxList<Parameter>>(
                         std::vector<std::shared_ptr<const Parameter>>(
@@ -96,7 +96,7 @@ namespace Soup::Syntax::UnitTests
                     }),
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
-                std::make_shared<const ParameterList>(
+                SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"("),
                     std::make_shared<const SyntaxList<Parameter>>(
                         std::vector<std::shared_ptr<const Parameter>>(
@@ -127,7 +127,7 @@ namespace Soup::Syntax::UnitTests
                         }),
                     SyntaxFactory::CreateSimpleNameExpression(
                         SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
-                    std::make_shared<const ParameterList>(
+                    SyntaxFactory::CreateParameterList(
                         SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"("),
                         std::make_shared<const SyntaxList<Parameter>>(
                             std::vector<std::shared_ptr<const Parameter>>(
@@ -164,7 +164,7 @@ namespace Soup::Syntax::UnitTests
                     }),
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
-                std::make_shared<const ParameterList>(
+                SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"("),
                     std::make_shared<const SyntaxList<Parameter>>(
                         std::vector<std::shared_ptr<const Parameter>>(
@@ -195,7 +195,7 @@ namespace Soup::Syntax::UnitTests
                         }),
                     SyntaxFactory::CreateSimpleNameExpression(
                         SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
-                    std::make_shared<const ParameterList>(
+                    SyntaxFactory::CreateParameterList(
                         SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"("),
                         std::make_shared<const SyntaxList<Parameter>>(
                             std::vector<std::shared_ptr<const Parameter>>(
@@ -232,7 +232,7 @@ namespace Soup::Syntax::UnitTests
                     }),
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
-                    std::make_shared<const ParameterList>(
+                    SyntaxFactory::CreateParameterList(
                         SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"("),
                         std::make_shared<const SyntaxList<Parameter>>(
                             std::vector<std::shared_ptr<const Parameter>>(
@@ -263,7 +263,7 @@ namespace Soup::Syntax::UnitTests
                         }),
                     SyntaxFactory::CreateSimpleNameExpression(
                         SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"OtherFunction")),
-                    std::make_shared<const ParameterList>(
+                    SyntaxFactory::CreateParameterList(
                         SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"("),
                         std::make_shared<const SyntaxList<Parameter>>(
                             std::vector<std::shared_ptr<const Parameter>>(
@@ -300,7 +300,7 @@ namespace Soup::Syntax::UnitTests
                     }),
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
-                std::make_shared<const ParameterList>(
+                SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"("),
                     std::make_shared<const SyntaxList<Parameter>>(
                         std::vector<std::shared_ptr<const Parameter>>(
@@ -331,7 +331,7 @@ namespace Soup::Syntax::UnitTests
                         }),
                     SyntaxFactory::CreateSimpleNameExpression(
                         SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
-                    std::make_shared<const ParameterList>(
+                    SyntaxFactory::CreateParameterList(
                         SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"("),
                         std::make_shared<const SyntaxList<Parameter>>(
                             std::vector<std::shared_ptr<const Parameter>>(),
@@ -359,7 +359,7 @@ namespace Soup::Syntax::UnitTests
                     }),
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
-                std::make_shared<const ParameterList>(
+                SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"("),
                     std::make_shared<const SyntaxList<Parameter>>(
                         std::vector<std::shared_ptr<const Parameter>>(
@@ -390,7 +390,7 @@ namespace Soup::Syntax::UnitTests
                         }),
                     SyntaxFactory::CreateSimpleNameExpression(
                         SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
-                    std::make_shared<const ParameterList>(
+                    SyntaxFactory::CreateParameterList(
                         SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"("),
                         std::make_shared<const SyntaxList<Parameter>>(
                             std::vector<std::shared_ptr<const Parameter>>(
