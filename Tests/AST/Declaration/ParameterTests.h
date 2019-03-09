@@ -12,21 +12,21 @@ namespace Soup::Syntax::UnitTests
         {
             // int parameter
             auto uut = SyntaxFactory::CreateParameter(
-                std::make_shared<const PrimitiveDataTypeNode>(
+                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                     PrimitiveDataType::Int,
                     SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
-                std::make_shared<const PrimitiveDataTypeNode>(
+                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                     PrimitiveDataType::Int,
                     SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")));
 
             TestUtils::AreEqual(
-                *std::make_shared<const PrimitiveDataTypeNode>(
+                *SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                     PrimitiveDataType::Int,
                     SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
                 uut->GetDeclarationSpecifierSequence(),
                 L"Verify declaration specifier sequence matches.");
             TestUtils::AreEqual(
-                *std::make_shared<const PrimitiveDataTypeNode>(
+                *SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                     PrimitiveDataType::Int,
                     SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
                 uut->GetDeclarator(),
@@ -38,19 +38,19 @@ namespace Soup::Syntax::UnitTests
         {
             // int parameter
             auto uut = SyntaxFactory::CreateParameter(
-                std::make_shared<const PrimitiveDataTypeNode>(
+                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                     PrimitiveDataType::Int,
                     SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
-                std::make_shared<const PrimitiveDataTypeNode>(
+                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                     PrimitiveDataType::Int,
                     SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")));
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateParameter(
-                    std::make_shared<const PrimitiveDataTypeNode>(
+                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
-                    std::make_shared<const PrimitiveDataTypeNode>(
+                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int"))),
                 uut,
@@ -62,19 +62,19 @@ namespace Soup::Syntax::UnitTests
         {
             // int parameter
             auto uut = SyntaxFactory::CreateParameter(
-                std::make_shared<const PrimitiveDataTypeNode>(
+                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                     PrimitiveDataType::Int,
                     SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
-                std::make_shared<const PrimitiveDataTypeNode>(
+                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                     PrimitiveDataType::Int,
                     SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateParameter(
-                    std::make_shared<const PrimitiveDataTypeNode>(
+                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Double,
                         SyntaxFactory::CreateToken(SyntaxTokenType::Double, L"double")),
-                    std::make_shared<const PrimitiveDataTypeNode>(
+                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int"))),
                 uut,
@@ -86,19 +86,19 @@ namespace Soup::Syntax::UnitTests
         {
             // int parameter
             auto uut = SyntaxFactory::CreateParameter(
-                std::make_shared<const PrimitiveDataTypeNode>(
+                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                     PrimitiveDataType::Int,
                     SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
-                std::make_shared<const PrimitiveDataTypeNode>(
+                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                     PrimitiveDataType::Int,
                     SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateParameter(
-                    std::make_shared<const PrimitiveDataTypeNode>(
+                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
-                    std::make_shared<const PrimitiveDataTypeNode>(
+                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Double,
                         SyntaxFactory::CreateToken(SyntaxTokenType::Double, L"double"))),
                 uut,

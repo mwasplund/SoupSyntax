@@ -186,6 +186,22 @@ namespace Soup::Syntax
         }
 
         /// <summary>
+        /// Create a PrimitiveDataTypeDeclaration
+        /// </summary>
+        static std::shared_ptr<const PrimitiveDataTypeDeclaration> CreatePrimitiveDataTypeDeclaration(
+            PrimitiveDataType type,
+            std::shared_ptr<const SyntaxToken> token)
+        {
+            if (token == nullptr)
+                throw std::runtime_error("ArgumentNull - token");
+
+            return std::shared_ptr<const PrimitiveDataTypeDeclaration>(
+                new PrimitiveDataTypeDeclaration(
+                    type,
+                    std::move(token)));
+        }
+
+        /// <summary>
         /// Create a QualifiedNameExpression
         /// </summary>
         static std::shared_ptr<const QualifiedNameExpression> CreateQualifiedNameExpression(

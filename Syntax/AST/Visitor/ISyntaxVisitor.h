@@ -22,7 +22,7 @@ namespace Soup::Syntax
         virtual void Visit(const LiteralExpression& node) = 0;
         virtual void Visit(const Parameter& node) = 0;
         virtual void Visit(const ParameterList& node) = 0;
-        virtual void Visit(const PrimitiveDataTypeNode& node) = 0;
+        virtual void Visit(const PrimitiveDataTypeDeclaration& node) = 0;
         virtual void Visit(const QualifiedNameExpression& node) = 0;
         virtual void Visit(const RegularFunctionBody& node) = 0;
         virtual void Visit(const ReturnStatement& node) = 0;

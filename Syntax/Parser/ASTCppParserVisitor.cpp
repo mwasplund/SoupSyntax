@@ -1024,72 +1024,72 @@ antlrcpp::Any ASTCppParserVisitor::visitSimpleTypeSpecifier(CppParser::SimpleTyp
     Trace(L"VisitSimpleTypeSpecifier");
     if (context->Char() != nullptr)
         return std::static_pointer_cast<const SyntaxNode>(
-            std::make_shared<const PrimitiveDataTypeNode>(
+            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                 PrimitiveDataType::Char,
                 CreateToken(SyntaxTokenType::Char, context->Char())));
     else if (context->Char16() != nullptr)
         return std::static_pointer_cast<const SyntaxNode>(
-            std::make_shared<const PrimitiveDataTypeNode>(
+            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                 PrimitiveDataType::Char16,
                 CreateToken(SyntaxTokenType::Char16, context->Char16())));
     else if (context->Char32() != nullptr)
         return std::static_pointer_cast<const SyntaxNode>(
-            std::make_shared<const PrimitiveDataTypeNode>(
+            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                 PrimitiveDataType::Char32,
                 CreateToken(SyntaxTokenType::Char32, context->Char32())));
     else if (context->WChar() != nullptr)
         return std::static_pointer_cast<const SyntaxNode>(
-            std::make_shared<const PrimitiveDataTypeNode>(
+            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                 PrimitiveDataType::WChar,
                 CreateToken(SyntaxTokenType::WChar, context->WChar())));
     else if (context->Bool() != nullptr)
         return std::static_pointer_cast<const SyntaxNode>(
-            std::make_shared<const PrimitiveDataTypeNode>(
+            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                 PrimitiveDataType::Bool,
                 CreateToken(SyntaxTokenType::Bool, context->Bool())));
     else if (context->Short() != nullptr)
         return std::static_pointer_cast<const SyntaxNode>(
-            std::make_shared<const PrimitiveDataTypeNode>(
+            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                 PrimitiveDataType::Short,
                 CreateToken(SyntaxTokenType::Short, context->Short())));
     else if (context->Int() != nullptr)
         return std::static_pointer_cast<const SyntaxNode>(
-            std::make_shared<const PrimitiveDataTypeNode>(
+            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                 PrimitiveDataType::Int,
                 CreateToken(SyntaxTokenType::Int, context->Int())));
     else if (context->Long() != nullptr)
         return std::static_pointer_cast<const SyntaxNode>(
-            std::make_shared<const PrimitiveDataTypeNode>(
+            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                 PrimitiveDataType::Long,
                 CreateToken(SyntaxTokenType::Long, context->Long())));
     else if (context->Signed() != nullptr)
         return std::static_pointer_cast<const SyntaxNode>(
-            std::make_shared<const PrimitiveDataTypeNode>(
+            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                 PrimitiveDataType::Signed,
                 CreateToken(SyntaxTokenType::Signed, context->Signed())));
     else if (context->Unsigned() != nullptr)
         return std::static_pointer_cast<const SyntaxNode>(
-            std::make_shared<const PrimitiveDataTypeNode>(
+            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                 PrimitiveDataType::Unsigned,
                 CreateToken(SyntaxTokenType::Unsigned, context->Unsigned())));
     else if (context->Float() != nullptr)
         return std::static_pointer_cast<const SyntaxNode>(
-            std::make_shared<const PrimitiveDataTypeNode>(
+            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                 PrimitiveDataType::Float,
                 CreateToken(SyntaxTokenType::Float, context->Float())));
     else if (context->Double() != nullptr)
         return std::static_pointer_cast<const SyntaxNode>(
-            std::make_shared<const PrimitiveDataTypeNode>(
+            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                 PrimitiveDataType::Double,
                 CreateToken(SyntaxTokenType::Double, context->Double())));
     else if (context->Void() != nullptr)
         return std::static_pointer_cast<const SyntaxNode>(
-            std::make_shared<const PrimitiveDataTypeNode>(
+            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                 PrimitiveDataType::Void,
                 CreateToken(SyntaxTokenType::Void, context->Void())));
     else if (context->Auto() != nullptr)
         return std::static_pointer_cast<const SyntaxNode>(
-            std::make_shared<const PrimitiveDataTypeNode>(
+            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                 PrimitiveDataType::Auto,
                 CreateToken(SyntaxTokenType::Auto, context->Auto())));
 

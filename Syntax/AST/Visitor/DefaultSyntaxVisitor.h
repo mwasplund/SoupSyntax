@@ -74,7 +74,7 @@ namespace Soup::Syntax
             DefaultVisit(node);
         }
 
-        virtual void Visit(const PrimitiveDataTypeNode& node) override
+        virtual void Visit(const PrimitiveDataTypeDeclaration& node) override
         {
             DefaultVisit(node);
         }

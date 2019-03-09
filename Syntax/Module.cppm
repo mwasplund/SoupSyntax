@@ -33,7 +33,7 @@ namespace Soup::Syntax
     class InitializerDeclaratorList;
     class Parameter;
     class ParameterList;
-    class PrimitiveDataTypeNode;
+    class PrimitiveDataTypeDeclaration;
     class RegularFunctionBody;
     class SimpleDefinition;
     class TryFunctionBody;
@@ -74,7 +74,7 @@ namespace Soup::Syntax
 #include "AST\Declaration\Parameter.h"
 #include "AST\Declaration\ParameterList.h"
 #include "AST\Declaration\PrimitiveDataType.h"
-#include "AST\Declaration\PrimitiveDataTypeNode.h"
+#include "AST\Declaration\PrimitiveDataTypeDeclaration.h"
 #include "AST\Declaration\FunctionDeclaration.h"
 #include "AST\Declaration\FunctionDefinition.h"
 #include "AST\Declaration\InitializerDeclarator.h"

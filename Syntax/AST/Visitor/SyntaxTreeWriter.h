@@ -107,8 +107,8 @@ namespace Soup::Syntax
                     return L"Parameter";
                 case SyntaxNodeType::ParameterList:
                     return L"ParameterList";
-                case SyntaxNodeType::PrimitiveDataTypeNode:
-                    return L"PrimitiveDataTypeNode";
+                case SyntaxNodeType::PrimitiveDataTypeDeclaration:
+                    return L"PrimitiveDataTypeDeclaration";
                 case SyntaxNodeType::QualifiedNameExpression:
                     return L"QualifiedNameExpression";
                 case SyntaxNodeType::RegularFunctionBody:

@@ -21,7 +21,7 @@ namespace Soup::Syntax
         LiteralExpression,
         Parameter,
         ParameterList,
-        PrimitiveDataTypeNode,
+        PrimitiveDataTypeDeclaration,
         QualifiedNameExpression,
         RegularFunctionBody,
         ReturnStatement,

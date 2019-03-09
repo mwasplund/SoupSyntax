@@ -18,7 +18,7 @@ namespace Soup::Syntax::UnitTests
                     std::make_shared<DeclarationSpecifierSequence>(
                         std::vector<std::shared_ptr<const SyntaxNode>>
                         {
-                            std::make_shared<PrimitiveDataTypeNode>(
+                            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                                 PrimitiveDataType::Int,
                                 SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
                         }),
@@ -47,7 +47,7 @@ namespace Soup::Syntax::UnitTests
                     std::make_shared<DeclarationSpecifierSequence>(
                         std::vector<std::shared_ptr<const SyntaxNode>>
                         {
-                            std::make_shared<PrimitiveDataTypeNode>(
+                            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                                 PrimitiveDataType::Int,
                                 SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
                         }),
@@ -103,7 +103,7 @@ namespace Soup::Syntax::UnitTests
                     std::make_shared<DeclarationSpecifierSequence>(
                         std::vector<std::shared_ptr<const SyntaxNode>>
                         {
-                            std::make_shared<PrimitiveDataTypeNode>(
+                            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                                 type,
                                 SyntaxFactory::CreateToken(tokenType, Convert(typeString))),
                         }),
@@ -146,7 +146,7 @@ namespace Soup::Syntax::UnitTests
                     std::make_shared<DeclarationSpecifierSequence>(
                         std::vector<std::shared_ptr<const SyntaxNode>>
                         {
-                            std::make_shared<PrimitiveDataTypeNode>(
+                            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                                 PrimitiveDataType::Int,
                                 SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
                         }),

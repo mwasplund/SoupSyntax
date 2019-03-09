@@ -6,21 +6,24 @@ namespace Soup::Syntax
     /// <summary>
     /// Primitive data type
     /// </summary>
-    export class PrimitiveDataTypeNode final : public SyntaxNode
+    export class PrimitiveDataTypeDeclaration final : public SyntaxNode
     {
-    public:
+        friend class SyntaxFactory;
+
+    private:
         /// <summary>
         /// Initialize
         /// </summary>
-        PrimitiveDataTypeNode(
+        PrimitiveDataTypeDeclaration(
             PrimitiveDataType type,
             std::shared_ptr<const SyntaxToken> token) :
-            SyntaxNode(SyntaxNodeType::PrimitiveDataTypeNode),
+            SyntaxNode(SyntaxNodeType::PrimitiveDataTypeDeclaration),
             m_type(type),
             m_token(std::move(token))
         {
         }
 
+    public:
         /// <summary>
         /// Gets the type
         /// </summary>
@@ -59,13 +62,13 @@ namespace Soup::Syntax
         /// <summary>
         /// Equality operator
         /// </summary>
-        bool operator ==(const PrimitiveDataTypeNode& rhs) const
+        bool operator ==(const PrimitiveDataTypeDeclaration& rhs) const
         {
             return m_type == rhs.m_type &&
                 *m_token == *rhs.m_token;
         }
 
-        bool operator !=(const PrimitiveDataTypeNode& rhs) const
+        bool operator !=(const PrimitiveDataTypeDeclaration& rhs) const
         {
             return !(*this == rhs);
         }
@@ -76,7 +79,7 @@ namespace Soup::Syntax
         /// </summary>
         virtual bool Equals(const SyntaxNode& rhs) const final
         {
-            return *this == static_cast<const PrimitiveDataTypeNode&>(rhs);
+            return *this == static_cast<const PrimitiveDataTypeDeclaration&>(rhs);
         }
 
     private:
