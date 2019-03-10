@@ -99,6 +99,20 @@ namespace Soup::Syntax::UnitTests
         }
 
         // [[Fact]]
+        void SimpleNameExpressionGetChildren()
+        {
+            auto uut = SyntaxFactory::CreateSimpleNameExpression(
+                SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"name"));
+
+            Assert::AreEqual(
+                std::vector<SyntaxNodeChild>({
+                    SyntaxNodeChild(SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"name")),
+                }),
+                uut->GetChildren(),
+                L"Verify children match.");
+        }
+
+        // [[Fact]]
         void SimpleNameExpressionOperatorEqual()
         {
             auto uut = SyntaxFactory::CreateSimpleNameExpression(
@@ -122,6 +136,26 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"name2")),
                 uut,
                 L"Verify do not match.");
+        }
+
+        // [[Fact]]
+        void GlobalQualifiedNameExpressionGetChildren()
+        {
+            auto uut = SyntaxFactory::CreateQualifiedNameExpression(
+                nullptr,
+                SyntaxFactory::CreateToken(SyntaxTokenType::DoubleColon, L"::"),
+                SyntaxFactory::CreateSimpleNameExpression(
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Right")));
+
+            Assert::AreEqual(
+                std::vector<SyntaxNodeChild>({
+                    SyntaxNodeChild(SyntaxFactory::CreateToken(SyntaxTokenType::DoubleColon, L"::")),
+                    SyntaxNodeChild(
+                        SyntaxFactory::CreateSimpleNameExpression(
+                            SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Right"))),
+                }),
+                uut->GetChildren(),
+                L"Verify children match.");
         }
 
         // [[Fact]]
@@ -199,6 +233,30 @@ namespace Soup::Syntax::UnitTests
                         SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Right2"))),
                 uut,
                 L"Verify do not match.");
+        }
+
+        // [[Fact]]
+        void SingleQualifiedNameExpressionGetChildren()
+        {
+            auto uut = SyntaxFactory::CreateQualifiedNameExpression(
+                SyntaxFactory::CreateSimpleNameExpression(
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Left")),
+                SyntaxFactory::CreateToken(SyntaxTokenType::DoubleColon, L"::"),
+                SyntaxFactory::CreateSimpleNameExpression(
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Right")));
+
+            Assert::AreEqual(
+                std::vector<SyntaxNodeChild>({
+                    SyntaxNodeChild(
+                        SyntaxFactory::CreateSimpleNameExpression(
+                            SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Left"))),
+                    SyntaxNodeChild(SyntaxFactory::CreateToken(SyntaxTokenType::DoubleColon, L"::")),
+                    SyntaxNodeChild(
+                        SyntaxFactory::CreateSimpleNameExpression(
+                            SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Right"))),
+                }),
+                uut->GetChildren(),
+                L"Verify children match.");
         }
 
         // [[Fact]]

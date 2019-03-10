@@ -40,6 +40,34 @@ namespace Soup::Syntax::UnitTests
         }
 
         // [[Fact]]
+        void GetChildren()
+        {
+            auto uut = SyntaxFactory::CreateSubscriptExpression(
+                SyntaxFactory::CreateSimpleNameExpression(
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateToken(SyntaxTokenType::LeftBracket, L"["),
+                SyntaxFactory::CreateLiteralExpression(
+                    LiteralType::Integer,
+                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")),
+                SyntaxFactory::CreateToken(SyntaxTokenType::RightBracket, L"]"));
+
+            Assert::AreEqual(
+                std::vector<SyntaxNodeChild>({
+                    SyntaxNodeChild(
+                        SyntaxFactory::CreateSimpleNameExpression(
+                            SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a"))),
+                    SyntaxNodeChild(SyntaxFactory::CreateToken(SyntaxTokenType::LeftBracket, L"[")),
+                    SyntaxNodeChild(
+                        SyntaxFactory::CreateLiteralExpression(
+                            LiteralType::Integer,
+                            SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2"))),
+                    SyntaxNodeChild(SyntaxFactory::CreateToken(SyntaxTokenType::RightBracket, L"]")),
+                }),
+                uut->GetChildren(),
+                L"Verify children match.");
+        }
+
+        // [[Fact]]
         void OperatorEqual()
         {
             auto uut = SyntaxFactory::CreateSubscriptExpression(

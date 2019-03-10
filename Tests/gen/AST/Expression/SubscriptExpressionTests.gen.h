@@ -12,6 +12,9 @@ int RunSubscriptExpressionTests()
     std::wcout << L"InitializeSimple" << std::endl;
     failedCount += RunTest([&testClass]() { testClass->InitializeSimple(); });
 
+    std::wcout << L"GetChildren" << std::endl;
+    failedCount += RunTest([&testClass]() { testClass->GetChildren(); });
+
     std::wcout << L"OperatorEqual" << std::endl;
     failedCount += RunTest([&testClass]() { testClass->OperatorEqual(); });
 

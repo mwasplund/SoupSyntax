@@ -40,8 +40,8 @@ namespace Soup::Syntax
         {
             return std::vector<SyntaxNodeChild>(
                 {
-                    SyntaxNodeChild(*m_declarationSpecifierSequence),
-                    SyntaxNodeChild(*m_initializerDeclaratorList),
+                    SyntaxNodeChild(m_declarationSpecifierSequence),
+                    SyntaxNodeChild(m_initializerDeclaratorList),
                 });
         }
 

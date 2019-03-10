@@ -14,22 +14,22 @@ namespace Soup::Syntax
         /// </summary>
         static std::shared_ptr<const BinaryExpression> CreateBinaryExpression(
             BinaryOperator binaryOperator,
-            std::shared_ptr<const SyntaxToken> operatorToken,
             std::shared_ptr<const Expression> leftOperand,
+            std::shared_ptr<const SyntaxToken> operatorToken,
             std::shared_ptr<const Expression> rightOperand)
         {
-            if (operatorToken == nullptr)
-                throw std::runtime_error("ArgumentNull - operatorToken");
             if (leftOperand == nullptr)
                 throw std::runtime_error("ArgumentNull - leftOperand");
+            if (operatorToken == nullptr)
+                throw std::runtime_error("ArgumentNull - operatorToken");
             if (rightOperand == nullptr)
                 throw std::runtime_error("ArgumentNull - rightOperand");
 
             return std::shared_ptr<const BinaryExpression>(
                 new BinaryExpression(
                     binaryOperator,
-                    std::move(operatorToken),
                     std::move(leftOperand),
+                    std::move(operatorToken),
                     std::move(rightOperand)));
         }
 

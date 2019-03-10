@@ -56,9 +56,9 @@ namespace Soup::Syntax
         {
             return std::vector<SyntaxNodeChild>(
                 {
-                    SyntaxNodeChild(*m_equalToken),
-                    SyntaxNodeChild(*m_defaultToken),
-                    SyntaxNodeChild(*m_semicolonToken),
+                    SyntaxNodeChild(m_equalToken),
+                    SyntaxNodeChild(m_defaultToken),
+                    SyntaxNodeChild(m_semicolonToken),
                 });
         }
 

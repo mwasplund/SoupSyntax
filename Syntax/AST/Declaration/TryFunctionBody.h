@@ -32,7 +32,7 @@ namespace Soup::Syntax
         {
             return std::vector<SyntaxNodeChild>(
                 {
-                    SyntaxNodeChild(*m_statements),
+                    SyntaxNodeChild(m_statements),
                 });
         }
 

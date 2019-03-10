@@ -20,6 +20,20 @@ namespace Soup::Syntax::UnitTests
         }
 
         // [[Fact]]
+        void GetChildren()
+        {
+            auto uut = SyntaxFactory::CreateThisExpression(
+                SyntaxFactory::CreateToken(SyntaxTokenType::This, L"this"));
+
+            Assert::AreEqual(
+                std::vector<SyntaxNodeChild>({
+                    SyntaxNodeChild(SyntaxFactory::CreateToken(SyntaxTokenType::This, L"this")),
+                }),
+                uut->GetChildren(),
+                L"Verify children match.");
+        }
+
+        // [[Fact]]
         void OperatorEqual()
         {
             auto uut = SyntaxFactory::CreateThisExpression(

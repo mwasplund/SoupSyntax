@@ -34,6 +34,33 @@ namespace Soup::Syntax::UnitTests
         }
 
         // [[Fact]]
+        void GetChildren()
+        {
+            // int parameter
+            auto uut = SyntaxFactory::CreateParameter(
+                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                    PrimitiveDataType::Int,
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
+                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                    PrimitiveDataType::Int,
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")));
+
+            Assert::AreEqual(
+                std::vector<SyntaxNodeChild>({
+                    SyntaxNodeChild(
+                        SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                            PrimitiveDataType::Int,
+                            SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int"))),
+                    SyntaxNodeChild(
+                        SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                            PrimitiveDataType::Int,
+                            SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int"))),
+                }),
+                uut->GetChildren(),
+                L"Verify children match.");
+        }
+
+        // [[Fact]]
         void OperatorEqual()
         {
             // int parameter

@@ -57,12 +57,12 @@ namespace Soup::Syntax
         {
             std::vector<SyntaxNodeChild> children;
 
-            children.push_back(SyntaxNodeChild(*m_leftParenthesisToken));
+            children.push_back(SyntaxNodeChild(m_leftParenthesisToken));
 
             auto parameterChildren = m_parameters->GetChildren();
             children.insert(children.end(), parameterChildren.begin(), parameterChildren.end());
 
-            children.push_back(SyntaxNodeChild(*m_rightParenthesisToken));
+            children.push_back(SyntaxNodeChild(m_rightParenthesisToken));
 
             return children;
         }

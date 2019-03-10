@@ -66,10 +66,10 @@ namespace Soup::Syntax
         {
             return std::vector<SyntaxNodeChild>(
                 {
-                    SyntaxNodeChild(*m_leftExpression),
-                    SyntaxNodeChild(*m_leftBracket),
-                    SyntaxNodeChild(*m_rightExpression),
-                    SyntaxNodeChild(*m_rightBracket),
+                    SyntaxNodeChild(m_leftExpression),
+                    SyntaxNodeChild(m_leftBracket),
+                    SyntaxNodeChild(m_rightExpression),
+                    SyntaxNodeChild(m_rightBracket),
                 });
         }
 

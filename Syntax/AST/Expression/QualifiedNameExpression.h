@@ -81,12 +81,16 @@ namespace Soup::Syntax
         /// </summary>
         virtual std::vector<SyntaxNodeChild> GetChildren() const override final
         {
-            return std::vector<SyntaxNodeChild>(
-                {
-                    SyntaxNodeChild(*m_left),
-                    SyntaxNodeChild(*m_scopeResolutionToken),
-                    SyntaxNodeChild(*m_right),
-                });
+            std::vector<SyntaxNodeChild> children;
+            if (HasLeft())
+            {
+                children.push_back(SyntaxNodeChild(m_left));
+            }
+
+            children.push_back(SyntaxNodeChild(m_scopeResolutionToken));
+            children.push_back(SyntaxNodeChild(m_right));
+
+            return children;
         }
 
         /// <summary>

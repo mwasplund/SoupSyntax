@@ -63,10 +63,10 @@ namespace Soup::Syntax
         {
             return std::vector<SyntaxNodeChild>(
             {
-                SyntaxNodeChild(*m_returnType),
-                SyntaxNodeChild(*m_identifier),
-                SyntaxNodeChild(*m_parameterList),
-                SyntaxNodeChild(*m_body),
+                SyntaxNodeChild(m_returnType),
+                SyntaxNodeChild(m_identifier),
+                SyntaxNodeChild(m_parameterList),
+                SyntaxNodeChild(m_body),
             });
         }
 

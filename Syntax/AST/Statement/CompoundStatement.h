@@ -33,7 +33,7 @@ namespace Soup::Syntax
             std::vector<SyntaxNodeChild> children;
             for (auto& statement : m_statements)
             {
-                children.push_back(SyntaxNodeChild(*statement));
+                children.push_back(SyntaxNodeChild(statement));
             }
 
             return children;

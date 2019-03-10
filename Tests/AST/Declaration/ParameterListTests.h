@@ -53,6 +53,43 @@ namespace Soup::Syntax::UnitTests
         }
 
         // [[Fact]]
+        void GetChildren()
+        {
+            // (int parameter)
+            auto uut = SyntaxFactory::CreateParameterList(
+                SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"("),
+                std::make_shared<const SyntaxList<Parameter>>(
+                    std::vector<std::shared_ptr<const Parameter>>(
+                    {
+                        SyntaxFactory::CreateParameter(
+                            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                PrimitiveDataType::Int,
+                                SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
+                            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                PrimitiveDataType::Int,
+                                SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int"))),
+                    }),
+                    std::vector<std::shared_ptr<const SyntaxToken>>()),
+                SyntaxFactory::CreateToken(SyntaxTokenType::RightParenthesis, L")"));
+
+            Assert::AreEqual(
+                std::vector<SyntaxNodeChild>({
+                    SyntaxNodeChild(SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"(")),
+                    SyntaxNodeChild(
+                        SyntaxFactory::CreateParameter(
+                            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                PrimitiveDataType::Int,
+                                SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
+                            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                PrimitiveDataType::Int,
+                                SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")))),
+                    SyntaxNodeChild(SyntaxFactory::CreateToken(SyntaxTokenType::RightParenthesis, L")")),
+                }),
+                uut->GetChildren(),
+                L"Verify children match.");
+        }
+
+        // [[Fact]]
         void OperatorEqual()
         {
             // (int parameter)

@@ -40,11 +40,11 @@ namespace Soup::Syntax
         {
             std::vector<SyntaxNodeChild> children;
 
-            children.push_back(SyntaxNodeChild(*m_declarator));
+            children.push_back(SyntaxNodeChild(m_declarator));
 
             if (m_initializer != nullptr)
             {
-                children.push_back(SyntaxNodeChild(*m_initializer));
+                children.push_back(SyntaxNodeChild(m_initializer));
             }
 
             return children;

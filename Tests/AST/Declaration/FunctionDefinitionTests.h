@@ -83,6 +83,79 @@ namespace Soup::Syntax::UnitTests
         }
 
         // [[Fact]]
+        void GetChildren()
+        {
+            // void Function(int parameter) = delete;
+            auto uut = SyntaxFactory::CreateFunctionDefinition(
+                std::make_shared<DeclarationSpecifierSequence>(
+                    std::vector<std::shared_ptr<const SyntaxNode>>
+                    {
+                        SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                            PrimitiveDataType::Void,
+                            SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void")),
+                    }),
+                SyntaxFactory::CreateSimpleNameExpression(
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
+                SyntaxFactory::CreateParameterList(
+                    SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"("),
+                    std::make_shared<const SyntaxList<Parameter>>(
+                        std::vector<std::shared_ptr<const Parameter>>(
+                        {
+                            SyntaxFactory::CreateParameter(
+                                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                    PrimitiveDataType::Int,
+                                    SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
+                                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                    PrimitiveDataType::Int,
+                                    SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int"))),
+                        }),
+                        std::vector<std::shared_ptr<const SyntaxToken>>()),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::RightParenthesis, L")")),
+                SyntaxFactory::CreateDeleteFunctionBody(
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Delete, L"delete"),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";")));
+
+            Assert::AreEqual(
+                std::vector<SyntaxNodeChild>({
+                    SyntaxNodeChild(
+                        std::make_shared<DeclarationSpecifierSequence>(
+                            std::vector<std::shared_ptr<const SyntaxNode>>
+                            {
+                                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                    PrimitiveDataType::Void,
+                                    SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void")),
+                            })),
+                    SyntaxNodeChild(
+                        SyntaxFactory::CreateSimpleNameExpression(
+                            SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function"))),
+                    SyntaxNodeChild(
+                        SyntaxFactory::CreateParameterList(
+                            SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"("),
+                            std::make_shared<const SyntaxList<Parameter>>(
+                                std::vector<std::shared_ptr<const Parameter>>(
+                                {
+                                    SyntaxFactory::CreateParameter(
+                                        SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                            PrimitiveDataType::Int,
+                                            SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
+                                        SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                            PrimitiveDataType::Int,
+                                            SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int"))),
+                                }),
+                                std::vector<std::shared_ptr<const SyntaxToken>>()),
+                            SyntaxFactory::CreateToken(SyntaxTokenType::RightParenthesis, L")"))),
+                    SyntaxNodeChild(
+                        SyntaxFactory::CreateDeleteFunctionBody(
+                            SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
+                            SyntaxFactory::CreateToken(SyntaxTokenType::Delete, L"delete"),
+                            SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"))),
+                }),
+                uut->GetChildren(),
+                L"Verify children match.");
+        }
+
+        // [[Fact]]
         void OperatorEqual()
         {
             // void Function(int parameter) = delete;

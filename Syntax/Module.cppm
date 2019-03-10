@@ -9,6 +9,7 @@ import Antlr4.Runtime;
 namespace Soup::Syntax
 {
     class SyntaxNode;
+    class SyntaxNodeChild;
     class SyntaxToken;
 
     class TranslationUnit;
@@ -45,12 +46,12 @@ namespace Soup::Syntax
 
 #include "AST\TextSpan.h"
 #include "AST\SyntaxTrivia.h"
-#include "AST\SyntaxNodeChild.h"
 #include "AST\SyntaxTokenType.h"
 #include "AST\SyntaxToken.h"
 #include "AST\Visitor\ISyntaxVisitor.h"
 #include "AST\SyntaxNodeType.h"
 #include "AST\SyntaxNode.h"
+#include "AST\SyntaxNodeChild.h"
 #include "AST\Expression\Expression.h"
 #include "AST\Expression\BinaryOperator.h"
 #include "AST\Expression\BinaryExpression.h"

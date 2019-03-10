@@ -35,7 +35,7 @@ namespace Soup::Syntax
         {
             return std::vector<SyntaxNodeChild>(
                 {
-                    SyntaxNodeChild(*m_identifier),
+                    SyntaxNodeChild(m_identifier),
                 });
         }
 

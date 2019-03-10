@@ -28,6 +28,50 @@ namespace Soup::Syntax::UnitTests
         }
 
         // [[Fact]]
+        void PostfixOperatorGetChildren()
+        {
+            auto uut = SyntaxFactory::CreateUnaryExpression(
+                UnaryOperator::PostIncrement,
+                SyntaxFactory::CreateToken(SyntaxTokenType::DoublePlus, L"++"),
+                SyntaxFactory::CreateLiteralExpression(
+                    LiteralType::Integer,
+                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")));
+
+            Assert::AreEqual(
+                std::vector<SyntaxNodeChild>({
+                    SyntaxNodeChild(
+                        SyntaxFactory::CreateLiteralExpression(
+                            LiteralType::Integer,
+                            SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1"))),
+                    SyntaxNodeChild(SyntaxFactory::CreateToken(SyntaxTokenType::DoublePlus, L"++")),
+                }),
+                uut->GetChildren(),
+                L"Verify children match.");
+        }
+
+        // [[Fact]]
+        void PrefixOperatorGetChildren()
+        {
+            auto uut = SyntaxFactory::CreateUnaryExpression(
+                UnaryOperator::PreIncrement,
+                SyntaxFactory::CreateToken(SyntaxTokenType::DoublePlus, L"++"),
+                SyntaxFactory::CreateLiteralExpression(
+                    LiteralType::Integer,
+                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")));
+
+            Assert::AreEqual(
+                std::vector<SyntaxNodeChild>({
+                    SyntaxNodeChild(SyntaxFactory::CreateToken(SyntaxTokenType::DoublePlus, L"++")),
+                    SyntaxNodeChild(
+                        SyntaxFactory::CreateLiteralExpression(
+                            LiteralType::Integer,
+                            SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1"))),
+                }),
+                uut->GetChildren(),
+                L"Verify children match.");
+        }
+
+        // [[Fact]]
         void OperatorEqual()
         {
             auto uut = SyntaxFactory::CreateUnaryExpression(

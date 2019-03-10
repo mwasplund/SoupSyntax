@@ -11,10 +11,10 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::Addition,
-                SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
                     SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
+                SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
                     SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")));
@@ -43,10 +43,10 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::Addition,
-                SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
                     SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
+                SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
                     SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")));
@@ -54,10 +54,10 @@ namespace Soup::Syntax::UnitTests
             TestUtils::AreEqual(
                 SyntaxFactory::CreateBinaryExpression(
                     BinaryOperator::Addition,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
                         SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
                         SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2"))),
@@ -70,10 +70,10 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::Addition,
-                SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
                     SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
+                SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
                     SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")));
@@ -81,10 +81,10 @@ namespace Soup::Syntax::UnitTests
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateBinaryExpression(
                     BinaryOperator::Subtraction,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
                         SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
                         SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2"))),
@@ -97,10 +97,10 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::Addition,
-                SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
                     SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
+                SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
                     SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")));
@@ -108,10 +108,10 @@ namespace Soup::Syntax::UnitTests
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateBinaryExpression(
                     BinaryOperator::Addition,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
                         SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"11")),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
                         SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2"))),
@@ -124,10 +124,10 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::Addition,
-                SyntaxFactory::CreateToken(SyntaxTokenType::Minus, L"-"),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
                     SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
+                SyntaxFactory::CreateToken(SyntaxTokenType::Minus, L"-"),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
                     SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")));
@@ -135,10 +135,10 @@ namespace Soup::Syntax::UnitTests
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateBinaryExpression(
                     BinaryOperator::Addition,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
                         SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
                         SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2"))),
@@ -151,10 +151,10 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::Addition,
-                SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
                     SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
+                SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
                     SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")));
@@ -162,10 +162,10 @@ namespace Soup::Syntax::UnitTests
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateBinaryExpression(
                     BinaryOperator::Addition,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
                         SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
+                    SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
                         SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"22"))),

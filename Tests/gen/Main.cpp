@@ -16,6 +16,7 @@ import SoupSyntax;
 #include "AST\Expression\ThisExpressionTests.gen.h"
 #include "AST\Expression\UnaryExpressionTests.gen.h"
 
+#include "AST\SyntaxNodeChildTests.gen.h"
 #include "AST\SyntaxTokenTests.gen.h"
 
 #include "Parser\LexerTests.gen.h"
@@ -49,6 +50,7 @@ int main()
     failedCount += RunThisExpressionTests();
     failedCount += RunUnaryExpressionTests();
 
+    failedCount += RunSyntaxNodeChildTests();
     failedCount += RunSyntaxTokenTests();
 
     failedCount += RunLexerTests();

@@ -27,6 +27,30 @@ namespace Soup::Syntax
 
     public:
         /// <summary>
+        /// Gets a value indicating whether the operator is prefix or postfix
+        /// </summary>
+        bool IsPostfixOperator() const
+        {
+            switch (m_operator)
+            {
+                case UnaryOperator::PostIncrement:
+                case UnaryOperator::PostDecrement:
+                    return true;
+                case UnaryOperator::Plus:
+                case UnaryOperator::Minus:
+                case UnaryOperator::BitwiseNot:
+                case UnaryOperator::PreIncrement:
+                case UnaryOperator::PreDecrement:
+                case UnaryOperator::LogicalNot:
+                case UnaryOperator::Indirection:
+                case UnaryOperator::AddressOf:
+                    return false;
+                default:
+                    throw std::logic_error("Unknown operator.");
+            }
+        }
+
+        /// <summary>
         /// The operator
         /// </summary>
         UnaryOperator GetOperator() const
@@ -55,11 +79,22 @@ namespace Soup::Syntax
         /// </summary>
         virtual std::vector<SyntaxNodeChild> GetChildren() const override final
         {
-            return std::vector<SyntaxNodeChild>(
+            if (IsPostfixOperator())
+            {
+                return std::vector<SyntaxNodeChild>(
                 {
-                    SyntaxNodeChild(*m_operand),
-                    SyntaxNodeChild(*m_operatorToken),
+                    SyntaxNodeChild(m_operand),
+                    SyntaxNodeChild(m_operatorToken),
                 });
+            }
+            else
+            {
+                return std::vector<SyntaxNodeChild>(
+                {
+                    SyntaxNodeChild(m_operatorToken),
+                    SyntaxNodeChild(m_operand),
+                });
+            }
         }
 
         /// <summary>

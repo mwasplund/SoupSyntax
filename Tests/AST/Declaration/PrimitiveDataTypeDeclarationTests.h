@@ -25,6 +25,21 @@ namespace Soup::Syntax::UnitTests
         }
 
         // [[Fact]]
+        void GetChildren()
+        {
+            auto uut = SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                PrimitiveDataType::Int,
+                SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int"));
+
+            Assert::AreEqual(
+                std::vector<SyntaxNodeChild>({
+                    SyntaxNodeChild(SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
+                }),
+                uut->GetChildren(),
+                L"Verify children match.");
+        }
+
+        // [[Fact]]
         void OperatorEqual()
         {
             auto uut = SyntaxFactory::CreatePrimitiveDataTypeDeclaration(

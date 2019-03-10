@@ -12,15 +12,15 @@ namespace Soup::Syntax
         /// <summary>
         /// Initialize
         /// </summary>
-        SyntaxNodeChild(const SyntaxNode& node) :
-            m_node(&node),
+        SyntaxNodeChild(std::shared_ptr<const SyntaxNode> node) :
+            m_node(std::move(node)),
             m_token(nullptr)
         {
         }
         
-        SyntaxNodeChild(const SyntaxToken& token) :
+        SyntaxNodeChild(std::shared_ptr<const SyntaxToken> token) :
             m_node(nullptr),
-            m_token(&token)
+            m_token(std::move(token))
         {
         }
 
@@ -56,8 +56,33 @@ namespace Soup::Syntax
             return *m_token;
         }
 
+        /// <summary>
+        /// Equality operator
+        /// </summary>
+        bool operator==(const SyntaxNodeChild& rhs) const
+        {
+            if (IsNode() && rhs.IsNode())
+            {
+                return AsNode() == rhs.AsNode();
+            }
+            else if (IsToken() && rhs.IsToken())
+            {
+                return AsToken() == rhs.AsToken();
+            }
+            else
+            {
+                // Mismatched type
+                return false;
+            }
+        }
+
+        bool operator!=(const SyntaxNodeChild &rhs) const
+        {
+            return !(*this == rhs);
+        }
+
     private:
-        const SyntaxNode* m_node;
-        const SyntaxToken* m_token;
+        std::shared_ptr<const SyntaxNode> m_node;
+        std::shared_ptr<const SyntaxToken> m_token;
     };
 }

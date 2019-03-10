@@ -16,13 +16,13 @@ namespace Soup::Syntax
         /// </summary>
         BinaryExpression(
             BinaryOperator binaryOperator,
-            std::shared_ptr<const SyntaxToken> operatorToken,
             std::shared_ptr<const Expression> leftOperand,
+            std::shared_ptr<const SyntaxToken> operatorToken,
             std::shared_ptr<const Expression> rightOperand) :
             Expression(SyntaxNodeType::BinaryExpression),
             m_operator(binaryOperator),
-            m_operatorToken(std::move(operatorToken)),
             m_leftOperand(std::move(leftOperand)),
+            m_operatorToken(std::move(operatorToken)),
             m_rightOperand(std::move(rightOperand))
         {
         }
@@ -37,19 +37,19 @@ namespace Soup::Syntax
         }
 
         /// <summary>
-        /// The operator
-        /// </summary>
-        const SyntaxToken& GetOperatorToken() const
-        {
-            return *m_operatorToken;
-        }
-
-        /// <summary>
         /// The left operand expression
         /// </summary>
         const Expression& GetLeftOperand() const
         {
             return *m_leftOperand;
+        }
+
+        /// <summary>
+        /// The operator
+        /// </summary>
+        const SyntaxToken& GetOperatorToken() const
+        {
+            return *m_operatorToken;
         }
 
         /// <summary>
@@ -67,9 +67,9 @@ namespace Soup::Syntax
         {
             return std::vector<SyntaxNodeChild>(
                 {
-                    SyntaxNodeChild(*m_leftOperand),
-                    SyntaxNodeChild(*m_operatorToken),
-                    SyntaxNodeChild(*m_rightOperand),
+                    SyntaxNodeChild(m_leftOperand),
+                    SyntaxNodeChild(m_operatorToken),
+                    SyntaxNodeChild(m_rightOperand),
                 });
         }
 

@@ -30,6 +30,24 @@ namespace Soup::Syntax::UnitTests
         }
 
         // [[Fact]]
+        void GetChildren()
+        {
+            auto uut = SyntaxFactory::CreateDefaultFunctionBody(
+                SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
+                SyntaxFactory::CreateToken(SyntaxTokenType::Default, L"default"),
+                SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"));
+
+            Assert::AreEqual(
+                std::vector<SyntaxNodeChild>({
+                    SyntaxNodeChild(SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"=")),
+                    SyntaxNodeChild(SyntaxFactory::CreateToken(SyntaxTokenType::Default, L"default")),
+                    SyntaxNodeChild(SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";")),
+                }),
+                uut->GetChildren(),
+                L"Verify children match.");
+        }
+
+        // [[Fact]]
         void OperatorEqual()
         {
             auto uut = SyntaxFactory::CreateDefaultFunctionBody(

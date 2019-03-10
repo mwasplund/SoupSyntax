@@ -21,6 +21,21 @@ namespace Soup::Syntax::UnitTests
         }
 
         // [[Fact]]
+        void GetChildren()
+        {
+            auto uut = SyntaxFactory::CreateLiteralExpression(
+                LiteralType::Integer,
+                SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1"));
+
+            Assert::AreEqual(
+                std::vector<SyntaxNodeChild>({
+                    SyntaxNodeChild(SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
+                }),
+                uut->GetChildren(),
+                L"Verify children match.");
+        }
+
+        // [[Fact]]
         void OperatorEqual()
         {
             auto uut = SyntaxFactory::CreateLiteralExpression(

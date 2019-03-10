@@ -49,10 +49,10 @@ namespace Soup::Syntax
             {
                 if (i > 0)
                 {
-                    children.push_back(SyntaxNodeChild(*m_separators.at(i - 1)));
+                    children.push_back(SyntaxNodeChild(m_separators.at(i - 1)));
                 }
 
-                children.push_back(SyntaxNodeChild(*m_items.at(i)));
+                children.push_back(SyntaxNodeChild(m_items.at(i)));
             }
 
             return children;
