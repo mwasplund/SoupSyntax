@@ -60,7 +60,7 @@ unqualifiedIdentifier:
 	operatorFunctionIdentifier |
 	conversionFunctionIdentifier |
 	literalOperatorIdentifier |
-	Tilde className |
+	// TODO Tilde className |
 	Tilde declarationTypeSpecifier |
 	templateIdentifier;
 

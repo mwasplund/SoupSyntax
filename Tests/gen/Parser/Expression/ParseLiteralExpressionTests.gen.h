@@ -1,13 +1,13 @@
 #pragma once
-#include "PrimaryExpressionTests.h"
+#include "ParseLiteralExpressionTests.h"
 #include "../../RunTest.h"
 
-int RunPrimaryExpressionTests()
+int RunParseLiteralExpressionTests()
 {
-    auto testClass = std::make_unique<Soup::Syntax::UnitTests::PrimaryExpressionTests>();
+    auto testClass = std::make_unique<Soup::Syntax::UnitTests::ParseLiteralExpressionTests>();
     int failedCount = 0;
 
-    std::wcout << L"Running PrimaryExpressionTests:" << std::endl;
+    std::wcout << L"Running ParseLiteralExpressionTests:" << std::endl;
 
     std::wcout << L"SingleIntegerLiteralType" << std::endl;
     failedCount += RunTest([&testClass]() { testClass->SingleIntegerLiteralType("0"); });
@@ -31,15 +31,6 @@ int RunPrimaryExpressionTests()
 
     std::wcout << L"SingleUserDefinedLiteralType" << std::endl;
     failedCount += RunTest([&testClass]() { testClass->SingleUserDefinedLiteralType("2h"); });
-
-    std::wcout << L"SingleThisExpression" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->SingleThisExpression(); });
-
-    std::wcout << L"SingleSimpleNameExpression" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->SingleSimpleNameExpression(); });
-    
-    std::wcout << L"SingleQualifiedNameExpression" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->SingleQualifiedNameExpression(); });
 
     return failedCount;
 }

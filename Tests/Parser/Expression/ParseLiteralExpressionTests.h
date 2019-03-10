@@ -4,7 +4,7 @@
 
 namespace Soup::Syntax::UnitTests
 {
-    class PrimaryExpressionTests
+    class ParseLiteralExpressionTests
     {
     public:
         // [Theory]
@@ -12,8 +12,7 @@ namespace Soup::Syntax::UnitTests
         // [InlineData("1")]
         void SingleIntegerLiteralType(std::string sourceCode)
         {
-            auto expression = std::dynamic_pointer_cast<const LiteralExpression>(
-                ParsePrimaryExpression(sourceCode));
+            auto expression = ParseLiteralExpression(sourceCode);
 
             Assert::NotNull(expression, L"Verify cast.");
             Assert::AreEqual(LiteralType::Integer, expression->GetLiteralType(), L"Verify type matches expected.");
@@ -27,8 +26,7 @@ namespace Soup::Syntax::UnitTests
         // [[InlineData("0.0f")]]
         void SingleFloatingLiteralType(std::string sourceCode)
         {
-            auto expression = std::dynamic_pointer_cast<const LiteralExpression>(
-                ParsePrimaryExpression(sourceCode));
+            auto expression = ParseLiteralExpression(sourceCode);
 
             Assert::NotNull(expression, L"Verify cast.");
             Assert::AreEqual(LiteralType::Floating, expression->GetLiteralType(), L"Verify type matches expected.");
@@ -42,8 +40,7 @@ namespace Soup::Syntax::UnitTests
         // [[InlineData("'1'")]]
         void SingleCharacterLiteralType(std::string sourceCode)
         {
-            auto expression = std::dynamic_pointer_cast<const LiteralExpression>(
-                ParsePrimaryExpression(sourceCode));
+            auto expression = ParseLiteralExpression(sourceCode);
 
             Assert::NotNull(expression, L"Verify cast.");
             Assert::AreEqual(LiteralType::Character, expression->GetLiteralType(), L"Verify type matches expected.");
@@ -57,8 +54,7 @@ namespace Soup::Syntax::UnitTests
         // [[InlineData("nullptr")]]
         void SinglePointerLiteralType(std::string sourceCode)
         {
-            auto expression = std::dynamic_pointer_cast<const LiteralExpression>(
-                ParsePrimaryExpression(sourceCode));
+            auto expression = ParseLiteralExpression(sourceCode);
 
             Assert::NotNull(expression, L"Verify cast.");
             Assert::AreEqual(LiteralType::Pointer, expression->GetLiteralType(), L"Verify type matches expected.");
@@ -72,8 +68,7 @@ namespace Soup::Syntax::UnitTests
         // [[InlineData("\" \"")]]
         void SingleStringLiteralType(std::string sourceCode)
         {
-            auto expression = std::dynamic_pointer_cast<const LiteralExpression>(
-                ParsePrimaryExpression(sourceCode));
+            auto expression = ParseLiteralExpression(sourceCode);
 
             Assert::NotNull(expression, L"Verify cast.");
             Assert::AreEqual(LiteralType::String, expression->GetLiteralType(), L"Verify type matches expected.");
@@ -88,8 +83,7 @@ namespace Soup::Syntax::UnitTests
         // [[InlineData("false", SyntaxTokenType::False)]]
         void SingleBooleanLiteralType(std::string sourceCode, SyntaxTokenType type)
         {
-            auto expression = std::dynamic_pointer_cast<const LiteralExpression>(
-                ParsePrimaryExpression(sourceCode));
+            auto expression = ParseLiteralExpression(sourceCode);
 
             Assert::NotNull(expression, L"Verify cast.");
             Assert::AreEqual(LiteralType::Boolean, expression->GetLiteralType(), L"Verify type matches expected.");
@@ -103,8 +97,7 @@ namespace Soup::Syntax::UnitTests
         // [[InlineData("2h")]]
         void SingleUserDefinedLiteralType(std::string sourceCode)
         {
-            auto expression = std::dynamic_pointer_cast<const LiteralExpression>(
-                ParsePrimaryExpression(sourceCode));
+            auto expression = ParseLiteralExpression(sourceCode);
 
             Assert::NotNull(expression, L"Verify cast.");
             Assert::AreEqual(LiteralType::UserDefined, expression->GetLiteralType(), L"Verify type matches expected.");
@@ -112,56 +105,6 @@ namespace Soup::Syntax::UnitTests
                 *SyntaxFactory::CreateToken(SyntaxTokenType::UserDefinedLiteral, Convert(sourceCode)),
                 expression->GetToken(),
                 L"Verify value matches entire source.");
-        }
-
-        // [Fact]
-        void SingleThisExpression()
-        {
-            auto sourceCode = std::string("this");
-            auto expression = std::dynamic_pointer_cast<const ThisExpression>(
-                ParsePrimaryExpression(sourceCode));
-
-            Assert::NotNull(expression, L"Verify cast.");
-        }
-
-        // [Fact]
-        void SingleSimpleNameExpression()
-        {
-            auto sourceCode = std::string("Name");
-            auto expression = std::dynamic_pointer_cast<const SimpleNameExpression>(
-                ParsePrimaryExpression(sourceCode));
-
-            Assert::NotNull(expression, L"Verify cast.");
-            Assert::AreEqual(
-                *SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, Convert(sourceCode)),
-                expression->GetIdentifier(),
-                L"Verify identifier matches expected.");
-        }
-
-        // [Fact]
-        void SingleQualifiedNameExpression()
-        {
-            auto sourceCode = std::string("NameLeft::NameRight");
-            auto expression = std::dynamic_pointer_cast<const QualifiedNameExpression>(
-                ParsePrimaryExpression(sourceCode));
-
-            Assert::NotNull(expression, L"Verify cast.");
-
-            auto left = dynamic_cast<const SimpleNameExpression&>(expression->GetLeft());
-            auto right = expression->GetRight();
-
-            Assert::AreEqual(
-                *SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"NameLeft"),
-                left.GetIdentifier(),
-                L"Verify left identifier matches expected.");
-            Assert::AreEqual(
-                *SyntaxFactory::CreateToken(SyntaxTokenType::DoubleColon, L"::"),
-                expression->GetScopeResolutionToken(),
-                L"Verify double colon token matches expected.");
-            Assert::AreEqual(
-                *SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"NameRight"),
-                right.GetIdentifier(),
-                L"Verify right identifier matches expected.");
         }
 
     private:
@@ -172,7 +115,7 @@ namespace Soup::Syntax::UnitTests
             return converter.from_bytes(value);
         }
 
-        std::shared_ptr<const SyntaxNode> ParsePrimaryExpression(std::string& sourceCode)
+        std::shared_ptr<const LiteralExpression> ParseLiteralExpression(std::string& sourceCode)
         {
             auto uut = TestUtils::BuildParser(sourceCode);
             auto context = uut.Parser->primaryExpression();
@@ -181,7 +124,7 @@ namespace Soup::Syntax::UnitTests
             auto node = uut.Visitor->visit(context)
                 .as<std::shared_ptr<const SyntaxNode>>();
 
-            return node;
+            return std::dynamic_pointer_cast<const LiteralExpression>(node);
         }
     };
 }

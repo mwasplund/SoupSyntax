@@ -27,8 +27,11 @@ import SoupSyntax;
 #include "Parser\SyntaxNamespaceTests.gen.h"
 #include "Parser\SyntaxVariableTests.gen.h"
 
-#include "Parser\Expression\PostfixExpressionTests.gen.h"
-#include "Parser\Expression\PrimaryExpressionTests.gen.h"
+#include "Parser\Expression\ParseLiteralExpressionTests.gen.h"
+#include "Parser\Expression\ParseNameExpressionTests.gen.h"
+#include "Parser\Expression\ParseSubscriptExpressionTests.gen.h"
+#include "Parser\Expression\ParseThisExpressionTests.gen.h"
+#include "Parser\Expression\ParseUnaryExpressionTests.gen.h"
 
 int main()
 {
@@ -61,8 +64,11 @@ int main()
     failedCount += RunSyntaxNamespaceTests();
     failedCount += RunSyntaxVariableTests();
 
-    failedCount += RunPostfixExpressionTests();
-    failedCount += RunPrimaryExpressionTests();
+    failedCount += RunParseLiteralExpressionTests();
+    failedCount += RunParseNameExpressionTests();
+    failedCount += RunParseSubscriptExpressionTests();
+    failedCount += RunParseThisExpressionTests();
+    failedCount += RunParseUnaryExpressionTests();
 
     std::wcout << failedCount << L" FAILED." << std::endl;
     return 0;

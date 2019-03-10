@@ -262,7 +262,7 @@ antlrcpp::Any ASTCppParserVisitor::visitExplicitTypeCoversionOperatorExpression(
 antlrcpp::Any ASTCppParserVisitor::visitPostfixOperator(CppParser::PostfixOperatorContext *context)
 {
     Trace(L"VisitPostfixOperator");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+    throw std::logic_error(std::string(__func__) + " NOT USED!");
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitNamedCastExpression(CppParser::NamedCastExpressionContext *context)
@@ -408,9 +408,94 @@ antlrcpp::Any ASTCppParserVisitor::visitPseudoDestructorName(CppParser::PseudoDe
 antlrcpp::Any ASTCppParserVisitor::visitUnaryExpression(CppParser::UnaryExpressionContext* context)
 {
     Trace(L"VisitUnaryExpression");
+
     if (context->postfixExpression() != nullptr)
     {
         return visit(context->postfixExpression());
+    }
+    else if (context->castExpression() != nullptr)
+    {
+        // Parse the prefix unary operator
+        auto subExpression = std::dynamic_pointer_cast<const Expression>(
+            visit(context->castExpression())
+                .as<std::shared_ptr<const SyntaxNode>>());
+
+        UnaryOperator unaryOperator;
+        std::shared_ptr<const SyntaxToken> operatorToken;
+        if (context->DoublePlus() != nullptr)
+        {
+            unaryOperator = UnaryOperator::PreIncrement;
+            operatorToken = CreateToken(
+                SyntaxTokenType::DoublePlus,
+                context->DoublePlus());
+        }
+        else if (context->DoubleMinus() != nullptr)
+        {
+            unaryOperator = UnaryOperator::PreDecrement;
+            operatorToken = CreateToken(
+                SyntaxTokenType::DoubleMinus,
+                context->DoubleMinus());
+        }
+        else if (context->unaryOperator() != nullptr)
+        {
+            auto operatorContext = context->unaryOperator();
+            if (operatorContext->Asterisk() != nullptr)
+            {
+                unaryOperator = UnaryOperator::Indirection;
+                operatorToken = CreateToken(
+                    SyntaxTokenType::Asterisk,
+                    operatorContext->Asterisk());
+            }
+            else if (operatorContext->Ampersand() != nullptr)
+            {
+                unaryOperator = UnaryOperator::AddressOf;
+                operatorToken = CreateToken(
+                    SyntaxTokenType::Ampersand,
+                    operatorContext->Ampersand());
+            }
+            else if (operatorContext->Plus() != nullptr)
+            {
+                unaryOperator = UnaryOperator::Plus;
+                operatorToken = CreateToken(
+                    SyntaxTokenType::Plus,
+                    operatorContext->Plus());
+            }
+            else if (operatorContext->Minus() != nullptr)
+            {
+                unaryOperator = UnaryOperator::Minus;
+                operatorToken = CreateToken(
+                    SyntaxTokenType::Minus,
+                    operatorContext->Minus());
+            }
+            else if (operatorContext->ExclamationMark() != nullptr)
+            {
+                unaryOperator = UnaryOperator::LogicalNot;
+                operatorToken = CreateToken(
+                    SyntaxTokenType::ExclamationMark,
+                    operatorContext->ExclamationMark());
+            }
+            else if (operatorContext->Tilde() != nullptr)
+            {
+                unaryOperator = UnaryOperator::BitwiseNot;
+                operatorToken = CreateToken(
+                    SyntaxTokenType::Tilde,
+                    operatorContext->Tilde());
+            }
+            else
+            {
+                throw std::runtime_error("Unknown unary operator.");
+            }
+        }
+        else
+        {
+            throw std::runtime_error("Unknown prefix unary operator.");
+        }
+
+        return std::static_pointer_cast<const SyntaxNode>(
+            SyntaxFactory::CreateUnaryExpression(
+                unaryOperator,
+                std::move(operatorToken),
+                std::move(subExpression)));
     }
     else
     {
