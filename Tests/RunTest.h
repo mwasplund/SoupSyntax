@@ -1,28 +1,41 @@
 #pragma once
 
-int RunTest(std::function<void(void)> test)
+struct TestState
 {
-  try
-  {
-    test();
-    // std::wcout << L"Test PASS!" << std::endl;
-    return 0;
-  }
-  catch (std::exception& ex)
-  {
-    std::wcout << L"Test FAIL!" << std::endl;
-    std::wcout << typeid(ex).name() << std::endl;
+    int FailCount;
+    int PassCount;
 
-    if (!std::string(ex.what()).empty())
+    TestState& operator+=(const TestState& rhs)
     {
-      std::wcout << ex.what() << std::endl;
+        FailCount += rhs.FailCount;
+        PassCount += rhs.PassCount;
+        return *this;
     }
-  }
-  catch (...)
-  {
-    std::wcout << L"Test FAIL!" << std::endl;
-    std::wcout << L"Unknown error..." << std::endl;
-  }
+};
 
-  return 1;
+TestState RunTest(std::function<void(void)> test)
+{
+    try
+    {
+        test();
+        // std::wcout << L"Test PASS!" << std::endl;
+        return TestState{ 0, 1 };
+    }
+    catch (std::exception& ex)
+    {
+        std::wcout << L"Test FAIL!" << std::endl;
+        std::wcout << typeid(ex).name() << std::endl;
+
+        if (!std::string(ex.what()).empty())
+        {
+            std::wcout << ex.what() << std::endl;
+        }
+    }
+    catch (...)
+    {
+        std::wcout << L"Test FAIL!" << std::endl;
+        std::wcout << L"Unknown error..." << std::endl;
+    }
+
+    return TestState{ 1, 0 };
 }

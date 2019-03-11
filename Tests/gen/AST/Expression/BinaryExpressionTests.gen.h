@@ -2,33 +2,33 @@
 #include "BinaryExpressionTests.h"
 #include "../RunTest.h"
 
-int RunBinaryExpressionTests()
+TestState RunBinaryExpressionTests()
 {
     auto testClass = std::make_unique<Soup::Syntax::UnitTests::BinaryExpressionTests>();
-    int failedCount = 0;
+    TestState state = { 0, 0 };
 
     std::wcout << L"Running BinaryExpressionTests:" << std::endl;
 
     std::wcout << L"InitializeSimple" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->InitializeSimple(); });
+    state += RunTest([&testClass]() { testClass->InitializeSimple(); });
 
     std::wcout << L"GetChildren" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->GetChildren(); });
+    state += RunTest([&testClass]() { testClass->GetChildren(); });
 
     std::wcout << L"OperatorEqual" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->OperatorEqual(); });
+    state += RunTest([&testClass]() { testClass->OperatorEqual(); });
 
     std::wcout << L"OperatorNotEqualOperatorType" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->OperatorNotEqualOperatorType(); });
+    state += RunTest([&testClass]() { testClass->OperatorNotEqualOperatorType(); });
 
     std::wcout << L"OperatorNotEqualLeft" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->OperatorNotEqualLeft(); });
+    state += RunTest([&testClass]() { testClass->OperatorNotEqualLeft(); });
 
     std::wcout << L"OperatorNotEqualOperatorToken" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->OperatorNotEqualOperatorToken(); });
+    state += RunTest([&testClass]() { testClass->OperatorNotEqualOperatorToken(); });
 
     std::wcout << L"OperatorNotEqualRight" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->OperatorNotEqualRight(); });
+    state += RunTest([&testClass]() { testClass->OperatorNotEqualRight(); });
 
-    return failedCount;
+    return state;
 }

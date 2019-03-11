@@ -2,27 +2,27 @@
 #include "PrimitiveDataTypeDeclarationTests.h"
 #include "../RunTest.h"
 
-int RunPrimitiveDataTypeDeclarationTests()
+TestState RunPrimitiveDataTypeDeclarationTests()
 {
     auto testClass = std::make_unique<Soup::Syntax::UnitTests::PrimitiveDataTypeDeclarationTests>();
-    int failedCount = 0;
+    TestState state = { 0, 0 };
 
     std::wcout << L"Running PrimitiveDataTypeDeclarationTests:" << std::endl;
 
     std::wcout << L"InitializeSimple" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->InitializeSimple(); });
+    state += RunTest([&testClass]() { testClass->InitializeSimple(); });
 
     std::wcout << L"GetChildren" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->GetChildren(); });
+    state += RunTest([&testClass]() { testClass->GetChildren(); });
 
     std::wcout << L"OperatorEqual" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->OperatorEqual(); });
+    state += RunTest([&testClass]() { testClass->OperatorEqual(); });
 
     std::wcout << L"OperatorNotEqualPrimitiveType" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->OperatorNotEqualPrimitiveType(); });
+    state += RunTest([&testClass]() { testClass->OperatorNotEqualPrimitiveType(); });
 
     std::wcout << L"OperatorNotEqualToken" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->OperatorNotEqualToken(); });
+    state += RunTest([&testClass]() { testClass->OperatorNotEqualToken(); });
 
-    return failedCount;
+    return state;
 }

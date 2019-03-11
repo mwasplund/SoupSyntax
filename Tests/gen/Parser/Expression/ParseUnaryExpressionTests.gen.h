@@ -2,42 +2,42 @@
 #include "ParseUnaryExpressionTests.h"
 #include "../../RunTest.h"
 
-int RunParseUnaryExpressionTests()
+TestState RunParseUnaryExpressionTests()
 {
     auto testClass = std::make_unique<Soup::Syntax::UnitTests::ParseUnaryExpressionTests>();
-    int failedCount = 0;
+    TestState state = { 0, 0 };
 
     std::wcout << L"Running ParseUnaryExpressionTests:" << std::endl;
 
     std::wcout << L"SingleIdentifierPlus" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->SingleIdentifierPlus(); });
+    state += RunTest([&testClass]() { testClass->SingleIdentifierPlus(); });
 
     std::wcout << L"SingleIdentifierMinus" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->SingleIdentifierMinus(); });
+    state += RunTest([&testClass]() { testClass->SingleIdentifierMinus(); });
 
     std::wcout << L"SingleIdentifierBitwiseNot" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->SingleIdentifierBitwiseNot(); });
+    state += RunTest([&testClass]() { testClass->SingleIdentifierBitwiseNot(); });
 
     std::wcout << L"SingleIdentifierPreIncrement" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->SingleIdentifierPreIncrement(); });
+    state += RunTest([&testClass]() { testClass->SingleIdentifierPreIncrement(); });
 
     std::wcout << L"SingleIdentifierPreDecrement" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->SingleIdentifierPreDecrement(); });
+    state += RunTest([&testClass]() { testClass->SingleIdentifierPreDecrement(); });
 
     std::wcout << L"SingleIdentifierPostIncrement" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->SingleIdentifierPostIncrement(); });
+    state += RunTest([&testClass]() { testClass->SingleIdentifierPostIncrement(); });
 
     std::wcout << L"SingleIdentifierPostDecrement" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->SingleIdentifierPostDecrement(); });
+    state += RunTest([&testClass]() { testClass->SingleIdentifierPostDecrement(); });
 
     std::wcout << L"SingleIdentifierLogicalNot" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->SingleIdentifierLogicalNot(); });
+    state += RunTest([&testClass]() { testClass->SingleIdentifierLogicalNot(); });
 
     std::wcout << L"SingleIdentifierIndirection" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->SingleIdentifierIndirection(); });
+    state += RunTest([&testClass]() { testClass->SingleIdentifierIndirection(); });
 
     std::wcout << L"SingleIdentifierAddressOf" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->SingleIdentifierAddressOf(); });
+    state += RunTest([&testClass]() { testClass->SingleIdentifierAddressOf(); });
 
-    return failedCount;
+    return state;
 }

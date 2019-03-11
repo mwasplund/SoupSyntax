@@ -2,30 +2,30 @@
 #include "ParameterListTests.h"
 #include "../RunTest.h"
 
-int RunParameterListTests()
+TestState RunParameterListTests()
 {
     auto testClass = std::make_unique<Soup::Syntax::UnitTests::ParameterListTests>();
-    int failedCount = 0;
+    TestState state = { 0, 0 };
 
     std::wcout << L"Running ParameterListTests:" << std::endl;
 
     std::wcout << L"InitializeSimple" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->InitializeSimple(); });
+    state += RunTest([&testClass]() { testClass->InitializeSimple(); });
 
     std::wcout << L"GetChildren" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->GetChildren(); });
+    state += RunTest([&testClass]() { testClass->GetChildren(); });
 
     std::wcout << L"OperatorEqual" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->OperatorEqual(); });
+    state += RunTest([&testClass]() { testClass->OperatorEqual(); });
 
     std::wcout << L"OperatorNotEqualLeftParenthesisToken" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->OperatorNotEqualLeftParenthesisToken(); });
+    state += RunTest([&testClass]() { testClass->OperatorNotEqualLeftParenthesisToken(); });
 
     std::wcout << L"OperatorNotEqualParameters" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->OperatorNotEqualParameters(); });
+    state += RunTest([&testClass]() { testClass->OperatorNotEqualParameters(); });
 
     std::wcout << L"OperatorNotEqualRightParenthesisToken" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->OperatorNotEqualRightParenthesisToken(); });
+    state += RunTest([&testClass]() { testClass->OperatorNotEqualRightParenthesisToken(); });
 
-    return failedCount;
+    return state;
 }

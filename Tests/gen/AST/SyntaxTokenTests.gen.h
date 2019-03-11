@@ -2,24 +2,24 @@
 #include "SyntaxTokenTests.h"
 #include "../RunTest.h"
 
-int RunSyntaxTokenTests()
+TestState RunSyntaxTokenTests()
 {
     auto testClass = std::make_unique<Soup::Syntax::UnitTests::SyntaxTokenTests>();
-    int failedCount = 0;
+    TestState state = { 0, 0 };
 
     std::wcout << L"Running SyntaxTokenTests:" << std::endl;
 
     std::wcout << L"InitializeSimple" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->InitializeSimple(); });
+    state += RunTest([&testClass]() { testClass->InitializeSimple(); });
 
     std::wcout << L"OperatorEqual" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->OperatorEqual(); });
+    state += RunTest([&testClass]() { testClass->OperatorEqual(); });
 
     std::wcout << L"OperatorNotEqualType" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->OperatorNotEqualType(); });
+    state += RunTest([&testClass]() { testClass->OperatorNotEqualType(); });
 
     std::wcout << L"OperatorNotEqualValue" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->OperatorNotEqualValue(); });
+    state += RunTest([&testClass]() { testClass->OperatorNotEqualValue(); });
 
-    return failedCount;
+    return state;
 }

@@ -2,33 +2,33 @@
 #include "FunctionDefinitionTests.h"
 #include "../RunTest.h"
 
-int RunFunctionDefinitionTests()
+TestState RunFunctionDefinitionTests()
 {
     auto testClass = std::make_unique<Soup::Syntax::UnitTests::FunctionDefinitionTests>();
-    int failedCount = 0;
+    TestState state = { 0, 0 };
 
     std::wcout << L"Running FunctionDefinitionTests:" << std::endl;
 
     std::wcout << L"InitializeSimple" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->InitializeSimple(); });
+    state += RunTest([&testClass]() { testClass->InitializeSimple(); });
 
     std::wcout << L"GetChildren" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->GetChildren(); });
+    state += RunTest([&testClass]() { testClass->GetChildren(); });
 
     std::wcout << L"OperatorEqual" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->OperatorEqual(); });
+    state += RunTest([&testClass]() { testClass->OperatorEqual(); });
 
     std::wcout << L"OperatorNotEqualReturnType" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->OperatorNotEqualReturnType(); });
+    state += RunTest([&testClass]() { testClass->OperatorNotEqualReturnType(); });
 
     std::wcout << L"OperatorNotEqualIdentifier" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->OperatorNotEqualIdentifier(); });
+    state += RunTest([&testClass]() { testClass->OperatorNotEqualIdentifier(); });
 
     std::wcout << L"OperatorNotEqualParameterList" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->OperatorNotEqualParameterList(); });
+    state += RunTest([&testClass]() { testClass->OperatorNotEqualParameterList(); });
 
     std::wcout << L"OperatorNotEqualBody" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->OperatorNotEqualBody(); });
+    state += RunTest([&testClass]() { testClass->OperatorNotEqualBody(); });
 
-    return failedCount;
+    return state;
 }

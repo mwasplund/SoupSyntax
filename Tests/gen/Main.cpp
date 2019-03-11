@@ -38,40 +38,42 @@ int main()
 {
     std::wcout << L"Running Tests..." << std::endl;
 
-    int failedCount = 0;
+    TestState state = { 0, 0 };
 
-    failedCount += RunDefaultFunctionBodyTests();
-    failedCount += RunDeleteFunctionBodyTests();
-    failedCount += RunFunctionDefinitionTests();
-    failedCount += RunParameterListTests();
-    failedCount += RunParameterTests();
-    failedCount += RunPrimitiveDataTypeDeclarationTests();
+    state += RunDefaultFunctionBodyTests();
+    state += RunDeleteFunctionBodyTests();
+    state += RunFunctionDefinitionTests();
+    state += RunParameterListTests();
+    state += RunParameterTests();
+    state += RunPrimitiveDataTypeDeclarationTests();
 
-    failedCount += RunBinaryExpressionTests();
-    failedCount += RunLiteralExpressionTests();
-    failedCount += RunNameExpressionTests();
-    failedCount += RunSubscriptExpressionTests();
-    failedCount += RunThisExpressionTests();
-    failedCount += RunUnaryExpressionTests();
+    state += RunBinaryExpressionTests();
+    state += RunLiteralExpressionTests();
+    state += RunNameExpressionTests();
+    state += RunSubscriptExpressionTests();
+    state += RunThisExpressionTests();
+    state += RunUnaryExpressionTests();
 
-    failedCount += RunSyntaxNodeChildTests();
-    failedCount += RunSyntaxTokenTests();
+    state += RunSyntaxNodeChildTests();
+    state += RunSyntaxTokenTests();
 
-    failedCount += RunLexerTests();
-    failedCount += RunParserAttributesTests();
-    failedCount += RunParserExpressionTests();
-    failedCount += RunSyntaxFunctionTests();
-    failedCount += RunSyntaxMiscTests();
-    failedCount += RunSyntaxNamespaceTests();
-    failedCount += RunSyntaxVariableTests();
+    state += RunLexerTests();
+    state += RunParserAttributesTests();
+    state += RunParserExpressionTests();
+    state += RunSyntaxFunctionTests();
+    state += RunSyntaxMiscTests();
+    state += RunSyntaxNamespaceTests();
+    state += RunSyntaxVariableTests();
 
-    failedCount += RunParseBinaryExpressionTests();
-    failedCount += RunParseLiteralExpressionTests();
-    failedCount += RunParseNameExpressionTests();
-    failedCount += RunParseSubscriptExpressionTests();
-    failedCount += RunParseThisExpressionTests();
-    failedCount += RunParseUnaryExpressionTests();
+    state += RunParseBinaryExpressionTests();
+    state += RunParseLiteralExpressionTests();
+    state += RunParseNameExpressionTests();
+    state += RunParseSubscriptExpressionTests();
+    state += RunParseThisExpressionTests();
+    state += RunParseUnaryExpressionTests();
 
-    std::wcout << failedCount << L" FAILED." << std::endl;
+    std::wcout << state.FailCount << L" FAILED." << std::endl;
+    std::wcout << state.PassCount << L" PASSED." << std::endl;
+
     return 0;
 }

@@ -2,15 +2,15 @@
 #include "../RunTest.h"
 #include "SyntaxMiscTests.h"
 
-int RunSyntaxMiscTests()
+TestState RunSyntaxMiscTests()
 {
     auto testClass = std::make_unique<Soup::Syntax::UnitTests::SyntaxMiscTests>();
-    int failedCount = 0;
+    TestState state = { 0, 0 };
 
     std::wcout << L"Running SyntaxMiscTests:" << std::endl;
 
     std::wcout << L"EmptyFile" << std::endl;
-    // failedCount += RunTest([&testClass]() { testClass->EmptyFile(); });
+    // state += RunTest([&testClass]() { testClass->EmptyFile(); });
 
-    return failedCount;
+    return state;
 }

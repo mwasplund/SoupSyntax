@@ -2,21 +2,21 @@
 #include "../RunTest.h"
 #include "SyntaxNamespaceTests.h"
 
-int RunSyntaxNamespaceTests()
+TestState RunSyntaxNamespaceTests()
 {
     auto testClass = std::make_unique<Soup::Syntax::UnitTests::SyntaxNamespaceTests>();
-    int failedCount = 0;
+    TestState state = { 0, 0 };
 
     std::wcout << L"Running SyntaxNamespaceTests:" << std::endl;
 
     std::wcout << L"SimpleNamedNamespace" << std::endl;
-    //failedCount += RunTest([&testClass]() { testClass->SimpleNamedNamespace(); });
+    //state += RunTest([&testClass]() { testClass->SimpleNamedNamespace(); });
 
     std::wcout << L"SimpleUnnamedNamespace" << std::endl;
-    //failedCount += RunTest([&testClass]() { testClass->SimpleUnnamedNamespace(); });
+    //state += RunTest([&testClass]() { testClass->SimpleUnnamedNamespace(); });
 
     std::wcout << L"SimpleNestedNamespace" << std::endl;
-    //failedCount += RunTest([&testClass]() { testClass->SimpleNestedNamespace(); });
+    //state += RunTest([&testClass]() { testClass->SimpleNestedNamespace(); });
 
-    return failedCount;
+    return state;
 }

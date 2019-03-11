@@ -2,18 +2,18 @@
 #include "ParseNameExpressionTests.h"
 #include "../../RunTest.h"
 
-int RunParseNameExpressionTests()
+TestState RunParseNameExpressionTests()
 {
     auto testClass = std::make_unique<Soup::Syntax::UnitTests::ParseNameExpressionTests>();
-    int failedCount = 0;
+    TestState state = { 0, 0 };
 
     std::wcout << L"Running ParseNameExpressionTests:" << std::endl;
 
     std::wcout << L"SingleSimpleNameExpression" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->SingleSimpleNameExpression(); });
+    state += RunTest([&testClass]() { testClass->SingleSimpleNameExpression(); });
     
     std::wcout << L"SingleQualifiedNameExpression" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->SingleQualifiedNameExpression(); });
+    state += RunTest([&testClass]() { testClass->SingleQualifiedNameExpression(); });
 
-    return failedCount;
+    return state;
 }

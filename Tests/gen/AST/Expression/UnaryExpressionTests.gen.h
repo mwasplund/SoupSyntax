@@ -2,33 +2,33 @@
 #include "UnaryExpressionTests.h"
 #include "../RunTest.h"
 
-int RunUnaryExpressionTests()
+TestState RunUnaryExpressionTests()
 {
     auto testClass = std::make_unique<Soup::Syntax::UnitTests::UnaryExpressionTests>();
-    int failedCount = 0;
+    TestState state = { 0, 0 };
 
     std::wcout << L"Running UnaryExpressionTests:" << std::endl;
 
     std::wcout << L"InitializeSimple" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->InitializeSimple(); });
+    state += RunTest([&testClass]() { testClass->InitializeSimple(); });
 
     std::wcout << L"PrefixOperatorGetChildren" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->PrefixOperatorGetChildren(); });
+    state += RunTest([&testClass]() { testClass->PrefixOperatorGetChildren(); });
 
     std::wcout << L"PostfixOperatorGetChildren" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->PostfixOperatorGetChildren(); });
+    state += RunTest([&testClass]() { testClass->PostfixOperatorGetChildren(); });
 
     std::wcout << L"OperatorEqual" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->OperatorEqual(); });
+    state += RunTest([&testClass]() { testClass->OperatorEqual(); });
 
     std::wcout << L"OperatorNotEqualOperator" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->OperatorNotEqualOperator(); });
+    state += RunTest([&testClass]() { testClass->OperatorNotEqualOperator(); });
 
     std::wcout << L"OperatorNotEqualOperand" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->OperatorNotEqualOperand(); });
+    state += RunTest([&testClass]() { testClass->OperatorNotEqualOperand(); });
 
     std::wcout << L"OperatorNotEqualOperatorToken" << std::endl;
-    failedCount += RunTest([&testClass]() { testClass->OperatorNotEqualOperatorToken(); });
+    state += RunTest([&testClass]() { testClass->OperatorNotEqualOperatorToken(); });
 
-    return failedCount;
+    return state;
 }
