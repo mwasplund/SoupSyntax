@@ -27,6 +27,7 @@ import SoupSyntax;
 #include "Parser\SyntaxNamespaceTests.gen.h"
 #include "Parser\SyntaxVariableTests.gen.h"
 
+#include "Parser\Expression\ParseBinaryExpressionTests.gen.h"
 #include "Parser\Expression\ParseLiteralExpressionTests.gen.h"
 #include "Parser\Expression\ParseNameExpressionTests.gen.h"
 #include "Parser\Expression\ParseSubscriptExpressionTests.gen.h"
@@ -64,6 +65,7 @@ int main()
     failedCount += RunSyntaxNamespaceTests();
     failedCount += RunSyntaxVariableTests();
 
+    failedCount += RunParseBinaryExpressionTests();
     failedCount += RunParseLiteralExpressionTests();
     failedCount += RunParseNameExpressionTests();
     failedCount += RunParseSubscriptExpressionTests();

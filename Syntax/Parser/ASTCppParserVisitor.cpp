@@ -332,6 +332,41 @@ antlrcpp::Any ASTCppParserVisitor::visitPostfixExpression(CppParser::PostfixExpr
         {
             // postfixExpression memberAccessOperator Template? identifierExpression
             // postfixExpression memberAccessOperator pseudoDestructorName
+            std::shared_ptr<const Expression> rightExpression = nullptr;
+            if (context->identifierExpression() != nullptr)
+            {
+                rightExpression = std::dynamic_pointer_cast<const Expression>(
+                    visit(context->identifierExpression())
+                        .as<std::shared_ptr<const SyntaxNode>>());
+            }
+            else
+            {
+                throw std::logic_error(std::string(__func__) + " NotImplemented");
+            }
+            
+            auto memberAccessOperator = context->memberAccessOperator();
+            if (memberAccessOperator->Arrow() != nullptr)
+            {
+                return std::static_pointer_cast<const SyntaxNode>(
+                    SyntaxFactory::CreateBinaryExpression(
+                        BinaryOperator::MemberOfPointer,
+                        std::move(recursiveExpression),
+                        CreateToken(SyntaxTokenType::Arrow, memberAccessOperator->Arrow()),
+                        std::move(rightExpression)));
+            }
+            else if (memberAccessOperator->Period() != nullptr)
+            {
+                return std::static_pointer_cast<const SyntaxNode>(
+                    SyntaxFactory::CreateBinaryExpression(
+                        BinaryOperator::MemberOfObject,
+                        std::move(recursiveExpression),
+                        CreateToken(SyntaxTokenType::Period, memberAccessOperator->Period()),
+                        std::move(rightExpression)));
+            }
+            else
+            {
+                throw std::runtime_error("Unknown member access operator.");
+            }
         }
         else if (context->postfixOperator() != nullptr)
         {
@@ -575,11 +610,29 @@ antlrcpp::Any ASTCppParserVisitor::visitPointerManipulationExpression(CppParser:
     Trace(L"VisitPointerManipulationExpression");
     if (context->PeriodAsterisk() != nullptr)
     {
-        throw std::logic_error(std::string(__func__) + " NotImplemented");
+        return std::static_pointer_cast<const SyntaxNode>(
+            SyntaxFactory::CreateBinaryExpression(
+                BinaryOperator::PointerToMemberOfObject,
+                std::dynamic_pointer_cast<const Expression>(
+                    visit(context->pointerManipulationExpression())
+                        .as<std::shared_ptr<const SyntaxNode>>()),
+                CreateToken(SyntaxTokenType::PeriodAsterisk, context->PeriodAsterisk()),
+                std::dynamic_pointer_cast<const Expression>(
+                    visit(context->castExpression())
+                        .as<std::shared_ptr<const SyntaxNode>>())));
     }
     else if (context->ArrowAsterisk() != nullptr)
     {
-        throw std::logic_error(std::string(__func__) + " NotImplemented");
+        return std::static_pointer_cast<const SyntaxNode>(
+            SyntaxFactory::CreateBinaryExpression(
+                BinaryOperator::PointerToMemberOfPointer,
+                std::dynamic_pointer_cast<const Expression>(
+                    visit(context->pointerManipulationExpression())
+                        .as<std::shared_ptr<const SyntaxNode>>()),
+                CreateToken(SyntaxTokenType::ArrowAsterisk, context->ArrowAsterisk()),
+                std::dynamic_pointer_cast<const Expression>(
+                    visit(context->castExpression())
+                        .as<std::shared_ptr<const SyntaxNode>>())));
     }
     else
     {
@@ -592,15 +645,42 @@ antlrcpp::Any ASTCppParserVisitor::visitMultiplicativeExpression(CppParser::Mult
     Trace(L"VisitMultiplicativeExpression");
     if (context->Asterisk() != nullptr)
     {
-        throw std::logic_error(std::string(__func__) + " NotImplemented");
+        return std::static_pointer_cast<const SyntaxNode>(
+            SyntaxFactory::CreateBinaryExpression(
+                BinaryOperator::Multiplication,
+                std::dynamic_pointer_cast<const Expression>(
+                    visit(context->multiplicativeExpression())
+                        .as<std::shared_ptr<const SyntaxNode>>()),
+                CreateToken(SyntaxTokenType::Asterisk, context->Asterisk()),
+                std::dynamic_pointer_cast<const Expression>(
+                    visit(context->pointerManipulationExpression())
+                        .as<std::shared_ptr<const SyntaxNode>>())));
     }
     else if (context->ForwardSlash() != nullptr)
     {
-        throw std::logic_error(std::string(__func__) + " NotImplemented");
+        return std::static_pointer_cast<const SyntaxNode>(
+            SyntaxFactory::CreateBinaryExpression(
+                BinaryOperator::Division,
+                std::dynamic_pointer_cast<const Expression>(
+                    visit(context->multiplicativeExpression())
+                        .as<std::shared_ptr<const SyntaxNode>>()),
+                CreateToken(SyntaxTokenType::ForwardSlash, context->ForwardSlash()),
+                std::dynamic_pointer_cast<const Expression>(
+                    visit(context->pointerManipulationExpression())
+                        .as<std::shared_ptr<const SyntaxNode>>())));
     }
     else if (context->Percent() != nullptr)
     {
-        throw std::logic_error(std::string(__func__) + " NotImplemented");
+        return std::static_pointer_cast<const SyntaxNode>(
+            SyntaxFactory::CreateBinaryExpression(
+                BinaryOperator::Modulo,
+                std::dynamic_pointer_cast<const Expression>(
+                    visit(context->multiplicativeExpression())
+                        .as<std::shared_ptr<const SyntaxNode>>()),
+                CreateToken(SyntaxTokenType::Percent, context->Percent()),
+                std::dynamic_pointer_cast<const Expression>(
+                    visit(context->pointerManipulationExpression())
+                        .as<std::shared_ptr<const SyntaxNode>>())));
     }
     else
     {
@@ -613,11 +693,29 @@ antlrcpp::Any ASTCppParserVisitor::visitAdditiveExpression(CppParser::AdditiveEx
     Trace(L"VisitAdditiveExpression");
     if (context->Plus() != nullptr)
     {
-        throw std::logic_error(std::string(__func__) + " NotImplemented");
+        return std::static_pointer_cast<const SyntaxNode>(
+            SyntaxFactory::CreateBinaryExpression(
+                BinaryOperator::Addition,
+                std::dynamic_pointer_cast<const Expression>(
+                    visit(context->additiveExpression())
+                        .as<std::shared_ptr<const SyntaxNode>>()),
+                CreateToken(SyntaxTokenType::Plus, context->Plus()),
+                std::dynamic_pointer_cast<const Expression>(
+                    visit(context->multiplicativeExpression())
+                        .as<std::shared_ptr<const SyntaxNode>>())));
     }
     else if (context->Minus() != nullptr)
     {
-        throw std::logic_error(std::string(__func__) + " NotImplemented");
+        return std::static_pointer_cast<const SyntaxNode>(
+            SyntaxFactory::CreateBinaryExpression(
+                BinaryOperator::Subtraction,
+                std::dynamic_pointer_cast<const Expression>(
+                    visit(context->additiveExpression())
+                        .as<std::shared_ptr<const SyntaxNode>>()),
+                CreateToken(SyntaxTokenType::Minus, context->Minus()),
+                std::dynamic_pointer_cast<const Expression>(
+                    visit(context->multiplicativeExpression())
+                        .as<std::shared_ptr<const SyntaxNode>>())));
     }
     else
     {
@@ -630,11 +728,29 @@ antlrcpp::Any ASTCppParserVisitor::visitShiftExpression(CppParser::ShiftExpressi
     Trace(L"VisitShiftExpression");
     if (context->DoubleLessThan() != nullptr)
     {
-        throw std::logic_error(std::string(__func__) + " NotImplemented");
+        return std::static_pointer_cast<const SyntaxNode>(
+            SyntaxFactory::CreateBinaryExpression(
+                BinaryOperator::BitwiseLeftShift,
+                std::dynamic_pointer_cast<const Expression>(
+                    visit(context->shiftExpression())
+                        .as<std::shared_ptr<const SyntaxNode>>()),
+                CreateToken(SyntaxTokenType::DoubleLessThan, context->DoubleLessThan()),
+                std::dynamic_pointer_cast<const Expression>(
+                    visit(context->additiveExpression())
+                        .as<std::shared_ptr<const SyntaxNode>>())));
     }
     else if (context->DoubleGreaterThan() != nullptr)
     {
-        throw std::logic_error(std::string(__func__) + " NotImplemented");
+        return std::static_pointer_cast<const SyntaxNode>(
+            SyntaxFactory::CreateBinaryExpression(
+                BinaryOperator::BitwiseRightShift,
+                std::dynamic_pointer_cast<const Expression>(
+                    visit(context->shiftExpression())
+                        .as<std::shared_ptr<const SyntaxNode>>()),
+                CreateToken(SyntaxTokenType::DoubleGreaterThan, context->DoubleGreaterThan()),
+                std::dynamic_pointer_cast<const Expression>(
+                    visit(context->additiveExpression())
+                        .as<std::shared_ptr<const SyntaxNode>>())));
     }
     else
     {
@@ -647,19 +763,57 @@ antlrcpp::Any ASTCppParserVisitor::visitRelationalExpression(CppParser::Relation
     Trace(L"VisitRelationalExpression");
     if (context->LessThan() != nullptr)
     {
-        throw std::logic_error(std::string(__func__) + " NotImplemented");
+        Trace(L"LessThan");
+        return std::static_pointer_cast<const SyntaxNode>(
+            SyntaxFactory::CreateBinaryExpression(
+                BinaryOperator::LessThan,
+                std::dynamic_pointer_cast<const Expression>(
+                    visit(context->relationalExpression())
+                        .as<std::shared_ptr<const SyntaxNode>>()),
+                CreateToken(SyntaxTokenType::LessThan, context->LessThan()),
+                std::dynamic_pointer_cast<const Expression>(
+                    visit(context->shiftExpression())
+                        .as<std::shared_ptr<const SyntaxNode>>())));
     }
     else if (context->GreaterThan() != nullptr)
     {
-        throw std::logic_error(std::string(__func__) + " NotImplemented");
+        Trace(L"GreaterThan");
+        return std::static_pointer_cast<const SyntaxNode>(
+            SyntaxFactory::CreateBinaryExpression(
+                BinaryOperator::GreaterThan,
+                std::dynamic_pointer_cast<const Expression>(
+                    visit(context->relationalExpression())
+                        .as<std::shared_ptr<const SyntaxNode>>()),
+                CreateToken(SyntaxTokenType::GreaterThan, context->GreaterThan()),
+                std::dynamic_pointer_cast<const Expression>(
+                    visit(context->shiftExpression())
+                        .as<std::shared_ptr<const SyntaxNode>>())));
     }
     else if (context->LessThanEqual() != nullptr)
     {
-        throw std::logic_error(std::string(__func__) + " NotImplemented");
+        return std::static_pointer_cast<const SyntaxNode>(
+            SyntaxFactory::CreateBinaryExpression(
+                BinaryOperator::LessThanOrEqual,
+                std::dynamic_pointer_cast<const Expression>(
+                    visit(context->relationalExpression())
+                        .as<std::shared_ptr<const SyntaxNode>>()),
+                CreateToken(SyntaxTokenType::LessThanEqual, context->LessThanEqual()),
+                std::dynamic_pointer_cast<const Expression>(
+                    visit(context->shiftExpression())
+                        .as<std::shared_ptr<const SyntaxNode>>())));
     }
     else if (context->GreaterThanEqual() != nullptr)
     {
-        throw std::logic_error(std::string(__func__) + " NotImplemented");
+        return std::static_pointer_cast<const SyntaxNode>(
+            SyntaxFactory::CreateBinaryExpression(
+                BinaryOperator::GreaterThanOrEqual,
+                std::dynamic_pointer_cast<const Expression>(
+                    visit(context->relationalExpression())
+                        .as<std::shared_ptr<const SyntaxNode>>()),
+                CreateToken(SyntaxTokenType::GreaterThanEqual, context->GreaterThanEqual()),
+                std::dynamic_pointer_cast<const Expression>(
+                    visit(context->shiftExpression())
+                        .as<std::shared_ptr<const SyntaxNode>>())));
     }
     else
     {
@@ -672,11 +826,29 @@ antlrcpp::Any ASTCppParserVisitor::visitEqualityExpression(CppParser::EqualityEx
     Trace(L"VisitEqualityExpression");
     if (context->DoubleEqual() != nullptr)
     {
-        throw std::logic_error(std::string(__func__) + " NotImplemented");
+        return std::static_pointer_cast<const SyntaxNode>(
+            SyntaxFactory::CreateBinaryExpression(
+                BinaryOperator::Equals,
+                std::dynamic_pointer_cast<const Expression>(
+                    visit(context->equalityExpression())
+                        .as<std::shared_ptr<const SyntaxNode>>()),
+                CreateToken(SyntaxTokenType::DoubleEqual, context->DoubleEqual()),
+                std::dynamic_pointer_cast<const Expression>(
+                    visit(context->relationalExpression())
+                        .as<std::shared_ptr<const SyntaxNode>>())));
     }
     else if (context->ExclamationMarkEqual() != nullptr)
     {
-        throw std::logic_error(std::string(__func__) + " NotImplemented");
+        return std::static_pointer_cast<const SyntaxNode>(
+            SyntaxFactory::CreateBinaryExpression(
+                BinaryOperator::NotEquals,
+                std::dynamic_pointer_cast<const Expression>(
+                    visit(context->equalityExpression())
+                        .as<std::shared_ptr<const SyntaxNode>>()),
+                CreateToken(SyntaxTokenType::ExclamationMarkEqual, context->ExclamationMarkEqual()),
+                std::dynamic_pointer_cast<const Expression>(
+                    visit(context->relationalExpression())
+                        .as<std::shared_ptr<const SyntaxNode>>())));
     }
     else
     {
@@ -689,7 +861,16 @@ antlrcpp::Any ASTCppParserVisitor::visitAndExpression(CppParser::AndExpressionCo
     Trace(L"VisitAndExpression");
     if (context->Ampersand() != nullptr)
     {
-        throw std::logic_error(std::string(__func__) + " NotImplemented");
+        return std::static_pointer_cast<const SyntaxNode>(
+            SyntaxFactory::CreateBinaryExpression(
+                BinaryOperator::BitwiseAnd,
+                std::dynamic_pointer_cast<const Expression>(
+                    visit(context->andExpression())
+                        .as<std::shared_ptr<const SyntaxNode>>()),
+                CreateToken(SyntaxTokenType::Ampersand, context->Ampersand()),
+                std::dynamic_pointer_cast<const Expression>(
+                    visit(context->equalityExpression())
+                        .as<std::shared_ptr<const SyntaxNode>>())));
     }
     else
     {
@@ -702,7 +883,16 @@ antlrcpp::Any ASTCppParserVisitor::visitExclusiveOrExpression(CppParser::Exclusi
     Trace(L"VisitExclusiveOrExpression");
     if (context->Caret() != nullptr)
     {
-        throw std::logic_error(std::string(__func__) + " NotImplemented");
+        return std::static_pointer_cast<const SyntaxNode>(
+            SyntaxFactory::CreateBinaryExpression(
+                BinaryOperator::BitwiseExclusiveOr,
+                std::dynamic_pointer_cast<const Expression>(
+                    visit(context->exclusiveOrExpression())
+                        .as<std::shared_ptr<const SyntaxNode>>()),
+                CreateToken(SyntaxTokenType::Caret, context->Caret()),
+                std::dynamic_pointer_cast<const Expression>(
+                    visit(context->andExpression())
+                        .as<std::shared_ptr<const SyntaxNode>>())));
     }
     else
     {
@@ -715,7 +905,16 @@ antlrcpp::Any ASTCppParserVisitor::visitInclusiveOrExpression(CppParser::Inclusi
     Trace(L"VisitInclusiveOrExpression");
     if (context->VerticalBar() != nullptr)
     {
-        throw std::logic_error(std::string(__func__) + " NotImplemented");
+        return std::static_pointer_cast<const SyntaxNode>(
+            SyntaxFactory::CreateBinaryExpression(
+                BinaryOperator::BitwiseOr,
+                std::dynamic_pointer_cast<const Expression>(
+                    visit(context->inclusiveOrExpression())
+                        .as<std::shared_ptr<const SyntaxNode>>()),
+                CreateToken(SyntaxTokenType::VerticalBar, context->VerticalBar()),
+                std::dynamic_pointer_cast<const Expression>(
+                    visit(context->exclusiveOrExpression())
+                        .as<std::shared_ptr<const SyntaxNode>>())));
     }
     else
     {
@@ -728,7 +927,16 @@ antlrcpp::Any ASTCppParserVisitor::visitLogicalAndExpression(CppParser::LogicalA
     Trace(L"VisitLogicalAndExpression");
     if (context->DoubleAmpersand() != nullptr)
     {
-        throw std::logic_error(std::string(__func__) + " NotImplemented");
+        return std::static_pointer_cast<const SyntaxNode>(
+            SyntaxFactory::CreateBinaryExpression(
+                BinaryOperator::LogicalAnd,
+                std::dynamic_pointer_cast<const Expression>(
+                    visit(context->logicalAndExpression())
+                        .as<std::shared_ptr<const SyntaxNode>>()),
+                CreateToken(SyntaxTokenType::DoubleAmpersand, context->DoubleAmpersand()),
+                std::dynamic_pointer_cast<const Expression>(
+                    visit(context->inclusiveOrExpression())
+                        .as<std::shared_ptr<const SyntaxNode>>())));
     }
     else
     {
@@ -741,7 +949,16 @@ antlrcpp::Any ASTCppParserVisitor::visitLogicalOrExpression(CppParser::LogicalOr
     Trace(L"VisitLogicalOrExpression");
     if (context->DoubleVerticalBar() != nullptr)
     {
-        throw std::logic_error(std::string(__func__) + " NotImplemented");
+        return std::static_pointer_cast<const SyntaxNode>(
+            SyntaxFactory::CreateBinaryExpression(
+                BinaryOperator::LogicalOr,
+                std::dynamic_pointer_cast<const Expression>(
+                    visit(context->logicalOrExpression())
+                        .as<std::shared_ptr<const SyntaxNode>>()),
+                CreateToken(SyntaxTokenType::DoubleVerticalBar, context->DoubleVerticalBar()),
+                std::dynamic_pointer_cast<const Expression>(
+                    visit(context->logicalAndExpression())
+                        .as<std::shared_ptr<const SyntaxNode>>())));
     }
     else
     {
@@ -774,6 +991,120 @@ antlrcpp::Any ASTCppParserVisitor::visitAssignmentExpression(CppParser::Assignme
     if (context->conditionalExpression() != nullptr)
     {
         return visit(context->conditionalExpression());
+    }
+    else if (context->assignmentOperator() != nullptr)
+    {
+        auto leftExpression = std::dynamic_pointer_cast<const Expression>(
+                    visit(context->logicalOrExpression())
+                        .as<std::shared_ptr<const SyntaxNode>>());
+        auto rightExpression = std::dynamic_pointer_cast<const Expression>(
+                    visit(context->initializerClause())
+                        .as<std::shared_ptr<const SyntaxNode>>());
+
+        auto operatorContext = context->assignmentOperator();
+        if (operatorContext->Equal() != nullptr)
+        {
+            return std::static_pointer_cast<const SyntaxNode>(
+                SyntaxFactory::CreateBinaryExpression(
+                    BinaryOperator::SimpleAssignment,
+                    std::move(leftExpression),
+                    CreateToken(SyntaxTokenType::Equal, operatorContext->Equal()),
+                    std::move(rightExpression)));
+        }
+        else if (operatorContext->AsteriskEqual() != nullptr)
+        {
+            return std::static_pointer_cast<const SyntaxNode>(
+                SyntaxFactory::CreateBinaryExpression(
+                    BinaryOperator::MultiplicationAssignment,
+                    std::move(leftExpression),
+                    CreateToken(SyntaxTokenType::AsteriskEqual, operatorContext->AsteriskEqual()),
+                    std::move(rightExpression)));
+        }
+        else if (operatorContext->ForwardSlashEqual() != nullptr)
+        {
+            return std::static_pointer_cast<const SyntaxNode>(
+                SyntaxFactory::CreateBinaryExpression(
+                    BinaryOperator::DivisionAssignment,
+                    std::move(leftExpression),
+                    CreateToken(SyntaxTokenType::ForwardSlashEqual, operatorContext->ForwardSlashEqual()),
+                    std::move(rightExpression)));
+        }
+        else if (operatorContext->PercentEqual() != nullptr)
+        {
+            return std::static_pointer_cast<const SyntaxNode>(
+                SyntaxFactory::CreateBinaryExpression(
+                    BinaryOperator::ModuloAssignment,
+                    std::move(leftExpression),
+                    CreateToken(SyntaxTokenType::PercentEqual, operatorContext->PercentEqual()),
+                    std::move(rightExpression)));
+        }
+        else if (operatorContext->PlusEqual() != nullptr)
+        {
+            return std::static_pointer_cast<const SyntaxNode>(
+                SyntaxFactory::CreateBinaryExpression(
+                    BinaryOperator::AdditionAssignment,
+                    std::move(leftExpression),
+                    CreateToken(SyntaxTokenType::PlusEqual, operatorContext->PlusEqual()),
+                    std::move(rightExpression)));
+        }
+        else if (operatorContext->MinusEqual() != nullptr)
+        {
+            return std::static_pointer_cast<const SyntaxNode>(
+                SyntaxFactory::CreateBinaryExpression(
+                    BinaryOperator::SubtractionAssignment,
+                    std::move(leftExpression),
+                    CreateToken(SyntaxTokenType::MinusEqual, operatorContext->MinusEqual()),
+                    std::move(rightExpression)));
+        }
+        else if (operatorContext->DoubleGreaterThanEqual() != nullptr)
+        {
+            return std::static_pointer_cast<const SyntaxNode>(
+                SyntaxFactory::CreateBinaryExpression(
+                    BinaryOperator::BitwiseRightShiftAssignment,
+                    std::move(leftExpression),
+                    CreateToken(SyntaxTokenType::DoubleGreaterThanEqual, operatorContext->DoubleGreaterThanEqual()),
+                    std::move(rightExpression)));
+        }
+        else if (operatorContext->DoubleLessThanEqual() != nullptr)
+        {
+            return std::static_pointer_cast<const SyntaxNode>(
+                SyntaxFactory::CreateBinaryExpression(
+                    BinaryOperator::BitwiseLeftShiftAssignment,
+                    std::move(leftExpression),
+                    CreateToken(SyntaxTokenType::DoubleLessThanEqual, operatorContext->DoubleLessThanEqual()),
+                    std::move(rightExpression)));
+        }
+        else if (operatorContext->AmpersandEqual() != nullptr)
+        {
+            return std::static_pointer_cast<const SyntaxNode>(
+                SyntaxFactory::CreateBinaryExpression(
+                    BinaryOperator::BitwiseAndAssignment,
+                    std::move(leftExpression),
+                    CreateToken(SyntaxTokenType::AmpersandEqual, operatorContext->AmpersandEqual()),
+                    std::move(rightExpression)));
+        }
+        else if (operatorContext->CaretEqual() != nullptr)
+        {
+            return std::static_pointer_cast<const SyntaxNode>(
+                SyntaxFactory::CreateBinaryExpression(
+                    BinaryOperator::BitwiseExclusiveOrAssignment,
+                    std::move(leftExpression),
+                    CreateToken(SyntaxTokenType::CaretEqual, operatorContext->CaretEqual()),
+                    std::move(rightExpression)));
+        }
+        else if (operatorContext->VerticalBarEqual() != nullptr)
+        {
+            return std::static_pointer_cast<const SyntaxNode>(
+                SyntaxFactory::CreateBinaryExpression(
+                    BinaryOperator::BitwiseOrAssignment,
+                    std::move(leftExpression),
+                    CreateToken(SyntaxTokenType::VerticalBarEqual, operatorContext->VerticalBarEqual()),
+                    std::move(rightExpression)));
+        }
+        else
+        {
+            throw std::runtime_error("Unknown member access operator.");
+        }
     }
     else
     {
@@ -2258,6 +2589,8 @@ std::shared_ptr<const SyntaxToken> ASTCppParserVisitor::CreateToken(
     // Convert the token text to wide characters
     std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
     std::wstring tokenText = converter.from_bytes(token->getText());
+
+    Trace(tokenText.c_str());
 
     // Load the leading and trailing trivia stoping at the newline token
     auto leadingTrivia = GetLeadingTrivia(index);

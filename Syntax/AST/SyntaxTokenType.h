@@ -124,6 +124,7 @@ namespace Soup::Syntax
         DoubleEqual,
         ExclamationMarkEqual,
         LessThanEqual,
+        LessThanEqualGreaterThan,
         GreaterThanEqual,
         DoubleAmpersand,
         DoubleVerticalBar,
