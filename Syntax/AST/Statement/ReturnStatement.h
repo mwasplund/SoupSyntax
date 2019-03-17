@@ -7,13 +7,56 @@ namespace Soup::Syntax
     /// </summary>
     export class ReturnStatement final : public Statement
     {
-    public:
+        friend class SyntaxFactory;
+
+    private:
         /// <summary>
         /// Initialize
         /// </summary>
-        ReturnStatement() :
-            Statement(SyntaxNodeType::ReturnStatement)
+        ReturnStatement(
+            std::shared_ptr<const SyntaxToken> returnToken,
+            std::shared_ptr<const Expression> expression,
+            std::shared_ptr<const SyntaxToken> semicolonToken) :
+            Statement(SyntaxNodeType::ReturnStatement),
+            m_returnToken(std::move(returnToken)),
+            m_expression(std::move(expression)),
+            m_semicolonToken(std::move(semicolonToken))
         {
+        }
+
+    public:
+        /// <summary>
+        /// Gets the return keyword
+        /// </summary>
+        const SyntaxToken& GetReturnToken() const
+        {
+            return *m_returnToken;
+        }
+
+        /// <summary>
+        /// Gets the optional expression that is to be evaluated to generate the value
+        /// to return.
+        /// </summary>
+        const Expression& GetExpression() const
+        {
+            // TODO: Throw and add UTs
+            return *m_expression;
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether there is an optional expression.
+        /// </summary>
+        bool HasExpression() const
+        {
+            return m_expression != nullptr;
+        }
+
+        /// <summary>
+        /// Gets the semicolon token
+        /// </summary>
+        const SyntaxToken& GetSemicolonToken() const
+        {
+            return *m_semicolonToken;
         }
 
         /// <summary>
@@ -21,9 +64,19 @@ namespace Soup::Syntax
         /// </summary>
         virtual std::vector<SyntaxNodeChild> GetChildren() const override final
         {
-            return std::vector<SyntaxNodeChild>(
-                {
-                });
+            std::vector<SyntaxNodeChild> children(
+            {
+                SyntaxNodeChild(m_returnToken),
+            });
+
+            if (HasExpression())
+            {
+                children.push_back(SyntaxNodeChild(m_expression));
+            }
+
+            children.push_back(SyntaxNodeChild(m_semicolonToken));
+
+            return children;
         }
 
         /// <summary>
@@ -39,12 +92,25 @@ namespace Soup::Syntax
         /// </summary>
         bool operator ==(const ReturnStatement& rhs) const
         {
-            return true;
+            // The expression is optional
+            bool expressionEqual = false;
+            if (!HasExpression() || !rhs.HasExpression())
+            {
+                expressionEqual = !HasExpression() && !rhs.HasExpression();
+            }
+            else
+            {
+                expressionEqual = *m_expression == *rhs.m_expression;
+            }
+
+            return *m_returnToken == *rhs.m_returnToken &&
+                expressionEqual &&
+                *m_semicolonToken  == *rhs.m_semicolonToken;
         }
 
         bool operator !=(const ReturnStatement& rhs) const
         {
-            return false;
+            return !(*this == rhs);
         }
 
     protected:
@@ -55,5 +121,10 @@ namespace Soup::Syntax
         {
             return *this == static_cast<const ReturnStatement&>(rhs);
         }
+
+    private:
+        std::shared_ptr<const SyntaxToken> m_returnToken;
+        std::shared_ptr<const Expression> m_expression;
+        std::shared_ptr<const SyntaxToken> m_semicolonToken;
     };
 }

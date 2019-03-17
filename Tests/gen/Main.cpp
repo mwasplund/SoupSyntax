@@ -19,6 +19,7 @@ import SoupSyntax;
 #include "AST\Statement\ElseClauseTests.gen.h"
 #include "AST\Statement\EmptyStatementTests.gen.h"
 #include "AST\Statement\IfStatementTests.gen.h"
+#include "AST\Statement\ReturnStatementTests.gen.h"
 
 #include "AST\SyntaxNodeChildTests.gen.h"
 #include "AST\SyntaxTokenTests.gen.h"
@@ -61,6 +62,7 @@ int main()
     state += RunElseClauseTests();
     state += RunEmptyStatementTests();
     state += RunIfStatementTests();
+    state += RunReturnStatementTests();
 
     state += RunSyntaxNodeChildTests();
     state += RunSyntaxTokenTests();

@@ -57,6 +57,7 @@ namespace Soup::Syntax
         /// </summary>
         const NameExpression& GetLeft() const
         {
+            // TODO: Throw and add UTs
             return *m_left;
         }
 

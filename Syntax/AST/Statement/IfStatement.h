@@ -77,6 +77,7 @@ namespace Soup::Syntax
         /// </summary>
         const ElseClause& GetElseClause() const
         {
+            // TODO: Throw and add UTs
             return *m_elseClause;
         }
 

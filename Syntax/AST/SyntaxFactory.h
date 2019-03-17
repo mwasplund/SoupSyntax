@@ -289,6 +289,27 @@ namespace Soup::Syntax
         }
 
         /// <summary>
+        /// Create a ReturnStatement
+        /// </summary>
+        static std::shared_ptr<const ReturnStatement> CreateReturnStatement(
+            std::shared_ptr<const SyntaxToken> returnToken,
+            std::shared_ptr<const Expression> expression,
+            std::shared_ptr<const SyntaxToken> semicolonToken)
+        {
+            // Note: The Expression is optional
+            if (returnToken == nullptr)
+                throw std::runtime_error("ArgumentNull - returnToken");
+            if (semicolonToken == nullptr)
+                throw std::runtime_error("ArgumentNull - semicolonToken");
+
+            return std::shared_ptr<const ReturnStatement>(
+                new ReturnStatement(
+                    std::move(returnToken),
+                    std::move(expression),
+                    std::move(semicolonToken)));
+        }
+
+        /// <summary>
         /// Create a SimpleNameExpression
         /// </summary>
         static std::shared_ptr<const SimpleNameExpression> CreateSimpleNameExpression(
