@@ -39,12 +39,27 @@ namespace Soup::Syntax
             DefaultVisit(node);
         }
 
+        virtual void Visit(const ElseClause& node) override
+        {
+            DefaultVisit(node);
+        }
+
+        virtual void Visit(const EmptyStatement& node) override
+        {
+            DefaultVisit(node);
+        }
+
         virtual void Visit(const FunctionDeclaration& node) override
         {
             DefaultVisit(node);
         }
 
         virtual void Visit(const FunctionDefinition& node) override
+        {
+            DefaultVisit(node);
+        }
+
+        virtual void Visit(const IfStatement& node) override
         {
             DefaultVisit(node);
         }

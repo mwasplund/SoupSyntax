@@ -28,6 +28,10 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateToken(SyntaxTokenType::RightParenthesis, L")"));
 
             Assert::AreEqual(
+                SyntaxNodeType::ParameterList,
+                uut->GetType(),
+                L"Verify has correct type.");
+            Assert::AreEqual(
                 *SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"("),
                 uut->GetLeftParenthesisToken(),
                 L"Verify left parenthesis token matches.");

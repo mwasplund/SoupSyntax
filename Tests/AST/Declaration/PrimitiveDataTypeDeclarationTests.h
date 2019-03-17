@@ -15,6 +15,10 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int"));
 
             Assert::AreEqual(
+                SyntaxNodeType::PrimitiveDataTypeDeclaration,
+                uut->GetType(),
+                L"Verify has correct type.");
+            Assert::AreEqual(
                 PrimitiveDataType::Int,
                 uut->GetPrimitiveType(),
                 L"Verify primitive type matches.");

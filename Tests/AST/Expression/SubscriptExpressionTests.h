@@ -18,6 +18,10 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")),
                 SyntaxFactory::CreateToken(SyntaxTokenType::RightBracket, L"]"));
 
+            Assert::AreEqual(
+                SyntaxNodeType::SubscriptExpression,
+                uut->GetType(),
+                L"Verify has correct type.");
             TestUtils::AreEqual(
                 *SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),

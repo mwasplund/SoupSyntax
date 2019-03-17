@@ -6,6 +6,7 @@ namespace Soup::Syntax
     /// <summary>
     /// Syntax factory
     /// </summary>
+    // TODO: Test coverage for validation of input
     export class SyntaxFactory
     {
     public:
@@ -78,6 +79,38 @@ namespace Soup::Syntax
         }
 
         /// <summary>
+        /// Create a ElseClause
+        /// </summary>
+        static std::shared_ptr<const ElseClause> CreateElseClause(
+            std::shared_ptr<const SyntaxToken> elseToken,
+            std::shared_ptr<const Statement> statement)
+        {
+            if (elseToken == nullptr)
+                throw std::runtime_error("ArgumentNull - elseToken");
+            if (statement == nullptr)
+                throw std::runtime_error("ArgumentNull - statement");
+
+            return std::shared_ptr<const ElseClause>(
+                new ElseClause(
+                    std::move(elseToken),
+                    std::move(statement)));
+        }
+
+        /// <summary>
+        /// Create a EmptyStatement
+        /// </summary>
+        static std::shared_ptr<const EmptyStatement> CreateEmptyStatement(
+            std::shared_ptr<const SyntaxToken> semicolonToken)
+        {
+            if (semicolonToken == nullptr)
+                throw std::runtime_error("ArgumentNull - semicolonToken");
+
+            return std::shared_ptr<const EmptyStatement>(
+                new EmptyStatement(
+                    std::move(semicolonToken)));
+        }
+
+        /// <summary>
         /// Create a FunctionDeclaration
         /// </summary>
         static std::shared_ptr<const FunctionDeclaration> CreateFunctionDeclaration(
@@ -127,6 +160,39 @@ namespace Soup::Syntax
                     std::move(identifier),
                     std::move(parameterList),
                     std::move(body)));
+        }
+
+        /// <summary>
+        /// Create a IfStatement
+        /// </summary>
+        static std::shared_ptr<const IfStatement> CreateIfStatement(
+            std::shared_ptr<const SyntaxToken> ifToken,
+            std::shared_ptr<const SyntaxToken> leftParenthesisToken,
+            std::shared_ptr<const Expression> conditionExpression,
+            std::shared_ptr<const SyntaxToken> rightParenthesisToken,
+            std::shared_ptr<const Statement> statement,
+            std::shared_ptr<const ElseClause> elseClause)
+        {
+            // Note: The else clause is optional
+            if (ifToken == nullptr)
+                throw std::runtime_error("ArgumentNull - ifToken");
+            if (leftParenthesisToken == nullptr)
+                throw std::runtime_error("ArgumentNull - leftParenthesisToken");
+            if (conditionExpression == nullptr)
+                throw std::runtime_error("ArgumentNull - conditionExpression");
+            if (rightParenthesisToken == nullptr)
+                throw std::runtime_error("ArgumentNull - rightParenthesisToken");
+            if (statement == nullptr)
+                throw std::runtime_error("ArgumentNull - statement");
+
+            return std::shared_ptr<const IfStatement>(
+                new IfStatement(
+                    std::move(ifToken),
+                    std::move(leftParenthesisToken),
+                    std::move(conditionExpression),
+                    std::move(rightParenthesisToken),
+                    std::move(statement),
+                    std::move(elseClause)));
         }
 
         /// <summary>

@@ -15,8 +15,11 @@ namespace Soup::Syntax
         virtual void Visit(const DeclarationSpecifierSequence& node) = 0;
         virtual void Visit(const DefaultFunctionBody& node) = 0;
         virtual void Visit(const DeleteFunctionBody& node) = 0;
+        virtual void Visit(const ElseClause& node) = 0;
+        virtual void Visit(const EmptyStatement& node) = 0;
         virtual void Visit(const FunctionDeclaration& node) = 0;
         virtual void Visit(const FunctionDefinition& node) = 0;
+        virtual void Visit(const IfStatement& node) = 0;
         virtual void Visit(const InitializerDeclarator& node) = 0;
         virtual void Visit(const InitializerDeclaratorList& node) = 0;
         virtual void Visit(const LiteralExpression& node) = 0;

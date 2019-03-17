@@ -16,6 +16,10 @@ namespace Soup::Syntax::UnitTests
                     LiteralType::Integer,
                     SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")));
 
+            Assert::AreEqual(
+                SyntaxNodeType::UnaryExpression,
+                uut->GetType(),
+                L"Verify has correct type.");
             Assert::AreEqual(UnaryOperator::PostIncrement, uut->GetOperator(), L"Verify operator matches.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateToken(SyntaxTokenType::DoublePlus, L"++"),

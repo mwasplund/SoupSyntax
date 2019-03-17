@@ -12,6 +12,10 @@ namespace Soup::Syntax::UnitTests
             auto uut = SyntaxFactory::CreateThisExpression(
                 SyntaxFactory::CreateToken(SyntaxTokenType::This, L"this"));
 
+            Assert::AreEqual(
+                SyntaxNodeType::ThisExpression,
+                uut->GetType(),
+                L"Verify has correct type.");
             Assert::AreEqual(SyntaxNodeType::ThisExpression, uut->GetType(), L"Verify type matches.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateToken(SyntaxTokenType::This, L"this"),

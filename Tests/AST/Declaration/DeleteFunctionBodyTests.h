@@ -15,6 +15,10 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"));
 
             Assert::AreEqual(
+                SyntaxNodeType::DeleteFunctionBody,
+                uut->GetType(),
+                L"Verify has correct type.");
+            Assert::AreEqual(
                 *SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
                 uut->GetEqualToken(),
                 L"Verify equal token matches.");

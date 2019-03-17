@@ -13,6 +13,10 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"name"));
 
             Assert::AreEqual(
+                SyntaxNodeType::SimpleNameExpression,
+                uut->GetType(),
+                L"Verify has correct type.");
+            Assert::AreEqual(
                 *SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"name"),
                 uut->GetIdentifier(),
                 L"Verify identifier matches.");
@@ -27,6 +31,10 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Right")));
 
+            Assert::AreEqual(
+                SyntaxNodeType::QualifiedNameExpression,
+                uut->GetType(),
+                L"Verify has correct type.");
             Assert::IsFalse(uut->HasLeft(), L"Verify no left identifier.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateToken(SyntaxTokenType::DoubleColon, L"::"),
@@ -52,6 +60,10 @@ namespace Soup::Syntax::UnitTests
             auto left = dynamic_cast<const SimpleNameExpression&>(uut->GetLeft());
             auto right = uut->GetRight();
 
+            Assert::AreEqual(
+                SyntaxNodeType::QualifiedNameExpression,
+                uut->GetType(),
+                L"Verify has correct type.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Left"),
                 left.GetIdentifier(),

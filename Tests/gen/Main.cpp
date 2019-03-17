@@ -16,6 +16,10 @@ import SoupSyntax;
 #include "AST\Expression\ThisExpressionTests.gen.h"
 #include "AST\Expression\UnaryExpressionTests.gen.h"
 
+#include "AST\Statement\ElseClauseTests.gen.h"
+#include "AST\Statement\EmptyStatementTests.gen.h"
+#include "AST\Statement\IfStatementTests.gen.h"
+
 #include "AST\SyntaxNodeChildTests.gen.h"
 #include "AST\SyntaxTokenTests.gen.h"
 
@@ -53,6 +57,10 @@ int main()
     state += RunSubscriptExpressionTests();
     state += RunThisExpressionTests();
     state += RunUnaryExpressionTests();
+
+    state += RunElseClauseTests();
+    state += RunEmptyStatementTests();
+    state += RunIfStatementTests();
 
     state += RunSyntaxNodeChildTests();
     state += RunSyntaxTokenTests();

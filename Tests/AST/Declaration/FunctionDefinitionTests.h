@@ -40,6 +40,10 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateToken(SyntaxTokenType::Delete, L"delete"),
                     SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";")));
 
+            Assert::AreEqual(
+                SyntaxNodeType::FunctionDefinition,
+                uut->GetType(),
+                L"Verify has correct type.");
             TestUtils::AreEqual(
                 *std::make_shared<DeclarationSpecifierSequence>(
                     std::vector<std::shared_ptr<const SyntaxNode>>

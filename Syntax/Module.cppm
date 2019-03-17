@@ -41,6 +41,9 @@ namespace Soup::Syntax
 
     // Statements
     class CompoundStatement;
+    class ElseClause;
+    class EmptyStatement;
+    class IfStatement;
     class ReturnStatement;
 }
 
@@ -66,6 +69,9 @@ namespace Soup::Syntax
 #include "AST\Expression\UnaryExpression.h"
 #include "AST\Statement\Statement.h"
 #include "AST\Statement\CompoundStatement.h"
+#include "AST\Statement\ElseClause.h"
+#include "AST\Statement\EmptyStatement.h"
+#include "AST\Statement\IfStatement.h"
 #include "AST\Statement\ReturnStatement.h"
 #include "AST\Declaration\Declaration.h"
 #include "AST\Declaration\DeclarationSequence.h"

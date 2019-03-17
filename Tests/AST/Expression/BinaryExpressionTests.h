@@ -19,6 +19,10 @@ namespace Soup::Syntax::UnitTests
                     LiteralType::Integer,
                     SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")));
 
+            Assert::AreEqual(
+                SyntaxNodeType::BinaryExpression,
+                uut->GetType(),
+                L"Verify has correct type.");
             Assert::AreEqual(BinaryOperator::Addition, uut->GetOperator(), L"Verify operator matches.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),

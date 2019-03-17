@@ -93,10 +93,14 @@ namespace Soup::Syntax
                     return L"DefaultFunctionBody";
                 case SyntaxNodeType::DeleteFunctionBody:
                     return L"DeleteFunctionBody";
-                case SyntaxNodeType::FunctionDeclaration:
-                    return L"FunctionDeclaration";
+                case SyntaxNodeType::ElseClause:
+                    return L"ElseClause";
+                case SyntaxNodeType::EmptyStatement:
+                    return L"EmptyStatement";
                 case SyntaxNodeType::FunctionDefinition:
                     return L"FunctionDefinition";
+                case SyntaxNodeType::IfStatement:
+                    return L"IfStatement";
                 case SyntaxNodeType::InitializerDeclarator:
                     return L"InitializerDeclarator";
                 case SyntaxNodeType::InitializerDeclaratorList:
