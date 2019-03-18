@@ -1257,7 +1257,27 @@ antlrcpp::Any ASTCppParserVisitor::visitForRangeInitializer(CppParser::ForRangeI
 antlrcpp::Any ASTCppParserVisitor::visitJumpStatement(CppParser::JumpStatementContext* context)
 {
     Trace(L"VisitJumpStatement");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+    if (context->Return() != nullptr)
+    {
+        // Check for optional expression
+        std::shared_ptr<const Expression> expression = nullptr;
+        if (context->expressionOrBracedInitializerList() != nullptr)
+        {
+            expression = std::dynamic_pointer_cast<const Expression>(
+                visit(context->expressionOrBracedInitializerList())
+                    .as<std::shared_ptr<const SyntaxNode>>());
+        }
+
+        return std::static_pointer_cast<const SyntaxNode>(
+            SyntaxFactory::CreateReturnStatement(
+                CreateToken(SyntaxTokenType::Return, context->Return()),
+                std::move(expression),
+                CreateToken(SyntaxTokenType::Semicolon, context->Semicolon())));
+    }
+    else
+    {
+        throw std::logic_error(std::string(__func__) + " NotImplemented");
+    }
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitDeclarationStatement(CppParser::DeclarationStatementContext* context)

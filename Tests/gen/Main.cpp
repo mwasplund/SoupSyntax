@@ -39,6 +39,8 @@ import SoupSyntax;
 #include "Parser\Expression\ParseThisExpressionTests.gen.h"
 #include "Parser\Expression\ParseUnaryExpressionTests.gen.h"
 
+#include "Parser\Statement\ParseReturnStatementTests.gen.h"
+
 int main()
 {
     std::wcout << L"Running Tests..." << std::endl;
@@ -81,6 +83,8 @@ int main()
     state += RunParseSubscriptExpressionTests();
     state += RunParseThisExpressionTests();
     state += RunParseUnaryExpressionTests();
+
+    state += RunParseReturnStatementTests();
 
     std::wcout << state.FailCount << L" FAILED." << std::endl;
     std::wcout << state.PassCount << L" PASSED." << std::endl;
