@@ -1156,7 +1156,14 @@ antlrcpp::Any ASTCppParserVisitor::visitInitializerStatement(CppParser::Initiali
 antlrcpp::Any ASTCppParserVisitor::visitCondition(CppParser::ConditionContext* context)
 {
     Trace(L"VisitCondition");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+    if (context->expression() != nullptr)
+    {
+        return visit(context->expression());
+    }
+    else
+    {
+        throw std::logic_error(std::string(__func__) + " NotImplemented");
+    }
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitLabeledStatement(CppParser::LabeledStatementContext* context)
@@ -1168,7 +1175,18 @@ antlrcpp::Any ASTCppParserVisitor::visitLabeledStatement(CppParser::LabeledState
 antlrcpp::Any ASTCppParserVisitor::visitExpressionStatement(CppParser::ExpressionStatementContext* context)
 {
     Trace(L"VisitExpressionStatement");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+    if (context->expression() != nullptr)
+    {
+        throw std::logic_error(std::string(__func__) + " NotImplemented");
+    }
+    else
+    {
+        // The degenerate expression statement with no expression has a special type
+        return std::static_pointer_cast<const SyntaxNode>(
+            SyntaxFactory::CreateEmptyStatement(
+                CreateToken(SyntaxTokenType::Semicolon, context->Semicolon())));
+    }
+    
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitCompoundStatement(CppParser::CompoundStatementContext* context)
@@ -1227,7 +1245,45 @@ antlrcpp::Any ASTCppParserVisitor::visitStatementSequence(CppParser::StatementSe
 antlrcpp::Any ASTCppParserVisitor::visitSelectionStatement(CppParser::SelectionStatementContext* context)
 {
     Trace(L"VisitSelectionStatement");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+    if (context->If() != nullptr)
+    {
+        // Visit the condition expression
+        auto condition = std::dynamic_pointer_cast<const Expression>(
+            visit(context->condition())
+                .as<std::shared_ptr<const SyntaxNode>>());
+
+        // Visit the true statement
+        auto trueStatement = std::dynamic_pointer_cast<const Statement>(
+            visit(context->statement().at(0))
+                .as<std::shared_ptr<const SyntaxNode>>());
+
+        // Check for optional else clause
+        std::shared_ptr<const ElseClause> elseClause = nullptr;
+        if (context->Else() != nullptr)
+        {
+            // Visit the false statement
+            auto falseStatement = std::dynamic_pointer_cast<const Statement>(
+                visit(context->statement().at(1))
+                    .as<std::shared_ptr<const SyntaxNode>>());
+
+            elseClause = SyntaxFactory::CreateElseClause(
+                CreateToken(SyntaxTokenType::Else, context->Else()),
+                std::move(falseStatement));
+        }
+
+        return std::static_pointer_cast<const SyntaxNode>(
+            SyntaxFactory::CreateIfStatement(
+                CreateToken(SyntaxTokenType::If, context->If()),
+                CreateToken(SyntaxTokenType::LeftParenthesis, context->LeftParenthesis()),
+                std::move(condition),
+                CreateToken(SyntaxTokenType::RightParenthesis, context->RightParenthesis()),
+                std::move(trueStatement),
+                std::move(elseClause)));
+    }
+    else
+    {
+        throw std::logic_error(std::string(__func__) + " NotImplemented");
+    }
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitIterationStatement(CppParser::IterationStatementContext* context)
