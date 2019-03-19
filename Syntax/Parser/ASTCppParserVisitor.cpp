@@ -1194,22 +1194,18 @@ antlrcpp::Any ASTCppParserVisitor::visitCompoundStatement(CppParser::CompoundSta
     Trace(L"VisitCompoundStatement");
 
     // Check for optional sequence
-    std::shared_ptr<const CompoundStatement> result = nullptr;
+    std::vector<std::shared_ptr<const Statement>> statements;
     if (context->statementSequence() != nullptr)
     {
-        result = std::dynamic_pointer_cast<const CompoundStatement>(
-            visit(context->statementSequence())
-                .as<std::shared_ptr<const SyntaxNode>>());
-    }
-    else
-    {
-        std::vector<std::shared_ptr<const Statement>> statements;
-        result = std::make_shared<const CompoundStatement>(
-            std::move(statements));
+        statements = visit(context->statementSequence())
+            .as<std::vector<std::shared_ptr<const Statement>>>();
     }
 
-    // TODO: Reference the source braces
-    return std::static_pointer_cast<const SyntaxNode>(result);
+    return std::static_pointer_cast<const SyntaxNode>(
+        SyntaxFactory::CreateCompoundStatement(
+            CreateToken(SyntaxTokenType::LeftBrace, context->LeftBrace()),
+            std::move(statements),
+            CreateToken(SyntaxTokenType::RightBrace, context->RightBrace())));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitStatementSequence(CppParser::StatementSequenceContext* context)
@@ -1217,29 +1213,20 @@ antlrcpp::Any ASTCppParserVisitor::visitStatementSequence(CppParser::StatementSe
     Trace(L"VisitStatementSequence");
 
     // Handle the recursive rule
-    std::shared_ptr<const CompoundStatement> sequence;
-    auto childSequence = context->statementSequence();
-    if (childSequence != nullptr)
+    std::vector<std::shared_ptr<const Statement>> statements;
+    if (context->statementSequence() != nullptr)
     {
-        sequence = visit(childSequence)
-            .as<std::shared_ptr<const CompoundStatement>>();
-    }
-    else
-    {
-        std::vector<std::shared_ptr<const Statement>> statements;
-        sequence = std::make_shared<const CompoundStatement>(
-            std::move(statements));
+        statements = visit(context->statementSequence())
+            .as<std::vector<std::shared_ptr<const Statement>>>();
     }
 
-    // Handle the new item
-    auto statement = visit(context->statement())
-        .as<std::shared_ptr<const Statement>>();
-    std::vector<std::shared_ptr<const Statement>> statements = sequence->GetStatements();
+    // Handle the next statement
+    auto statement = std::dynamic_pointer_cast<const Statement>(
+        visit(context->statement())
+            .as<std::shared_ptr<const SyntaxNode>>());
     statements.push_back(std::move(statement));
-    sequence = std::make_shared<const CompoundStatement>(
-        std::move(statements));
 
-    return sequence;
+    return statements;
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitSelectionStatement(CppParser::SelectionStatementContext* context)

@@ -35,6 +35,26 @@ namespace Soup::Syntax
         }
 
         /// <summary>
+        /// Create a CompoundStatement
+        /// </summary>
+        static std::shared_ptr<const CompoundStatement> CreateCompoundStatement(
+            std::shared_ptr<const SyntaxToken> leftBraceToken,
+            std::vector<std::shared_ptr<const Statement>> statements,
+            std::shared_ptr<const SyntaxToken> rightBraceToken)
+        {
+            if (leftBraceToken == nullptr)
+                throw std::runtime_error("ArgumentNull - leftBraceToken");
+            if (rightBraceToken == nullptr)
+                throw std::runtime_error("ArgumentNull - rightBraceToken");
+
+            return std::shared_ptr<const CompoundStatement>(
+                new CompoundStatement(
+                    std::move(leftBraceToken),
+                    std::move(statements),
+                    std::move(rightBraceToken)));
+        }
+
+        /// <summary>
         /// Create a DefaultFunctionBody
         /// </summary>
         static std::shared_ptr<const DefaultFunctionBody> CreateDefaultFunctionBody(

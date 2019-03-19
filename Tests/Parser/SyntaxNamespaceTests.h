@@ -25,10 +25,10 @@ namespace Soup::Syntax::UnitTests
                         SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
                     nullptr,
                     std::make_shared<RegularFunctionBody>(
-                        std::make_shared<CompoundStatement>(
-                            std::vector<std::shared_ptr<const Statement>>
-                            {
-                            }))));
+                        SyntaxFactory::CreateCompoundStatement(
+                            SyntaxFactory::CreateToken(SyntaxTokenType::LeftBrace, L"{"),
+                            {},
+                            SyntaxFactory::CreateToken(SyntaxTokenType::RightBrace, L"}")))));
 
             auto actual = TestUtils::GenerateAST(source);
 
@@ -54,10 +54,10 @@ namespace Soup::Syntax::UnitTests
                         SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
                     nullptr,
                     std::make_shared<RegularFunctionBody>(
-                        std::make_shared<CompoundStatement>(
-                            std::vector<std::shared_ptr<const Statement>>
-                            {
-                            }))));
+                        SyntaxFactory::CreateCompoundStatement(
+                            SyntaxFactory::CreateToken(SyntaxTokenType::LeftBrace, L"{"),
+                            {},
+                            SyntaxFactory::CreateToken(SyntaxTokenType::RightBrace, L"}")))));
 
             auto actual = TestUtils::GenerateAST(source);
 
@@ -83,10 +83,10 @@ namespace Soup::Syntax::UnitTests
                         SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
                     nullptr,
                     std::make_shared<RegularFunctionBody>(
-                        std::make_shared<CompoundStatement>(
-                            std::vector<std::shared_ptr<const Statement>>
-                            {
-                            }))));
+                        SyntaxFactory::CreateCompoundStatement(
+                            SyntaxFactory::CreateToken(SyntaxTokenType::LeftBrace, L"{"),
+                            {},
+                            SyntaxFactory::CreateToken(SyntaxTokenType::RightBrace, L"}")))));
 
             auto actual = TestUtils::GenerateAST(source);
 

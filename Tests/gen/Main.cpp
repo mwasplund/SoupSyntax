@@ -16,6 +16,7 @@ import SoupSyntax;
 #include "AST\Expression\ThisExpressionTests.gen.h"
 #include "AST\Expression\UnaryExpressionTests.gen.h"
 
+#include "AST\Statement\CompoundStatementTests.gen.h"
 #include "AST\Statement\ElseClauseTests.gen.h"
 #include "AST\Statement\EmptyStatementTests.gen.h"
 #include "AST\Statement\IfStatementTests.gen.h"
@@ -39,6 +40,7 @@ import SoupSyntax;
 #include "Parser\Expression\ParseThisExpressionTests.gen.h"
 #include "Parser\Expression\ParseUnaryExpressionTests.gen.h"
 
+#include "Parser\Statement\ParseCompoundStatementTests.gen.h"
 #include "Parser\Statement\ParseIfStatementTests.gen.h"
 #include "Parser\Statement\ParseReturnStatementTests.gen.h"
 
@@ -62,6 +64,7 @@ int main()
     state += RunThisExpressionTests();
     state += RunUnaryExpressionTests();
 
+    state += RunCompoundStatementTests();
     state += RunElseClauseTests();
     state += RunEmptyStatementTests();
     state += RunIfStatementTests();
@@ -85,6 +88,7 @@ int main()
     state += RunParseThisExpressionTests();
     state += RunParseUnaryExpressionTests();
 
+    state += RunParseCompoundStatementTests();
     state += RunParseIfStatementTests();
     state += RunParseReturnStatementTests();
 

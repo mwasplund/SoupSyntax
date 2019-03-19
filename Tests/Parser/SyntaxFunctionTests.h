@@ -42,10 +42,23 @@ namespace Soup::Syntax::UnitTests
                                 SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0)),
                             })),
                     std::make_shared<RegularFunctionBody>(
-                        std::make_shared<CompoundStatement>(
-                            std::vector<std::shared_ptr<const Statement>>
-                            {
-                            }))));
+                        SyntaxFactory::CreateCompoundStatement(
+                            SyntaxFactory::CreateToken(
+                                SyntaxTokenType::LeftBrace,
+                                L"{",
+                                {
+                                    SyntaxFactory::CreateTrivia(L"\n", TextSpan(0, 0)),
+                                    SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0)),
+                                },
+                                {}),
+                            {},
+                            SyntaxFactory::CreateToken(
+                                SyntaxTokenType::RightBrace,
+                                L"}",
+                                {
+                                    SyntaxFactory::CreateTrivia(L"\n", TextSpan(0, 0)),
+                                },
+                                {})))));
 
             auto actual = TestUtils::GenerateAST(source);
 
