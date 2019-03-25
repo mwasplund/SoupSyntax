@@ -1,13 +1,13 @@
 #pragma once
-#include "ValueEqualsInitializerTests.h"
+#include "ValueEqualInitializerTests.h"
 #include "../RunTest.h"
 
-TestState RunValueEqualsInitializerTests()
+TestState RunValueEqualInitializerTests()
 {
-    auto testClass = std::make_unique<Soup::Syntax::UnitTests::ValueEqualsInitializerTests>();
+    auto testClass = std::make_unique<Soup::Syntax::UnitTests::ValueEqualInitializerTests>();
     TestState state = { 0, 0 };
 
-    std::wcout << L"Running ValueEqualsInitializerTests:" << std::endl;
+    std::wcout << L"Running ValueEqualInitializerTests:" << std::endl;
 
     std::wcout << L"InitializeSimple" << std::endl;
     state += RunTest([&testClass]() { testClass->InitializeSimple(); });

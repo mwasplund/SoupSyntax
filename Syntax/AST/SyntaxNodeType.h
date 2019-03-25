@@ -37,6 +37,6 @@ namespace Soup::Syntax
         TryFunctionBody,
         TryStatement,
         UnaryExpression,
-        ValueEqualsInitializer,
+        ValueEqualInitializer,
     };
 }

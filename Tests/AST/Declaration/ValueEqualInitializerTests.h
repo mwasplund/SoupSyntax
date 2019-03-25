@@ -4,21 +4,21 @@
 
 namespace Soup::Syntax::UnitTests
 {
-    class ValueEqualsInitializerTests
+    class ValueEqualInitializerTests
     {
     public:
         // [[Fact]]
         void InitializeSimple()
         {
             // = 1
-            auto uut = SyntaxFactory::CreateValueEqualsInitializer(
+            auto uut = SyntaxFactory::CreateValueEqualInitializer(
                 SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
                     SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")));
 
             Assert::AreEqual(
-                SyntaxNodeType::ValueEqualsInitializer,
+                SyntaxNodeType::ValueEqualInitializer,
                 uut->GetType(),
                 L"Verify has correct type.");
             Assert::AreEqual(
@@ -37,7 +37,7 @@ namespace Soup::Syntax::UnitTests
         void GetChildren()
         {
             // = 1
-            auto uut = SyntaxFactory::CreateValueEqualsInitializer(
+            auto uut = SyntaxFactory::CreateValueEqualInitializer(
                 SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
@@ -59,14 +59,14 @@ namespace Soup::Syntax::UnitTests
         void OperatorEqual()
         {
             // = 1
-            auto uut = SyntaxFactory::CreateValueEqualsInitializer(
+            auto uut = SyntaxFactory::CreateValueEqualInitializer(
                 SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
                     SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")));
 
             TestUtils::AreEqual(
-                SyntaxFactory::CreateValueEqualsInitializer(
+                SyntaxFactory::CreateValueEqualInitializer(
                     SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
@@ -79,14 +79,14 @@ namespace Soup::Syntax::UnitTests
         void OperatorNotEqualEqualToken()
         {
             // = 1
-            auto uut = SyntaxFactory::CreateValueEqualsInitializer(
+            auto uut = SyntaxFactory::CreateValueEqualInitializer(
                 SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
                     SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")));
 
             TestUtils::AreNotEqual(
-                SyntaxFactory::CreateValueEqualsInitializer(
+                SyntaxFactory::CreateValueEqualInitializer(
                     SyntaxFactory::CreateToken(
                         SyntaxTokenType::Equal,
                         L"=",
@@ -105,14 +105,14 @@ namespace Soup::Syntax::UnitTests
         void OperatorNotEqualExpression()
         {
             // = 1
-            auto uut = SyntaxFactory::CreateValueEqualsInitializer(
+            auto uut = SyntaxFactory::CreateValueEqualInitializer(
                 SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
                     SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")));
 
             TestUtils::AreNotEqual(
-                SyntaxFactory::CreateValueEqualsInitializer(
+                SyntaxFactory::CreateValueEqualInitializer(
                     SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,

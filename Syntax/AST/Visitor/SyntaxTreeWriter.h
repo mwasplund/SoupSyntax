@@ -133,8 +133,8 @@ namespace Soup::Syntax
                     return L"TryFunctionBody";
                 case SyntaxNodeType::UnaryExpression:
                     return L"UnaryExpression";
-                case SyntaxNodeType::ValueEqualsInitializer:
-                    return L"ValueEqualsInitializer";
+                case SyntaxNodeType::ValueEqualInitializer:
+                    return L"ValueEqualInitializer";
                 default:
                     throw std::logic_error(std::string("Unknown node: ") + std::to_string((int)type));
             }

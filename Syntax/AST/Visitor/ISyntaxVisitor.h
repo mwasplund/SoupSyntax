@@ -38,6 +38,6 @@ namespace Soup::Syntax
         virtual void Visit(const TryFunctionBody& node) = 0;
         virtual void Visit(const TryStatement& node) = 0;
         virtual void Visit(const UnaryExpression& node) = 0;
-        virtual void Visit(const ValueEqualsInitializer& node) = 0;
+        virtual void Visit(const ValueEqualInitializer& node) = 0;
     };
 }

@@ -63,15 +63,23 @@ namespace Soup::Syntax::UnitTests
                                             SyntaxFactory::CreateTrivia(L" ", TextSpan()),
                                         },
                                         {})),
-                                SyntaxFactory::CreateLiteralExpression(
-                                    LiteralType::Integer,
+                                SyntaxFactory::CreateValueEqualInitializer(
                                     SyntaxFactory::CreateToken(
-                                        SyntaxTokenType::IntegerLiteral,
-                                        L"0",
+                                        SyntaxTokenType::Equal,
+                                        L"=",
                                         {
                                             SyntaxFactory::CreateTrivia(L" ", TextSpan()),
                                         },
-                                        {}))),
+                                        {}),
+                                    SyntaxFactory::CreateLiteralExpression(
+                                        LiteralType::Integer,
+                                        SyntaxFactory::CreateToken(
+                                            SyntaxTokenType::IntegerLiteral,
+                                            L"0",
+                                            {
+                                                SyntaxFactory::CreateTrivia(L" ", TextSpan()),
+                                            },
+                                            {})))),
                         }),
                         std::vector<std::shared_ptr<const SyntaxToken>>())),
                 SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"));
@@ -145,15 +153,23 @@ namespace Soup::Syntax::UnitTests
                                             SyntaxFactory::CreateTrivia(L" ", TextSpan()),
                                         },
                                         {})),
-                                SyntaxFactory::CreateLiteralExpression(
-                                    LiteralType::Integer,
+                                SyntaxFactory::CreateValueEqualInitializer(
                                     SyntaxFactory::CreateToken(
-                                        SyntaxTokenType::IntegerLiteral,
-                                        L"0",
+                                        SyntaxTokenType::Equal,
+                                        L"=",
                                         {
                                             SyntaxFactory::CreateTrivia(L" ", TextSpan()),
                                         },
-                                        {}))),
+                                        {}),
+                                    SyntaxFactory::CreateLiteralExpression(
+                                        LiteralType::Integer,
+                                        SyntaxFactory::CreateToken(
+                                            SyntaxTokenType::IntegerLiteral,
+                                            L"0",
+                                            {
+                                                SyntaxFactory::CreateTrivia(L" ", TextSpan()),
+                                            },
+                                            {})))),
                             SyntaxFactory::CreateInitializerDeclarator(
                                 SyntaxFactory::CreateSimpleNameExpression(
                                     SyntaxFactory::CreateToken(
@@ -195,15 +211,23 @@ namespace Soup::Syntax::UnitTests
                                             SyntaxFactory::CreateTrivia(L" ", TextSpan()),
                                         },
                                         {})),
-                                SyntaxFactory::CreateLiteralExpression(
-                                    LiteralType::Integer,
+                                SyntaxFactory::CreateValueEqualInitializer(
                                     SyntaxFactory::CreateToken(
-                                        SyntaxTokenType::IntegerLiteral,
-                                        L"0",
+                                        SyntaxTokenType::Equal,
+                                        L"=",
                                         {
                                             SyntaxFactory::CreateTrivia(L" ", TextSpan()),
                                         },
-                                        {}))),
+                                        {}),
+                                    SyntaxFactory::CreateLiteralExpression(
+                                        LiteralType::Integer,
+                                        SyntaxFactory::CreateToken(
+                                            SyntaxTokenType::IntegerLiteral,
+                                            L"0",
+                                            {
+                                                SyntaxFactory::CreateTrivia(L" ", TextSpan()),
+                                            },
+                                            {})))),
                             SyntaxFactory::CreateInitializerDeclarator(
                                 SyntaxFactory::CreateSimpleNameExpression(
                                     SyntaxFactory::CreateToken(
@@ -213,15 +237,23 @@ namespace Soup::Syntax::UnitTests
                                             SyntaxFactory::CreateTrivia(L" ", TextSpan()),
                                         },
                                         {})),
-                                SyntaxFactory::CreateLiteralExpression(
-                                    LiteralType::Integer,
+                                SyntaxFactory::CreateValueEqualInitializer(
                                     SyntaxFactory::CreateToken(
-                                        SyntaxTokenType::IntegerLiteral,
-                                        L"1",
+                                        SyntaxTokenType::Equal,
+                                        L"=",
                                         {
                                             SyntaxFactory::CreateTrivia(L" ", TextSpan()),
                                         },
-                                        {}))),
+                                        {}),
+                                    SyntaxFactory::CreateLiteralExpression(
+                                        LiteralType::Integer,
+                                        SyntaxFactory::CreateToken(
+                                            SyntaxTokenType::IntegerLiteral,
+                                            L"1",
+                                            {
+                                                SyntaxFactory::CreateTrivia(L" ", TextSpan()),
+                                            },
+                                            {})))),
                         }),
                         std::vector<std::shared_ptr<const SyntaxToken>>())),
                 SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"));

@@ -11,7 +11,7 @@ import SoupSyntax;
 #include "AST\Declaration\ParameterListTests.gen.h"
 #include "AST\Declaration\ParameterTests.gen.h"
 #include "AST\Declaration\PrimitiveDataTypeDeclarationTests.gen.h"
-#include "AST\Declaration\ValueEqualsInitializerTests.gen.h"
+#include "AST\Declaration\ValueEqualInitializerTests.gen.h"
 
 #include "AST\Expression\BinaryExpressionTests.gen.h"
 #include "AST\Expression\LiteralExpressionTests.gen.h"
@@ -64,7 +64,7 @@ int main()
     state += RunParameterListTests();
     state += RunParameterTests();
     state += RunPrimitiveDataTypeDeclarationTests();
-    state += RunValueEqualsInitializerTests();
+    state += RunValueEqualInitializerTests();
 
     state += RunBinaryExpressionTests();
     state += RunLiteralExpressionTests();

@@ -37,7 +37,7 @@ namespace Soup::Syntax
     class PrimitiveDataTypeDeclaration;
     class RegularFunctionBody;
     class TryFunctionBody;
-    class ValueEqualsInitializer;
+    class ValueEqualInitializer;
 
     // Statements
     class CatchClause;
@@ -94,7 +94,7 @@ namespace Soup::Syntax
 #include "AST\Declaration\RegularFunctionBody.h"
 #include "AST\Declaration\TranslationUnit.h"
 #include "AST\Declaration\TryFunctionBody.h"
-#include "AST\Declaration\ValueEqualsInitializer.h"
+#include "AST\Declaration\ValueEqualInitializer.h"
 #include "AST\Statement\SimpleDeclarationStatement.h"
 #include "AST\SyntaxTree.h"
 #include "AST\Visitor\DefaultSyntaxVisitor.h"

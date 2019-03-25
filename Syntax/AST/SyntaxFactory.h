@@ -562,9 +562,9 @@ namespace Soup::Syntax
         }
 
         /// <summary>
-        /// Create a ValueEqualsInitializer
+        /// Create a ValueEqualInitializer
         /// </summary>
-        static std::shared_ptr<const ValueEqualsInitializer> CreateValueEqualsInitializer(
+        static std::shared_ptr<const ValueEqualInitializer> CreateValueEqualInitializer(
             std::shared_ptr<const SyntaxToken> equalToken,
             std::shared_ptr<const Expression> expression)
         {
@@ -573,8 +573,8 @@ namespace Soup::Syntax
             if (expression == nullptr)
                 throw std::runtime_error("ArgumentNull - expression");
 
-            return std::shared_ptr<const ValueEqualsInitializer>(
-                new ValueEqualsInitializer(
+            return std::shared_ptr<const ValueEqualInitializer>(
+                new ValueEqualInitializer(
                     std::move(equalToken),
                     std::move(expression)));
         }

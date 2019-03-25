@@ -3,17 +3,17 @@
 namespace Soup::Syntax
 {
     /// <summary>
-    /// The value equals initializer
+    /// The value equal initializer
     /// </summary>
-    export class ValueEqualsInitializer final : public SyntaxNode
+    export class ValueEqualInitializer final : public SyntaxNode
     {
         friend class SyntaxFactory;
 
     private:
-        ValueEqualsInitializer(
+        ValueEqualInitializer(
             std::shared_ptr<const SyntaxToken> equalToken,
             std::shared_ptr<const Expression> expression) :
-            SyntaxNode(SyntaxNodeType::ValueEqualsInitializer),
+            SyntaxNode(SyntaxNodeType::ValueEqualInitializer),
             m_equalToken(std::move(equalToken)),
             m_expression(std::move(expression))
         {
@@ -60,13 +60,13 @@ namespace Soup::Syntax
         /// <summary>
         /// Equality operator
         /// </summary>
-        bool operator ==(const ValueEqualsInitializer& rhs) const
+        bool operator ==(const ValueEqualInitializer& rhs) const
         {
             return *m_equalToken == *rhs.m_equalToken &&
                 *m_expression == *rhs.m_expression;
         }
 
-        bool operator !=(const ValueEqualsInitializer& rhs) const
+        bool operator !=(const ValueEqualInitializer& rhs) const
         {
             return !(*this == rhs);
         }
@@ -77,7 +77,7 @@ namespace Soup::Syntax
         /// </summary>
         virtual bool Equals(const SyntaxNode& rhs) const final
         {
-            return *this == static_cast<const ValueEqualsInitializer&>(rhs);
+            return *this == static_cast<const ValueEqualInitializer&>(rhs);
         }
 
     private:

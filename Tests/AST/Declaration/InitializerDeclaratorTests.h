@@ -37,7 +37,7 @@ namespace Soup::Syntax::UnitTests
             auto uut = SyntaxFactory::CreateInitializerDeclarator(
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateValueEqualsInitializer(
+                SyntaxFactory::CreateValueEqualInitializer(
                     SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
@@ -56,7 +56,7 @@ namespace Soup::Syntax::UnitTests
                 uut->HasInitializer(),
                 L"Verify has initializer.");
             TestUtils::AreEqual(
-                *SyntaxFactory::CreateValueEqualsInitializer(
+                *SyntaxFactory::CreateValueEqualInitializer(
                     SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
@@ -91,7 +91,7 @@ namespace Soup::Syntax::UnitTests
             auto uut = SyntaxFactory::CreateInitializerDeclarator(
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateValueEqualsInitializer(
+                SyntaxFactory::CreateValueEqualInitializer(
                     SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
@@ -102,7 +102,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxNodeChild(
                         SyntaxFactory::CreateSimpleNameExpression(
                             SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a"))),
-                    SyntaxNodeChild(SyntaxFactory::CreateValueEqualsInitializer(
+                    SyntaxNodeChild(SyntaxFactory::CreateValueEqualInitializer(
                         SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
                         SyntaxFactory::CreateLiteralExpression(
                             LiteralType::Integer,
@@ -137,7 +137,7 @@ namespace Soup::Syntax::UnitTests
             auto uut = SyntaxFactory::CreateInitializerDeclarator(
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateValueEqualsInitializer(
+                SyntaxFactory::CreateValueEqualInitializer(
                     SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
@@ -147,7 +147,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateInitializerDeclarator(
                     SyntaxFactory::CreateSimpleNameExpression(
                         SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                    SyntaxFactory::CreateValueEqualsInitializer(
+                    SyntaxFactory::CreateValueEqualInitializer(
                         SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
                         SyntaxFactory::CreateLiteralExpression(
                             LiteralType::Integer,
@@ -163,7 +163,7 @@ namespace Soup::Syntax::UnitTests
             auto uut = SyntaxFactory::CreateInitializerDeclarator(
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateValueEqualsInitializer(
+                SyntaxFactory::CreateValueEqualInitializer(
                     SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
@@ -173,7 +173,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateInitializerDeclarator(
                     SyntaxFactory::CreateSimpleNameExpression(
                         SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"b")),
-                    SyntaxFactory::CreateValueEqualsInitializer(
+                    SyntaxFactory::CreateValueEqualInitializer(
                         SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
                         SyntaxFactory::CreateLiteralExpression(
                             LiteralType::Integer,
@@ -189,7 +189,7 @@ namespace Soup::Syntax::UnitTests
             auto uut = SyntaxFactory::CreateInitializerDeclarator(
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateValueEqualsInitializer(
+                SyntaxFactory::CreateValueEqualInitializer(
                     SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
@@ -211,7 +211,7 @@ namespace Soup::Syntax::UnitTests
             auto uut = SyntaxFactory::CreateInitializerDeclarator(
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateValueEqualsInitializer(
+                SyntaxFactory::CreateValueEqualInitializer(
                     SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
@@ -221,7 +221,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateInitializerDeclarator(
                     SyntaxFactory::CreateSimpleNameExpression(
                         SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                    SyntaxFactory::CreateValueEqualsInitializer(
+                    SyntaxFactory::CreateValueEqualInitializer(
                         SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
                         SyntaxFactory::CreateLiteralExpression(
                             LiteralType::Integer,

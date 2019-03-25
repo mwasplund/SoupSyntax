@@ -2116,7 +2116,13 @@ antlrcpp::Any ASTCppParserVisitor::visitBraceOrEqualInitializer(CppParser::Brace
     Trace(L"VisitBraceOrEqualInitializer");
     if (context->Equal() != nullptr)
     {
-        return visit(context->initializerClause());
+        // TODO : Could not be an expression
+        return std::static_pointer_cast<const SyntaxNode>(
+            SyntaxFactory::CreateValueEqualInitializer(
+                CreateToken(SyntaxTokenType::Equal, context->Equal()),
+                std::dynamic_pointer_cast<const Expression>(
+                    visit(context->initializerClause())
+                        .as<std::shared_ptr<const SyntaxNode>>())));
     }
     else
     {

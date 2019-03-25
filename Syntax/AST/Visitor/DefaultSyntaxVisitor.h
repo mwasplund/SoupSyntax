@@ -154,7 +154,7 @@ namespace Soup::Syntax
             DefaultVisit(node);
         }
 
-        virtual void Visit(const ValueEqualsInitializer& node) override
+        virtual void Visit(const ValueEqualInitializer& node) override
         {
             DefaultVisit(node);
         }
