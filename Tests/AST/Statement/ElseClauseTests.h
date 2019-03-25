@@ -11,21 +11,21 @@ namespace Soup::Syntax::UnitTests
         void InitializeSimple()
         {
             auto uut = SyntaxFactory::CreateElseClause(
-                SyntaxFactory::CreateToken(SyntaxTokenType::Else, L"else"),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Else),
                 SyntaxFactory::CreateEmptyStatement(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";")));
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)));
 
             Assert::AreEqual(
                 SyntaxNodeType::ElseClause,
                 uut->GetType(),
                 L"Verify has correct type.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateToken(SyntaxTokenType::Else, L"else"),
+                *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Else),
                 uut->GetElseToken(),
                 L"Verify else token matches.");
             TestUtils::AreEqual(
                 *SyntaxFactory::CreateEmptyStatement(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";")),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 uut->GetStatement(),
                 L"Verify statement matches.");
         }
@@ -34,15 +34,15 @@ namespace Soup::Syntax::UnitTests
         void GetChildren()
         {
             auto uut = SyntaxFactory::CreateElseClause(
-                SyntaxFactory::CreateToken(SyntaxTokenType::Else, L"else"),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Else),
                 SyntaxFactory::CreateEmptyStatement(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";")));
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)));
 
             Assert::AreEqual(
                 std::vector<SyntaxNodeChild>({
-                    SyntaxNodeChild(SyntaxFactory::CreateToken(SyntaxTokenType::Else, L"else")),
+                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Else)),
                     SyntaxNodeChild(SyntaxFactory::CreateEmptyStatement(
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"))),
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))),
                 }),
                 uut->GetChildren(),
                 L"Verify children match.");
@@ -52,15 +52,15 @@ namespace Soup::Syntax::UnitTests
         void OperatorEqual()
         {
             auto uut = SyntaxFactory::CreateElseClause(
-                SyntaxFactory::CreateToken(SyntaxTokenType::Else, L"else"),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Else),
                 SyntaxFactory::CreateEmptyStatement(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";")));
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)));
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateElseClause(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Else, L"else"),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Else),
                     SyntaxFactory::CreateEmptyStatement(
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"))),
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))),
                 uut,
                 L"Verify matches.");
         }
@@ -69,22 +69,21 @@ namespace Soup::Syntax::UnitTests
         void OperatorNotEqualElseToken()
         {
             auto uut = SyntaxFactory::CreateElseClause(
-                SyntaxFactory::CreateToken(SyntaxTokenType::Else, L"else"),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Else),
                 SyntaxFactory::CreateEmptyStatement(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";")));
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateElseClause(
-                    SyntaxFactory::CreateToken(
+                    SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::Else,
-                        L"else",
                         {
                             SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 1)),
                         },
                         {
                         }),
                     SyntaxFactory::CreateEmptyStatement(
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"))),
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))),
                 uut,
                 L"Verify do not match.");
         }
@@ -93,17 +92,16 @@ namespace Soup::Syntax::UnitTests
         void OperatorNotEqualStatement()
         {
             auto uut = SyntaxFactory::CreateElseClause(
-                SyntaxFactory::CreateToken(SyntaxTokenType::Else, L"else"),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Else),
                 SyntaxFactory::CreateEmptyStatement(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";")));
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateElseClause(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Else, L"else"),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Else),
                     SyntaxFactory::CreateEmptyStatement(
-                        SyntaxFactory::CreateToken(
+                        SyntaxFactory::CreateKeywordToken(
                             SyntaxTokenType::Semicolon,
-                            L";",
                             {
                                 SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 1)),
                             },

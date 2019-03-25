@@ -12,23 +12,23 @@ namespace Soup::Syntax::UnitTests
         {
             // = 1
             auto uut = SyntaxFactory::CreateValueEqualInitializer(
-                SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"1")));
 
             Assert::AreEqual(
                 SyntaxNodeType::ValueEqualInitializer,
                 uut->GetType(),
                 L"Verify has correct type.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
+                *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                 uut->GetEqualToken(),
                 L"Verify equal token matches.");
             TestUtils::AreEqual(
                 *SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"1")),
                 uut->GetExpression(),
                 L"Verify expression matches.");
         }
@@ -38,18 +38,18 @@ namespace Soup::Syntax::UnitTests
         {
             // = 1
             auto uut = SyntaxFactory::CreateValueEqualInitializer(
-                SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"1")));
 
             Assert::AreEqual(
                 std::vector<SyntaxNodeChild>({
-                    SyntaxNodeChild(SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"=")),
+                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal)),
                     SyntaxNodeChild(
                         SyntaxFactory::CreateLiteralExpression(
                             LiteralType::Integer,
-                            SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1"))),
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"1"))),
                 }),
                 uut->GetChildren(),
                 L"Verify children match.");
@@ -60,17 +60,17 @@ namespace Soup::Syntax::UnitTests
         {
             // = 1
             auto uut = SyntaxFactory::CreateValueEqualInitializer(
-                SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"1")));
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateValueEqualInitializer(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
-                        SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1"))),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"1"))),
                 uut,
                 L"Verify matches.");
         }
@@ -80,23 +80,22 @@ namespace Soup::Syntax::UnitTests
         {
             // = 1
             auto uut = SyntaxFactory::CreateValueEqualInitializer(
-                SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"1")));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateValueEqualInitializer(
-                    SyntaxFactory::CreateToken(
+                    SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::Equal,
-                        L"=",
                         {
                             SyntaxFactory::CreateTrivia(L" ", TextSpan()),
                         },
                         {}),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
-                        SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1"))),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"1"))),
                 uut,
                 L"Verify does not match.");
         }
@@ -106,17 +105,17 @@ namespace Soup::Syntax::UnitTests
         {
             // = 1
             auto uut = SyntaxFactory::CreateValueEqualInitializer(
-                SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"1")));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateValueEqualInitializer(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
-                        SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2"))),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"2"))),
                 uut,
                 L"Verify does not match.");
         }

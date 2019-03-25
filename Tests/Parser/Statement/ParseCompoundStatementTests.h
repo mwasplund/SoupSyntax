@@ -14,9 +14,9 @@ namespace Soup::Syntax::UnitTests
             auto actual = ParseCompoundStatement(sourceCode);
 
             auto expected = SyntaxFactory::CreateCompoundStatement(
-                SyntaxFactory::CreateToken(SyntaxTokenType::LeftBrace, L"{"),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftBrace),
                 {},
-                SyntaxFactory::CreateToken(SyntaxTokenType::RightBrace, L"}"));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightBrace));
 
             TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
@@ -28,12 +28,11 @@ namespace Soup::Syntax::UnitTests
             auto actual = ParseCompoundStatement(sourceCode);
 
             auto expected = SyntaxFactory::CreateCompoundStatement(
-                SyntaxFactory::CreateToken(SyntaxTokenType::LeftBrace, L"{"),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftBrace),
                 {
                     SyntaxFactory::CreateReturnStatement(
-                        SyntaxFactory::CreateToken(
+                        SyntaxFactory::CreateKeywordToken(
                             SyntaxTokenType::Return,
-                            L"return",
                             {
                                 SyntaxFactory::CreateTrivia(L"\n", TextSpan(0, 0)),
                                 SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0)),
@@ -41,18 +40,17 @@ namespace Soup::Syntax::UnitTests
                             {}),
                         SyntaxFactory::CreateLiteralExpression(
                             LiteralType::Integer,
-                            SyntaxFactory::CreateToken(
+                            SyntaxFactory::CreateUniqueToken(
                                 SyntaxTokenType::IntegerLiteral,
                                 L"1",
                                 {
                                     SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0))
                                 },
                                 {})),
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";")),
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 },
-                SyntaxFactory::CreateToken(
+                SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::RightBrace,
-                    L"}",
                     {
                         SyntaxFactory::CreateTrivia(L"\n", TextSpan(0, 0)),
                     },

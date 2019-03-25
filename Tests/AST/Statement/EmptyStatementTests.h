@@ -11,14 +11,14 @@ namespace Soup::Syntax::UnitTests
         void InitializeSimple()
         {
             auto uut = SyntaxFactory::CreateEmptyStatement(
-                SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             Assert::AreEqual(
                 SyntaxNodeType::EmptyStatement,
                 uut->GetType(),
                 L"Verify has correct type.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"),
+                *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon),
                 uut->GetSemicolonToken(),
                 L"Verify semicolon token matches.");
         }
@@ -27,11 +27,11 @@ namespace Soup::Syntax::UnitTests
         void GetChildren()
         {
             auto uut = SyntaxFactory::CreateEmptyStatement(
-                SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             Assert::AreEqual(
                 std::vector<SyntaxNodeChild>({
-                    SyntaxNodeChild(SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";")),
+                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 }),
                 uut->GetChildren(),
                 L"Verify children match.");
@@ -41,11 +41,11 @@ namespace Soup::Syntax::UnitTests
         void OperatorEqual()
         {
             auto uut = SyntaxFactory::CreateEmptyStatement(
-                SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateEmptyStatement(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";")),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 uut,
                 L"Verify matches.");
         }
@@ -54,13 +54,12 @@ namespace Soup::Syntax::UnitTests
         void OperatorNotEqualSemicolonToken()
         {
             auto uut = SyntaxFactory::CreateEmptyStatement(
-                SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateEmptyStatement(
-                    SyntaxFactory::CreateToken(
+                    SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::Semicolon,
-                        L";",
                         {
                             SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 1)),
                         },

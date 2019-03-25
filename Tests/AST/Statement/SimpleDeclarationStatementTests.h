@@ -15,18 +15,18 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateDeclarationSpecifier(
                     SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Int,
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int"))),
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                 SyntaxFactory::CreateInitializerDeclaratorList(
                     std::make_shared<const SyntaxList<InitializerDeclarator>>(
                         std::vector<std::shared_ptr<const InitializerDeclarator>>(
                         {
                             SyntaxFactory::CreateInitializerDeclarator(
                                 SyntaxFactory::CreateSimpleNameExpression(
-                                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"i")),
+                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"i")),
                                 nullptr),
                         }),
                         std::vector<std::shared_ptr<const SyntaxToken>>())),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             Assert::AreEqual(
                 SyntaxNodeType::SimpleDeclarationStatement,
@@ -36,7 +36,7 @@ namespace Soup::Syntax::UnitTests
                 *SyntaxFactory::CreateDeclarationSpecifier(
                     SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Int,
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int"))),
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                 uut->GetDeclarationSpecifier(),
                 L"Verify declaration specifier matches.");
             Assert::AreEqual(
@@ -46,14 +46,14 @@ namespace Soup::Syntax::UnitTests
                         {
                             SyntaxFactory::CreateInitializerDeclarator(
                                 SyntaxFactory::CreateSimpleNameExpression(
-                                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"i")),
+                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"i")),
                                 nullptr),
                         }),
                         std::vector<std::shared_ptr<const SyntaxToken>>())),
                 uut->GetInitializerDeclaratorList(),
                 L"Verify initializer declarator list matches.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"),
+                *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon),
                 uut->GetSemicolonToken(),
                 L"Verify semicolon token matches.");
         }
@@ -66,18 +66,18 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateDeclarationSpecifier(
                     SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Int,
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int"))),
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                 SyntaxFactory::CreateInitializerDeclaratorList(
                     std::make_shared<const SyntaxList<InitializerDeclarator>>(
                         std::vector<std::shared_ptr<const InitializerDeclarator>>(
                         {
                             SyntaxFactory::CreateInitializerDeclarator(
                                 SyntaxFactory::CreateSimpleNameExpression(
-                                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"i")),
+                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"i")),
                                 nullptr),
                         }),
                         std::vector<std::shared_ptr<const SyntaxToken>>())),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             Assert::AreEqual(
                 std::vector<SyntaxNodeChild>(
@@ -86,7 +86,7 @@ namespace Soup::Syntax::UnitTests
                         SyntaxFactory::CreateDeclarationSpecifier(
                             SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                                 PrimitiveDataType::Int,
-                                SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")))),
+                                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)))),
                     SyntaxNodeChild(
                         SyntaxFactory::CreateInitializerDeclaratorList(
                             std::make_shared<const SyntaxList<InitializerDeclarator>>(
@@ -94,11 +94,11 @@ namespace Soup::Syntax::UnitTests
                                 {
                                     SyntaxFactory::CreateInitializerDeclarator(
                                         SyntaxFactory::CreateSimpleNameExpression(
-                                            SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"i")),
+                                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"i")),
                                         nullptr),
                                 }),
                                 std::vector<std::shared_ptr<const SyntaxToken>>()))),
-                    SyntaxNodeChild(SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";")),
+                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 }),
                 uut->GetChildren(),
                 L"Verify children match.");
@@ -112,36 +112,36 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateDeclarationSpecifier(
                     SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Int,
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int"))),
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                 SyntaxFactory::CreateInitializerDeclaratorList(
                     std::make_shared<const SyntaxList<InitializerDeclarator>>(
                         std::vector<std::shared_ptr<const InitializerDeclarator>>(
                         {
                             SyntaxFactory::CreateInitializerDeclarator(
                                 SyntaxFactory::CreateSimpleNameExpression(
-                                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"i")),
+                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"i")),
                                 nullptr),
                         }),
                         std::vector<std::shared_ptr<const SyntaxToken>>())),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateSimpleDeclarationStatement(
                     SyntaxFactory::CreateDeclarationSpecifier(
                         SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                             PrimitiveDataType::Int,
-                            SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int"))),
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                     SyntaxFactory::CreateInitializerDeclaratorList(
                         std::make_shared<const SyntaxList<InitializerDeclarator>>(
                             std::vector<std::shared_ptr<const InitializerDeclarator>>(
                             {
                                 SyntaxFactory::CreateInitializerDeclarator(
                                     SyntaxFactory::CreateSimpleNameExpression(
-                                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"i")),
+                                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"i")),
                                     nullptr),
                             }),
                             std::vector<std::shared_ptr<const SyntaxToken>>())),
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";")),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 uut,
                 L"Verify matches.");
         }
@@ -154,36 +154,36 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateDeclarationSpecifier(
                     SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Int,
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int"))),
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                 SyntaxFactory::CreateInitializerDeclaratorList(
                     std::make_shared<const SyntaxList<InitializerDeclarator>>(
                         std::vector<std::shared_ptr<const InitializerDeclarator>>(
                         {
                             SyntaxFactory::CreateInitializerDeclarator(
                                 SyntaxFactory::CreateSimpleNameExpression(
-                                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"i")),
+                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"i")),
                                 nullptr),
                         }),
                         std::vector<std::shared_ptr<const SyntaxToken>>())),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateSimpleDeclarationStatement(
                     SyntaxFactory::CreateDeclarationSpecifier(
                         SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                             PrimitiveDataType::Long,
-                            SyntaxFactory::CreateToken(SyntaxTokenType::Long, L"long"))),
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Long))),
                     SyntaxFactory::CreateInitializerDeclaratorList(
                         std::make_shared<const SyntaxList<InitializerDeclarator>>(
                             std::vector<std::shared_ptr<const InitializerDeclarator>>(
                             {
                                 SyntaxFactory::CreateInitializerDeclarator(
                                     SyntaxFactory::CreateSimpleNameExpression(
-                                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"i")),
+                                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"i")),
                                     nullptr),
                             }),
                             std::vector<std::shared_ptr<const SyntaxToken>>())),
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";")),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 uut,
                 L"Verify do not match.");
         }
@@ -196,36 +196,36 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateDeclarationSpecifier(
                     SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Int,
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int"))),
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                 SyntaxFactory::CreateInitializerDeclaratorList(
                     std::make_shared<const SyntaxList<InitializerDeclarator>>(
                         std::vector<std::shared_ptr<const InitializerDeclarator>>(
                         {
                             SyntaxFactory::CreateInitializerDeclarator(
                                 SyntaxFactory::CreateSimpleNameExpression(
-                                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"i")),
+                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"i")),
                                 nullptr),
                         }),
                         std::vector<std::shared_ptr<const SyntaxToken>>())),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateSimpleDeclarationStatement(
                     SyntaxFactory::CreateDeclarationSpecifier(
                         SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                             PrimitiveDataType::Int,
-                            SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int"))),
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                     SyntaxFactory::CreateInitializerDeclaratorList(
                         std::make_shared<const SyntaxList<InitializerDeclarator>>(
                             std::vector<std::shared_ptr<const InitializerDeclarator>>(
                             {
                                 SyntaxFactory::CreateInitializerDeclarator(
                                     SyntaxFactory::CreateSimpleNameExpression(
-                                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"i2")),
+                                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"i2")),
                                     nullptr),
                             }),
                             std::vector<std::shared_ptr<const SyntaxToken>>())),
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";")),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 uut,
                 L"Verify do not match.");
         }
@@ -238,38 +238,37 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateDeclarationSpecifier(
                     SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Int,
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int"))),
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                 SyntaxFactory::CreateInitializerDeclaratorList(
                     std::make_shared<const SyntaxList<InitializerDeclarator>>(
                         std::vector<std::shared_ptr<const InitializerDeclarator>>(
                         {
                             SyntaxFactory::CreateInitializerDeclarator(
                                 SyntaxFactory::CreateSimpleNameExpression(
-                                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"i")),
+                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"i")),
                                 nullptr),
                         }),
                         std::vector<std::shared_ptr<const SyntaxToken>>())),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateSimpleDeclarationStatement(
                     SyntaxFactory::CreateDeclarationSpecifier(
                         SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                             PrimitiveDataType::Int,
-                            SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int"))),
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                     SyntaxFactory::CreateInitializerDeclaratorList(
                         std::make_shared<const SyntaxList<InitializerDeclarator>>(
                             std::vector<std::shared_ptr<const InitializerDeclarator>>(
                             {
                                 SyntaxFactory::CreateInitializerDeclarator(
                                     SyntaxFactory::CreateSimpleNameExpression(
-                                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"i")),
+                                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"i")),
                                     nullptr),
                             }),
                             std::vector<std::shared_ptr<const SyntaxToken>>())),
-                    SyntaxFactory::CreateToken(
+                    SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::Semicolon,
-                        L";",
                         {
                             SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 1)),
                         },

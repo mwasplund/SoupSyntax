@@ -10,7 +10,7 @@ namespace Soup::Syntax::UnitTests
         void InitializeSimple()
         {
             auto uut = SyntaxFactory::CreateThisExpression(
-                SyntaxFactory::CreateToken(SyntaxTokenType::This, L"this"));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::This));
 
             Assert::AreEqual(
                 SyntaxNodeType::ThisExpression,
@@ -18,7 +18,7 @@ namespace Soup::Syntax::UnitTests
                 L"Verify has correct type.");
             Assert::AreEqual(SyntaxNodeType::ThisExpression, uut->GetType(), L"Verify type matches.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateToken(SyntaxTokenType::This, L"this"),
+                *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::This),
                 uut->GetToken(),
                 L"Verify token matches.");
         }
@@ -27,11 +27,11 @@ namespace Soup::Syntax::UnitTests
         void GetChildren()
         {
             auto uut = SyntaxFactory::CreateThisExpression(
-                SyntaxFactory::CreateToken(SyntaxTokenType::This, L"this"));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::This));
 
             Assert::AreEqual(
                 std::vector<SyntaxNodeChild>({
-                    SyntaxNodeChild(SyntaxFactory::CreateToken(SyntaxTokenType::This, L"this")),
+                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::This)),
                 }),
                 uut->GetChildren(),
                 L"Verify children match.");
@@ -41,11 +41,11 @@ namespace Soup::Syntax::UnitTests
         void OperatorEqual()
         {
             auto uut = SyntaxFactory::CreateThisExpression(
-                SyntaxFactory::CreateToken(SyntaxTokenType::This, L"this"));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::This));
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateThisExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::This, L"this")),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::This)),
                 uut,
                 L"Verify matches.");
         }
@@ -54,13 +54,12 @@ namespace Soup::Syntax::UnitTests
         void OperatorNotEqualToken()
         {
             auto uut = SyntaxFactory::CreateThisExpression(
-                SyntaxFactory::CreateToken(SyntaxTokenType::This, L"this"));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::This));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateThisExpression(
-                    SyntaxFactory::CreateToken(
+                    SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::This,
-                        L"this",
                         {
                             SyntaxFactory::CreateTrivia(L" ", TextSpan())
                         },

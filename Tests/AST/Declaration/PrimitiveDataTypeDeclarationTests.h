@@ -12,7 +12,7 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                 PrimitiveDataType::Int,
-                SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int"));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int));
 
             Assert::AreEqual(
                 SyntaxNodeType::PrimitiveDataTypeDeclaration,
@@ -23,7 +23,7 @@ namespace Soup::Syntax::UnitTests
                 uut->GetPrimitiveType(),
                 L"Verify primitive type matches.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int"),
+                *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int),
                 uut->GetToken(),
                 L"Verify token matches.");
         }
@@ -33,11 +33,11 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                 PrimitiveDataType::Int,
-                SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int"));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int));
 
             Assert::AreEqual(
                 std::vector<SyntaxNodeChild>({
-                    SyntaxNodeChild(SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
+                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
                 }),
                 uut->GetChildren(),
                 L"Verify children match.");
@@ -48,12 +48,12 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                 PrimitiveDataType::Int,
-                SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int"));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int));
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                     PrimitiveDataType::Int,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
                 uut,
                 L"Verify matches.");
         }
@@ -63,12 +63,12 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                 PrimitiveDataType::Int,
-                SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int"));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                     PrimitiveDataType::Double,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
                 uut,
                 L"Verify does not match.");
         }
@@ -78,14 +78,13 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                 PrimitiveDataType::Int,
-                SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int"));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                     PrimitiveDataType::Int,
-                    SyntaxFactory::CreateToken(
+                    SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::Int,
-                        L"int",
                         {
                             SyntaxFactory::CreateTrivia(L" ", TextSpan())
                         },

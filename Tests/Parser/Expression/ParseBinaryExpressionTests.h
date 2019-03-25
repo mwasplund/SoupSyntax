@@ -18,10 +18,10 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::Addition,
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Plus),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"b")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")));
 
             TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
@@ -35,10 +35,10 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::Subtraction,
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Minus, L"-"),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Minus),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"b")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")));
 
             TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
@@ -52,10 +52,10 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::Multiplication,
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Asterisk, L"*"),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Asterisk),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"b")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")));
 
             TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
@@ -69,10 +69,10 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::Division,
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::ForwardSlash, L"/"),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::ForwardSlash),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"b")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")));
 
             TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
@@ -86,10 +86,10 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::Modulo,
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Percent, L"%"),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Percent),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"b")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")));
 
             TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
@@ -103,10 +103,10 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::BitwiseAnd,
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Ampersand, L"&"),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Ampersand),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"b")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")));
 
             TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
@@ -120,10 +120,10 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::BitwiseOr,
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::VerticalBar, L"|"),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::VerticalBar),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"b")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")));
 
             TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
@@ -137,10 +137,10 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::BitwiseExclusiveOr,
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Caret, L"^"),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Caret),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"b")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")));
 
             TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
@@ -154,10 +154,10 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::BitwiseLeftShift,
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::DoubleLessThan, L"<<"),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleLessThan),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"b")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")));
 
             TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
@@ -171,10 +171,10 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::BitwiseRightShift,
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::DoubleGreaterThan, L">>"),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleGreaterThan),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"b")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")));
 
             TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
@@ -190,10 +190,10 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::SimpleAssignment,
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"b")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")));
 
             TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
@@ -207,10 +207,10 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::AdditionAssignment,
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::PlusEqual, L"+="),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::PlusEqual),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"b")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")));
 
             TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
@@ -224,10 +224,10 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::SubtractionAssignment,
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::MinusEqual, L"-="),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::MinusEqual),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"b")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")));
 
             TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
@@ -241,10 +241,10 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::MultiplicationAssignment,
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::AsteriskEqual, L"*="),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::AsteriskEqual),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"b")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")));
 
             TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
@@ -258,10 +258,10 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::DivisionAssignment,
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::ForwardSlashEqual, L"/="),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::ForwardSlashEqual),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"b")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")));
 
             TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
@@ -275,10 +275,10 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::ModuloAssignment,
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::PercentEqual, L"%="),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::PercentEqual),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"b")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")));
 
             TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
@@ -292,10 +292,10 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::BitwiseExclusiveOrAssignment,
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::CaretEqual, L"^="),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CaretEqual),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"b")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")));
 
             TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
@@ -309,10 +309,10 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::BitwiseAndAssignment,
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::AmpersandEqual, L"&="),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::AmpersandEqual),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"b")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")));
 
             TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
@@ -326,10 +326,10 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::BitwiseOrAssignment,
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::VerticalBarEqual, L"|="),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::VerticalBarEqual),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"b")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")));
 
             TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
@@ -343,10 +343,10 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::BitwiseLeftShiftAssignment,
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::DoubleLessThanEqual, L"<<="),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleLessThanEqual),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"b")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")));
 
             TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
@@ -360,10 +360,10 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::BitwiseRightShiftAssignment,
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::DoubleGreaterThanEqual, L">>="),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleGreaterThanEqual),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"b")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")));
 
             TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
@@ -379,10 +379,10 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::Equals,
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::DoubleEqual, L"=="),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleEqual),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"b")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")));
 
             TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
@@ -396,10 +396,10 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::NotEquals,
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::ExclamationMarkEqual, L"!="),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::ExclamationMarkEqual),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"b")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")));
 
             TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
@@ -413,10 +413,10 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::LessThan,
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::LessThan, L"<"),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LessThan),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"b")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")));
 
             TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
@@ -430,10 +430,10 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::GreaterThan,
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::GreaterThan, L">"),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"b")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")));
 
             TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
@@ -447,10 +447,10 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::LessThanOrEqual,
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::LessThanEqual, L"<="),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LessThanEqual),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"b")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")));
 
             TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
@@ -464,10 +464,10 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::GreaterThanOrEqual,
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::GreaterThanEqual, L">="),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThanEqual),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"b")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")));
 
             TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
@@ -481,10 +481,10 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::ThreeWayComparison,
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::LessThanEqualGreaterThan, L"<=>"),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LessThanEqualGreaterThan),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"b")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")));
 
             TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
@@ -500,10 +500,10 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::LogicalAnd,
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::DoubleAmpersand, L"&&"),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleAmpersand),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"b")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")));
 
             TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
@@ -517,10 +517,10 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::LogicalOr,
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::DoubleVerticalBar, L"||"),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleVerticalBar),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"b")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")));
 
             TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
@@ -537,10 +537,10 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::MemberOfObject,
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Period, L"."),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Period),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"b")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")));
 
             TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
@@ -554,10 +554,10 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::MemberOfPointer,
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Arrow, L"->"),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Arrow),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"b")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")));
 
             TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
@@ -571,10 +571,10 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::PointerToMemberOfObject,
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::PeriodAsterisk, L".*"),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::PeriodAsterisk),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"b")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")));
 
             TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
@@ -588,10 +588,10 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::PointerToMemberOfPointer,
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::ArrowAsterisk, L"->*"),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::ArrowAsterisk),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"b")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")));
 
             TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }

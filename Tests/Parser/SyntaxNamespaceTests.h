@@ -17,15 +17,15 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateDeclarationSpecifier(
                         SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                             PrimitiveDataType::Void,
-                            SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void"))),
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Function")),
                     nullptr,
                     std::make_shared<RegularFunctionBody>(
                         SyntaxFactory::CreateCompoundStatement(
-                            SyntaxFactory::CreateToken(SyntaxTokenType::LeftBrace, L"{"),
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftBrace),
                             {},
-                            SyntaxFactory::CreateToken(SyntaxTokenType::RightBrace, L"}")))));
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightBrace)))));
 
             auto actual = TestUtils::GenerateAST(source);
 
@@ -43,15 +43,15 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateDeclarationSpecifier(
                         SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                             PrimitiveDataType::Void,
-                            SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void"))),
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Function")),
                     nullptr,
                     std::make_shared<RegularFunctionBody>(
                         SyntaxFactory::CreateCompoundStatement(
-                            SyntaxFactory::CreateToken(SyntaxTokenType::LeftBrace, L"{"),
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftBrace),
                             {},
-                            SyntaxFactory::CreateToken(SyntaxTokenType::RightBrace, L"}")))));
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightBrace)))));
 
             auto actual = TestUtils::GenerateAST(source);
 
@@ -69,15 +69,15 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateDeclarationSpecifier(
                         SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                             PrimitiveDataType::Void,
-                            SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void"))),
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Function")),
                     nullptr,
                     std::make_shared<RegularFunctionBody>(
                         SyntaxFactory::CreateCompoundStatement(
-                            SyntaxFactory::CreateToken(SyntaxTokenType::LeftBrace, L"{"),
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftBrace),
                             {},
-                            SyntaxFactory::CreateToken(SyntaxTokenType::RightBrace, L"}")))));
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightBrace)))));
 
             auto actual = TestUtils::GenerateAST(source);
 

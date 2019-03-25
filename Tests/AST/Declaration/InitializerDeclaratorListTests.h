@@ -17,11 +17,11 @@ namespace Soup::Syntax::UnitTests
                     {
                         SyntaxFactory::CreateInitializerDeclarator(
                             SyntaxFactory::CreateSimpleNameExpression(
-                                SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
+                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
                             nullptr),
                         SyntaxFactory::CreateInitializerDeclarator(
                             SyntaxFactory::CreateSimpleNameExpression(
-                                SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"b")),
+                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")),
                             nullptr),
                     }),
                     std::vector<std::shared_ptr<const SyntaxToken>>()));
@@ -36,11 +36,11 @@ namespace Soup::Syntax::UnitTests
                     {
                         SyntaxFactory::CreateInitializerDeclarator(
                             SyntaxFactory::CreateSimpleNameExpression(
-                                SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
+                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
                             nullptr),
                         SyntaxFactory::CreateInitializerDeclarator(
                             SyntaxFactory::CreateSimpleNameExpression(
-                                SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"b")),
+                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")),
                             nullptr),
                     }),
                     std::vector<std::shared_ptr<const SyntaxToken>>()),
@@ -58,15 +58,15 @@ namespace Soup::Syntax::UnitTests
                     {
                         SyntaxFactory::CreateInitializerDeclarator(
                             SyntaxFactory::CreateSimpleNameExpression(
-                                SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
+                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
                             nullptr),
                         SyntaxFactory::CreateInitializerDeclarator(
                             SyntaxFactory::CreateSimpleNameExpression(
-                                SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"b")),
+                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")),
                             nullptr),
                     }),
                     std::vector<std::shared_ptr<const SyntaxToken>>({
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Comma, L","),
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma),
                     })));
 
             Assert::AreEqual(
@@ -74,13 +74,13 @@ namespace Soup::Syntax::UnitTests
                     SyntaxNodeChild(
                         SyntaxFactory::CreateInitializerDeclarator(
                             SyntaxFactory::CreateSimpleNameExpression(
-                                SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
+                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
                             nullptr)),
-                    SyntaxNodeChild(SyntaxFactory::CreateToken(SyntaxTokenType::Comma, L",")),
+                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma)),
                     SyntaxNodeChild(
                         SyntaxFactory::CreateInitializerDeclarator(
                             SyntaxFactory::CreateSimpleNameExpression(
-                                SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"b")),
+                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")),
                             nullptr)),
                 }),
                 uut->GetChildren(),
@@ -97,11 +97,11 @@ namespace Soup::Syntax::UnitTests
                     {
                         SyntaxFactory::CreateInitializerDeclarator(
                             SyntaxFactory::CreateSimpleNameExpression(
-                                SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
+                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
                             nullptr),
                         SyntaxFactory::CreateInitializerDeclarator(
                             SyntaxFactory::CreateSimpleNameExpression(
-                                SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"b")),
+                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")),
                             nullptr),
                     }),
                     std::vector<std::shared_ptr<const SyntaxToken>>()));
@@ -113,11 +113,11 @@ namespace Soup::Syntax::UnitTests
                         {
                             SyntaxFactory::CreateInitializerDeclarator(
                                 SyntaxFactory::CreateSimpleNameExpression(
-                                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
+                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
                                 nullptr),
                             SyntaxFactory::CreateInitializerDeclarator(
                                 SyntaxFactory::CreateSimpleNameExpression(
-                                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"b")),
+                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")),
                                 nullptr),
                         }),
                         std::vector<std::shared_ptr<const SyntaxToken>>())),
@@ -135,11 +135,11 @@ namespace Soup::Syntax::UnitTests
                     {
                         SyntaxFactory::CreateInitializerDeclarator(
                             SyntaxFactory::CreateSimpleNameExpression(
-                                SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
+                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
                             nullptr),
                         SyntaxFactory::CreateInitializerDeclarator(
                             SyntaxFactory::CreateSimpleNameExpression(
-                                SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"b")),
+                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")),
                             nullptr),
                     }),
                     std::vector<std::shared_ptr<const SyntaxToken>>()));
@@ -151,7 +151,7 @@ namespace Soup::Syntax::UnitTests
                         {
                             SyntaxFactory::CreateInitializerDeclarator(
                                 SyntaxFactory::CreateSimpleNameExpression(
-                                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"c")),
+                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"c")),
                                 nullptr),
                         }),
                         std::vector<std::shared_ptr<const SyntaxToken>>())),
@@ -169,11 +169,11 @@ namespace Soup::Syntax::UnitTests
                     {
                         SyntaxFactory::CreateInitializerDeclarator(
                             SyntaxFactory::CreateSimpleNameExpression(
-                                SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
+                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
                             nullptr),
                         SyntaxFactory::CreateInitializerDeclarator(
                             SyntaxFactory::CreateSimpleNameExpression(
-                                SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"b")),
+                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")),
                             nullptr),
                     }),
                     std::vector<std::shared_ptr<const SyntaxToken>>()));
@@ -185,11 +185,11 @@ namespace Soup::Syntax::UnitTests
                         {
                             SyntaxFactory::CreateInitializerDeclarator(
                                 SyntaxFactory::CreateSimpleNameExpression(
-                                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"c")),
+                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"c")),
                                 nullptr),
                             SyntaxFactory::CreateInitializerDeclarator(
                                 SyntaxFactory::CreateSimpleNameExpression(
-                                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"b")),
+                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")),
                                 nullptr),
                         }),
                         std::vector<std::shared_ptr<const SyntaxToken>>())),

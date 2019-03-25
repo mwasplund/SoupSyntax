@@ -11,23 +11,23 @@ namespace Soup::Syntax::UnitTests
         void InitializeNoExpression()
         {
             auto uut = SyntaxFactory::CreateReturnStatement(
-                SyntaxFactory::CreateToken(SyntaxTokenType::Return, L"return"),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
                 nullptr,
-                SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             Assert::AreEqual(
                 SyntaxNodeType::ReturnStatement,
                 uut->GetType(),
                 L"Verify has correct type.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateToken(SyntaxTokenType::Return, L"return"),
+                *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
                 uut->GetReturnToken(),
                 L"Verify return token matches.");
             Assert::IsFalse(
                 uut->HasExpression(),
                 L"Verify has no expression.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"),
+                *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon),
                 uut->GetSemicolonToken(),
                 L"Verify semicolon token matches.");
         }
@@ -36,17 +36,17 @@ namespace Soup::Syntax::UnitTests
         void InitializeWithExpression()
         {
             auto uut = SyntaxFactory::CreateReturnStatement(
-                SyntaxFactory::CreateToken(SyntaxTokenType::Return, L"return"),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"value")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             Assert::AreEqual(
                 SyntaxNodeType::ReturnStatement,
                 uut->GetType(),
                 L"Verify has correct type.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateToken(SyntaxTokenType::Return, L"return"),
+                *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
                 uut->GetReturnToken(),
                 L"Verify return token matches.");
             Assert::IsTrue(
@@ -54,11 +54,11 @@ namespace Soup::Syntax::UnitTests
                 L"Verify has expression.");
             TestUtils::AreEqual(
                 *SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"value")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
                 uut->GetExpression(),
                 L"Verify expression matches.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"),
+                *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon),
                 uut->GetSemicolonToken(),
                 L"Verify semicolon token matches.");
         }
@@ -67,15 +67,15 @@ namespace Soup::Syntax::UnitTests
         void GetChildrenNoExpression()
         {
             auto uut = SyntaxFactory::CreateReturnStatement(
-                SyntaxFactory::CreateToken(SyntaxTokenType::Return, L"return"),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
                 nullptr,
-                SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             Assert::AreEqual(
                 std::vector<SyntaxNodeChild>(
                 {
-                    SyntaxNodeChild(SyntaxFactory::CreateToken(SyntaxTokenType::Return, L"return")),
-                    SyntaxNodeChild(SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";")),
+                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return)),
+                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 }),
                 uut->GetChildren(),
                 L"Verify children match.");
@@ -85,18 +85,18 @@ namespace Soup::Syntax::UnitTests
         void GetChildrenWithExpression()
         {
             auto uut = SyntaxFactory::CreateReturnStatement(
-                SyntaxFactory::CreateToken(SyntaxTokenType::Return, L"return"),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"value")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             Assert::AreEqual(
                 std::vector<SyntaxNodeChild>(
                 {
-                    SyntaxNodeChild(SyntaxFactory::CreateToken(SyntaxTokenType::Return, L"return")),
+                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return)),
                     SyntaxNodeChild(SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"value"))),
-                    SyntaxNodeChild(SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";")),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value"))),
+                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 }),
                 uut->GetChildren(),
                 L"Verify children match.");
@@ -106,15 +106,15 @@ namespace Soup::Syntax::UnitTests
         void OperatorEqualNoExpression()
         {
             auto uut = SyntaxFactory::CreateReturnStatement(
-                SyntaxFactory::CreateToken(SyntaxTokenType::Return, L"return"),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
                 nullptr,
-                SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateReturnStatement(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Return, L"return"),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
                     nullptr,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";")),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 uut,
                 L"Verify matches.");
         }
@@ -123,17 +123,17 @@ namespace Soup::Syntax::UnitTests
         void OperatorEqualWithExpression()
         {
             auto uut = SyntaxFactory::CreateReturnStatement(
-                SyntaxFactory::CreateToken(SyntaxTokenType::Return, L"return"),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"value")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateReturnStatement(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Return, L"return"),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"value")),
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";")),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 uut,
                 L"Verify matches.");
         }
@@ -142,22 +142,20 @@ namespace Soup::Syntax::UnitTests
         void OperatorNotEqualReturnToken()
         {
             auto uut = SyntaxFactory::CreateReturnStatement(
-                SyntaxFactory::CreateToken(SyntaxTokenType::Return, L"return"),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
                 nullptr,
-                SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateReturnStatement(
-                    SyntaxFactory::CreateToken(
+                    SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::Return,
-                        L"return",
                         {
                             SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 1)),
                         },
-                        {
-                        }),
+                        {}),
                     nullptr,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";")),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 uut,
                 L"Verify do not match.");
         }
@@ -166,16 +164,16 @@ namespace Soup::Syntax::UnitTests
         void OperatorNotEqualNoExpression()
         {
             auto uut = SyntaxFactory::CreateReturnStatement(
-                SyntaxFactory::CreateToken(SyntaxTokenType::Return, L"return"),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
                 nullptr,
-                SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateReturnStatement(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Return, L"return"),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"value")),
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";")),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 uut,
                 L"Verify do not match.");
         }
@@ -184,17 +182,17 @@ namespace Soup::Syntax::UnitTests
         void OperatorNotEqualWithExpression()
         {
             auto uut = SyntaxFactory::CreateReturnStatement(
-                SyntaxFactory::CreateToken(SyntaxTokenType::Return, L"return"),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"value")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateReturnStatement(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Return, L"return"),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"value2")),
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";")),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value2")),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 uut,
                 L"Verify do not match.");
         }
@@ -203,22 +201,20 @@ namespace Soup::Syntax::UnitTests
         void OperatorNotEqualSemicolonToken()
         {
             auto uut = SyntaxFactory::CreateReturnStatement(
-                SyntaxFactory::CreateToken(SyntaxTokenType::Return, L"return"),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
                 nullptr,
-                SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateReturnStatement(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Return, L"return"),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
                     nullptr,
-                    SyntaxFactory::CreateToken(
+                    SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::Semicolon,
-                        L";",
                         {
                             SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 1)),
                         },
-                        {
-                        })),
+                        {})),
                 uut,
                 L"Verify do not match.");
         }

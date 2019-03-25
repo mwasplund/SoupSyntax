@@ -11,12 +11,12 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateSubscriptExpression(
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::LeftBracket, L"["),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftBracket),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::RightBracket, L"]"));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"2")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightBracket));
 
             Assert::AreEqual(
                 SyntaxNodeType::SubscriptExpression,
@@ -24,21 +24,21 @@ namespace Soup::Syntax::UnitTests
                 L"Verify has correct type.");
             TestUtils::AreEqual(
                 *SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
                 uut->GetLeft(),
                 L"Verify left expression matches.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateToken(SyntaxTokenType::LeftBracket, L"["),
+                *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftBracket),
                 uut->GetLeftBracket(),
                 L"Verify left bracket token matches.");
             TestUtils::AreEqual(
                 *SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer, 
-                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"2")),
                 uut->GetRight(),
                 L"Verify right expression matches.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateToken(SyntaxTokenType::RightBracket, L"]"),
+                *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightBracket),
                 uut->GetRightBracket(),
                 L"Verify right bracket token matches.");
         }
@@ -48,24 +48,24 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateSubscriptExpression(
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::LeftBracket, L"["),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftBracket),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::RightBracket, L"]"));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"2")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightBracket));
 
             Assert::AreEqual(
                 std::vector<SyntaxNodeChild>({
                     SyntaxNodeChild(
                         SyntaxFactory::CreateSimpleNameExpression(
-                            SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a"))),
-                    SyntaxNodeChild(SyntaxFactory::CreateToken(SyntaxTokenType::LeftBracket, L"[")),
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a"))),
+                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftBracket)),
                     SyntaxNodeChild(
                         SyntaxFactory::CreateLiteralExpression(
                             LiteralType::Integer,
-                            SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2"))),
-                    SyntaxNodeChild(SyntaxFactory::CreateToken(SyntaxTokenType::RightBracket, L"]")),
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"2"))),
+                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightBracket)),
                 }),
                 uut->GetChildren(),
                 L"Verify children match.");
@@ -76,22 +76,22 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateSubscriptExpression(
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::LeftBracket, L"["),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftBracket),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::RightBracket, L"]"));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"2")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightBracket));
 
             Assert::AreEqual(
                 SyntaxFactory::CreateSubscriptExpression(
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                    SyntaxFactory::CreateToken(SyntaxTokenType::LeftBracket, L"["),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftBracket),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
-                        SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")),
-                    SyntaxFactory::CreateToken(SyntaxTokenType::RightBracket, L"]")),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"2")),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightBracket)),
                 uut,
                 L"Verify matches.");
         }
@@ -101,22 +101,22 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateSubscriptExpression(
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::LeftBracket, L"["),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftBracket),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::RightBracket, L"]"));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"2")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightBracket));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateSubscriptExpression(
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"b")),
-                    SyntaxFactory::CreateToken(SyntaxTokenType::LeftBracket, L"["),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftBracket),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
-                        SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")),
-                    SyntaxFactory::CreateToken(SyntaxTokenType::RightBracket, L"]")),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"2")),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightBracket)),
                 uut,
                 L"Verify do not match.");
         }
@@ -126,22 +126,27 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateSubscriptExpression(
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::LeftBracket, L"["),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftBracket),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::RightBracket, L"]"));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"2")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightBracket));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateSubscriptExpression(
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                    SyntaxFactory::CreateToken(SyntaxTokenType::LeftBracket, L"[ L"),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                    SyntaxFactory::CreateKeywordToken(
+                        SyntaxTokenType::LeftBracket,
+                        {
+                            SyntaxFactory::CreateTrivia(L" ", TextSpan()),
+                        },
+                        {}),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
-                        SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")),
-                    SyntaxFactory::CreateToken(SyntaxTokenType::RightBracket, L"]")),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"2")),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightBracket)),
                 uut,
                 L"Verify do not match.");
         }
@@ -151,22 +156,22 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateSubscriptExpression(
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::LeftBracket, L"["),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftBracket),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::RightBracket, L"]"));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"2")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightBracket));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateSubscriptExpression(
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                    SyntaxFactory::CreateToken(SyntaxTokenType::LeftBracket, L"["),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftBracket),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
-                        SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"3")),
-                    SyntaxFactory::CreateToken(SyntaxTokenType::RightBracket, L"]")),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"3")),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightBracket)),
                 uut,
                 L"Verify do not match.");
         }
@@ -176,22 +181,27 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateSubscriptExpression(
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::LeftBracket, L"["),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftBracket),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::RightBracket, L"]"));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"2")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightBracket));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateSubscriptExpression(
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                    SyntaxFactory::CreateToken(SyntaxTokenType::LeftBracket, L"["),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftBracket),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
-                        SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")),
-                    SyntaxFactory::CreateToken(SyntaxTokenType::RightBracket, L" ]")),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"2")),
+                    SyntaxFactory::CreateKeywordToken(
+                        SyntaxTokenType::RightBracket,
+                        {
+                            SyntaxFactory::CreateTrivia(L" ", TextSpan()),
+                        },
+                        {})),
                 uut,
                 L"Verify do not match.");
         }

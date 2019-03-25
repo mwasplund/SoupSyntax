@@ -286,6 +286,426 @@ namespace Soup::Syntax
         }
 
         /// <summary>
+        /// Create a SyntaxToken
+        /// </summary>
+        static std::shared_ptr<const SyntaxToken> CreateKeywordToken(
+            SyntaxTokenType type,
+            std::vector<SyntaxTrivia> leadingTrivia,
+            std::vector<SyntaxTrivia> trailingTrivia)
+        {
+            std::wstring value;
+            switch (type)
+            {
+                case SyntaxTokenType::AlignAs:
+                    value = L"alignas";
+                    break;
+                case SyntaxTokenType::AlignOf:
+                     value = L"alignof";
+                     break;
+                case SyntaxTokenType::Asm:
+                     value = L"asm";
+                     break;
+                case SyntaxTokenType::Auto:
+                     value = L"auto";
+                     break;
+                case SyntaxTokenType::Bool:
+                     value = L"bool";
+                     break;
+                case SyntaxTokenType::Break:
+                     value = L"break";
+                     break;
+                case SyntaxTokenType::Case:
+                     value = L"case";
+                     break;
+                case SyntaxTokenType::Catch:
+                     value = L"catch";
+                     break;
+                case SyntaxTokenType::Char:
+                     value = L"char";
+                     break;
+                case SyntaxTokenType::Char16:
+                     value = L"char16_t";
+                     break;
+                case SyntaxTokenType::Char32:
+                     value = L"char32_t";
+                     break;
+                case SyntaxTokenType::Class:
+                     value = L"class";
+                     break;
+                case SyntaxTokenType::Const:
+                     value = L"const";
+                     break;
+                case SyntaxTokenType::ConstExpr:
+                     value = L"constexpr";
+                     break;
+                case SyntaxTokenType::ConstCast:
+                     value = L"const_cast";
+                     break;
+                case SyntaxTokenType::Continue:
+                     value = L"continue";
+                     break;
+                case SyntaxTokenType::DeclType:
+                     value = L"decltype";
+                     break;
+                case SyntaxTokenType::Default:
+                     value = L"default";
+                     break;
+                case SyntaxTokenType::Delete:
+                     value = L"delete";
+                     break;
+                case SyntaxTokenType::Do:
+                     value = L"do";
+                     break;
+                case SyntaxTokenType::Double:
+                     value = L"double";
+                     break;
+                case SyntaxTokenType::DynamicCast:
+                     value = L"dynamic_cast";
+                     break;
+                case SyntaxTokenType::Else:
+                     value = L"else";
+                     break;
+                case SyntaxTokenType::Enum:
+                     value = L"enum";
+                     break;
+                case SyntaxTokenType::Explicit:
+                     value = L"explicit";
+                     break;
+                case SyntaxTokenType::Export:
+                     value = L"export";
+                     break;
+                case SyntaxTokenType::Extern:
+                     value = L"extern";
+                     break;
+                case SyntaxTokenType::False:
+                     value = L"false";
+                     break;
+                case SyntaxTokenType::Float:
+                     value = L"float";
+                     break;
+                case SyntaxTokenType::For:
+                     value = L"for";
+                     break;
+                case SyntaxTokenType::Friend:
+                     value = L"friend";
+                     break;
+                case SyntaxTokenType::GoTo:
+                     value = L"goto";
+                     break;
+                case SyntaxTokenType::If:
+                     value = L"if";
+                     break;
+                case SyntaxTokenType::Inline:
+                     value = L"inline";
+                     break;
+                case SyntaxTokenType::Int:
+                     value = L"int";
+                     break;
+                case SyntaxTokenType::Long:
+                     value = L"long";
+                     break;
+                case SyntaxTokenType::Mutable:
+                     value = L"mutable";
+                     break;
+                case SyntaxTokenType::Namespace:
+                     value = L"namespace";
+                     break;
+                case SyntaxTokenType::New:
+                     value = L"new";
+                     break;
+                case SyntaxTokenType::NoExcept:
+                     value = L"noexcept";
+                     break;
+                case SyntaxTokenType::Nullptr:
+                     value = L"nullptr";
+                     break;
+                case SyntaxTokenType::Operator:
+                     value = L"operator";
+                     break;
+                case SyntaxTokenType::Private:
+                     value = L"private";
+                     break;
+                case SyntaxTokenType::Protected:
+                     value = L"protected";
+                     break;
+                case SyntaxTokenType::Public:
+                     value = L"public";
+                     break;
+                case SyntaxTokenType::Register:
+                     value = L"register";
+                     break;
+                case SyntaxTokenType::ReinterpretCast:
+                     value = L"reinterpret_cast";
+                     break;
+                case SyntaxTokenType::Return:
+                     value = L"return";
+                     break;
+                case SyntaxTokenType::Short:
+                     value = L"short";
+                     break;
+                case SyntaxTokenType::Signed:
+                     value = L"signed";
+                     break;
+                case SyntaxTokenType::SizeOf:
+                     value = L"sizeof";
+                     break;
+                case SyntaxTokenType::Static:
+                     value = L"static";
+                     break;
+                case SyntaxTokenType::StaticAssert:
+                     value = L"static_assert";
+                     break;
+                case SyntaxTokenType::StaticCast:
+                     value = L"static_cast";
+                     break;
+                case SyntaxTokenType::Struct:
+                     value = L"struct";
+                     break;
+                case SyntaxTokenType::Switch:
+                     value = L"switch";
+                     break;
+                case SyntaxTokenType::Template:
+                     value = L"template";
+                     break;
+                case SyntaxTokenType::This:
+                     value = L"this";
+                     break;
+                case SyntaxTokenType::ThreadLocal:
+                     value = L"thread_local";
+                     break;
+                case SyntaxTokenType::Throw:
+                     value = L"throw";
+                     break;
+                case SyntaxTokenType::True:
+                     value = L"true";
+                     break;
+                case SyntaxTokenType::Try:
+                     value = L"try";
+                     break;
+                case SyntaxTokenType::TypeDef:
+                     value = L"typedef";
+                     break;
+                case SyntaxTokenType::TypeId:
+                     value = L"typeid";
+                     break;
+                case SyntaxTokenType::TypeName:
+                     value = L"typename";
+                     break;
+                case SyntaxTokenType::Union:
+                     value = L"union";
+                     break;
+                case SyntaxTokenType::Unsigned:
+                     value = L"unsigned";
+                     break;
+                case SyntaxTokenType::Using:
+                     value = L"using";
+                     break;
+                case SyntaxTokenType::Virtual:
+                     value = L"virtual";
+                     break;
+                case SyntaxTokenType::Void:
+                     value = L"void";
+                     break;
+                case SyntaxTokenType::Volatile:
+                     value = L"volatile";
+                     break;
+                case SyntaxTokenType::WChar:
+                     value = L"wchar_t";
+                     break;
+                case SyntaxTokenType::While:
+                     value = L"while";
+                     break;
+                case SyntaxTokenType::Override:
+                     value = L"override";
+                     break;
+                case SyntaxTokenType::Final:
+                     value = L"final";
+                     break;
+                case SyntaxTokenType::LeftBrace:
+                     value = L"{";
+                     break;
+                case SyntaxTokenType::RightBrace:
+                     value = L"}";
+                     break;
+                case SyntaxTokenType::LeftBracket:
+                     value = L"[";
+                     break;
+                case SyntaxTokenType::RightBracket:
+                     value = L"]";
+                     break;
+                case SyntaxTokenType::LeftParenthesis:
+                     value = L"(";
+                     break;
+                case SyntaxTokenType::RightParenthesis:
+                     value = L")";
+                     break;
+                case SyntaxTokenType::Semicolon:
+                     value = L";";
+                     break;
+                case SyntaxTokenType::Colon:
+                     value = L":";
+                     break;
+                case SyntaxTokenType::Ellipsis:
+                     value = L"...";
+                     break;
+                case SyntaxTokenType::QuestionMark:
+                     value = L"?";
+                     break;
+                case SyntaxTokenType::DoubleColon:
+                     value = L"::";
+                     break;
+                case SyntaxTokenType::Period:
+                     value = L".";
+                     break;
+                case SyntaxTokenType::PeriodAsterisk:
+                     value = L".*";
+                     break;
+                case SyntaxTokenType::Plus:
+                     value = L"+";
+                     break;
+                case SyntaxTokenType::Minus:
+                     value = L"-";
+                     break;
+                case SyntaxTokenType::Asterisk:
+                     value = L"*";
+                     break;
+                case SyntaxTokenType::ForwardSlash:
+                     value = L"/";
+                     break;
+                case SyntaxTokenType::Percent:
+                     value = L"%";
+                     break;
+                case SyntaxTokenType::Caret:
+                     value = L"^";
+                     break;
+                case SyntaxTokenType::Ampersand:
+                     value = L"&";
+                     break;
+                case SyntaxTokenType::VerticalBar:
+                     value = L"|";
+                     break;
+                case SyntaxTokenType::Tilde:
+                     value = L"~";
+                     break;
+                case SyntaxTokenType::ExclamationMark:
+                     value = L"!";
+                     break;
+                case SyntaxTokenType::Equal:
+                     value = L"=";
+                     break;
+                case SyntaxTokenType::LessThan:
+                     value = L"<";
+                     break;
+                case SyntaxTokenType::GreaterThan:
+                     value = L">";
+                     break;
+                case SyntaxTokenType::PlusEqual:
+                     value = L"+=";
+                     break;
+                case SyntaxTokenType::MinusEqual:
+                     value = L"-=";
+                     break;
+                case SyntaxTokenType::AsteriskEqual:
+                     value = L"*=";
+                     break;
+                case SyntaxTokenType::ForwardSlashEqual:
+                     value = L"/=";
+                     break;
+                case SyntaxTokenType::PercentEqual:
+                     value = L"%=";
+                     break;
+                case SyntaxTokenType::CaretEqual:
+                     value = L"^=";
+                     break;
+                case SyntaxTokenType::AmpersandEqual:
+                     value = L"&=";
+                     break;
+                case SyntaxTokenType::VerticalBarEqual:
+                     value = L"|=";
+                     break;
+                case SyntaxTokenType::DoubleLessThan:
+                     value = L"<<";
+                     break;
+                case SyntaxTokenType::DoubleGreaterThan:
+                     value = L">>";
+                     break;
+                case SyntaxTokenType::DoubleLessThanEqual:
+                     value = L"<<=";
+                     break;
+                case SyntaxTokenType::DoubleGreaterThanEqual:
+                     value = L">>=";
+                     break;
+                case SyntaxTokenType::DoubleEqual:
+                     value = L"==";
+                     break;
+                case SyntaxTokenType::ExclamationMarkEqual:
+                     value = L"!=";
+                     break;
+                case SyntaxTokenType::LessThanEqual:
+                     value = L"<=";
+                     break;
+                case SyntaxTokenType::LessThanEqualGreaterThan:
+                     value = L"<=>";
+                     break;
+                case SyntaxTokenType::GreaterThanEqual:
+                     value = L">=";
+                     break;
+                case SyntaxTokenType::DoubleAmpersand:
+                     value = L"&&";
+                     break;
+                case SyntaxTokenType::DoubleVerticalBar:
+                     value = L"||";
+                     break;
+                case SyntaxTokenType::DoublePlus:
+                     value = L"++";
+                     break;
+                case SyntaxTokenType::DoubleMinus:
+                     value = L"--";
+                     break;
+                case SyntaxTokenType::Comma:
+                     value = L",";
+                     break;
+                case SyntaxTokenType::ArrowAsterisk:
+                     value = L"->*";
+                     break;
+                case SyntaxTokenType::Arrow:
+                     value = L"->";
+                     break;
+                case SyntaxTokenType::Zero:
+                     value = L"0";
+                     break;
+                case SyntaxTokenType::IntegerLiteral:
+                case SyntaxTokenType::FloatingPointLiteral:
+                case SyntaxTokenType::CharacterLiteral:
+                case SyntaxTokenType::StringLiteral:
+                case SyntaxTokenType::UserDefinedLiteral:
+                     throw std::runtime_error("Literals are not a keyword token.");
+                case SyntaxTokenType::Identifier:
+                    throw std::runtime_error("An identifier is not a keyword token.");
+                default:
+                    throw std::logic_error("Unknown syntax token type.");
+            }
+
+            return std::shared_ptr<const SyntaxToken>(
+                new SyntaxToken(
+                    type,
+                    std::move(value),
+                    std::move(leadingTrivia),
+                    std::move(trailingTrivia)));
+        }
+
+        /// <summary>
+        /// Create a SyntaxToken
+        /// </summary>
+        static std::shared_ptr<const SyntaxToken> CreateKeywordToken(SyntaxTokenType type)
+        {
+            return CreateKeywordToken(
+                    type,
+                    {},
+                    {});
+        }
+
+        /// <summary>
         /// Create a LiteralExpression
         /// </summary>
         static std::shared_ptr<const LiteralExpression> CreateLiteralExpression(
@@ -476,38 +896,6 @@ namespace Soup::Syntax
         }
 
         /// <summary>
-        /// Create a SyntaxToken
-        /// </summary>
-        static std::shared_ptr<const SyntaxToken> CreateToken(
-            SyntaxTokenType type,
-            std::wstring value,
-            std::vector<SyntaxTrivia> leadingTrivia,
-            std::vector<SyntaxTrivia> trailingTrivia)
-        {
-            return std::shared_ptr<const SyntaxToken>(
-                new SyntaxToken(
-                    type,
-                    std::move(value),
-                    std::move(leadingTrivia),
-                    std::move(trailingTrivia)));
-        }
-
-        /// <summary>
-        /// Create a SyntaxToken
-        /// </summary>
-        static std::shared_ptr<const SyntaxToken> CreateToken(
-            SyntaxTokenType type,
-            std::wstring value)
-        {
-            return std::shared_ptr<const SyntaxToken>(
-                new SyntaxToken(
-                    type,
-                    std::move(value),
-                    {},
-                    {}));
-        }
-
-        /// <summary>
         /// Create a TryStatement
         /// </summary>
         static std::shared_ptr<const TryStatement> CreateTryStatement(
@@ -559,6 +947,53 @@ namespace Soup::Syntax
                     unaryOperator,
                     std::move(operatorToken),
                     std::move(operand)));
+        }
+
+        /// <summary>
+        /// Create a SyntaxToken
+        /// </summary>
+        static std::shared_ptr<const SyntaxToken> CreateUniqueToken(
+            SyntaxTokenType type,
+            std::wstring value,
+            std::vector<SyntaxTrivia> leadingTrivia,
+            std::vector<SyntaxTrivia> trailingTrivia)
+        {
+            switch (type)
+            {
+                case SyntaxTokenType::IntegerLiteral:
+                case SyntaxTokenType::FloatingPointLiteral:
+                case SyntaxTokenType::CharacterLiteral:
+                case SyntaxTokenType::StringLiteral:
+                case SyntaxTokenType::UserDefinedLiteral:
+                    // Literals OK
+                    break;
+                case SyntaxTokenType::Identifier:
+                    // Identifiers OK
+                    break;
+                default:
+                    throw std::logic_error("Unexpected token type for user value token.");
+            }
+
+            return std::shared_ptr<const SyntaxToken>(
+                new SyntaxToken(
+                    type,
+                    std::move(value),
+                    std::move(leadingTrivia),
+                    std::move(trailingTrivia)));
+        }
+
+        /// <summary>
+        /// Create a SyntaxToken
+        /// </summary>
+        static std::shared_ptr<const SyntaxToken> CreateUniqueToken(
+            SyntaxTokenType type,
+            std::wstring value)
+        {
+            return CreateUniqueToken(
+                    type,
+                    std::move(value),
+                    {},
+                    {});
         }
 
         /// <summary>

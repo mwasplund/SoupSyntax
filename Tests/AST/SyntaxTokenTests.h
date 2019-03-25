@@ -9,9 +9,7 @@ namespace Soup::Syntax::UnitTests
         // [[Fact]]
         void InitializeSimple()
         {
-            auto uut = SyntaxFactory::CreateToken(
-                SyntaxTokenType::Nullptr,
-                L"nullptr");
+            auto uut = SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Nullptr);
 
             Assert::AreEqual(SyntaxTokenType::Nullptr, uut->GetType(), L"Verify type matches.");
             Assert::AreEqual(std::wstring(L"nullptr"), uut->GetValue(), L"Verify value matches.");
@@ -22,12 +20,10 @@ namespace Soup::Syntax::UnitTests
         // [[Fact]]
         void OperatorEqual()
         {
-            auto uut = SyntaxFactory::CreateToken(
-                SyntaxTokenType::Nullptr,
-                L"nullptr");
+            auto uut = SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Nullptr);
 
             Assert::AreEqual(
-                SyntaxFactory::CreateToken(SyntaxTokenType::Nullptr, L"nullptr"),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Nullptr),
                 uut,
                 L"Verify matches.");
         }
@@ -35,12 +31,10 @@ namespace Soup::Syntax::UnitTests
         // [[Fact]]
         void OperatorNotEqualType()
         {
-            auto uut = SyntaxFactory::CreateToken(
-                SyntaxTokenType::Nullptr,
-                L"nullptr");
+            auto uut = SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Nullptr);
 
             Assert::AreNotEqual(
-                SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"nullptr"),
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"nullptr"),
                 uut,
                 L"Verify do not match.");
         }
@@ -48,12 +42,12 @@ namespace Soup::Syntax::UnitTests
         // [[Fact]]
         void OperatorNotEqualValue()
         {
-            auto uut = SyntaxFactory::CreateToken(
-                SyntaxTokenType::Nullptr,
-                L"nullptr");
+            auto uut = SyntaxFactory::CreateUniqueToken(
+                SyntaxTokenType::Identifier,
+                L"a");
 
             Assert::AreNotEqual(
-                SyntaxFactory::CreateToken(SyntaxTokenType::Nullptr, L"null"),
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b"),
                 uut,
                 L"Verify do not match.");
         }

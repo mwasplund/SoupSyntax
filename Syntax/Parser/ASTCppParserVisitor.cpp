@@ -2682,11 +2682,27 @@ std::shared_ptr<const SyntaxToken> ASTCppParserVisitor::CreateToken(
     auto leadingTrivia = GetLeadingTrivia(index);
     auto trailingTrivia = GetTrailingTrivia(index);
 
-    return SyntaxFactory::CreateToken(
-        type,
-        std::move(tokenText),
-        std::move(leadingTrivia),
-        std::move(trailingTrivia));
+    // If a keyword then create the shared token
+    // Otherwise create a unique token
+    switch (type)
+    {
+        case SyntaxTokenType::IntegerLiteral:
+        case SyntaxTokenType::FloatingPointLiteral:
+        case SyntaxTokenType::CharacterLiteral:
+        case SyntaxTokenType::StringLiteral:
+        case SyntaxTokenType::UserDefinedLiteral:
+        case SyntaxTokenType::Identifier:
+            return SyntaxFactory::CreateUniqueToken(
+                type,
+                std::move(tokenText),
+                std::move(leadingTrivia),
+                std::move(trailingTrivia));
+        default:
+            return SyntaxFactory::CreateKeywordToken(
+                type,
+                std::move(leadingTrivia),
+                std::move(trailingTrivia));
+    }
 }
 
 std::shared_ptr<const SimpleNameExpression> ASTCppParserVisitor::GetNextSimpleName(

@@ -13,11 +13,11 @@ namespace Soup::Syntax::UnitTests
                 BinaryOperator::Addition,
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"1")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Plus),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"2")));
 
             Assert::AreEqual(
                 SyntaxNodeType::BinaryExpression,
@@ -25,19 +25,19 @@ namespace Soup::Syntax::UnitTests
                 L"Verify has correct type.");
             Assert::AreEqual(BinaryOperator::Addition, uut->GetOperator(), L"Verify operator matches.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
+                *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Plus),
                 uut->GetOperatorToken(),
                 L"Verify operator token matches.");
             TestUtils::AreEqual(
                 *SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"1")),
                 uut->GetLeftOperand(),
                 L"Verify left expression matches.");
             TestUtils::AreEqual(
                 *SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"2")),
                 uut->GetRightOperand(),
                 L"Verify right expression matches.");
         }
@@ -49,23 +49,23 @@ namespace Soup::Syntax::UnitTests
                 BinaryOperator::Addition,
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"1")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Plus),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"2")));
 
             Assert::AreEqual(
                 std::vector<SyntaxNodeChild>({
                     SyntaxNodeChild(
                         SyntaxFactory::CreateLiteralExpression(
                             LiteralType::Integer,
-                            SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1"))),
-                    SyntaxNodeChild(SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+")),
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"1"))),
+                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Plus)),
                     SyntaxNodeChild(
                         SyntaxFactory::CreateLiteralExpression(
                             LiteralType::Integer,
-                            SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2"))),
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"2"))),
                 }),
                 uut->GetChildren(),
                 L"Verify children match.");
@@ -78,22 +78,22 @@ namespace Soup::Syntax::UnitTests
                 BinaryOperator::Addition,
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"1")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Plus),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"2")));
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateBinaryExpression(
                     BinaryOperator::Addition,
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
-                        SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"1")),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Plus),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
-                        SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2"))),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"2"))),
                 uut,
                 L"Verify matches.");
         }
@@ -105,22 +105,22 @@ namespace Soup::Syntax::UnitTests
                 BinaryOperator::Addition,
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"1")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Plus),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"2")));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateBinaryExpression(
                     BinaryOperator::Subtraction,
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
-                        SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"1")),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Plus),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
-                        SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2"))),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"2"))),
                 uut,
                 L"Verify do not match.");
         }
@@ -132,22 +132,22 @@ namespace Soup::Syntax::UnitTests
                 BinaryOperator::Addition,
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"1")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Plus),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"2")));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateBinaryExpression(
                     BinaryOperator::Addition,
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
-                        SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"11")),
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"11")),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Plus),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
-                        SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2"))),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"2"))),
                 uut,
                 L"Verify do not match.");
         }
@@ -159,22 +159,22 @@ namespace Soup::Syntax::UnitTests
                 BinaryOperator::Addition,
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Minus, L"-"),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"1")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Minus),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"2")));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateBinaryExpression(
                     BinaryOperator::Addition,
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
-                        SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"1")),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Plus),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
-                        SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2"))),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"2"))),
                 uut,
                 L"Verify do not match.");
         }
@@ -186,22 +186,22 @@ namespace Soup::Syntax::UnitTests
                 BinaryOperator::Addition,
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"1")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Plus),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"2")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"2")));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateBinaryExpression(
                     BinaryOperator::Addition,
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
-                        SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"1")),
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Plus, L"+"),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"1")),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Plus),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
-                        SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, L"22"))),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"22"))),
                 uut,
                 L"Verify do not match.");
         }

@@ -14,13 +14,13 @@ namespace Soup::Syntax::UnitTests
             auto actual = ParseIfStatement(sourceCode);
 
             auto expected = SyntaxFactory::CreateIfStatement(
-                SyntaxFactory::CreateToken(SyntaxTokenType::If, L"if"),
-                SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"("),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftParenthesis),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::RightParenthesis, L")"),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";")),
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 nullptr);
 
             TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
@@ -33,17 +33,17 @@ namespace Soup::Syntax::UnitTests
             auto actual = ParseIfStatement(sourceCode);
 
             auto expected = SyntaxFactory::CreateIfStatement(
-                SyntaxFactory::CreateToken(SyntaxTokenType::If, L"if"),
-                SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"("),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftParenthesis),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::RightParenthesis, L")"),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";")),
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 SyntaxFactory::CreateElseClause(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Else, L"else"),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Else),
                     SyntaxFactory::CreateEmptyStatement(
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"))));
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))));
 
             TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
@@ -55,25 +55,23 @@ namespace Soup::Syntax::UnitTests
             auto actual = ParseIfStatement(sourceCode);
 
             auto expected = SyntaxFactory::CreateIfStatement(
-                SyntaxFactory::CreateToken(SyntaxTokenType::If, L"if"),
-                SyntaxFactory::CreateToken(
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
+                SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::LeftParenthesis,
-                    L"(",
                     {
                         SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0))
                     },
                     {}),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(
+                    SyntaxFactory::CreateUniqueToken(
                         SyntaxTokenType::Identifier,
                         L"a",
                         {
                             SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0))
                         },
                         {})),
-                SyntaxFactory::CreateToken(
+                SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::RightParenthesis,
-                    L")",
                     {
                         SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0))
                     },
@@ -81,9 +79,8 @@ namespace Soup::Syntax::UnitTests
                         SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0))
                     }),
                 SyntaxFactory::CreateReturnStatement(
-                    SyntaxFactory::CreateToken(
+                    SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::Return,
-                        L"return",
                         {
                             SyntaxFactory::CreateTrivia(L"\r\n", TextSpan(0, 0)),
                             SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0)),
@@ -91,16 +88,15 @@ namespace Soup::Syntax::UnitTests
                         {}),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
-                        SyntaxFactory::CreateToken(
+                        SyntaxFactory::CreateUniqueToken(
                             SyntaxTokenType::IntegerLiteral,
                             L"1",
                             {
                                 SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0))
                             },
                             {})),
-                    SyntaxFactory::CreateToken(
+                    SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::Semicolon,
-                        L";",
                         {
                             SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0))
                         },
@@ -108,9 +104,8 @@ namespace Soup::Syntax::UnitTests
                             SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0))
                         })),
                 SyntaxFactory::CreateElseClause(
-                    SyntaxFactory::CreateToken(
+                    SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::Else,
-                        L"else",
                         {
                             SyntaxFactory::CreateTrivia(L"\r\n", TextSpan(0, 0)),
                             SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0)),
@@ -119,9 +114,8 @@ namespace Soup::Syntax::UnitTests
                             SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0))
                         }),
                     SyntaxFactory::CreateReturnStatement(
-                        SyntaxFactory::CreateToken(
+                        SyntaxFactory::CreateKeywordToken(
                             SyntaxTokenType::Return,
-                            L"return",
                             {
                                 SyntaxFactory::CreateTrivia(L"\r\n", TextSpan(0, 0)),
                                 SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0)),
@@ -129,16 +123,15 @@ namespace Soup::Syntax::UnitTests
                             {}),
                         SyntaxFactory::CreateLiteralExpression(
                             LiteralType::Integer,
-                            SyntaxFactory::CreateToken(
+                            SyntaxFactory::CreateUniqueToken(
                                 SyntaxTokenType::IntegerLiteral,
                                 L"2",
                                 {
                                     SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0))
                                 },
                                 {})),
-                        SyntaxFactory::CreateToken(
+                        SyntaxFactory::CreateKeywordToken(
                             SyntaxTokenType::Semicolon,
-                            L";",
                             {
                                 SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0))
                             },

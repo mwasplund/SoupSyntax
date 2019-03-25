@@ -10,24 +10,24 @@ namespace Soup::Syntax::UnitTests
         void InitializeSimple()
         {
             auto uut = SyntaxFactory::CreateDeleteFunctionBody(
-                SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Delete, L"delete"),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Delete),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             Assert::AreEqual(
                 SyntaxNodeType::DeleteFunctionBody,
                 uut->GetType(),
                 L"Verify has correct type.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
+                *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                 uut->GetEqualToken(),
                 L"Verify equal token matches.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateToken(SyntaxTokenType::Delete, L"delete"),
+                *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Delete),
                 uut->GetDeleteToken(),
                 L"Verify delete token matches.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"),
+                *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon),
                 uut->GetSemicolonToken(),
                 L"Verify semicolon token matches.");
         }
@@ -36,15 +36,15 @@ namespace Soup::Syntax::UnitTests
         void GetChildren()
         {
             auto uut = SyntaxFactory::CreateDeleteFunctionBody(
-                SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Delete, L"delete"),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Delete),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             Assert::AreEqual(
                 std::vector<SyntaxNodeChild>({
-                    SyntaxNodeChild(SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"=")),
-                    SyntaxNodeChild(SyntaxFactory::CreateToken(SyntaxTokenType::Delete, L"delete")),
-                    SyntaxNodeChild(SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";")),
+                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal)),
+                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Delete)),
+                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 }),
                 uut->GetChildren(),
                 L"Verify children match.");
@@ -54,15 +54,15 @@ namespace Soup::Syntax::UnitTests
         void OperatorEqual()
         {
             auto uut = SyntaxFactory::CreateDeleteFunctionBody(
-                SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Delete, L"delete"),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Delete),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateDeleteFunctionBody(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Delete, L"delete"),
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";")),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Delete),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 uut,
                 L"Verify matches.");
         }
@@ -71,22 +71,21 @@ namespace Soup::Syntax::UnitTests
         void OperatorNotEqualEqualToken()
         {
             auto uut = SyntaxFactory::CreateDeleteFunctionBody(
-                SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Delete, L"delete"),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Delete),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateDeleteFunctionBody(
-                    SyntaxFactory::CreateToken(
+                    SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::Equal,
-                        L"=",
                         {
                             SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 1)),
                         },
                         {
                         }),
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Delete, L"delete"),
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";")),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Delete),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 uut,
                 L"Verify do not match.");
         }
@@ -95,22 +94,21 @@ namespace Soup::Syntax::UnitTests
         void OperatorNotEqualDeleteToken()
         {
             auto uut = SyntaxFactory::CreateDeleteFunctionBody(
-                SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Delete, L"delete"),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Delete),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateDeleteFunctionBody(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
-                    SyntaxFactory::CreateToken(
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
+                    SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::Delete,
-                        L"delete",
                         {
                             SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 1)),
                         },
                         {
                         }),
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";")),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 uut,
                 L"Verify do not match.");
         }
@@ -119,17 +117,16 @@ namespace Soup::Syntax::UnitTests
         void OperatorNotEqualSemicolonToken()
         {
             auto uut = SyntaxFactory::CreateDeleteFunctionBody(
-                SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Delete, L"delete"),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Delete),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateDeleteFunctionBody(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Delete, L"delete"),
-                    SyntaxFactory::CreateToken(
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Delete),
+                    SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::Semicolon,
-                        L";",
                         {
                             SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 1)),
                         },

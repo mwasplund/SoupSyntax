@@ -14,9 +14,9 @@ namespace Soup::Syntax::UnitTests
             auto actual = ParseReturnStatement(sourceCode);
 
             auto expected = SyntaxFactory::CreateReturnStatement(
-                SyntaxFactory::CreateToken(SyntaxTokenType::Return, L"return"),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
                 nullptr,
-                SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
@@ -28,17 +28,17 @@ namespace Soup::Syntax::UnitTests
             auto actual = ParseReturnStatement(sourceCode);
 
             auto expected = SyntaxFactory::CreateReturnStatement(
-                SyntaxFactory::CreateToken(SyntaxTokenType::Return, L"return"),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateToken(
+                    SyntaxFactory::CreateUniqueToken(
                         SyntaxTokenType::IntegerLiteral,
                         L"1",
                         {
                             SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0))
                         },
                         {})),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
@@ -50,16 +50,16 @@ namespace Soup::Syntax::UnitTests
             auto actual = ParseReturnStatement(sourceCode);
 
             auto expected = SyntaxFactory::CreateReturnStatement(
-                SyntaxFactory::CreateToken(SyntaxTokenType::Return, L"return"),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(
+                    SyntaxFactory::CreateUniqueToken(
                         SyntaxTokenType::Identifier,
                         L"a",
                         {
                             SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0))
                         },
                         {})),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }

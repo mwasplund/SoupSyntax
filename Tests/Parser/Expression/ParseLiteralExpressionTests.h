@@ -17,7 +17,7 @@ namespace Soup::Syntax::UnitTests
             Assert::NotNull(expression, L"Verify cast.");
             Assert::AreEqual(LiteralType::Integer, expression->GetLiteralType(), L"Verify type matches expected.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateToken(SyntaxTokenType::IntegerLiteral, Convert(sourceCode)),
+                *SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, Convert(sourceCode)),
                 expression->GetToken(),
                 L"Verify value matches entire source.");
         }
@@ -31,7 +31,7 @@ namespace Soup::Syntax::UnitTests
             Assert::NotNull(expression, L"Verify cast.");
             Assert::AreEqual(LiteralType::Floating, expression->GetLiteralType(), L"Verify type matches expected.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateToken(SyntaxTokenType::FloatingPointLiteral, Convert(sourceCode)),
+                *SyntaxFactory::CreateUniqueToken(SyntaxTokenType::FloatingPointLiteral, Convert(sourceCode)),
                 expression->GetToken(),
                 L"Verify value matches entire source.");
         }
@@ -45,7 +45,7 @@ namespace Soup::Syntax::UnitTests
             Assert::NotNull(expression, L"Verify cast.");
             Assert::AreEqual(LiteralType::Character, expression->GetLiteralType(), L"Verify type matches expected.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateToken(SyntaxTokenType::CharacterLiteral, Convert(sourceCode)),
+                *SyntaxFactory::CreateUniqueToken(SyntaxTokenType::CharacterLiteral, Convert(sourceCode)),
                 expression->GetToken(),
                 L"Verify value matches entire source.");
         }
@@ -59,7 +59,7 @@ namespace Soup::Syntax::UnitTests
             Assert::NotNull(expression, L"Verify cast.");
             Assert::AreEqual(LiteralType::Pointer, expression->GetLiteralType(), L"Verify type matches expected.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateToken(SyntaxTokenType::Nullptr, Convert(sourceCode)),
+                *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Nullptr),
                 expression->GetToken(),
                 L"Verify value matches entire source.");
         }
@@ -73,7 +73,7 @@ namespace Soup::Syntax::UnitTests
             Assert::NotNull(expression, L"Verify cast.");
             Assert::AreEqual(LiteralType::String, expression->GetLiteralType(), L"Verify type matches expected.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateToken(SyntaxTokenType::StringLiteral, Convert(sourceCode)),
+                *SyntaxFactory::CreateUniqueToken(SyntaxTokenType::StringLiteral, Convert(sourceCode)),
                 expression->GetToken(),
                 L"Verify value matches entire source.");
         }
@@ -88,7 +88,7 @@ namespace Soup::Syntax::UnitTests
             Assert::NotNull(expression, L"Verify cast.");
             Assert::AreEqual(LiteralType::Boolean, expression->GetLiteralType(), L"Verify type matches expected.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateToken(type, Convert(sourceCode)),
+                *SyntaxFactory::CreateKeywordToken(type),
                 expression->GetToken(),
                 L"Verify value matches entire source.");
         }
@@ -102,7 +102,7 @@ namespace Soup::Syntax::UnitTests
             Assert::NotNull(expression, L"Verify cast.");
             Assert::AreEqual(LiteralType::UserDefined, expression->GetLiteralType(), L"Verify type matches expected.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateToken(SyntaxTokenType::UserDefinedLiteral, Convert(sourceCode)),
+                *SyntaxFactory::CreateUniqueToken(SyntaxTokenType::UserDefinedLiteral, Convert(sourceCode)),
                 expression->GetToken(),
                 L"Verify value matches entire source.");
         }

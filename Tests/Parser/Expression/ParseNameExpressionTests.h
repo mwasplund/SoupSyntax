@@ -16,7 +16,7 @@ namespace Soup::Syntax::UnitTests
 
             Assert::NotNull(expression, L"Verify cast.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, Convert(sourceCode)),
+                *SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, Convert(sourceCode)),
                 expression->GetIdentifier(),
                 L"Verify identifier matches expected.");
         }
@@ -34,15 +34,15 @@ namespace Soup::Syntax::UnitTests
             auto right = expression->GetRight();
 
             Assert::AreEqual(
-                *SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"NameLeft"),
+                *SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"NameLeft"),
                 left.GetIdentifier(),
                 L"Verify left identifier matches expected.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateToken(SyntaxTokenType::DoubleColon, L"::"),
+                *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
                 expression->GetScopeResolutionToken(),
                 L"Verify double colon token matches expected.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"NameRight"),
+                *SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"NameRight"),
                 right.GetIdentifier(),
                 L"Verify right identifier matches expected.");
         }

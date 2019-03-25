@@ -12,27 +12,27 @@ namespace Soup::Syntax::UnitTests
         {
             // (int parameter)
             auto uut = SyntaxFactory::CreateParameterList(
-                SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"("),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftParenthesis),
                 std::make_shared<const SyntaxList<Parameter>>(
                     std::vector<std::shared_ptr<const Parameter>>(
                     {
                         SyntaxFactory::CreateParameter(
                             SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                                 PrimitiveDataType::Int,
-                                SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
+                                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
                             SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                                 PrimitiveDataType::Int,
-                                SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int"))),
+                                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                     }),
                     std::vector<std::shared_ptr<const SyntaxToken>>()),
-                SyntaxFactory::CreateToken(SyntaxTokenType::RightParenthesis, L")"));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightParenthesis));
 
             Assert::AreEqual(
                 SyntaxNodeType::ParameterList,
                 uut->GetType(),
                 L"Verify has correct type.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"("),
+                *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftParenthesis),
                 uut->GetLeftParenthesisToken(),
                 L"Verify left parenthesis token matches.");
             Assert::AreEqual(
@@ -42,16 +42,16 @@ namespace Soup::Syntax::UnitTests
                         SyntaxFactory::CreateParameter(
                             SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                                 PrimitiveDataType::Int,
-                                SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
+                                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
                             SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                                 PrimitiveDataType::Int,
-                                SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int"))),
+                                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                     }),
                     std::vector<std::shared_ptr<const SyntaxToken>>()),
                 uut->GetParameters(),
                 L"Verify parameters match.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateToken(SyntaxTokenType::RightParenthesis, L")"),
+                *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightParenthesis),
                 uut->GetRightParenthesisToken(),
                 L"Verify right parenthesis token matches.");
         }
@@ -61,33 +61,33 @@ namespace Soup::Syntax::UnitTests
         {
             // (int parameter)
             auto uut = SyntaxFactory::CreateParameterList(
-                SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"("),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftParenthesis),
                 std::make_shared<const SyntaxList<Parameter>>(
                     std::vector<std::shared_ptr<const Parameter>>(
                     {
                         SyntaxFactory::CreateParameter(
                             SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                                 PrimitiveDataType::Int,
-                                SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
+                                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
                             SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                                 PrimitiveDataType::Int,
-                                SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int"))),
+                                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                     }),
                     std::vector<std::shared_ptr<const SyntaxToken>>()),
-                SyntaxFactory::CreateToken(SyntaxTokenType::RightParenthesis, L")"));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightParenthesis));
 
             Assert::AreEqual(
                 std::vector<SyntaxNodeChild>({
-                    SyntaxNodeChild(SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"(")),
+                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftParenthesis)),
                     SyntaxNodeChild(
                         SyntaxFactory::CreateParameter(
                             SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                                 PrimitiveDataType::Int,
-                                SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
+                                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
                             SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                                 PrimitiveDataType::Int,
-                                SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")))),
-                    SyntaxNodeChild(SyntaxFactory::CreateToken(SyntaxTokenType::RightParenthesis, L")")),
+                                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)))),
+                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightParenthesis)),
                 }),
                 uut->GetChildren(),
                 L"Verify children match.");
@@ -98,37 +98,37 @@ namespace Soup::Syntax::UnitTests
         {
             // (int parameter)
             auto uut = SyntaxFactory::CreateParameterList(
-                SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"("),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftParenthesis),
                 std::make_shared<const SyntaxList<Parameter>>(
                     std::vector<std::shared_ptr<const Parameter>>(
                     {
                         SyntaxFactory::CreateParameter(
                             SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                                 PrimitiveDataType::Int,
-                                SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
+                                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
                             SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                                 PrimitiveDataType::Int,
-                                SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int"))),
+                                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                     }),
                     std::vector<std::shared_ptr<const SyntaxToken>>()),
-                SyntaxFactory::CreateToken(SyntaxTokenType::RightParenthesis, L")"));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightParenthesis));
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateParameterList(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"("),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftParenthesis),
                     std::make_shared<const SyntaxList<Parameter>>(
                         std::vector<std::shared_ptr<const Parameter>>(
                         {
                             SyntaxFactory::CreateParameter(
                                 SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                                     PrimitiveDataType::Int,
-                                    SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
+                                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
                                 SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                                     PrimitiveDataType::Int,
-                                    SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int"))),
+                                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                         }),
                         std::vector<std::shared_ptr<const SyntaxToken>>()),
-                    SyntaxFactory::CreateToken(SyntaxTokenType::RightParenthesis, L")")),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightParenthesis)),
                 uut,
                 L"Verify matches.");
         }
@@ -138,26 +138,25 @@ namespace Soup::Syntax::UnitTests
         {
             // (int parameter)
             auto uut = SyntaxFactory::CreateParameterList(
-                SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"("),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftParenthesis),
                 std::make_shared<const SyntaxList<Parameter>>(
                     std::vector<std::shared_ptr<const Parameter>>(
                     {
                         SyntaxFactory::CreateParameter(
                             SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                                 PrimitiveDataType::Int,
-                                SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
+                                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
                             SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                                 PrimitiveDataType::Int,
-                                SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int"))),
+                                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                     }),
                     std::vector<std::shared_ptr<const SyntaxToken>>()),
-                SyntaxFactory::CreateToken(SyntaxTokenType::RightParenthesis, L")"));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightParenthesis));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateParameterList(
-                    SyntaxFactory::CreateToken(
+                    SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::LeftParenthesis,
-                        L"(",
                         {
                             SyntaxFactory::CreateTrivia(L" ", TextSpan()),
                         },
@@ -168,13 +167,13 @@ namespace Soup::Syntax::UnitTests
                             SyntaxFactory::CreateParameter(
                                 SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                                     PrimitiveDataType::Int,
-                                    SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
+                                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
                                 SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                                     PrimitiveDataType::Int,
-                                    SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int"))),
+                                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                         }),
                         std::vector<std::shared_ptr<const SyntaxToken>>()),
-                    SyntaxFactory::CreateToken(SyntaxTokenType::RightParenthesis, L")")),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightParenthesis)),
                 uut,
                 L"Verify does not match.");
         }
@@ -184,30 +183,30 @@ namespace Soup::Syntax::UnitTests
         {
             // (int parameter)
             auto uut = SyntaxFactory::CreateParameterList(
-                SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"("),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftParenthesis),
                 std::make_shared<const SyntaxList<Parameter>>(
                     std::vector<std::shared_ptr<const Parameter>>(
                     {
                         SyntaxFactory::CreateParameter(
                             SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                                 PrimitiveDataType::Int,
-                                SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
+                                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
                             SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                                 PrimitiveDataType::Int,
-                                SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int"))),
+                                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                     }),
                     std::vector<std::shared_ptr<const SyntaxToken>>()),
-                SyntaxFactory::CreateToken(SyntaxTokenType::RightParenthesis, L")"));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightParenthesis));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateParameterList(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"("),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftParenthesis),
                     std::make_shared<const SyntaxList<Parameter>>(
                         std::vector<std::shared_ptr<const Parameter>>(
                         {
                         }),
                         std::vector<std::shared_ptr<const SyntaxToken>>()),
-                    SyntaxFactory::CreateToken(SyntaxTokenType::RightParenthesis, L")")),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightParenthesis)),
                 uut,
                 L"Verify does not match.");
         }
@@ -217,39 +216,38 @@ namespace Soup::Syntax::UnitTests
         {
             // (int parameter)
             auto uut = SyntaxFactory::CreateParameterList(
-                SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"("),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftParenthesis),
                 std::make_shared<const SyntaxList<Parameter>>(
                     std::vector<std::shared_ptr<const Parameter>>(
                     {
                         SyntaxFactory::CreateParameter(
                             SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                                 PrimitiveDataType::Int,
-                                SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
+                                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
                             SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                                 PrimitiveDataType::Int,
-                                SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int"))),
+                                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                     }),
                     std::vector<std::shared_ptr<const SyntaxToken>>()),
-                SyntaxFactory::CreateToken(SyntaxTokenType::RightParenthesis, L")"));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightParenthesis));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateParameterList(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::LeftParenthesis, L"("),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftParenthesis),
                     std::make_shared<const SyntaxList<Parameter>>(
                         std::vector<std::shared_ptr<const Parameter>>(
                         {
                             SyntaxFactory::CreateParameter(
                                 SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                                     PrimitiveDataType::Int,
-                                    SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
+                                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
                                 SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                                     PrimitiveDataType::Int,
-                                    SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int"))),
+                                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                         }),
                         std::vector<std::shared_ptr<const SyntaxToken>>()),
-                    SyntaxFactory::CreateToken(
+                    SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::RightParenthesis,
-                        L")",
                         {
                             SyntaxFactory::CreateTrivia(L" ", TextSpan()),
                         },

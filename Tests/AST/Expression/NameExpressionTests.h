@@ -10,14 +10,14 @@ namespace Soup::Syntax::UnitTests
         void InitializeSimpleNameExpression()
         {
             auto uut = SyntaxFactory::CreateSimpleNameExpression(
-                SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"name"));
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"name"));
 
             Assert::AreEqual(
                 SyntaxNodeType::SimpleNameExpression,
                 uut->GetType(),
                 L"Verify has correct type.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"name"),
+                *SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"name"),
                 uut->GetIdentifier(),
                 L"Verify identifier matches.");
         }
@@ -27,9 +27,9 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateQualifiedNameExpression(
                 nullptr,
-                SyntaxFactory::CreateToken(SyntaxTokenType::DoubleColon, L"::"),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Right")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Right")));
 
             Assert::AreEqual(
                 SyntaxNodeType::QualifiedNameExpression,
@@ -37,11 +37,11 @@ namespace Soup::Syntax::UnitTests
                 L"Verify has correct type.");
             Assert::IsFalse(uut->HasLeft(), L"Verify no left identifier.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateToken(SyntaxTokenType::DoubleColon, L"::"),
+                *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
                 uut->GetScopeResolutionToken(),
                 L"Verify double colon token matches.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Right"),
+                *SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Right"),
                 uut->GetRight().GetIdentifier(),
                 L"Verify right identifier matches.");
         }
@@ -51,10 +51,10 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateQualifiedNameExpression(
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Left")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::DoubleColon, L"::"),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Left")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Right")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Right")));
 
             Assert::IsTrue(uut->HasLeft(), L"Verify has left identifier.");
             auto left = dynamic_cast<const SimpleNameExpression&>(uut->GetLeft());
@@ -65,15 +65,15 @@ namespace Soup::Syntax::UnitTests
                 uut->GetType(),
                 L"Verify has correct type.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Left"),
+                *SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Left"),
                 left.GetIdentifier(),
                 L"Verify left identifier matches.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateToken(SyntaxTokenType::DoubleColon, L"::"),
+                *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
                 uut->GetScopeResolutionToken(),
                 L"Verify double colon token matches.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Right"),
+                *SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Right"),
                 right.GetIdentifier(),
                 L"Verify right identifier matches.");
         }
@@ -84,12 +84,12 @@ namespace Soup::Syntax::UnitTests
             auto uut = SyntaxFactory::CreateQualifiedNameExpression(
                 SyntaxFactory::CreateQualifiedNameExpression(
                     nullptr,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::DoubleColon, L"::"),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Left"))),
-                SyntaxFactory::CreateToken(SyntaxTokenType::DoubleColon, L"::"),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Left"))),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Right")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Right")));
 
             Assert::IsTrue(uut->HasLeft(), L"Verify has left identifier.");
             auto left = dynamic_cast<const QualifiedNameExpression&>(uut->GetLeft());
@@ -97,15 +97,15 @@ namespace Soup::Syntax::UnitTests
 
             Assert::IsFalse(left.HasLeft(), L"Verify no double left identifier.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Left"),
+                *SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Left"),
                 left.GetRight().GetIdentifier(),
                 L"Verify left identifier matches.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateToken(SyntaxTokenType::DoubleColon, L"::"),
+                *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
                 uut->GetScopeResolutionToken(),
                 L"Verify double colon token matches.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Right"),
+                *SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Right"),
                 right.GetIdentifier(),
                 L"Verify right identifier matches.");
         }
@@ -114,11 +114,11 @@ namespace Soup::Syntax::UnitTests
         void SimpleNameExpressionGetChildren()
         {
             auto uut = SyntaxFactory::CreateSimpleNameExpression(
-                SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"name"));
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"name"));
 
             Assert::AreEqual(
                 std::vector<SyntaxNodeChild>({
-                    SyntaxNodeChild(SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"name")),
+                    SyntaxNodeChild(SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"name")),
                 }),
                 uut->GetChildren(),
                 L"Verify children match.");
@@ -128,11 +128,11 @@ namespace Soup::Syntax::UnitTests
         void SimpleNameExpressionOperatorEqual()
         {
             auto uut = SyntaxFactory::CreateSimpleNameExpression(
-                SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"name"));
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"name"));
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"name")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"name")),
                 uut,
                 L"Verify matches.");
         }
@@ -141,11 +141,11 @@ namespace Soup::Syntax::UnitTests
         void SimpleNameExpressionOperatorNotEqualIdentifier()
         {
             auto uut = SyntaxFactory::CreateSimpleNameExpression(
-                SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"name"));
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"name"));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"name2")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"name2")),
                 uut,
                 L"Verify do not match.");
         }
@@ -155,16 +155,16 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateQualifiedNameExpression(
                 nullptr,
-                SyntaxFactory::CreateToken(SyntaxTokenType::DoubleColon, L"::"),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Right")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Right")));
 
             Assert::AreEqual(
                 std::vector<SyntaxNodeChild>({
-                    SyntaxNodeChild(SyntaxFactory::CreateToken(SyntaxTokenType::DoubleColon, L"::")),
+                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon)),
                     SyntaxNodeChild(
                         SyntaxFactory::CreateSimpleNameExpression(
-                            SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Right"))),
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Right"))),
                 }),
                 uut->GetChildren(),
                 L"Verify children match.");
@@ -175,16 +175,16 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateQualifiedNameExpression(
                 nullptr,
-                SyntaxFactory::CreateToken(SyntaxTokenType::DoubleColon, L"::"),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Right")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Right")));
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateQualifiedNameExpression(
                     nullptr,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::DoubleColon, L"::"),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Right"))),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Right"))),
                 uut,
                 L"Verify matches.");
         }
@@ -194,17 +194,17 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateQualifiedNameExpression(
                 nullptr,
-                SyntaxFactory::CreateToken(SyntaxTokenType::DoubleColon, L"::"),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Right")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Right")));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateQualifiedNameExpression(
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Left")),
-                    SyntaxFactory::CreateToken(SyntaxTokenType::DoubleColon, L"::"),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Left")),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Right"))),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Right"))),
                 uut,
                 L"Verify do not match.");
         }
@@ -214,16 +214,21 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateQualifiedNameExpression(
                 nullptr,
-                SyntaxFactory::CreateToken(SyntaxTokenType::DoubleColon, L"::"),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Right")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Right")));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateQualifiedNameExpression(
                     nullptr,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::DoubleColon, L":"),
+                    SyntaxFactory::CreateKeywordToken(
+                        SyntaxTokenType::DoubleColon,
+                        {
+                            SyntaxFactory::CreateTrivia(L" ", TextSpan()),
+                        },
+                        {}),
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Right"))),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Right"))),
                 uut,
                 L"Verify do not match.");
         }
@@ -233,16 +238,16 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateQualifiedNameExpression(
                 nullptr,
-                SyntaxFactory::CreateToken(SyntaxTokenType::DoubleColon, L"::"),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Right")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Right")));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateQualifiedNameExpression(
                     nullptr,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::DoubleColon, L"::"),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Right2"))),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Right2"))),
                 uut,
                 L"Verify do not match.");
         }
@@ -252,20 +257,20 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateQualifiedNameExpression(
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Left")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::DoubleColon, L"::"),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Left")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Right")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Right")));
 
             Assert::AreEqual(
                 std::vector<SyntaxNodeChild>({
                     SyntaxNodeChild(
                         SyntaxFactory::CreateSimpleNameExpression(
-                            SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Left"))),
-                    SyntaxNodeChild(SyntaxFactory::CreateToken(SyntaxTokenType::DoubleColon, L"::")),
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Left"))),
+                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon)),
                     SyntaxNodeChild(
                         SyntaxFactory::CreateSimpleNameExpression(
-                            SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Right"))),
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Right"))),
                 }),
                 uut->GetChildren(),
                 L"Verify children match.");
@@ -276,18 +281,18 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateQualifiedNameExpression(
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Left")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::DoubleColon, L"::"),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Left")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Right")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Right")));
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateQualifiedNameExpression(
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Left")),
-                    SyntaxFactory::CreateToken(SyntaxTokenType::DoubleColon, L"::"),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Left")),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Right"))),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Right"))),
                 uut,
                 L"Verify matches.");
         }
@@ -297,18 +302,18 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateQualifiedNameExpression(
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Left")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::DoubleColon, L"::"),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Left")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Right")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Right")));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateQualifiedNameExpression(
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Left1")),
-                    SyntaxFactory::CreateToken(SyntaxTokenType::DoubleColon, L"::"),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Left1")),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Right"))),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Right"))),
                 uut,
                 L"Verify do not match.");
         }
@@ -318,17 +323,17 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateQualifiedNameExpression(
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Left")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::DoubleColon, L"::"),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Left")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Right")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Right")));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateQualifiedNameExpression(
                     nullptr,
-                    SyntaxFactory::CreateToken(SyntaxTokenType::DoubleColon, L"::"),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Right"))),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Right"))),
                 uut,
                 L"Verify do not match.");
         }
@@ -338,18 +343,23 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateQualifiedNameExpression(
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Left")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::DoubleColon, L"::"),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Left")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Right")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Right")));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateQualifiedNameExpression(
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Left")),
-                    SyntaxFactory::CreateToken(SyntaxTokenType::DoubleColon, L":"),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Left")),
+                    SyntaxFactory::CreateKeywordToken(
+                        SyntaxTokenType::DoubleColon,
+                        {
+                            SyntaxFactory::CreateTrivia(L" ", TextSpan()),
+                        },
+                        {}),
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Right"))),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Right"))),
                 uut,
                 L"Verify do not match.");
         }
@@ -359,18 +369,18 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateQualifiedNameExpression(
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Left")),
-                SyntaxFactory::CreateToken(SyntaxTokenType::DoubleColon, L"::"),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Left")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Right")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Right")));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateQualifiedNameExpression(
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Left")),
-                    SyntaxFactory::CreateToken(SyntaxTokenType::DoubleColon, L"::"),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Left")),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Right2"))),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Right2"))),
                 uut,
                 L"Verify do not match.");
         }

@@ -14,7 +14,7 @@ namespace Soup::Syntax::UnitTests
             auto actual = ParseThisExpression(sourceCode);
 
             auto expected = SyntaxFactory::CreateThisExpression(
-                SyntaxFactory::CreateToken(SyntaxTokenType::This, L"this"));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::This));
 
             TestUtils::AreEqual(expected, actual, L"Verify node matches.");
         }

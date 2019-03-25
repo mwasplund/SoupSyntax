@@ -11,24 +11,24 @@ namespace Soup::Syntax::UnitTests
         void InitializeSimple()
         {
             auto uut = SyntaxFactory::CreateDefaultFunctionBody(
-                SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Default, L"default"),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Default),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             Assert::AreEqual(
                 SyntaxNodeType::DefaultFunctionBody,
                 uut->GetType(),
                 L"Verify has correct type.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
+                *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                 uut->GetEqualToken(),
                 L"Verify equal token matches.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateToken(SyntaxTokenType::Default, L"default"),
+                *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Default),
                 uut->GetDefaultToken(),
                 L"Verify default token matches.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"),
+                *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon),
                 uut->GetSemicolonToken(),
                 L"Verify semicolon token matches.");
         }
@@ -37,15 +37,15 @@ namespace Soup::Syntax::UnitTests
         void GetChildren()
         {
             auto uut = SyntaxFactory::CreateDefaultFunctionBody(
-                SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Default, L"default"),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Default),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             Assert::AreEqual(
                 std::vector<SyntaxNodeChild>({
-                    SyntaxNodeChild(SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"=")),
-                    SyntaxNodeChild(SyntaxFactory::CreateToken(SyntaxTokenType::Default, L"default")),
-                    SyntaxNodeChild(SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";")),
+                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal)),
+                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Default)),
+                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 }),
                 uut->GetChildren(),
                 L"Verify children match.");
@@ -55,15 +55,15 @@ namespace Soup::Syntax::UnitTests
         void OperatorEqual()
         {
             auto uut = SyntaxFactory::CreateDefaultFunctionBody(
-                SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Default, L"default"),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Default),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateDefaultFunctionBody(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Default, L"default"),
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";")),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Default),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 uut,
                 L"Verify matches.");
         }
@@ -72,22 +72,21 @@ namespace Soup::Syntax::UnitTests
         void OperatorNotEqualEqualToken()
         {
             auto uut = SyntaxFactory::CreateDefaultFunctionBody(
-                SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Default, L"default"),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Default),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateDefaultFunctionBody(
-                SyntaxFactory::CreateToken(
-                    SyntaxTokenType::Equal,
-                    L"=",
-                    {
-                        SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 1)),
-                    },
-                    {
-                    }),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Default, L"default"),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";")),
+                    SyntaxFactory::CreateKeywordToken(
+                        SyntaxTokenType::Equal,
+                        {
+                            SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 1)),
+                        },
+                        {
+                        }),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Default),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 uut,
                 L"Verify do not match.");
         }
@@ -96,22 +95,21 @@ namespace Soup::Syntax::UnitTests
         void OperatorNotEqualDefaultToken()
         {
             auto uut = SyntaxFactory::CreateDefaultFunctionBody(
-                SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Default, L"default"),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Default),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateDefaultFunctionBody(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
-                    SyntaxFactory::CreateToken(
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
+                    SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::Default,
-                        L"default",
                         {
                             SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 1)),
                         },
                         {
                         }),
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";")),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 uut,
                 L"Verify do not match.");
         }
@@ -120,17 +118,16 @@ namespace Soup::Syntax::UnitTests
         void OperatorNotEqualSemicolonToken()
         {
             auto uut = SyntaxFactory::CreateDefaultFunctionBody(
-                SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Default, L"default"),
-                SyntaxFactory::CreateToken(SyntaxTokenType::Semicolon, L";"));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Default),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateDefaultFunctionBody(
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Equal, L"="),
-                    SyntaxFactory::CreateToken(SyntaxTokenType::Default, L"default"),
-                    SyntaxFactory::CreateToken(
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Default),
+                    SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::Semicolon,
-                        L";",
                         {
                             SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 1)),
                         },
