@@ -14,13 +14,10 @@ namespace Soup::Syntax::UnitTests
 
             auto expected = TestUtils::CreateSingleDeclaration(
                 SyntaxFactory::CreateFunctionDefinition(
-                    std::make_shared<DeclarationSpecifierSequence>(
-                        std::vector<std::shared_ptr<const SyntaxNode>>
-                        {
-                            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
-                                PrimitiveDataType::Void,
-                                SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void")),
-                        }),
+                    SyntaxFactory::CreateDeclarationSpecifier(
+                        SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                            PrimitiveDataType::Void,
+                            SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void"))),
                     SyntaxFactory::CreateSimpleNameExpression(
                         SyntaxFactory::CreateToken(
                             SyntaxTokenType::Identifier,
@@ -73,13 +70,10 @@ namespace Soup::Syntax::UnitTests
 
             auto expected = TestUtils::CreateSingleDeclaration(
                 SyntaxFactory::CreateFunctionDefinition(
-                    std::make_shared<DeclarationSpecifierSequence>(
-                        std::vector<std::shared_ptr<const SyntaxNode>>
-                        {
-                            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
-                                PrimitiveDataType::Void,
-                                SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void")),
-                        }),
+                    SyntaxFactory::CreateDeclarationSpecifier(
+                        SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                            PrimitiveDataType::Void,
+                            SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void"))),
                     SyntaxFactory::CreateSimpleNameExpression(
                         SyntaxFactory::CreateToken(
                             SyntaxTokenType::Identifier,
@@ -124,13 +118,10 @@ namespace Soup::Syntax::UnitTests
 
             auto expected = TestUtils::CreateSingleDeclaration(
                 SyntaxFactory::CreateFunctionDefinition(
-                    std::make_shared<DeclarationSpecifierSequence>(
-                        std::vector<std::shared_ptr<const SyntaxNode>>
-                        {
-                            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
-                                PrimitiveDataType::Void,
-                                SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void")),
-                        }),
+                    SyntaxFactory::CreateDeclarationSpecifier(
+                        SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                            PrimitiveDataType::Void,
+                            SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void"))),
                     SyntaxFactory::CreateSimpleNameExpression(
                         SyntaxFactory::CreateToken(
                             SyntaxTokenType::Identifier,
@@ -175,13 +166,10 @@ namespace Soup::Syntax::UnitTests
 
             auto expected = TestUtils::CreateSingleDeclaration(
                 SyntaxFactory::CreateFunctionDefinition(
-                    std::make_shared<DeclarationSpecifierSequence>(
-                        std::vector<std::shared_ptr<const SyntaxNode>>
-                        {
-                            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
-                                PrimitiveDataType::Void,
-                                SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void")),
-                        }),
+                    SyntaxFactory::CreateDeclarationSpecifier(
+                        SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                            PrimitiveDataType::Void,
+                            SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void"))),
                     SyntaxFactory::CreateSimpleNameExpression(
                         SyntaxFactory::CreateToken(
                             SyntaxTokenType::Identifier,

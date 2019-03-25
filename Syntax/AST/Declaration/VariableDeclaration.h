@@ -3,16 +3,16 @@
 namespace Soup::Syntax
 {
     /// <summary>
-    /// The simple definition
+    /// The varaible declaration
     /// </summary>
-    export class SimpleDefinition final : public Declaration
+    export class VariableDeclaration final : public Declaration
     {
     public:
-        SimpleDefinition(
-            std::shared_ptr<const DeclarationSpecifierSequence>&& declarationSpecifierSequence,
+        VariableDeclaration(
+            std::shared_ptr<const DeclarationSpecifier>&& DeclarationSpecifier,
             std::shared_ptr<const InitializerDeclaratorList>&& initializerDeclaratorList) :
             Declaration(SyntaxNodeType::SimpleDefinition),
-            m_declarationSpecifierSequence(std::move(declarationSpecifierSequence)),
+            m_DeclarationSpecifier(std::move(DeclarationSpecifier)),
             m_initializerDeclaratorList(std::move(initializerDeclaratorList))
         {
         }
@@ -20,9 +20,9 @@ namespace Soup::Syntax
         /// <summary>
         /// Gets the specifiers
         /// </summary>
-        const DeclarationSpecifierSequence& GetDeclarationSpecifierSequence() const
+        const DeclarationSpecifier& GetDeclarationSpecifier() const
         {
-            return *m_declarationSpecifierSequence;
+            return *m_DeclarationSpecifier;
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace Soup::Syntax
         {
             return std::vector<SyntaxNodeChild>(
                 {
-                    SyntaxNodeChild(m_declarationSpecifierSequence),
+                    SyntaxNodeChild(m_DeclarationSpecifier),
                     SyntaxNodeChild(m_initializerDeclaratorList),
                 });
         }
@@ -58,7 +58,7 @@ namespace Soup::Syntax
         /// </summary>
         bool operator ==(const SimpleDefinition& rhs) const
         {
-            return *m_declarationSpecifierSequence == *rhs.m_declarationSpecifierSequence &&
+            return *m_DeclarationSpecifier == *rhs.m_DeclarationSpecifier &&
                 *m_initializerDeclaratorList == *rhs.m_initializerDeclaratorList;
         }
 
@@ -77,7 +77,7 @@ namespace Soup::Syntax
         }
 
     private:
-        std::shared_ptr<const DeclarationSpecifierSequence> m_declarationSpecifierSequence;
+        std::shared_ptr<const DeclarationSpecifier> m_DeclarationSpecifier;
         std::shared_ptr<const InitializerDeclaratorList> m_initializerDeclaratorList;
     };
 }

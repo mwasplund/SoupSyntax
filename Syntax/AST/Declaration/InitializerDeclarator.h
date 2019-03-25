@@ -7,22 +7,33 @@ namespace Soup::Syntax
     /// </summary>
     export class InitializerDeclarator final : public SyntaxNode
     {
-    public:
+        friend class SyntaxFactory;
+
+    private:
         InitializerDeclarator(
-            std::shared_ptr<const SyntaxNode>&& declarator,
-            std::shared_ptr<const SyntaxNode>&& initializer) :
+            std::shared_ptr<const SyntaxNode> declarator,
+            std::shared_ptr<const SyntaxNode> initializer) :
             SyntaxNode(SyntaxNodeType::InitializerDeclarator),
             m_declarator(std::move(declarator)),
             m_initializer(std::move(initializer))
         {
         }
 
+    public:
         /// <summary>
         /// Gets the declarator
         /// </summary>
         const SyntaxNode& GetDeclarator() const
         {
             return *m_declarator;
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether the optional initialize exists
+        /// </summary>
+        bool HasInitializer() const
+        {
+            return m_initializer != nullptr;
         }
 
         /// <summary>
@@ -42,7 +53,7 @@ namespace Soup::Syntax
 
             children.push_back(SyntaxNodeChild(m_declarator));
 
-            if (m_initializer != nullptr)
+            if (HasInitializer())
             {
                 children.push_back(SyntaxNodeChild(m_initializer));
             }
@@ -67,9 +78,9 @@ namespace Soup::Syntax
             {
                 return false;
             }
-            else if (m_initializer == nullptr || rhs.m_initializer == nullptr)
+            else if (!HasInitializer() || !rhs.HasInitializer())
             {
-                return m_initializer == nullptr && rhs.m_initializer == nullptr;
+                return !HasInitializer() && !rhs.HasInitializer();
             }
             else
             {

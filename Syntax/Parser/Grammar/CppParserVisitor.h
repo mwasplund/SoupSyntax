@@ -19,15 +19,11 @@ public:
   /**
    * Visit parse trees produced by CppParser.
    */
-    virtual antlrcpp::Any visitTypedefName(CppParser::TypedefNameContext *context) = 0;
-
     virtual antlrcpp::Any visitNamespaceName(CppParser::NamespaceNameContext *context) = 0;
 
     virtual antlrcpp::Any visitNamespaceAlias(CppParser::NamespaceAliasContext *context) = 0;
 
     virtual antlrcpp::Any visitClassName(CppParser::ClassNameContext *context) = 0;
-
-    virtual antlrcpp::Any visitEnumName(CppParser::EnumNameContext *context) = 0;
 
     virtual antlrcpp::Any visitTemplateName(CppParser::TemplateNameContext *context) = 0;
 

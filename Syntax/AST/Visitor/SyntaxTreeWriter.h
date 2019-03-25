@@ -87,8 +87,8 @@ namespace Soup::Syntax
                     return L"CompoundStatement";
                 case SyntaxNodeType::DeclarationSequence:
                     return L"DeclarationSequence";
-                case SyntaxNodeType::DeclarationSpecifierSequence:
-                    return L"DeclarationSpecifierSequence";
+                case SyntaxNodeType::DeclarationSpecifier:
+                    return L"DeclarationSpecifier";
                 case SyntaxNodeType::DefaultFunctionBody:
                     return L"DefaultFunctionBody";
                 case SyntaxNodeType::DeleteFunctionBody:
@@ -119,8 +119,8 @@ namespace Soup::Syntax
                     return L"RegularFunctionBody";
                 case SyntaxNodeType::ReturnStatement:
                     return L"ReturnStatement";
-                case SyntaxNodeType::SimpleDefinition:
-                    return L"SimpleDefinition";
+                case SyntaxNodeType::SimpleDeclarationStatement:
+                    return L"SimpleDeclarationStatement";
                 case SyntaxNodeType::SimpleNameExpression:
                     return L"SimpleNameExpression";
                 case SyntaxNodeType::SubscriptExpression:
@@ -133,6 +133,8 @@ namespace Soup::Syntax
                     return L"TryFunctionBody";
                 case SyntaxNodeType::UnaryExpression:
                     return L"UnaryExpression";
+                case SyntaxNodeType::ValueEqualsInitializer:
+                    return L"ValueEqualsInitializer";
                 default:
                     throw std::logic_error(std::string("Unknown node: ") + std::to_string((int)type));
             }

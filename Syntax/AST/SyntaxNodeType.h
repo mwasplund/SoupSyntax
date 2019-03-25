@@ -9,9 +9,10 @@ namespace Soup::Syntax
     export enum class SyntaxNodeType
     {
         BinaryExpression,
+        CatchClause,
         CompoundStatement,
         DeclarationSequence,
-        DeclarationSpecifierSequence,
+        DeclarationSpecifier,
         DefaultFunctionBody,
         DeleteFunctionBody,
         ElseClause,
@@ -28,12 +29,14 @@ namespace Soup::Syntax
         QualifiedNameExpression,
         RegularFunctionBody,
         ReturnStatement,
-        SimpleDefinition,
+        SimpleDeclarationStatement,
         SimpleNameExpression,
         SubscriptExpression,
         ThisExpression,
         TranslationUnit,
         TryFunctionBody,
+        TryStatement,
         UnaryExpression,
+        ValueEqualsInitializer,
     };
 }

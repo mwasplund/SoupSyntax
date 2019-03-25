@@ -55,6 +55,43 @@ namespace Soup::Syntax
         }
 
         /// <summary>
+        /// Create a DeclarationSpecifier
+        /// Overload that excludes optional leading and trailing modifiers
+        /// </summary>
+        static std::shared_ptr<const DeclarationSpecifier> CreateDeclarationSpecifier(
+            std::shared_ptr<const SyntaxNode> typeSpecifier)
+        {
+            // Note: both the leading and trailing modifiers are optional
+            if (typeSpecifier == nullptr)
+                throw std::runtime_error("ArgumentNull - typeSpecifier");
+
+            return std::shared_ptr<const DeclarationSpecifier>(
+                new DeclarationSpecifier(
+                    {},
+                    std::move(typeSpecifier),
+                    {}));
+        }
+
+        /// <summary>
+        /// Create a DeclarationSpecifier
+        /// </summary>
+        static std::shared_ptr<const DeclarationSpecifier> CreateDeclarationSpecifier(
+            std::vector<std::shared_ptr<const SyntaxToken>> leadingModifiers,
+            std::shared_ptr<const SyntaxNode> typeSpecifier,
+            std::vector<std::shared_ptr<const SyntaxToken>> trailingModifiers)
+        {
+            // Note: both the leading and trailing modifiers are optional
+            if (typeSpecifier == nullptr)
+                throw std::runtime_error("ArgumentNull - typeSpecifier");
+
+            return std::shared_ptr<const DeclarationSpecifier>(
+                new DeclarationSpecifier(
+                    std::move(leadingModifiers),
+                    std::move(typeSpecifier),
+                    std::move(trailingModifiers)));
+        }
+
+        /// <summary>
         /// Create a DefaultFunctionBody
         /// </summary>
         static std::shared_ptr<const DefaultFunctionBody> CreateDefaultFunctionBody(
@@ -134,7 +171,7 @@ namespace Soup::Syntax
         /// Create a FunctionDeclaration
         /// </summary>
         static std::shared_ptr<const FunctionDeclaration> CreateFunctionDeclaration(
-            std::shared_ptr<const DeclarationSpecifierSequence> returnType,
+            std::shared_ptr<const DeclarationSpecifier> returnType,
             std::shared_ptr<const NameExpression> identifier,
             std::shared_ptr<const ParameterList> parameterList,
             std::shared_ptr<const SyntaxNode> body)
@@ -160,7 +197,7 @@ namespace Soup::Syntax
         /// Create a FunctionDefinition
         /// </summary>
         static std::shared_ptr<const FunctionDefinition> CreateFunctionDefinition(
-            std::shared_ptr<const DeclarationSpecifierSequence> returnType,
+            std::shared_ptr<const DeclarationSpecifier> returnType,
             std::shared_ptr<const NameExpression> identifier,
             std::shared_ptr<const ParameterList> parameterList,
             std::shared_ptr<const SyntaxNode> body)
@@ -216,6 +253,39 @@ namespace Soup::Syntax
         }
 
         /// <summary>
+        /// Create a InitializerDeclarator
+        /// </summary>
+        static std::shared_ptr<const InitializerDeclarator> CreateInitializerDeclarator(
+            std::shared_ptr<const SyntaxNode> declarator,
+            std::shared_ptr<const SyntaxNode> initializer)
+        {
+            // Note: the initializer is optional
+            if (declarator == nullptr)
+                throw std::runtime_error("ArgumentNull - declarator");
+
+            return std::shared_ptr<const InitializerDeclarator>(
+                new InitializerDeclarator(
+                    std::move(declarator),
+                    std::move(initializer)));
+        }
+
+        /// <summary>
+        /// Create a InitializerDeclaratorList
+        /// </summary>
+        static std::shared_ptr<const InitializerDeclaratorList> CreateInitializerDeclaratorList(
+            std::shared_ptr<const SyntaxList<InitializerDeclarator>> items)
+        {
+            if (items == nullptr)
+                throw std::runtime_error("ArgumentNull - items");
+            if (items->GetItems().empty())
+                throw std::runtime_error("InitializerDeclaratorList cannot be empty.");
+
+            return std::shared_ptr<const InitializerDeclaratorList>(
+                new InitializerDeclaratorList(
+                    std::move(items)));
+        }
+
+        /// <summary>
         /// Create a LiteralExpression
         /// </summary>
         static std::shared_ptr<const LiteralExpression> CreateLiteralExpression(
@@ -235,17 +305,17 @@ namespace Soup::Syntax
         /// Create a Parameter
         /// </summary>
         static std::shared_ptr<const Parameter> CreateParameter(
-            std::shared_ptr<const SyntaxNode> declarationSpecifierSequence,
+            std::shared_ptr<const SyntaxNode> declarationSpecifier,
             std::shared_ptr<const SyntaxNode> declarator)
         {
-            if (declarationSpecifierSequence == nullptr)
-                throw std::runtime_error("ArgumentNull - declarationSpecifierSequence");
+            if (declarationSpecifier == nullptr)
+                throw std::runtime_error("ArgumentNull - declarationSpecifier");
             if (declarator == nullptr)
                 throw std::runtime_error("ArgumentNull - declarator");
 
             return std::shared_ptr<const Parameter>(
                 new Parameter(
-                    std::move(declarationSpecifierSequence),
+                    std::move(declarationSpecifier),
                     std::move(declarator)));
         }
 
@@ -326,6 +396,28 @@ namespace Soup::Syntax
                 new ReturnStatement(
                     std::move(returnToken),
                     std::move(expression),
+                    std::move(semicolonToken)));
+        }
+
+        /// <summary>
+        /// Create a SimpleDeclarationStatement
+        /// </summary>
+        static std::shared_ptr<const SimpleDeclarationStatement> CreateSimpleDeclarationStatement(
+            std::shared_ptr<const DeclarationSpecifier> declarationSpecifier,
+            std::shared_ptr<const InitializerDeclaratorList> initializerDeclaratorList,
+            std::shared_ptr<const SyntaxToken> semicolonToken)
+        {
+            if (declarationSpecifier == nullptr)
+                throw std::runtime_error("ArgumentNull - declarationSpecifier");
+            if (initializerDeclaratorList == nullptr)
+                throw std::runtime_error("ArgumentNull - initializerDeclaratorList");
+            if (semicolonToken == nullptr)
+                throw std::runtime_error("ArgumentNull - semicolonToken");
+
+            return std::shared_ptr<const SimpleDeclarationStatement>(
+                new SimpleDeclarationStatement(
+                    std::move(declarationSpecifier),
+                    std::move(initializerDeclaratorList),
                     std::move(semicolonToken)));
         }
 
@@ -416,6 +508,28 @@ namespace Soup::Syntax
         }
 
         /// <summary>
+        /// Create a TryStatement
+        /// </summary>
+        static std::shared_ptr<const TryStatement> CreateTryStatement(
+            std::shared_ptr<const SyntaxToken> tryToken,
+            std::shared_ptr<const CompoundStatement> compoundStatement,
+            std::vector<std::shared_ptr<const CatchClause>> catchClauses)
+        {
+            if (tryToken == nullptr)
+                throw std::runtime_error("ArgumentNull - tryToken");
+            if (compoundStatement == nullptr)
+                throw std::runtime_error("ArgumentNull - compoundStatement");
+            if (catchClauses.empty())
+                throw std::runtime_error("CatchClauses must not be empty.");
+
+            return std::shared_ptr<const TryStatement>(
+                new TryStatement(
+                    std::move(tryToken),
+                    std::move(compoundStatement),
+                    std::move(catchClauses)));
+        }
+
+        /// <summary>
         /// Create a SyntaxTrivia
         /// </summary>
         static SyntaxTrivia CreateTrivia(
@@ -445,6 +559,24 @@ namespace Soup::Syntax
                     unaryOperator,
                     std::move(operatorToken),
                     std::move(operand)));
+        }
+
+        /// <summary>
+        /// Create a ValueEqualsInitializer
+        /// </summary>
+        static std::shared_ptr<const ValueEqualsInitializer> CreateValueEqualsInitializer(
+            std::shared_ptr<const SyntaxToken> equalToken,
+            std::shared_ptr<const Expression> expression)
+        {
+            if (equalToken == nullptr)
+                throw std::runtime_error("ArgumentNull - equalToken");
+            if (expression == nullptr)
+                throw std::runtime_error("ArgumentNull - expression");
+
+            return std::shared_ptr<const ValueEqualsInitializer>(
+                new ValueEqualsInitializer(
+                    std::move(equalToken),
+                    std::move(expression)));
         }
     };
 }

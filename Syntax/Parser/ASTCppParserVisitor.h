@@ -11,11 +11,9 @@ namespace Soup::Syntax
     public:
         ASTCppParserVisitor(antlr4::BufferedTokenStream* tokenStream);
 
-        virtual antlrcpp::Any visitTypedefName(CppParser::TypedefNameContext *context) override final;
         virtual antlrcpp::Any visitNamespaceName(CppParser::NamespaceNameContext *context) override final;
         virtual antlrcpp::Any visitNamespaceAlias(CppParser::NamespaceAliasContext *context) override final;
         virtual antlrcpp::Any visitClassName(CppParser::ClassNameContext *context) override final;
-        virtual antlrcpp::Any visitEnumName(CppParser::EnumNameContext *context) override final;
         virtual antlrcpp::Any visitTemplateName(CppParser::TemplateNameContext *context) override final;
         virtual antlrcpp::Any visitTranslationUnit(CppParser::TranslationUnitContext *context) override final;
         virtual antlrcpp::Any visitPrimaryExpression(CppParser::PrimaryExpressionContext *context) override final;
@@ -242,6 +240,8 @@ namespace Soup::Syntax
         std::shared_ptr<const QualifiedNameExpression> visitNextRightQualifiedNestedNames(
             std::shared_ptr<const QualifiedNameExpression> leftQualifiedName,
             CppParser::NestedNameSpecifierSequenceContext* context);
+        std::shared_ptr<const DeclarationSpecifier> CreateDeclarationSpecifier(
+            std::vector<antlrcpp::Any>& declarationSpecifierSequence);
 
     private:
         antlr4::BufferedTokenStream* m_tokenStream;

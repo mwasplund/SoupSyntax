@@ -1,13 +1,13 @@
 #pragma once
-#include "ParameterTests.h"
+#include "SimpleDeclarationStatementTests.h"
 #include "../RunTest.h"
 
-TestState RunParameterTests()
+TestState RunSimpleDeclarationStatementTests()
 {
-    auto testClass = std::make_unique<Soup::Syntax::UnitTests::ParameterTests>();
+    auto testClass = std::make_unique<Soup::Syntax::UnitTests::SimpleDeclarationStatementTests>();
     TestState state = { 0, 0 };
 
-    std::wcout << L"Running ParameterTests:" << std::endl;
+    std::wcout << L"Running SimpleDeclarationStatementTests:" << std::endl;
 
     std::wcout << L"InitializeSimple" << std::endl;
     state += RunTest([&testClass]() { testClass->InitializeSimple(); });
@@ -21,8 +21,11 @@ TestState RunParameterTests()
     std::wcout << L"OperatorNotEqualDeclarationSpecifier" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorNotEqualDeclarationSpecifier(); });
 
-    std::wcout << L"OperatorNotEqualDeclarator" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualDeclarator(); });
+    std::wcout << L"OperatorNotEqualInitializerDeclaratorList" << std::endl;
+    state += RunTest([&testClass]() { testClass->OperatorNotEqualInitializerDeclaratorList(); });
+
+    std::wcout << L"OperatorNotEqualSemicolonToken" << std::endl;
+    state += RunTest([&testClass]() { testClass->OperatorNotEqualSemicolonToken(); });
 
     return state;
 }

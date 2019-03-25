@@ -25,7 +25,7 @@ namespace Soup::Syntax
 
     // Declarations
     class DeclarationSequence;
-    class DeclarationSpecifierSequence;
+    class DeclarationSpecifier;
     class DefaultFunctionBody;
     class DeleteFunctionBody;
     class FunctionDeclaration;
@@ -36,15 +36,18 @@ namespace Soup::Syntax
     class ParameterList;
     class PrimitiveDataTypeDeclaration;
     class RegularFunctionBody;
-    class SimpleDefinition;
     class TryFunctionBody;
+    class ValueEqualsInitializer;
 
     // Statements
+    class CatchClause;
     class CompoundStatement;
     class ElseClause;
     class EmptyStatement;
     class IfStatement;
     class ReturnStatement;
+    class SimpleDeclarationStatement;
+    class TryStatement;
 }
 
 #include "AST\TextSpan.h"
@@ -69,13 +72,15 @@ namespace Soup::Syntax
 #include "AST\Expression\UnaryExpression.h"
 #include "AST\Statement\Statement.h"
 #include "AST\Statement\CompoundStatement.h"
+#include "AST\Statement\CatchClause.h"
 #include "AST\Statement\ElseClause.h"
 #include "AST\Statement\EmptyStatement.h"
 #include "AST\Statement\IfStatement.h"
 #include "AST\Statement\ReturnStatement.h"
+#include "AST\Statement\TryStatement.h"
+#include "AST\Declaration\DeclarationSpecifier.h"
 #include "AST\Declaration\Declaration.h"
 #include "AST\Declaration\DeclarationSequence.h"
-#include "AST\Declaration\DeclarationSpecifierSequence.h"
 #include "AST\Declaration\DefaultFunctionBody.h"
 #include "AST\Declaration\DeleteFunctionBody.h"
 #include "AST\Declaration\Parameter.h"
@@ -87,9 +92,10 @@ namespace Soup::Syntax
 #include "AST\Declaration\InitializerDeclarator.h"
 #include "AST\Declaration\InitializerDeclaratorList.h"
 #include "AST\Declaration\RegularFunctionBody.h"
-#include "AST\Declaration\SimpleDefinition.h"
 #include "AST\Declaration\TranslationUnit.h"
 #include "AST\Declaration\TryFunctionBody.h"
+#include "AST\Declaration\ValueEqualsInitializer.h"
+#include "AST\Statement\SimpleDeclarationStatement.h"
 #include "AST\SyntaxTree.h"
 #include "AST\Visitor\DefaultSyntaxVisitor.h"
 #include "AST\Visitor\SyntaxWalker.h"

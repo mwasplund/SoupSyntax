@@ -14,6 +14,11 @@ namespace Soup::Syntax
             DefaultVisit(node);
         }
 
+        virtual void Visit(const CatchClause& node) override
+        {
+            DefaultVisit(node);
+        }
+
         virtual void Visit(const CompoundStatement& node) override
         {
             DefaultVisit(node);
@@ -24,7 +29,7 @@ namespace Soup::Syntax
             DefaultVisit(node);
         }
 
-        virtual void Visit(const DeclarationSpecifierSequence& node) override
+        virtual void Visit(const DeclarationSpecifier& node) override
         {
             DefaultVisit(node);
         }
@@ -109,7 +114,7 @@ namespace Soup::Syntax
             DefaultVisit(node);
         }
 
-        virtual void Visit(const SimpleDefinition& node) override
+        virtual void Visit(const SimpleDeclarationStatement& node) override
         {
             DefaultVisit(node);
         }
@@ -139,7 +144,17 @@ namespace Soup::Syntax
             DefaultVisit(node);
         }
 
+        virtual void Visit(const TryStatement& node) override
+        {
+            DefaultVisit(node);
+        }
+
         virtual void Visit(const UnaryExpression& node) override
+        {
+            DefaultVisit(node);
+        }
+
+        virtual void Visit(const ValueEqualsInitializer& node) override
         {
             DefaultVisit(node);
         }

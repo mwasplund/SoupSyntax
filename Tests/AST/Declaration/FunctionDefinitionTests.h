@@ -11,13 +11,10 @@ namespace Soup::Syntax::UnitTests
         {
             // void Function(int parameter) = delete;
             auto uut = SyntaxFactory::CreateFunctionDefinition(
-                std::make_shared<DeclarationSpecifierSequence>(
-                    std::vector<std::shared_ptr<const SyntaxNode>>
-                    {
-                        SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
-                            PrimitiveDataType::Void,
-                            SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void")),
-                    }),
+                SyntaxFactory::CreateDeclarationSpecifier(
+                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                        PrimitiveDataType::Void,
+                        SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void"))),
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
                 SyntaxFactory::CreateParameterList(
@@ -45,13 +42,10 @@ namespace Soup::Syntax::UnitTests
                 uut->GetType(),
                 L"Verify has correct type.");
             TestUtils::AreEqual(
-                *std::make_shared<DeclarationSpecifierSequence>(
-                    std::vector<std::shared_ptr<const SyntaxNode>>
-                    {
-                        SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
-                            PrimitiveDataType::Void,
-                            SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void")),
-                    }),
+                *SyntaxFactory::CreateDeclarationSpecifier(
+                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                        PrimitiveDataType::Void,
+                        SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void"))),
                 uut->GetReturnType(),
                 L"Verify return type matches.");
             TestUtils::AreEqual(
@@ -91,13 +85,10 @@ namespace Soup::Syntax::UnitTests
         {
             // void Function(int parameter) = delete;
             auto uut = SyntaxFactory::CreateFunctionDefinition(
-                std::make_shared<DeclarationSpecifierSequence>(
-                    std::vector<std::shared_ptr<const SyntaxNode>>
-                    {
-                        SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
-                            PrimitiveDataType::Void,
-                            SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void")),
-                    }),
+                SyntaxFactory::CreateDeclarationSpecifier(
+                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                        PrimitiveDataType::Void,
+                        SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void"))),
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
                 SyntaxFactory::CreateParameterList(
@@ -123,13 +114,10 @@ namespace Soup::Syntax::UnitTests
             Assert::AreEqual(
                 std::vector<SyntaxNodeChild>({
                     SyntaxNodeChild(
-                        std::make_shared<DeclarationSpecifierSequence>(
-                            std::vector<std::shared_ptr<const SyntaxNode>>
-                            {
-                                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
-                                    PrimitiveDataType::Void,
-                                    SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void")),
-                            })),
+                        SyntaxFactory::CreateDeclarationSpecifier(
+                            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                PrimitiveDataType::Void,
+                                SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void")))),
                     SyntaxNodeChild(
                         SyntaxFactory::CreateSimpleNameExpression(
                             SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function"))),
@@ -164,13 +152,10 @@ namespace Soup::Syntax::UnitTests
         {
             // void Function(int parameter) = delete;
             auto uut = SyntaxFactory::CreateFunctionDefinition(
-                std::make_shared<DeclarationSpecifierSequence>(
-                    std::vector<std::shared_ptr<const SyntaxNode>>
-                    {
-                        SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
-                            PrimitiveDataType::Void,
-                            SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void")),
-                    }),
+                SyntaxFactory::CreateDeclarationSpecifier(
+                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                        PrimitiveDataType::Void,
+                        SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void"))),
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
                 SyntaxFactory::CreateParameterList(
@@ -195,13 +180,10 @@ namespace Soup::Syntax::UnitTests
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateFunctionDefinition(
-                    std::make_shared<DeclarationSpecifierSequence>(
-                        std::vector<std::shared_ptr<const SyntaxNode>>
-                        {
-                            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
-                                PrimitiveDataType::Void,
-                                SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void")),
-                        }),
+                    SyntaxFactory::CreateDeclarationSpecifier(
+                        SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                            PrimitiveDataType::Void,
+                            SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void"))),
                     SyntaxFactory::CreateSimpleNameExpression(
                         SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
                     SyntaxFactory::CreateParameterList(
@@ -232,13 +214,10 @@ namespace Soup::Syntax::UnitTests
         {
             // void Function(int parameter) = delete;
             auto uut = SyntaxFactory::CreateFunctionDefinition(
-                std::make_shared<DeclarationSpecifierSequence>(
-                    std::vector<std::shared_ptr<const SyntaxNode>>
-                    {
-                        SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
-                            PrimitiveDataType::Void,
-                            SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void")),
-                    }),
+                SyntaxFactory::CreateDeclarationSpecifier(
+                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                        PrimitiveDataType::Void,
+                        SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void"))),
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
                 SyntaxFactory::CreateParameterList(
@@ -263,13 +242,10 @@ namespace Soup::Syntax::UnitTests
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateFunctionDefinition(
-                    std::make_shared<DeclarationSpecifierSequence>(
-                        std::vector<std::shared_ptr<const SyntaxNode>>
-                        {
-                            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
-                                PrimitiveDataType::Int,
-                                SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
-                        }),
+                    SyntaxFactory::CreateDeclarationSpecifier(
+                        SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                            PrimitiveDataType::Int,
+                            SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int"))),
                     SyntaxFactory::CreateSimpleNameExpression(
                         SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
                     SyntaxFactory::CreateParameterList(
@@ -300,13 +276,10 @@ namespace Soup::Syntax::UnitTests
         {
             // void Function(int parameter) = delete;
             auto uut = SyntaxFactory::CreateFunctionDefinition(
-                std::make_shared<DeclarationSpecifierSequence>(
-                    std::vector<std::shared_ptr<const SyntaxNode>>
-                    {
-                        SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
-                            PrimitiveDataType::Void,
-                            SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void")),
-                    }),
+                SyntaxFactory::CreateDeclarationSpecifier(
+                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                        PrimitiveDataType::Void,
+                        SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void"))),
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
                     SyntaxFactory::CreateParameterList(
@@ -331,13 +304,10 @@ namespace Soup::Syntax::UnitTests
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateFunctionDefinition(
-                    std::make_shared<DeclarationSpecifierSequence>(
-                        std::vector<std::shared_ptr<const SyntaxNode>>
-                        {
-                            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
-                                PrimitiveDataType::Void,
-                                SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void")),
-                        }),
+                    SyntaxFactory::CreateDeclarationSpecifier(
+                        SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                            PrimitiveDataType::Void,
+                            SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void"))),
                     SyntaxFactory::CreateSimpleNameExpression(
                         SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"OtherFunction")),
                     SyntaxFactory::CreateParameterList(
@@ -368,13 +338,10 @@ namespace Soup::Syntax::UnitTests
         {
             // void Function(int parameter) = delete;
             auto uut = SyntaxFactory::CreateFunctionDefinition(
-                std::make_shared<DeclarationSpecifierSequence>(
-                    std::vector<std::shared_ptr<const SyntaxNode>>
-                    {
-                        SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
-                            PrimitiveDataType::Void,
-                            SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void")),
-                    }),
+                SyntaxFactory::CreateDeclarationSpecifier(
+                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                        PrimitiveDataType::Void,
+                        SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void"))),
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
                 SyntaxFactory::CreateParameterList(
@@ -399,13 +366,10 @@ namespace Soup::Syntax::UnitTests
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateFunctionDefinition(
-                    std::make_shared<DeclarationSpecifierSequence>(
-                        std::vector<std::shared_ptr<const SyntaxNode>>
-                        {
-                            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
-                                PrimitiveDataType::Void,
-                                SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void")),
-                        }),
+                    SyntaxFactory::CreateDeclarationSpecifier(
+                        SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                            PrimitiveDataType::Void,
+                            SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void"))),
                     SyntaxFactory::CreateSimpleNameExpression(
                         SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
                     SyntaxFactory::CreateParameterList(
@@ -427,13 +391,10 @@ namespace Soup::Syntax::UnitTests
         {
             // void Function(int parameter) = delete;
             auto uut = SyntaxFactory::CreateFunctionDefinition(
-                std::make_shared<DeclarationSpecifierSequence>(
-                    std::vector<std::shared_ptr<const SyntaxNode>>
-                    {
-                        SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
-                            PrimitiveDataType::Void,
-                            SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void")),
-                    }),
+                SyntaxFactory::CreateDeclarationSpecifier(
+                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                        PrimitiveDataType::Void,
+                        SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void"))),
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
                 SyntaxFactory::CreateParameterList(
@@ -458,13 +419,10 @@ namespace Soup::Syntax::UnitTests
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateFunctionDefinition(
-                    std::make_shared<DeclarationSpecifierSequence>(
-                        std::vector<std::shared_ptr<const SyntaxNode>>
-                        {
-                            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
-                                PrimitiveDataType::Void,
-                                SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void")),
-                        }),
+                    SyntaxFactory::CreateDeclarationSpecifier(
+                        SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                            PrimitiveDataType::Void,
+                            SyntaxFactory::CreateToken(SyntaxTokenType::Void, L"void"))),
                     SyntaxFactory::CreateSimpleNameExpression(
                         SyntaxFactory::CreateToken(SyntaxTokenType::Identifier, L"Function")),
                     SyntaxFactory::CreateParameterList(

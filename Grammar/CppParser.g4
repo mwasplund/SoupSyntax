@@ -12,9 +12,6 @@ import CppParserLiterals;
 /****************************************/
 /* Keywords
 /****************************************/
-typedefName:
-	Identifier;
-
 namespaceName:
 	Identifier |
 	namespaceAlias;
@@ -25,9 +22,6 @@ namespaceAlias:
 className:
 	Identifier |
 	simpleTemplateIdentifier;
-
-enumName:
-	Identifier;
 
 templateName:
 	Identifier;
@@ -482,28 +476,28 @@ functionSpecifier:
 	Explicit;
 
 typeSpecifier:
-	simpleTypeSpecifier |
-	elaboratedTypeSpecifier |
-	typenameSpecifier |
-	constVolatileQualifier;
+	simpleTypeSpecifier;// |
+	// TODO elaboratedTypeSpecifier |
+	// TODO typenameSpecifier |
+	// TODO constVolatileQualifier;
 
 typeSpecifierSequence:
 	typeSpecifier attributeSpecifierSequence? |
 	typeSpecifier typeSpecifierSequence;
 
 definingTypeSpecifier:
-	typeSpecifier |
-	classSpecifier |
-	enumSpecifier;
+	typeSpecifier; // |
+	// TODO classSpecifier |
+	// TODO enumSpecifier;
 
 definingTypeSpecifierSequence:
 	definingTypeSpecifier attributeSpecifierSequence? |
 	definingTypeSpecifier definingTypeSpecifierSequence;
 
 simpleTypeSpecifier:
-	nestedNameSpecifier? typeName |
-	nestedNameSpecifier Template simpleTemplateIdentifier |
-	nestedNameSpecifier? templateName |
+	// TODO nestedNameSpecifier? typeName |
+	// TODO nestedNameSpecifier Template simpleTemplateIdentifier |
+	// TODO nestedNameSpecifier? templateName |
 	Char |
 	Char16 |
 	Char32 |
@@ -521,9 +515,7 @@ simpleTypeSpecifier:
 	declarationTypeSpecifier;
 
 typeName:
-	className |
-	enumName |
-	typedefName |
+	Identifier |
 	simpleTemplateIdentifier;
 
 declarationTypeSpecifier:

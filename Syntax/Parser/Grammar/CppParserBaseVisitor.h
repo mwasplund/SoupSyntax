@@ -15,10 +15,6 @@
 export class  CppParserBaseVisitor : public CppParserVisitor {
 public:
 
-  virtual antlrcpp::Any visitTypedefName(CppParser::TypedefNameContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
   virtual antlrcpp::Any visitNamespaceName(CppParser::NamespaceNameContext *ctx) override {
     return visitChildren(ctx);
   }
@@ -28,10 +24,6 @@ public:
   }
 
   virtual antlrcpp::Any visitClassName(CppParser::ClassNameContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitEnumName(CppParser::EnumNameContext *ctx) override {
     return visitChildren(ctx);
   }
 

@@ -7,23 +7,26 @@ namespace Soup::Syntax
     /// </summary>
     export class InitializerDeclaratorList final : public SyntaxNode
     {
-    public:
+        friend class SyntaxFactory;
+
+    private:
         /// <summary>
         /// Initialize
         /// </summary>
         InitializerDeclaratorList(
-            std::vector<std::shared_ptr<const InitializerDeclarator>> items) :
+            std::shared_ptr<const SyntaxList<InitializerDeclarator>> items) :
             SyntaxNode(SyntaxNodeType::InitializerDeclaratorList),
             m_items(std::move(items))
         {
         }
 
+    public:
         /// <summary>
         /// Gets the list of items
         /// </summary>
-        const std::vector<std::shared_ptr<const InitializerDeclarator>>& GetItems() const
+        const SyntaxList<InitializerDeclarator>& GetItems() const
         {
-            return m_items;
+            return *m_items;
         }
 
         /// <summary>
@@ -32,10 +35,9 @@ namespace Soup::Syntax
         virtual std::vector<SyntaxNodeChild> GetChildren() const override final
         {
             std::vector<SyntaxNodeChild> children;
-            for (auto& item : m_items)
-            {
-                children.push_back(SyntaxNodeChild(item));
-            }
+
+            auto itemsChildren = m_items->GetChildren();
+            children.insert(children.end(), itemsChildren.begin(), itemsChildren.end());
 
             return children;
         }
@@ -53,15 +55,7 @@ namespace Soup::Syntax
         /// </summary>
         bool operator ==(const InitializerDeclaratorList& rhs) const
         {
-            return std::equal(
-                begin(m_items),
-                end(m_items),
-                begin(rhs.m_items),
-                end(rhs.m_items),
-                [](const std::shared_ptr<const InitializerDeclarator>& lhs, const std::shared_ptr<const InitializerDeclarator>& rhs)
-                {
-                    return *lhs == *rhs;
-                });
+            return *m_items == *rhs.m_items;
         }
 
         bool operator !=(const InitializerDeclaratorList& rhs) const
@@ -79,6 +73,6 @@ namespace Soup::Syntax
         }
 
     private:
-        std::vector<std::shared_ptr<const InitializerDeclarator>> m_items;
+        std::shared_ptr<const SyntaxList<InitializerDeclarator>> m_items;
     };
 }

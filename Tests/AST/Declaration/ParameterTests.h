@@ -27,7 +27,7 @@ namespace Soup::Syntax::UnitTests
                 *SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                     PrimitiveDataType::Int,
                     SyntaxFactory::CreateToken(SyntaxTokenType::Int, L"int")),
-                uut->GetDeclarationSpecifierSequence(),
+                uut->GetDeclarationSpecifier(),
                 L"Verify declaration specifier sequence matches.");
             TestUtils::AreEqual(
                 *SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
@@ -89,7 +89,7 @@ namespace Soup::Syntax::UnitTests
         }
 
         // [[Fact]]
-        void OperatorNotEqualDeclarationSpecifierSequence()
+        void OperatorNotEqualDeclarationSpecifier()
         {
             // int parameter
             auto uut = SyntaxFactory::CreateParameter(

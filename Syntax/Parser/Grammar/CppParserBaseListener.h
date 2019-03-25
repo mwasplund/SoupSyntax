@@ -16,9 +16,6 @@
 class  CppParserBaseListener : public CppParserListener {
 public:
 
-  virtual void enterTypedefName(CppParser::TypedefNameContext * /*ctx*/) override { }
-  virtual void exitTypedefName(CppParser::TypedefNameContext * /*ctx*/) override { }
-
   virtual void enterNamespaceName(CppParser::NamespaceNameContext * /*ctx*/) override { }
   virtual void exitNamespaceName(CppParser::NamespaceNameContext * /*ctx*/) override { }
 
@@ -27,9 +24,6 @@ public:
 
   virtual void enterClassName(CppParser::ClassNameContext * /*ctx*/) override { }
   virtual void exitClassName(CppParser::ClassNameContext * /*ctx*/) override { }
-
-  virtual void enterEnumName(CppParser::EnumNameContext * /*ctx*/) override { }
-  virtual void exitEnumName(CppParser::EnumNameContext * /*ctx*/) override { }
 
   virtual void enterTemplateName(CppParser::TemplateNameContext * /*ctx*/) override { }
   virtual void exitTemplateName(CppParser::TemplateNameContext * /*ctx*/) override { }

@@ -70,6 +70,23 @@ class TestUtils
     }
 
     static void AreEqual(
+        const std::vector<std::shared_ptr<const SyntaxToken>>& expected,
+        const std::vector<std::shared_ptr<const SyntaxToken>>& actual,
+        const std::wstring& message)
+    {
+        bool areEqual = std::equal(
+            begin(expected),
+            end(expected),
+            begin(actual),
+            end(actual),
+            [](const std::shared_ptr<const SyntaxToken>& lhs, const std::shared_ptr<const SyntaxToken>& rhs)
+            {
+                return *lhs == *rhs;
+            });
+        Assert::IsTrue(areEqual, message);
+    }
+
+    static void AreEqual(
         const std::shared_ptr<const SyntaxNode>& expected,
         const std::shared_ptr<const SyntaxNode>& actual,
         const std::wstring& message)

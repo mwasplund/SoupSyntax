@@ -11,12 +11,6 @@ ASTCppParserVisitor::ASTCppParserVisitor(antlr4::BufferedTokenStream* tokenStrea
 {
 }
 
-antlrcpp::Any ASTCppParserVisitor::visitTypedefName(CppParser::TypedefNameContext* context)
-{
-    Trace(L"VisitTypedefName");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
-}
-
 antlrcpp::Any ASTCppParserVisitor::visitNamespaceName(CppParser::NamespaceNameContext* context)
 {
     Trace(L"VisitNamespaceName");
@@ -32,12 +26,6 @@ antlrcpp::Any ASTCppParserVisitor::visitNamespaceAlias(CppParser::NamespaceAlias
 antlrcpp::Any ASTCppParserVisitor::visitClassName(CppParser::ClassNameContext* context)
 {
     Trace(L"VisitClassName");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
-}
-
-antlrcpp::Any ASTCppParserVisitor::visitEnumName(CppParser::EnumNameContext* context)
-{
-    Trace(L"VisitEnumName");
     throw std::logic_error(std::string(__func__) + " NotImplemented");
 }
 
@@ -1388,17 +1376,21 @@ antlrcpp::Any ASTCppParserVisitor::visitSimpleDeclaration(CppParser::SimpleDecla
 {
     Trace(L"VisitSimpleDeclaration");
 
-    auto declarationSpecifierSequence = std::dynamic_pointer_cast<const DeclarationSpecifierSequence>(
+    auto declarationSpecifier = CreateDeclarationSpecifier(
         visit(context->declarationSpecifierSequence())
-            .as<std::shared_ptr<const SyntaxNode>>());
-    auto initializerDeclaratorList = visit(context->initializerDeclaratorList())
-        .as<std::shared_ptr<const InitializerDeclaratorList>>();
+            .as<std::vector<antlrcpp::Any>>());
+    auto initializerDeclaratorList = SyntaxFactory::CreateInitializerDeclaratorList(
+        std::make_shared<const SyntaxList<InitializerDeclarator>>(
+            visit(context->initializerDeclaratorList())
+                .as<std::vector<std::shared_ptr<const InitializerDeclarator>>>(),
+            std::vector<std::shared_ptr<const SyntaxToken>>()));
 
     // TODO
     return std::static_pointer_cast<const SyntaxNode>(
-        std::make_shared<const SimpleDefinition>(
-            std::move(declarationSpecifierSequence),
-            std::move(initializerDeclaratorList)));
+        SyntaxFactory::CreateSimpleDeclarationStatement(
+            std::move(declarationSpecifier),
+            std::move(initializerDeclaratorList),
+            CreateToken(SyntaxTokenType::Semicolon, context->Semicolon())));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitStaticAssertDeclaration(CppParser::StaticAssertDeclarationContext* context)
@@ -1422,9 +1414,33 @@ antlrcpp::Any ASTCppParserVisitor::visitAttributeDeclaration(CppParser::Attribut
 antlrcpp::Any ASTCppParserVisitor::visitDeclarationSpecifier(CppParser::DeclarationSpecifierContext* context)
 {
     Trace(L"VisitDeclarationSpecifier");
-    if (context->definingTypeSpecifier() != nullptr)
+    if (context->storageClassSpecifier() != nullptr)
+    {
+        return visit(context->storageClassSpecifier());
+    }
+    else if (context->definingTypeSpecifier() != nullptr)
     {
         return visit(context->definingTypeSpecifier());
+    }
+    else if (context->functionSpecifier() != nullptr)
+    {
+        return visit(context->functionSpecifier());
+    }
+    else if (context->Friend() != nullptr)
+    {
+        return CreateToken(SyntaxTokenType::Friend, context->Friend());
+    }
+    else if (context->TypeDef() != nullptr)
+    {
+        return CreateToken(SyntaxTokenType::TypeDef, context->TypeDef());
+    }
+    else if (context->ConstExpr() != nullptr)
+    {
+        return CreateToken(SyntaxTokenType::ConstExpr, context->ConstExpr());
+    }
+    else if (context->Inline() != nullptr)
+    {
+        return CreateToken(SyntaxTokenType::Inline, context->Inline());
     }
     else
     {
@@ -1434,38 +1450,49 @@ antlrcpp::Any ASTCppParserVisitor::visitDeclarationSpecifier(CppParser::Declarat
 
 antlrcpp::Any ASTCppParserVisitor::visitDeclarationSpecifierSequence(CppParser::DeclarationSpecifierSequenceContext* context)
 {
+    // A declaration specifier sequence contains a single type specifier node along with any number
+    // of token modifiers in any order. To support this we parse the list as the shared any
+    // type and do the conversion once the list is completely built up
     Trace(L"VisitDeclarationSpecifierSequence");
-    
+
     // Handle the recursive rule
-    std::shared_ptr<const DeclarationSpecifierSequence> sequence;
-    auto childSequence = context->declarationSpecifierSequence();
-    if (childSequence != nullptr)
+    std::vector<antlrcpp::Any> declarationSpecifiers;
+    if (context->declarationSpecifierSequence() != nullptr)
     {
-        sequence = visit(childSequence)
-            .as<std::shared_ptr<const DeclarationSpecifierSequence>>();
-    }
-    else
-    {
-        std::vector<std::shared_ptr<const SyntaxNode>> declarationSpecifiers;
-        sequence = std::make_shared<const DeclarationSpecifierSequence>(
-            std::move(declarationSpecifiers));
+        declarationSpecifiers = visit(context->declarationSpecifierSequence())
+            .as<std::vector<antlrcpp::Any>>();
     }
 
     // Handle the new item
-    auto specifier = context->declarationSpecifier();
-    auto specifiers = sequence->GetSpecifiers();
-    specifiers.push_back(
-        visit(specifier));
-    sequence = std::make_shared<const DeclarationSpecifierSequence>(
-        std::move(specifiers));
+    auto declarationSpecifier = visit(context->declarationSpecifier());
+    declarationSpecifiers.push_back(std::move(declarationSpecifier));
 
-    return std::static_pointer_cast<const SyntaxNode>(sequence);
+    return declarationSpecifiers;
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitStorageClassSpecifier(CppParser::StorageClassSpecifierContext* context)
 {
     Trace(L"VisitStorageClassSpecifier");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+    if (context->Static() != nullptr)
+    {
+        return CreateToken(SyntaxTokenType::Static, context->Static());
+    }
+    else if (context->ThreadLocal() != nullptr)
+    {
+        return CreateToken(SyntaxTokenType::ThreadLocal, context->ThreadLocal());
+    }
+    else if (context->Extern() != nullptr)
+    {
+        return CreateToken(SyntaxTokenType::Extern, context->Extern());
+    }
+    else if (context->Mutable() != nullptr)
+    {
+        return CreateToken(SyntaxTokenType::Mutable, context->Mutable());
+    }
+    else
+    {
+        throw std::logic_error("Unexpected storage class specifier");
+    }
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitFunctionSpecifier(CppParser::FunctionSpecifierContext* context)
@@ -1808,29 +1835,19 @@ antlrcpp::Any ASTCppParserVisitor::visitInitializerDeclaratorList(CppParser::Ini
     Trace(L"VisitInitializerDeclaratorList");
 
     // Handle the recursive rule
-    std::shared_ptr<const InitializerDeclaratorList> list;
-    auto childList = context->initializerDeclaratorList();
-    if (childList != nullptr)
+    std::vector<std::shared_ptr<const InitializerDeclarator>> items;
+    if (context->initializerDeclaratorList() != nullptr)
     {
-        list = visit(childList)
-            .as<std::shared_ptr<const InitializerDeclaratorList>>();
-    }
-    else
-    {
-        std::vector<std::shared_ptr<const InitializerDeclarator>> initializerDeclarators;
-        list = std::make_shared<const InitializerDeclaratorList>(
-            std::move(initializerDeclarators));
+        items = visit(context->initializerDeclaratorList())
+            .as<std::vector<std::shared_ptr<const InitializerDeclarator>>>();
     }
 
     // Handle the new item
     auto item = visit(context->initializerDeclarator())
         .as<std::shared_ptr<const InitializerDeclarator>>();
-    auto items = list->GetItems();
     items.push_back(item);
-    list = std::make_shared<const InitializerDeclaratorList>(
-        std::move(items));
 
-    return list;
+    return items;
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitInitializerDeclarator(CppParser::InitializerDeclaratorContext* context)
@@ -1848,7 +1865,7 @@ antlrcpp::Any ASTCppParserVisitor::visitInitializerDeclarator(CppParser::Initial
             .as<std::shared_ptr<const SyntaxNode>>();
     }
 
-    return std::make_shared<const InitializerDeclarator>(
+    return SyntaxFactory::CreateInitializerDeclarator(
         std::move(declarator),
         std::move(initializer));
 }
@@ -2015,12 +2032,12 @@ antlrcpp::Any ASTCppParserVisitor::visitFunctionDefinition(CppParser::FunctionDe
     Trace(L"VisitFunctionDefinition");
 
     // Check for optional return type
-    std::shared_ptr<const DeclarationSpecifierSequence> returnType = nullptr;
+    std::shared_ptr<const DeclarationSpecifier> returnType = nullptr;
     if (context->declarationSpecifierSequence() != nullptr)
     {
-        returnType = std::dynamic_pointer_cast<const DeclarationSpecifierSequence>(
+        returnType = CreateDeclarationSpecifier(
             visit(context->declarationSpecifierSequence())
-                .as<std::shared_ptr<const SyntaxNode>>());
+                .as<std::vector<antlrcpp::Any>>());
     }
 
     // Analyze the declarator
@@ -2725,4 +2742,61 @@ std::shared_ptr<const QualifiedNameExpression> ASTCppParserVisitor::visitNextRig
         // Otherwise just return this element
         return qualifiedName;
     }
+}
+
+std::shared_ptr<const DeclarationSpecifier> ASTCppParserVisitor::CreateDeclarationSpecifier(
+    std::vector<antlrcpp::Any>& declarationSpecifierSequence)
+{
+    Trace(L"VisitNextRightQualifiedNestedNames");
+
+    // Break the sequence into leading/trailing modifier tokens and the single type node
+    // Note: when building up the list during parsing it will be in reverse order
+    int i = static_cast<int>(declarationSpecifierSequence.size()) - 1;
+    std::vector<std::shared_ptr<const SyntaxToken>> leadingModifiers;
+    for (; i >= 0; i--)
+    {
+        // Check if current item is a node or token
+        if (declarationSpecifierSequence[i].is<std::shared_ptr<const SyntaxToken>>())
+        {
+            leadingModifiers.push_back(
+                declarationSpecifierSequence[i].as<std::shared_ptr<const SyntaxToken>>());
+        }
+        else
+        {
+            // Found the first non-token node
+            break;
+        }
+    }
+
+    // Make sure we have not used up all of the items
+    if (i < 0)
+    {
+        throw std::logic_error("No type specifier found in the declarationSpecifierSequence.");
+    }
+
+    // Pull out the single required type specifier node and move to the next item
+    auto typeSpecifier = declarationSpecifierSequence[i]
+        .as<std::shared_ptr<const SyntaxNode>>();
+    i--;
+
+    // Copy over the remaining tokens into the trailing modifiers list
+    std::vector<std::shared_ptr<const SyntaxToken>> trailingModifiers;
+    for (; i >= 0; i--)
+    {
+        // Check if current item is a node or token
+        if (declarationSpecifierSequence[i].is<std::shared_ptr<const SyntaxToken>>())
+        {
+            trailingModifiers.push_back(
+                declarationSpecifierSequence[i].as<std::shared_ptr<const SyntaxToken>>());
+        }
+        else
+        {
+            throw std::logic_error("Found a second non-token item in the declarationSpecifierSequence.");
+        }
+    }
+
+    return SyntaxFactory::CreateDeclarationSpecifier(
+        std::move(leadingModifiers),
+        std::move(typeSpecifier),
+        std::move(trailingModifiers));
 }

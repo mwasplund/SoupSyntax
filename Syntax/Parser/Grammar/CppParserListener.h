@@ -14,9 +14,6 @@
 export class  CppParserListener : public antlr4::tree::ParseTreeListener {
 public:
 
-  virtual void enterTypedefName(CppParser::TypedefNameContext *ctx) = 0;
-  virtual void exitTypedefName(CppParser::TypedefNameContext *ctx) = 0;
-
   virtual void enterNamespaceName(CppParser::NamespaceNameContext *ctx) = 0;
   virtual void exitNamespaceName(CppParser::NamespaceNameContext *ctx) = 0;
 
@@ -25,9 +22,6 @@ public:
 
   virtual void enterClassName(CppParser::ClassNameContext *ctx) = 0;
   virtual void exitClassName(CppParser::ClassNameContext *ctx) = 0;
-
-  virtual void enterEnumName(CppParser::EnumNameContext *ctx) = 0;
-  virtual void exitEnumName(CppParser::EnumNameContext *ctx) = 0;
 
   virtual void enterTemplateName(CppParser::TemplateNameContext *ctx) = 0;
   virtual void exitTemplateName(CppParser::TemplateNameContext *ctx) = 0;

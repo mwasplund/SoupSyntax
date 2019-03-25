@@ -26,8 +26,8 @@ TestState RunParseLiteralExpressionTests()
     state += RunTest([&testClass]() { testClass->SingleStringLiteralType("\" \""); });
 
     std::wcout << L"SingleBooleanLiteralType" << std::endl;
-    state += RunTest([&testClass]() { testClass->SingleBooleanLiteralType("true", SyntaxTokenType::True); });
-    state += RunTest([&testClass]() { testClass->SingleBooleanLiteralType("false", SyntaxTokenType::False); });
+    state += RunTest([&testClass]() { testClass->SingleBooleanLiteralType("true", Soup::Syntax::SyntaxTokenType::True); });
+    state += RunTest([&testClass]() { testClass->SingleBooleanLiteralType("false", Soup::Syntax::SyntaxTokenType::False); });
 
     std::wcout << L"SingleUserDefinedLiteralType" << std::endl;
     state += RunTest([&testClass]() { testClass->SingleUserDefinedLiteralType("2h"); });
