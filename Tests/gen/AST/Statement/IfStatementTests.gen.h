@@ -30,14 +30,14 @@ TestState RunIfStatementTests()
     std::wcout << L"OperatorNotEqualIfToken" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorNotEqualIfToken(); });
 
-    std::wcout << L"OperatorNotEqualLeftParenthesisToken" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualLeftParenthesisToken(); });
+    std::wcout << L"OperatorNotEqualOpenParenthesisToken" << std::endl;
+    state += RunTest([&testClass]() { testClass->OperatorNotEqualOpenParenthesisToken(); });
 
     std::wcout << L"OperatorNotEqualConditionExpression" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorNotEqualConditionExpression(); });
 
-    std::wcout << L"OperatorNotEqualRightParenthesisToken" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualRightParenthesisToken(); });
+    std::wcout << L"OperatorNotEqualCloseParenthesisToken" << std::endl;
+    state += RunTest([&testClass]() { testClass->OperatorNotEqualCloseParenthesisToken(); });
 
     std::wcout << L"OperatorNotEqualStatement" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorNotEqualStatement(); });

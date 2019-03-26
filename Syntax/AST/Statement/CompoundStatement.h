@@ -16,13 +16,13 @@ namespace Soup::Syntax
         /// Initialize
         /// </summary>
         CompoundStatement(
-            std::shared_ptr<const SyntaxToken> leftBraceToken,
+            std::shared_ptr<const SyntaxToken> openBraceToken,
             std::vector<std::shared_ptr<const Statement>> statements,
-            std::shared_ptr<const SyntaxToken> rightBraceToken) :
+            std::shared_ptr<const SyntaxToken> closeBraceToken) :
             SyntaxNode(SyntaxNodeType::CompoundStatement),
-            m_leftBraceToken(std::move(leftBraceToken)),
+            m_openBraceToken(std::move(openBraceToken)),
             m_statements(std::move(statements)),
-            m_rightBraceToken(std::move(rightBraceToken))
+            m_closeBraceToken(std::move(closeBraceToken))
         {
         }
 
@@ -30,9 +30,9 @@ namespace Soup::Syntax
         /// <summary>
         /// Gets the SyntaxToken for the left brace.
         /// </summary>
-        const SyntaxToken& GetLeftBraceToken() const
+        const SyntaxToken& GetOpenBraceToken() const
         {
-            return *m_leftBraceToken;
+            return *m_openBraceToken;
         }
 
         /// <summary>
@@ -46,9 +46,9 @@ namespace Soup::Syntax
         /// <summary>
         /// Gets the SyntaxToken for the right brace.
         /// </summary>
-        const SyntaxToken& GetRightBraceToken() const
+        const SyntaxToken& GetCloseBraceToken() const
         {
-            return *m_rightBraceToken;
+            return *m_closeBraceToken;
         }
 
         /// <summary>
@@ -58,14 +58,14 @@ namespace Soup::Syntax
         {
             std::vector<SyntaxNodeChild> children;
 
-            children.push_back(SyntaxNodeChild(m_leftBraceToken));
+            children.push_back(SyntaxNodeChild(m_openBraceToken));
     
             for (auto& statement : m_statements)
             {
                 children.push_back(SyntaxNodeChild(statement));
             }
 
-            children.push_back(SyntaxNodeChild(m_rightBraceToken));
+            children.push_back(SyntaxNodeChild(m_closeBraceToken));
 
             return children;
         }
@@ -83,8 +83,8 @@ namespace Soup::Syntax
         /// </summary>
         bool operator ==(const CompoundStatement& rhs) const
         {
-            return *m_leftBraceToken == *rhs.m_leftBraceToken &&
-                *m_rightBraceToken == *rhs.m_rightBraceToken &&
+            return *m_openBraceToken == *rhs.m_openBraceToken &&
+                *m_closeBraceToken == *rhs.m_closeBraceToken &&
                 std::equal(
                     begin(m_statements),
                     end(m_statements),
@@ -111,8 +111,8 @@ namespace Soup::Syntax
         }
 
     private:
-        std::shared_ptr<const SyntaxToken> m_leftBraceToken;
+        std::shared_ptr<const SyntaxToken> m_openBraceToken;
         std::vector<std::shared_ptr<const Statement>> m_statements;
-        std::shared_ptr<const SyntaxToken> m_rightBraceToken;
+        std::shared_ptr<const SyntaxToken> m_closeBraceToken;
     };
 }

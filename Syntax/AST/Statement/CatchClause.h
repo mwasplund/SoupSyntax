@@ -15,15 +15,15 @@ namespace Soup::Syntax
         /// </summary>
         CatchClause(
             std::shared_ptr<const SyntaxToken> catchToken,
-            std::shared_ptr<const SyntaxToken> leftParenthesisToken,
+            std::shared_ptr<const SyntaxToken> openParenthesisToken,
             std::shared_ptr<const Expression> conditionExpression,
-            std::shared_ptr<const SyntaxToken> rightParenthesisToken,
+            std::shared_ptr<const SyntaxToken> closeParenthesisToken,
             std::shared_ptr<const CompoundStatement> compoundStatement) :
             SyntaxNode(SyntaxNodeType::CatchClause),
             m_catchToken(std::move(catchToken)),
-            m_leftParenthesisToken(std::move(leftParenthesisToken)),
+            m_openParenthesisToken(std::move(openParenthesisToken)),
             m_conditionExpression(std::move(conditionExpression)),
-            m_rightParenthesisToken(std::move(rightParenthesisToken)),
+            m_closeParenthesisToken(std::move(closeParenthesisToken)),
             m_compoundStatement(std::move(compoundStatement))
         {
         }
@@ -40,9 +40,9 @@ namespace Soup::Syntax
         /// <summary>
         /// Gets the SyntaxToken for the left parenthesis.
         /// </summary>
-        const SyntaxToken& GetLeftParenthesisToken() const
+        const SyntaxToken& GetOpenParenthesisToken() const
         {
-            return *m_leftParenthesisToken;
+            return *m_openParenthesisToken;
         }
 
         /// <summary>
@@ -56,9 +56,9 @@ namespace Soup::Syntax
         /// <summary>
         /// Gets the SyntaxToken for the right parenthesis.
         /// </summary>
-        const SyntaxToken& GetRightParenthesisToken() const
+        const SyntaxToken& GetCloseParenthesisToken() const
         {
-            return *m_rightParenthesisToken;
+            return *m_closeParenthesisToken;
         }
 
         /// <summary>
@@ -77,9 +77,9 @@ namespace Soup::Syntax
             return std::vector<SyntaxNodeChild>(
             {
                 SyntaxNodeChild(m_catchToken),
-                SyntaxNodeChild(m_leftParenthesisToken),
+                SyntaxNodeChild(m_openParenthesisToken),
                 SyntaxNodeChild(m_conditionExpression),
-                SyntaxNodeChild(m_rightParenthesisToken),
+                SyntaxNodeChild(m_closeParenthesisToken),
                 SyntaxNodeChild(m_compoundStatement),
             });
         }
@@ -98,9 +98,9 @@ namespace Soup::Syntax
         bool operator ==(const CatchClause& rhs) const
         {
             return *m_catchToken == *rhs.m_catchToken &&
-                *m_leftParenthesisToken  == *rhs.m_leftParenthesisToken &&
+                *m_openParenthesisToken  == *rhs.m_openParenthesisToken &&
                 *m_conditionExpression == *rhs.m_conditionExpression &&
-                *m_rightParenthesisToken  == *rhs.m_rightParenthesisToken &&
+                *m_closeParenthesisToken  == *rhs.m_closeParenthesisToken &&
                 *m_compoundStatement  == *rhs.m_compoundStatement;
         }
 
@@ -120,9 +120,9 @@ namespace Soup::Syntax
 
     private:
         std::shared_ptr<const SyntaxToken> m_catchToken;
-        std::shared_ptr<const SyntaxToken> m_leftParenthesisToken;
+        std::shared_ptr<const SyntaxToken> m_openParenthesisToken;
         std::shared_ptr<const Expression> m_conditionExpression;
-        std::shared_ptr<const SyntaxToken> m_rightParenthesisToken;
+        std::shared_ptr<const SyntaxToken> m_closeParenthesisToken;
         std::shared_ptr<const CompoundStatement> m_compoundStatement;
     };
 }

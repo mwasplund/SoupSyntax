@@ -14,9 +14,9 @@ namespace Soup::Syntax::UnitTests
             auto actual = ParseCompoundStatement(sourceCode);
 
             auto expected = SyntaxFactory::CreateCompoundStatement(
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftBrace),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 {},
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightBrace));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }
@@ -28,7 +28,7 @@ namespace Soup::Syntax::UnitTests
             auto actual = ParseCompoundStatement(sourceCode);
 
             auto expected = SyntaxFactory::CreateCompoundStatement(
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftBrace),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 {
                     SyntaxFactory::CreateReturnStatement(
                         SyntaxFactory::CreateKeywordToken(
@@ -50,7 +50,7 @@ namespace Soup::Syntax::UnitTests
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 },
                 SyntaxFactory::CreateKeywordToken(
-                    SyntaxTokenType::RightBrace,
+                    SyntaxTokenType::CloseBrace,
                     {
                         SyntaxFactory::CreateTrivia(L"\n", TextSpan(0, 0)),
                     },

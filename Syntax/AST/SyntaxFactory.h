@@ -38,20 +38,20 @@ namespace Soup::Syntax
         /// Create a CompoundStatement
         /// </summary>
         static std::shared_ptr<const CompoundStatement> CreateCompoundStatement(
-            std::shared_ptr<const SyntaxToken> leftBraceToken,
+            std::shared_ptr<const SyntaxToken> openBraceToken,
             std::vector<std::shared_ptr<const Statement>> statements,
-            std::shared_ptr<const SyntaxToken> rightBraceToken)
+            std::shared_ptr<const SyntaxToken> closeBraceToken)
         {
-            if (leftBraceToken == nullptr)
-                throw std::runtime_error("ArgumentNull - leftBraceToken");
-            if (rightBraceToken == nullptr)
-                throw std::runtime_error("ArgumentNull - rightBraceToken");
+            if (openBraceToken == nullptr)
+                throw std::runtime_error("ArgumentNull - openBraceToken");
+            if (closeBraceToken == nullptr)
+                throw std::runtime_error("ArgumentNull - closeBraceToken");
 
             return std::shared_ptr<const CompoundStatement>(
                 new CompoundStatement(
-                    std::move(leftBraceToken),
+                    std::move(openBraceToken),
                     std::move(statements),
-                    std::move(rightBraceToken)));
+                    std::move(closeBraceToken)));
         }
 
         /// <summary>
@@ -224,30 +224,30 @@ namespace Soup::Syntax
         /// </summary>
         static std::shared_ptr<const IfStatement> CreateIfStatement(
             std::shared_ptr<const SyntaxToken> ifToken,
-            std::shared_ptr<const SyntaxToken> leftParenthesisToken,
+            std::shared_ptr<const SyntaxToken> openParenthesisToken,
             std::shared_ptr<const Expression> conditionExpression,
-            std::shared_ptr<const SyntaxToken> rightParenthesisToken,
+            std::shared_ptr<const SyntaxToken> closeParenthesisToken,
             std::shared_ptr<const Statement> statement,
             std::shared_ptr<const ElseClause> elseClause)
         {
             // Note: The else clause is optional
             if (ifToken == nullptr)
                 throw std::runtime_error("ArgumentNull - ifToken");
-            if (leftParenthesisToken == nullptr)
-                throw std::runtime_error("ArgumentNull - leftParenthesisToken");
+            if (openParenthesisToken == nullptr)
+                throw std::runtime_error("ArgumentNull - openParenthesisToken");
             if (conditionExpression == nullptr)
                 throw std::runtime_error("ArgumentNull - conditionExpression");
-            if (rightParenthesisToken == nullptr)
-                throw std::runtime_error("ArgumentNull - rightParenthesisToken");
+            if (closeParenthesisToken == nullptr)
+                throw std::runtime_error("ArgumentNull - closeParenthesisToken");
             if (statement == nullptr)
                 throw std::runtime_error("ArgumentNull - statement");
 
             return std::shared_ptr<const IfStatement>(
                 new IfStatement(
                     std::move(ifToken),
-                    std::move(leftParenthesisToken),
+                    std::move(openParenthesisToken),
                     std::move(conditionExpression),
-                    std::move(rightParenthesisToken),
+                    std::move(closeParenthesisToken),
                     std::move(statement),
                     std::move(elseClause)));
         }
@@ -521,22 +521,22 @@ namespace Soup::Syntax
                 case SyntaxTokenType::Final:
                      value = L"final";
                      break;
-                case SyntaxTokenType::LeftBrace:
+                case SyntaxTokenType::OpenBrace:
                      value = L"{";
                      break;
-                case SyntaxTokenType::RightBrace:
+                case SyntaxTokenType::CloseBrace:
                      value = L"}";
                      break;
-                case SyntaxTokenType::LeftBracket:
+                case SyntaxTokenType::OpenBracket:
                      value = L"[";
                      break;
-                case SyntaxTokenType::RightBracket:
+                case SyntaxTokenType::CloseBracket:
                      value = L"]";
                      break;
-                case SyntaxTokenType::LeftParenthesis:
+                case SyntaxTokenType::OpenParenthesis:
                      value = L"(";
                      break;
-                case SyntaxTokenType::RightParenthesis:
+                case SyntaxTokenType::CloseParenthesis:
                      value = L")";
                      break;
                 case SyntaxTokenType::Semicolon:
@@ -743,22 +743,22 @@ namespace Soup::Syntax
         /// Create a ParameterList
         /// </summary>
         static std::shared_ptr<const ParameterList> CreateParameterList(
-            std::shared_ptr<const SyntaxToken> leftParenthesisToken,
+            std::shared_ptr<const SyntaxToken> openParenthesisToken,
             std::shared_ptr<const SyntaxList<Parameter>> parameters,
-            std::shared_ptr<const SyntaxToken> rightParenthesisToken)
+            std::shared_ptr<const SyntaxToken> closeParenthesisToken)
         {
-            if (leftParenthesisToken == nullptr)
-                throw std::runtime_error("ArgumentNull - leftParenthesisToken");
+            if (openParenthesisToken == nullptr)
+                throw std::runtime_error("ArgumentNull - openParenthesisToken");
             if (parameters == nullptr)
                 throw std::runtime_error("ArgumentNull - parameters");
-            if (rightParenthesisToken == nullptr)
-                throw std::runtime_error("ArgumentNull - rightParenthesisToken");
+            if (closeParenthesisToken == nullptr)
+                throw std::runtime_error("ArgumentNull - closeParenthesisToken");
 
             return std::shared_ptr<const ParameterList>(
                 new ParameterList(
-                    std::move(leftParenthesisToken),
+                    std::move(openParenthesisToken),
                     std::move(parameters),
-                    std::move(rightParenthesisToken)));
+                    std::move(closeParenthesisToken)));
         }
 
         /// <summary>
@@ -860,25 +860,25 @@ namespace Soup::Syntax
         /// </summary>
         static std::shared_ptr<const SubscriptExpression> CreateSubscriptExpression(
             std::shared_ptr<const Expression> leftExpression,
-            std::shared_ptr<const SyntaxToken> leftBracket, 
+            std::shared_ptr<const SyntaxToken> openBracket, 
             std::shared_ptr<const Expression> rightExpression,
-            std::shared_ptr<const SyntaxToken> rightBracket)
+            std::shared_ptr<const SyntaxToken> closeBracket)
         {
             if (leftExpression == nullptr)
                 throw std::runtime_error("ArgumentNull - leftExpression");
-            if (leftBracket == nullptr)
-                throw std::runtime_error("ArgumentNull - leftBracket");
+            if (openBracket == nullptr)
+                throw std::runtime_error("ArgumentNull - openBracket");
             if (rightExpression == nullptr)
                 throw std::runtime_error("ArgumentNull - rightExpression");
-            if (rightBracket == nullptr)
-                throw std::runtime_error("ArgumentNull - rightBracket");
+            if (closeBracket == nullptr)
+                throw std::runtime_error("ArgumentNull - closeBracket");
 
             return std::shared_ptr<const SubscriptExpression>(
                 new SubscriptExpression(
                     std::move(leftExpression),
-                    std::move(leftBracket),
+                    std::move(openBracket),
                     std::move(rightExpression),
-                    std::move(rightBracket)));
+                    std::move(closeBracket)));
         }
 
         /// <summary>

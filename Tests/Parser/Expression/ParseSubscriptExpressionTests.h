@@ -17,11 +17,11 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateSubscriptExpression(
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftBracket),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"1")),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightBracket));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket));
 
             TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
         }

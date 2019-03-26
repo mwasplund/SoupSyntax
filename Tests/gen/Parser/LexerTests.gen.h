@@ -84,12 +84,12 @@ TestState RunLexerTests()
     state += RunTest([&testClass]() { testClass->SingleToken_Keyword("while", CppLexer::While); });
 
     std::wcout << L"SingleToken_OperatorsAndPunctuation" << std::endl;
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("{", CppLexer::LeftBrace); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("}", CppLexer::RightBrace); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("[", CppLexer::LeftBracket); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("]", CppLexer::RightBracket); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("(", CppLexer::LeftParenthesis); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation(")", CppLexer::RightParenthesis); });
+    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("{", CppLexer::OpenBrace); });
+    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("}", CppLexer::CloseBrace); });
+    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("[", CppLexer::OpenBracket); });
+    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("]", CppLexer::CloseBracket); });
+    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("(", CppLexer::OpenParenthesis); });
+    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation(")", CppLexer::CloseParenthesis); });
     state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation(";", CppLexer::Semicolon); });
     state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation(":", CppLexer::Colon); });
     state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("...", CppLexer::Ellipsis); });

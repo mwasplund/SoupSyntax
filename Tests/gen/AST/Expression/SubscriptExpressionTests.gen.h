@@ -21,14 +21,14 @@ TestState RunSubscriptExpressionTests()
     std::wcout << L"OperatorNotEqualLeft" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorNotEqualLeft(); });
 
-    std::wcout << L"OperatorNotEqualLeftBracket" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualLeftBracket(); });
+    std::wcout << L"OperatorNotEqualOpenBracket" << std::endl;
+    state += RunTest([&testClass]() { testClass->OperatorNotEqualOpenBracket(); });
 
     std::wcout << L"OperatorNotEqualRight" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorNotEqualRight(); });
 
-    std::wcout << L"OperatorNotEqualRightBracket" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualRightBracket(); });
+    std::wcout << L"OperatorNotEqualCloseBracket" << std::endl;
+    state += RunTest([&testClass]() { testClass->OperatorNotEqualCloseBracket(); });
 
     return state;
 }

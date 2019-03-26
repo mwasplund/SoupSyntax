@@ -85,12 +85,12 @@ namespace Soup::Syntax::UnitTests
         }
 
         // [[Theory]]
-        // [[InlineData("{", CppLexer::LeftBrace)]]
-        // [[InlineData("}", CppLexer::RightBrace)]]
-        // [[InlineData("[", CppLexer::LeftBracket)]]
-        // [[InlineData("]", CppLexer::RightBracket)]]
-        // [[InlineData("(", CppLexer::LeftParenthesis)]]
-        // [[InlineData(")", CppLexer::RightParenthesis)]]
+        // [[InlineData("{", CppLexer::OpenBrace)]]
+        // [[InlineData("}", CppLexer::CloseBrace)]]
+        // [[InlineData("[", CppLexer::OpenBracket)]]
+        // [[InlineData("]", CppLexer::CloseBracket)]]
+        // [[InlineData("(", CppLexer::OpenParenthesis)]]
+        // [[InlineData(")", CppLexer::CloseParenthesis)]]
         // [[InlineData(";", CppLexer::Semicolon)]]
         // [[InlineData(":", CppLexer::Colon)]]
         // [[InlineData("...", CppLexer::Ellipsis)]]

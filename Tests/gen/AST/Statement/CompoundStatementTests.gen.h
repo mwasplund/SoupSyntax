@@ -27,8 +27,8 @@ TestState RunCompoundStatementTests()
     std::wcout << L"OperatorEqualSingleStatement" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorEqualSingleStatement(); });
 
-    std::wcout << L"OperatorNotEqualLeftBraceToken" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualLeftBraceToken(); });
+    std::wcout << L"OperatorNotEqualOpenBraceToken" << std::endl;
+    state += RunTest([&testClass]() { testClass->OperatorNotEqualOpenBraceToken(); });
 
     std::wcout << L"OperatorNotEqualEmpty" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorNotEqualEmpty(); });
@@ -36,8 +36,8 @@ TestState RunCompoundStatementTests()
     std::wcout << L"OperatorNotEqualSingleStatement" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorNotEqualSingleStatement(); });
 
-    std::wcout << L"OperatorNotEqualRightBraceToken" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualRightBraceToken(); });
+    std::wcout << L"OperatorNotEqualCloseBraceToken" << std::endl;
+    state += RunTest([&testClass]() { testClass->OperatorNotEqualCloseBraceToken(); });
 
     return state;
 }

@@ -12,10 +12,10 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateIfStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftParenthesis),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightParenthesis),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 nullptr);
@@ -29,8 +29,8 @@ namespace Soup::Syntax::UnitTests
                 uut->GetIfToken(),
                 L"Verify if token matches.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftParenthesis),
-                uut->GetLeftParenthesisToken(),
+                *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
+                uut->GetOpenParenthesisToken(),
                 L"Verify left parenthesis token matches.");
             TestUtils::AreEqual(
                 *SyntaxFactory::CreateSimpleNameExpression(
@@ -38,8 +38,8 @@ namespace Soup::Syntax::UnitTests
                 uut->GetConditionExpression(),
                 L"Verify condition expression matches.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightParenthesis),
-                uut->GetRightParenthesisToken(),
+                *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
+                uut->GetCloseParenthesisToken(),
                 L"Verify right parenthesis token matches.");
             TestUtils::AreEqual(
                 *SyntaxFactory::CreateEmptyStatement(
@@ -56,10 +56,10 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateIfStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftParenthesis),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightParenthesis),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 SyntaxFactory::CreateElseClause(
@@ -76,8 +76,8 @@ namespace Soup::Syntax::UnitTests
                 uut->GetIfToken(),
                 L"Verify if token matches.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftParenthesis),
-                uut->GetLeftParenthesisToken(),
+                *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
+                uut->GetOpenParenthesisToken(),
                 L"Verify left parenthesis token matches.");
             TestUtils::AreEqual(
                 *SyntaxFactory::CreateSimpleNameExpression(
@@ -85,8 +85,8 @@ namespace Soup::Syntax::UnitTests
                 uut->GetConditionExpression(),
                 L"Verify condition expression matches.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightParenthesis),
-                uut->GetRightParenthesisToken(),
+                *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
+                uut->GetCloseParenthesisToken(),
                 L"Verify right parenthesis token matches.");
             TestUtils::AreEqual(
                 *SyntaxFactory::CreateEmptyStatement(
@@ -110,10 +110,10 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateIfStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftParenthesis),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightParenthesis),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 nullptr);
@@ -122,10 +122,10 @@ namespace Soup::Syntax::UnitTests
                 std::vector<SyntaxNodeChild>(
                 {
                     SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If)),
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftParenthesis)),
+                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis)),
                     SyntaxNodeChild(SyntaxFactory::CreateSimpleNameExpression(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value"))),
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightParenthesis)),
+                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
                     SyntaxNodeChild(SyntaxFactory::CreateEmptyStatement(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))),
                 }),
@@ -138,10 +138,10 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateIfStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftParenthesis),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightParenthesis),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 SyntaxFactory::CreateElseClause(
@@ -153,10 +153,10 @@ namespace Soup::Syntax::UnitTests
                 std::vector<SyntaxNodeChild>(
                 {
                     SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If)),
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftParenthesis)),
+                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis)),
                     SyntaxNodeChild(SyntaxFactory::CreateSimpleNameExpression(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value"))),
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightParenthesis)),
+                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
                     SyntaxNodeChild(SyntaxFactory::CreateEmptyStatement(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))),
                     SyntaxNodeChild(SyntaxFactory::CreateElseClause(
@@ -173,10 +173,10 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateIfStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftParenthesis),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightParenthesis),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 nullptr);
@@ -184,10 +184,10 @@ namespace Soup::Syntax::UnitTests
             TestUtils::AreEqual(
                 SyntaxFactory::CreateIfStatement(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftParenthesis),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     SyntaxFactory::CreateSimpleNameExpression(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightParenthesis),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                     SyntaxFactory::CreateEmptyStatement(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                     nullptr),
@@ -200,10 +200,10 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateIfStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftParenthesis),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightParenthesis),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 SyntaxFactory::CreateElseClause(
@@ -214,10 +214,10 @@ namespace Soup::Syntax::UnitTests
             TestUtils::AreEqual(
                 SyntaxFactory::CreateIfStatement(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftParenthesis),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     SyntaxFactory::CreateSimpleNameExpression(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightParenthesis),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                     SyntaxFactory::CreateEmptyStatement(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                     SyntaxFactory::CreateElseClause(
@@ -233,10 +233,10 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateIfStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftParenthesis),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightParenthesis),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 nullptr);
@@ -250,10 +250,10 @@ namespace Soup::Syntax::UnitTests
                         },
                         {
                         }),
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftParenthesis),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     SyntaxFactory::CreateSimpleNameExpression(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightParenthesis),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                     SyntaxFactory::CreateEmptyStatement(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                     nullptr),
@@ -262,14 +262,14 @@ namespace Soup::Syntax::UnitTests
         }
 
         // [[Fact]]
-        void OperatorNotEqualLeftParenthesisToken()
+        void OperatorNotEqualOpenParenthesisToken()
         {
             auto uut = SyntaxFactory::CreateIfStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftParenthesis),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightParenthesis),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 nullptr);
@@ -278,7 +278,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateIfStatement(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
                     SyntaxFactory::CreateKeywordToken(
-                        SyntaxTokenType::LeftParenthesis,
+                        SyntaxTokenType::OpenParenthesis,
                         {
                             SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 1)),
                         },
@@ -286,7 +286,7 @@ namespace Soup::Syntax::UnitTests
                         }),
                     SyntaxFactory::CreateSimpleNameExpression(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightParenthesis),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                     SyntaxFactory::CreateEmptyStatement(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                     nullptr),
@@ -299,10 +299,10 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateIfStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftParenthesis),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightParenthesis),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 nullptr);
@@ -310,10 +310,10 @@ namespace Soup::Syntax::UnitTests
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateIfStatement(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftParenthesis),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     SyntaxFactory::CreateSimpleNameExpression(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value2")),
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightParenthesis),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                     SyntaxFactory::CreateEmptyStatement(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                     nullptr),
@@ -322,14 +322,14 @@ namespace Soup::Syntax::UnitTests
         }
 
         // [[Fact]]
-        void OperatorNotEqualRightParenthesisToken()
+        void OperatorNotEqualCloseParenthesisToken()
         {
             auto uut = SyntaxFactory::CreateIfStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftParenthesis),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightParenthesis),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 nullptr);
@@ -337,11 +337,11 @@ namespace Soup::Syntax::UnitTests
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateIfStatement(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftParenthesis),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     SyntaxFactory::CreateSimpleNameExpression(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
                     SyntaxFactory::CreateKeywordToken(
-                        SyntaxTokenType::RightParenthesis,
+                        SyntaxTokenType::CloseParenthesis,
                         {
                             SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 1)),
                         },
@@ -359,10 +359,10 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateIfStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftParenthesis),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightParenthesis),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 nullptr);
@@ -370,10 +370,10 @@ namespace Soup::Syntax::UnitTests
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateIfStatement(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftParenthesis),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     SyntaxFactory::CreateSimpleNameExpression(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightParenthesis),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                     SyntaxFactory::CreateEmptyStatement(
                             SyntaxFactory::CreateKeywordToken(
                                 SyntaxTokenType::Semicolon,
@@ -392,10 +392,10 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateIfStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftParenthesis),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightParenthesis),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 nullptr);
@@ -403,10 +403,10 @@ namespace Soup::Syntax::UnitTests
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateIfStatement(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftParenthesis),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     SyntaxFactory::CreateSimpleNameExpression(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightParenthesis),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                     SyntaxFactory::CreateEmptyStatement(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                     SyntaxFactory::CreateElseClause(
@@ -422,10 +422,10 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateIfStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftParenthesis),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightParenthesis),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 SyntaxFactory::CreateElseClause(
@@ -436,10 +436,10 @@ namespace Soup::Syntax::UnitTests
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateIfStatement(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftParenthesis),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     SyntaxFactory::CreateSimpleNameExpression(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightParenthesis),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                     SyntaxFactory::CreateEmptyStatement(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                     SyntaxFactory::CreateElseClause(

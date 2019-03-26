@@ -15,10 +15,10 @@ namespace Soup::Syntax::UnitTests
 
             auto expected = SyntaxFactory::CreateIfStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftParenthesis),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightParenthesis),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 nullptr);
@@ -34,10 +34,10 @@ namespace Soup::Syntax::UnitTests
 
             auto expected = SyntaxFactory::CreateIfStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftParenthesis),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightParenthesis),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 SyntaxFactory::CreateElseClause(
@@ -57,7 +57,7 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateIfStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
                 SyntaxFactory::CreateKeywordToken(
-                    SyntaxTokenType::LeftParenthesis,
+                    SyntaxTokenType::OpenParenthesis,
                     {
                         SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0))
                     },
@@ -71,7 +71,7 @@ namespace Soup::Syntax::UnitTests
                         },
                         {})),
                 SyntaxFactory::CreateKeywordToken(
-                    SyntaxTokenType::RightParenthesis,
+                    SyntaxTokenType::CloseParenthesis,
                     {
                         SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0))
                     },

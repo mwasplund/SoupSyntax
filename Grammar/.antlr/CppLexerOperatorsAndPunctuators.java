@@ -16,8 +16,8 @@ public class CppLexerOperatorsAndPunctuators extends Lexer {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		LeftBrace=1, RightBrace=2, LeftBracket=3, RightBracket=4, LeftParenthesis=5, 
-		RightParenthesis=6, Semicolon=7, Colon=8, Ellipsis=9, New=10, Delete=11, 
+		OpenBrace=1, CloseBrace=2, OpenBracket=3, CloseBracket=4, OpenParenthesis=5, 
+		CloseParenthesis=6, Semicolon=7, Colon=8, Ellipsis=9, New=10, Delete=11, 
 		QuestionMark=12, DoubleColon=13, Period=14, PeriodAsterisk=15, Plus=16, 
 		Minus=17, Asterisk=18, ForwardSlash=19, Percent=20, Caret=21, Ampersand=22, 
 		VerticalBar=23, Tilde=24, ExclamationMark=25, Equal=26, LessThan=27, GreaterThan=28, 
@@ -36,8 +36,8 @@ public class CppLexerOperatorsAndPunctuators extends Lexer {
 	};
 
 	public static final String[] ruleNames = {
-		"LeftBrace", "RightBrace", "LeftBracket", "RightBracket", "LeftParenthesis", 
-		"RightParenthesis", "Semicolon", "Colon", "Ellipsis", "New", "Delete", 
+		"OpenBrace", "CloseBrace", "OpenBracket", "CloseBracket", "OpenParenthesis", 
+		"CloseParenthesis", "Semicolon", "Colon", "Ellipsis", "New", "Delete", 
 		"QuestionMark", "DoubleColon", "Period", "PeriodAsterisk", "Plus", "Minus", 
 		"Asterisk", "ForwardSlash", "Percent", "Caret", "Ampersand", "VerticalBar", 
 		"Tilde", "ExclamationMark", "Equal", "LessThan", "GreaterThan", "PlusEqual", 
@@ -57,8 +57,8 @@ public class CppLexerOperatorsAndPunctuators extends Lexer {
 		"'++'", "'--'", "','", "'->*'", "'->'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
-		null, "LeftBrace", "RightBrace", "LeftBracket", "RightBracket", "LeftParenthesis", 
-		"RightParenthesis", "Semicolon", "Colon", "Ellipsis", "New", "Delete", 
+		null, "OpenBrace", "CloseBrace", "OpenBracket", "CloseBracket", "OpenParenthesis", 
+		"CloseParenthesis", "Semicolon", "Colon", "Ellipsis", "New", "Delete", 
 		"QuestionMark", "DoubleColon", "Period", "PeriodAsterisk", "Plus", "Minus", 
 		"Asterisk", "ForwardSlash", "Percent", "Caret", "Ampersand", "VerticalBar", 
 		"Tilde", "ExclamationMark", "Equal", "LessThan", "GreaterThan", "PlusEqual", 

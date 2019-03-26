@@ -18,14 +18,14 @@ TestState RunParameterListTests()
     std::wcout << L"OperatorEqual" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorEqual(); });
 
-    std::wcout << L"OperatorNotEqualLeftParenthesisToken" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualLeftParenthesisToken(); });
+    std::wcout << L"OperatorNotEqualOpenParenthesisToken" << std::endl;
+    state += RunTest([&testClass]() { testClass->OperatorNotEqualOpenParenthesisToken(); });
 
     std::wcout << L"OperatorNotEqualParameters" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorNotEqualParameters(); });
 
-    std::wcout << L"OperatorNotEqualRightParenthesisToken" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualRightParenthesisToken(); });
+    std::wcout << L"OperatorNotEqualCloseParenthesisToken" << std::endl;
+    state += RunTest([&testClass]() { testClass->OperatorNotEqualCloseParenthesisToken(); });
 
     return state;
 }

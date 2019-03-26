@@ -2,12 +2,12 @@
 lexer grammar CppLexerOperatorsAndPunctuators;
 
 // Define all of the C++ operator and punctuator tokens
-LeftBrace: '{';
-RightBrace: '}';
-LeftBracket: '[';
-RightBracket: ']';
-LeftParenthesis: '(';
-RightParenthesis: ')';
+OpenBrace: '{';
+CloseBrace: '}';
+OpenBracket: '[';
+CloseBracket: ']';
+OpenParenthesis: '(';
+CloseParenthesis: ')';
 Semicolon: ';';
 Colon: ':';
 Ellipsis: '...';

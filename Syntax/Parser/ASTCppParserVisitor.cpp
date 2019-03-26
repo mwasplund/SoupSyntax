@@ -292,29 +292,29 @@ antlrcpp::Any ASTCppParserVisitor::visitPostfixExpression(CppParser::PostfixExpr
             visit(context->postfixExpression())
                 .as<std::shared_ptr<const SyntaxNode>>());
 
-        if (context->LeftBracket() != nullptr)
+        if (context->OpenBracket() != nullptr)
         {
             // Subscript operator expression
-            // postfixExpression LeftBracket expressionOrBracedInitializerList RightBracket
-            auto leftBracketToken = CreateToken(
-                SyntaxTokenType::LeftBracket,
-                context->LeftBracket());
+            // postfixExpression OpenBracket expressionOrBracedInitializerList CloseBracket
+            auto openBracketToken = CreateToken(
+                SyntaxTokenType::OpenBracket,
+                context->OpenBracket());
             auto initializerList = std::dynamic_pointer_cast<const Expression>(
                 visit(context->expressionOrBracedInitializerList())
                     .as<std::shared_ptr<const SyntaxNode>>());
-            auto rightBracketToken = CreateToken(
-                SyntaxTokenType::RightBracket,
-                context->RightBracket());
+            auto closeBracketToken = CreateToken(
+                SyntaxTokenType::CloseBracket,
+                context->CloseBracket());
             return std::static_pointer_cast<const SyntaxNode>(
                 SyntaxFactory::CreateSubscriptExpression(
                     std::move(recursiveExpression),
-                    std::move(leftBracketToken),
+                    std::move(openBracketToken),
                     std::move(initializerList),
-                    std::move(rightBracketToken)));
+                    std::move(closeBracketToken)));
         }
-        else if (context->LeftParenthesis() != nullptr)
+        else if (context->OpenParenthesis() != nullptr)
         {
-            // postfixExpression LeftParenthesis expressionList? RightParenthesis
+            // postfixExpression OpenParenthesis expressionList? CloseParenthesis
         }
         else if (context->memberAccessOperator() != nullptr)
         {
@@ -583,7 +583,7 @@ antlrcpp::Any ASTCppParserVisitor::visitNoExceptionExpression(CppParser::NoExcep
 antlrcpp::Any ASTCppParserVisitor::visitCastExpression(CppParser::CastExpressionContext* context)
 {
     Trace(L"VisitCastExpression");
-    if (context->LeftParenthesis() != nullptr)
+    if (context->OpenParenthesis() != nullptr)
     {
         throw std::logic_error(std::string(__func__) + " NotImplemented");
     }
@@ -1191,9 +1191,9 @@ antlrcpp::Any ASTCppParserVisitor::visitCompoundStatement(CppParser::CompoundSta
 
     return std::static_pointer_cast<const SyntaxNode>(
         SyntaxFactory::CreateCompoundStatement(
-            CreateToken(SyntaxTokenType::LeftBrace, context->LeftBrace()),
+            CreateToken(SyntaxTokenType::OpenBrace, context->OpenBrace()),
             std::move(statements),
-            CreateToken(SyntaxTokenType::RightBrace, context->RightBrace())));
+            CreateToken(SyntaxTokenType::CloseBrace, context->CloseBrace())));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitStatementSequence(CppParser::StatementSequenceContext* context)
@@ -1249,9 +1249,9 @@ antlrcpp::Any ASTCppParserVisitor::visitSelectionStatement(CppParser::SelectionS
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreateIfStatement(
                 CreateToken(SyntaxTokenType::If, context->If()),
-                CreateToken(SyntaxTokenType::LeftParenthesis, context->LeftParenthesis()),
+                CreateToken(SyntaxTokenType::OpenParenthesis, context->OpenParenthesis()),
                 std::move(condition),
-                CreateToken(SyntaxTokenType::RightParenthesis, context->RightParenthesis()),
+                CreateToken(SyntaxTokenType::CloseParenthesis, context->CloseParenthesis()),
                 std::move(trueStatement),
                 std::move(elseClause)));
     }
@@ -1912,9 +1912,9 @@ antlrcpp::Any ASTCppParserVisitor::visitFunctionParameters(CppParser::FunctionPa
     Trace(L"VisitFunctionParameters2");
     return std::static_pointer_cast<const SyntaxNode>(
         SyntaxFactory::CreateParameterList(
-            CreateToken(SyntaxTokenType::LeftParenthesis, context->LeftParenthesis()),
+            CreateToken(SyntaxTokenType::OpenParenthesis, context->OpenParenthesis()),
             std::move(parameterList),
-            CreateToken(SyntaxTokenType::RightParenthesis, context->RightParenthesis())));
+            CreateToken(SyntaxTokenType::CloseParenthesis, context->CloseParenthesis())));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitFunctionQualifiers(CppParser::FunctionQualifiersContext *context)

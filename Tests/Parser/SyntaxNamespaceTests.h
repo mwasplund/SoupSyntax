@@ -23,9 +23,9 @@ namespace Soup::Syntax::UnitTests
                     nullptr,
                     std::make_shared<RegularFunctionBody>(
                         SyntaxFactory::CreateCompoundStatement(
-                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftBrace),
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                             {},
-                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightBrace)))));
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)))));
 
             auto actual = TestUtils::GenerateAST(source);
 
@@ -49,9 +49,9 @@ namespace Soup::Syntax::UnitTests
                     nullptr,
                     std::make_shared<RegularFunctionBody>(
                         SyntaxFactory::CreateCompoundStatement(
-                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftBrace),
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                             {},
-                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightBrace)))));
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)))));
 
             auto actual = TestUtils::GenerateAST(source);
 
@@ -75,9 +75,9 @@ namespace Soup::Syntax::UnitTests
                     nullptr,
                     std::make_shared<RegularFunctionBody>(
                         SyntaxFactory::CreateCompoundStatement(
-                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftBrace),
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                             {},
-                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightBrace)))));
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)))));
 
             auto actual = TestUtils::GenerateAST(source);
 

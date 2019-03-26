@@ -27,8 +27,8 @@ public class CppParser extends Parser {
 		Signed=54, SizeOf=55, Static=56, StaticAssert=57, StaticCast=58, Struct=59, 
 		Switch=60, Template=61, This=62, ThreadLocal=63, Throw=64, True=65, Try=66, 
 		TypeDef=67, TypeId=68, TypeName=69, Union=70, Unsigned=71, Using=72, Virtual=73, 
-		Void=74, Volatile=75, WChar=76, While=77, Override=78, Final=79, LeftBrace=80, 
-		RightBrace=81, LeftBracket=82, RightBracket=83, LeftParenthesis=84, RightParenthesis=85, 
+		Void=74, Volatile=75, WChar=76, While=77, Override=78, Final=79, OpenBrace=80, 
+		CloseBrace=81, OpenBracket=82, CloseBracket=83, OpenParenthesis=84, CloseParenthesis=85, 
 		Semicolon=86, Colon=87, Ellipsis=88, QuestionMark=89, DoubleColon=90, 
 		Period=91, PeriodAsterisk=92, Plus=93, Minus=94, Asterisk=95, ForwardSlash=96, 
 		Percent=97, Caret=98, Ampersand=99, VerticalBar=100, Tilde=101, ExclamationMark=102, 
@@ -210,8 +210,8 @@ public class CppParser extends Parser {
 		"Short", "Signed", "SizeOf", "Static", "StaticAssert", "StaticCast", "Struct", 
 		"Switch", "Template", "This", "ThreadLocal", "Throw", "True", "Try", "TypeDef", 
 		"TypeId", "TypeName", "Union", "Unsigned", "Using", "Virtual", "Void", 
-		"Volatile", "WChar", "While", "Override", "Final", "LeftBrace", "RightBrace", 
-		"LeftBracket", "RightBracket", "LeftParenthesis", "RightParenthesis", 
+		"Volatile", "WChar", "While", "Override", "Final", "OpenBrace", "CloseBrace", 
+		"OpenBracket", "CloseBracket", "OpenParenthesis", "CloseParenthesis", 
 		"Semicolon", "Colon", "Ellipsis", "QuestionMark", "DoubleColon", "Period", 
 		"PeriodAsterisk", "Plus", "Minus", "Asterisk", "ForwardSlash", "Percent", 
 		"Caret", "Ampersand", "VerticalBar", "Tilde", "ExclamationMark", "Equal", 
@@ -442,7 +442,7 @@ public class CppParser extends Parser {
 			setState(445);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignAs) | (1L << Asm) | (1L << Auto) | (1L << Bool) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << ConstExpr) | (1L << DeclType) | (1L << Double) | (1L << Enum) | (1L << Explicit) | (1L << Extern) | (1L << Float) | (1L << Friend) | (1L << Inline) | (1L << Int) | (1L << Long) | (1L << Mutable) | (1L << Namespace) | (1L << Operator) | (1L << Short) | (1L << Signed) | (1L << Static) | (1L << StaticAssert) | (1L << Template) | (1L << ThreadLocal))) != 0) || ((((_la - 67)) & ~0x3f) == 0 && ((1L << (_la - 67)) & ((1L << (TypeDef - 67)) | (1L << (Unsigned - 67)) | (1L << (Using - 67)) | (1L << (Virtual - 67)) | (1L << (Void - 67)) | (1L << (WChar - 67)) | (1L << (LeftBracket - 67)) | (1L << (LeftParenthesis - 67)) | (1L << (Semicolon - 67)) | (1L << (Ellipsis - 67)) | (1L << (DoubleColon - 67)) | (1L << (Asterisk - 67)) | (1L << (Ampersand - 67)) | (1L << (Tilde - 67)) | (1L << (DoubleAmpersand - 67)))) != 0) || _la==Identifier) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignAs) | (1L << Asm) | (1L << Auto) | (1L << Bool) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << ConstExpr) | (1L << DeclType) | (1L << Double) | (1L << Enum) | (1L << Explicit) | (1L << Extern) | (1L << Float) | (1L << Friend) | (1L << Inline) | (1L << Int) | (1L << Long) | (1L << Mutable) | (1L << Namespace) | (1L << Operator) | (1L << Short) | (1L << Signed) | (1L << Static) | (1L << StaticAssert) | (1L << Template) | (1L << ThreadLocal))) != 0) || ((((_la - 67)) & ~0x3f) == 0 && ((1L << (_la - 67)) & ((1L << (TypeDef - 67)) | (1L << (Unsigned - 67)) | (1L << (Using - 67)) | (1L << (Virtual - 67)) | (1L << (Void - 67)) | (1L << (WChar - 67)) | (1L << (OpenBracket - 67)) | (1L << (OpenParenthesis - 67)) | (1L << (Semicolon - 67)) | (1L << (Ellipsis - 67)) | (1L << (DoubleColon - 67)) | (1L << (Asterisk - 67)) | (1L << (Ampersand - 67)) | (1L << (Tilde - 67)) | (1L << (DoubleAmpersand - 67)))) != 0) || _la==Identifier) {
 				{
 				setState(444);
 				declarationSequence(0);
@@ -469,11 +469,11 @@ public class CppParser extends Parser {
 			return getRuleContext(LiteralContext.class,0);
 		}
 		public TerminalNode This() { return getToken(CppParser.This, 0); }
-		public TerminalNode LeftParenthesis() { return getToken(CppParser.LeftParenthesis, 0); }
+		public TerminalNode OpenParenthesis() { return getToken(CppParser.OpenParenthesis, 0); }
 		public ExpressionContext expression() {
 			return getRuleContext(ExpressionContext.class,0);
 		}
-		public TerminalNode RightParenthesis() { return getToken(CppParser.RightParenthesis, 0); }
+		public TerminalNode CloseParenthesis() { return getToken(CppParser.CloseParenthesis, 0); }
 		public IdentifierExpressionContext identifierExpression() {
 			return getRuleContext(IdentifierExpressionContext.class,0);
 		}
@@ -514,11 +514,11 @@ public class CppParser extends Parser {
 				enterOuterAlt(_localctx, 3);
 				{
 				setState(451);
-				match(LeftParenthesis);
+				match(OpenParenthesis);
 				setState(452);
 				expression(0);
 				setState(453);
-				match(RightParenthesis);
+				match(CloseParenthesis);
 				}
 				break;
 			case 4:
@@ -943,7 +943,7 @@ public class CppParser extends Parser {
 			setState(512);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if (_la==LeftParenthesis) {
+			if (_la==OpenParenthesis) {
 				{
 				setState(511);
 				lambdaDeclarator();
@@ -966,8 +966,8 @@ public class CppParser extends Parser {
 	}
 
 	public static class LambdaIntroducerContext extends ParserRuleContext {
-		public TerminalNode LeftBracket() { return getToken(CppParser.LeftBracket, 0); }
-		public TerminalNode RightBracket() { return getToken(CppParser.RightBracket, 0); }
+		public TerminalNode OpenBracket() { return getToken(CppParser.OpenBracket, 0); }
+		public TerminalNode CloseBracket() { return getToken(CppParser.CloseBracket, 0); }
 		public LambdaCaptureContext lambdaCapture() {
 			return getRuleContext(LambdaCaptureContext.class,0);
 		}
@@ -985,7 +985,7 @@ public class CppParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(516);
-			match(LeftBracket);
+			match(OpenBracket);
 			setState(518);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
@@ -997,7 +997,7 @@ public class CppParser extends Parser {
 			}
 
 			setState(520);
-			match(RightBracket);
+			match(CloseBracket);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1012,11 +1012,11 @@ public class CppParser extends Parser {
 	}
 
 	public static class LambdaDeclaratorContext extends ParserRuleContext {
-		public TerminalNode LeftParenthesis() { return getToken(CppParser.LeftParenthesis, 0); }
+		public TerminalNode OpenParenthesis() { return getToken(CppParser.OpenParenthesis, 0); }
 		public ParameterDeclarationClauseContext parameterDeclarationClause() {
 			return getRuleContext(ParameterDeclarationClauseContext.class,0);
 		}
-		public TerminalNode RightParenthesis() { return getToken(CppParser.RightParenthesis, 0); }
+		public TerminalNode CloseParenthesis() { return getToken(CppParser.CloseParenthesis, 0); }
 		public DeclarationSpecifierSequenceContext declarationSpecifierSequence() {
 			return getRuleContext(DeclarationSpecifierSequenceContext.class,0);
 		}
@@ -1043,11 +1043,11 @@ public class CppParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(522);
-			match(LeftParenthesis);
+			match(OpenParenthesis);
 			setState(523);
 			parameterDeclarationClause();
 			setState(524);
-			match(RightParenthesis);
+			match(CloseParenthesis);
 			setState(526);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
@@ -1071,7 +1071,7 @@ public class CppParser extends Parser {
 			setState(532);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if (_la==AlignAs || _la==LeftBracket) {
+			if (_la==AlignAs || _la==OpenBracket) {
 				{
 				setState(531);
 				attributeSpecifierSequence(0);
@@ -1442,7 +1442,7 @@ public class CppParser extends Parser {
 	}
 
 	public static class FoldExpressionContext extends ParserRuleContext {
-		public TerminalNode LeftParenthesis() { return getToken(CppParser.LeftParenthesis, 0); }
+		public TerminalNode OpenParenthesis() { return getToken(CppParser.OpenParenthesis, 0); }
 		public List<CastExpressionContext> castExpression() {
 			return getRuleContexts(CastExpressionContext.class);
 		}
@@ -1456,7 +1456,7 @@ public class CppParser extends Parser {
 			return getRuleContext(FoldOperatorContext.class,i);
 		}
 		public TerminalNode Ellipsis() { return getToken(CppParser.Ellipsis, 0); }
-		public TerminalNode RightParenthesis() { return getToken(CppParser.RightParenthesis, 0); }
+		public TerminalNode CloseParenthesis() { return getToken(CppParser.CloseParenthesis, 0); }
 		public FoldExpressionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1474,7 +1474,7 @@ public class CppParser extends Parser {
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(581);
-				match(LeftParenthesis);
+				match(OpenParenthesis);
 				setState(582);
 				castExpression();
 				setState(583);
@@ -1482,14 +1482,14 @@ public class CppParser extends Parser {
 				setState(584);
 				match(Ellipsis);
 				setState(585);
-				match(RightParenthesis);
+				match(CloseParenthesis);
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(587);
-				match(LeftParenthesis);
+				match(OpenParenthesis);
 				setState(588);
 				match(Ellipsis);
 				setState(589);
@@ -1497,14 +1497,14 @@ public class CppParser extends Parser {
 				setState(590);
 				castExpression();
 				setState(591);
-				match(RightParenthesis);
+				match(CloseParenthesis);
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
 				setState(593);
-				match(LeftParenthesis);
+				match(OpenParenthesis);
 				setState(594);
 				castExpression();
 				setState(595);
@@ -1516,7 +1516,7 @@ public class CppParser extends Parser {
 				setState(598);
 				castExpression();
 				setState(599);
-				match(RightParenthesis);
+				match(CloseParenthesis);
 				}
 				break;
 			}
@@ -1605,8 +1605,8 @@ public class CppParser extends Parser {
 		public SimpleTypeSpecifierContext simpleTypeSpecifier() {
 			return getRuleContext(SimpleTypeSpecifierContext.class,0);
 		}
-		public TerminalNode LeftParenthesis() { return getToken(CppParser.LeftParenthesis, 0); }
-		public TerminalNode RightParenthesis() { return getToken(CppParser.RightParenthesis, 0); }
+		public TerminalNode OpenParenthesis() { return getToken(CppParser.OpenParenthesis, 0); }
+		public TerminalNode CloseParenthesis() { return getToken(CppParser.CloseParenthesis, 0); }
 		public ExpressionListContext expressionList() {
 			return getRuleContext(ExpressionListContext.class,0);
 		}
@@ -1647,11 +1647,11 @@ public class CppParser extends Parser {
 				setState(605);
 				simpleTypeSpecifier();
 				setState(606);
-				match(LeftParenthesis);
+				match(OpenParenthesis);
 				setState(608);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignOf) | (1L << Auto) | (1L << Bool) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << ConstCast) | (1L << DeclType) | (1L << Delete) | (1L << Double) | (1L << DynamicCast) | (1L << False) | (1L << Float) | (1L << Int) | (1L << Long) | (1L << New) | (1L << NoExcept) | (1L << Nullptr) | (1L << Operator) | (1L << ReinterpretCast) | (1L << Short) | (1L << Signed) | (1L << SizeOf) | (1L << StaticCast) | (1L << This))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (Throw - 64)) | (1L << (True - 64)) | (1L << (TypeId - 64)) | (1L << (TypeName - 64)) | (1L << (Unsigned - 64)) | (1L << (Void - 64)) | (1L << (WChar - 64)) | (1L << (LeftBrace - 64)) | (1L << (LeftBracket - 64)) | (1L << (LeftParenthesis - 64)) | (1L << (DoubleColon - 64)) | (1L << (Plus - 64)) | (1L << (Minus - 64)) | (1L << (Asterisk - 64)) | (1L << (Ampersand - 64)) | (1L << (VerticalBar - 64)) | (1L << (Tilde - 64)) | (1L << (ExclamationMark - 64)) | (1L << (DoublePlus - 64)) | (1L << (DoubleMinus - 64)))) != 0) || ((((_la - 129)) & ~0x3f) == 0 && ((1L << (_la - 129)) & ((1L << (Zero - 129)) | (1L << (IntegerLiteral - 129)) | (1L << (FloatingPointLiteral - 129)) | (1L << (CharacterLiteral - 129)) | (1L << (StringLiteral - 129)) | (1L << (UserDefinedIntegerLiteral - 129)) | (1L << (UserDefinedFloatingPointLiteral - 129)) | (1L << (UserDefinedCharacterLiteral - 129)) | (1L << (UserDefinedStringLiteral - 129)) | (1L << (Identifier - 129)))) != 0)) {
+				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignOf) | (1L << Auto) | (1L << Bool) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << ConstCast) | (1L << DeclType) | (1L << Delete) | (1L << Double) | (1L << DynamicCast) | (1L << False) | (1L << Float) | (1L << Int) | (1L << Long) | (1L << New) | (1L << NoExcept) | (1L << Nullptr) | (1L << Operator) | (1L << ReinterpretCast) | (1L << Short) | (1L << Signed) | (1L << SizeOf) | (1L << StaticCast) | (1L << This))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (Throw - 64)) | (1L << (True - 64)) | (1L << (TypeId - 64)) | (1L << (TypeName - 64)) | (1L << (Unsigned - 64)) | (1L << (Void - 64)) | (1L << (WChar - 64)) | (1L << (OpenBrace - 64)) | (1L << (OpenBracket - 64)) | (1L << (OpenParenthesis - 64)) | (1L << (DoubleColon - 64)) | (1L << (Plus - 64)) | (1L << (Minus - 64)) | (1L << (Asterisk - 64)) | (1L << (Ampersand - 64)) | (1L << (VerticalBar - 64)) | (1L << (Tilde - 64)) | (1L << (ExclamationMark - 64)) | (1L << (DoublePlus - 64)) | (1L << (DoubleMinus - 64)))) != 0) || ((((_la - 129)) & ~0x3f) == 0 && ((1L << (_la - 129)) & ((1L << (Zero - 129)) | (1L << (IntegerLiteral - 129)) | (1L << (FloatingPointLiteral - 129)) | (1L << (CharacterLiteral - 129)) | (1L << (StringLiteral - 129)) | (1L << (UserDefinedIntegerLiteral - 129)) | (1L << (UserDefinedFloatingPointLiteral - 129)) | (1L << (UserDefinedCharacterLiteral - 129)) | (1L << (UserDefinedStringLiteral - 129)) | (1L << (Identifier - 129)))) != 0)) {
 					{
 					setState(607);
 					expressionList();
@@ -1659,7 +1659,7 @@ public class CppParser extends Parser {
 				}
 
 				setState(610);
-				match(RightParenthesis);
+				match(CloseParenthesis);
 				}
 				break;
 			case TypeName:
@@ -1668,11 +1668,11 @@ public class CppParser extends Parser {
 				setState(612);
 				typenameSpecifier();
 				setState(613);
-				match(LeftParenthesis);
+				match(OpenParenthesis);
 				setState(615);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignOf) | (1L << Auto) | (1L << Bool) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << ConstCast) | (1L << DeclType) | (1L << Delete) | (1L << Double) | (1L << DynamicCast) | (1L << False) | (1L << Float) | (1L << Int) | (1L << Long) | (1L << New) | (1L << NoExcept) | (1L << Nullptr) | (1L << Operator) | (1L << ReinterpretCast) | (1L << Short) | (1L << Signed) | (1L << SizeOf) | (1L << StaticCast) | (1L << This))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (Throw - 64)) | (1L << (True - 64)) | (1L << (TypeId - 64)) | (1L << (TypeName - 64)) | (1L << (Unsigned - 64)) | (1L << (Void - 64)) | (1L << (WChar - 64)) | (1L << (LeftBrace - 64)) | (1L << (LeftBracket - 64)) | (1L << (LeftParenthesis - 64)) | (1L << (DoubleColon - 64)) | (1L << (Plus - 64)) | (1L << (Minus - 64)) | (1L << (Asterisk - 64)) | (1L << (Ampersand - 64)) | (1L << (VerticalBar - 64)) | (1L << (Tilde - 64)) | (1L << (ExclamationMark - 64)) | (1L << (DoublePlus - 64)) | (1L << (DoubleMinus - 64)))) != 0) || ((((_la - 129)) & ~0x3f) == 0 && ((1L << (_la - 129)) & ((1L << (Zero - 129)) | (1L << (IntegerLiteral - 129)) | (1L << (FloatingPointLiteral - 129)) | (1L << (CharacterLiteral - 129)) | (1L << (StringLiteral - 129)) | (1L << (UserDefinedIntegerLiteral - 129)) | (1L << (UserDefinedFloatingPointLiteral - 129)) | (1L << (UserDefinedCharacterLiteral - 129)) | (1L << (UserDefinedStringLiteral - 129)) | (1L << (Identifier - 129)))) != 0)) {
+				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignOf) | (1L << Auto) | (1L << Bool) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << ConstCast) | (1L << DeclType) | (1L << Delete) | (1L << Double) | (1L << DynamicCast) | (1L << False) | (1L << Float) | (1L << Int) | (1L << Long) | (1L << New) | (1L << NoExcept) | (1L << Nullptr) | (1L << Operator) | (1L << ReinterpretCast) | (1L << Short) | (1L << Signed) | (1L << SizeOf) | (1L << StaticCast) | (1L << This))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (Throw - 64)) | (1L << (True - 64)) | (1L << (TypeId - 64)) | (1L << (TypeName - 64)) | (1L << (Unsigned - 64)) | (1L << (Void - 64)) | (1L << (WChar - 64)) | (1L << (OpenBrace - 64)) | (1L << (OpenBracket - 64)) | (1L << (OpenParenthesis - 64)) | (1L << (DoubleColon - 64)) | (1L << (Plus - 64)) | (1L << (Minus - 64)) | (1L << (Asterisk - 64)) | (1L << (Ampersand - 64)) | (1L << (VerticalBar - 64)) | (1L << (Tilde - 64)) | (1L << (ExclamationMark - 64)) | (1L << (DoublePlus - 64)) | (1L << (DoubleMinus - 64)))) != 0) || ((((_la - 129)) & ~0x3f) == 0 && ((1L << (_la - 129)) & ((1L << (Zero - 129)) | (1L << (IntegerLiteral - 129)) | (1L << (FloatingPointLiteral - 129)) | (1L << (CharacterLiteral - 129)) | (1L << (StringLiteral - 129)) | (1L << (UserDefinedIntegerLiteral - 129)) | (1L << (UserDefinedFloatingPointLiteral - 129)) | (1L << (UserDefinedCharacterLiteral - 129)) | (1L << (UserDefinedStringLiteral - 129)) | (1L << (Identifier - 129)))) != 0)) {
 					{
 					setState(614);
 					expressionList();
@@ -1680,7 +1680,7 @@ public class CppParser extends Parser {
 				}
 
 				setState(617);
-				match(RightParenthesis);
+				match(CloseParenthesis);
 				}
 				break;
 			default:
@@ -1746,11 +1746,11 @@ public class CppParser extends Parser {
 			return getRuleContext(TypeIdentifierContext.class,0);
 		}
 		public TerminalNode GreaterThan() { return getToken(CppParser.GreaterThan, 0); }
-		public TerminalNode LeftParenthesis() { return getToken(CppParser.LeftParenthesis, 0); }
+		public TerminalNode OpenParenthesis() { return getToken(CppParser.OpenParenthesis, 0); }
 		public ExpressionContext expression() {
 			return getRuleContext(ExpressionContext.class,0);
 		}
-		public TerminalNode RightParenthesis() { return getToken(CppParser.RightParenthesis, 0); }
+		public TerminalNode CloseParenthesis() { return getToken(CppParser.CloseParenthesis, 0); }
 		public NamedCastExpressionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1772,11 +1772,11 @@ public class CppParser extends Parser {
 			setState(626);
 			match(GreaterThan);
 			setState(627);
-			match(LeftParenthesis);
+			match(OpenParenthesis);
 			setState(628);
 			expression(0);
 			setState(629);
-			match(RightParenthesis);
+			match(CloseParenthesis);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1872,11 +1872,11 @@ public class CppParser extends Parser {
 
 	public static class TypeIdentificationExpressionContext extends ParserRuleContext {
 		public TerminalNode TypeId() { return getToken(CppParser.TypeId, 0); }
-		public TerminalNode LeftParenthesis() { return getToken(CppParser.LeftParenthesis, 0); }
+		public TerminalNode OpenParenthesis() { return getToken(CppParser.OpenParenthesis, 0); }
 		public ExpressionContext expression() {
 			return getRuleContext(ExpressionContext.class,0);
 		}
-		public TerminalNode RightParenthesis() { return getToken(CppParser.RightParenthesis, 0); }
+		public TerminalNode CloseParenthesis() { return getToken(CppParser.CloseParenthesis, 0); }
 		public TypeIdentifierContext typeIdentifier() {
 			return getRuleContext(TypeIdentifierContext.class,0);
 		}
@@ -1899,11 +1899,11 @@ public class CppParser extends Parser {
 				setState(635);
 				match(TypeId);
 				setState(636);
-				match(LeftParenthesis);
+				match(OpenParenthesis);
 				setState(637);
 				expression(0);
 				setState(638);
-				match(RightParenthesis);
+				match(CloseParenthesis);
 				}
 				break;
 			case 2:
@@ -1912,11 +1912,11 @@ public class CppParser extends Parser {
 				setState(640);
 				match(TypeId);
 				setState(641);
-				match(LeftParenthesis);
+				match(OpenParenthesis);
 				setState(642);
 				typeIdentifier();
 				setState(643);
-				match(RightParenthesis);
+				match(CloseParenthesis);
 				}
 				break;
 			}
@@ -1957,13 +1957,13 @@ public class CppParser extends Parser {
 		public PostfixExpressionContext postfixExpression() {
 			return getRuleContext(PostfixExpressionContext.class,0);
 		}
-		public TerminalNode LeftBracket() { return getToken(CppParser.LeftBracket, 0); }
+		public TerminalNode OpenBracket() { return getToken(CppParser.OpenBracket, 0); }
 		public ExpressionOrBracedInitializerListContext expressionOrBracedInitializerList() {
 			return getRuleContext(ExpressionOrBracedInitializerListContext.class,0);
 		}
-		public TerminalNode RightBracket() { return getToken(CppParser.RightBracket, 0); }
-		public TerminalNode LeftParenthesis() { return getToken(CppParser.LeftParenthesis, 0); }
-		public TerminalNode RightParenthesis() { return getToken(CppParser.RightParenthesis, 0); }
+		public TerminalNode CloseBracket() { return getToken(CppParser.CloseBracket, 0); }
+		public TerminalNode OpenParenthesis() { return getToken(CppParser.OpenParenthesis, 0); }
+		public TerminalNode CloseParenthesis() { return getToken(CppParser.CloseParenthesis, 0); }
 		public ExpressionListContext expressionList() {
 			return getRuleContext(ExpressionListContext.class,0);
 		}
@@ -2065,11 +2065,11 @@ public class CppParser extends Parser {
 						setState(660);
 						if (!(precpred(_ctx, 10))) throw new FailedPredicateException(this, "precpred(_ctx, 10)");
 						setState(661);
-						match(LeftBracket);
+						match(OpenBracket);
 						setState(662);
 						expressionOrBracedInitializerList();
 						setState(663);
-						match(RightBracket);
+						match(CloseBracket);
 						}
 						break;
 					case 2:
@@ -2079,11 +2079,11 @@ public class CppParser extends Parser {
 						setState(665);
 						if (!(precpred(_ctx, 9))) throw new FailedPredicateException(this, "precpred(_ctx, 9)");
 						setState(666);
-						match(LeftParenthesis);
+						match(OpenParenthesis);
 						setState(668);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
-						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignOf) | (1L << Auto) | (1L << Bool) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << ConstCast) | (1L << DeclType) | (1L << Delete) | (1L << Double) | (1L << DynamicCast) | (1L << False) | (1L << Float) | (1L << Int) | (1L << Long) | (1L << New) | (1L << NoExcept) | (1L << Nullptr) | (1L << Operator) | (1L << ReinterpretCast) | (1L << Short) | (1L << Signed) | (1L << SizeOf) | (1L << StaticCast) | (1L << This))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (Throw - 64)) | (1L << (True - 64)) | (1L << (TypeId - 64)) | (1L << (TypeName - 64)) | (1L << (Unsigned - 64)) | (1L << (Void - 64)) | (1L << (WChar - 64)) | (1L << (LeftBrace - 64)) | (1L << (LeftBracket - 64)) | (1L << (LeftParenthesis - 64)) | (1L << (DoubleColon - 64)) | (1L << (Plus - 64)) | (1L << (Minus - 64)) | (1L << (Asterisk - 64)) | (1L << (Ampersand - 64)) | (1L << (VerticalBar - 64)) | (1L << (Tilde - 64)) | (1L << (ExclamationMark - 64)) | (1L << (DoublePlus - 64)) | (1L << (DoubleMinus - 64)))) != 0) || ((((_la - 129)) & ~0x3f) == 0 && ((1L << (_la - 129)) & ((1L << (Zero - 129)) | (1L << (IntegerLiteral - 129)) | (1L << (FloatingPointLiteral - 129)) | (1L << (CharacterLiteral - 129)) | (1L << (StringLiteral - 129)) | (1L << (UserDefinedIntegerLiteral - 129)) | (1L << (UserDefinedFloatingPointLiteral - 129)) | (1L << (UserDefinedCharacterLiteral - 129)) | (1L << (UserDefinedStringLiteral - 129)) | (1L << (Identifier - 129)))) != 0)) {
+						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignOf) | (1L << Auto) | (1L << Bool) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << ConstCast) | (1L << DeclType) | (1L << Delete) | (1L << Double) | (1L << DynamicCast) | (1L << False) | (1L << Float) | (1L << Int) | (1L << Long) | (1L << New) | (1L << NoExcept) | (1L << Nullptr) | (1L << Operator) | (1L << ReinterpretCast) | (1L << Short) | (1L << Signed) | (1L << SizeOf) | (1L << StaticCast) | (1L << This))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (Throw - 64)) | (1L << (True - 64)) | (1L << (TypeId - 64)) | (1L << (TypeName - 64)) | (1L << (Unsigned - 64)) | (1L << (Void - 64)) | (1L << (WChar - 64)) | (1L << (OpenBrace - 64)) | (1L << (OpenBracket - 64)) | (1L << (OpenParenthesis - 64)) | (1L << (DoubleColon - 64)) | (1L << (Plus - 64)) | (1L << (Minus - 64)) | (1L << (Asterisk - 64)) | (1L << (Ampersand - 64)) | (1L << (VerticalBar - 64)) | (1L << (Tilde - 64)) | (1L << (ExclamationMark - 64)) | (1L << (DoublePlus - 64)) | (1L << (DoubleMinus - 64)))) != 0) || ((((_la - 129)) & ~0x3f) == 0 && ((1L << (_la - 129)) & ((1L << (Zero - 129)) | (1L << (IntegerLiteral - 129)) | (1L << (FloatingPointLiteral - 129)) | (1L << (CharacterLiteral - 129)) | (1L << (StringLiteral - 129)) | (1L << (UserDefinedIntegerLiteral - 129)) | (1L << (UserDefinedFloatingPointLiteral - 129)) | (1L << (UserDefinedCharacterLiteral - 129)) | (1L << (UserDefinedStringLiteral - 129)) | (1L << (Identifier - 129)))) != 0)) {
 							{
 							setState(667);
 							expressionList();
@@ -2091,7 +2091,7 @@ public class CppParser extends Parser {
 						}
 
 						setState(670);
-						match(RightParenthesis);
+						match(CloseParenthesis);
 						}
 						break;
 					case 3:
@@ -2308,11 +2308,11 @@ public class CppParser extends Parser {
 		public UnaryExpressionContext unaryExpression() {
 			return getRuleContext(UnaryExpressionContext.class,0);
 		}
-		public TerminalNode LeftParenthesis() { return getToken(CppParser.LeftParenthesis, 0); }
+		public TerminalNode OpenParenthesis() { return getToken(CppParser.OpenParenthesis, 0); }
 		public TypeIdentifierContext typeIdentifier() {
 			return getRuleContext(TypeIdentifierContext.class,0);
 		}
-		public TerminalNode RightParenthesis() { return getToken(CppParser.RightParenthesis, 0); }
+		public TerminalNode CloseParenthesis() { return getToken(CppParser.CloseParenthesis, 0); }
 		public TerminalNode Ellipsis() { return getToken(CppParser.Ellipsis, 0); }
 		public TerminalNode Identifier() { return getToken(CppParser.Identifier, 0); }
 		public TerminalNode AlignOf() { return getToken(CppParser.AlignOf, 0); }
@@ -2387,11 +2387,11 @@ public class CppParser extends Parser {
 				setState(722);
 				match(SizeOf);
 				setState(723);
-				match(LeftParenthesis);
+				match(OpenParenthesis);
 				setState(724);
 				typeIdentifier();
 				setState(725);
-				match(RightParenthesis);
+				match(CloseParenthesis);
 				}
 				break;
 			case 7:
@@ -2402,11 +2402,11 @@ public class CppParser extends Parser {
 				setState(728);
 				match(Ellipsis);
 				setState(729);
-				match(LeftParenthesis);
+				match(OpenParenthesis);
 				setState(730);
 				match(Identifier);
 				setState(731);
-				match(RightParenthesis);
+				match(CloseParenthesis);
 				}
 				break;
 			case 8:
@@ -2415,11 +2415,11 @@ public class CppParser extends Parser {
 				setState(732);
 				match(AlignOf);
 				setState(733);
-				match(LeftParenthesis);
+				match(OpenParenthesis);
 				setState(734);
 				typeIdentifier();
 				setState(735);
-				match(RightParenthesis);
+				match(CloseParenthesis);
 				}
 				break;
 			case 9:
@@ -2512,11 +2512,11 @@ public class CppParser extends Parser {
 		public NewInitializerContext newInitializer() {
 			return getRuleContext(NewInitializerContext.class,0);
 		}
-		public TerminalNode LeftParenthesis() { return getToken(CppParser.LeftParenthesis, 0); }
+		public TerminalNode OpenParenthesis() { return getToken(CppParser.OpenParenthesis, 0); }
 		public TypeIdentifierContext typeIdentifier() {
 			return getRuleContext(TypeIdentifierContext.class,0);
 		}
-		public TerminalNode RightParenthesis() { return getToken(CppParser.RightParenthesis, 0); }
+		public TerminalNode CloseParenthesis() { return getToken(CppParser.CloseParenthesis, 0); }
 		public NewExpressionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -2549,7 +2549,7 @@ public class CppParser extends Parser {
 				setState(749);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if (_la==LeftParenthesis) {
+				if (_la==OpenParenthesis) {
 					{
 					setState(748);
 					newPlacement();
@@ -2596,11 +2596,11 @@ public class CppParser extends Parser {
 					break;
 				}
 				setState(762);
-				match(LeftParenthesis);
+				match(OpenParenthesis);
 				setState(763);
 				typeIdentifier();
 				setState(764);
-				match(RightParenthesis);
+				match(CloseParenthesis);
 				setState(766);
 				_errHandler.sync(this);
 				switch ( getInterpreter().adaptivePredict(_input,46,_ctx) ) {
@@ -2627,11 +2627,11 @@ public class CppParser extends Parser {
 	}
 
 	public static class NewPlacementContext extends ParserRuleContext {
-		public TerminalNode LeftParenthesis() { return getToken(CppParser.LeftParenthesis, 0); }
+		public TerminalNode OpenParenthesis() { return getToken(CppParser.OpenParenthesis, 0); }
 		public ExpressionListContext expressionList() {
 			return getRuleContext(ExpressionListContext.class,0);
 		}
-		public TerminalNode RightParenthesis() { return getToken(CppParser.RightParenthesis, 0); }
+		public TerminalNode CloseParenthesis() { return getToken(CppParser.CloseParenthesis, 0); }
 		public NewPlacementContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -2645,11 +2645,11 @@ public class CppParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(770);
-			match(LeftParenthesis);
+			match(OpenParenthesis);
 			setState(771);
 			expressionList();
 			setState(772);
-			match(RightParenthesis);
+			match(CloseParenthesis);
 			}
 		}
 		catch (RecognitionException re) {
@@ -2758,11 +2758,11 @@ public class CppParser extends Parser {
 	}
 
 	public static class NoPointerNewDeclaratorContext extends ParserRuleContext {
-		public TerminalNode LeftBracket() { return getToken(CppParser.LeftBracket, 0); }
+		public TerminalNode OpenBracket() { return getToken(CppParser.OpenBracket, 0); }
 		public ExpressionContext expression() {
 			return getRuleContext(ExpressionContext.class,0);
 		}
-		public TerminalNode RightBracket() { return getToken(CppParser.RightBracket, 0); }
+		public TerminalNode CloseBracket() { return getToken(CppParser.CloseBracket, 0); }
 		public AttributeSpecifierSequenceContext attributeSpecifierSequence() {
 			return getRuleContext(AttributeSpecifierSequenceContext.class,0);
 		}
@@ -2795,11 +2795,11 @@ public class CppParser extends Parser {
 			{
 			{
 			setState(785);
-			match(LeftBracket);
+			match(OpenBracket);
 			setState(786);
 			expression(0);
 			setState(787);
-			match(RightBracket);
+			match(CloseBracket);
 			setState(789);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,50,_ctx) ) {
@@ -2826,11 +2826,11 @@ public class CppParser extends Parser {
 					setState(791);
 					if (!(precpred(_ctx, 1))) throw new FailedPredicateException(this, "precpred(_ctx, 1)");
 					setState(792);
-					match(LeftBracket);
+					match(OpenBracket);
 					setState(793);
 					constantExpression();
 					setState(794);
-					match(RightBracket);
+					match(CloseBracket);
 					setState(796);
 					_errHandler.sync(this);
 					switch ( getInterpreter().adaptivePredict(_input,51,_ctx) ) {
@@ -2862,8 +2862,8 @@ public class CppParser extends Parser {
 	}
 
 	public static class NewInitializerContext extends ParserRuleContext {
-		public TerminalNode LeftParenthesis() { return getToken(CppParser.LeftParenthesis, 0); }
-		public TerminalNode RightParenthesis() { return getToken(CppParser.RightParenthesis, 0); }
+		public TerminalNode OpenParenthesis() { return getToken(CppParser.OpenParenthesis, 0); }
+		public TerminalNode CloseParenthesis() { return getToken(CppParser.CloseParenthesis, 0); }
 		public ExpressionListContext expressionList() {
 			return getRuleContext(ExpressionListContext.class,0);
 		}
@@ -2884,15 +2884,15 @@ public class CppParser extends Parser {
 			setState(809);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
-			case LeftParenthesis:
+			case OpenParenthesis:
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(803);
-				match(LeftParenthesis);
+				match(OpenParenthesis);
 				setState(805);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignOf) | (1L << Auto) | (1L << Bool) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << ConstCast) | (1L << DeclType) | (1L << Delete) | (1L << Double) | (1L << DynamicCast) | (1L << False) | (1L << Float) | (1L << Int) | (1L << Long) | (1L << New) | (1L << NoExcept) | (1L << Nullptr) | (1L << Operator) | (1L << ReinterpretCast) | (1L << Short) | (1L << Signed) | (1L << SizeOf) | (1L << StaticCast) | (1L << This))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (Throw - 64)) | (1L << (True - 64)) | (1L << (TypeId - 64)) | (1L << (TypeName - 64)) | (1L << (Unsigned - 64)) | (1L << (Void - 64)) | (1L << (WChar - 64)) | (1L << (LeftBrace - 64)) | (1L << (LeftBracket - 64)) | (1L << (LeftParenthesis - 64)) | (1L << (DoubleColon - 64)) | (1L << (Plus - 64)) | (1L << (Minus - 64)) | (1L << (Asterisk - 64)) | (1L << (Ampersand - 64)) | (1L << (VerticalBar - 64)) | (1L << (Tilde - 64)) | (1L << (ExclamationMark - 64)) | (1L << (DoublePlus - 64)) | (1L << (DoubleMinus - 64)))) != 0) || ((((_la - 129)) & ~0x3f) == 0 && ((1L << (_la - 129)) & ((1L << (Zero - 129)) | (1L << (IntegerLiteral - 129)) | (1L << (FloatingPointLiteral - 129)) | (1L << (CharacterLiteral - 129)) | (1L << (StringLiteral - 129)) | (1L << (UserDefinedIntegerLiteral - 129)) | (1L << (UserDefinedFloatingPointLiteral - 129)) | (1L << (UserDefinedCharacterLiteral - 129)) | (1L << (UserDefinedStringLiteral - 129)) | (1L << (Identifier - 129)))) != 0)) {
+				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignOf) | (1L << Auto) | (1L << Bool) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << ConstCast) | (1L << DeclType) | (1L << Delete) | (1L << Double) | (1L << DynamicCast) | (1L << False) | (1L << Float) | (1L << Int) | (1L << Long) | (1L << New) | (1L << NoExcept) | (1L << Nullptr) | (1L << Operator) | (1L << ReinterpretCast) | (1L << Short) | (1L << Signed) | (1L << SizeOf) | (1L << StaticCast) | (1L << This))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (Throw - 64)) | (1L << (True - 64)) | (1L << (TypeId - 64)) | (1L << (TypeName - 64)) | (1L << (Unsigned - 64)) | (1L << (Void - 64)) | (1L << (WChar - 64)) | (1L << (OpenBrace - 64)) | (1L << (OpenBracket - 64)) | (1L << (OpenParenthesis - 64)) | (1L << (DoubleColon - 64)) | (1L << (Plus - 64)) | (1L << (Minus - 64)) | (1L << (Asterisk - 64)) | (1L << (Ampersand - 64)) | (1L << (VerticalBar - 64)) | (1L << (Tilde - 64)) | (1L << (ExclamationMark - 64)) | (1L << (DoublePlus - 64)) | (1L << (DoubleMinus - 64)))) != 0) || ((((_la - 129)) & ~0x3f) == 0 && ((1L << (_la - 129)) & ((1L << (Zero - 129)) | (1L << (IntegerLiteral - 129)) | (1L << (FloatingPointLiteral - 129)) | (1L << (CharacterLiteral - 129)) | (1L << (StringLiteral - 129)) | (1L << (UserDefinedIntegerLiteral - 129)) | (1L << (UserDefinedFloatingPointLiteral - 129)) | (1L << (UserDefinedCharacterLiteral - 129)) | (1L << (UserDefinedStringLiteral - 129)) | (1L << (Identifier - 129)))) != 0)) {
 					{
 					setState(804);
 					expressionList();
@@ -2900,10 +2900,10 @@ public class CppParser extends Parser {
 				}
 
 				setState(807);
-				match(RightParenthesis);
+				match(CloseParenthesis);
 				}
 				break;
-			case LeftBrace:
+			case OpenBrace:
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(808);
@@ -2931,8 +2931,8 @@ public class CppParser extends Parser {
 			return getRuleContext(CastExpressionContext.class,0);
 		}
 		public TerminalNode DoubleColon() { return getToken(CppParser.DoubleColon, 0); }
-		public TerminalNode LeftBracket() { return getToken(CppParser.LeftBracket, 0); }
-		public TerminalNode RightBracket() { return getToken(CppParser.RightBracket, 0); }
+		public TerminalNode OpenBracket() { return getToken(CppParser.OpenBracket, 0); }
+		public TerminalNode CloseBracket() { return getToken(CppParser.CloseBracket, 0); }
 		public DeleteExpressionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -2982,9 +2982,9 @@ public class CppParser extends Parser {
 				setState(819);
 				match(Delete);
 				setState(820);
-				match(LeftBracket);
+				match(OpenBracket);
 				setState(821);
-				match(RightBracket);
+				match(CloseBracket);
 				setState(822);
 				castExpression();
 				}
@@ -3004,11 +3004,11 @@ public class CppParser extends Parser {
 
 	public static class NoExceptionExpressionContext extends ParserRuleContext {
 		public TerminalNode NoExcept() { return getToken(CppParser.NoExcept, 0); }
-		public TerminalNode LeftParenthesis() { return getToken(CppParser.LeftParenthesis, 0); }
+		public TerminalNode OpenParenthesis() { return getToken(CppParser.OpenParenthesis, 0); }
 		public ExpressionContext expression() {
 			return getRuleContext(ExpressionContext.class,0);
 		}
-		public TerminalNode RightParenthesis() { return getToken(CppParser.RightParenthesis, 0); }
+		public TerminalNode CloseParenthesis() { return getToken(CppParser.CloseParenthesis, 0); }
 		public NoExceptionExpressionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -3024,11 +3024,11 @@ public class CppParser extends Parser {
 			setState(825);
 			match(NoExcept);
 			setState(826);
-			match(LeftParenthesis);
+			match(OpenParenthesis);
 			setState(827);
 			expression(0);
 			setState(828);
-			match(RightParenthesis);
+			match(CloseParenthesis);
 			}
 		}
 		catch (RecognitionException re) {
@@ -3046,11 +3046,11 @@ public class CppParser extends Parser {
 		public UnaryExpressionContext unaryExpression() {
 			return getRuleContext(UnaryExpressionContext.class,0);
 		}
-		public TerminalNode LeftParenthesis() { return getToken(CppParser.LeftParenthesis, 0); }
+		public TerminalNode OpenParenthesis() { return getToken(CppParser.OpenParenthesis, 0); }
 		public TypeIdentifierContext typeIdentifier() {
 			return getRuleContext(TypeIdentifierContext.class,0);
 		}
-		public TerminalNode RightParenthesis() { return getToken(CppParser.RightParenthesis, 0); }
+		public TerminalNode CloseParenthesis() { return getToken(CppParser.CloseParenthesis, 0); }
 		public CastExpressionContext castExpression() {
 			return getRuleContext(CastExpressionContext.class,0);
 		}
@@ -3078,11 +3078,11 @@ public class CppParser extends Parser {
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(831);
-				match(LeftParenthesis);
+				match(OpenParenthesis);
 				setState(832);
 				typeIdentifier();
 				setState(833);
-				match(RightParenthesis);
+				match(CloseParenthesis);
 				setState(834);
 				castExpression();
 				}
@@ -4425,7 +4425,7 @@ public class CppParser extends Parser {
 				setState(1028);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if (_la==AlignAs || _la==LeftBracket) {
+				if (_la==AlignAs || _la==OpenBracket) {
 					{
 					setState(1027);
 					attributeSpecifierSequence(0);
@@ -4442,7 +4442,7 @@ public class CppParser extends Parser {
 				setState(1032);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if (_la==AlignAs || _la==LeftBracket) {
+				if (_la==AlignAs || _la==OpenBracket) {
 					{
 					setState(1031);
 					attributeSpecifierSequence(0);
@@ -4459,7 +4459,7 @@ public class CppParser extends Parser {
 				setState(1036);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if (_la==AlignAs || _la==LeftBracket) {
+				if (_la==AlignAs || _la==OpenBracket) {
 					{
 					setState(1035);
 					attributeSpecifierSequence(0);
@@ -4476,7 +4476,7 @@ public class CppParser extends Parser {
 				setState(1040);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if (_la==AlignAs || _la==LeftBracket) {
+				if (_la==AlignAs || _la==OpenBracket) {
 					{
 					setState(1039);
 					attributeSpecifierSequence(0);
@@ -4500,7 +4500,7 @@ public class CppParser extends Parser {
 				setState(1045);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if (_la==AlignAs || _la==LeftBracket) {
+				if (_la==AlignAs || _la==OpenBracket) {
 					{
 					setState(1044);
 					attributeSpecifierSequence(0);
@@ -4614,7 +4614,7 @@ public class CppParser extends Parser {
 				setState(1056);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if (_la==AlignAs || _la==LeftBracket) {
+				if (_la==AlignAs || _la==OpenBracket) {
 					{
 					setState(1055);
 					attributeSpecifierSequence(0);
@@ -4676,7 +4676,7 @@ public class CppParser extends Parser {
 				setState(1065);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if (_la==AlignAs || _la==LeftBracket) {
+				if (_la==AlignAs || _la==OpenBracket) {
 					{
 					setState(1064);
 					attributeSpecifierSequence(0);
@@ -4697,7 +4697,7 @@ public class CppParser extends Parser {
 				setState(1071);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if (_la==AlignAs || _la==LeftBracket) {
+				if (_la==AlignAs || _la==OpenBracket) {
 					{
 					setState(1070);
 					attributeSpecifierSequence(0);
@@ -4720,7 +4720,7 @@ public class CppParser extends Parser {
 				setState(1079);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if (_la==AlignAs || _la==LeftBracket) {
+				if (_la==AlignAs || _la==OpenBracket) {
 					{
 					setState(1078);
 					attributeSpecifierSequence(0);
@@ -4769,7 +4769,7 @@ public class CppParser extends Parser {
 			setState(1087);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignOf) | (1L << Auto) | (1L << Bool) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << ConstCast) | (1L << DeclType) | (1L << Delete) | (1L << Double) | (1L << DynamicCast) | (1L << False) | (1L << Float) | (1L << Int) | (1L << Long) | (1L << New) | (1L << NoExcept) | (1L << Nullptr) | (1L << Operator) | (1L << ReinterpretCast) | (1L << Short) | (1L << Signed) | (1L << SizeOf) | (1L << StaticCast) | (1L << This))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (Throw - 64)) | (1L << (True - 64)) | (1L << (TypeId - 64)) | (1L << (TypeName - 64)) | (1L << (Unsigned - 64)) | (1L << (Void - 64)) | (1L << (WChar - 64)) | (1L << (LeftBracket - 64)) | (1L << (LeftParenthesis - 64)) | (1L << (DoubleColon - 64)) | (1L << (Plus - 64)) | (1L << (Minus - 64)) | (1L << (Asterisk - 64)) | (1L << (Ampersand - 64)) | (1L << (VerticalBar - 64)) | (1L << (Tilde - 64)) | (1L << (ExclamationMark - 64)) | (1L << (DoublePlus - 64)) | (1L << (DoubleMinus - 64)))) != 0) || ((((_la - 129)) & ~0x3f) == 0 && ((1L << (_la - 129)) & ((1L << (Zero - 129)) | (1L << (IntegerLiteral - 129)) | (1L << (FloatingPointLiteral - 129)) | (1L << (CharacterLiteral - 129)) | (1L << (StringLiteral - 129)) | (1L << (UserDefinedIntegerLiteral - 129)) | (1L << (UserDefinedFloatingPointLiteral - 129)) | (1L << (UserDefinedCharacterLiteral - 129)) | (1L << (UserDefinedStringLiteral - 129)) | (1L << (Identifier - 129)))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignOf) | (1L << Auto) | (1L << Bool) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << ConstCast) | (1L << DeclType) | (1L << Delete) | (1L << Double) | (1L << DynamicCast) | (1L << False) | (1L << Float) | (1L << Int) | (1L << Long) | (1L << New) | (1L << NoExcept) | (1L << Nullptr) | (1L << Operator) | (1L << ReinterpretCast) | (1L << Short) | (1L << Signed) | (1L << SizeOf) | (1L << StaticCast) | (1L << This))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (Throw - 64)) | (1L << (True - 64)) | (1L << (TypeId - 64)) | (1L << (TypeName - 64)) | (1L << (Unsigned - 64)) | (1L << (Void - 64)) | (1L << (WChar - 64)) | (1L << (OpenBracket - 64)) | (1L << (OpenParenthesis - 64)) | (1L << (DoubleColon - 64)) | (1L << (Plus - 64)) | (1L << (Minus - 64)) | (1L << (Asterisk - 64)) | (1L << (Ampersand - 64)) | (1L << (VerticalBar - 64)) | (1L << (Tilde - 64)) | (1L << (ExclamationMark - 64)) | (1L << (DoublePlus - 64)) | (1L << (DoubleMinus - 64)))) != 0) || ((((_la - 129)) & ~0x3f) == 0 && ((1L << (_la - 129)) & ((1L << (Zero - 129)) | (1L << (IntegerLiteral - 129)) | (1L << (FloatingPointLiteral - 129)) | (1L << (CharacterLiteral - 129)) | (1L << (StringLiteral - 129)) | (1L << (UserDefinedIntegerLiteral - 129)) | (1L << (UserDefinedFloatingPointLiteral - 129)) | (1L << (UserDefinedCharacterLiteral - 129)) | (1L << (UserDefinedStringLiteral - 129)) | (1L << (Identifier - 129)))) != 0)) {
 				{
 				setState(1086);
 				expression(0);
@@ -4792,8 +4792,8 @@ public class CppParser extends Parser {
 	}
 
 	public static class CompoundStatementContext extends ParserRuleContext {
-		public TerminalNode LeftBrace() { return getToken(CppParser.LeftBrace, 0); }
-		public TerminalNode RightBrace() { return getToken(CppParser.RightBrace, 0); }
+		public TerminalNode OpenBrace() { return getToken(CppParser.OpenBrace, 0); }
+		public TerminalNode CloseBrace() { return getToken(CppParser.CloseBrace, 0); }
 		public StatementSequenceContext statementSequence() {
 			return getRuleContext(StatementSequenceContext.class,0);
 		}
@@ -4811,11 +4811,11 @@ public class CppParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(1091);
-			match(LeftBrace);
+			match(OpenBrace);
 			setState(1093);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignAs) | (1L << AlignOf) | (1L << Asm) | (1L << Auto) | (1L << Bool) | (1L << Break) | (1L << Case) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << ConstExpr) | (1L << ConstCast) | (1L << Continue) | (1L << DeclType) | (1L << Default) | (1L << Delete) | (1L << Do) | (1L << Double) | (1L << DynamicCast) | (1L << Enum) | (1L << Explicit) | (1L << Extern) | (1L << False) | (1L << Float) | (1L << For) | (1L << Friend) | (1L << GoTo) | (1L << If) | (1L << Inline) | (1L << Int) | (1L << Long) | (1L << Mutable) | (1L << Namespace) | (1L << New) | (1L << NoExcept) | (1L << Nullptr) | (1L << Operator) | (1L << ReinterpretCast) | (1L << Return) | (1L << Short) | (1L << Signed) | (1L << SizeOf) | (1L << Static) | (1L << StaticAssert) | (1L << StaticCast) | (1L << Switch) | (1L << This) | (1L << ThreadLocal))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (Throw - 64)) | (1L << (True - 64)) | (1L << (Try - 64)) | (1L << (TypeDef - 64)) | (1L << (TypeId - 64)) | (1L << (TypeName - 64)) | (1L << (Unsigned - 64)) | (1L << (Using - 64)) | (1L << (Virtual - 64)) | (1L << (Void - 64)) | (1L << (WChar - 64)) | (1L << (While - 64)) | (1L << (LeftBrace - 64)) | (1L << (LeftBracket - 64)) | (1L << (LeftParenthesis - 64)) | (1L << (Semicolon - 64)) | (1L << (DoubleColon - 64)) | (1L << (Plus - 64)) | (1L << (Minus - 64)) | (1L << (Asterisk - 64)) | (1L << (Ampersand - 64)) | (1L << (VerticalBar - 64)) | (1L << (Tilde - 64)) | (1L << (ExclamationMark - 64)) | (1L << (DoublePlus - 64)) | (1L << (DoubleMinus - 64)))) != 0) || ((((_la - 129)) & ~0x3f) == 0 && ((1L << (_la - 129)) & ((1L << (Zero - 129)) | (1L << (IntegerLiteral - 129)) | (1L << (FloatingPointLiteral - 129)) | (1L << (CharacterLiteral - 129)) | (1L << (StringLiteral - 129)) | (1L << (UserDefinedIntegerLiteral - 129)) | (1L << (UserDefinedFloatingPointLiteral - 129)) | (1L << (UserDefinedCharacterLiteral - 129)) | (1L << (UserDefinedStringLiteral - 129)) | (1L << (Identifier - 129)))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignAs) | (1L << AlignOf) | (1L << Asm) | (1L << Auto) | (1L << Bool) | (1L << Break) | (1L << Case) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << ConstExpr) | (1L << ConstCast) | (1L << Continue) | (1L << DeclType) | (1L << Default) | (1L << Delete) | (1L << Do) | (1L << Double) | (1L << DynamicCast) | (1L << Enum) | (1L << Explicit) | (1L << Extern) | (1L << False) | (1L << Float) | (1L << For) | (1L << Friend) | (1L << GoTo) | (1L << If) | (1L << Inline) | (1L << Int) | (1L << Long) | (1L << Mutable) | (1L << Namespace) | (1L << New) | (1L << NoExcept) | (1L << Nullptr) | (1L << Operator) | (1L << ReinterpretCast) | (1L << Return) | (1L << Short) | (1L << Signed) | (1L << SizeOf) | (1L << Static) | (1L << StaticAssert) | (1L << StaticCast) | (1L << Switch) | (1L << This) | (1L << ThreadLocal))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (Throw - 64)) | (1L << (True - 64)) | (1L << (Try - 64)) | (1L << (TypeDef - 64)) | (1L << (TypeId - 64)) | (1L << (TypeName - 64)) | (1L << (Unsigned - 64)) | (1L << (Using - 64)) | (1L << (Virtual - 64)) | (1L << (Void - 64)) | (1L << (WChar - 64)) | (1L << (While - 64)) | (1L << (OpenBrace - 64)) | (1L << (OpenBracket - 64)) | (1L << (OpenParenthesis - 64)) | (1L << (Semicolon - 64)) | (1L << (DoubleColon - 64)) | (1L << (Plus - 64)) | (1L << (Minus - 64)) | (1L << (Asterisk - 64)) | (1L << (Ampersand - 64)) | (1L << (VerticalBar - 64)) | (1L << (Tilde - 64)) | (1L << (ExclamationMark - 64)) | (1L << (DoublePlus - 64)) | (1L << (DoubleMinus - 64)))) != 0) || ((((_la - 129)) & ~0x3f) == 0 && ((1L << (_la - 129)) & ((1L << (Zero - 129)) | (1L << (IntegerLiteral - 129)) | (1L << (FloatingPointLiteral - 129)) | (1L << (CharacterLiteral - 129)) | (1L << (StringLiteral - 129)) | (1L << (UserDefinedIntegerLiteral - 129)) | (1L << (UserDefinedFloatingPointLiteral - 129)) | (1L << (UserDefinedCharacterLiteral - 129)) | (1L << (UserDefinedStringLiteral - 129)) | (1L << (Identifier - 129)))) != 0)) {
 				{
 				setState(1092);
 				statementSequence(0);
@@ -4823,7 +4823,7 @@ public class CppParser extends Parser {
 			}
 
 			setState(1095);
-			match(RightBrace);
+			match(CloseBrace);
 			}
 		}
 		catch (RecognitionException re) {
@@ -4907,11 +4907,11 @@ public class CppParser extends Parser {
 
 	public static class SelectionStatementContext extends ParserRuleContext {
 		public TerminalNode If() { return getToken(CppParser.If, 0); }
-		public TerminalNode LeftParenthesis() { return getToken(CppParser.LeftParenthesis, 0); }
+		public TerminalNode OpenParenthesis() { return getToken(CppParser.OpenParenthesis, 0); }
 		public ConditionContext condition() {
 			return getRuleContext(ConditionContext.class,0);
 		}
-		public TerminalNode RightParenthesis() { return getToken(CppParser.RightParenthesis, 0); }
+		public TerminalNode CloseParenthesis() { return getToken(CppParser.CloseParenthesis, 0); }
 		public List<StatementContext> statement() {
 			return getRuleContexts(StatementContext.class);
 		}
@@ -4954,7 +4954,7 @@ public class CppParser extends Parser {
 				}
 
 				setState(1111);
-				match(LeftParenthesis);
+				match(OpenParenthesis);
 				setState(1113);
 				_errHandler.sync(this);
 				switch ( getInterpreter().adaptivePredict(_input,98,_ctx) ) {
@@ -4968,7 +4968,7 @@ public class CppParser extends Parser {
 				setState(1115);
 				condition();
 				setState(1116);
-				match(RightParenthesis);
+				match(CloseParenthesis);
 				setState(1117);
 				statement();
 				}
@@ -4989,7 +4989,7 @@ public class CppParser extends Parser {
 				}
 
 				setState(1123);
-				match(LeftParenthesis);
+				match(OpenParenthesis);
 				setState(1125);
 				_errHandler.sync(this);
 				switch ( getInterpreter().adaptivePredict(_input,100,_ctx) ) {
@@ -5003,7 +5003,7 @@ public class CppParser extends Parser {
 				setState(1127);
 				condition();
 				setState(1128);
-				match(RightParenthesis);
+				match(CloseParenthesis);
 				setState(1129);
 				statement();
 				setState(1130);
@@ -5018,7 +5018,7 @@ public class CppParser extends Parser {
 				setState(1133);
 				match(Switch);
 				setState(1134);
-				match(LeftParenthesis);
+				match(OpenParenthesis);
 				setState(1136);
 				_errHandler.sync(this);
 				switch ( getInterpreter().adaptivePredict(_input,101,_ctx) ) {
@@ -5032,7 +5032,7 @@ public class CppParser extends Parser {
 				setState(1138);
 				condition();
 				setState(1139);
-				match(RightParenthesis);
+				match(CloseParenthesis);
 				setState(1140);
 				statement();
 				}
@@ -5052,11 +5052,11 @@ public class CppParser extends Parser {
 
 	public static class IterationStatementContext extends ParserRuleContext {
 		public TerminalNode While() { return getToken(CppParser.While, 0); }
-		public TerminalNode LeftParenthesis() { return getToken(CppParser.LeftParenthesis, 0); }
+		public TerminalNode OpenParenthesis() { return getToken(CppParser.OpenParenthesis, 0); }
 		public ConditionContext condition() {
 			return getRuleContext(ConditionContext.class,0);
 		}
-		public TerminalNode RightParenthesis() { return getToken(CppParser.RightParenthesis, 0); }
+		public TerminalNode CloseParenthesis() { return getToken(CppParser.CloseParenthesis, 0); }
 		public StatementContext statement() {
 			return getRuleContext(StatementContext.class,0);
 		}
@@ -5096,11 +5096,11 @@ public class CppParser extends Parser {
 				setState(1144);
 				match(While);
 				setState(1145);
-				match(LeftParenthesis);
+				match(OpenParenthesis);
 				setState(1146);
 				condition();
 				setState(1147);
-				match(RightParenthesis);
+				match(CloseParenthesis);
 				setState(1148);
 				statement();
 				}
@@ -5115,11 +5115,11 @@ public class CppParser extends Parser {
 				setState(1152);
 				match(While);
 				setState(1153);
-				match(LeftParenthesis);
+				match(OpenParenthesis);
 				setState(1154);
 				expression(0);
 				setState(1155);
-				match(RightParenthesis);
+				match(CloseParenthesis);
 				setState(1156);
 				match(Semicolon);
 				}
@@ -5130,13 +5130,13 @@ public class CppParser extends Parser {
 				setState(1158);
 				match(For);
 				setState(1159);
-				match(LeftParenthesis);
+				match(OpenParenthesis);
 				setState(1160);
 				initializerStatement();
 				setState(1162);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignAs) | (1L << AlignOf) | (1L << Auto) | (1L << Bool) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << ConstExpr) | (1L << ConstCast) | (1L << DeclType) | (1L << Delete) | (1L << Double) | (1L << DynamicCast) | (1L << Explicit) | (1L << Extern) | (1L << False) | (1L << Float) | (1L << Friend) | (1L << Inline) | (1L << Int) | (1L << Long) | (1L << Mutable) | (1L << New) | (1L << NoExcept) | (1L << Nullptr) | (1L << Operator) | (1L << ReinterpretCast) | (1L << Short) | (1L << Signed) | (1L << SizeOf) | (1L << Static) | (1L << StaticCast) | (1L << This) | (1L << ThreadLocal))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (Throw - 64)) | (1L << (True - 64)) | (1L << (TypeDef - 64)) | (1L << (TypeId - 64)) | (1L << (TypeName - 64)) | (1L << (Unsigned - 64)) | (1L << (Virtual - 64)) | (1L << (Void - 64)) | (1L << (WChar - 64)) | (1L << (LeftBracket - 64)) | (1L << (LeftParenthesis - 64)) | (1L << (DoubleColon - 64)) | (1L << (Plus - 64)) | (1L << (Minus - 64)) | (1L << (Asterisk - 64)) | (1L << (Ampersand - 64)) | (1L << (VerticalBar - 64)) | (1L << (Tilde - 64)) | (1L << (ExclamationMark - 64)) | (1L << (DoublePlus - 64)) | (1L << (DoubleMinus - 64)))) != 0) || ((((_la - 129)) & ~0x3f) == 0 && ((1L << (_la - 129)) & ((1L << (Zero - 129)) | (1L << (IntegerLiteral - 129)) | (1L << (FloatingPointLiteral - 129)) | (1L << (CharacterLiteral - 129)) | (1L << (StringLiteral - 129)) | (1L << (UserDefinedIntegerLiteral - 129)) | (1L << (UserDefinedFloatingPointLiteral - 129)) | (1L << (UserDefinedCharacterLiteral - 129)) | (1L << (UserDefinedStringLiteral - 129)) | (1L << (Identifier - 129)))) != 0)) {
+				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignAs) | (1L << AlignOf) | (1L << Auto) | (1L << Bool) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << ConstExpr) | (1L << ConstCast) | (1L << DeclType) | (1L << Delete) | (1L << Double) | (1L << DynamicCast) | (1L << Explicit) | (1L << Extern) | (1L << False) | (1L << Float) | (1L << Friend) | (1L << Inline) | (1L << Int) | (1L << Long) | (1L << Mutable) | (1L << New) | (1L << NoExcept) | (1L << Nullptr) | (1L << Operator) | (1L << ReinterpretCast) | (1L << Short) | (1L << Signed) | (1L << SizeOf) | (1L << Static) | (1L << StaticCast) | (1L << This) | (1L << ThreadLocal))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (Throw - 64)) | (1L << (True - 64)) | (1L << (TypeDef - 64)) | (1L << (TypeId - 64)) | (1L << (TypeName - 64)) | (1L << (Unsigned - 64)) | (1L << (Virtual - 64)) | (1L << (Void - 64)) | (1L << (WChar - 64)) | (1L << (OpenBracket - 64)) | (1L << (OpenParenthesis - 64)) | (1L << (DoubleColon - 64)) | (1L << (Plus - 64)) | (1L << (Minus - 64)) | (1L << (Asterisk - 64)) | (1L << (Ampersand - 64)) | (1L << (VerticalBar - 64)) | (1L << (Tilde - 64)) | (1L << (ExclamationMark - 64)) | (1L << (DoublePlus - 64)) | (1L << (DoubleMinus - 64)))) != 0) || ((((_la - 129)) & ~0x3f) == 0 && ((1L << (_la - 129)) & ((1L << (Zero - 129)) | (1L << (IntegerLiteral - 129)) | (1L << (FloatingPointLiteral - 129)) | (1L << (CharacterLiteral - 129)) | (1L << (StringLiteral - 129)) | (1L << (UserDefinedIntegerLiteral - 129)) | (1L << (UserDefinedFloatingPointLiteral - 129)) | (1L << (UserDefinedCharacterLiteral - 129)) | (1L << (UserDefinedStringLiteral - 129)) | (1L << (Identifier - 129)))) != 0)) {
 					{
 					setState(1161);
 					condition();
@@ -5148,7 +5148,7 @@ public class CppParser extends Parser {
 				setState(1166);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignOf) | (1L << Auto) | (1L << Bool) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << ConstCast) | (1L << DeclType) | (1L << Delete) | (1L << Double) | (1L << DynamicCast) | (1L << False) | (1L << Float) | (1L << Int) | (1L << Long) | (1L << New) | (1L << NoExcept) | (1L << Nullptr) | (1L << Operator) | (1L << ReinterpretCast) | (1L << Short) | (1L << Signed) | (1L << SizeOf) | (1L << StaticCast) | (1L << This))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (Throw - 64)) | (1L << (True - 64)) | (1L << (TypeId - 64)) | (1L << (TypeName - 64)) | (1L << (Unsigned - 64)) | (1L << (Void - 64)) | (1L << (WChar - 64)) | (1L << (LeftBracket - 64)) | (1L << (LeftParenthesis - 64)) | (1L << (DoubleColon - 64)) | (1L << (Plus - 64)) | (1L << (Minus - 64)) | (1L << (Asterisk - 64)) | (1L << (Ampersand - 64)) | (1L << (VerticalBar - 64)) | (1L << (Tilde - 64)) | (1L << (ExclamationMark - 64)) | (1L << (DoublePlus - 64)) | (1L << (DoubleMinus - 64)))) != 0) || ((((_la - 129)) & ~0x3f) == 0 && ((1L << (_la - 129)) & ((1L << (Zero - 129)) | (1L << (IntegerLiteral - 129)) | (1L << (FloatingPointLiteral - 129)) | (1L << (CharacterLiteral - 129)) | (1L << (StringLiteral - 129)) | (1L << (UserDefinedIntegerLiteral - 129)) | (1L << (UserDefinedFloatingPointLiteral - 129)) | (1L << (UserDefinedCharacterLiteral - 129)) | (1L << (UserDefinedStringLiteral - 129)) | (1L << (Identifier - 129)))) != 0)) {
+				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignOf) | (1L << Auto) | (1L << Bool) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << ConstCast) | (1L << DeclType) | (1L << Delete) | (1L << Double) | (1L << DynamicCast) | (1L << False) | (1L << Float) | (1L << Int) | (1L << Long) | (1L << New) | (1L << NoExcept) | (1L << Nullptr) | (1L << Operator) | (1L << ReinterpretCast) | (1L << Short) | (1L << Signed) | (1L << SizeOf) | (1L << StaticCast) | (1L << This))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (Throw - 64)) | (1L << (True - 64)) | (1L << (TypeId - 64)) | (1L << (TypeName - 64)) | (1L << (Unsigned - 64)) | (1L << (Void - 64)) | (1L << (WChar - 64)) | (1L << (OpenBracket - 64)) | (1L << (OpenParenthesis - 64)) | (1L << (DoubleColon - 64)) | (1L << (Plus - 64)) | (1L << (Minus - 64)) | (1L << (Asterisk - 64)) | (1L << (Ampersand - 64)) | (1L << (VerticalBar - 64)) | (1L << (Tilde - 64)) | (1L << (ExclamationMark - 64)) | (1L << (DoublePlus - 64)) | (1L << (DoubleMinus - 64)))) != 0) || ((((_la - 129)) & ~0x3f) == 0 && ((1L << (_la - 129)) & ((1L << (Zero - 129)) | (1L << (IntegerLiteral - 129)) | (1L << (FloatingPointLiteral - 129)) | (1L << (CharacterLiteral - 129)) | (1L << (StringLiteral - 129)) | (1L << (UserDefinedIntegerLiteral - 129)) | (1L << (UserDefinedFloatingPointLiteral - 129)) | (1L << (UserDefinedCharacterLiteral - 129)) | (1L << (UserDefinedStringLiteral - 129)) | (1L << (Identifier - 129)))) != 0)) {
 					{
 					setState(1165);
 					expression(0);
@@ -5156,7 +5156,7 @@ public class CppParser extends Parser {
 				}
 
 				setState(1168);
-				match(RightParenthesis);
+				match(CloseParenthesis);
 				setState(1169);
 				statement();
 				}
@@ -5167,7 +5167,7 @@ public class CppParser extends Parser {
 				setState(1171);
 				match(For);
 				setState(1172);
-				match(LeftParenthesis);
+				match(OpenParenthesis);
 				setState(1173);
 				forRangeDeclaration();
 				setState(1174);
@@ -5175,7 +5175,7 @@ public class CppParser extends Parser {
 				setState(1175);
 				forRangeInitializer();
 				setState(1176);
-				match(RightParenthesis);
+				match(CloseParenthesis);
 				setState(1177);
 				statement();
 				}
@@ -5203,11 +5203,11 @@ public class CppParser extends Parser {
 		public AttributeSpecifierSequenceContext attributeSpecifierSequence() {
 			return getRuleContext(AttributeSpecifierSequenceContext.class,0);
 		}
-		public TerminalNode LeftBracket() { return getToken(CppParser.LeftBracket, 0); }
+		public TerminalNode OpenBracket() { return getToken(CppParser.OpenBracket, 0); }
 		public IdentifierListContext identifierList() {
 			return getRuleContext(IdentifierListContext.class,0);
 		}
-		public TerminalNode RightBracket() { return getToken(CppParser.RightBracket, 0); }
+		public TerminalNode CloseBracket() { return getToken(CppParser.CloseBracket, 0); }
 		public ReferenceQualifierContext referenceQualifier() {
 			return getRuleContext(ReferenceQualifierContext.class,0);
 		}
@@ -5231,7 +5231,7 @@ public class CppParser extends Parser {
 				setState(1182);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if (_la==AlignAs || _la==LeftBracket) {
+				if (_la==AlignAs || _la==OpenBracket) {
 					{
 					setState(1181);
 					attributeSpecifierSequence(0);
@@ -5250,7 +5250,7 @@ public class CppParser extends Parser {
 				setState(1188);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if (_la==AlignAs || _la==LeftBracket) {
+				if (_la==AlignAs || _la==OpenBracket) {
 					{
 					setState(1187);
 					attributeSpecifierSequence(0);
@@ -5270,11 +5270,11 @@ public class CppParser extends Parser {
 				}
 
 				setState(1194);
-				match(LeftBracket);
+				match(OpenBracket);
 				setState(1195);
 				identifierList(0);
 				setState(1196);
-				match(RightBracket);
+				match(CloseBracket);
 				}
 				break;
 			}
@@ -5316,7 +5316,7 @@ public class CppParser extends Parser {
 			setState(1201);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if (_la==AlignAs || _la==LeftBracket) {
+			if (_la==AlignAs || _la==OpenBracket) {
 				{
 				setState(1200);
 				attributeSpecifierSequence(0);
@@ -5421,7 +5421,7 @@ public class CppParser extends Parser {
 				setState(1214);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignOf) | (1L << Auto) | (1L << Bool) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << ConstCast) | (1L << DeclType) | (1L << Delete) | (1L << Double) | (1L << DynamicCast) | (1L << False) | (1L << Float) | (1L << Int) | (1L << Long) | (1L << New) | (1L << NoExcept) | (1L << Nullptr) | (1L << Operator) | (1L << ReinterpretCast) | (1L << Short) | (1L << Signed) | (1L << SizeOf) | (1L << StaticCast) | (1L << This))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (Throw - 64)) | (1L << (True - 64)) | (1L << (TypeId - 64)) | (1L << (TypeName - 64)) | (1L << (Unsigned - 64)) | (1L << (Void - 64)) | (1L << (WChar - 64)) | (1L << (LeftBrace - 64)) | (1L << (LeftBracket - 64)) | (1L << (LeftParenthesis - 64)) | (1L << (DoubleColon - 64)) | (1L << (Plus - 64)) | (1L << (Minus - 64)) | (1L << (Asterisk - 64)) | (1L << (Ampersand - 64)) | (1L << (VerticalBar - 64)) | (1L << (Tilde - 64)) | (1L << (ExclamationMark - 64)) | (1L << (DoublePlus - 64)) | (1L << (DoubleMinus - 64)))) != 0) || ((((_la - 129)) & ~0x3f) == 0 && ((1L << (_la - 129)) & ((1L << (Zero - 129)) | (1L << (IntegerLiteral - 129)) | (1L << (FloatingPointLiteral - 129)) | (1L << (CharacterLiteral - 129)) | (1L << (StringLiteral - 129)) | (1L << (UserDefinedIntegerLiteral - 129)) | (1L << (UserDefinedFloatingPointLiteral - 129)) | (1L << (UserDefinedCharacterLiteral - 129)) | (1L << (UserDefinedStringLiteral - 129)) | (1L << (Identifier - 129)))) != 0)) {
+				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignOf) | (1L << Auto) | (1L << Bool) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << ConstCast) | (1L << DeclType) | (1L << Delete) | (1L << Double) | (1L << DynamicCast) | (1L << False) | (1L << Float) | (1L << Int) | (1L << Long) | (1L << New) | (1L << NoExcept) | (1L << Nullptr) | (1L << Operator) | (1L << ReinterpretCast) | (1L << Short) | (1L << Signed) | (1L << SizeOf) | (1L << StaticCast) | (1L << This))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (Throw - 64)) | (1L << (True - 64)) | (1L << (TypeId - 64)) | (1L << (TypeName - 64)) | (1L << (Unsigned - 64)) | (1L << (Void - 64)) | (1L << (WChar - 64)) | (1L << (OpenBrace - 64)) | (1L << (OpenBracket - 64)) | (1L << (OpenParenthesis - 64)) | (1L << (DoubleColon - 64)) | (1L << (Plus - 64)) | (1L << (Minus - 64)) | (1L << (Asterisk - 64)) | (1L << (Ampersand - 64)) | (1L << (VerticalBar - 64)) | (1L << (Tilde - 64)) | (1L << (ExclamationMark - 64)) | (1L << (DoublePlus - 64)) | (1L << (DoubleMinus - 64)))) != 0) || ((((_la - 129)) & ~0x3f) == 0 && ((1L << (_la - 129)) & ((1L << (Zero - 129)) | (1L << (IntegerLiteral - 129)) | (1L << (FloatingPointLiteral - 129)) | (1L << (CharacterLiteral - 129)) | (1L << (StringLiteral - 129)) | (1L << (UserDefinedIntegerLiteral - 129)) | (1L << (UserDefinedFloatingPointLiteral - 129)) | (1L << (UserDefinedCharacterLiteral - 129)) | (1L << (UserDefinedStringLiteral - 129)) | (1L << (Identifier - 129)))) != 0)) {
 					{
 					setState(1213);
 					expressionOrBracedInitializerList();
@@ -5825,7 +5825,7 @@ public class CppParser extends Parser {
 			setState(1258);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if (_la==AlignAs || _la==LeftBracket) {
+			if (_la==AlignAs || _la==OpenBracket) {
 				{
 				setState(1257);
 				attributeSpecifierSequence(0);
@@ -5880,7 +5880,7 @@ public class CppParser extends Parser {
 			setState(1266);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if (_la==AlignAs || _la==LeftBracket) {
+			if (_la==AlignAs || _la==OpenBracket) {
 				{
 				setState(1265);
 				attributeSpecifierSequence(0);
@@ -5917,11 +5917,11 @@ public class CppParser extends Parser {
 		public AttributeSpecifierSequenceContext attributeSpecifierSequence() {
 			return getRuleContext(AttributeSpecifierSequenceContext.class,0);
 		}
-		public TerminalNode LeftBracket() { return getToken(CppParser.LeftBracket, 0); }
+		public TerminalNode OpenBracket() { return getToken(CppParser.OpenBracket, 0); }
 		public IdentifierListContext identifierList() {
 			return getRuleContext(IdentifierListContext.class,0);
 		}
-		public TerminalNode RightBracket() { return getToken(CppParser.RightBracket, 0); }
+		public TerminalNode CloseBracket() { return getToken(CppParser.CloseBracket, 0); }
 		public InitializerContext initializer() {
 			return getRuleContext(InitializerContext.class,0);
 		}
@@ -5950,7 +5950,7 @@ public class CppParser extends Parser {
 				setState(1274);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if (_la==DeclType || _la==Operator || ((((_la - 84)) & ~0x3f) == 0 && ((1L << (_la - 84)) & ((1L << (LeftParenthesis - 84)) | (1L << (Ellipsis - 84)) | (1L << (DoubleColon - 84)) | (1L << (Asterisk - 84)) | (1L << (Ampersand - 84)) | (1L << (Tilde - 84)) | (1L << (DoubleAmpersand - 84)) | (1L << (Identifier - 84)))) != 0)) {
+				if (_la==DeclType || _la==Operator || ((((_la - 84)) & ~0x3f) == 0 && ((1L << (_la - 84)) & ((1L << (OpenParenthesis - 84)) | (1L << (Ellipsis - 84)) | (1L << (DoubleColon - 84)) | (1L << (Asterisk - 84)) | (1L << (Ampersand - 84)) | (1L << (Tilde - 84)) | (1L << (DoubleAmpersand - 84)) | (1L << (Identifier - 84)))) != 0)) {
 					{
 					setState(1273);
 					initializerDeclaratorList(0);
@@ -5980,7 +5980,7 @@ public class CppParser extends Parser {
 				setState(1284);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if (_la==AlignAs || _la==LeftBracket) {
+				if (_la==AlignAs || _la==OpenBracket) {
 					{
 					setState(1283);
 					attributeSpecifierSequence(0);
@@ -6000,11 +6000,11 @@ public class CppParser extends Parser {
 				}
 
 				setState(1290);
-				match(LeftBracket);
+				match(OpenBracket);
 				setState(1291);
 				identifierList(0);
 				setState(1292);
-				match(RightBracket);
+				match(CloseBracket);
 				setState(1293);
 				initializer();
 				setState(1294);
@@ -6026,11 +6026,11 @@ public class CppParser extends Parser {
 
 	public static class StaticAssertDeclarationContext extends ParserRuleContext {
 		public TerminalNode StaticAssert() { return getToken(CppParser.StaticAssert, 0); }
-		public TerminalNode LeftParenthesis() { return getToken(CppParser.LeftParenthesis, 0); }
+		public TerminalNode OpenParenthesis() { return getToken(CppParser.OpenParenthesis, 0); }
 		public ConstantExpressionContext constantExpression() {
 			return getRuleContext(ConstantExpressionContext.class,0);
 		}
-		public TerminalNode RightParenthesis() { return getToken(CppParser.RightParenthesis, 0); }
+		public TerminalNode CloseParenthesis() { return getToken(CppParser.CloseParenthesis, 0); }
 		public TerminalNode Semicolon() { return getToken(CppParser.Semicolon, 0); }
 		public TerminalNode Comma() { return getToken(CppParser.Comma, 0); }
 		public TerminalNode StringLiteral() { return getToken(CppParser.StringLiteral, 0); }
@@ -6053,11 +6053,11 @@ public class CppParser extends Parser {
 				setState(1298);
 				match(StaticAssert);
 				setState(1299);
-				match(LeftParenthesis);
+				match(OpenParenthesis);
 				setState(1300);
 				constantExpression();
 				setState(1301);
-				match(RightParenthesis);
+				match(CloseParenthesis);
 				setState(1302);
 				match(Semicolon);
 				}
@@ -6068,7 +6068,7 @@ public class CppParser extends Parser {
 				setState(1304);
 				match(StaticAssert);
 				setState(1305);
-				match(LeftParenthesis);
+				match(OpenParenthesis);
 				setState(1306);
 				constantExpression();
 				setState(1307);
@@ -6076,7 +6076,7 @@ public class CppParser extends Parser {
 				setState(1308);
 				match(StringLiteral);
 				setState(1309);
-				match(RightParenthesis);
+				match(CloseParenthesis);
 				setState(1310);
 				match(Semicolon);
 				}
@@ -6792,11 +6792,11 @@ public class CppParser extends Parser {
 
 	public static class DeclarationTypeSpecifierContext extends ParserRuleContext {
 		public TerminalNode DeclType() { return getToken(CppParser.DeclType, 0); }
-		public TerminalNode LeftParenthesis() { return getToken(CppParser.LeftParenthesis, 0); }
+		public TerminalNode OpenParenthesis() { return getToken(CppParser.OpenParenthesis, 0); }
 		public ExpressionContext expression() {
 			return getRuleContext(ExpressionContext.class,0);
 		}
-		public TerminalNode RightParenthesis() { return getToken(CppParser.RightParenthesis, 0); }
+		public TerminalNode CloseParenthesis() { return getToken(CppParser.CloseParenthesis, 0); }
 		public TerminalNode Auto() { return getToken(CppParser.Auto, 0); }
 		public DeclarationTypeSpecifierContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -6817,11 +6817,11 @@ public class CppParser extends Parser {
 				setState(1384);
 				match(DeclType);
 				setState(1385);
-				match(LeftParenthesis);
+				match(OpenParenthesis);
 				setState(1386);
 				expression(0);
 				setState(1387);
-				match(RightParenthesis);
+				match(CloseParenthesis);
 				}
 				break;
 			case 2:
@@ -6830,11 +6830,11 @@ public class CppParser extends Parser {
 				setState(1389);
 				match(DeclType);
 				setState(1390);
-				match(LeftParenthesis);
+				match(OpenParenthesis);
 				setState(1391);
 				match(Auto);
 				setState(1392);
-				match(RightParenthesis);
+				match(CloseParenthesis);
 				}
 				break;
 			}
@@ -6888,7 +6888,7 @@ public class CppParser extends Parser {
 				setState(1397);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if (_la==AlignAs || _la==LeftBracket) {
+				if (_la==AlignAs || _la==OpenBracket) {
 					{
 					setState(1396);
 					attributeSpecifierSequence(0);
@@ -6975,8 +6975,8 @@ public class CppParser extends Parser {
 		public EnumHeadContext enumHead() {
 			return getRuleContext(EnumHeadContext.class,0);
 		}
-		public TerminalNode LeftBrace() { return getToken(CppParser.LeftBrace, 0); }
-		public TerminalNode RightBrace() { return getToken(CppParser.RightBrace, 0); }
+		public TerminalNode OpenBrace() { return getToken(CppParser.OpenBrace, 0); }
+		public TerminalNode CloseBrace() { return getToken(CppParser.CloseBrace, 0); }
 		public EnumeratorListContext enumeratorList() {
 			return getRuleContext(EnumeratorListContext.class,0);
 		}
@@ -7001,7 +7001,7 @@ public class CppParser extends Parser {
 				setState(1421);
 				enumHead();
 				setState(1422);
-				match(LeftBrace);
+				match(OpenBrace);
 				setState(1424);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
@@ -7013,7 +7013,7 @@ public class CppParser extends Parser {
 				}
 
 				setState(1426);
-				match(RightBrace);
+				match(CloseBrace);
 				}
 				break;
 			case 2:
@@ -7022,13 +7022,13 @@ public class CppParser extends Parser {
 				setState(1428);
 				enumHead();
 				setState(1429);
-				match(LeftBrace);
+				match(OpenBrace);
 				setState(1430);
 				enumeratorList(0);
 				setState(1431);
 				match(Comma);
 				setState(1432);
-				match(RightBrace);
+				match(CloseBrace);
 				}
 				break;
 			}
@@ -7075,7 +7075,7 @@ public class CppParser extends Parser {
 			setState(1438);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if (_la==AlignAs || _la==LeftBracket) {
+			if (_la==AlignAs || _la==OpenBracket) {
 				{
 				setState(1437);
 				attributeSpecifierSequence(0);
@@ -7190,7 +7190,7 @@ public class CppParser extends Parser {
 			setState(1453);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if (_la==AlignAs || _la==LeftBracket) {
+			if (_la==AlignAs || _la==OpenBracket) {
 				{
 				setState(1452);
 				attributeSpecifierSequence(0);
@@ -7548,11 +7548,11 @@ public class CppParser extends Parser {
 	public static class NamedNamespaceDefinitionContext extends ParserRuleContext {
 		public TerminalNode Namespace() { return getToken(CppParser.Namespace, 0); }
 		public TerminalNode Identifier() { return getToken(CppParser.Identifier, 0); }
-		public TerminalNode LeftBrace() { return getToken(CppParser.LeftBrace, 0); }
+		public TerminalNode OpenBrace() { return getToken(CppParser.OpenBrace, 0); }
 		public NamespaceBodyContext namespaceBody() {
 			return getRuleContext(NamespaceBodyContext.class,0);
 		}
-		public TerminalNode RightBrace() { return getToken(CppParser.RightBrace, 0); }
+		public TerminalNode CloseBrace() { return getToken(CppParser.CloseBrace, 0); }
 		public TerminalNode Inline() { return getToken(CppParser.Inline, 0); }
 		public AttributeSpecifierSequenceContext attributeSpecifierSequence() {
 			return getRuleContext(AttributeSpecifierSequenceContext.class,0);
@@ -7585,7 +7585,7 @@ public class CppParser extends Parser {
 			setState(1506);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if (_la==AlignAs || _la==LeftBracket) {
+			if (_la==AlignAs || _la==OpenBracket) {
 				{
 				setState(1505);
 				attributeSpecifierSequence(0);
@@ -7595,11 +7595,11 @@ public class CppParser extends Parser {
 			setState(1508);
 			match(Identifier);
 			setState(1509);
-			match(LeftBrace);
+			match(OpenBrace);
 			setState(1510);
 			namespaceBody();
 			setState(1511);
-			match(RightBrace);
+			match(CloseBrace);
 			}
 		}
 		catch (RecognitionException re) {
@@ -7615,11 +7615,11 @@ public class CppParser extends Parser {
 
 	public static class UnnamedNamespaceDefinitionContext extends ParserRuleContext {
 		public TerminalNode Namespace() { return getToken(CppParser.Namespace, 0); }
-		public TerminalNode LeftBrace() { return getToken(CppParser.LeftBrace, 0); }
+		public TerminalNode OpenBrace() { return getToken(CppParser.OpenBrace, 0); }
 		public NamespaceBodyContext namespaceBody() {
 			return getRuleContext(NamespaceBodyContext.class,0);
 		}
-		public TerminalNode RightBrace() { return getToken(CppParser.RightBrace, 0); }
+		public TerminalNode CloseBrace() { return getToken(CppParser.CloseBrace, 0); }
 		public TerminalNode Inline() { return getToken(CppParser.Inline, 0); }
 		public AttributeSpecifierSequenceContext attributeSpecifierSequence() {
 			return getRuleContext(AttributeSpecifierSequenceContext.class,0);
@@ -7652,7 +7652,7 @@ public class CppParser extends Parser {
 			setState(1518);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if (_la==AlignAs || _la==LeftBracket) {
+			if (_la==AlignAs || _la==OpenBracket) {
 				{
 				setState(1517);
 				attributeSpecifierSequence(0);
@@ -7660,11 +7660,11 @@ public class CppParser extends Parser {
 			}
 
 			setState(1520);
-			match(LeftBrace);
+			match(OpenBrace);
 			setState(1521);
 			namespaceBody();
 			setState(1522);
-			match(RightBrace);
+			match(CloseBrace);
 			}
 		}
 		catch (RecognitionException re) {
@@ -7685,11 +7685,11 @@ public class CppParser extends Parser {
 		}
 		public TerminalNode DoubleColon() { return getToken(CppParser.DoubleColon, 0); }
 		public TerminalNode Identifier() { return getToken(CppParser.Identifier, 0); }
-		public TerminalNode LeftBrace() { return getToken(CppParser.LeftBrace, 0); }
+		public TerminalNode OpenBrace() { return getToken(CppParser.OpenBrace, 0); }
 		public NamespaceBodyContext namespaceBody() {
 			return getRuleContext(NamespaceBodyContext.class,0);
 		}
-		public TerminalNode RightBrace() { return getToken(CppParser.RightBrace, 0); }
+		public TerminalNode CloseBrace() { return getToken(CppParser.CloseBrace, 0); }
 		public NestedNamespaceDefinitionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -7711,11 +7711,11 @@ public class CppParser extends Parser {
 			setState(1527);
 			match(Identifier);
 			setState(1528);
-			match(LeftBrace);
+			match(OpenBrace);
 			setState(1529);
 			namespaceBody();
 			setState(1530);
-			match(RightBrace);
+			match(CloseBrace);
 			}
 		}
 		catch (RecognitionException re) {
@@ -7791,7 +7791,7 @@ public class CppParser extends Parser {
 			setState(1538);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignAs) | (1L << Asm) | (1L << Auto) | (1L << Bool) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << ConstExpr) | (1L << DeclType) | (1L << Double) | (1L << Enum) | (1L << Explicit) | (1L << Extern) | (1L << Float) | (1L << Friend) | (1L << Inline) | (1L << Int) | (1L << Long) | (1L << Mutable) | (1L << Namespace) | (1L << Operator) | (1L << Short) | (1L << Signed) | (1L << Static) | (1L << StaticAssert) | (1L << Template) | (1L << ThreadLocal))) != 0) || ((((_la - 67)) & ~0x3f) == 0 && ((1L << (_la - 67)) & ((1L << (TypeDef - 67)) | (1L << (Unsigned - 67)) | (1L << (Using - 67)) | (1L << (Virtual - 67)) | (1L << (Void - 67)) | (1L << (WChar - 67)) | (1L << (LeftBracket - 67)) | (1L << (LeftParenthesis - 67)) | (1L << (Semicolon - 67)) | (1L << (Ellipsis - 67)) | (1L << (DoubleColon - 67)) | (1L << (Asterisk - 67)) | (1L << (Ampersand - 67)) | (1L << (Tilde - 67)) | (1L << (DoubleAmpersand - 67)))) != 0) || _la==Identifier) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignAs) | (1L << Asm) | (1L << Auto) | (1L << Bool) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << ConstExpr) | (1L << DeclType) | (1L << Double) | (1L << Enum) | (1L << Explicit) | (1L << Extern) | (1L << Float) | (1L << Friend) | (1L << Inline) | (1L << Int) | (1L << Long) | (1L << Mutable) | (1L << Namespace) | (1L << Operator) | (1L << Short) | (1L << Signed) | (1L << Static) | (1L << StaticAssert) | (1L << Template) | (1L << ThreadLocal))) != 0) || ((((_la - 67)) & ~0x3f) == 0 && ((1L << (_la - 67)) & ((1L << (TypeDef - 67)) | (1L << (Unsigned - 67)) | (1L << (Using - 67)) | (1L << (Virtual - 67)) | (1L << (Void - 67)) | (1L << (WChar - 67)) | (1L << (OpenBracket - 67)) | (1L << (OpenParenthesis - 67)) | (1L << (Semicolon - 67)) | (1L << (Ellipsis - 67)) | (1L << (DoubleColon - 67)) | (1L << (Asterisk - 67)) | (1L << (Ampersand - 67)) | (1L << (Tilde - 67)) | (1L << (DoubleAmpersand - 67)))) != 0) || _la==Identifier) {
 				{
 				setState(1537);
 				declarationSequence(0);
@@ -8105,7 +8105,7 @@ public class CppParser extends Parser {
 			setState(1578);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if (_la==AlignAs || _la==LeftBracket) {
+			if (_la==AlignAs || _la==OpenBracket) {
 				{
 				setState(1577);
 				attributeSpecifierSequence(0);
@@ -8145,9 +8145,9 @@ public class CppParser extends Parser {
 
 	public static class AsmDefinitionContext extends ParserRuleContext {
 		public TerminalNode Asm() { return getToken(CppParser.Asm, 0); }
-		public TerminalNode LeftParenthesis() { return getToken(CppParser.LeftParenthesis, 0); }
+		public TerminalNode OpenParenthesis() { return getToken(CppParser.OpenParenthesis, 0); }
 		public TerminalNode StringLiteral() { return getToken(CppParser.StringLiteral, 0); }
-		public TerminalNode RightParenthesis() { return getToken(CppParser.RightParenthesis, 0); }
+		public TerminalNode CloseParenthesis() { return getToken(CppParser.CloseParenthesis, 0); }
 		public TerminalNode Semicolon() { return getToken(CppParser.Semicolon, 0); }
 		public AttributeSpecifierSequenceContext attributeSpecifierSequence() {
 			return getRuleContext(AttributeSpecifierSequenceContext.class,0);
@@ -8168,7 +8168,7 @@ public class CppParser extends Parser {
 			setState(1589);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if (_la==AlignAs || _la==LeftBracket) {
+			if (_la==AlignAs || _la==OpenBracket) {
 				{
 				setState(1588);
 				attributeSpecifierSequence(0);
@@ -8178,11 +8178,11 @@ public class CppParser extends Parser {
 			setState(1591);
 			match(Asm);
 			setState(1592);
-			match(LeftParenthesis);
+			match(OpenParenthesis);
 			setState(1593);
 			match(StringLiteral);
 			setState(1594);
-			match(RightParenthesis);
+			match(CloseParenthesis);
 			setState(1595);
 			match(Semicolon);
 			}
@@ -8201,8 +8201,8 @@ public class CppParser extends Parser {
 	public static class LinkageSpecificationContext extends ParserRuleContext {
 		public TerminalNode Extern() { return getToken(CppParser.Extern, 0); }
 		public TerminalNode StringLiteral() { return getToken(CppParser.StringLiteral, 0); }
-		public TerminalNode LeftBrace() { return getToken(CppParser.LeftBrace, 0); }
-		public TerminalNode RightBrace() { return getToken(CppParser.RightBrace, 0); }
+		public TerminalNode OpenBrace() { return getToken(CppParser.OpenBrace, 0); }
+		public TerminalNode CloseBrace() { return getToken(CppParser.CloseBrace, 0); }
 		public DeclarationSequenceContext declarationSequence() {
 			return getRuleContext(DeclarationSequenceContext.class,0);
 		}
@@ -8231,11 +8231,11 @@ public class CppParser extends Parser {
 				setState(1598);
 				match(StringLiteral);
 				setState(1599);
-				match(LeftBrace);
+				match(OpenBrace);
 				setState(1601);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignAs) | (1L << Asm) | (1L << Auto) | (1L << Bool) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << ConstExpr) | (1L << DeclType) | (1L << Double) | (1L << Enum) | (1L << Explicit) | (1L << Extern) | (1L << Float) | (1L << Friend) | (1L << Inline) | (1L << Int) | (1L << Long) | (1L << Mutable) | (1L << Namespace) | (1L << Operator) | (1L << Short) | (1L << Signed) | (1L << Static) | (1L << StaticAssert) | (1L << Template) | (1L << ThreadLocal))) != 0) || ((((_la - 67)) & ~0x3f) == 0 && ((1L << (_la - 67)) & ((1L << (TypeDef - 67)) | (1L << (Unsigned - 67)) | (1L << (Using - 67)) | (1L << (Virtual - 67)) | (1L << (Void - 67)) | (1L << (WChar - 67)) | (1L << (LeftBracket - 67)) | (1L << (LeftParenthesis - 67)) | (1L << (Semicolon - 67)) | (1L << (Ellipsis - 67)) | (1L << (DoubleColon - 67)) | (1L << (Asterisk - 67)) | (1L << (Ampersand - 67)) | (1L << (Tilde - 67)) | (1L << (DoubleAmpersand - 67)))) != 0) || _la==Identifier) {
+				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignAs) | (1L << Asm) | (1L << Auto) | (1L << Bool) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << ConstExpr) | (1L << DeclType) | (1L << Double) | (1L << Enum) | (1L << Explicit) | (1L << Extern) | (1L << Float) | (1L << Friend) | (1L << Inline) | (1L << Int) | (1L << Long) | (1L << Mutable) | (1L << Namespace) | (1L << Operator) | (1L << Short) | (1L << Signed) | (1L << Static) | (1L << StaticAssert) | (1L << Template) | (1L << ThreadLocal))) != 0) || ((((_la - 67)) & ~0x3f) == 0 && ((1L << (_la - 67)) & ((1L << (TypeDef - 67)) | (1L << (Unsigned - 67)) | (1L << (Using - 67)) | (1L << (Virtual - 67)) | (1L << (Void - 67)) | (1L << (WChar - 67)) | (1L << (OpenBracket - 67)) | (1L << (OpenParenthesis - 67)) | (1L << (Semicolon - 67)) | (1L << (Ellipsis - 67)) | (1L << (DoubleColon - 67)) | (1L << (Asterisk - 67)) | (1L << (Ampersand - 67)) | (1L << (Tilde - 67)) | (1L << (DoubleAmpersand - 67)))) != 0) || _la==Identifier) {
 					{
 					setState(1600);
 					declarationSequence(0);
@@ -8243,7 +8243,7 @@ public class CppParser extends Parser {
 				}
 
 				setState(1603);
-				match(RightBrace);
+				match(CloseBrace);
 				}
 				break;
 			case 2:
@@ -8339,16 +8339,16 @@ public class CppParser extends Parser {
 	}
 
 	public static class AttributeSpecifierContext extends ParserRuleContext {
-		public List<TerminalNode> LeftBracket() { return getTokens(CppParser.LeftBracket); }
-		public TerminalNode LeftBracket(int i) {
-			return getToken(CppParser.LeftBracket, i);
+		public List<TerminalNode> OpenBracket() { return getTokens(CppParser.OpenBracket); }
+		public TerminalNode OpenBracket(int i) {
+			return getToken(CppParser.OpenBracket, i);
 		}
 		public AttributeListContext attributeList() {
 			return getRuleContext(AttributeListContext.class,0);
 		}
-		public List<TerminalNode> RightBracket() { return getTokens(CppParser.RightBracket); }
-		public TerminalNode RightBracket(int i) {
-			return getToken(CppParser.RightBracket, i);
+		public List<TerminalNode> CloseBracket() { return getTokens(CppParser.CloseBracket); }
+		public TerminalNode CloseBracket(int i) {
+			return getToken(CppParser.CloseBracket, i);
 		}
 		public AttributeUsingPrefixContext attributeUsingPrefix() {
 			return getRuleContext(AttributeUsingPrefixContext.class,0);
@@ -8369,13 +8369,13 @@ public class CppParser extends Parser {
 			setState(1629);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
-			case LeftBracket:
+			case OpenBracket:
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(1619);
-				match(LeftBracket);
+				match(OpenBracket);
 				setState(1620);
-				match(LeftBracket);
+				match(OpenBracket);
 				setState(1622);
 				_errHandler.sync(this);
 				switch ( getInterpreter().adaptivePredict(_input,168,_ctx) ) {
@@ -8389,9 +8389,9 @@ public class CppParser extends Parser {
 				setState(1624);
 				attributeList(0);
 				setState(1625);
-				match(RightBracket);
+				match(CloseBracket);
 				setState(1626);
-				match(RightBracket);
+				match(CloseBracket);
 				}
 				break;
 			case AlignAs:
@@ -8418,13 +8418,13 @@ public class CppParser extends Parser {
 
 	public static class AlignmentSpecifierContext extends ParserRuleContext {
 		public TerminalNode AlignAs() { return getToken(CppParser.AlignAs, 0); }
-		public TerminalNode LeftParenthesis() { return getToken(CppParser.LeftParenthesis, 0); }
+		public TerminalNode OpenParenthesis() { return getToken(CppParser.OpenParenthesis, 0); }
 		public TypeIdentifierContext typeIdentifier() {
 			return getRuleContext(TypeIdentifierContext.class,0);
 		}
-		public List<TerminalNode> RightParenthesis() { return getTokens(CppParser.RightParenthesis); }
-		public TerminalNode RightParenthesis(int i) {
-			return getToken(CppParser.RightParenthesis, i);
+		public List<TerminalNode> CloseParenthesis() { return getTokens(CppParser.CloseParenthesis); }
+		public TerminalNode CloseParenthesis(int i) {
+			return getToken(CppParser.CloseParenthesis, i);
 		}
 		public TerminalNode Ellipsis() { return getToken(CppParser.Ellipsis, 0); }
 		public ConstantExpressionContext constantExpression() {
@@ -8450,7 +8450,7 @@ public class CppParser extends Parser {
 				setState(1631);
 				match(AlignAs);
 				setState(1632);
-				match(LeftParenthesis);
+				match(OpenParenthesis);
 				setState(1633);
 				typeIdentifier();
 				setState(1635);
@@ -8464,7 +8464,7 @@ public class CppParser extends Parser {
 				}
 
 				setState(1637);
-				match(RightParenthesis);
+				match(CloseParenthesis);
 				}
 				break;
 			case 2:
@@ -8473,7 +8473,7 @@ public class CppParser extends Parser {
 				setState(1639);
 				match(AlignAs);
 				setState(1640);
-				match(RightParenthesis);
+				match(CloseParenthesis);
 				setState(1641);
 				constantExpression();
 				setState(1643);
@@ -8487,7 +8487,7 @@ public class CppParser extends Parser {
 				}
 
 				setState(1645);
-				match(RightParenthesis);
+				match(CloseParenthesis);
 				}
 				break;
 			}
@@ -8818,8 +8818,8 @@ public class CppParser extends Parser {
 	}
 
 	public static class AttributeArgumentClauseContext extends ParserRuleContext {
-		public TerminalNode LeftParenthesis() { return getToken(CppParser.LeftParenthesis, 0); }
-		public TerminalNode RightParenthesis() { return getToken(CppParser.RightParenthesis, 0); }
+		public TerminalNode OpenParenthesis() { return getToken(CppParser.OpenParenthesis, 0); }
+		public TerminalNode CloseParenthesis() { return getToken(CppParser.CloseParenthesis, 0); }
 		public BalancedTokenSequenceContext balancedTokenSequence() {
 			return getRuleContext(BalancedTokenSequenceContext.class,0);
 		}
@@ -8837,11 +8837,11 @@ public class CppParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(1691);
-			match(LeftParenthesis);
+			match(OpenParenthesis);
 			setState(1693);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << BlockComment) | (1L << LineComment) | (1L << Whitespace) | (1L << Newline) | (1L << AlignAs) | (1L << AlignOf) | (1L << Asm) | (1L << Auto) | (1L << Bool) | (1L << Break) | (1L << Case) | (1L << Catch) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << Class) | (1L << Const) | (1L << ConstExpr) | (1L << ConstCast) | (1L << Continue) | (1L << DeclType) | (1L << Default) | (1L << Delete) | (1L << Do) | (1L << Double) | (1L << DynamicCast) | (1L << Else) | (1L << Enum) | (1L << Explicit) | (1L << Export) | (1L << Extern) | (1L << False) | (1L << Float) | (1L << For) | (1L << Friend) | (1L << GoTo) | (1L << If) | (1L << Inline) | (1L << Int) | (1L << Long) | (1L << Mutable) | (1L << Namespace) | (1L << New) | (1L << NoExcept) | (1L << Nullptr) | (1L << Operator) | (1L << Private) | (1L << Protected) | (1L << Public) | (1L << Register) | (1L << ReinterpretCast) | (1L << Return) | (1L << Short) | (1L << Signed) | (1L << SizeOf) | (1L << Static) | (1L << StaticAssert) | (1L << StaticCast) | (1L << Struct) | (1L << Switch) | (1L << Template) | (1L << This) | (1L << ThreadLocal))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (Throw - 64)) | (1L << (True - 64)) | (1L << (Try - 64)) | (1L << (TypeDef - 64)) | (1L << (TypeId - 64)) | (1L << (TypeName - 64)) | (1L << (Union - 64)) | (1L << (Unsigned - 64)) | (1L << (Using - 64)) | (1L << (Virtual - 64)) | (1L << (Void - 64)) | (1L << (Volatile - 64)) | (1L << (WChar - 64)) | (1L << (While - 64)) | (1L << (Override - 64)) | (1L << (Final - 64)) | (1L << (LeftBrace - 64)) | (1L << (LeftBracket - 64)) | (1L << (LeftParenthesis - 64)) | (1L << (Semicolon - 64)) | (1L << (Colon - 64)) | (1L << (Ellipsis - 64)) | (1L << (QuestionMark - 64)) | (1L << (DoubleColon - 64)) | (1L << (Period - 64)) | (1L << (PeriodAsterisk - 64)) | (1L << (Plus - 64)) | (1L << (Minus - 64)) | (1L << (Asterisk - 64)) | (1L << (ForwardSlash - 64)) | (1L << (Percent - 64)) | (1L << (Caret - 64)) | (1L << (Ampersand - 64)) | (1L << (VerticalBar - 64)) | (1L << (Tilde - 64)) | (1L << (ExclamationMark - 64)) | (1L << (Equal - 64)) | (1L << (LessThan - 64)) | (1L << (GreaterThan - 64)) | (1L << (PlusEqual - 64)) | (1L << (MinusEqual - 64)) | (1L << (AsteriskEqual - 64)) | (1L << (ForwardSlashEqual - 64)) | (1L << (PercentEqual - 64)) | (1L << (CaretEqual - 64)) | (1L << (AmpersandEqual - 64)) | (1L << (VerticalBarEqual - 64)) | (1L << (DoubleLessThan - 64)) | (1L << (DoubleGreaterThan - 64)) | (1L << (DoubleLessThanEqual - 64)) | (1L << (DoubleGreaterThanEqual - 64)) | (1L << (DoubleEqual - 64)) | (1L << (ExclamationMarkEqual - 64)) | (1L << (LessThanEqual - 64)) | (1L << (GreaterThanEqual - 64)) | (1L << (DoubleAmpersand - 64)) | (1L << (DoubleVerticalBar - 64)) | (1L << (DoublePlus - 64)) | (1L << (DoubleMinus - 64)) | (1L << (Comma - 64)) | (1L << (ArrowAsterisk - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (Arrow - 128)) | (1L << (Zero - 128)) | (1L << (IntegerLiteral - 128)) | (1L << (FloatingPointLiteral - 128)) | (1L << (CharacterLiteral - 128)) | (1L << (StringLiteral - 128)) | (1L << (UserDefinedIntegerLiteral - 128)) | (1L << (UserDefinedFloatingPointLiteral - 128)) | (1L << (UserDefinedCharacterLiteral - 128)) | (1L << (UserDefinedStringLiteral - 128)) | (1L << (Identifier - 128)))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << BlockComment) | (1L << LineComment) | (1L << Whitespace) | (1L << Newline) | (1L << AlignAs) | (1L << AlignOf) | (1L << Asm) | (1L << Auto) | (1L << Bool) | (1L << Break) | (1L << Case) | (1L << Catch) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << Class) | (1L << Const) | (1L << ConstExpr) | (1L << ConstCast) | (1L << Continue) | (1L << DeclType) | (1L << Default) | (1L << Delete) | (1L << Do) | (1L << Double) | (1L << DynamicCast) | (1L << Else) | (1L << Enum) | (1L << Explicit) | (1L << Export) | (1L << Extern) | (1L << False) | (1L << Float) | (1L << For) | (1L << Friend) | (1L << GoTo) | (1L << If) | (1L << Inline) | (1L << Int) | (1L << Long) | (1L << Mutable) | (1L << Namespace) | (1L << New) | (1L << NoExcept) | (1L << Nullptr) | (1L << Operator) | (1L << Private) | (1L << Protected) | (1L << Public) | (1L << Register) | (1L << ReinterpretCast) | (1L << Return) | (1L << Short) | (1L << Signed) | (1L << SizeOf) | (1L << Static) | (1L << StaticAssert) | (1L << StaticCast) | (1L << Struct) | (1L << Switch) | (1L << Template) | (1L << This) | (1L << ThreadLocal))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (Throw - 64)) | (1L << (True - 64)) | (1L << (Try - 64)) | (1L << (TypeDef - 64)) | (1L << (TypeId - 64)) | (1L << (TypeName - 64)) | (1L << (Union - 64)) | (1L << (Unsigned - 64)) | (1L << (Using - 64)) | (1L << (Virtual - 64)) | (1L << (Void - 64)) | (1L << (Volatile - 64)) | (1L << (WChar - 64)) | (1L << (While - 64)) | (1L << (Override - 64)) | (1L << (Final - 64)) | (1L << (OpenBrace - 64)) | (1L << (OpenBracket - 64)) | (1L << (OpenParenthesis - 64)) | (1L << (Semicolon - 64)) | (1L << (Colon - 64)) | (1L << (Ellipsis - 64)) | (1L << (QuestionMark - 64)) | (1L << (DoubleColon - 64)) | (1L << (Period - 64)) | (1L << (PeriodAsterisk - 64)) | (1L << (Plus - 64)) | (1L << (Minus - 64)) | (1L << (Asterisk - 64)) | (1L << (ForwardSlash - 64)) | (1L << (Percent - 64)) | (1L << (Caret - 64)) | (1L << (Ampersand - 64)) | (1L << (VerticalBar - 64)) | (1L << (Tilde - 64)) | (1L << (ExclamationMark - 64)) | (1L << (Equal - 64)) | (1L << (LessThan - 64)) | (1L << (GreaterThan - 64)) | (1L << (PlusEqual - 64)) | (1L << (MinusEqual - 64)) | (1L << (AsteriskEqual - 64)) | (1L << (ForwardSlashEqual - 64)) | (1L << (PercentEqual - 64)) | (1L << (CaretEqual - 64)) | (1L << (AmpersandEqual - 64)) | (1L << (VerticalBarEqual - 64)) | (1L << (DoubleLessThan - 64)) | (1L << (DoubleGreaterThan - 64)) | (1L << (DoubleLessThanEqual - 64)) | (1L << (DoubleGreaterThanEqual - 64)) | (1L << (DoubleEqual - 64)) | (1L << (ExclamationMarkEqual - 64)) | (1L << (LessThanEqual - 64)) | (1L << (GreaterThanEqual - 64)) | (1L << (DoubleAmpersand - 64)) | (1L << (DoubleVerticalBar - 64)) | (1L << (DoublePlus - 64)) | (1L << (DoubleMinus - 64)) | (1L << (Comma - 64)) | (1L << (ArrowAsterisk - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (Arrow - 128)) | (1L << (Zero - 128)) | (1L << (IntegerLiteral - 128)) | (1L << (FloatingPointLiteral - 128)) | (1L << (CharacterLiteral - 128)) | (1L << (StringLiteral - 128)) | (1L << (UserDefinedIntegerLiteral - 128)) | (1L << (UserDefinedFloatingPointLiteral - 128)) | (1L << (UserDefinedCharacterLiteral - 128)) | (1L << (UserDefinedStringLiteral - 128)) | (1L << (Identifier - 128)))) != 0)) {
 				{
 				setState(1692);
 				balancedTokenSequence(0);
@@ -8849,7 +8849,7 @@ public class CppParser extends Parser {
 			}
 
 			setState(1695);
-			match(RightParenthesis);
+			match(CloseParenthesis);
 			}
 		}
 		catch (RecognitionException re) {
@@ -8932,15 +8932,15 @@ public class CppParser extends Parser {
 	}
 
 	public static class BalancedTokenContext extends ParserRuleContext {
-		public TerminalNode LeftParenthesis() { return getToken(CppParser.LeftParenthesis, 0); }
-		public TerminalNode RightParenthesis() { return getToken(CppParser.RightParenthesis, 0); }
+		public TerminalNode OpenParenthesis() { return getToken(CppParser.OpenParenthesis, 0); }
+		public TerminalNode CloseParenthesis() { return getToken(CppParser.CloseParenthesis, 0); }
 		public BalancedTokenSequenceContext balancedTokenSequence() {
 			return getRuleContext(BalancedTokenSequenceContext.class,0);
 		}
-		public TerminalNode LeftBracket() { return getToken(CppParser.LeftBracket, 0); }
-		public TerminalNode RightBracket() { return getToken(CppParser.RightBracket, 0); }
-		public TerminalNode LeftBrace() { return getToken(CppParser.LeftBrace, 0); }
-		public TerminalNode RightBrace() { return getToken(CppParser.RightBrace, 0); }
+		public TerminalNode OpenBracket() { return getToken(CppParser.OpenBracket, 0); }
+		public TerminalNode CloseBracket() { return getToken(CppParser.CloseBracket, 0); }
+		public TerminalNode OpenBrace() { return getToken(CppParser.OpenBrace, 0); }
+		public TerminalNode CloseBrace() { return getToken(CppParser.CloseBrace, 0); }
 		public BalancedTokenContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -8955,15 +8955,15 @@ public class CppParser extends Parser {
 			setState(1723);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
-			case LeftParenthesis:
+			case OpenParenthesis:
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(1707);
-				match(LeftParenthesis);
+				match(OpenParenthesis);
 				setState(1709);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << BlockComment) | (1L << LineComment) | (1L << Whitespace) | (1L << Newline) | (1L << AlignAs) | (1L << AlignOf) | (1L << Asm) | (1L << Auto) | (1L << Bool) | (1L << Break) | (1L << Case) | (1L << Catch) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << Class) | (1L << Const) | (1L << ConstExpr) | (1L << ConstCast) | (1L << Continue) | (1L << DeclType) | (1L << Default) | (1L << Delete) | (1L << Do) | (1L << Double) | (1L << DynamicCast) | (1L << Else) | (1L << Enum) | (1L << Explicit) | (1L << Export) | (1L << Extern) | (1L << False) | (1L << Float) | (1L << For) | (1L << Friend) | (1L << GoTo) | (1L << If) | (1L << Inline) | (1L << Int) | (1L << Long) | (1L << Mutable) | (1L << Namespace) | (1L << New) | (1L << NoExcept) | (1L << Nullptr) | (1L << Operator) | (1L << Private) | (1L << Protected) | (1L << Public) | (1L << Register) | (1L << ReinterpretCast) | (1L << Return) | (1L << Short) | (1L << Signed) | (1L << SizeOf) | (1L << Static) | (1L << StaticAssert) | (1L << StaticCast) | (1L << Struct) | (1L << Switch) | (1L << Template) | (1L << This) | (1L << ThreadLocal))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (Throw - 64)) | (1L << (True - 64)) | (1L << (Try - 64)) | (1L << (TypeDef - 64)) | (1L << (TypeId - 64)) | (1L << (TypeName - 64)) | (1L << (Union - 64)) | (1L << (Unsigned - 64)) | (1L << (Using - 64)) | (1L << (Virtual - 64)) | (1L << (Void - 64)) | (1L << (Volatile - 64)) | (1L << (WChar - 64)) | (1L << (While - 64)) | (1L << (Override - 64)) | (1L << (Final - 64)) | (1L << (LeftBrace - 64)) | (1L << (LeftBracket - 64)) | (1L << (LeftParenthesis - 64)) | (1L << (Semicolon - 64)) | (1L << (Colon - 64)) | (1L << (Ellipsis - 64)) | (1L << (QuestionMark - 64)) | (1L << (DoubleColon - 64)) | (1L << (Period - 64)) | (1L << (PeriodAsterisk - 64)) | (1L << (Plus - 64)) | (1L << (Minus - 64)) | (1L << (Asterisk - 64)) | (1L << (ForwardSlash - 64)) | (1L << (Percent - 64)) | (1L << (Caret - 64)) | (1L << (Ampersand - 64)) | (1L << (VerticalBar - 64)) | (1L << (Tilde - 64)) | (1L << (ExclamationMark - 64)) | (1L << (Equal - 64)) | (1L << (LessThan - 64)) | (1L << (GreaterThan - 64)) | (1L << (PlusEqual - 64)) | (1L << (MinusEqual - 64)) | (1L << (AsteriskEqual - 64)) | (1L << (ForwardSlashEqual - 64)) | (1L << (PercentEqual - 64)) | (1L << (CaretEqual - 64)) | (1L << (AmpersandEqual - 64)) | (1L << (VerticalBarEqual - 64)) | (1L << (DoubleLessThan - 64)) | (1L << (DoubleGreaterThan - 64)) | (1L << (DoubleLessThanEqual - 64)) | (1L << (DoubleGreaterThanEqual - 64)) | (1L << (DoubleEqual - 64)) | (1L << (ExclamationMarkEqual - 64)) | (1L << (LessThanEqual - 64)) | (1L << (GreaterThanEqual - 64)) | (1L << (DoubleAmpersand - 64)) | (1L << (DoubleVerticalBar - 64)) | (1L << (DoublePlus - 64)) | (1L << (DoubleMinus - 64)) | (1L << (Comma - 64)) | (1L << (ArrowAsterisk - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (Arrow - 128)) | (1L << (Zero - 128)) | (1L << (IntegerLiteral - 128)) | (1L << (FloatingPointLiteral - 128)) | (1L << (CharacterLiteral - 128)) | (1L << (StringLiteral - 128)) | (1L << (UserDefinedIntegerLiteral - 128)) | (1L << (UserDefinedFloatingPointLiteral - 128)) | (1L << (UserDefinedCharacterLiteral - 128)) | (1L << (UserDefinedStringLiteral - 128)) | (1L << (Identifier - 128)))) != 0)) {
+				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << BlockComment) | (1L << LineComment) | (1L << Whitespace) | (1L << Newline) | (1L << AlignAs) | (1L << AlignOf) | (1L << Asm) | (1L << Auto) | (1L << Bool) | (1L << Break) | (1L << Case) | (1L << Catch) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << Class) | (1L << Const) | (1L << ConstExpr) | (1L << ConstCast) | (1L << Continue) | (1L << DeclType) | (1L << Default) | (1L << Delete) | (1L << Do) | (1L << Double) | (1L << DynamicCast) | (1L << Else) | (1L << Enum) | (1L << Explicit) | (1L << Export) | (1L << Extern) | (1L << False) | (1L << Float) | (1L << For) | (1L << Friend) | (1L << GoTo) | (1L << If) | (1L << Inline) | (1L << Int) | (1L << Long) | (1L << Mutable) | (1L << Namespace) | (1L << New) | (1L << NoExcept) | (1L << Nullptr) | (1L << Operator) | (1L << Private) | (1L << Protected) | (1L << Public) | (1L << Register) | (1L << ReinterpretCast) | (1L << Return) | (1L << Short) | (1L << Signed) | (1L << SizeOf) | (1L << Static) | (1L << StaticAssert) | (1L << StaticCast) | (1L << Struct) | (1L << Switch) | (1L << Template) | (1L << This) | (1L << ThreadLocal))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (Throw - 64)) | (1L << (True - 64)) | (1L << (Try - 64)) | (1L << (TypeDef - 64)) | (1L << (TypeId - 64)) | (1L << (TypeName - 64)) | (1L << (Union - 64)) | (1L << (Unsigned - 64)) | (1L << (Using - 64)) | (1L << (Virtual - 64)) | (1L << (Void - 64)) | (1L << (Volatile - 64)) | (1L << (WChar - 64)) | (1L << (While - 64)) | (1L << (Override - 64)) | (1L << (Final - 64)) | (1L << (OpenBrace - 64)) | (1L << (OpenBracket - 64)) | (1L << (OpenParenthesis - 64)) | (1L << (Semicolon - 64)) | (1L << (Colon - 64)) | (1L << (Ellipsis - 64)) | (1L << (QuestionMark - 64)) | (1L << (DoubleColon - 64)) | (1L << (Period - 64)) | (1L << (PeriodAsterisk - 64)) | (1L << (Plus - 64)) | (1L << (Minus - 64)) | (1L << (Asterisk - 64)) | (1L << (ForwardSlash - 64)) | (1L << (Percent - 64)) | (1L << (Caret - 64)) | (1L << (Ampersand - 64)) | (1L << (VerticalBar - 64)) | (1L << (Tilde - 64)) | (1L << (ExclamationMark - 64)) | (1L << (Equal - 64)) | (1L << (LessThan - 64)) | (1L << (GreaterThan - 64)) | (1L << (PlusEqual - 64)) | (1L << (MinusEqual - 64)) | (1L << (AsteriskEqual - 64)) | (1L << (ForwardSlashEqual - 64)) | (1L << (PercentEqual - 64)) | (1L << (CaretEqual - 64)) | (1L << (AmpersandEqual - 64)) | (1L << (VerticalBarEqual - 64)) | (1L << (DoubleLessThan - 64)) | (1L << (DoubleGreaterThan - 64)) | (1L << (DoubleLessThanEqual - 64)) | (1L << (DoubleGreaterThanEqual - 64)) | (1L << (DoubleEqual - 64)) | (1L << (ExclamationMarkEqual - 64)) | (1L << (LessThanEqual - 64)) | (1L << (GreaterThanEqual - 64)) | (1L << (DoubleAmpersand - 64)) | (1L << (DoubleVerticalBar - 64)) | (1L << (DoublePlus - 64)) | (1L << (DoubleMinus - 64)) | (1L << (Comma - 64)) | (1L << (ArrowAsterisk - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (Arrow - 128)) | (1L << (Zero - 128)) | (1L << (IntegerLiteral - 128)) | (1L << (FloatingPointLiteral - 128)) | (1L << (CharacterLiteral - 128)) | (1L << (StringLiteral - 128)) | (1L << (UserDefinedIntegerLiteral - 128)) | (1L << (UserDefinedFloatingPointLiteral - 128)) | (1L << (UserDefinedCharacterLiteral - 128)) | (1L << (UserDefinedStringLiteral - 128)) | (1L << (Identifier - 128)))) != 0)) {
 					{
 					setState(1708);
 					balancedTokenSequence(0);
@@ -8971,18 +8971,18 @@ public class CppParser extends Parser {
 				}
 
 				setState(1711);
-				match(RightParenthesis);
+				match(CloseParenthesis);
 				}
 				break;
-			case LeftBracket:
+			case OpenBracket:
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(1712);
-				match(LeftBracket);
+				match(OpenBracket);
 				setState(1714);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << BlockComment) | (1L << LineComment) | (1L << Whitespace) | (1L << Newline) | (1L << AlignAs) | (1L << AlignOf) | (1L << Asm) | (1L << Auto) | (1L << Bool) | (1L << Break) | (1L << Case) | (1L << Catch) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << Class) | (1L << Const) | (1L << ConstExpr) | (1L << ConstCast) | (1L << Continue) | (1L << DeclType) | (1L << Default) | (1L << Delete) | (1L << Do) | (1L << Double) | (1L << DynamicCast) | (1L << Else) | (1L << Enum) | (1L << Explicit) | (1L << Export) | (1L << Extern) | (1L << False) | (1L << Float) | (1L << For) | (1L << Friend) | (1L << GoTo) | (1L << If) | (1L << Inline) | (1L << Int) | (1L << Long) | (1L << Mutable) | (1L << Namespace) | (1L << New) | (1L << NoExcept) | (1L << Nullptr) | (1L << Operator) | (1L << Private) | (1L << Protected) | (1L << Public) | (1L << Register) | (1L << ReinterpretCast) | (1L << Return) | (1L << Short) | (1L << Signed) | (1L << SizeOf) | (1L << Static) | (1L << StaticAssert) | (1L << StaticCast) | (1L << Struct) | (1L << Switch) | (1L << Template) | (1L << This) | (1L << ThreadLocal))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (Throw - 64)) | (1L << (True - 64)) | (1L << (Try - 64)) | (1L << (TypeDef - 64)) | (1L << (TypeId - 64)) | (1L << (TypeName - 64)) | (1L << (Union - 64)) | (1L << (Unsigned - 64)) | (1L << (Using - 64)) | (1L << (Virtual - 64)) | (1L << (Void - 64)) | (1L << (Volatile - 64)) | (1L << (WChar - 64)) | (1L << (While - 64)) | (1L << (Override - 64)) | (1L << (Final - 64)) | (1L << (LeftBrace - 64)) | (1L << (LeftBracket - 64)) | (1L << (LeftParenthesis - 64)) | (1L << (Semicolon - 64)) | (1L << (Colon - 64)) | (1L << (Ellipsis - 64)) | (1L << (QuestionMark - 64)) | (1L << (DoubleColon - 64)) | (1L << (Period - 64)) | (1L << (PeriodAsterisk - 64)) | (1L << (Plus - 64)) | (1L << (Minus - 64)) | (1L << (Asterisk - 64)) | (1L << (ForwardSlash - 64)) | (1L << (Percent - 64)) | (1L << (Caret - 64)) | (1L << (Ampersand - 64)) | (1L << (VerticalBar - 64)) | (1L << (Tilde - 64)) | (1L << (ExclamationMark - 64)) | (1L << (Equal - 64)) | (1L << (LessThan - 64)) | (1L << (GreaterThan - 64)) | (1L << (PlusEqual - 64)) | (1L << (MinusEqual - 64)) | (1L << (AsteriskEqual - 64)) | (1L << (ForwardSlashEqual - 64)) | (1L << (PercentEqual - 64)) | (1L << (CaretEqual - 64)) | (1L << (AmpersandEqual - 64)) | (1L << (VerticalBarEqual - 64)) | (1L << (DoubleLessThan - 64)) | (1L << (DoubleGreaterThan - 64)) | (1L << (DoubleLessThanEqual - 64)) | (1L << (DoubleGreaterThanEqual - 64)) | (1L << (DoubleEqual - 64)) | (1L << (ExclamationMarkEqual - 64)) | (1L << (LessThanEqual - 64)) | (1L << (GreaterThanEqual - 64)) | (1L << (DoubleAmpersand - 64)) | (1L << (DoubleVerticalBar - 64)) | (1L << (DoublePlus - 64)) | (1L << (DoubleMinus - 64)) | (1L << (Comma - 64)) | (1L << (ArrowAsterisk - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (Arrow - 128)) | (1L << (Zero - 128)) | (1L << (IntegerLiteral - 128)) | (1L << (FloatingPointLiteral - 128)) | (1L << (CharacterLiteral - 128)) | (1L << (StringLiteral - 128)) | (1L << (UserDefinedIntegerLiteral - 128)) | (1L << (UserDefinedFloatingPointLiteral - 128)) | (1L << (UserDefinedCharacterLiteral - 128)) | (1L << (UserDefinedStringLiteral - 128)) | (1L << (Identifier - 128)))) != 0)) {
+				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << BlockComment) | (1L << LineComment) | (1L << Whitespace) | (1L << Newline) | (1L << AlignAs) | (1L << AlignOf) | (1L << Asm) | (1L << Auto) | (1L << Bool) | (1L << Break) | (1L << Case) | (1L << Catch) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << Class) | (1L << Const) | (1L << ConstExpr) | (1L << ConstCast) | (1L << Continue) | (1L << DeclType) | (1L << Default) | (1L << Delete) | (1L << Do) | (1L << Double) | (1L << DynamicCast) | (1L << Else) | (1L << Enum) | (1L << Explicit) | (1L << Export) | (1L << Extern) | (1L << False) | (1L << Float) | (1L << For) | (1L << Friend) | (1L << GoTo) | (1L << If) | (1L << Inline) | (1L << Int) | (1L << Long) | (1L << Mutable) | (1L << Namespace) | (1L << New) | (1L << NoExcept) | (1L << Nullptr) | (1L << Operator) | (1L << Private) | (1L << Protected) | (1L << Public) | (1L << Register) | (1L << ReinterpretCast) | (1L << Return) | (1L << Short) | (1L << Signed) | (1L << SizeOf) | (1L << Static) | (1L << StaticAssert) | (1L << StaticCast) | (1L << Struct) | (1L << Switch) | (1L << Template) | (1L << This) | (1L << ThreadLocal))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (Throw - 64)) | (1L << (True - 64)) | (1L << (Try - 64)) | (1L << (TypeDef - 64)) | (1L << (TypeId - 64)) | (1L << (TypeName - 64)) | (1L << (Union - 64)) | (1L << (Unsigned - 64)) | (1L << (Using - 64)) | (1L << (Virtual - 64)) | (1L << (Void - 64)) | (1L << (Volatile - 64)) | (1L << (WChar - 64)) | (1L << (While - 64)) | (1L << (Override - 64)) | (1L << (Final - 64)) | (1L << (OpenBrace - 64)) | (1L << (OpenBracket - 64)) | (1L << (OpenParenthesis - 64)) | (1L << (Semicolon - 64)) | (1L << (Colon - 64)) | (1L << (Ellipsis - 64)) | (1L << (QuestionMark - 64)) | (1L << (DoubleColon - 64)) | (1L << (Period - 64)) | (1L << (PeriodAsterisk - 64)) | (1L << (Plus - 64)) | (1L << (Minus - 64)) | (1L << (Asterisk - 64)) | (1L << (ForwardSlash - 64)) | (1L << (Percent - 64)) | (1L << (Caret - 64)) | (1L << (Ampersand - 64)) | (1L << (VerticalBar - 64)) | (1L << (Tilde - 64)) | (1L << (ExclamationMark - 64)) | (1L << (Equal - 64)) | (1L << (LessThan - 64)) | (1L << (GreaterThan - 64)) | (1L << (PlusEqual - 64)) | (1L << (MinusEqual - 64)) | (1L << (AsteriskEqual - 64)) | (1L << (ForwardSlashEqual - 64)) | (1L << (PercentEqual - 64)) | (1L << (CaretEqual - 64)) | (1L << (AmpersandEqual - 64)) | (1L << (VerticalBarEqual - 64)) | (1L << (DoubleLessThan - 64)) | (1L << (DoubleGreaterThan - 64)) | (1L << (DoubleLessThanEqual - 64)) | (1L << (DoubleGreaterThanEqual - 64)) | (1L << (DoubleEqual - 64)) | (1L << (ExclamationMarkEqual - 64)) | (1L << (LessThanEqual - 64)) | (1L << (GreaterThanEqual - 64)) | (1L << (DoubleAmpersand - 64)) | (1L << (DoubleVerticalBar - 64)) | (1L << (DoublePlus - 64)) | (1L << (DoubleMinus - 64)) | (1L << (Comma - 64)) | (1L << (ArrowAsterisk - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (Arrow - 128)) | (1L << (Zero - 128)) | (1L << (IntegerLiteral - 128)) | (1L << (FloatingPointLiteral - 128)) | (1L << (CharacterLiteral - 128)) | (1L << (StringLiteral - 128)) | (1L << (UserDefinedIntegerLiteral - 128)) | (1L << (UserDefinedFloatingPointLiteral - 128)) | (1L << (UserDefinedCharacterLiteral - 128)) | (1L << (UserDefinedStringLiteral - 128)) | (1L << (Identifier - 128)))) != 0)) {
 					{
 					setState(1713);
 					balancedTokenSequence(0);
@@ -8990,18 +8990,18 @@ public class CppParser extends Parser {
 				}
 
 				setState(1716);
-				match(RightBracket);
+				match(CloseBracket);
 				}
 				break;
-			case LeftBrace:
+			case OpenBrace:
 				enterOuterAlt(_localctx, 3);
 				{
 				setState(1717);
-				match(LeftBrace);
+				match(OpenBrace);
 				setState(1719);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << BlockComment) | (1L << LineComment) | (1L << Whitespace) | (1L << Newline) | (1L << AlignAs) | (1L << AlignOf) | (1L << Asm) | (1L << Auto) | (1L << Bool) | (1L << Break) | (1L << Case) | (1L << Catch) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << Class) | (1L << Const) | (1L << ConstExpr) | (1L << ConstCast) | (1L << Continue) | (1L << DeclType) | (1L << Default) | (1L << Delete) | (1L << Do) | (1L << Double) | (1L << DynamicCast) | (1L << Else) | (1L << Enum) | (1L << Explicit) | (1L << Export) | (1L << Extern) | (1L << False) | (1L << Float) | (1L << For) | (1L << Friend) | (1L << GoTo) | (1L << If) | (1L << Inline) | (1L << Int) | (1L << Long) | (1L << Mutable) | (1L << Namespace) | (1L << New) | (1L << NoExcept) | (1L << Nullptr) | (1L << Operator) | (1L << Private) | (1L << Protected) | (1L << Public) | (1L << Register) | (1L << ReinterpretCast) | (1L << Return) | (1L << Short) | (1L << Signed) | (1L << SizeOf) | (1L << Static) | (1L << StaticAssert) | (1L << StaticCast) | (1L << Struct) | (1L << Switch) | (1L << Template) | (1L << This) | (1L << ThreadLocal))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (Throw - 64)) | (1L << (True - 64)) | (1L << (Try - 64)) | (1L << (TypeDef - 64)) | (1L << (TypeId - 64)) | (1L << (TypeName - 64)) | (1L << (Union - 64)) | (1L << (Unsigned - 64)) | (1L << (Using - 64)) | (1L << (Virtual - 64)) | (1L << (Void - 64)) | (1L << (Volatile - 64)) | (1L << (WChar - 64)) | (1L << (While - 64)) | (1L << (Override - 64)) | (1L << (Final - 64)) | (1L << (LeftBrace - 64)) | (1L << (LeftBracket - 64)) | (1L << (LeftParenthesis - 64)) | (1L << (Semicolon - 64)) | (1L << (Colon - 64)) | (1L << (Ellipsis - 64)) | (1L << (QuestionMark - 64)) | (1L << (DoubleColon - 64)) | (1L << (Period - 64)) | (1L << (PeriodAsterisk - 64)) | (1L << (Plus - 64)) | (1L << (Minus - 64)) | (1L << (Asterisk - 64)) | (1L << (ForwardSlash - 64)) | (1L << (Percent - 64)) | (1L << (Caret - 64)) | (1L << (Ampersand - 64)) | (1L << (VerticalBar - 64)) | (1L << (Tilde - 64)) | (1L << (ExclamationMark - 64)) | (1L << (Equal - 64)) | (1L << (LessThan - 64)) | (1L << (GreaterThan - 64)) | (1L << (PlusEqual - 64)) | (1L << (MinusEqual - 64)) | (1L << (AsteriskEqual - 64)) | (1L << (ForwardSlashEqual - 64)) | (1L << (PercentEqual - 64)) | (1L << (CaretEqual - 64)) | (1L << (AmpersandEqual - 64)) | (1L << (VerticalBarEqual - 64)) | (1L << (DoubleLessThan - 64)) | (1L << (DoubleGreaterThan - 64)) | (1L << (DoubleLessThanEqual - 64)) | (1L << (DoubleGreaterThanEqual - 64)) | (1L << (DoubleEqual - 64)) | (1L << (ExclamationMarkEqual - 64)) | (1L << (LessThanEqual - 64)) | (1L << (GreaterThanEqual - 64)) | (1L << (DoubleAmpersand - 64)) | (1L << (DoubleVerticalBar - 64)) | (1L << (DoublePlus - 64)) | (1L << (DoubleMinus - 64)) | (1L << (Comma - 64)) | (1L << (ArrowAsterisk - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (Arrow - 128)) | (1L << (Zero - 128)) | (1L << (IntegerLiteral - 128)) | (1L << (FloatingPointLiteral - 128)) | (1L << (CharacterLiteral - 128)) | (1L << (StringLiteral - 128)) | (1L << (UserDefinedIntegerLiteral - 128)) | (1L << (UserDefinedFloatingPointLiteral - 128)) | (1L << (UserDefinedCharacterLiteral - 128)) | (1L << (UserDefinedStringLiteral - 128)) | (1L << (Identifier - 128)))) != 0)) {
+				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << BlockComment) | (1L << LineComment) | (1L << Whitespace) | (1L << Newline) | (1L << AlignAs) | (1L << AlignOf) | (1L << Asm) | (1L << Auto) | (1L << Bool) | (1L << Break) | (1L << Case) | (1L << Catch) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << Class) | (1L << Const) | (1L << ConstExpr) | (1L << ConstCast) | (1L << Continue) | (1L << DeclType) | (1L << Default) | (1L << Delete) | (1L << Do) | (1L << Double) | (1L << DynamicCast) | (1L << Else) | (1L << Enum) | (1L << Explicit) | (1L << Export) | (1L << Extern) | (1L << False) | (1L << Float) | (1L << For) | (1L << Friend) | (1L << GoTo) | (1L << If) | (1L << Inline) | (1L << Int) | (1L << Long) | (1L << Mutable) | (1L << Namespace) | (1L << New) | (1L << NoExcept) | (1L << Nullptr) | (1L << Operator) | (1L << Private) | (1L << Protected) | (1L << Public) | (1L << Register) | (1L << ReinterpretCast) | (1L << Return) | (1L << Short) | (1L << Signed) | (1L << SizeOf) | (1L << Static) | (1L << StaticAssert) | (1L << StaticCast) | (1L << Struct) | (1L << Switch) | (1L << Template) | (1L << This) | (1L << ThreadLocal))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (Throw - 64)) | (1L << (True - 64)) | (1L << (Try - 64)) | (1L << (TypeDef - 64)) | (1L << (TypeId - 64)) | (1L << (TypeName - 64)) | (1L << (Union - 64)) | (1L << (Unsigned - 64)) | (1L << (Using - 64)) | (1L << (Virtual - 64)) | (1L << (Void - 64)) | (1L << (Volatile - 64)) | (1L << (WChar - 64)) | (1L << (While - 64)) | (1L << (Override - 64)) | (1L << (Final - 64)) | (1L << (OpenBrace - 64)) | (1L << (OpenBracket - 64)) | (1L << (OpenParenthesis - 64)) | (1L << (Semicolon - 64)) | (1L << (Colon - 64)) | (1L << (Ellipsis - 64)) | (1L << (QuestionMark - 64)) | (1L << (DoubleColon - 64)) | (1L << (Period - 64)) | (1L << (PeriodAsterisk - 64)) | (1L << (Plus - 64)) | (1L << (Minus - 64)) | (1L << (Asterisk - 64)) | (1L << (ForwardSlash - 64)) | (1L << (Percent - 64)) | (1L << (Caret - 64)) | (1L << (Ampersand - 64)) | (1L << (VerticalBar - 64)) | (1L << (Tilde - 64)) | (1L << (ExclamationMark - 64)) | (1L << (Equal - 64)) | (1L << (LessThan - 64)) | (1L << (GreaterThan - 64)) | (1L << (PlusEqual - 64)) | (1L << (MinusEqual - 64)) | (1L << (AsteriskEqual - 64)) | (1L << (ForwardSlashEqual - 64)) | (1L << (PercentEqual - 64)) | (1L << (CaretEqual - 64)) | (1L << (AmpersandEqual - 64)) | (1L << (VerticalBarEqual - 64)) | (1L << (DoubleLessThan - 64)) | (1L << (DoubleGreaterThan - 64)) | (1L << (DoubleLessThanEqual - 64)) | (1L << (DoubleGreaterThanEqual - 64)) | (1L << (DoubleEqual - 64)) | (1L << (ExclamationMarkEqual - 64)) | (1L << (LessThanEqual - 64)) | (1L << (GreaterThanEqual - 64)) | (1L << (DoubleAmpersand - 64)) | (1L << (DoubleVerticalBar - 64)) | (1L << (DoublePlus - 64)) | (1L << (DoubleMinus - 64)) | (1L << (Comma - 64)) | (1L << (ArrowAsterisk - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (Arrow - 128)) | (1L << (Zero - 128)) | (1L << (IntegerLiteral - 128)) | (1L << (FloatingPointLiteral - 128)) | (1L << (CharacterLiteral - 128)) | (1L << (StringLiteral - 128)) | (1L << (UserDefinedIntegerLiteral - 128)) | (1L << (UserDefinedFloatingPointLiteral - 128)) | (1L << (UserDefinedCharacterLiteral - 128)) | (1L << (UserDefinedStringLiteral - 128)) | (1L << (Identifier - 128)))) != 0)) {
 					{
 					setState(1718);
 					balancedTokenSequence(0);
@@ -9009,7 +9009,7 @@ public class CppParser extends Parser {
 				}
 
 				setState(1721);
-				match(RightBrace);
+				match(CloseBrace);
 				}
 				break;
 			case BlockComment:
@@ -9148,7 +9148,7 @@ public class CppParser extends Parser {
 				{
 				setState(1722);
 				_la = _input.LA(1);
-				if ( _la <= 0 || (((((_la - 80)) & ~0x3f) == 0 && ((1L << (_la - 80)) & ((1L << (LeftBrace - 80)) | (1L << (RightBrace - 80)) | (1L << (LeftBracket - 80)) | (1L << (RightBracket - 80)) | (1L << (LeftParenthesis - 80)) | (1L << (RightParenthesis - 80)))) != 0)) ) {
+				if ( _la <= 0 || (((((_la - 80)) & ~0x3f) == 0 && ((1L << (_la - 80)) & ((1L << (OpenBrace - 80)) | (1L << (CloseBrace - 80)) | (1L << (OpenBracket - 80)) | (1L << (CloseBracket - 80)) | (1L << (OpenParenthesis - 80)) | (1L << (CloseParenthesis - 80)))) != 0)) ) {
 				_errHandler.recoverInline(this);
 				}
 				else {
@@ -9379,16 +9379,16 @@ public class CppParser extends Parser {
 		public AttributeSpecifierSequenceContext attributeSpecifierSequence() {
 			return getRuleContext(AttributeSpecifierSequenceContext.class,0);
 		}
-		public TerminalNode LeftParenthesis() { return getToken(CppParser.LeftParenthesis, 0); }
+		public TerminalNode OpenParenthesis() { return getToken(CppParser.OpenParenthesis, 0); }
 		public PointerDeclaratorContext pointerDeclarator() {
 			return getRuleContext(PointerDeclaratorContext.class,0);
 		}
-		public TerminalNode RightParenthesis() { return getToken(CppParser.RightParenthesis, 0); }
+		public TerminalNode CloseParenthesis() { return getToken(CppParser.CloseParenthesis, 0); }
 		public NoPointerDeclaratorContext noPointerDeclarator() {
 			return getRuleContext(NoPointerDeclaratorContext.class,0);
 		}
-		public TerminalNode LeftBracket() { return getToken(CppParser.LeftBracket, 0); }
-		public TerminalNode RightBracket() { return getToken(CppParser.RightBracket, 0); }
+		public TerminalNode OpenBracket() { return getToken(CppParser.OpenBracket, 0); }
+		public TerminalNode CloseBracket() { return getToken(CppParser.CloseBracket, 0); }
 		public ConstantExpressionContext constantExpression() {
 			return getRuleContext(ConstantExpressionContext.class,0);
 		}
@@ -9451,14 +9451,14 @@ public class CppParser extends Parser {
 				}
 				}
 				break;
-			case LeftParenthesis:
+			case OpenParenthesis:
 				{
 				setState(1755);
-				match(LeftParenthesis);
+				match(OpenParenthesis);
 				setState(1756);
 				pointerDeclarator();
 				setState(1757);
-				match(RightParenthesis);
+				match(CloseParenthesis);
 				}
 				break;
 			default:
@@ -9483,11 +9483,11 @@ public class CppParser extends Parser {
 						setState(1761);
 						if (!(precpred(_ctx, 3))) throw new FailedPredicateException(this, "precpred(_ctx, 3)");
 						setState(1762);
-						match(LeftBracket);
+						match(OpenBracket);
 						setState(1764);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
-						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignOf) | (1L << Auto) | (1L << Bool) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << ConstCast) | (1L << DeclType) | (1L << Delete) | (1L << Double) | (1L << DynamicCast) | (1L << False) | (1L << Float) | (1L << Int) | (1L << Long) | (1L << New) | (1L << NoExcept) | (1L << Nullptr) | (1L << Operator) | (1L << ReinterpretCast) | (1L << Short) | (1L << Signed) | (1L << SizeOf) | (1L << StaticCast) | (1L << This))) != 0) || ((((_la - 65)) & ~0x3f) == 0 && ((1L << (_la - 65)) & ((1L << (True - 65)) | (1L << (TypeId - 65)) | (1L << (TypeName - 65)) | (1L << (Unsigned - 65)) | (1L << (Void - 65)) | (1L << (WChar - 65)) | (1L << (LeftBracket - 65)) | (1L << (LeftParenthesis - 65)) | (1L << (DoubleColon - 65)) | (1L << (Plus - 65)) | (1L << (Minus - 65)) | (1L << (Asterisk - 65)) | (1L << (Ampersand - 65)) | (1L << (VerticalBar - 65)) | (1L << (Tilde - 65)) | (1L << (ExclamationMark - 65)) | (1L << (DoublePlus - 65)) | (1L << (DoubleMinus - 65)))) != 0) || ((((_la - 129)) & ~0x3f) == 0 && ((1L << (_la - 129)) & ((1L << (Zero - 129)) | (1L << (IntegerLiteral - 129)) | (1L << (FloatingPointLiteral - 129)) | (1L << (CharacterLiteral - 129)) | (1L << (StringLiteral - 129)) | (1L << (UserDefinedIntegerLiteral - 129)) | (1L << (UserDefinedFloatingPointLiteral - 129)) | (1L << (UserDefinedCharacterLiteral - 129)) | (1L << (UserDefinedStringLiteral - 129)) | (1L << (Identifier - 129)))) != 0)) {
+						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignOf) | (1L << Auto) | (1L << Bool) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << ConstCast) | (1L << DeclType) | (1L << Delete) | (1L << Double) | (1L << DynamicCast) | (1L << False) | (1L << Float) | (1L << Int) | (1L << Long) | (1L << New) | (1L << NoExcept) | (1L << Nullptr) | (1L << Operator) | (1L << ReinterpretCast) | (1L << Short) | (1L << Signed) | (1L << SizeOf) | (1L << StaticCast) | (1L << This))) != 0) || ((((_la - 65)) & ~0x3f) == 0 && ((1L << (_la - 65)) & ((1L << (True - 65)) | (1L << (TypeId - 65)) | (1L << (TypeName - 65)) | (1L << (Unsigned - 65)) | (1L << (Void - 65)) | (1L << (WChar - 65)) | (1L << (OpenBracket - 65)) | (1L << (OpenParenthesis - 65)) | (1L << (DoubleColon - 65)) | (1L << (Plus - 65)) | (1L << (Minus - 65)) | (1L << (Asterisk - 65)) | (1L << (Ampersand - 65)) | (1L << (VerticalBar - 65)) | (1L << (Tilde - 65)) | (1L << (ExclamationMark - 65)) | (1L << (DoublePlus - 65)) | (1L << (DoubleMinus - 65)))) != 0) || ((((_la - 129)) & ~0x3f) == 0 && ((1L << (_la - 129)) & ((1L << (Zero - 129)) | (1L << (IntegerLiteral - 129)) | (1L << (FloatingPointLiteral - 129)) | (1L << (CharacterLiteral - 129)) | (1L << (StringLiteral - 129)) | (1L << (UserDefinedIntegerLiteral - 129)) | (1L << (UserDefinedFloatingPointLiteral - 129)) | (1L << (UserDefinedCharacterLiteral - 129)) | (1L << (UserDefinedStringLiteral - 129)) | (1L << (Identifier - 129)))) != 0)) {
 							{
 							setState(1763);
 							constantExpression();
@@ -9495,7 +9495,7 @@ public class CppParser extends Parser {
 						}
 
 						setState(1766);
-						match(RightBracket);
+						match(CloseBracket);
 						setState(1768);
 						_errHandler.sync(this);
 						switch ( getInterpreter().adaptivePredict(_input,193,_ctx) ) {
@@ -9575,11 +9575,11 @@ public class CppParser extends Parser {
 	}
 
 	public static class FunctionParametersContext extends ParserRuleContext {
-		public TerminalNode LeftParenthesis() { return getToken(CppParser.LeftParenthesis, 0); }
+		public TerminalNode OpenParenthesis() { return getToken(CppParser.OpenParenthesis, 0); }
 		public ParameterDeclarationClauseContext parameterDeclarationClause() {
 			return getRuleContext(ParameterDeclarationClauseContext.class,0);
 		}
-		public TerminalNode RightParenthesis() { return getToken(CppParser.RightParenthesis, 0); }
+		public TerminalNode CloseParenthesis() { return getToken(CppParser.CloseParenthesis, 0); }
 		public FunctionParametersContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -9593,11 +9593,11 @@ public class CppParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(1780);
-			match(LeftParenthesis);
+			match(OpenParenthesis);
 			setState(1781);
 			parameterDeclarationClause();
 			setState(1782);
-			match(RightParenthesis);
+			match(CloseParenthesis);
 			}
 		}
 		catch (RecognitionException re) {
@@ -10040,7 +10040,7 @@ public class CppParser extends Parser {
 			setState(1839);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if (_la==DeclType || ((((_la - 82)) & ~0x3f) == 0 && ((1L << (_la - 82)) & ((1L << (LeftBracket - 82)) | (1L << (LeftParenthesis - 82)) | (1L << (Ellipsis - 82)) | (1L << (DoubleColon - 82)) | (1L << (Asterisk - 82)) | (1L << (Ampersand - 82)) | (1L << (DoubleAmpersand - 82)) | (1L << (Identifier - 82)))) != 0)) {
+			if (_la==DeclType || ((((_la - 82)) & ~0x3f) == 0 && ((1L << (_la - 82)) & ((1L << (OpenBracket - 82)) | (1L << (OpenParenthesis - 82)) | (1L << (Ellipsis - 82)) | (1L << (DoubleColon - 82)) | (1L << (Asterisk - 82)) | (1L << (Ampersand - 82)) | (1L << (DoubleAmpersand - 82)) | (1L << (Identifier - 82)))) != 0)) {
 				{
 				setState(1838);
 				abstractDeclarator();
@@ -10158,8 +10158,8 @@ public class CppParser extends Parser {
 			setState(1856);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
-			case LeftBracket:
-			case LeftParenthesis:
+			case OpenBracket:
+			case OpenParenthesis:
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(1851);
@@ -10207,19 +10207,19 @@ public class CppParser extends Parser {
 		public ParametersAndQualifiersContext parametersAndQualifiers() {
 			return getRuleContext(ParametersAndQualifiersContext.class,0);
 		}
-		public TerminalNode LeftBracket() { return getToken(CppParser.LeftBracket, 0); }
-		public TerminalNode RightBracket() { return getToken(CppParser.RightBracket, 0); }
+		public TerminalNode OpenBracket() { return getToken(CppParser.OpenBracket, 0); }
+		public TerminalNode CloseBracket() { return getToken(CppParser.CloseBracket, 0); }
 		public ConstantExpressionContext constantExpression() {
 			return getRuleContext(ConstantExpressionContext.class,0);
 		}
 		public AttributeSpecifierSequenceContext attributeSpecifierSequence() {
 			return getRuleContext(AttributeSpecifierSequenceContext.class,0);
 		}
-		public TerminalNode LeftParenthesis() { return getToken(CppParser.LeftParenthesis, 0); }
+		public TerminalNode OpenParenthesis() { return getToken(CppParser.OpenParenthesis, 0); }
 		public PointerAbstractDeclaratorContext pointerAbstractDeclarator() {
 			return getRuleContext(PointerAbstractDeclaratorContext.class,0);
 		}
-		public TerminalNode RightParenthesis() { return getToken(CppParser.RightParenthesis, 0); }
+		public TerminalNode CloseParenthesis() { return getToken(CppParser.CloseParenthesis, 0); }
 		public NoPointerAbstractDeclaratorContext noPointerAbstractDeclarator() {
 			return getRuleContext(NoPointerAbstractDeclaratorContext.class,0);
 		}
@@ -10257,11 +10257,11 @@ public class CppParser extends Parser {
 			case 2:
 				{
 				setState(1860);
-				match(LeftBracket);
+				match(OpenBracket);
 				setState(1862);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignOf) | (1L << Auto) | (1L << Bool) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << ConstCast) | (1L << DeclType) | (1L << Delete) | (1L << Double) | (1L << DynamicCast) | (1L << False) | (1L << Float) | (1L << Int) | (1L << Long) | (1L << New) | (1L << NoExcept) | (1L << Nullptr) | (1L << Operator) | (1L << ReinterpretCast) | (1L << Short) | (1L << Signed) | (1L << SizeOf) | (1L << StaticCast) | (1L << This))) != 0) || ((((_la - 65)) & ~0x3f) == 0 && ((1L << (_la - 65)) & ((1L << (True - 65)) | (1L << (TypeId - 65)) | (1L << (TypeName - 65)) | (1L << (Unsigned - 65)) | (1L << (Void - 65)) | (1L << (WChar - 65)) | (1L << (LeftBracket - 65)) | (1L << (LeftParenthesis - 65)) | (1L << (DoubleColon - 65)) | (1L << (Plus - 65)) | (1L << (Minus - 65)) | (1L << (Asterisk - 65)) | (1L << (Ampersand - 65)) | (1L << (VerticalBar - 65)) | (1L << (Tilde - 65)) | (1L << (ExclamationMark - 65)) | (1L << (DoublePlus - 65)) | (1L << (DoubleMinus - 65)))) != 0) || ((((_la - 129)) & ~0x3f) == 0 && ((1L << (_la - 129)) & ((1L << (Zero - 129)) | (1L << (IntegerLiteral - 129)) | (1L << (FloatingPointLiteral - 129)) | (1L << (CharacterLiteral - 129)) | (1L << (StringLiteral - 129)) | (1L << (UserDefinedIntegerLiteral - 129)) | (1L << (UserDefinedFloatingPointLiteral - 129)) | (1L << (UserDefinedCharacterLiteral - 129)) | (1L << (UserDefinedStringLiteral - 129)) | (1L << (Identifier - 129)))) != 0)) {
+				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignOf) | (1L << Auto) | (1L << Bool) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << ConstCast) | (1L << DeclType) | (1L << Delete) | (1L << Double) | (1L << DynamicCast) | (1L << False) | (1L << Float) | (1L << Int) | (1L << Long) | (1L << New) | (1L << NoExcept) | (1L << Nullptr) | (1L << Operator) | (1L << ReinterpretCast) | (1L << Short) | (1L << Signed) | (1L << SizeOf) | (1L << StaticCast) | (1L << This))) != 0) || ((((_la - 65)) & ~0x3f) == 0 && ((1L << (_la - 65)) & ((1L << (True - 65)) | (1L << (TypeId - 65)) | (1L << (TypeName - 65)) | (1L << (Unsigned - 65)) | (1L << (Void - 65)) | (1L << (WChar - 65)) | (1L << (OpenBracket - 65)) | (1L << (OpenParenthesis - 65)) | (1L << (DoubleColon - 65)) | (1L << (Plus - 65)) | (1L << (Minus - 65)) | (1L << (Asterisk - 65)) | (1L << (Ampersand - 65)) | (1L << (VerticalBar - 65)) | (1L << (Tilde - 65)) | (1L << (ExclamationMark - 65)) | (1L << (DoublePlus - 65)) | (1L << (DoubleMinus - 65)))) != 0) || ((((_la - 129)) & ~0x3f) == 0 && ((1L << (_la - 129)) & ((1L << (Zero - 129)) | (1L << (IntegerLiteral - 129)) | (1L << (FloatingPointLiteral - 129)) | (1L << (CharacterLiteral - 129)) | (1L << (StringLiteral - 129)) | (1L << (UserDefinedIntegerLiteral - 129)) | (1L << (UserDefinedFloatingPointLiteral - 129)) | (1L << (UserDefinedCharacterLiteral - 129)) | (1L << (UserDefinedStringLiteral - 129)) | (1L << (Identifier - 129)))) != 0)) {
 					{
 					setState(1861);
 					constantExpression();
@@ -10269,7 +10269,7 @@ public class CppParser extends Parser {
 				}
 
 				setState(1864);
-				match(RightBracket);
+				match(CloseBracket);
 				setState(1866);
 				_errHandler.sync(this);
 				switch ( getInterpreter().adaptivePredict(_input,215,_ctx) ) {
@@ -10285,11 +10285,11 @@ public class CppParser extends Parser {
 			case 3:
 				{
 				setState(1868);
-				match(LeftParenthesis);
+				match(OpenParenthesis);
 				setState(1869);
 				pointerAbstractDeclarator();
 				setState(1870);
-				match(RightParenthesis);
+				match(CloseParenthesis);
 				}
 				break;
 			}
@@ -10322,11 +10322,11 @@ public class CppParser extends Parser {
 						setState(1876);
 						if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
 						setState(1877);
-						match(LeftBracket);
+						match(OpenBracket);
 						setState(1879);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
-						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignOf) | (1L << Auto) | (1L << Bool) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << ConstCast) | (1L << DeclType) | (1L << Delete) | (1L << Double) | (1L << DynamicCast) | (1L << False) | (1L << Float) | (1L << Int) | (1L << Long) | (1L << New) | (1L << NoExcept) | (1L << Nullptr) | (1L << Operator) | (1L << ReinterpretCast) | (1L << Short) | (1L << Signed) | (1L << SizeOf) | (1L << StaticCast) | (1L << This))) != 0) || ((((_la - 65)) & ~0x3f) == 0 && ((1L << (_la - 65)) & ((1L << (True - 65)) | (1L << (TypeId - 65)) | (1L << (TypeName - 65)) | (1L << (Unsigned - 65)) | (1L << (Void - 65)) | (1L << (WChar - 65)) | (1L << (LeftBracket - 65)) | (1L << (LeftParenthesis - 65)) | (1L << (DoubleColon - 65)) | (1L << (Plus - 65)) | (1L << (Minus - 65)) | (1L << (Asterisk - 65)) | (1L << (Ampersand - 65)) | (1L << (VerticalBar - 65)) | (1L << (Tilde - 65)) | (1L << (ExclamationMark - 65)) | (1L << (DoublePlus - 65)) | (1L << (DoubleMinus - 65)))) != 0) || ((((_la - 129)) & ~0x3f) == 0 && ((1L << (_la - 129)) & ((1L << (Zero - 129)) | (1L << (IntegerLiteral - 129)) | (1L << (FloatingPointLiteral - 129)) | (1L << (CharacterLiteral - 129)) | (1L << (StringLiteral - 129)) | (1L << (UserDefinedIntegerLiteral - 129)) | (1L << (UserDefinedFloatingPointLiteral - 129)) | (1L << (UserDefinedCharacterLiteral - 129)) | (1L << (UserDefinedStringLiteral - 129)) | (1L << (Identifier - 129)))) != 0)) {
+						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignOf) | (1L << Auto) | (1L << Bool) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << ConstCast) | (1L << DeclType) | (1L << Delete) | (1L << Double) | (1L << DynamicCast) | (1L << False) | (1L << Float) | (1L << Int) | (1L << Long) | (1L << New) | (1L << NoExcept) | (1L << Nullptr) | (1L << Operator) | (1L << ReinterpretCast) | (1L << Short) | (1L << Signed) | (1L << SizeOf) | (1L << StaticCast) | (1L << This))) != 0) || ((((_la - 65)) & ~0x3f) == 0 && ((1L << (_la - 65)) & ((1L << (True - 65)) | (1L << (TypeId - 65)) | (1L << (TypeName - 65)) | (1L << (Unsigned - 65)) | (1L << (Void - 65)) | (1L << (WChar - 65)) | (1L << (OpenBracket - 65)) | (1L << (OpenParenthesis - 65)) | (1L << (DoubleColon - 65)) | (1L << (Plus - 65)) | (1L << (Minus - 65)) | (1L << (Asterisk - 65)) | (1L << (Ampersand - 65)) | (1L << (VerticalBar - 65)) | (1L << (Tilde - 65)) | (1L << (ExclamationMark - 65)) | (1L << (DoublePlus - 65)) | (1L << (DoubleMinus - 65)))) != 0) || ((((_la - 129)) & ~0x3f) == 0 && ((1L << (_la - 129)) & ((1L << (Zero - 129)) | (1L << (IntegerLiteral - 129)) | (1L << (FloatingPointLiteral - 129)) | (1L << (CharacterLiteral - 129)) | (1L << (StringLiteral - 129)) | (1L << (UserDefinedIntegerLiteral - 129)) | (1L << (UserDefinedFloatingPointLiteral - 129)) | (1L << (UserDefinedCharacterLiteral - 129)) | (1L << (UserDefinedStringLiteral - 129)) | (1L << (Identifier - 129)))) != 0)) {
 							{
 							setState(1878);
 							constantExpression();
@@ -10334,7 +10334,7 @@ public class CppParser extends Parser {
 						}
 
 						setState(1881);
-						match(RightBracket);
+						match(CloseBracket);
 						setState(1883);
 						_errHandler.sync(this);
 						switch ( getInterpreter().adaptivePredict(_input,218,_ctx) ) {
@@ -10434,8 +10434,8 @@ public class CppParser extends Parser {
 		public ParametersAndQualifiersContext parametersAndQualifiers() {
 			return getRuleContext(ParametersAndQualifiersContext.class,0);
 		}
-		public TerminalNode LeftBracket() { return getToken(CppParser.LeftBracket, 0); }
-		public TerminalNode RightBracket() { return getToken(CppParser.RightBracket, 0); }
+		public TerminalNode OpenBracket() { return getToken(CppParser.OpenBracket, 0); }
+		public TerminalNode CloseBracket() { return getToken(CppParser.CloseBracket, 0); }
 		public ConstantExpressionContext constantExpression() {
 			return getRuleContext(ConstantExpressionContext.class,0);
 		}
@@ -10497,11 +10497,11 @@ public class CppParser extends Parser {
 						setState(1901);
 						if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
 						setState(1902);
-						match(LeftBracket);
+						match(OpenBracket);
 						setState(1904);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
-						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignOf) | (1L << Auto) | (1L << Bool) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << ConstCast) | (1L << DeclType) | (1L << Delete) | (1L << Double) | (1L << DynamicCast) | (1L << False) | (1L << Float) | (1L << Int) | (1L << Long) | (1L << New) | (1L << NoExcept) | (1L << Nullptr) | (1L << Operator) | (1L << ReinterpretCast) | (1L << Short) | (1L << Signed) | (1L << SizeOf) | (1L << StaticCast) | (1L << This))) != 0) || ((((_la - 65)) & ~0x3f) == 0 && ((1L << (_la - 65)) & ((1L << (True - 65)) | (1L << (TypeId - 65)) | (1L << (TypeName - 65)) | (1L << (Unsigned - 65)) | (1L << (Void - 65)) | (1L << (WChar - 65)) | (1L << (LeftBracket - 65)) | (1L << (LeftParenthesis - 65)) | (1L << (DoubleColon - 65)) | (1L << (Plus - 65)) | (1L << (Minus - 65)) | (1L << (Asterisk - 65)) | (1L << (Ampersand - 65)) | (1L << (VerticalBar - 65)) | (1L << (Tilde - 65)) | (1L << (ExclamationMark - 65)) | (1L << (DoublePlus - 65)) | (1L << (DoubleMinus - 65)))) != 0) || ((((_la - 129)) & ~0x3f) == 0 && ((1L << (_la - 129)) & ((1L << (Zero - 129)) | (1L << (IntegerLiteral - 129)) | (1L << (FloatingPointLiteral - 129)) | (1L << (CharacterLiteral - 129)) | (1L << (StringLiteral - 129)) | (1L << (UserDefinedIntegerLiteral - 129)) | (1L << (UserDefinedFloatingPointLiteral - 129)) | (1L << (UserDefinedCharacterLiteral - 129)) | (1L << (UserDefinedStringLiteral - 129)) | (1L << (Identifier - 129)))) != 0)) {
+						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignOf) | (1L << Auto) | (1L << Bool) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << ConstCast) | (1L << DeclType) | (1L << Delete) | (1L << Double) | (1L << DynamicCast) | (1L << False) | (1L << Float) | (1L << Int) | (1L << Long) | (1L << New) | (1L << NoExcept) | (1L << Nullptr) | (1L << Operator) | (1L << ReinterpretCast) | (1L << Short) | (1L << Signed) | (1L << SizeOf) | (1L << StaticCast) | (1L << This))) != 0) || ((((_la - 65)) & ~0x3f) == 0 && ((1L << (_la - 65)) & ((1L << (True - 65)) | (1L << (TypeId - 65)) | (1L << (TypeName - 65)) | (1L << (Unsigned - 65)) | (1L << (Void - 65)) | (1L << (WChar - 65)) | (1L << (OpenBracket - 65)) | (1L << (OpenParenthesis - 65)) | (1L << (DoubleColon - 65)) | (1L << (Plus - 65)) | (1L << (Minus - 65)) | (1L << (Asterisk - 65)) | (1L << (Ampersand - 65)) | (1L << (VerticalBar - 65)) | (1L << (Tilde - 65)) | (1L << (ExclamationMark - 65)) | (1L << (DoublePlus - 65)) | (1L << (DoubleMinus - 65)))) != 0) || ((((_la - 129)) & ~0x3f) == 0 && ((1L << (_la - 129)) & ((1L << (Zero - 129)) | (1L << (IntegerLiteral - 129)) | (1L << (FloatingPointLiteral - 129)) | (1L << (CharacterLiteral - 129)) | (1L << (StringLiteral - 129)) | (1L << (UserDefinedIntegerLiteral - 129)) | (1L << (UserDefinedFloatingPointLiteral - 129)) | (1L << (UserDefinedCharacterLiteral - 129)) | (1L << (UserDefinedStringLiteral - 129)) | (1L << (Identifier - 129)))) != 0)) {
 							{
 							setState(1903);
 							constantExpression();
@@ -10509,7 +10509,7 @@ public class CppParser extends Parser {
 						}
 
 						setState(1906);
-						match(RightBracket);
+						match(CloseBracket);
 						setState(1908);
 						_errHandler.sync(this);
 						switch ( getInterpreter().adaptivePredict(_input,223,_ctx) ) {
@@ -10568,7 +10568,7 @@ public class CppParser extends Parser {
 				setState(1916);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignAs) | (1L << Auto) | (1L << Bool) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << ConstExpr) | (1L << DeclType) | (1L << Double) | (1L << Explicit) | (1L << Extern) | (1L << Float) | (1L << Friend) | (1L << Inline) | (1L << Int) | (1L << Long) | (1L << Mutable) | (1L << Short) | (1L << Signed) | (1L << Static) | (1L << ThreadLocal))) != 0) || ((((_la - 67)) & ~0x3f) == 0 && ((1L << (_la - 67)) & ((1L << (TypeDef - 67)) | (1L << (Unsigned - 67)) | (1L << (Virtual - 67)) | (1L << (Void - 67)) | (1L << (WChar - 67)) | (1L << (LeftBracket - 67)))) != 0)) {
+				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignAs) | (1L << Auto) | (1L << Bool) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << ConstExpr) | (1L << DeclType) | (1L << Double) | (1L << Explicit) | (1L << Extern) | (1L << Float) | (1L << Friend) | (1L << Inline) | (1L << Int) | (1L << Long) | (1L << Mutable) | (1L << Short) | (1L << Signed) | (1L << Static) | (1L << ThreadLocal))) != 0) || ((((_la - 67)) & ~0x3f) == 0 && ((1L << (_la - 67)) & ((1L << (TypeDef - 67)) | (1L << (Unsigned - 67)) | (1L << (Virtual - 67)) | (1L << (Void - 67)) | (1L << (WChar - 67)) | (1L << (OpenBracket - 67)))) != 0)) {
 					{
 					setState(1915);
 					parameterDeclarationList(0);
@@ -10716,7 +10716,7 @@ public class CppParser extends Parser {
 				setState(1939);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if (_la==AlignAs || _la==LeftBracket) {
+				if (_la==AlignAs || _la==OpenBracket) {
 					{
 					setState(1938);
 					attributeSpecifierSequence(0);
@@ -10735,7 +10735,7 @@ public class CppParser extends Parser {
 				setState(1945);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if (_la==AlignAs || _la==LeftBracket) {
+				if (_la==AlignAs || _la==OpenBracket) {
 					{
 					setState(1944);
 					attributeSpecifierSequence(0);
@@ -10797,7 +10797,7 @@ public class CppParser extends Parser {
 			setState(1955);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if (_la==AlignAs || _la==LeftBracket) {
+			if (_la==AlignAs || _la==OpenBracket) {
 				{
 				setState(1954);
 				attributeSpecifierSequence(0);
@@ -11139,7 +11139,7 @@ public class CppParser extends Parser {
 				initializerClause();
 				}
 				break;
-			case LeftBrace:
+			case OpenBrace:
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(1995);
@@ -11213,8 +11213,8 @@ public class CppParser extends Parser {
 			case Unsigned:
 			case Void:
 			case WChar:
-			case LeftBracket:
-			case LeftParenthesis:
+			case OpenBracket:
+			case OpenParenthesis:
 			case DoubleColon:
 			case Plus:
 			case Minus:
@@ -11241,7 +11241,7 @@ public class CppParser extends Parser {
 				assignmentExpression();
 				}
 				break;
-			case LeftBrace:
+			case OpenBrace:
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(1999);
@@ -11356,11 +11356,11 @@ public class CppParser extends Parser {
 	}
 
 	public static class BracedInitializerListContext extends ParserRuleContext {
-		public TerminalNode LeftBrace() { return getToken(CppParser.LeftBrace, 0); }
+		public TerminalNode OpenBrace() { return getToken(CppParser.OpenBrace, 0); }
 		public InitializerListContext initializerList() {
 			return getRuleContext(InitializerListContext.class,0);
 		}
-		public TerminalNode RightBrace() { return getToken(CppParser.RightBrace, 0); }
+		public TerminalNode CloseBrace() { return getToken(CppParser.CloseBrace, 0); }
 		public TerminalNode Comma() { return getToken(CppParser.Comma, 0); }
 		public BracedInitializerListContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -11380,7 +11380,7 @@ public class CppParser extends Parser {
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(2018);
-				match(LeftBrace);
+				match(OpenBrace);
 				setState(2019);
 				initializerList(0);
 				setState(2021);
@@ -11394,16 +11394,16 @@ public class CppParser extends Parser {
 				}
 
 				setState(2023);
-				match(RightBrace);
+				match(CloseBrace);
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(2025);
-				match(LeftBrace);
+				match(OpenBrace);
 				setState(2026);
-				match(RightBrace);
+				match(CloseBrace);
 				}
 				break;
 			}
@@ -11471,8 +11471,8 @@ public class CppParser extends Parser {
 			case Unsigned:
 			case Void:
 			case WChar:
-			case LeftBracket:
-			case LeftParenthesis:
+			case OpenBracket:
+			case OpenParenthesis:
 			case DoubleColon:
 			case Plus:
 			case Minus:
@@ -11499,7 +11499,7 @@ public class CppParser extends Parser {
 				expression(0);
 				}
 				break;
-			case LeftBrace:
+			case OpenBrace:
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(2030);
@@ -11525,8 +11525,8 @@ public class CppParser extends Parser {
 		public ClassHeadContext classHead() {
 			return getRuleContext(ClassHeadContext.class,0);
 		}
-		public TerminalNode LeftBrace() { return getToken(CppParser.LeftBrace, 0); }
-		public TerminalNode RightBrace() { return getToken(CppParser.RightBrace, 0); }
+		public TerminalNode OpenBrace() { return getToken(CppParser.OpenBrace, 0); }
+		public TerminalNode CloseBrace() { return getToken(CppParser.CloseBrace, 0); }
 		public MemberSpecificationContext memberSpecification() {
 			return getRuleContext(MemberSpecificationContext.class,0);
 		}
@@ -11546,11 +11546,11 @@ public class CppParser extends Parser {
 			setState(2033);
 			classHead();
 			setState(2034);
-			match(LeftBrace);
+			match(OpenBrace);
 			setState(2036);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignAs) | (1L << Auto) | (1L << Bool) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << ConstExpr) | (1L << DeclType) | (1L << Double) | (1L << Explicit) | (1L << Extern) | (1L << Float) | (1L << Friend) | (1L << Inline) | (1L << Int) | (1L << Long) | (1L << Mutable) | (1L << Operator) | (1L << Private) | (1L << Protected) | (1L << Public) | (1L << Short) | (1L << Signed) | (1L << Static) | (1L << StaticAssert) | (1L << Template) | (1L << ThreadLocal))) != 0) || ((((_la - 67)) & ~0x3f) == 0 && ((1L << (_la - 67)) & ((1L << (TypeDef - 67)) | (1L << (Unsigned - 67)) | (1L << (Using - 67)) | (1L << (Virtual - 67)) | (1L << (Void - 67)) | (1L << (WChar - 67)) | (1L << (LeftBracket - 67)) | (1L << (LeftParenthesis - 67)) | (1L << (Semicolon - 67)) | (1L << (Colon - 67)) | (1L << (Ellipsis - 67)) | (1L << (DoubleColon - 67)) | (1L << (Asterisk - 67)) | (1L << (Ampersand - 67)) | (1L << (Tilde - 67)) | (1L << (DoubleAmpersand - 67)))) != 0) || _la==Identifier) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignAs) | (1L << Auto) | (1L << Bool) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << ConstExpr) | (1L << DeclType) | (1L << Double) | (1L << Explicit) | (1L << Extern) | (1L << Float) | (1L << Friend) | (1L << Inline) | (1L << Int) | (1L << Long) | (1L << Mutable) | (1L << Operator) | (1L << Private) | (1L << Protected) | (1L << Public) | (1L << Short) | (1L << Signed) | (1L << Static) | (1L << StaticAssert) | (1L << Template) | (1L << ThreadLocal))) != 0) || ((((_la - 67)) & ~0x3f) == 0 && ((1L << (_la - 67)) & ((1L << (TypeDef - 67)) | (1L << (Unsigned - 67)) | (1L << (Using - 67)) | (1L << (Virtual - 67)) | (1L << (Void - 67)) | (1L << (WChar - 67)) | (1L << (OpenBracket - 67)) | (1L << (OpenParenthesis - 67)) | (1L << (Semicolon - 67)) | (1L << (Colon - 67)) | (1L << (Ellipsis - 67)) | (1L << (DoubleColon - 67)) | (1L << (Asterisk - 67)) | (1L << (Ampersand - 67)) | (1L << (Tilde - 67)) | (1L << (DoubleAmpersand - 67)))) != 0) || _la==Identifier) {
 				{
 				setState(2035);
 				memberSpecification();
@@ -11558,7 +11558,7 @@ public class CppParser extends Parser {
 			}
 
 			setState(2038);
-			match(RightBrace);
+			match(CloseBrace);
 			}
 		}
 		catch (RecognitionException re) {
@@ -11613,7 +11613,7 @@ public class CppParser extends Parser {
 				setState(2042);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if (_la==AlignAs || _la==LeftBracket) {
+				if (_la==AlignAs || _la==OpenBracket) {
 					{
 					setState(2041);
 					attributeSpecifierSequence(0);
@@ -11652,7 +11652,7 @@ public class CppParser extends Parser {
 				setState(2053);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if (_la==AlignAs || _la==LeftBracket) {
+				if (_la==AlignAs || _la==OpenBracket) {
 					{
 					setState(2052);
 					attributeSpecifier();
@@ -11852,8 +11852,8 @@ public class CppParser extends Parser {
 			case Virtual:
 			case Void:
 			case WChar:
-			case LeftBracket:
-			case LeftParenthesis:
+			case OpenBracket:
+			case OpenParenthesis:
 			case Semicolon:
 			case Colon:
 			case Ellipsis:
@@ -11870,7 +11870,7 @@ public class CppParser extends Parser {
 				setState(2071);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignAs) | (1L << Auto) | (1L << Bool) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << ConstExpr) | (1L << DeclType) | (1L << Double) | (1L << Explicit) | (1L << Extern) | (1L << Float) | (1L << Friend) | (1L << Inline) | (1L << Int) | (1L << Long) | (1L << Mutable) | (1L << Operator) | (1L << Private) | (1L << Protected) | (1L << Public) | (1L << Short) | (1L << Signed) | (1L << Static) | (1L << StaticAssert) | (1L << Template) | (1L << ThreadLocal))) != 0) || ((((_la - 67)) & ~0x3f) == 0 && ((1L << (_la - 67)) & ((1L << (TypeDef - 67)) | (1L << (Unsigned - 67)) | (1L << (Using - 67)) | (1L << (Virtual - 67)) | (1L << (Void - 67)) | (1L << (WChar - 67)) | (1L << (LeftBracket - 67)) | (1L << (LeftParenthesis - 67)) | (1L << (Semicolon - 67)) | (1L << (Colon - 67)) | (1L << (Ellipsis - 67)) | (1L << (DoubleColon - 67)) | (1L << (Asterisk - 67)) | (1L << (Ampersand - 67)) | (1L << (Tilde - 67)) | (1L << (DoubleAmpersand - 67)))) != 0) || _la==Identifier) {
+				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignAs) | (1L << Auto) | (1L << Bool) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << ConstExpr) | (1L << DeclType) | (1L << Double) | (1L << Explicit) | (1L << Extern) | (1L << Float) | (1L << Friend) | (1L << Inline) | (1L << Int) | (1L << Long) | (1L << Mutable) | (1L << Operator) | (1L << Private) | (1L << Protected) | (1L << Public) | (1L << Short) | (1L << Signed) | (1L << Static) | (1L << StaticAssert) | (1L << Template) | (1L << ThreadLocal))) != 0) || ((((_la - 67)) & ~0x3f) == 0 && ((1L << (_la - 67)) & ((1L << (TypeDef - 67)) | (1L << (Unsigned - 67)) | (1L << (Using - 67)) | (1L << (Virtual - 67)) | (1L << (Void - 67)) | (1L << (WChar - 67)) | (1L << (OpenBracket - 67)) | (1L << (OpenParenthesis - 67)) | (1L << (Semicolon - 67)) | (1L << (Colon - 67)) | (1L << (Ellipsis - 67)) | (1L << (DoubleColon - 67)) | (1L << (Asterisk - 67)) | (1L << (Ampersand - 67)) | (1L << (Tilde - 67)) | (1L << (DoubleAmpersand - 67)))) != 0) || _la==Identifier) {
 					{
 					setState(2070);
 					memberSpecification();
@@ -11891,7 +11891,7 @@ public class CppParser extends Parser {
 				setState(2076);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignAs) | (1L << Auto) | (1L << Bool) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << ConstExpr) | (1L << DeclType) | (1L << Double) | (1L << Explicit) | (1L << Extern) | (1L << Float) | (1L << Friend) | (1L << Inline) | (1L << Int) | (1L << Long) | (1L << Mutable) | (1L << Operator) | (1L << Private) | (1L << Protected) | (1L << Public) | (1L << Short) | (1L << Signed) | (1L << Static) | (1L << StaticAssert) | (1L << Template) | (1L << ThreadLocal))) != 0) || ((((_la - 67)) & ~0x3f) == 0 && ((1L << (_la - 67)) & ((1L << (TypeDef - 67)) | (1L << (Unsigned - 67)) | (1L << (Using - 67)) | (1L << (Virtual - 67)) | (1L << (Void - 67)) | (1L << (WChar - 67)) | (1L << (LeftBracket - 67)) | (1L << (LeftParenthesis - 67)) | (1L << (Semicolon - 67)) | (1L << (Colon - 67)) | (1L << (Ellipsis - 67)) | (1L << (DoubleColon - 67)) | (1L << (Asterisk - 67)) | (1L << (Ampersand - 67)) | (1L << (Tilde - 67)) | (1L << (DoubleAmpersand - 67)))) != 0) || _la==Identifier) {
+				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignAs) | (1L << Auto) | (1L << Bool) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << ConstExpr) | (1L << DeclType) | (1L << Double) | (1L << Explicit) | (1L << Extern) | (1L << Float) | (1L << Friend) | (1L << Inline) | (1L << Int) | (1L << Long) | (1L << Mutable) | (1L << Operator) | (1L << Private) | (1L << Protected) | (1L << Public) | (1L << Short) | (1L << Signed) | (1L << Static) | (1L << StaticAssert) | (1L << Template) | (1L << ThreadLocal))) != 0) || ((((_la - 67)) & ~0x3f) == 0 && ((1L << (_la - 67)) & ((1L << (TypeDef - 67)) | (1L << (Unsigned - 67)) | (1L << (Using - 67)) | (1L << (Virtual - 67)) | (1L << (Void - 67)) | (1L << (WChar - 67)) | (1L << (OpenBracket - 67)) | (1L << (OpenParenthesis - 67)) | (1L << (Semicolon - 67)) | (1L << (Colon - 67)) | (1L << (Ellipsis - 67)) | (1L << (DoubleColon - 67)) | (1L << (Asterisk - 67)) | (1L << (Ampersand - 67)) | (1L << (Tilde - 67)) | (1L << (DoubleAmpersand - 67)))) != 0) || _la==Identifier) {
 					{
 					setState(2075);
 					memberSpecification();
@@ -11987,7 +11987,7 @@ public class CppParser extends Parser {
 				setState(2087);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignAs) | (1L << DeclType) | (1L << Operator))) != 0) || ((((_la - 82)) & ~0x3f) == 0 && ((1L << (_la - 82)) & ((1L << (LeftBracket - 82)) | (1L << (LeftParenthesis - 82)) | (1L << (Colon - 82)) | (1L << (Ellipsis - 82)) | (1L << (DoubleColon - 82)) | (1L << (Asterisk - 82)) | (1L << (Ampersand - 82)) | (1L << (Tilde - 82)) | (1L << (DoubleAmpersand - 82)) | (1L << (Identifier - 82)))) != 0)) {
+				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignAs) | (1L << DeclType) | (1L << Operator))) != 0) || ((((_la - 82)) & ~0x3f) == 0 && ((1L << (_la - 82)) & ((1L << (OpenBracket - 82)) | (1L << (OpenParenthesis - 82)) | (1L << (Colon - 82)) | (1L << (Ellipsis - 82)) | (1L << (DoubleColon - 82)) | (1L << (Asterisk - 82)) | (1L << (Ampersand - 82)) | (1L << (Tilde - 82)) | (1L << (DoubleAmpersand - 82)) | (1L << (Identifier - 82)))) != 0)) {
 					{
 					setState(2086);
 					memberDeclaratorList(0);
@@ -12226,7 +12226,7 @@ public class CppParser extends Parser {
 				setState(2125);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if (_la==AlignAs || _la==LeftBracket) {
+				if (_la==AlignAs || _la==OpenBracket) {
 					{
 					setState(2124);
 					attributeSpecifierSequence(0);
@@ -12548,7 +12548,7 @@ public class CppParser extends Parser {
 				setState(2166);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if (_la==AlignAs || _la==LeftBracket) {
+				if (_la==AlignAs || _la==OpenBracket) {
 					{
 					setState(2165);
 					attributeSpecifierSequence(0);
@@ -12565,7 +12565,7 @@ public class CppParser extends Parser {
 				setState(2170);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if (_la==AlignAs || _la==LeftBracket) {
+				if (_la==AlignAs || _la==OpenBracket) {
 					{
 					setState(2169);
 					attributeSpecifierSequence(0);
@@ -12594,7 +12594,7 @@ public class CppParser extends Parser {
 				setState(2178);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if (_la==AlignAs || _la==LeftBracket) {
+				if (_la==AlignAs || _la==OpenBracket) {
 					{
 					setState(2177);
 					attributeSpecifierSequence(0);
@@ -13000,8 +13000,8 @@ public class CppParser extends Parser {
 		public MemberInitializerIdentifierContext memberInitializerIdentifier(int i) {
 			return getRuleContext(MemberInitializerIdentifierContext.class,i);
 		}
-		public TerminalNode LeftParenthesis() { return getToken(CppParser.LeftParenthesis, 0); }
-		public TerminalNode RightParenthesis() { return getToken(CppParser.RightParenthesis, 0); }
+		public TerminalNode OpenParenthesis() { return getToken(CppParser.OpenParenthesis, 0); }
+		public TerminalNode CloseParenthesis() { return getToken(CppParser.CloseParenthesis, 0); }
 		public BracedInitializerListContext bracedInitializerList() {
 			return getRuleContext(BracedInitializerListContext.class,0);
 		}
@@ -13024,11 +13024,11 @@ public class CppParser extends Parser {
 			setState(2231);
 			memberInitializerIdentifier();
 			setState(2232);
-			match(LeftParenthesis);
+			match(OpenParenthesis);
 			setState(2234);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignOf) | (1L << Auto) | (1L << Bool) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << ConstCast) | (1L << DeclType) | (1L << Delete) | (1L << Double) | (1L << DynamicCast) | (1L << False) | (1L << Float) | (1L << Int) | (1L << Long) | (1L << New) | (1L << NoExcept) | (1L << Nullptr) | (1L << Operator) | (1L << ReinterpretCast) | (1L << Short) | (1L << Signed) | (1L << SizeOf) | (1L << StaticCast) | (1L << This))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (Throw - 64)) | (1L << (True - 64)) | (1L << (TypeId - 64)) | (1L << (TypeName - 64)) | (1L << (Unsigned - 64)) | (1L << (Void - 64)) | (1L << (WChar - 64)) | (1L << (LeftBrace - 64)) | (1L << (LeftBracket - 64)) | (1L << (LeftParenthesis - 64)) | (1L << (DoubleColon - 64)) | (1L << (Plus - 64)) | (1L << (Minus - 64)) | (1L << (Asterisk - 64)) | (1L << (Ampersand - 64)) | (1L << (VerticalBar - 64)) | (1L << (Tilde - 64)) | (1L << (ExclamationMark - 64)) | (1L << (DoublePlus - 64)) | (1L << (DoubleMinus - 64)))) != 0) || ((((_la - 129)) & ~0x3f) == 0 && ((1L << (_la - 129)) & ((1L << (Zero - 129)) | (1L << (IntegerLiteral - 129)) | (1L << (FloatingPointLiteral - 129)) | (1L << (CharacterLiteral - 129)) | (1L << (StringLiteral - 129)) | (1L << (UserDefinedIntegerLiteral - 129)) | (1L << (UserDefinedFloatingPointLiteral - 129)) | (1L << (UserDefinedCharacterLiteral - 129)) | (1L << (UserDefinedStringLiteral - 129)) | (1L << (Identifier - 129)))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignOf) | (1L << Auto) | (1L << Bool) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << ConstCast) | (1L << DeclType) | (1L << Delete) | (1L << Double) | (1L << DynamicCast) | (1L << False) | (1L << Float) | (1L << Int) | (1L << Long) | (1L << New) | (1L << NoExcept) | (1L << Nullptr) | (1L << Operator) | (1L << ReinterpretCast) | (1L << Short) | (1L << Signed) | (1L << SizeOf) | (1L << StaticCast) | (1L << This))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (Throw - 64)) | (1L << (True - 64)) | (1L << (TypeId - 64)) | (1L << (TypeName - 64)) | (1L << (Unsigned - 64)) | (1L << (Void - 64)) | (1L << (WChar - 64)) | (1L << (OpenBrace - 64)) | (1L << (OpenBracket - 64)) | (1L << (OpenParenthesis - 64)) | (1L << (DoubleColon - 64)) | (1L << (Plus - 64)) | (1L << (Minus - 64)) | (1L << (Asterisk - 64)) | (1L << (Ampersand - 64)) | (1L << (VerticalBar - 64)) | (1L << (Tilde - 64)) | (1L << (ExclamationMark - 64)) | (1L << (DoublePlus - 64)) | (1L << (DoubleMinus - 64)))) != 0) || ((((_la - 129)) & ~0x3f) == 0 && ((1L << (_la - 129)) & ((1L << (Zero - 129)) | (1L << (IntegerLiteral - 129)) | (1L << (FloatingPointLiteral - 129)) | (1L << (CharacterLiteral - 129)) | (1L << (StringLiteral - 129)) | (1L << (UserDefinedIntegerLiteral - 129)) | (1L << (UserDefinedFloatingPointLiteral - 129)) | (1L << (UserDefinedCharacterLiteral - 129)) | (1L << (UserDefinedStringLiteral - 129)) | (1L << (Identifier - 129)))) != 0)) {
 				{
 				setState(2233);
 				expressionList();
@@ -13036,7 +13036,7 @@ public class CppParser extends Parser {
 			}
 
 			setState(2236);
-			match(RightParenthesis);
+			match(CloseParenthesis);
 			setState(2237);
 			memberInitializerIdentifier();
 			setState(2238);
@@ -13136,8 +13136,8 @@ public class CppParser extends Parser {
 	public static class AnyOperatorContext extends ParserRuleContext {
 		public TerminalNode New() { return getToken(CppParser.New, 0); }
 		public TerminalNode Delete() { return getToken(CppParser.Delete, 0); }
-		public TerminalNode LeftBrace() { return getToken(CppParser.LeftBrace, 0); }
-		public TerminalNode RightBracket() { return getToken(CppParser.RightBracket, 0); }
+		public TerminalNode OpenBrace() { return getToken(CppParser.OpenBrace, 0); }
+		public TerminalNode CloseBracket() { return getToken(CppParser.CloseBracket, 0); }
 		public TerminalNode Plus() { return getToken(CppParser.Plus, 0); }
 		public TerminalNode Minus() { return getToken(CppParser.Minus, 0); }
 		public TerminalNode Asterisk() { return getToken(CppParser.Asterisk, 0); }
@@ -13174,9 +13174,9 @@ public class CppParser extends Parser {
 		public TerminalNode Comma() { return getToken(CppParser.Comma, 0); }
 		public TerminalNode ArrowAsterisk() { return getToken(CppParser.ArrowAsterisk, 0); }
 		public TerminalNode Arrow() { return getToken(CppParser.Arrow, 0); }
-		public TerminalNode LeftParenthesis() { return getToken(CppParser.LeftParenthesis, 0); }
-		public TerminalNode RightParenthesis() { return getToken(CppParser.RightParenthesis, 0); }
-		public TerminalNode LeftBracket() { return getToken(CppParser.LeftBracket, 0); }
+		public TerminalNode OpenParenthesis() { return getToken(CppParser.OpenParenthesis, 0); }
+		public TerminalNode CloseParenthesis() { return getToken(CppParser.CloseParenthesis, 0); }
+		public TerminalNode OpenBracket() { return getToken(CppParser.OpenBracket, 0); }
 		public AnyOperatorContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -13210,9 +13210,9 @@ public class CppParser extends Parser {
 				setState(2249);
 				match(New);
 				setState(2250);
-				match(LeftBrace);
+				match(OpenBrace);
 				setState(2251);
-				match(RightBracket);
+				match(CloseBracket);
 				}
 				break;
 			case 4:
@@ -13221,9 +13221,9 @@ public class CppParser extends Parser {
 				setState(2252);
 				match(Delete);
 				setState(2253);
-				match(LeftBrace);
+				match(OpenBrace);
 				setState(2254);
-				match(RightBracket);
+				match(CloseBracket);
 				}
 				break;
 			case 5:
@@ -13482,18 +13482,18 @@ public class CppParser extends Parser {
 				enterOuterAlt(_localctx, 41);
 				{
 				setState(2291);
-				match(LeftParenthesis);
+				match(OpenParenthesis);
 				setState(2292);
-				match(RightParenthesis);
+				match(CloseParenthesis);
 				}
 				break;
 			case 42:
 				enterOuterAlt(_localctx, 42);
 				{
 				setState(2293);
-				match(LeftBracket);
+				match(OpenBracket);
 				setState(2294);
-				match(RightBracket);
+				match(CloseBracket);
 				}
 				break;
 			}
@@ -13731,7 +13731,7 @@ public class CppParser extends Parser {
 			case Virtual:
 			case Void:
 			case WChar:
-			case LeftBracket:
+			case OpenBracket:
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(2322);
@@ -13979,7 +13979,7 @@ public class CppParser extends Parser {
 			setState(2368);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignOf) | (1L << Auto) | (1L << Bool) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << ConstCast) | (1L << DeclType) | (1L << Delete) | (1L << Double) | (1L << DynamicCast) | (1L << False) | (1L << Float) | (1L << Int) | (1L << Long) | (1L << New) | (1L << NoExcept) | (1L << Nullptr) | (1L << Operator) | (1L << ReinterpretCast) | (1L << Short) | (1L << Signed) | (1L << SizeOf) | (1L << StaticCast) | (1L << This))) != 0) || ((((_la - 65)) & ~0x3f) == 0 && ((1L << (_la - 65)) & ((1L << (True - 65)) | (1L << (TypeId - 65)) | (1L << (TypeName - 65)) | (1L << (Unsigned - 65)) | (1L << (Void - 65)) | (1L << (WChar - 65)) | (1L << (LeftBracket - 65)) | (1L << (LeftParenthesis - 65)) | (1L << (DoubleColon - 65)) | (1L << (Plus - 65)) | (1L << (Minus - 65)) | (1L << (Asterisk - 65)) | (1L << (Ampersand - 65)) | (1L << (VerticalBar - 65)) | (1L << (Tilde - 65)) | (1L << (ExclamationMark - 65)) | (1L << (DoublePlus - 65)) | (1L << (DoubleMinus - 65)))) != 0) || ((((_la - 129)) & ~0x3f) == 0 && ((1L << (_la - 129)) & ((1L << (Zero - 129)) | (1L << (IntegerLiteral - 129)) | (1L << (FloatingPointLiteral - 129)) | (1L << (CharacterLiteral - 129)) | (1L << (StringLiteral - 129)) | (1L << (UserDefinedIntegerLiteral - 129)) | (1L << (UserDefinedFloatingPointLiteral - 129)) | (1L << (UserDefinedCharacterLiteral - 129)) | (1L << (UserDefinedStringLiteral - 129)) | (1L << (Identifier - 129)))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignOf) | (1L << Auto) | (1L << Bool) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << ConstCast) | (1L << DeclType) | (1L << Delete) | (1L << Double) | (1L << DynamicCast) | (1L << False) | (1L << Float) | (1L << Int) | (1L << Long) | (1L << New) | (1L << NoExcept) | (1L << Nullptr) | (1L << Operator) | (1L << ReinterpretCast) | (1L << Short) | (1L << Signed) | (1L << SizeOf) | (1L << StaticCast) | (1L << This))) != 0) || ((((_la - 65)) & ~0x3f) == 0 && ((1L << (_la - 65)) & ((1L << (True - 65)) | (1L << (TypeId - 65)) | (1L << (TypeName - 65)) | (1L << (Unsigned - 65)) | (1L << (Void - 65)) | (1L << (WChar - 65)) | (1L << (OpenBracket - 65)) | (1L << (OpenParenthesis - 65)) | (1L << (DoubleColon - 65)) | (1L << (Plus - 65)) | (1L << (Minus - 65)) | (1L << (Asterisk - 65)) | (1L << (Ampersand - 65)) | (1L << (VerticalBar - 65)) | (1L << (Tilde - 65)) | (1L << (ExclamationMark - 65)) | (1L << (DoublePlus - 65)) | (1L << (DoubleMinus - 65)))) != 0) || ((((_la - 129)) & ~0x3f) == 0 && ((1L << (_la - 129)) & ((1L << (Zero - 129)) | (1L << (IntegerLiteral - 129)) | (1L << (FloatingPointLiteral - 129)) | (1L << (CharacterLiteral - 129)) | (1L << (StringLiteral - 129)) | (1L << (UserDefinedIntegerLiteral - 129)) | (1L << (UserDefinedFloatingPointLiteral - 129)) | (1L << (UserDefinedCharacterLiteral - 129)) | (1L << (UserDefinedStringLiteral - 129)) | (1L << (Identifier - 129)))) != 0)) {
 				{
 				setState(2367);
 				templateArgumentList(0);
@@ -14047,7 +14047,7 @@ public class CppParser extends Parser {
 				setState(2376);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignOf) | (1L << Auto) | (1L << Bool) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << ConstCast) | (1L << DeclType) | (1L << Delete) | (1L << Double) | (1L << DynamicCast) | (1L << False) | (1L << Float) | (1L << Int) | (1L << Long) | (1L << New) | (1L << NoExcept) | (1L << Nullptr) | (1L << Operator) | (1L << ReinterpretCast) | (1L << Short) | (1L << Signed) | (1L << SizeOf) | (1L << StaticCast) | (1L << This))) != 0) || ((((_la - 65)) & ~0x3f) == 0 && ((1L << (_la - 65)) & ((1L << (True - 65)) | (1L << (TypeId - 65)) | (1L << (TypeName - 65)) | (1L << (Unsigned - 65)) | (1L << (Void - 65)) | (1L << (WChar - 65)) | (1L << (LeftBracket - 65)) | (1L << (LeftParenthesis - 65)) | (1L << (DoubleColon - 65)) | (1L << (Plus - 65)) | (1L << (Minus - 65)) | (1L << (Asterisk - 65)) | (1L << (Ampersand - 65)) | (1L << (VerticalBar - 65)) | (1L << (Tilde - 65)) | (1L << (ExclamationMark - 65)) | (1L << (DoublePlus - 65)) | (1L << (DoubleMinus - 65)))) != 0) || ((((_la - 129)) & ~0x3f) == 0 && ((1L << (_la - 129)) & ((1L << (Zero - 129)) | (1L << (IntegerLiteral - 129)) | (1L << (FloatingPointLiteral - 129)) | (1L << (CharacterLiteral - 129)) | (1L << (StringLiteral - 129)) | (1L << (UserDefinedIntegerLiteral - 129)) | (1L << (UserDefinedFloatingPointLiteral - 129)) | (1L << (UserDefinedCharacterLiteral - 129)) | (1L << (UserDefinedStringLiteral - 129)) | (1L << (Identifier - 129)))) != 0)) {
+				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignOf) | (1L << Auto) | (1L << Bool) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << ConstCast) | (1L << DeclType) | (1L << Delete) | (1L << Double) | (1L << DynamicCast) | (1L << False) | (1L << Float) | (1L << Int) | (1L << Long) | (1L << New) | (1L << NoExcept) | (1L << Nullptr) | (1L << Operator) | (1L << ReinterpretCast) | (1L << Short) | (1L << Signed) | (1L << SizeOf) | (1L << StaticCast) | (1L << This))) != 0) || ((((_la - 65)) & ~0x3f) == 0 && ((1L << (_la - 65)) & ((1L << (True - 65)) | (1L << (TypeId - 65)) | (1L << (TypeName - 65)) | (1L << (Unsigned - 65)) | (1L << (Void - 65)) | (1L << (WChar - 65)) | (1L << (OpenBracket - 65)) | (1L << (OpenParenthesis - 65)) | (1L << (DoubleColon - 65)) | (1L << (Plus - 65)) | (1L << (Minus - 65)) | (1L << (Asterisk - 65)) | (1L << (Ampersand - 65)) | (1L << (VerticalBar - 65)) | (1L << (Tilde - 65)) | (1L << (ExclamationMark - 65)) | (1L << (DoublePlus - 65)) | (1L << (DoubleMinus - 65)))) != 0) || ((((_la - 129)) & ~0x3f) == 0 && ((1L << (_la - 129)) & ((1L << (Zero - 129)) | (1L << (IntegerLiteral - 129)) | (1L << (FloatingPointLiteral - 129)) | (1L << (CharacterLiteral - 129)) | (1L << (StringLiteral - 129)) | (1L << (UserDefinedIntegerLiteral - 129)) | (1L << (UserDefinedFloatingPointLiteral - 129)) | (1L << (UserDefinedCharacterLiteral - 129)) | (1L << (UserDefinedStringLiteral - 129)) | (1L << (Identifier - 129)))) != 0)) {
 					{
 					setState(2375);
 					templateArgumentList(0);
@@ -14068,7 +14068,7 @@ public class CppParser extends Parser {
 				setState(2383);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignOf) | (1L << Auto) | (1L << Bool) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << ConstCast) | (1L << DeclType) | (1L << Delete) | (1L << Double) | (1L << DynamicCast) | (1L << False) | (1L << Float) | (1L << Int) | (1L << Long) | (1L << New) | (1L << NoExcept) | (1L << Nullptr) | (1L << Operator) | (1L << ReinterpretCast) | (1L << Short) | (1L << Signed) | (1L << SizeOf) | (1L << StaticCast) | (1L << This))) != 0) || ((((_la - 65)) & ~0x3f) == 0 && ((1L << (_la - 65)) & ((1L << (True - 65)) | (1L << (TypeId - 65)) | (1L << (TypeName - 65)) | (1L << (Unsigned - 65)) | (1L << (Void - 65)) | (1L << (WChar - 65)) | (1L << (LeftBracket - 65)) | (1L << (LeftParenthesis - 65)) | (1L << (DoubleColon - 65)) | (1L << (Plus - 65)) | (1L << (Minus - 65)) | (1L << (Asterisk - 65)) | (1L << (Ampersand - 65)) | (1L << (VerticalBar - 65)) | (1L << (Tilde - 65)) | (1L << (ExclamationMark - 65)) | (1L << (DoublePlus - 65)) | (1L << (DoubleMinus - 65)))) != 0) || ((((_la - 129)) & ~0x3f) == 0 && ((1L << (_la - 129)) & ((1L << (Zero - 129)) | (1L << (IntegerLiteral - 129)) | (1L << (FloatingPointLiteral - 129)) | (1L << (CharacterLiteral - 129)) | (1L << (StringLiteral - 129)) | (1L << (UserDefinedIntegerLiteral - 129)) | (1L << (UserDefinedFloatingPointLiteral - 129)) | (1L << (UserDefinedCharacterLiteral - 129)) | (1L << (UserDefinedStringLiteral - 129)) | (1L << (Identifier - 129)))) != 0)) {
+				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AlignOf) | (1L << Auto) | (1L << Bool) | (1L << Char) | (1L << Char16) | (1L << Char32) | (1L << ConstCast) | (1L << DeclType) | (1L << Delete) | (1L << Double) | (1L << DynamicCast) | (1L << False) | (1L << Float) | (1L << Int) | (1L << Long) | (1L << New) | (1L << NoExcept) | (1L << Nullptr) | (1L << Operator) | (1L << ReinterpretCast) | (1L << Short) | (1L << Signed) | (1L << SizeOf) | (1L << StaticCast) | (1L << This))) != 0) || ((((_la - 65)) & ~0x3f) == 0 && ((1L << (_la - 65)) & ((1L << (True - 65)) | (1L << (TypeId - 65)) | (1L << (TypeName - 65)) | (1L << (Unsigned - 65)) | (1L << (Void - 65)) | (1L << (WChar - 65)) | (1L << (OpenBracket - 65)) | (1L << (OpenParenthesis - 65)) | (1L << (DoubleColon - 65)) | (1L << (Plus - 65)) | (1L << (Minus - 65)) | (1L << (Asterisk - 65)) | (1L << (Ampersand - 65)) | (1L << (VerticalBar - 65)) | (1L << (Tilde - 65)) | (1L << (ExclamationMark - 65)) | (1L << (DoublePlus - 65)) | (1L << (DoubleMinus - 65)))) != 0) || ((((_la - 129)) & ~0x3f) == 0 && ((1L << (_la - 129)) & ((1L << (Zero - 129)) | (1L << (IntegerLiteral - 129)) | (1L << (FloatingPointLiteral - 129)) | (1L << (CharacterLiteral - 129)) | (1L << (StringLiteral - 129)) | (1L << (UserDefinedIntegerLiteral - 129)) | (1L << (UserDefinedFloatingPointLiteral - 129)) | (1L << (UserDefinedCharacterLiteral - 129)) | (1L << (UserDefinedStringLiteral - 129)) | (1L << (Identifier - 129)))) != 0)) {
 					{
 					setState(2382);
 					templateArgumentList(0);
@@ -14400,11 +14400,11 @@ public class CppParser extends Parser {
 		public TemplateNameContext templateName() {
 			return getRuleContext(TemplateNameContext.class,0);
 		}
-		public TerminalNode LeftParenthesis() { return getToken(CppParser.LeftParenthesis, 0); }
+		public TerminalNode OpenParenthesis() { return getToken(CppParser.OpenParenthesis, 0); }
 		public ParameterDeclarationClauseContext parameterDeclarationClause() {
 			return getRuleContext(ParameterDeclarationClauseContext.class,0);
 		}
-		public TerminalNode RightParenthesis() { return getToken(CppParser.RightParenthesis, 0); }
+		public TerminalNode CloseParenthesis() { return getToken(CppParser.CloseParenthesis, 0); }
 		public TerminalNode Arrow() { return getToken(CppParser.Arrow, 0); }
 		public SimpleTemplateIdentifierContext simpleTemplateIdentifier() {
 			return getRuleContext(SimpleTemplateIdentifierContext.class,0);
@@ -14437,11 +14437,11 @@ public class CppParser extends Parser {
 			setState(2437);
 			templateName();
 			setState(2438);
-			match(LeftParenthesis);
+			match(OpenParenthesis);
 			setState(2439);
 			parameterDeclarationClause();
 			setState(2440);
-			match(RightParenthesis);
+			match(CloseParenthesis);
 			setState(2441);
 			match(Arrow);
 			setState(2442);
@@ -14599,11 +14599,11 @@ public class CppParser extends Parser {
 
 	public static class HandlerContext extends ParserRuleContext {
 		public TerminalNode Catch() { return getToken(CppParser.Catch, 0); }
-		public TerminalNode LeftParenthesis() { return getToken(CppParser.LeftParenthesis, 0); }
+		public TerminalNode OpenParenthesis() { return getToken(CppParser.OpenParenthesis, 0); }
 		public ExceptionDeclarationContext exceptionDeclaration() {
 			return getRuleContext(ExceptionDeclarationContext.class,0);
 		}
-		public TerminalNode RightParenthesis() { return getToken(CppParser.RightParenthesis, 0); }
+		public TerminalNode CloseParenthesis() { return getToken(CppParser.CloseParenthesis, 0); }
 		public CompoundStatementContext compoundStatement() {
 			return getRuleContext(CompoundStatementContext.class,0);
 		}
@@ -14622,11 +14622,11 @@ public class CppParser extends Parser {
 			setState(2460);
 			match(Catch);
 			setState(2461);
-			match(LeftParenthesis);
+			match(OpenParenthesis);
 			setState(2462);
 			exceptionDeclaration();
 			setState(2463);
-			match(RightParenthesis);
+			match(CloseParenthesis);
 			setState(2464);
 			compoundStatement();
 			}
@@ -14676,7 +14676,7 @@ public class CppParser extends Parser {
 				setState(2467);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if (_la==AlignAs || _la==LeftBracket) {
+				if (_la==AlignAs || _la==OpenBracket) {
 					{
 					setState(2466);
 					attributeSpecifierSequence(0);
@@ -14695,7 +14695,7 @@ public class CppParser extends Parser {
 				setState(2473);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if (_la==AlignAs || _la==LeftBracket) {
+				if (_la==AlignAs || _la==OpenBracket) {
 					{
 					setState(2472);
 					attributeSpecifierSequence(0);
@@ -14707,7 +14707,7 @@ public class CppParser extends Parser {
 				setState(2477);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if (_la==DeclType || ((((_la - 82)) & ~0x3f) == 0 && ((1L << (_la - 82)) & ((1L << (LeftBracket - 82)) | (1L << (LeftParenthesis - 82)) | (1L << (Ellipsis - 82)) | (1L << (DoubleColon - 82)) | (1L << (Asterisk - 82)) | (1L << (Ampersand - 82)) | (1L << (DoubleAmpersand - 82)) | (1L << (Identifier - 82)))) != 0)) {
+				if (_la==DeclType || ((((_la - 82)) & ~0x3f) == 0 && ((1L << (_la - 82)) & ((1L << (OpenBracket - 82)) | (1L << (OpenParenthesis - 82)) | (1L << (Ellipsis - 82)) | (1L << (DoubleColon - 82)) | (1L << (Asterisk - 82)) | (1L << (Ampersand - 82)) | (1L << (DoubleAmpersand - 82)) | (1L << (Identifier - 82)))) != 0)) {
 					{
 					setState(2476);
 					abstractDeclarator();
@@ -14738,11 +14738,11 @@ public class CppParser extends Parser {
 
 	public static class NoExceptionSpecifierContext extends ParserRuleContext {
 		public TerminalNode NoExcept() { return getToken(CppParser.NoExcept, 0); }
-		public TerminalNode LeftParenthesis() { return getToken(CppParser.LeftParenthesis, 0); }
+		public TerminalNode OpenParenthesis() { return getToken(CppParser.OpenParenthesis, 0); }
 		public ConstantExpressionContext constantExpression() {
 			return getRuleContext(ConstantExpressionContext.class,0);
 		}
-		public TerminalNode RightParenthesis() { return getToken(CppParser.RightParenthesis, 0); }
+		public TerminalNode CloseParenthesis() { return getToken(CppParser.CloseParenthesis, 0); }
 		public TerminalNode Throw() { return getToken(CppParser.Throw, 0); }
 		public NoExceptionSpecifierContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -14763,11 +14763,11 @@ public class CppParser extends Parser {
 				setState(2482);
 				match(NoExcept);
 				setState(2483);
-				match(LeftParenthesis);
+				match(OpenParenthesis);
 				setState(2484);
 				constantExpression();
 				setState(2485);
-				match(RightParenthesis);
+				match(CloseParenthesis);
 				}
 				break;
 			case 2:
@@ -14783,9 +14783,9 @@ public class CppParser extends Parser {
 				setState(2488);
 				match(Throw);
 				setState(2489);
-				match(LeftParenthesis);
+				match(OpenParenthesis);
 				setState(2490);
-				match(RightParenthesis);
+				match(CloseParenthesis);
 				}
 				break;
 			}

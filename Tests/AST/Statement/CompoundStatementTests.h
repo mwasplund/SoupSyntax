@@ -11,25 +11,25 @@ namespace Soup::Syntax::UnitTests
         void InitializeEmpty()
         {
             auto uut = SyntaxFactory::CreateCompoundStatement(
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftBrace),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 {},
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightBrace));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             Assert::AreEqual(
                 SyntaxNodeType::CompoundStatement,
                 uut->GetType(),
                 L"Verify has correct type.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftBrace),
-                uut->GetLeftBraceToken(),
+                *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
+                uut->GetOpenBraceToken(),
                 L"Verify left brace token matches.");
             Assert::AreEqual<int>(
                 0,
                 uut->GetStatements().size(),
                 L"Verify condition expression matches.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightBrace),
-                uut->GetRightBraceToken(),
+                *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace),
+                uut->GetCloseBraceToken(),
                 L"Verify right brace token matches.");
         }
 
@@ -37,22 +37,22 @@ namespace Soup::Syntax::UnitTests
         void InitializeSingleStatement()
         {
             auto uut = SyntaxFactory::CreateCompoundStatement(
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftBrace),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 {
                     SyntaxFactory::CreateReturnStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
                         nullptr,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 },
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightBrace));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             Assert::AreEqual(
                 SyntaxNodeType::CompoundStatement,
                 uut->GetType(),
                 L"Verify has correct type.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftBrace),
-                uut->GetLeftBraceToken(),
+                *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
+                uut->GetOpenBraceToken(),
                 L"Verify left brace token matches.");
             Assert::AreEqual<int>(
                 1,
@@ -66,8 +66,8 @@ namespace Soup::Syntax::UnitTests
                 uut->GetStatements().at(0),
                 L"Verify condition expression matches.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightBrace),
-                uut->GetRightBraceToken(),
+                *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace),
+                uut->GetCloseBraceToken(),
                 L"Verify right brace token matches.");
         }
 
@@ -75,15 +75,15 @@ namespace Soup::Syntax::UnitTests
         void GetChildrenEmpty()
         {
             auto uut = SyntaxFactory::CreateCompoundStatement(
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftBrace),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 {},
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightBrace));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             Assert::AreEqual(
                 std::vector<SyntaxNodeChild>(
                 {
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftBrace)),
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightBrace)),
+                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace)),
+                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 }),
                 uut->GetChildren(),
                 L"Verify children match.");
@@ -93,24 +93,24 @@ namespace Soup::Syntax::UnitTests
         void GetChildrenSingleStatement()
         {
             auto uut = SyntaxFactory::CreateCompoundStatement(
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftBrace),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 {
                     SyntaxFactory::CreateReturnStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
                         nullptr,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 },
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightBrace));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             Assert::AreEqual(
                 std::vector<SyntaxNodeChild>(
                 {
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftBrace)),
+                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace)),
                     SyntaxNodeChild(SyntaxFactory::CreateReturnStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
                         nullptr,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))),
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightBrace)),
+                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 }),
                 uut->GetChildren(),
                 L"Verify children match.");
@@ -120,15 +120,15 @@ namespace Soup::Syntax::UnitTests
         void OperatorEqualEmpty()
         {
             auto uut = SyntaxFactory::CreateCompoundStatement(
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftBrace),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 {},
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightBrace));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateCompoundStatement(
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftBrace),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                     {},
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightBrace)),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 uut,
                 L"Verify matches.");
         }
@@ -137,47 +137,47 @@ namespace Soup::Syntax::UnitTests
         void OperatorEqualSingleStatement()
         {
             auto uut = SyntaxFactory::CreateCompoundStatement(
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftBrace),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 {
                     SyntaxFactory::CreateReturnStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
                         nullptr,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 },
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightBrace));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateCompoundStatement(
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftBrace),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                     {
                         SyntaxFactory::CreateReturnStatement(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
                             nullptr,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                     },
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightBrace)),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 uut,
                 L"Verify matches.");
         }
 
         // [[Fact]]
-        void OperatorNotEqualLeftBraceToken()
+        void OperatorNotEqualOpenBraceToken()
         {
             auto uut = SyntaxFactory::CreateCompoundStatement(
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftBrace),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 {},
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightBrace));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateCompoundStatement(
                     SyntaxFactory::CreateKeywordToken(
-                        SyntaxTokenType::LeftBrace,
+                        SyntaxTokenType::OpenBrace,
                         {
                             SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 1)),
                         },
                         {}),
                     {},
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightBrace)),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 uut,
                 L"Verify do not match.");
         }
@@ -186,20 +186,20 @@ namespace Soup::Syntax::UnitTests
         void OperatorNotEqualEmpty()
         {
             auto uut = SyntaxFactory::CreateCompoundStatement(
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftBrace),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 {},
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightBrace));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateCompoundStatement(
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftBrace),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                     {
                         SyntaxFactory::CreateReturnStatement(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
                             nullptr,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                     },
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightBrace)),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 uut,
                 L"Verify do not match.");
         }
@@ -208,18 +208,18 @@ namespace Soup::Syntax::UnitTests
         void OperatorNotEqualSingleStatement()
         {
             auto uut = SyntaxFactory::CreateCompoundStatement(
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftBrace),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 {
                     SyntaxFactory::CreateReturnStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
                         nullptr,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 },
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightBrace));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateCompoundStatement(
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftBrace),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                     {
                         SyntaxFactory::CreateReturnStatement(
                             SyntaxFactory::CreateKeywordToken(
@@ -231,25 +231,25 @@ namespace Soup::Syntax::UnitTests
                             nullptr,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                     },
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightBrace)),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 uut,
                 L"Verify do not match.");
         }
 
         // [[Fact]]
-        void OperatorNotEqualRightBraceToken()
+        void OperatorNotEqualCloseBraceToken()
         {
             auto uut = SyntaxFactory::CreateCompoundStatement(
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftBrace),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 {},
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::RightBrace));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateCompoundStatement(
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LeftBrace),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                     {},
                     SyntaxFactory::CreateKeywordToken(
-                        SyntaxTokenType::RightBrace,
+                        SyntaxTokenType::CloseBrace,
                         {
                             SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 1)),
                         },

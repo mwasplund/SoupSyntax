@@ -15,16 +15,16 @@ namespace Soup::Syntax
         /// </summary>
         IfStatement(
             std::shared_ptr<const SyntaxToken> ifToken,
-            std::shared_ptr<const SyntaxToken> leftParenthesisToken,
+            std::shared_ptr<const SyntaxToken> openParenthesisToken,
             std::shared_ptr<const Expression> conditionExpression,
-            std::shared_ptr<const SyntaxToken> rightParenthesisToken,
+            std::shared_ptr<const SyntaxToken> closeParenthesisToken,
             std::shared_ptr<const Statement> statement,
             std::shared_ptr<const ElseClause> elseClause) :
             Statement(SyntaxNodeType::IfStatement),
             m_ifToken(std::move(ifToken)),
-            m_leftParenthesisToken(std::move(leftParenthesisToken)),
+            m_openParenthesisToken(std::move(openParenthesisToken)),
             m_conditionExpression(std::move(conditionExpression)),
-            m_rightParenthesisToken(std::move(rightParenthesisToken)),
+            m_closeParenthesisToken(std::move(closeParenthesisToken)),
             m_statement(std::move(statement)),
             m_elseClause(std::move(elseClause))
         {
@@ -42,9 +42,9 @@ namespace Soup::Syntax
         /// <summary>
         /// Gets the SyntaxToken for the left parenthesis of the condition.
         /// </summary>
-        const SyntaxToken& GetLeftParenthesisToken() const
+        const SyntaxToken& GetOpenParenthesisToken() const
         {
-            return *m_leftParenthesisToken;
+            return *m_openParenthesisToken;
         }
 
         /// <summary>
@@ -58,9 +58,9 @@ namespace Soup::Syntax
         /// <summary>
         /// Gets the SyntaxToken for the right parenthesis of the condition.
         /// </summary>
-        const SyntaxToken& GetRightParenthesisToken() const
+        const SyntaxToken& GetCloseParenthesisToken() const
         {
-            return *m_rightParenthesisToken;
+            return *m_closeParenthesisToken;
         }
 
         /// <summary>
@@ -97,9 +97,9 @@ namespace Soup::Syntax
             std::vector<SyntaxNodeChild> children(
             {
                 SyntaxNodeChild(m_ifToken),
-                SyntaxNodeChild(m_leftParenthesisToken),
+                SyntaxNodeChild(m_openParenthesisToken),
                 SyntaxNodeChild(m_conditionExpression),
-                SyntaxNodeChild(m_rightParenthesisToken),
+                SyntaxNodeChild(m_closeParenthesisToken),
                 SyntaxNodeChild(m_statement),
             });
 
@@ -136,9 +136,9 @@ namespace Soup::Syntax
             }
 
             return *m_ifToken == *rhs.m_ifToken &&
-                *m_leftParenthesisToken  == *rhs.m_leftParenthesisToken &&
+                *m_openParenthesisToken  == *rhs.m_openParenthesisToken &&
                 *m_conditionExpression  == *rhs.m_conditionExpression &&
-                *m_rightParenthesisToken  == *rhs.m_rightParenthesisToken &&
+                *m_closeParenthesisToken  == *rhs.m_closeParenthesisToken &&
                 *m_statement  == *rhs.m_statement &&
                 elseClauseEqual;
         }
@@ -159,9 +159,9 @@ namespace Soup::Syntax
 
     private:
         std::shared_ptr<const SyntaxToken> m_ifToken;
-        std::shared_ptr<const SyntaxToken> m_leftParenthesisToken;
+        std::shared_ptr<const SyntaxToken> m_openParenthesisToken;
         std::shared_ptr<const Expression> m_conditionExpression;
-        std::shared_ptr<const SyntaxToken> m_rightParenthesisToken;
+        std::shared_ptr<const SyntaxToken> m_closeParenthesisToken;
         std::shared_ptr<const Statement> m_statement;
         std::shared_ptr<const ElseClause> m_elseClause;
     };

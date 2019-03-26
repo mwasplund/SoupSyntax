@@ -387,8 +387,8 @@ CppParser::TranslationUnitContext* CppParser::translationUnit() {
       | (1ULL << (CppParser::Virtual - 67))
       | (1ULL << (CppParser::Void - 67))
       | (1ULL << (CppParser::WChar - 67))
-      | (1ULL << (CppParser::LeftBracket - 67))
-      | (1ULL << (CppParser::LeftParenthesis - 67))
+      | (1ULL << (CppParser::OpenBracket - 67))
+      | (1ULL << (CppParser::OpenParenthesis - 67))
       | (1ULL << (CppParser::Semicolon - 67))
       | (1ULL << (CppParser::Ellipsis - 67))
       | (1ULL << (CppParser::DoubleColon - 67))
@@ -426,16 +426,16 @@ tree::TerminalNode* CppParser::PrimaryExpressionContext::This() {
   return getToken(CppParser::This, 0);
 }
 
-tree::TerminalNode* CppParser::PrimaryExpressionContext::LeftParenthesis() {
-  return getToken(CppParser::LeftParenthesis, 0);
+tree::TerminalNode* CppParser::PrimaryExpressionContext::OpenParenthesis() {
+  return getToken(CppParser::OpenParenthesis, 0);
 }
 
 CppParser::ExpressionContext* CppParser::PrimaryExpressionContext::expression() {
   return getRuleContext<CppParser::ExpressionContext>(0);
 }
 
-tree::TerminalNode* CppParser::PrimaryExpressionContext::RightParenthesis() {
-  return getToken(CppParser::RightParenthesis, 0);
+tree::TerminalNode* CppParser::PrimaryExpressionContext::CloseParenthesis() {
+  return getToken(CppParser::CloseParenthesis, 0);
 }
 
 CppParser::IdentifierExpressionContext* CppParser::PrimaryExpressionContext::identifierExpression() {
@@ -503,11 +503,11 @@ CppParser::PrimaryExpressionContext* CppParser::primaryExpression() {
     case 3: {
       enterOuterAlt(_localctx, 3);
       setState(451);
-      match(CppParser::LeftParenthesis);
+      match(CppParser::OpenParenthesis);
       setState(452);
       expression(0);
       setState(453);
-      match(CppParser::RightParenthesis);
+      match(CppParser::CloseParenthesis);
       break;
     }
 
@@ -1134,7 +1134,7 @@ CppParser::LambdaExpressionContext* CppParser::lambdaExpression() {
     _errHandler->sync(this);
 
     _la = _input->LA(1);
-    if (_la == CppParser::LeftParenthesis) {
+    if (_la == CppParser::OpenParenthesis) {
       setState(511);
       lambdaDeclarator();
     }
@@ -1157,12 +1157,12 @@ CppParser::LambdaIntroducerContext::LambdaIntroducerContext(ParserRuleContext *p
   : ParserRuleContext(parent, invokingState) {
 }
 
-tree::TerminalNode* CppParser::LambdaIntroducerContext::LeftBracket() {
-  return getToken(CppParser::LeftBracket, 0);
+tree::TerminalNode* CppParser::LambdaIntroducerContext::OpenBracket() {
+  return getToken(CppParser::OpenBracket, 0);
 }
 
-tree::TerminalNode* CppParser::LambdaIntroducerContext::RightBracket() {
-  return getToken(CppParser::RightBracket, 0);
+tree::TerminalNode* CppParser::LambdaIntroducerContext::CloseBracket() {
+  return getToken(CppParser::CloseBracket, 0);
 }
 
 CppParser::LambdaCaptureContext* CppParser::LambdaIntroducerContext::lambdaCapture() {
@@ -1205,7 +1205,7 @@ CppParser::LambdaIntroducerContext* CppParser::lambdaIntroducer() {
   try {
     enterOuterAlt(_localctx, 1);
     setState(516);
-    match(CppParser::LeftBracket);
+    match(CppParser::OpenBracket);
     setState(518);
     _errHandler->sync(this);
 
@@ -1219,7 +1219,7 @@ CppParser::LambdaIntroducerContext* CppParser::lambdaIntroducer() {
       lambdaCapture();
     }
     setState(520);
-    match(CppParser::RightBracket);
+    match(CppParser::CloseBracket);
    
   }
   catch (RecognitionException &e) {
@@ -1237,16 +1237,16 @@ CppParser::LambdaDeclaratorContext::LambdaDeclaratorContext(ParserRuleContext *p
   : ParserRuleContext(parent, invokingState) {
 }
 
-tree::TerminalNode* CppParser::LambdaDeclaratorContext::LeftParenthesis() {
-  return getToken(CppParser::LeftParenthesis, 0);
+tree::TerminalNode* CppParser::LambdaDeclaratorContext::OpenParenthesis() {
+  return getToken(CppParser::OpenParenthesis, 0);
 }
 
 CppParser::ParameterDeclarationClauseContext* CppParser::LambdaDeclaratorContext::parameterDeclarationClause() {
   return getRuleContext<CppParser::ParameterDeclarationClauseContext>(0);
 }
 
-tree::TerminalNode* CppParser::LambdaDeclaratorContext::RightParenthesis() {
-  return getToken(CppParser::RightParenthesis, 0);
+tree::TerminalNode* CppParser::LambdaDeclaratorContext::CloseParenthesis() {
+  return getToken(CppParser::CloseParenthesis, 0);
 }
 
 CppParser::DeclarationSpecifierSequenceContext* CppParser::LambdaDeclaratorContext::declarationSpecifierSequence() {
@@ -1301,11 +1301,11 @@ CppParser::LambdaDeclaratorContext* CppParser::lambdaDeclarator() {
   try {
     enterOuterAlt(_localctx, 1);
     setState(522);
-    match(CppParser::LeftParenthesis);
+    match(CppParser::OpenParenthesis);
     setState(523);
     parameterDeclarationClause();
     setState(524);
-    match(CppParser::RightParenthesis);
+    match(CppParser::CloseParenthesis);
     setState(526);
     _errHandler->sync(this);
 
@@ -1353,7 +1353,7 @@ CppParser::LambdaDeclaratorContext* CppParser::lambdaDeclarator() {
     _errHandler->sync(this);
 
     _la = _input->LA(1);
-    if (_la == CppParser::AlignAs || _la == CppParser::LeftBracket) {
+    if (_la == CppParser::AlignAs || _la == CppParser::OpenBracket) {
       setState(531);
       attributeSpecifierSequence(0);
     }
@@ -1912,8 +1912,8 @@ CppParser::FoldExpressionContext::FoldExpressionContext(ParserRuleContext *paren
   : ParserRuleContext(parent, invokingState) {
 }
 
-tree::TerminalNode* CppParser::FoldExpressionContext::LeftParenthesis() {
-  return getToken(CppParser::LeftParenthesis, 0);
+tree::TerminalNode* CppParser::FoldExpressionContext::OpenParenthesis() {
+  return getToken(CppParser::OpenParenthesis, 0);
 }
 
 std::vector<CppParser::CastExpressionContext *> CppParser::FoldExpressionContext::castExpression() {
@@ -1936,8 +1936,8 @@ tree::TerminalNode* CppParser::FoldExpressionContext::Ellipsis() {
   return getToken(CppParser::Ellipsis, 0);
 }
 
-tree::TerminalNode* CppParser::FoldExpressionContext::RightParenthesis() {
-  return getToken(CppParser::RightParenthesis, 0);
+tree::TerminalNode* CppParser::FoldExpressionContext::CloseParenthesis() {
+  return getToken(CppParser::CloseParenthesis, 0);
 }
 
 
@@ -1979,7 +1979,7 @@ CppParser::FoldExpressionContext* CppParser::foldExpression() {
     case 1: {
       enterOuterAlt(_localctx, 1);
       setState(581);
-      match(CppParser::LeftParenthesis);
+      match(CppParser::OpenParenthesis);
       setState(582);
       castExpression();
       setState(583);
@@ -1987,14 +1987,14 @@ CppParser::FoldExpressionContext* CppParser::foldExpression() {
       setState(584);
       match(CppParser::Ellipsis);
       setState(585);
-      match(CppParser::RightParenthesis);
+      match(CppParser::CloseParenthesis);
       break;
     }
 
     case 2: {
       enterOuterAlt(_localctx, 2);
       setState(587);
-      match(CppParser::LeftParenthesis);
+      match(CppParser::OpenParenthesis);
       setState(588);
       match(CppParser::Ellipsis);
       setState(589);
@@ -2002,14 +2002,14 @@ CppParser::FoldExpressionContext* CppParser::foldExpression() {
       setState(590);
       castExpression();
       setState(591);
-      match(CppParser::RightParenthesis);
+      match(CppParser::CloseParenthesis);
       break;
     }
 
     case 3: {
       enterOuterAlt(_localctx, 3);
       setState(593);
-      match(CppParser::LeftParenthesis);
+      match(CppParser::OpenParenthesis);
       setState(594);
       castExpression();
       setState(595);
@@ -2021,7 +2021,7 @@ CppParser::FoldExpressionContext* CppParser::foldExpression() {
       setState(598);
       castExpression();
       setState(599);
-      match(CppParser::RightParenthesis);
+      match(CppParser::CloseParenthesis);
       break;
     }
 
@@ -2268,12 +2268,12 @@ CppParser::SimpleTypeSpecifierContext* CppParser::ExplicitTypeCoversionOperatorE
   return getRuleContext<CppParser::SimpleTypeSpecifierContext>(0);
 }
 
-tree::TerminalNode* CppParser::ExplicitTypeCoversionOperatorExpressionContext::LeftParenthesis() {
-  return getToken(CppParser::LeftParenthesis, 0);
+tree::TerminalNode* CppParser::ExplicitTypeCoversionOperatorExpressionContext::OpenParenthesis() {
+  return getToken(CppParser::OpenParenthesis, 0);
 }
 
-tree::TerminalNode* CppParser::ExplicitTypeCoversionOperatorExpressionContext::RightParenthesis() {
-  return getToken(CppParser::RightParenthesis, 0);
+tree::TerminalNode* CppParser::ExplicitTypeCoversionOperatorExpressionContext::CloseParenthesis() {
+  return getToken(CppParser::CloseParenthesis, 0);
 }
 
 CppParser::ExpressionListContext* CppParser::ExplicitTypeCoversionOperatorExpressionContext::expressionList() {
@@ -2340,7 +2340,7 @@ CppParser::ExplicitTypeCoversionOperatorExpressionContext* CppParser::explicitTy
         setState(605);
         simpleTypeSpecifier();
         setState(606);
-        match(CppParser::LeftParenthesis);
+        match(CppParser::OpenParenthesis);
         setState(608);
         _errHandler->sync(this);
 
@@ -2378,9 +2378,9 @@ CppParser::ExplicitTypeCoversionOperatorExpressionContext* CppParser::explicitTy
           | (1ULL << (CppParser::Unsigned - 64))
           | (1ULL << (CppParser::Void - 64))
           | (1ULL << (CppParser::WChar - 64))
-          | (1ULL << (CppParser::LeftBrace - 64))
-          | (1ULL << (CppParser::LeftBracket - 64))
-          | (1ULL << (CppParser::LeftParenthesis - 64))
+          | (1ULL << (CppParser::OpenBrace - 64))
+          | (1ULL << (CppParser::OpenBracket - 64))
+          | (1ULL << (CppParser::OpenParenthesis - 64))
           | (1ULL << (CppParser::DoubleColon - 64))
           | (1ULL << (CppParser::Plus - 64))
           | (1ULL << (CppParser::Minus - 64))
@@ -2405,7 +2405,7 @@ CppParser::ExplicitTypeCoversionOperatorExpressionContext* CppParser::explicitTy
           expressionList();
         }
         setState(610);
-        match(CppParser::RightParenthesis);
+        match(CppParser::CloseParenthesis);
         break;
       }
 
@@ -2414,7 +2414,7 @@ CppParser::ExplicitTypeCoversionOperatorExpressionContext* CppParser::explicitTy
         setState(612);
         typenameSpecifier();
         setState(613);
-        match(CppParser::LeftParenthesis);
+        match(CppParser::OpenParenthesis);
         setState(615);
         _errHandler->sync(this);
 
@@ -2452,9 +2452,9 @@ CppParser::ExplicitTypeCoversionOperatorExpressionContext* CppParser::explicitTy
           | (1ULL << (CppParser::Unsigned - 64))
           | (1ULL << (CppParser::Void - 64))
           | (1ULL << (CppParser::WChar - 64))
-          | (1ULL << (CppParser::LeftBrace - 64))
-          | (1ULL << (CppParser::LeftBracket - 64))
-          | (1ULL << (CppParser::LeftParenthesis - 64))
+          | (1ULL << (CppParser::OpenBrace - 64))
+          | (1ULL << (CppParser::OpenBracket - 64))
+          | (1ULL << (CppParser::OpenParenthesis - 64))
           | (1ULL << (CppParser::DoubleColon - 64))
           | (1ULL << (CppParser::Plus - 64))
           | (1ULL << (CppParser::Minus - 64))
@@ -2479,7 +2479,7 @@ CppParser::ExplicitTypeCoversionOperatorExpressionContext* CppParser::explicitTy
           expressionList();
         }
         setState(617);
-        match(CppParser::RightParenthesis);
+        match(CppParser::CloseParenthesis);
         break;
       }
 
@@ -2590,16 +2590,16 @@ tree::TerminalNode* CppParser::NamedCastExpressionContext::GreaterThan() {
   return getToken(CppParser::GreaterThan, 0);
 }
 
-tree::TerminalNode* CppParser::NamedCastExpressionContext::LeftParenthesis() {
-  return getToken(CppParser::LeftParenthesis, 0);
+tree::TerminalNode* CppParser::NamedCastExpressionContext::OpenParenthesis() {
+  return getToken(CppParser::OpenParenthesis, 0);
 }
 
 CppParser::ExpressionContext* CppParser::NamedCastExpressionContext::expression() {
   return getRuleContext<CppParser::ExpressionContext>(0);
 }
 
-tree::TerminalNode* CppParser::NamedCastExpressionContext::RightParenthesis() {
-  return getToken(CppParser::RightParenthesis, 0);
+tree::TerminalNode* CppParser::NamedCastExpressionContext::CloseParenthesis() {
+  return getToken(CppParser::CloseParenthesis, 0);
 }
 
 
@@ -2645,11 +2645,11 @@ CppParser::NamedCastExpressionContext* CppParser::namedCastExpression() {
     setState(626);
     match(CppParser::GreaterThan);
     setState(627);
-    match(CppParser::LeftParenthesis);
+    match(CppParser::OpenParenthesis);
     setState(628);
     expression(0);
     setState(629);
-    match(CppParser::RightParenthesis);
+    match(CppParser::CloseParenthesis);
    
   }
   catch (RecognitionException &e) {
@@ -2823,16 +2823,16 @@ tree::TerminalNode* CppParser::TypeIdentificationExpressionContext::TypeId() {
   return getToken(CppParser::TypeId, 0);
 }
 
-tree::TerminalNode* CppParser::TypeIdentificationExpressionContext::LeftParenthesis() {
-  return getToken(CppParser::LeftParenthesis, 0);
+tree::TerminalNode* CppParser::TypeIdentificationExpressionContext::OpenParenthesis() {
+  return getToken(CppParser::OpenParenthesis, 0);
 }
 
 CppParser::ExpressionContext* CppParser::TypeIdentificationExpressionContext::expression() {
   return getRuleContext<CppParser::ExpressionContext>(0);
 }
 
-tree::TerminalNode* CppParser::TypeIdentificationExpressionContext::RightParenthesis() {
-  return getToken(CppParser::RightParenthesis, 0);
+tree::TerminalNode* CppParser::TypeIdentificationExpressionContext::CloseParenthesis() {
+  return getToken(CppParser::CloseParenthesis, 0);
 }
 
 CppParser::TypeIdentifierContext* CppParser::TypeIdentificationExpressionContext::typeIdentifier() {
@@ -2880,11 +2880,11 @@ CppParser::TypeIdentificationExpressionContext* CppParser::typeIdentificationExp
       setState(635);
       match(CppParser::TypeId);
       setState(636);
-      match(CppParser::LeftParenthesis);
+      match(CppParser::OpenParenthesis);
       setState(637);
       expression(0);
       setState(638);
-      match(CppParser::RightParenthesis);
+      match(CppParser::CloseParenthesis);
       break;
     }
 
@@ -2893,11 +2893,11 @@ CppParser::TypeIdentificationExpressionContext* CppParser::typeIdentificationExp
       setState(640);
       match(CppParser::TypeId);
       setState(641);
-      match(CppParser::LeftParenthesis);
+      match(CppParser::OpenParenthesis);
       setState(642);
       typeIdentifier();
       setState(643);
-      match(CppParser::RightParenthesis);
+      match(CppParser::CloseParenthesis);
       break;
     }
 
@@ -2951,24 +2951,24 @@ CppParser::PostfixExpressionContext* CppParser::PostfixExpressionContext::postfi
   return getRuleContext<CppParser::PostfixExpressionContext>(0);
 }
 
-tree::TerminalNode* CppParser::PostfixExpressionContext::LeftBracket() {
-  return getToken(CppParser::LeftBracket, 0);
+tree::TerminalNode* CppParser::PostfixExpressionContext::OpenBracket() {
+  return getToken(CppParser::OpenBracket, 0);
 }
 
 CppParser::ExpressionOrBracedInitializerListContext* CppParser::PostfixExpressionContext::expressionOrBracedInitializerList() {
   return getRuleContext<CppParser::ExpressionOrBracedInitializerListContext>(0);
 }
 
-tree::TerminalNode* CppParser::PostfixExpressionContext::RightBracket() {
-  return getToken(CppParser::RightBracket, 0);
+tree::TerminalNode* CppParser::PostfixExpressionContext::CloseBracket() {
+  return getToken(CppParser::CloseBracket, 0);
 }
 
-tree::TerminalNode* CppParser::PostfixExpressionContext::LeftParenthesis() {
-  return getToken(CppParser::LeftParenthesis, 0);
+tree::TerminalNode* CppParser::PostfixExpressionContext::OpenParenthesis() {
+  return getToken(CppParser::OpenParenthesis, 0);
 }
 
-tree::TerminalNode* CppParser::PostfixExpressionContext::RightParenthesis() {
-  return getToken(CppParser::RightParenthesis, 0);
+tree::TerminalNode* CppParser::PostfixExpressionContext::CloseParenthesis() {
+  return getToken(CppParser::CloseParenthesis, 0);
 }
 
 CppParser::ExpressionListContext* CppParser::PostfixExpressionContext::expressionList() {
@@ -3104,11 +3104,11 @@ CppParser::PostfixExpressionContext* CppParser::postfixExpression(int precedence
 
           if (!(precpred(_ctx, 10))) throw FailedPredicateException(this, "precpred(_ctx, 10)");
           setState(661);
-          match(CppParser::LeftBracket);
+          match(CppParser::OpenBracket);
           setState(662);
           expressionOrBracedInitializerList();
           setState(663);
-          match(CppParser::RightBracket);
+          match(CppParser::CloseBracket);
           break;
         }
 
@@ -3119,7 +3119,7 @@ CppParser::PostfixExpressionContext* CppParser::postfixExpression(int precedence
 
           if (!(precpred(_ctx, 9))) throw FailedPredicateException(this, "precpred(_ctx, 9)");
           setState(666);
-          match(CppParser::LeftParenthesis);
+          match(CppParser::OpenParenthesis);
           setState(668);
           _errHandler->sync(this);
 
@@ -3157,9 +3157,9 @@ CppParser::PostfixExpressionContext* CppParser::postfixExpression(int precedence
             | (1ULL << (CppParser::Unsigned - 64))
             | (1ULL << (CppParser::Void - 64))
             | (1ULL << (CppParser::WChar - 64))
-            | (1ULL << (CppParser::LeftBrace - 64))
-            | (1ULL << (CppParser::LeftBracket - 64))
-            | (1ULL << (CppParser::LeftParenthesis - 64))
+            | (1ULL << (CppParser::OpenBrace - 64))
+            | (1ULL << (CppParser::OpenBracket - 64))
+            | (1ULL << (CppParser::OpenParenthesis - 64))
             | (1ULL << (CppParser::DoubleColon - 64))
             | (1ULL << (CppParser::Plus - 64))
             | (1ULL << (CppParser::Minus - 64))
@@ -3184,7 +3184,7 @@ CppParser::PostfixExpressionContext* CppParser::postfixExpression(int precedence
             expressionList();
           }
           setState(670);
-          match(CppParser::RightParenthesis);
+          match(CppParser::CloseParenthesis);
           break;
         }
 
@@ -3484,16 +3484,16 @@ CppParser::UnaryExpressionContext* CppParser::UnaryExpressionContext::unaryExpre
   return getRuleContext<CppParser::UnaryExpressionContext>(0);
 }
 
-tree::TerminalNode* CppParser::UnaryExpressionContext::LeftParenthesis() {
-  return getToken(CppParser::LeftParenthesis, 0);
+tree::TerminalNode* CppParser::UnaryExpressionContext::OpenParenthesis() {
+  return getToken(CppParser::OpenParenthesis, 0);
 }
 
 CppParser::TypeIdentifierContext* CppParser::UnaryExpressionContext::typeIdentifier() {
   return getRuleContext<CppParser::TypeIdentifierContext>(0);
 }
 
-tree::TerminalNode* CppParser::UnaryExpressionContext::RightParenthesis() {
-  return getToken(CppParser::RightParenthesis, 0);
+tree::TerminalNode* CppParser::UnaryExpressionContext::CloseParenthesis() {
+  return getToken(CppParser::CloseParenthesis, 0);
 }
 
 tree::TerminalNode* CppParser::UnaryExpressionContext::Ellipsis() {
@@ -3604,11 +3604,11 @@ CppParser::UnaryExpressionContext* CppParser::unaryExpression() {
       setState(722);
       match(CppParser::SizeOf);
       setState(723);
-      match(CppParser::LeftParenthesis);
+      match(CppParser::OpenParenthesis);
       setState(724);
       typeIdentifier();
       setState(725);
-      match(CppParser::RightParenthesis);
+      match(CppParser::CloseParenthesis);
       break;
     }
 
@@ -3619,11 +3619,11 @@ CppParser::UnaryExpressionContext* CppParser::unaryExpression() {
       setState(728);
       match(CppParser::Ellipsis);
       setState(729);
-      match(CppParser::LeftParenthesis);
+      match(CppParser::OpenParenthesis);
       setState(730);
       match(CppParser::Identifier);
       setState(731);
-      match(CppParser::RightParenthesis);
+      match(CppParser::CloseParenthesis);
       break;
     }
 
@@ -3632,11 +3632,11 @@ CppParser::UnaryExpressionContext* CppParser::unaryExpression() {
       setState(732);
       match(CppParser::AlignOf);
       setState(733);
-      match(CppParser::LeftParenthesis);
+      match(CppParser::OpenParenthesis);
       setState(734);
       typeIdentifier();
       setState(735);
-      match(CppParser::RightParenthesis);
+      match(CppParser::CloseParenthesis);
       break;
     }
 
@@ -3795,16 +3795,16 @@ CppParser::NewInitializerContext* CppParser::NewExpressionContext::newInitialize
   return getRuleContext<CppParser::NewInitializerContext>(0);
 }
 
-tree::TerminalNode* CppParser::NewExpressionContext::LeftParenthesis() {
-  return getToken(CppParser::LeftParenthesis, 0);
+tree::TerminalNode* CppParser::NewExpressionContext::OpenParenthesis() {
+  return getToken(CppParser::OpenParenthesis, 0);
 }
 
 CppParser::TypeIdentifierContext* CppParser::NewExpressionContext::typeIdentifier() {
   return getRuleContext<CppParser::TypeIdentifierContext>(0);
 }
 
-tree::TerminalNode* CppParser::NewExpressionContext::RightParenthesis() {
-  return getToken(CppParser::RightParenthesis, 0);
+tree::TerminalNode* CppParser::NewExpressionContext::CloseParenthesis() {
+  return getToken(CppParser::CloseParenthesis, 0);
 }
 
 
@@ -3860,7 +3860,7 @@ CppParser::NewExpressionContext* CppParser::newExpression() {
       _errHandler->sync(this);
 
       _la = _input->LA(1);
-      if (_la == CppParser::LeftParenthesis) {
+      if (_la == CppParser::OpenParenthesis) {
         setState(748);
         newPlacement();
       }
@@ -3904,11 +3904,11 @@ CppParser::NewExpressionContext* CppParser::newExpression() {
 
       }
       setState(762);
-      match(CppParser::LeftParenthesis);
+      match(CppParser::OpenParenthesis);
       setState(763);
       typeIdentifier();
       setState(764);
-      match(CppParser::RightParenthesis);
+      match(CppParser::CloseParenthesis);
       setState(766);
       _errHandler->sync(this);
 
@@ -3941,16 +3941,16 @@ CppParser::NewPlacementContext::NewPlacementContext(ParserRuleContext *parent, s
   : ParserRuleContext(parent, invokingState) {
 }
 
-tree::TerminalNode* CppParser::NewPlacementContext::LeftParenthesis() {
-  return getToken(CppParser::LeftParenthesis, 0);
+tree::TerminalNode* CppParser::NewPlacementContext::OpenParenthesis() {
+  return getToken(CppParser::OpenParenthesis, 0);
 }
 
 CppParser::ExpressionListContext* CppParser::NewPlacementContext::expressionList() {
   return getRuleContext<CppParser::ExpressionListContext>(0);
 }
 
-tree::TerminalNode* CppParser::NewPlacementContext::RightParenthesis() {
-  return getToken(CppParser::RightParenthesis, 0);
+tree::TerminalNode* CppParser::NewPlacementContext::CloseParenthesis() {
+  return getToken(CppParser::CloseParenthesis, 0);
 }
 
 
@@ -3988,11 +3988,11 @@ CppParser::NewPlacementContext* CppParser::newPlacement() {
   try {
     enterOuterAlt(_localctx, 1);
     setState(770);
-    match(CppParser::LeftParenthesis);
+    match(CppParser::OpenParenthesis);
     setState(771);
     expressionList();
     setState(772);
-    match(CppParser::RightParenthesis);
+    match(CppParser::CloseParenthesis);
    
   }
   catch (RecognitionException &e) {
@@ -4163,16 +4163,16 @@ CppParser::NoPointerNewDeclaratorContext::NoPointerNewDeclaratorContext(ParserRu
   : ParserRuleContext(parent, invokingState) {
 }
 
-tree::TerminalNode* CppParser::NoPointerNewDeclaratorContext::LeftBracket() {
-  return getToken(CppParser::LeftBracket, 0);
+tree::TerminalNode* CppParser::NoPointerNewDeclaratorContext::OpenBracket() {
+  return getToken(CppParser::OpenBracket, 0);
 }
 
 CppParser::ExpressionContext* CppParser::NoPointerNewDeclaratorContext::expression() {
   return getRuleContext<CppParser::ExpressionContext>(0);
 }
 
-tree::TerminalNode* CppParser::NoPointerNewDeclaratorContext::RightBracket() {
-  return getToken(CppParser::RightBracket, 0);
+tree::TerminalNode* CppParser::NoPointerNewDeclaratorContext::CloseBracket() {
+  return getToken(CppParser::CloseBracket, 0);
 }
 
 CppParser::AttributeSpecifierSequenceContext* CppParser::NoPointerNewDeclaratorContext::attributeSpecifierSequence() {
@@ -4234,11 +4234,11 @@ CppParser::NoPointerNewDeclaratorContext* CppParser::noPointerNewDeclarator(int 
     size_t alt;
     enterOuterAlt(_localctx, 1);
     setState(785);
-    match(CppParser::LeftBracket);
+    match(CppParser::OpenBracket);
     setState(786);
     expression(0);
     setState(787);
-    match(CppParser::RightBracket);
+    match(CppParser::CloseBracket);
     setState(789);
     _errHandler->sync(this);
 
@@ -4265,11 +4265,11 @@ CppParser::NoPointerNewDeclaratorContext* CppParser::noPointerNewDeclarator(int 
 
         if (!(precpred(_ctx, 1))) throw FailedPredicateException(this, "precpred(_ctx, 1)");
         setState(792);
-        match(CppParser::LeftBracket);
+        match(CppParser::OpenBracket);
         setState(793);
         constantExpression();
         setState(794);
-        match(CppParser::RightBracket);
+        match(CppParser::CloseBracket);
         setState(796);
         _errHandler->sync(this);
 
@@ -4301,12 +4301,12 @@ CppParser::NewInitializerContext::NewInitializerContext(ParserRuleContext *paren
   : ParserRuleContext(parent, invokingState) {
 }
 
-tree::TerminalNode* CppParser::NewInitializerContext::LeftParenthesis() {
-  return getToken(CppParser::LeftParenthesis, 0);
+tree::TerminalNode* CppParser::NewInitializerContext::OpenParenthesis() {
+  return getToken(CppParser::OpenParenthesis, 0);
 }
 
-tree::TerminalNode* CppParser::NewInitializerContext::RightParenthesis() {
-  return getToken(CppParser::RightParenthesis, 0);
+tree::TerminalNode* CppParser::NewInitializerContext::CloseParenthesis() {
+  return getToken(CppParser::CloseParenthesis, 0);
 }
 
 CppParser::ExpressionListContext* CppParser::NewInitializerContext::expressionList() {
@@ -4354,10 +4354,10 @@ CppParser::NewInitializerContext* CppParser::newInitializer() {
     setState(809);
     _errHandler->sync(this);
     switch (_input->LA(1)) {
-      case CppParser::LeftParenthesis: {
+      case CppParser::OpenParenthesis: {
         enterOuterAlt(_localctx, 1);
         setState(803);
-        match(CppParser::LeftParenthesis);
+        match(CppParser::OpenParenthesis);
         setState(805);
         _errHandler->sync(this);
 
@@ -4395,9 +4395,9 @@ CppParser::NewInitializerContext* CppParser::newInitializer() {
           | (1ULL << (CppParser::Unsigned - 64))
           | (1ULL << (CppParser::Void - 64))
           | (1ULL << (CppParser::WChar - 64))
-          | (1ULL << (CppParser::LeftBrace - 64))
-          | (1ULL << (CppParser::LeftBracket - 64))
-          | (1ULL << (CppParser::LeftParenthesis - 64))
+          | (1ULL << (CppParser::OpenBrace - 64))
+          | (1ULL << (CppParser::OpenBracket - 64))
+          | (1ULL << (CppParser::OpenParenthesis - 64))
           | (1ULL << (CppParser::DoubleColon - 64))
           | (1ULL << (CppParser::Plus - 64))
           | (1ULL << (CppParser::Minus - 64))
@@ -4422,11 +4422,11 @@ CppParser::NewInitializerContext* CppParser::newInitializer() {
           expressionList();
         }
         setState(807);
-        match(CppParser::RightParenthesis);
+        match(CppParser::CloseParenthesis);
         break;
       }
 
-      case CppParser::LeftBrace: {
+      case CppParser::OpenBrace: {
         enterOuterAlt(_localctx, 2);
         setState(808);
         bracedInitializerList();
@@ -4465,12 +4465,12 @@ tree::TerminalNode* CppParser::DeleteExpressionContext::DoubleColon() {
   return getToken(CppParser::DoubleColon, 0);
 }
 
-tree::TerminalNode* CppParser::DeleteExpressionContext::LeftBracket() {
-  return getToken(CppParser::LeftBracket, 0);
+tree::TerminalNode* CppParser::DeleteExpressionContext::OpenBracket() {
+  return getToken(CppParser::OpenBracket, 0);
 }
 
-tree::TerminalNode* CppParser::DeleteExpressionContext::RightBracket() {
-  return getToken(CppParser::RightBracket, 0);
+tree::TerminalNode* CppParser::DeleteExpressionContext::CloseBracket() {
+  return getToken(CppParser::CloseBracket, 0);
 }
 
 
@@ -4540,9 +4540,9 @@ CppParser::DeleteExpressionContext* CppParser::deleteExpression() {
       setState(819);
       match(CppParser::Delete);
       setState(820);
-      match(CppParser::LeftBracket);
+      match(CppParser::OpenBracket);
       setState(821);
-      match(CppParser::RightBracket);
+      match(CppParser::CloseBracket);
       setState(822);
       castExpression();
       break;
@@ -4570,16 +4570,16 @@ tree::TerminalNode* CppParser::NoExceptionExpressionContext::NoExcept() {
   return getToken(CppParser::NoExcept, 0);
 }
 
-tree::TerminalNode* CppParser::NoExceptionExpressionContext::LeftParenthesis() {
-  return getToken(CppParser::LeftParenthesis, 0);
+tree::TerminalNode* CppParser::NoExceptionExpressionContext::OpenParenthesis() {
+  return getToken(CppParser::OpenParenthesis, 0);
 }
 
 CppParser::ExpressionContext* CppParser::NoExceptionExpressionContext::expression() {
   return getRuleContext<CppParser::ExpressionContext>(0);
 }
 
-tree::TerminalNode* CppParser::NoExceptionExpressionContext::RightParenthesis() {
-  return getToken(CppParser::RightParenthesis, 0);
+tree::TerminalNode* CppParser::NoExceptionExpressionContext::CloseParenthesis() {
+  return getToken(CppParser::CloseParenthesis, 0);
 }
 
 
@@ -4619,11 +4619,11 @@ CppParser::NoExceptionExpressionContext* CppParser::noExceptionExpression() {
     setState(825);
     match(CppParser::NoExcept);
     setState(826);
-    match(CppParser::LeftParenthesis);
+    match(CppParser::OpenParenthesis);
     setState(827);
     expression(0);
     setState(828);
-    match(CppParser::RightParenthesis);
+    match(CppParser::CloseParenthesis);
    
   }
   catch (RecognitionException &e) {
@@ -4645,16 +4645,16 @@ CppParser::UnaryExpressionContext* CppParser::CastExpressionContext::unaryExpres
   return getRuleContext<CppParser::UnaryExpressionContext>(0);
 }
 
-tree::TerminalNode* CppParser::CastExpressionContext::LeftParenthesis() {
-  return getToken(CppParser::LeftParenthesis, 0);
+tree::TerminalNode* CppParser::CastExpressionContext::OpenParenthesis() {
+  return getToken(CppParser::OpenParenthesis, 0);
 }
 
 CppParser::TypeIdentifierContext* CppParser::CastExpressionContext::typeIdentifier() {
   return getRuleContext<CppParser::TypeIdentifierContext>(0);
 }
 
-tree::TerminalNode* CppParser::CastExpressionContext::RightParenthesis() {
-  return getToken(CppParser::RightParenthesis, 0);
+tree::TerminalNode* CppParser::CastExpressionContext::CloseParenthesis() {
+  return getToken(CppParser::CloseParenthesis, 0);
 }
 
 CppParser::CastExpressionContext* CppParser::CastExpressionContext::castExpression() {
@@ -4707,11 +4707,11 @@ CppParser::CastExpressionContext* CppParser::castExpression() {
     case 2: {
       enterOuterAlt(_localctx, 2);
       setState(831);
-      match(CppParser::LeftParenthesis);
+      match(CppParser::OpenParenthesis);
       setState(832);
       typeIdentifier();
       setState(833);
-      match(CppParser::RightParenthesis);
+      match(CppParser::CloseParenthesis);
       setState(834);
       castExpression();
       break;
@@ -6656,7 +6656,7 @@ CppParser::StatementContext* CppParser::statement() {
       _errHandler->sync(this);
 
       _la = _input->LA(1);
-      if (_la == CppParser::AlignAs || _la == CppParser::LeftBracket) {
+      if (_la == CppParser::AlignAs || _la == CppParser::OpenBracket) {
         setState(1027);
         attributeSpecifierSequence(0);
       }
@@ -6671,7 +6671,7 @@ CppParser::StatementContext* CppParser::statement() {
       _errHandler->sync(this);
 
       _la = _input->LA(1);
-      if (_la == CppParser::AlignAs || _la == CppParser::LeftBracket) {
+      if (_la == CppParser::AlignAs || _la == CppParser::OpenBracket) {
         setState(1031);
         attributeSpecifierSequence(0);
       }
@@ -6686,7 +6686,7 @@ CppParser::StatementContext* CppParser::statement() {
       _errHandler->sync(this);
 
       _la = _input->LA(1);
-      if (_la == CppParser::AlignAs || _la == CppParser::LeftBracket) {
+      if (_la == CppParser::AlignAs || _la == CppParser::OpenBracket) {
         setState(1035);
         attributeSpecifierSequence(0);
       }
@@ -6701,7 +6701,7 @@ CppParser::StatementContext* CppParser::statement() {
       _errHandler->sync(this);
 
       _la = _input->LA(1);
-      if (_la == CppParser::AlignAs || _la == CppParser::LeftBracket) {
+      if (_la == CppParser::AlignAs || _la == CppParser::OpenBracket) {
         setState(1039);
         attributeSpecifierSequence(0);
       }
@@ -6723,7 +6723,7 @@ CppParser::StatementContext* CppParser::statement() {
       _errHandler->sync(this);
 
       _la = _input->LA(1);
-      if (_la == CppParser::AlignAs || _la == CppParser::LeftBracket) {
+      if (_la == CppParser::AlignAs || _la == CppParser::OpenBracket) {
         setState(1044);
         attributeSpecifierSequence(0);
       }
@@ -6896,7 +6896,7 @@ CppParser::ConditionContext* CppParser::condition() {
       _errHandler->sync(this);
 
       _la = _input->LA(1);
-      if (_la == CppParser::AlignAs || _la == CppParser::LeftBracket) {
+      if (_la == CppParser::AlignAs || _la == CppParser::OpenBracket) {
         setState(1055);
         attributeSpecifierSequence(0);
       }
@@ -6998,7 +6998,7 @@ CppParser::LabeledStatementContext* CppParser::labeledStatement() {
       _errHandler->sync(this);
 
       _la = _input->LA(1);
-      if (_la == CppParser::AlignAs || _la == CppParser::LeftBracket) {
+      if (_la == CppParser::AlignAs || _la == CppParser::OpenBracket) {
         setState(1064);
         attributeSpecifierSequence(0);
       }
@@ -7017,7 +7017,7 @@ CppParser::LabeledStatementContext* CppParser::labeledStatement() {
       _errHandler->sync(this);
 
       _la = _input->LA(1);
-      if (_la == CppParser::AlignAs || _la == CppParser::LeftBracket) {
+      if (_la == CppParser::AlignAs || _la == CppParser::OpenBracket) {
         setState(1070);
         attributeSpecifierSequence(0);
       }
@@ -7038,7 +7038,7 @@ CppParser::LabeledStatementContext* CppParser::labeledStatement() {
       _errHandler->sync(this);
 
       _la = _input->LA(1);
-      if (_la == CppParser::AlignAs || _la == CppParser::LeftBracket) {
+      if (_la == CppParser::AlignAs || _la == CppParser::OpenBracket) {
         setState(1078);
         attributeSpecifierSequence(0);
       }
@@ -7149,8 +7149,8 @@ CppParser::ExpressionStatementContext* CppParser::expressionStatement() {
       | (1ULL << (CppParser::Unsigned - 64))
       | (1ULL << (CppParser::Void - 64))
       | (1ULL << (CppParser::WChar - 64))
-      | (1ULL << (CppParser::LeftBracket - 64))
-      | (1ULL << (CppParser::LeftParenthesis - 64))
+      | (1ULL << (CppParser::OpenBracket - 64))
+      | (1ULL << (CppParser::OpenParenthesis - 64))
       | (1ULL << (CppParser::DoubleColon - 64))
       | (1ULL << (CppParser::Plus - 64))
       | (1ULL << (CppParser::Minus - 64))
@@ -7193,12 +7193,12 @@ CppParser::CompoundStatementContext::CompoundStatementContext(ParserRuleContext 
   : ParserRuleContext(parent, invokingState) {
 }
 
-tree::TerminalNode* CppParser::CompoundStatementContext::LeftBrace() {
-  return getToken(CppParser::LeftBrace, 0);
+tree::TerminalNode* CppParser::CompoundStatementContext::OpenBrace() {
+  return getToken(CppParser::OpenBrace, 0);
 }
 
-tree::TerminalNode* CppParser::CompoundStatementContext::RightBrace() {
-  return getToken(CppParser::RightBrace, 0);
+tree::TerminalNode* CppParser::CompoundStatementContext::CloseBrace() {
+  return getToken(CppParser::CloseBrace, 0);
 }
 
 CppParser::StatementSequenceContext* CppParser::CompoundStatementContext::statementSequence() {
@@ -7241,7 +7241,7 @@ CppParser::CompoundStatementContext* CppParser::compoundStatement() {
   try {
     enterOuterAlt(_localctx, 1);
     setState(1091);
-    match(CppParser::LeftBrace);
+    match(CppParser::OpenBrace);
     setState(1093);
     _errHandler->sync(this);
 
@@ -7307,9 +7307,9 @@ CppParser::CompoundStatementContext* CppParser::compoundStatement() {
       | (1ULL << (CppParser::Void - 64))
       | (1ULL << (CppParser::WChar - 64))
       | (1ULL << (CppParser::While - 64))
-      | (1ULL << (CppParser::LeftBrace - 64))
-      | (1ULL << (CppParser::LeftBracket - 64))
-      | (1ULL << (CppParser::LeftParenthesis - 64))
+      | (1ULL << (CppParser::OpenBrace - 64))
+      | (1ULL << (CppParser::OpenBracket - 64))
+      | (1ULL << (CppParser::OpenParenthesis - 64))
       | (1ULL << (CppParser::Semicolon - 64))
       | (1ULL << (CppParser::DoubleColon - 64))
       | (1ULL << (CppParser::Plus - 64))
@@ -7335,7 +7335,7 @@ CppParser::CompoundStatementContext* CppParser::compoundStatement() {
       statementSequence(0);
     }
     setState(1095);
-    match(CppParser::RightBrace);
+    match(CppParser::CloseBrace);
    
   }
   catch (RecognitionException &e) {
@@ -7449,16 +7449,16 @@ tree::TerminalNode* CppParser::SelectionStatementContext::If() {
   return getToken(CppParser::If, 0);
 }
 
-tree::TerminalNode* CppParser::SelectionStatementContext::LeftParenthesis() {
-  return getToken(CppParser::LeftParenthesis, 0);
+tree::TerminalNode* CppParser::SelectionStatementContext::OpenParenthesis() {
+  return getToken(CppParser::OpenParenthesis, 0);
 }
 
 CppParser::ConditionContext* CppParser::SelectionStatementContext::condition() {
   return getRuleContext<CppParser::ConditionContext>(0);
 }
 
-tree::TerminalNode* CppParser::SelectionStatementContext::RightParenthesis() {
-  return getToken(CppParser::RightParenthesis, 0);
+tree::TerminalNode* CppParser::SelectionStatementContext::CloseParenthesis() {
+  return getToken(CppParser::CloseParenthesis, 0);
 }
 
 std::vector<CppParser::StatementContext *> CppParser::SelectionStatementContext::statement() {
@@ -7535,7 +7535,7 @@ CppParser::SelectionStatementContext* CppParser::selectionStatement() {
         match(CppParser::ConstExpr);
       }
       setState(1111);
-      match(CppParser::LeftParenthesis);
+      match(CppParser::OpenParenthesis);
       setState(1113);
       _errHandler->sync(this);
 
@@ -7550,7 +7550,7 @@ CppParser::SelectionStatementContext* CppParser::selectionStatement() {
       setState(1115);
       condition();
       setState(1116);
-      match(CppParser::RightParenthesis);
+      match(CppParser::CloseParenthesis);
       setState(1117);
       statement();
       break;
@@ -7569,7 +7569,7 @@ CppParser::SelectionStatementContext* CppParser::selectionStatement() {
         match(CppParser::ConstExpr);
       }
       setState(1123);
-      match(CppParser::LeftParenthesis);
+      match(CppParser::OpenParenthesis);
       setState(1125);
       _errHandler->sync(this);
 
@@ -7584,7 +7584,7 @@ CppParser::SelectionStatementContext* CppParser::selectionStatement() {
       setState(1127);
       condition();
       setState(1128);
-      match(CppParser::RightParenthesis);
+      match(CppParser::CloseParenthesis);
       setState(1129);
       statement();
       setState(1130);
@@ -7599,7 +7599,7 @@ CppParser::SelectionStatementContext* CppParser::selectionStatement() {
       setState(1133);
       match(CppParser::Switch);
       setState(1134);
-      match(CppParser::LeftParenthesis);
+      match(CppParser::OpenParenthesis);
       setState(1136);
       _errHandler->sync(this);
 
@@ -7614,7 +7614,7 @@ CppParser::SelectionStatementContext* CppParser::selectionStatement() {
       setState(1138);
       condition();
       setState(1139);
-      match(CppParser::RightParenthesis);
+      match(CppParser::CloseParenthesis);
       setState(1140);
       statement();
       break;
@@ -7642,16 +7642,16 @@ tree::TerminalNode* CppParser::IterationStatementContext::While() {
   return getToken(CppParser::While, 0);
 }
 
-tree::TerminalNode* CppParser::IterationStatementContext::LeftParenthesis() {
-  return getToken(CppParser::LeftParenthesis, 0);
+tree::TerminalNode* CppParser::IterationStatementContext::OpenParenthesis() {
+  return getToken(CppParser::OpenParenthesis, 0);
 }
 
 CppParser::ConditionContext* CppParser::IterationStatementContext::condition() {
   return getRuleContext<CppParser::ConditionContext>(0);
 }
 
-tree::TerminalNode* CppParser::IterationStatementContext::RightParenthesis() {
-  return getToken(CppParser::RightParenthesis, 0);
+tree::TerminalNode* CppParser::IterationStatementContext::CloseParenthesis() {
+  return getToken(CppParser::CloseParenthesis, 0);
 }
 
 CppParser::StatementContext* CppParser::IterationStatementContext::statement() {
@@ -7732,11 +7732,11 @@ CppParser::IterationStatementContext* CppParser::iterationStatement() {
       setState(1144);
       match(CppParser::While);
       setState(1145);
-      match(CppParser::LeftParenthesis);
+      match(CppParser::OpenParenthesis);
       setState(1146);
       condition();
       setState(1147);
-      match(CppParser::RightParenthesis);
+      match(CppParser::CloseParenthesis);
       setState(1148);
       statement();
       break;
@@ -7751,11 +7751,11 @@ CppParser::IterationStatementContext* CppParser::iterationStatement() {
       setState(1152);
       match(CppParser::While);
       setState(1153);
-      match(CppParser::LeftParenthesis);
+      match(CppParser::OpenParenthesis);
       setState(1154);
       expression(0);
       setState(1155);
-      match(CppParser::RightParenthesis);
+      match(CppParser::CloseParenthesis);
       setState(1156);
       match(CppParser::Semicolon);
       break;
@@ -7766,7 +7766,7 @@ CppParser::IterationStatementContext* CppParser::iterationStatement() {
       setState(1158);
       match(CppParser::For);
       setState(1159);
-      match(CppParser::LeftParenthesis);
+      match(CppParser::OpenParenthesis);
       setState(1160);
       initializerStatement();
       setState(1162);
@@ -7817,8 +7817,8 @@ CppParser::IterationStatementContext* CppParser::iterationStatement() {
         | (1ULL << (CppParser::Virtual - 64))
         | (1ULL << (CppParser::Void - 64))
         | (1ULL << (CppParser::WChar - 64))
-        | (1ULL << (CppParser::LeftBracket - 64))
-        | (1ULL << (CppParser::LeftParenthesis - 64))
+        | (1ULL << (CppParser::OpenBracket - 64))
+        | (1ULL << (CppParser::OpenParenthesis - 64))
         | (1ULL << (CppParser::DoubleColon - 64))
         | (1ULL << (CppParser::Plus - 64))
         | (1ULL << (CppParser::Minus - 64))
@@ -7881,8 +7881,8 @@ CppParser::IterationStatementContext* CppParser::iterationStatement() {
         | (1ULL << (CppParser::Unsigned - 64))
         | (1ULL << (CppParser::Void - 64))
         | (1ULL << (CppParser::WChar - 64))
-        | (1ULL << (CppParser::LeftBracket - 64))
-        | (1ULL << (CppParser::LeftParenthesis - 64))
+        | (1ULL << (CppParser::OpenBracket - 64))
+        | (1ULL << (CppParser::OpenParenthesis - 64))
         | (1ULL << (CppParser::DoubleColon - 64))
         | (1ULL << (CppParser::Plus - 64))
         | (1ULL << (CppParser::Minus - 64))
@@ -7907,7 +7907,7 @@ CppParser::IterationStatementContext* CppParser::iterationStatement() {
         expression(0);
       }
       setState(1168);
-      match(CppParser::RightParenthesis);
+      match(CppParser::CloseParenthesis);
       setState(1169);
       statement();
       break;
@@ -7918,7 +7918,7 @@ CppParser::IterationStatementContext* CppParser::iterationStatement() {
       setState(1171);
       match(CppParser::For);
       setState(1172);
-      match(CppParser::LeftParenthesis);
+      match(CppParser::OpenParenthesis);
       setState(1173);
       forRangeDeclaration();
       setState(1174);
@@ -7926,7 +7926,7 @@ CppParser::IterationStatementContext* CppParser::iterationStatement() {
       setState(1175);
       forRangeInitializer();
       setState(1176);
-      match(CppParser::RightParenthesis);
+      match(CppParser::CloseParenthesis);
       setState(1177);
       statement();
       break;
@@ -7962,16 +7962,16 @@ CppParser::AttributeSpecifierSequenceContext* CppParser::ForInitializerStatement
   return getRuleContext<CppParser::AttributeSpecifierSequenceContext>(0);
 }
 
-tree::TerminalNode* CppParser::ForInitializerStatementContext::LeftBracket() {
-  return getToken(CppParser::LeftBracket, 0);
+tree::TerminalNode* CppParser::ForInitializerStatementContext::OpenBracket() {
+  return getToken(CppParser::OpenBracket, 0);
 }
 
 CppParser::IdentifierListContext* CppParser::ForInitializerStatementContext::identifierList() {
   return getRuleContext<CppParser::IdentifierListContext>(0);
 }
 
-tree::TerminalNode* CppParser::ForInitializerStatementContext::RightBracket() {
-  return getToken(CppParser::RightBracket, 0);
+tree::TerminalNode* CppParser::ForInitializerStatementContext::CloseBracket() {
+  return getToken(CppParser::CloseBracket, 0);
 }
 
 CppParser::ReferenceQualifierContext* CppParser::ForInitializerStatementContext::referenceQualifier() {
@@ -8021,7 +8021,7 @@ CppParser::ForInitializerStatementContext* CppParser::forInitializerStatement() 
       _errHandler->sync(this);
 
       _la = _input->LA(1);
-      if (_la == CppParser::AlignAs || _la == CppParser::LeftBracket) {
+      if (_la == CppParser::AlignAs || _la == CppParser::OpenBracket) {
         setState(1181);
         attributeSpecifierSequence(0);
       }
@@ -8038,7 +8038,7 @@ CppParser::ForInitializerStatementContext* CppParser::forInitializerStatement() 
       _errHandler->sync(this);
 
       _la = _input->LA(1);
-      if (_la == CppParser::AlignAs || _la == CppParser::LeftBracket) {
+      if (_la == CppParser::AlignAs || _la == CppParser::OpenBracket) {
         setState(1187);
         attributeSpecifierSequence(0);
       }
@@ -8053,11 +8053,11 @@ CppParser::ForInitializerStatementContext* CppParser::forInitializerStatement() 
         referenceQualifier();
       }
       setState(1194);
-      match(CppParser::LeftBracket);
+      match(CppParser::OpenBracket);
       setState(1195);
       identifierList(0);
       setState(1196);
-      match(CppParser::RightBracket);
+      match(CppParser::CloseBracket);
       break;
     }
 
@@ -8130,7 +8130,7 @@ CppParser::ForRangeDeclarationContext* CppParser::forRangeDeclaration() {
     _errHandler->sync(this);
 
     _la = _input->LA(1);
-    if (_la == CppParser::AlignAs || _la == CppParser::LeftBracket) {
+    if (_la == CppParser::AlignAs || _la == CppParser::OpenBracket) {
       setState(1200);
       attributeSpecifierSequence(0);
     }
@@ -8336,9 +8336,9 @@ CppParser::JumpStatementContext* CppParser::jumpStatement() {
           | (1ULL << (CppParser::Unsigned - 64))
           | (1ULL << (CppParser::Void - 64))
           | (1ULL << (CppParser::WChar - 64))
-          | (1ULL << (CppParser::LeftBrace - 64))
-          | (1ULL << (CppParser::LeftBracket - 64))
-          | (1ULL << (CppParser::LeftParenthesis - 64))
+          | (1ULL << (CppParser::OpenBrace - 64))
+          | (1ULL << (CppParser::OpenBracket - 64))
+          | (1ULL << (CppParser::OpenParenthesis - 64))
           | (1ULL << (CppParser::DoubleColon - 64))
           | (1ULL << (CppParser::Plus - 64))
           | (1ULL << (CppParser::Minus - 64))
@@ -8915,7 +8915,7 @@ CppParser::NoDeclarationSpecifierFunctionDeclarationContext* CppParser::noDeclar
     _errHandler->sync(this);
 
     _la = _input->LA(1);
-    if (_la == CppParser::AlignAs || _la == CppParser::LeftBracket) {
+    if (_la == CppParser::AlignAs || _la == CppParser::OpenBracket) {
       setState(1257);
       attributeSpecifierSequence(0);
     }
@@ -9007,7 +9007,7 @@ CppParser::AliasDeclarationContext* CppParser::aliasDeclaration() {
     _errHandler->sync(this);
 
     _la = _input->LA(1);
-    if (_la == CppParser::AlignAs || _la == CppParser::LeftBracket) {
+    if (_la == CppParser::AlignAs || _la == CppParser::OpenBracket) {
       setState(1265);
       attributeSpecifierSequence(0);
     }
@@ -9050,16 +9050,16 @@ CppParser::AttributeSpecifierSequenceContext* CppParser::SimpleDeclarationContex
   return getRuleContext<CppParser::AttributeSpecifierSequenceContext>(0);
 }
 
-tree::TerminalNode* CppParser::SimpleDeclarationContext::LeftBracket() {
-  return getToken(CppParser::LeftBracket, 0);
+tree::TerminalNode* CppParser::SimpleDeclarationContext::OpenBracket() {
+  return getToken(CppParser::OpenBracket, 0);
 }
 
 CppParser::IdentifierListContext* CppParser::SimpleDeclarationContext::identifierList() {
   return getRuleContext<CppParser::IdentifierListContext>(0);
 }
 
-tree::TerminalNode* CppParser::SimpleDeclarationContext::RightBracket() {
-  return getToken(CppParser::RightBracket, 0);
+tree::TerminalNode* CppParser::SimpleDeclarationContext::CloseBracket() {
+  return getToken(CppParser::CloseBracket, 0);
 }
 
 CppParser::InitializerContext* CppParser::SimpleDeclarationContext::initializer() {
@@ -9118,7 +9118,7 @@ CppParser::SimpleDeclarationContext* CppParser::simpleDeclaration() {
       if (_la == CppParser::DeclType
 
       || _la == CppParser::Operator || ((((_la - 84) & ~ 0x3fULL) == 0) &&
-        ((1ULL << (_la - 84)) & ((1ULL << (CppParser::LeftParenthesis - 84))
+        ((1ULL << (_la - 84)) & ((1ULL << (CppParser::OpenParenthesis - 84))
         | (1ULL << (CppParser::Ellipsis - 84))
         | (1ULL << (CppParser::DoubleColon - 84))
         | (1ULL << (CppParser::Asterisk - 84))
@@ -9153,7 +9153,7 @@ CppParser::SimpleDeclarationContext* CppParser::simpleDeclaration() {
       _errHandler->sync(this);
 
       _la = _input->LA(1);
-      if (_la == CppParser::AlignAs || _la == CppParser::LeftBracket) {
+      if (_la == CppParser::AlignAs || _la == CppParser::OpenBracket) {
         setState(1283);
         attributeSpecifierSequence(0);
       }
@@ -9168,11 +9168,11 @@ CppParser::SimpleDeclarationContext* CppParser::simpleDeclaration() {
         referenceQualifier();
       }
       setState(1290);
-      match(CppParser::LeftBracket);
+      match(CppParser::OpenBracket);
       setState(1291);
       identifierList(0);
       setState(1292);
-      match(CppParser::RightBracket);
+      match(CppParser::CloseBracket);
       setState(1293);
       initializer();
       setState(1294);
@@ -9202,16 +9202,16 @@ tree::TerminalNode* CppParser::StaticAssertDeclarationContext::StaticAssert() {
   return getToken(CppParser::StaticAssert, 0);
 }
 
-tree::TerminalNode* CppParser::StaticAssertDeclarationContext::LeftParenthesis() {
-  return getToken(CppParser::LeftParenthesis, 0);
+tree::TerminalNode* CppParser::StaticAssertDeclarationContext::OpenParenthesis() {
+  return getToken(CppParser::OpenParenthesis, 0);
 }
 
 CppParser::ConstantExpressionContext* CppParser::StaticAssertDeclarationContext::constantExpression() {
   return getRuleContext<CppParser::ConstantExpressionContext>(0);
 }
 
-tree::TerminalNode* CppParser::StaticAssertDeclarationContext::RightParenthesis() {
-  return getToken(CppParser::RightParenthesis, 0);
+tree::TerminalNode* CppParser::StaticAssertDeclarationContext::CloseParenthesis() {
+  return getToken(CppParser::CloseParenthesis, 0);
 }
 
 tree::TerminalNode* CppParser::StaticAssertDeclarationContext::Semicolon() {
@@ -9267,11 +9267,11 @@ CppParser::StaticAssertDeclarationContext* CppParser::staticAssertDeclaration() 
       setState(1298);
       match(CppParser::StaticAssert);
       setState(1299);
-      match(CppParser::LeftParenthesis);
+      match(CppParser::OpenParenthesis);
       setState(1300);
       constantExpression();
       setState(1301);
-      match(CppParser::RightParenthesis);
+      match(CppParser::CloseParenthesis);
       setState(1302);
       match(CppParser::Semicolon);
       break;
@@ -9282,7 +9282,7 @@ CppParser::StaticAssertDeclarationContext* CppParser::staticAssertDeclaration() 
       setState(1304);
       match(CppParser::StaticAssert);
       setState(1305);
-      match(CppParser::LeftParenthesis);
+      match(CppParser::OpenParenthesis);
       setState(1306);
       constantExpression();
       setState(1307);
@@ -9290,7 +9290,7 @@ CppParser::StaticAssertDeclarationContext* CppParser::staticAssertDeclaration() 
       setState(1308);
       match(CppParser::StringLiteral);
       setState(1309);
-      match(CppParser::RightParenthesis);
+      match(CppParser::CloseParenthesis);
       setState(1310);
       match(CppParser::Semicolon);
       break;
@@ -10431,16 +10431,16 @@ tree::TerminalNode* CppParser::DeclarationTypeSpecifierContext::DeclType() {
   return getToken(CppParser::DeclType, 0);
 }
 
-tree::TerminalNode* CppParser::DeclarationTypeSpecifierContext::LeftParenthesis() {
-  return getToken(CppParser::LeftParenthesis, 0);
+tree::TerminalNode* CppParser::DeclarationTypeSpecifierContext::OpenParenthesis() {
+  return getToken(CppParser::OpenParenthesis, 0);
 }
 
 CppParser::ExpressionContext* CppParser::DeclarationTypeSpecifierContext::expression() {
   return getRuleContext<CppParser::ExpressionContext>(0);
 }
 
-tree::TerminalNode* CppParser::DeclarationTypeSpecifierContext::RightParenthesis() {
-  return getToken(CppParser::RightParenthesis, 0);
+tree::TerminalNode* CppParser::DeclarationTypeSpecifierContext::CloseParenthesis() {
+  return getToken(CppParser::CloseParenthesis, 0);
 }
 
 tree::TerminalNode* CppParser::DeclarationTypeSpecifierContext::Auto() {
@@ -10488,11 +10488,11 @@ CppParser::DeclarationTypeSpecifierContext* CppParser::declarationTypeSpecifier(
       setState(1384);
       match(CppParser::DeclType);
       setState(1385);
-      match(CppParser::LeftParenthesis);
+      match(CppParser::OpenParenthesis);
       setState(1386);
       expression(0);
       setState(1387);
-      match(CppParser::RightParenthesis);
+      match(CppParser::CloseParenthesis);
       break;
     }
 
@@ -10501,11 +10501,11 @@ CppParser::DeclarationTypeSpecifierContext* CppParser::declarationTypeSpecifier(
       setState(1389);
       match(CppParser::DeclType);
       setState(1390);
-      match(CppParser::LeftParenthesis);
+      match(CppParser::OpenParenthesis);
       setState(1391);
       match(CppParser::Auto);
       setState(1392);
-      match(CppParser::RightParenthesis);
+      match(CppParser::CloseParenthesis);
       break;
     }
 
@@ -10600,7 +10600,7 @@ CppParser::ElaboratedTypeSpecifierContext* CppParser::elaboratedTypeSpecifier() 
       _errHandler->sync(this);
 
       _la = _input->LA(1);
-      if (_la == CppParser::AlignAs || _la == CppParser::LeftBracket) {
+      if (_la == CppParser::AlignAs || _la == CppParser::OpenBracket) {
         setState(1396);
         attributeSpecifierSequence(0);
       }
@@ -10690,12 +10690,12 @@ CppParser::EnumHeadContext* CppParser::EnumSpecifierContext::enumHead() {
   return getRuleContext<CppParser::EnumHeadContext>(0);
 }
 
-tree::TerminalNode* CppParser::EnumSpecifierContext::LeftBrace() {
-  return getToken(CppParser::LeftBrace, 0);
+tree::TerminalNode* CppParser::EnumSpecifierContext::OpenBrace() {
+  return getToken(CppParser::OpenBrace, 0);
 }
 
-tree::TerminalNode* CppParser::EnumSpecifierContext::RightBrace() {
-  return getToken(CppParser::RightBrace, 0);
+tree::TerminalNode* CppParser::EnumSpecifierContext::CloseBrace() {
+  return getToken(CppParser::CloseBrace, 0);
 }
 
 CppParser::EnumeratorListContext* CppParser::EnumSpecifierContext::enumeratorList() {
@@ -10748,7 +10748,7 @@ CppParser::EnumSpecifierContext* CppParser::enumSpecifier() {
       setState(1421);
       enumHead();
       setState(1422);
-      match(CppParser::LeftBrace);
+      match(CppParser::OpenBrace);
       setState(1424);
       _errHandler->sync(this);
 
@@ -10758,7 +10758,7 @@ CppParser::EnumSpecifierContext* CppParser::enumSpecifier() {
         enumeratorList(0);
       }
       setState(1426);
-      match(CppParser::RightBrace);
+      match(CppParser::CloseBrace);
       break;
     }
 
@@ -10767,13 +10767,13 @@ CppParser::EnumSpecifierContext* CppParser::enumSpecifier() {
       setState(1428);
       enumHead();
       setState(1429);
-      match(CppParser::LeftBrace);
+      match(CppParser::OpenBrace);
       setState(1430);
       enumeratorList(0);
       setState(1431);
       match(CppParser::Comma);
       setState(1432);
-      match(CppParser::RightBrace);
+      match(CppParser::CloseBrace);
       break;
     }
 
@@ -10852,7 +10852,7 @@ CppParser::EnumHeadContext* CppParser::enumHead() {
     _errHandler->sync(this);
 
     _la = _input->LA(1);
-    if (_la == CppParser::AlignAs || _la == CppParser::LeftBracket) {
+    if (_la == CppParser::AlignAs || _la == CppParser::OpenBracket) {
       setState(1437);
       attributeSpecifierSequence(0);
     }
@@ -11028,7 +11028,7 @@ CppParser::OpaqueEnumDeclarationContext* CppParser::opaqueEnumDeclaration() {
     _errHandler->sync(this);
 
     _la = _input->LA(1);
-    if (_la == CppParser::AlignAs || _la == CppParser::LeftBracket) {
+    if (_la == CppParser::AlignAs || _la == CppParser::OpenBracket) {
       setState(1452);
       attributeSpecifierSequence(0);
     }
@@ -11575,16 +11575,16 @@ tree::TerminalNode* CppParser::NamedNamespaceDefinitionContext::Identifier() {
   return getToken(CppParser::Identifier, 0);
 }
 
-tree::TerminalNode* CppParser::NamedNamespaceDefinitionContext::LeftBrace() {
-  return getToken(CppParser::LeftBrace, 0);
+tree::TerminalNode* CppParser::NamedNamespaceDefinitionContext::OpenBrace() {
+  return getToken(CppParser::OpenBrace, 0);
 }
 
 CppParser::NamespaceBodyContext* CppParser::NamedNamespaceDefinitionContext::namespaceBody() {
   return getRuleContext<CppParser::NamespaceBodyContext>(0);
 }
 
-tree::TerminalNode* CppParser::NamedNamespaceDefinitionContext::RightBrace() {
-  return getToken(CppParser::RightBrace, 0);
+tree::TerminalNode* CppParser::NamedNamespaceDefinitionContext::CloseBrace() {
+  return getToken(CppParser::CloseBrace, 0);
 }
 
 tree::TerminalNode* CppParser::NamedNamespaceDefinitionContext::Inline() {
@@ -11644,18 +11644,18 @@ CppParser::NamedNamespaceDefinitionContext* CppParser::namedNamespaceDefinition(
     _errHandler->sync(this);
 
     _la = _input->LA(1);
-    if (_la == CppParser::AlignAs || _la == CppParser::LeftBracket) {
+    if (_la == CppParser::AlignAs || _la == CppParser::OpenBracket) {
       setState(1505);
       attributeSpecifierSequence(0);
     }
     setState(1508);
     match(CppParser::Identifier);
     setState(1509);
-    match(CppParser::LeftBrace);
+    match(CppParser::OpenBrace);
     setState(1510);
     namespaceBody();
     setState(1511);
-    match(CppParser::RightBrace);
+    match(CppParser::CloseBrace);
    
   }
   catch (RecognitionException &e) {
@@ -11677,16 +11677,16 @@ tree::TerminalNode* CppParser::UnnamedNamespaceDefinitionContext::Namespace() {
   return getToken(CppParser::Namespace, 0);
 }
 
-tree::TerminalNode* CppParser::UnnamedNamespaceDefinitionContext::LeftBrace() {
-  return getToken(CppParser::LeftBrace, 0);
+tree::TerminalNode* CppParser::UnnamedNamespaceDefinitionContext::OpenBrace() {
+  return getToken(CppParser::OpenBrace, 0);
 }
 
 CppParser::NamespaceBodyContext* CppParser::UnnamedNamespaceDefinitionContext::namespaceBody() {
   return getRuleContext<CppParser::NamespaceBodyContext>(0);
 }
 
-tree::TerminalNode* CppParser::UnnamedNamespaceDefinitionContext::RightBrace() {
-  return getToken(CppParser::RightBrace, 0);
+tree::TerminalNode* CppParser::UnnamedNamespaceDefinitionContext::CloseBrace() {
+  return getToken(CppParser::CloseBrace, 0);
 }
 
 tree::TerminalNode* CppParser::UnnamedNamespaceDefinitionContext::Inline() {
@@ -11746,16 +11746,16 @@ CppParser::UnnamedNamespaceDefinitionContext* CppParser::unnamedNamespaceDefinit
     _errHandler->sync(this);
 
     _la = _input->LA(1);
-    if (_la == CppParser::AlignAs || _la == CppParser::LeftBracket) {
+    if (_la == CppParser::AlignAs || _la == CppParser::OpenBracket) {
       setState(1517);
       attributeSpecifierSequence(0);
     }
     setState(1520);
-    match(CppParser::LeftBrace);
+    match(CppParser::OpenBrace);
     setState(1521);
     namespaceBody();
     setState(1522);
-    match(CppParser::RightBrace);
+    match(CppParser::CloseBrace);
    
   }
   catch (RecognitionException &e) {
@@ -11789,16 +11789,16 @@ tree::TerminalNode* CppParser::NestedNamespaceDefinitionContext::Identifier() {
   return getToken(CppParser::Identifier, 0);
 }
 
-tree::TerminalNode* CppParser::NestedNamespaceDefinitionContext::LeftBrace() {
-  return getToken(CppParser::LeftBrace, 0);
+tree::TerminalNode* CppParser::NestedNamespaceDefinitionContext::OpenBrace() {
+  return getToken(CppParser::OpenBrace, 0);
 }
 
 CppParser::NamespaceBodyContext* CppParser::NestedNamespaceDefinitionContext::namespaceBody() {
   return getRuleContext<CppParser::NamespaceBodyContext>(0);
 }
 
-tree::TerminalNode* CppParser::NestedNamespaceDefinitionContext::RightBrace() {
-  return getToken(CppParser::RightBrace, 0);
+tree::TerminalNode* CppParser::NestedNamespaceDefinitionContext::CloseBrace() {
+  return getToken(CppParser::CloseBrace, 0);
 }
 
 
@@ -11844,11 +11844,11 @@ CppParser::NestedNamespaceDefinitionContext* CppParser::nestedNamespaceDefinitio
     setState(1527);
     match(CppParser::Identifier);
     setState(1528);
-    match(CppParser::LeftBrace);
+    match(CppParser::OpenBrace);
     setState(1529);
     namespaceBody();
     setState(1530);
-    match(CppParser::RightBrace);
+    match(CppParser::CloseBrace);
    
   }
   catch (RecognitionException &e) {
@@ -12018,8 +12018,8 @@ CppParser::NamespaceBodyContext* CppParser::namespaceBody() {
       | (1ULL << (CppParser::Virtual - 67))
       | (1ULL << (CppParser::Void - 67))
       | (1ULL << (CppParser::WChar - 67))
-      | (1ULL << (CppParser::LeftBracket - 67))
-      | (1ULL << (CppParser::LeftParenthesis - 67))
+      | (1ULL << (CppParser::OpenBracket - 67))
+      | (1ULL << (CppParser::OpenParenthesis - 67))
       | (1ULL << (CppParser::Semicolon - 67))
       | (1ULL << (CppParser::Ellipsis - 67))
       | (1ULL << (CppParser::DoubleColon - 67))
@@ -12534,7 +12534,7 @@ CppParser::UsingDirectiveContext* CppParser::usingDirective() {
     _errHandler->sync(this);
 
     _la = _input->LA(1);
-    if (_la == CppParser::AlignAs || _la == CppParser::LeftBracket) {
+    if (_la == CppParser::AlignAs || _la == CppParser::OpenBracket) {
       setState(1577);
       attributeSpecifierSequence(0);
     }
@@ -12578,16 +12578,16 @@ tree::TerminalNode* CppParser::AsmDefinitionContext::Asm() {
   return getToken(CppParser::Asm, 0);
 }
 
-tree::TerminalNode* CppParser::AsmDefinitionContext::LeftParenthesis() {
-  return getToken(CppParser::LeftParenthesis, 0);
+tree::TerminalNode* CppParser::AsmDefinitionContext::OpenParenthesis() {
+  return getToken(CppParser::OpenParenthesis, 0);
 }
 
 tree::TerminalNode* CppParser::AsmDefinitionContext::StringLiteral() {
   return getToken(CppParser::StringLiteral, 0);
 }
 
-tree::TerminalNode* CppParser::AsmDefinitionContext::RightParenthesis() {
-  return getToken(CppParser::RightParenthesis, 0);
+tree::TerminalNode* CppParser::AsmDefinitionContext::CloseParenthesis() {
+  return getToken(CppParser::CloseParenthesis, 0);
 }
 
 tree::TerminalNode* CppParser::AsmDefinitionContext::Semicolon() {
@@ -12637,18 +12637,18 @@ CppParser::AsmDefinitionContext* CppParser::asmDefinition() {
     _errHandler->sync(this);
 
     _la = _input->LA(1);
-    if (_la == CppParser::AlignAs || _la == CppParser::LeftBracket) {
+    if (_la == CppParser::AlignAs || _la == CppParser::OpenBracket) {
       setState(1588);
       attributeSpecifierSequence(0);
     }
     setState(1591);
     match(CppParser::Asm);
     setState(1592);
-    match(CppParser::LeftParenthesis);
+    match(CppParser::OpenParenthesis);
     setState(1593);
     match(CppParser::StringLiteral);
     setState(1594);
-    match(CppParser::RightParenthesis);
+    match(CppParser::CloseParenthesis);
     setState(1595);
     match(CppParser::Semicolon);
    
@@ -12676,12 +12676,12 @@ tree::TerminalNode* CppParser::LinkageSpecificationContext::StringLiteral() {
   return getToken(CppParser::StringLiteral, 0);
 }
 
-tree::TerminalNode* CppParser::LinkageSpecificationContext::LeftBrace() {
-  return getToken(CppParser::LeftBrace, 0);
+tree::TerminalNode* CppParser::LinkageSpecificationContext::OpenBrace() {
+  return getToken(CppParser::OpenBrace, 0);
 }
 
-tree::TerminalNode* CppParser::LinkageSpecificationContext::RightBrace() {
-  return getToken(CppParser::RightBrace, 0);
+tree::TerminalNode* CppParser::LinkageSpecificationContext::CloseBrace() {
+  return getToken(CppParser::CloseBrace, 0);
 }
 
 CppParser::DeclarationSequenceContext* CppParser::LinkageSpecificationContext::declarationSequence() {
@@ -12736,7 +12736,7 @@ CppParser::LinkageSpecificationContext* CppParser::linkageSpecification() {
       setState(1598);
       match(CppParser::StringLiteral);
       setState(1599);
-      match(CppParser::LeftBrace);
+      match(CppParser::OpenBrace);
       setState(1601);
       _errHandler->sync(this);
 
@@ -12775,8 +12775,8 @@ CppParser::LinkageSpecificationContext* CppParser::linkageSpecification() {
         | (1ULL << (CppParser::Virtual - 67))
         | (1ULL << (CppParser::Void - 67))
         | (1ULL << (CppParser::WChar - 67))
-        | (1ULL << (CppParser::LeftBracket - 67))
-        | (1ULL << (CppParser::LeftParenthesis - 67))
+        | (1ULL << (CppParser::OpenBracket - 67))
+        | (1ULL << (CppParser::OpenParenthesis - 67))
         | (1ULL << (CppParser::Semicolon - 67))
         | (1ULL << (CppParser::Ellipsis - 67))
         | (1ULL << (CppParser::DoubleColon - 67))
@@ -12788,7 +12788,7 @@ CppParser::LinkageSpecificationContext* CppParser::linkageSpecification() {
         declarationSequence(0);
       }
       setState(1603);
-      match(CppParser::RightBrace);
+      match(CppParser::CloseBrace);
       break;
     }
 
@@ -12913,24 +12913,24 @@ CppParser::AttributeSpecifierContext::AttributeSpecifierContext(ParserRuleContex
   : ParserRuleContext(parent, invokingState) {
 }
 
-std::vector<tree::TerminalNode *> CppParser::AttributeSpecifierContext::LeftBracket() {
-  return getTokens(CppParser::LeftBracket);
+std::vector<tree::TerminalNode *> CppParser::AttributeSpecifierContext::OpenBracket() {
+  return getTokens(CppParser::OpenBracket);
 }
 
-tree::TerminalNode* CppParser::AttributeSpecifierContext::LeftBracket(size_t i) {
-  return getToken(CppParser::LeftBracket, i);
+tree::TerminalNode* CppParser::AttributeSpecifierContext::OpenBracket(size_t i) {
+  return getToken(CppParser::OpenBracket, i);
 }
 
 CppParser::AttributeListContext* CppParser::AttributeSpecifierContext::attributeList() {
   return getRuleContext<CppParser::AttributeListContext>(0);
 }
 
-std::vector<tree::TerminalNode *> CppParser::AttributeSpecifierContext::RightBracket() {
-  return getTokens(CppParser::RightBracket);
+std::vector<tree::TerminalNode *> CppParser::AttributeSpecifierContext::CloseBracket() {
+  return getTokens(CppParser::CloseBracket);
 }
 
-tree::TerminalNode* CppParser::AttributeSpecifierContext::RightBracket(size_t i) {
-  return getToken(CppParser::RightBracket, i);
+tree::TerminalNode* CppParser::AttributeSpecifierContext::CloseBracket(size_t i) {
+  return getToken(CppParser::CloseBracket, i);
 }
 
 CppParser::AttributeUsingPrefixContext* CppParser::AttributeSpecifierContext::attributeUsingPrefix() {
@@ -12977,12 +12977,12 @@ CppParser::AttributeSpecifierContext* CppParser::attributeSpecifier() {
     setState(1629);
     _errHandler->sync(this);
     switch (_input->LA(1)) {
-      case CppParser::LeftBracket: {
+      case CppParser::OpenBracket: {
         enterOuterAlt(_localctx, 1);
         setState(1619);
-        match(CppParser::LeftBracket);
+        match(CppParser::OpenBracket);
         setState(1620);
-        match(CppParser::LeftBracket);
+        match(CppParser::OpenBracket);
         setState(1622);
         _errHandler->sync(this);
 
@@ -12997,9 +12997,9 @@ CppParser::AttributeSpecifierContext* CppParser::attributeSpecifier() {
         setState(1624);
         attributeList(0);
         setState(1625);
-        match(CppParser::RightBracket);
+        match(CppParser::CloseBracket);
         setState(1626);
-        match(CppParser::RightBracket);
+        match(CppParser::CloseBracket);
         break;
       }
 
@@ -13034,20 +13034,20 @@ tree::TerminalNode* CppParser::AlignmentSpecifierContext::AlignAs() {
   return getToken(CppParser::AlignAs, 0);
 }
 
-tree::TerminalNode* CppParser::AlignmentSpecifierContext::LeftParenthesis() {
-  return getToken(CppParser::LeftParenthesis, 0);
+tree::TerminalNode* CppParser::AlignmentSpecifierContext::OpenParenthesis() {
+  return getToken(CppParser::OpenParenthesis, 0);
 }
 
 CppParser::TypeIdentifierContext* CppParser::AlignmentSpecifierContext::typeIdentifier() {
   return getRuleContext<CppParser::TypeIdentifierContext>(0);
 }
 
-std::vector<tree::TerminalNode *> CppParser::AlignmentSpecifierContext::RightParenthesis() {
-  return getTokens(CppParser::RightParenthesis);
+std::vector<tree::TerminalNode *> CppParser::AlignmentSpecifierContext::CloseParenthesis() {
+  return getTokens(CppParser::CloseParenthesis);
 }
 
-tree::TerminalNode* CppParser::AlignmentSpecifierContext::RightParenthesis(size_t i) {
-  return getToken(CppParser::RightParenthesis, i);
+tree::TerminalNode* CppParser::AlignmentSpecifierContext::CloseParenthesis(size_t i) {
+  return getToken(CppParser::CloseParenthesis, i);
 }
 
 tree::TerminalNode* CppParser::AlignmentSpecifierContext::Ellipsis() {
@@ -13100,7 +13100,7 @@ CppParser::AlignmentSpecifierContext* CppParser::alignmentSpecifier() {
       setState(1631);
       match(CppParser::AlignAs);
       setState(1632);
-      match(CppParser::LeftParenthesis);
+      match(CppParser::OpenParenthesis);
       setState(1633);
       typeIdentifier();
       setState(1635);
@@ -13112,7 +13112,7 @@ CppParser::AlignmentSpecifierContext* CppParser::alignmentSpecifier() {
         match(CppParser::Ellipsis);
       }
       setState(1637);
-      match(CppParser::RightParenthesis);
+      match(CppParser::CloseParenthesis);
       break;
     }
 
@@ -13121,7 +13121,7 @@ CppParser::AlignmentSpecifierContext* CppParser::alignmentSpecifier() {
       setState(1639);
       match(CppParser::AlignAs);
       setState(1640);
-      match(CppParser::RightParenthesis);
+      match(CppParser::CloseParenthesis);
       setState(1641);
       constantExpression();
       setState(1643);
@@ -13133,7 +13133,7 @@ CppParser::AlignmentSpecifierContext* CppParser::alignmentSpecifier() {
         match(CppParser::Ellipsis);
       }
       setState(1645);
-      match(CppParser::RightParenthesis);
+      match(CppParser::CloseParenthesis);
       break;
     }
 
@@ -13657,12 +13657,12 @@ CppParser::AttributeArgumentClauseContext::AttributeArgumentClauseContext(Parser
   : ParserRuleContext(parent, invokingState) {
 }
 
-tree::TerminalNode* CppParser::AttributeArgumentClauseContext::LeftParenthesis() {
-  return getToken(CppParser::LeftParenthesis, 0);
+tree::TerminalNode* CppParser::AttributeArgumentClauseContext::OpenParenthesis() {
+  return getToken(CppParser::OpenParenthesis, 0);
 }
 
-tree::TerminalNode* CppParser::AttributeArgumentClauseContext::RightParenthesis() {
-  return getToken(CppParser::RightParenthesis, 0);
+tree::TerminalNode* CppParser::AttributeArgumentClauseContext::CloseParenthesis() {
+  return getToken(CppParser::CloseParenthesis, 0);
 }
 
 CppParser::BalancedTokenSequenceContext* CppParser::AttributeArgumentClauseContext::balancedTokenSequence() {
@@ -13705,7 +13705,7 @@ CppParser::AttributeArgumentClauseContext* CppParser::attributeArgumentClause() 
   try {
     enterOuterAlt(_localctx, 1);
     setState(1691);
-    match(CppParser::LeftParenthesis);
+    match(CppParser::OpenParenthesis);
     setState(1693);
     _errHandler->sync(this);
 
@@ -13790,9 +13790,9 @@ CppParser::AttributeArgumentClauseContext* CppParser::attributeArgumentClause() 
       | (1ULL << (CppParser::While - 64))
       | (1ULL << (CppParser::Override - 64))
       | (1ULL << (CppParser::Final - 64))
-      | (1ULL << (CppParser::LeftBrace - 64))
-      | (1ULL << (CppParser::LeftBracket - 64))
-      | (1ULL << (CppParser::LeftParenthesis - 64))
+      | (1ULL << (CppParser::OpenBrace - 64))
+      | (1ULL << (CppParser::OpenBracket - 64))
+      | (1ULL << (CppParser::OpenParenthesis - 64))
       | (1ULL << (CppParser::Semicolon - 64))
       | (1ULL << (CppParser::Colon - 64))
       | (1ULL << (CppParser::Ellipsis - 64))
@@ -13850,7 +13850,7 @@ CppParser::AttributeArgumentClauseContext* CppParser::attributeArgumentClause() 
       balancedTokenSequence(0);
     }
     setState(1695);
-    match(CppParser::RightParenthesis);
+    match(CppParser::CloseParenthesis);
    
   }
   catch (RecognitionException &e) {
@@ -13960,32 +13960,32 @@ CppParser::BalancedTokenContext::BalancedTokenContext(ParserRuleContext *parent,
   : ParserRuleContext(parent, invokingState) {
 }
 
-tree::TerminalNode* CppParser::BalancedTokenContext::LeftParenthesis() {
-  return getToken(CppParser::LeftParenthesis, 0);
+tree::TerminalNode* CppParser::BalancedTokenContext::OpenParenthesis() {
+  return getToken(CppParser::OpenParenthesis, 0);
 }
 
-tree::TerminalNode* CppParser::BalancedTokenContext::RightParenthesis() {
-  return getToken(CppParser::RightParenthesis, 0);
+tree::TerminalNode* CppParser::BalancedTokenContext::CloseParenthesis() {
+  return getToken(CppParser::CloseParenthesis, 0);
 }
 
 CppParser::BalancedTokenSequenceContext* CppParser::BalancedTokenContext::balancedTokenSequence() {
   return getRuleContext<CppParser::BalancedTokenSequenceContext>(0);
 }
 
-tree::TerminalNode* CppParser::BalancedTokenContext::LeftBracket() {
-  return getToken(CppParser::LeftBracket, 0);
+tree::TerminalNode* CppParser::BalancedTokenContext::OpenBracket() {
+  return getToken(CppParser::OpenBracket, 0);
 }
 
-tree::TerminalNode* CppParser::BalancedTokenContext::RightBracket() {
-  return getToken(CppParser::RightBracket, 0);
+tree::TerminalNode* CppParser::BalancedTokenContext::CloseBracket() {
+  return getToken(CppParser::CloseBracket, 0);
 }
 
-tree::TerminalNode* CppParser::BalancedTokenContext::LeftBrace() {
-  return getToken(CppParser::LeftBrace, 0);
+tree::TerminalNode* CppParser::BalancedTokenContext::OpenBrace() {
+  return getToken(CppParser::OpenBrace, 0);
 }
 
-tree::TerminalNode* CppParser::BalancedTokenContext::RightBrace() {
-  return getToken(CppParser::RightBrace, 0);
+tree::TerminalNode* CppParser::BalancedTokenContext::CloseBrace() {
+  return getToken(CppParser::CloseBrace, 0);
 }
 
 
@@ -14025,10 +14025,10 @@ CppParser::BalancedTokenContext* CppParser::balancedToken() {
     setState(1723);
     _errHandler->sync(this);
     switch (_input->LA(1)) {
-      case CppParser::LeftParenthesis: {
+      case CppParser::OpenParenthesis: {
         enterOuterAlt(_localctx, 1);
         setState(1707);
-        match(CppParser::LeftParenthesis);
+        match(CppParser::OpenParenthesis);
         setState(1709);
         _errHandler->sync(this);
 
@@ -14113,9 +14113,9 @@ CppParser::BalancedTokenContext* CppParser::balancedToken() {
           | (1ULL << (CppParser::While - 64))
           | (1ULL << (CppParser::Override - 64))
           | (1ULL << (CppParser::Final - 64))
-          | (1ULL << (CppParser::LeftBrace - 64))
-          | (1ULL << (CppParser::LeftBracket - 64))
-          | (1ULL << (CppParser::LeftParenthesis - 64))
+          | (1ULL << (CppParser::OpenBrace - 64))
+          | (1ULL << (CppParser::OpenBracket - 64))
+          | (1ULL << (CppParser::OpenParenthesis - 64))
           | (1ULL << (CppParser::Semicolon - 64))
           | (1ULL << (CppParser::Colon - 64))
           | (1ULL << (CppParser::Ellipsis - 64))
@@ -14173,14 +14173,14 @@ CppParser::BalancedTokenContext* CppParser::balancedToken() {
           balancedTokenSequence(0);
         }
         setState(1711);
-        match(CppParser::RightParenthesis);
+        match(CppParser::CloseParenthesis);
         break;
       }
 
-      case CppParser::LeftBracket: {
+      case CppParser::OpenBracket: {
         enterOuterAlt(_localctx, 2);
         setState(1712);
-        match(CppParser::LeftBracket);
+        match(CppParser::OpenBracket);
         setState(1714);
         _errHandler->sync(this);
 
@@ -14265,9 +14265,9 @@ CppParser::BalancedTokenContext* CppParser::balancedToken() {
           | (1ULL << (CppParser::While - 64))
           | (1ULL << (CppParser::Override - 64))
           | (1ULL << (CppParser::Final - 64))
-          | (1ULL << (CppParser::LeftBrace - 64))
-          | (1ULL << (CppParser::LeftBracket - 64))
-          | (1ULL << (CppParser::LeftParenthesis - 64))
+          | (1ULL << (CppParser::OpenBrace - 64))
+          | (1ULL << (CppParser::OpenBracket - 64))
+          | (1ULL << (CppParser::OpenParenthesis - 64))
           | (1ULL << (CppParser::Semicolon - 64))
           | (1ULL << (CppParser::Colon - 64))
           | (1ULL << (CppParser::Ellipsis - 64))
@@ -14325,14 +14325,14 @@ CppParser::BalancedTokenContext* CppParser::balancedToken() {
           balancedTokenSequence(0);
         }
         setState(1716);
-        match(CppParser::RightBracket);
+        match(CppParser::CloseBracket);
         break;
       }
 
-      case CppParser::LeftBrace: {
+      case CppParser::OpenBrace: {
         enterOuterAlt(_localctx, 3);
         setState(1717);
-        match(CppParser::LeftBrace);
+        match(CppParser::OpenBrace);
         setState(1719);
         _errHandler->sync(this);
 
@@ -14417,9 +14417,9 @@ CppParser::BalancedTokenContext* CppParser::balancedToken() {
           | (1ULL << (CppParser::While - 64))
           | (1ULL << (CppParser::Override - 64))
           | (1ULL << (CppParser::Final - 64))
-          | (1ULL << (CppParser::LeftBrace - 64))
-          | (1ULL << (CppParser::LeftBracket - 64))
-          | (1ULL << (CppParser::LeftParenthesis - 64))
+          | (1ULL << (CppParser::OpenBrace - 64))
+          | (1ULL << (CppParser::OpenBracket - 64))
+          | (1ULL << (CppParser::OpenParenthesis - 64))
           | (1ULL << (CppParser::Semicolon - 64))
           | (1ULL << (CppParser::Colon - 64))
           | (1ULL << (CppParser::Ellipsis - 64))
@@ -14477,7 +14477,7 @@ CppParser::BalancedTokenContext* CppParser::balancedToken() {
           balancedTokenSequence(0);
         }
         setState(1721);
-        match(CppParser::RightBrace);
+        match(CppParser::CloseBrace);
         break;
       }
 
@@ -14617,12 +14617,12 @@ CppParser::BalancedTokenContext* CppParser::balancedToken() {
         setState(1722);
         _la = _input->LA(1);
         if (_la == 0 || _la == Token::EOF || (((((_la - 80) & ~ 0x3fULL) == 0) &&
-          ((1ULL << (_la - 80)) & ((1ULL << (CppParser::LeftBrace - 80))
-          | (1ULL << (CppParser::RightBrace - 80))
-          | (1ULL << (CppParser::LeftBracket - 80))
-          | (1ULL << (CppParser::RightBracket - 80))
-          | (1ULL << (CppParser::LeftParenthesis - 80))
-          | (1ULL << (CppParser::RightParenthesis - 80)))) != 0))) {
+          ((1ULL << (_la - 80)) & ((1ULL << (CppParser::OpenBrace - 80))
+          | (1ULL << (CppParser::CloseBrace - 80))
+          | (1ULL << (CppParser::OpenBracket - 80))
+          | (1ULL << (CppParser::CloseBracket - 80))
+          | (1ULL << (CppParser::OpenParenthesis - 80))
+          | (1ULL << (CppParser::CloseParenthesis - 80)))) != 0))) {
         _errHandler->recoverInline(this);
         }
         else {
@@ -14973,28 +14973,28 @@ CppParser::AttributeSpecifierSequenceContext* CppParser::NoPointerDeclaratorCont
   return getRuleContext<CppParser::AttributeSpecifierSequenceContext>(0);
 }
 
-tree::TerminalNode* CppParser::NoPointerDeclaratorContext::LeftParenthesis() {
-  return getToken(CppParser::LeftParenthesis, 0);
+tree::TerminalNode* CppParser::NoPointerDeclaratorContext::OpenParenthesis() {
+  return getToken(CppParser::OpenParenthesis, 0);
 }
 
 CppParser::PointerDeclaratorContext* CppParser::NoPointerDeclaratorContext::pointerDeclarator() {
   return getRuleContext<CppParser::PointerDeclaratorContext>(0);
 }
 
-tree::TerminalNode* CppParser::NoPointerDeclaratorContext::RightParenthesis() {
-  return getToken(CppParser::RightParenthesis, 0);
+tree::TerminalNode* CppParser::NoPointerDeclaratorContext::CloseParenthesis() {
+  return getToken(CppParser::CloseParenthesis, 0);
 }
 
 CppParser::NoPointerDeclaratorContext* CppParser::NoPointerDeclaratorContext::noPointerDeclarator() {
   return getRuleContext<CppParser::NoPointerDeclaratorContext>(0);
 }
 
-tree::TerminalNode* CppParser::NoPointerDeclaratorContext::LeftBracket() {
-  return getToken(CppParser::LeftBracket, 0);
+tree::TerminalNode* CppParser::NoPointerDeclaratorContext::OpenBracket() {
+  return getToken(CppParser::OpenBracket, 0);
 }
 
-tree::TerminalNode* CppParser::NoPointerDeclaratorContext::RightBracket() {
-  return getToken(CppParser::RightBracket, 0);
+tree::TerminalNode* CppParser::NoPointerDeclaratorContext::CloseBracket() {
+  return getToken(CppParser::CloseBracket, 0);
 }
 
 CppParser::ConstantExpressionContext* CppParser::NoPointerDeclaratorContext::constantExpression() {
@@ -15084,13 +15084,13 @@ CppParser::NoPointerDeclaratorContext* CppParser::noPointerDeclarator(int preced
         break;
       }
 
-      case CppParser::LeftParenthesis: {
+      case CppParser::OpenParenthesis: {
         setState(1755);
-        match(CppParser::LeftParenthesis);
+        match(CppParser::OpenParenthesis);
         setState(1756);
         pointerDeclarator();
         setState(1757);
-        match(CppParser::RightParenthesis);
+        match(CppParser::CloseParenthesis);
         break;
       }
 
@@ -15116,7 +15116,7 @@ CppParser::NoPointerDeclaratorContext* CppParser::noPointerDeclarator(int preced
 
           if (!(precpred(_ctx, 3))) throw FailedPredicateException(this, "precpred(_ctx, 3)");
           setState(1762);
-          match(CppParser::LeftBracket);
+          match(CppParser::OpenBracket);
           setState(1764);
           _errHandler->sync(this);
 
@@ -15153,8 +15153,8 @@ CppParser::NoPointerDeclaratorContext* CppParser::noPointerDeclarator(int preced
             | (1ULL << (CppParser::Unsigned - 65))
             | (1ULL << (CppParser::Void - 65))
             | (1ULL << (CppParser::WChar - 65))
-            | (1ULL << (CppParser::LeftBracket - 65))
-            | (1ULL << (CppParser::LeftParenthesis - 65))
+            | (1ULL << (CppParser::OpenBracket - 65))
+            | (1ULL << (CppParser::OpenParenthesis - 65))
             | (1ULL << (CppParser::DoubleColon - 65))
             | (1ULL << (CppParser::Plus - 65))
             | (1ULL << (CppParser::Minus - 65))
@@ -15179,7 +15179,7 @@ CppParser::NoPointerDeclaratorContext* CppParser::noPointerDeclarator(int preced
             constantExpression();
           }
           setState(1766);
-          match(CppParser::RightBracket);
+          match(CppParser::CloseBracket);
           setState(1768);
           _errHandler->sync(this);
 
@@ -15289,16 +15289,16 @@ CppParser::FunctionParametersContext::FunctionParametersContext(ParserRuleContex
   : ParserRuleContext(parent, invokingState) {
 }
 
-tree::TerminalNode* CppParser::FunctionParametersContext::LeftParenthesis() {
-  return getToken(CppParser::LeftParenthesis, 0);
+tree::TerminalNode* CppParser::FunctionParametersContext::OpenParenthesis() {
+  return getToken(CppParser::OpenParenthesis, 0);
 }
 
 CppParser::ParameterDeclarationClauseContext* CppParser::FunctionParametersContext::parameterDeclarationClause() {
   return getRuleContext<CppParser::ParameterDeclarationClauseContext>(0);
 }
 
-tree::TerminalNode* CppParser::FunctionParametersContext::RightParenthesis() {
-  return getToken(CppParser::RightParenthesis, 0);
+tree::TerminalNode* CppParser::FunctionParametersContext::CloseParenthesis() {
+  return getToken(CppParser::CloseParenthesis, 0);
 }
 
 
@@ -15336,11 +15336,11 @@ CppParser::FunctionParametersContext* CppParser::functionParameters() {
   try {
     enterOuterAlt(_localctx, 1);
     setState(1780);
-    match(CppParser::LeftParenthesis);
+    match(CppParser::OpenParenthesis);
     setState(1781);
     parameterDeclarationClause();
     setState(1782);
-    match(CppParser::RightParenthesis);
+    match(CppParser::CloseParenthesis);
    
   }
   catch (RecognitionException &e) {
@@ -16038,8 +16038,8 @@ CppParser::DefiningTypeIdentifierContext* CppParser::definingTypeIdentifier() {
 
     _la = _input->LA(1);
     if (_la == CppParser::DeclType || ((((_la - 82) & ~ 0x3fULL) == 0) &&
-      ((1ULL << (_la - 82)) & ((1ULL << (CppParser::LeftBracket - 82))
-      | (1ULL << (CppParser::LeftParenthesis - 82))
+      ((1ULL << (_la - 82)) & ((1ULL << (CppParser::OpenBracket - 82))
+      | (1ULL << (CppParser::OpenParenthesis - 82))
       | (1ULL << (CppParser::Ellipsis - 82))
       | (1ULL << (CppParser::DoubleColon - 82))
       | (1ULL << (CppParser::Asterisk - 82))
@@ -16222,8 +16222,8 @@ CppParser::PointerAbstractDeclaratorContext* CppParser::pointerAbstractDeclarato
     setState(1856);
     _errHandler->sync(this);
     switch (_input->LA(1)) {
-      case CppParser::LeftBracket:
-      case CppParser::LeftParenthesis: {
+      case CppParser::OpenBracket:
+      case CppParser::OpenParenthesis: {
         enterOuterAlt(_localctx, 1);
         setState(1851);
         noPointerAbstractDeclarator(0);
@@ -16277,12 +16277,12 @@ CppParser::ParametersAndQualifiersContext* CppParser::NoPointerAbstractDeclarato
   return getRuleContext<CppParser::ParametersAndQualifiersContext>(0);
 }
 
-tree::TerminalNode* CppParser::NoPointerAbstractDeclaratorContext::LeftBracket() {
-  return getToken(CppParser::LeftBracket, 0);
+tree::TerminalNode* CppParser::NoPointerAbstractDeclaratorContext::OpenBracket() {
+  return getToken(CppParser::OpenBracket, 0);
 }
 
-tree::TerminalNode* CppParser::NoPointerAbstractDeclaratorContext::RightBracket() {
-  return getToken(CppParser::RightBracket, 0);
+tree::TerminalNode* CppParser::NoPointerAbstractDeclaratorContext::CloseBracket() {
+  return getToken(CppParser::CloseBracket, 0);
 }
 
 CppParser::ConstantExpressionContext* CppParser::NoPointerAbstractDeclaratorContext::constantExpression() {
@@ -16293,16 +16293,16 @@ CppParser::AttributeSpecifierSequenceContext* CppParser::NoPointerAbstractDeclar
   return getRuleContext<CppParser::AttributeSpecifierSequenceContext>(0);
 }
 
-tree::TerminalNode* CppParser::NoPointerAbstractDeclaratorContext::LeftParenthesis() {
-  return getToken(CppParser::LeftParenthesis, 0);
+tree::TerminalNode* CppParser::NoPointerAbstractDeclaratorContext::OpenParenthesis() {
+  return getToken(CppParser::OpenParenthesis, 0);
 }
 
 CppParser::PointerAbstractDeclaratorContext* CppParser::NoPointerAbstractDeclaratorContext::pointerAbstractDeclarator() {
   return getRuleContext<CppParser::PointerAbstractDeclaratorContext>(0);
 }
 
-tree::TerminalNode* CppParser::NoPointerAbstractDeclaratorContext::RightParenthesis() {
-  return getToken(CppParser::RightParenthesis, 0);
+tree::TerminalNode* CppParser::NoPointerAbstractDeclaratorContext::CloseParenthesis() {
+  return getToken(CppParser::CloseParenthesis, 0);
 }
 
 CppParser::NoPointerAbstractDeclaratorContext* CppParser::NoPointerAbstractDeclaratorContext::noPointerAbstractDeclarator() {
@@ -16366,7 +16366,7 @@ CppParser::NoPointerAbstractDeclaratorContext* CppParser::noPointerAbstractDecla
 
     case 2: {
       setState(1860);
-      match(CppParser::LeftBracket);
+      match(CppParser::OpenBracket);
       setState(1862);
       _errHandler->sync(this);
 
@@ -16403,8 +16403,8 @@ CppParser::NoPointerAbstractDeclaratorContext* CppParser::noPointerAbstractDecla
         | (1ULL << (CppParser::Unsigned - 65))
         | (1ULL << (CppParser::Void - 65))
         | (1ULL << (CppParser::WChar - 65))
-        | (1ULL << (CppParser::LeftBracket - 65))
-        | (1ULL << (CppParser::LeftParenthesis - 65))
+        | (1ULL << (CppParser::OpenBracket - 65))
+        | (1ULL << (CppParser::OpenParenthesis - 65))
         | (1ULL << (CppParser::DoubleColon - 65))
         | (1ULL << (CppParser::Plus - 65))
         | (1ULL << (CppParser::Minus - 65))
@@ -16429,7 +16429,7 @@ CppParser::NoPointerAbstractDeclaratorContext* CppParser::noPointerAbstractDecla
         constantExpression();
       }
       setState(1864);
-      match(CppParser::RightBracket);
+      match(CppParser::CloseBracket);
       setState(1866);
       _errHandler->sync(this);
 
@@ -16446,11 +16446,11 @@ CppParser::NoPointerAbstractDeclaratorContext* CppParser::noPointerAbstractDecla
 
     case 3: {
       setState(1868);
-      match(CppParser::LeftParenthesis);
+      match(CppParser::OpenParenthesis);
       setState(1869);
       pointerAbstractDeclarator();
       setState(1870);
-      match(CppParser::RightParenthesis);
+      match(CppParser::CloseParenthesis);
       break;
     }
 
@@ -16485,7 +16485,7 @@ CppParser::NoPointerAbstractDeclaratorContext* CppParser::noPointerAbstractDecla
 
           if (!(precpred(_ctx, 2))) throw FailedPredicateException(this, "precpred(_ctx, 2)");
           setState(1877);
-          match(CppParser::LeftBracket);
+          match(CppParser::OpenBracket);
           setState(1879);
           _errHandler->sync(this);
 
@@ -16522,8 +16522,8 @@ CppParser::NoPointerAbstractDeclaratorContext* CppParser::noPointerAbstractDecla
             | (1ULL << (CppParser::Unsigned - 65))
             | (1ULL << (CppParser::Void - 65))
             | (1ULL << (CppParser::WChar - 65))
-            | (1ULL << (CppParser::LeftBracket - 65))
-            | (1ULL << (CppParser::LeftParenthesis - 65))
+            | (1ULL << (CppParser::OpenBracket - 65))
+            | (1ULL << (CppParser::OpenParenthesis - 65))
             | (1ULL << (CppParser::DoubleColon - 65))
             | (1ULL << (CppParser::Plus - 65))
             | (1ULL << (CppParser::Minus - 65))
@@ -16548,7 +16548,7 @@ CppParser::NoPointerAbstractDeclaratorContext* CppParser::noPointerAbstractDecla
             constantExpression();
           }
           setState(1881);
-          match(CppParser::RightBracket);
+          match(CppParser::CloseBracket);
           setState(1883);
           _errHandler->sync(this);
 
@@ -16685,12 +16685,12 @@ CppParser::ParametersAndQualifiersContext* CppParser::NoPointerAbstractPackDecla
   return getRuleContext<CppParser::ParametersAndQualifiersContext>(0);
 }
 
-tree::TerminalNode* CppParser::NoPointerAbstractPackDeclaratorContext::LeftBracket() {
-  return getToken(CppParser::LeftBracket, 0);
+tree::TerminalNode* CppParser::NoPointerAbstractPackDeclaratorContext::OpenBracket() {
+  return getToken(CppParser::OpenBracket, 0);
 }
 
-tree::TerminalNode* CppParser::NoPointerAbstractPackDeclaratorContext::RightBracket() {
-  return getToken(CppParser::RightBracket, 0);
+tree::TerminalNode* CppParser::NoPointerAbstractPackDeclaratorContext::CloseBracket() {
+  return getToken(CppParser::CloseBracket, 0);
 }
 
 CppParser::ConstantExpressionContext* CppParser::NoPointerAbstractPackDeclaratorContext::constantExpression() {
@@ -16779,7 +16779,7 @@ CppParser::NoPointerAbstractPackDeclaratorContext* CppParser::noPointerAbstractP
 
           if (!(precpred(_ctx, 2))) throw FailedPredicateException(this, "precpred(_ctx, 2)");
           setState(1902);
-          match(CppParser::LeftBracket);
+          match(CppParser::OpenBracket);
           setState(1904);
           _errHandler->sync(this);
 
@@ -16816,8 +16816,8 @@ CppParser::NoPointerAbstractPackDeclaratorContext* CppParser::noPointerAbstractP
             | (1ULL << (CppParser::Unsigned - 65))
             | (1ULL << (CppParser::Void - 65))
             | (1ULL << (CppParser::WChar - 65))
-            | (1ULL << (CppParser::LeftBracket - 65))
-            | (1ULL << (CppParser::LeftParenthesis - 65))
+            | (1ULL << (CppParser::OpenBracket - 65))
+            | (1ULL << (CppParser::OpenParenthesis - 65))
             | (1ULL << (CppParser::DoubleColon - 65))
             | (1ULL << (CppParser::Plus - 65))
             | (1ULL << (CppParser::Minus - 65))
@@ -16842,7 +16842,7 @@ CppParser::NoPointerAbstractPackDeclaratorContext* CppParser::noPointerAbstractP
             constantExpression();
           }
           setState(1906);
-          match(CppParser::RightBracket);
+          match(CppParser::CloseBracket);
           setState(1908);
           _errHandler->sync(this);
 
@@ -16960,7 +16960,7 @@ CppParser::ParameterDeclarationClauseContext* CppParser::parameterDeclarationCla
         | (1ULL << (CppParser::Virtual - 67))
         | (1ULL << (CppParser::Void - 67))
         | (1ULL << (CppParser::WChar - 67))
-        | (1ULL << (CppParser::LeftBracket - 67)))) != 0)) {
+        | (1ULL << (CppParser::OpenBracket - 67)))) != 0)) {
         setState(1915);
         parameterDeclarationList(0);
       }
@@ -17165,7 +17165,7 @@ CppParser::ParameterDeclarationContext* CppParser::parameterDeclaration() {
       _errHandler->sync(this);
 
       _la = _input->LA(1);
-      if (_la == CppParser::AlignAs || _la == CppParser::LeftBracket) {
+      if (_la == CppParser::AlignAs || _la == CppParser::OpenBracket) {
         setState(1938);
         attributeSpecifierSequence(0);
       }
@@ -17182,7 +17182,7 @@ CppParser::ParameterDeclarationContext* CppParser::parameterDeclaration() {
       _errHandler->sync(this);
 
       _la = _input->LA(1);
-      if (_la == CppParser::AlignAs || _la == CppParser::LeftBracket) {
+      if (_la == CppParser::AlignAs || _la == CppParser::OpenBracket) {
         setState(1944);
         attributeSpecifierSequence(0);
       }
@@ -17274,7 +17274,7 @@ CppParser::FunctionDefinitionContext* CppParser::functionDefinition() {
     _errHandler->sync(this);
 
     _la = _input->LA(1);
-    if (_la == CppParser::AlignAs || _la == CppParser::LeftBracket) {
+    if (_la == CppParser::AlignAs || _la == CppParser::OpenBracket) {
       setState(1954);
       attributeSpecifierSequence(0);
     }
@@ -17822,7 +17822,7 @@ CppParser::BraceOrEqualInitializerContext* CppParser::braceOrEqualInitializer() 
         break;
       }
 
-      case CppParser::LeftBrace: {
+      case CppParser::OpenBrace: {
         enterOuterAlt(_localctx, 2);
         setState(1995);
         bracedInitializerList();
@@ -17925,8 +17925,8 @@ CppParser::InitializerClauseContext* CppParser::initializerClause() {
       case CppParser::Unsigned:
       case CppParser::Void:
       case CppParser::WChar:
-      case CppParser::LeftBracket:
-      case CppParser::LeftParenthesis:
+      case CppParser::OpenBracket:
+      case CppParser::OpenParenthesis:
       case CppParser::DoubleColon:
       case CppParser::Plus:
       case CppParser::Minus:
@@ -17953,7 +17953,7 @@ CppParser::InitializerClauseContext* CppParser::initializerClause() {
         break;
       }
 
-      case CppParser::LeftBrace: {
+      case CppParser::OpenBrace: {
         enterOuterAlt(_localctx, 2);
         setState(1999);
         bracedInitializerList();
@@ -18104,16 +18104,16 @@ CppParser::BracedInitializerListContext::BracedInitializerListContext(ParserRule
   : ParserRuleContext(parent, invokingState) {
 }
 
-tree::TerminalNode* CppParser::BracedInitializerListContext::LeftBrace() {
-  return getToken(CppParser::LeftBrace, 0);
+tree::TerminalNode* CppParser::BracedInitializerListContext::OpenBrace() {
+  return getToken(CppParser::OpenBrace, 0);
 }
 
 CppParser::InitializerListContext* CppParser::BracedInitializerListContext::initializerList() {
   return getRuleContext<CppParser::InitializerListContext>(0);
 }
 
-tree::TerminalNode* CppParser::BracedInitializerListContext::RightBrace() {
-  return getToken(CppParser::RightBrace, 0);
+tree::TerminalNode* CppParser::BracedInitializerListContext::CloseBrace() {
+  return getToken(CppParser::CloseBrace, 0);
 }
 
 tree::TerminalNode* CppParser::BracedInitializerListContext::Comma() {
@@ -18160,7 +18160,7 @@ CppParser::BracedInitializerListContext* CppParser::bracedInitializerList() {
     case 1: {
       enterOuterAlt(_localctx, 1);
       setState(2018);
-      match(CppParser::LeftBrace);
+      match(CppParser::OpenBrace);
       setState(2019);
       initializerList(0);
       setState(2021);
@@ -18172,16 +18172,16 @@ CppParser::BracedInitializerListContext* CppParser::bracedInitializerList() {
         match(CppParser::Comma);
       }
       setState(2023);
-      match(CppParser::RightBrace);
+      match(CppParser::CloseBrace);
       break;
     }
 
     case 2: {
       enterOuterAlt(_localctx, 2);
       setState(2025);
-      match(CppParser::LeftBrace);
+      match(CppParser::OpenBrace);
       setState(2026);
-      match(CppParser::RightBrace);
+      match(CppParser::CloseBrace);
       break;
     }
 
@@ -18279,8 +18279,8 @@ CppParser::ExpressionOrBracedInitializerListContext* CppParser::expressionOrBrac
       case CppParser::Unsigned:
       case CppParser::Void:
       case CppParser::WChar:
-      case CppParser::LeftBracket:
-      case CppParser::LeftParenthesis:
+      case CppParser::OpenBracket:
+      case CppParser::OpenParenthesis:
       case CppParser::DoubleColon:
       case CppParser::Plus:
       case CppParser::Minus:
@@ -18307,7 +18307,7 @@ CppParser::ExpressionOrBracedInitializerListContext* CppParser::expressionOrBrac
         break;
       }
 
-      case CppParser::LeftBrace: {
+      case CppParser::OpenBrace: {
         enterOuterAlt(_localctx, 2);
         setState(2030);
         bracedInitializerList();
@@ -18338,12 +18338,12 @@ CppParser::ClassHeadContext* CppParser::ClassSpecifierContext::classHead() {
   return getRuleContext<CppParser::ClassHeadContext>(0);
 }
 
-tree::TerminalNode* CppParser::ClassSpecifierContext::LeftBrace() {
-  return getToken(CppParser::LeftBrace, 0);
+tree::TerminalNode* CppParser::ClassSpecifierContext::OpenBrace() {
+  return getToken(CppParser::OpenBrace, 0);
 }
 
-tree::TerminalNode* CppParser::ClassSpecifierContext::RightBrace() {
-  return getToken(CppParser::RightBrace, 0);
+tree::TerminalNode* CppParser::ClassSpecifierContext::CloseBrace() {
+  return getToken(CppParser::CloseBrace, 0);
 }
 
 CppParser::MemberSpecificationContext* CppParser::ClassSpecifierContext::memberSpecification() {
@@ -18388,7 +18388,7 @@ CppParser::ClassSpecifierContext* CppParser::classSpecifier() {
     setState(2033);
     classHead();
     setState(2034);
-    match(CppParser::LeftBrace);
+    match(CppParser::OpenBrace);
     setState(2036);
     _errHandler->sync(this);
 
@@ -18427,8 +18427,8 @@ CppParser::ClassSpecifierContext* CppParser::classSpecifier() {
       | (1ULL << (CppParser::Virtual - 67))
       | (1ULL << (CppParser::Void - 67))
       | (1ULL << (CppParser::WChar - 67))
-      | (1ULL << (CppParser::LeftBracket - 67))
-      | (1ULL << (CppParser::LeftParenthesis - 67))
+      | (1ULL << (CppParser::OpenBracket - 67))
+      | (1ULL << (CppParser::OpenParenthesis - 67))
       | (1ULL << (CppParser::Semicolon - 67))
       | (1ULL << (CppParser::Colon - 67))
       | (1ULL << (CppParser::Ellipsis - 67))
@@ -18441,7 +18441,7 @@ CppParser::ClassSpecifierContext* CppParser::classSpecifier() {
       memberSpecification();
     }
     setState(2038);
-    match(CppParser::RightBrace);
+    match(CppParser::CloseBrace);
    
   }
   catch (RecognitionException &e) {
@@ -18528,7 +18528,7 @@ CppParser::ClassHeadContext* CppParser::classHead() {
       _errHandler->sync(this);
 
       _la = _input->LA(1);
-      if (_la == CppParser::AlignAs || _la == CppParser::LeftBracket) {
+      if (_la == CppParser::AlignAs || _la == CppParser::OpenBracket) {
         setState(2041);
         attributeSpecifierSequence(0);
       }
@@ -18561,7 +18561,7 @@ CppParser::ClassHeadContext* CppParser::classHead() {
       _errHandler->sync(this);
 
       _la = _input->LA(1);
-      if (_la == CppParser::AlignAs || _la == CppParser::LeftBracket) {
+      if (_la == CppParser::AlignAs || _la == CppParser::OpenBracket) {
         setState(2052);
         attributeSpecifier();
       }
@@ -18882,8 +18882,8 @@ CppParser::MemberSpecificationContext* CppParser::memberSpecification() {
       case CppParser::Virtual:
       case CppParser::Void:
       case CppParser::WChar:
-      case CppParser::LeftBracket:
-      case CppParser::LeftParenthesis:
+      case CppParser::OpenBracket:
+      case CppParser::OpenParenthesis:
       case CppParser::Semicolon:
       case CppParser::Colon:
       case CppParser::Ellipsis:
@@ -18934,8 +18934,8 @@ CppParser::MemberSpecificationContext* CppParser::memberSpecification() {
           | (1ULL << (CppParser::Virtual - 67))
           | (1ULL << (CppParser::Void - 67))
           | (1ULL << (CppParser::WChar - 67))
-          | (1ULL << (CppParser::LeftBracket - 67))
-          | (1ULL << (CppParser::LeftParenthesis - 67))
+          | (1ULL << (CppParser::OpenBracket - 67))
+          | (1ULL << (CppParser::OpenParenthesis - 67))
           | (1ULL << (CppParser::Semicolon - 67))
           | (1ULL << (CppParser::Colon - 67))
           | (1ULL << (CppParser::Ellipsis - 67))
@@ -18996,8 +18996,8 @@ CppParser::MemberSpecificationContext* CppParser::memberSpecification() {
           | (1ULL << (CppParser::Virtual - 67))
           | (1ULL << (CppParser::Void - 67))
           | (1ULL << (CppParser::WChar - 67))
-          | (1ULL << (CppParser::LeftBracket - 67))
-          | (1ULL << (CppParser::LeftParenthesis - 67))
+          | (1ULL << (CppParser::OpenBracket - 67))
+          | (1ULL << (CppParser::OpenParenthesis - 67))
           | (1ULL << (CppParser::Semicolon - 67))
           | (1ULL << (CppParser::Colon - 67))
           | (1ULL << (CppParser::Ellipsis - 67))
@@ -19145,8 +19145,8 @@ CppParser::MemberDeclarationContext* CppParser::memberDeclaration() {
         ((1ULL << _la) & ((1ULL << CppParser::AlignAs)
         | (1ULL << CppParser::DeclType)
         | (1ULL << CppParser::Operator))) != 0) || ((((_la - 82) & ~ 0x3fULL) == 0) &&
-        ((1ULL << (_la - 82)) & ((1ULL << (CppParser::LeftBracket - 82))
-        | (1ULL << (CppParser::LeftParenthesis - 82))
+        ((1ULL << (_la - 82)) & ((1ULL << (CppParser::OpenBracket - 82))
+        | (1ULL << (CppParser::OpenParenthesis - 82))
         | (1ULL << (CppParser::Colon - 82))
         | (1ULL << (CppParser::Ellipsis - 82))
         | (1ULL << (CppParser::DoubleColon - 82))
@@ -19458,7 +19458,7 @@ CppParser::MemberDeclaratorContext* CppParser::memberDeclarator() {
       _errHandler->sync(this);
 
       _la = _input->LA(1);
-      if (_la == CppParser::AlignAs || _la == CppParser::LeftBracket) {
+      if (_la == CppParser::AlignAs || _la == CppParser::OpenBracket) {
         setState(2124);
         attributeSpecifierSequence(0);
       }
@@ -19959,7 +19959,7 @@ CppParser::BaseSpecifierContext* CppParser::baseSpecifier() {
       _errHandler->sync(this);
 
       _la = _input->LA(1);
-      if (_la == CppParser::AlignAs || _la == CppParser::LeftBracket) {
+      if (_la == CppParser::AlignAs || _la == CppParser::OpenBracket) {
         setState(2165);
         attributeSpecifierSequence(0);
       }
@@ -19974,7 +19974,7 @@ CppParser::BaseSpecifierContext* CppParser::baseSpecifier() {
       _errHandler->sync(this);
 
       _la = _input->LA(1);
-      if (_la == CppParser::AlignAs || _la == CppParser::LeftBracket) {
+      if (_la == CppParser::AlignAs || _la == CppParser::OpenBracket) {
         setState(2169);
         attributeSpecifierSequence(0);
       }
@@ -20002,7 +20002,7 @@ CppParser::BaseSpecifierContext* CppParser::baseSpecifier() {
       _errHandler->sync(this);
 
       _la = _input->LA(1);
-      if (_la == CppParser::AlignAs || _la == CppParser::LeftBracket) {
+      if (_la == CppParser::AlignAs || _la == CppParser::OpenBracket) {
         setState(2177);
         attributeSpecifierSequence(0);
       }
@@ -20627,12 +20627,12 @@ CppParser::MemberInitializerIdentifierContext* CppParser::MemberInitializerConte
   return getRuleContext<CppParser::MemberInitializerIdentifierContext>(i);
 }
 
-tree::TerminalNode* CppParser::MemberInitializerContext::LeftParenthesis() {
-  return getToken(CppParser::LeftParenthesis, 0);
+tree::TerminalNode* CppParser::MemberInitializerContext::OpenParenthesis() {
+  return getToken(CppParser::OpenParenthesis, 0);
 }
 
-tree::TerminalNode* CppParser::MemberInitializerContext::RightParenthesis() {
-  return getToken(CppParser::RightParenthesis, 0);
+tree::TerminalNode* CppParser::MemberInitializerContext::CloseParenthesis() {
+  return getToken(CppParser::CloseParenthesis, 0);
 }
 
 CppParser::BracedInitializerListContext* CppParser::MemberInitializerContext::bracedInitializerList() {
@@ -20681,7 +20681,7 @@ CppParser::MemberInitializerContext* CppParser::memberInitializer() {
     setState(2231);
     memberInitializerIdentifier();
     setState(2232);
-    match(CppParser::LeftParenthesis);
+    match(CppParser::OpenParenthesis);
     setState(2234);
     _errHandler->sync(this);
 
@@ -20719,9 +20719,9 @@ CppParser::MemberInitializerContext* CppParser::memberInitializer() {
       | (1ULL << (CppParser::Unsigned - 64))
       | (1ULL << (CppParser::Void - 64))
       | (1ULL << (CppParser::WChar - 64))
-      | (1ULL << (CppParser::LeftBrace - 64))
-      | (1ULL << (CppParser::LeftBracket - 64))
-      | (1ULL << (CppParser::LeftParenthesis - 64))
+      | (1ULL << (CppParser::OpenBrace - 64))
+      | (1ULL << (CppParser::OpenBracket - 64))
+      | (1ULL << (CppParser::OpenParenthesis - 64))
       | (1ULL << (CppParser::DoubleColon - 64))
       | (1ULL << (CppParser::Plus - 64))
       | (1ULL << (CppParser::Minus - 64))
@@ -20746,7 +20746,7 @@ CppParser::MemberInitializerContext* CppParser::memberInitializer() {
       expressionList();
     }
     setState(2236);
-    match(CppParser::RightParenthesis);
+    match(CppParser::CloseParenthesis);
     setState(2237);
     memberInitializerIdentifier();
     setState(2238);
@@ -20915,12 +20915,12 @@ tree::TerminalNode* CppParser::AnyOperatorContext::Delete() {
   return getToken(CppParser::Delete, 0);
 }
 
-tree::TerminalNode* CppParser::AnyOperatorContext::LeftBrace() {
-  return getToken(CppParser::LeftBrace, 0);
+tree::TerminalNode* CppParser::AnyOperatorContext::OpenBrace() {
+  return getToken(CppParser::OpenBrace, 0);
 }
 
-tree::TerminalNode* CppParser::AnyOperatorContext::RightBracket() {
-  return getToken(CppParser::RightBracket, 0);
+tree::TerminalNode* CppParser::AnyOperatorContext::CloseBracket() {
+  return getToken(CppParser::CloseBracket, 0);
 }
 
 tree::TerminalNode* CppParser::AnyOperatorContext::Plus() {
@@ -21067,16 +21067,16 @@ tree::TerminalNode* CppParser::AnyOperatorContext::Arrow() {
   return getToken(CppParser::Arrow, 0);
 }
 
-tree::TerminalNode* CppParser::AnyOperatorContext::LeftParenthesis() {
-  return getToken(CppParser::LeftParenthesis, 0);
+tree::TerminalNode* CppParser::AnyOperatorContext::OpenParenthesis() {
+  return getToken(CppParser::OpenParenthesis, 0);
 }
 
-tree::TerminalNode* CppParser::AnyOperatorContext::RightParenthesis() {
-  return getToken(CppParser::RightParenthesis, 0);
+tree::TerminalNode* CppParser::AnyOperatorContext::CloseParenthesis() {
+  return getToken(CppParser::CloseParenthesis, 0);
 }
 
-tree::TerminalNode* CppParser::AnyOperatorContext::LeftBracket() {
-  return getToken(CppParser::LeftBracket, 0);
+tree::TerminalNode* CppParser::AnyOperatorContext::OpenBracket() {
+  return getToken(CppParser::OpenBracket, 0);
 }
 
 
@@ -21134,9 +21134,9 @@ CppParser::AnyOperatorContext* CppParser::anyOperator() {
       setState(2249);
       match(CppParser::New);
       setState(2250);
-      match(CppParser::LeftBrace);
+      match(CppParser::OpenBrace);
       setState(2251);
-      match(CppParser::RightBracket);
+      match(CppParser::CloseBracket);
       break;
     }
 
@@ -21145,9 +21145,9 @@ CppParser::AnyOperatorContext* CppParser::anyOperator() {
       setState(2252);
       match(CppParser::Delete);
       setState(2253);
-      match(CppParser::LeftBrace);
+      match(CppParser::OpenBrace);
       setState(2254);
-      match(CppParser::RightBracket);
+      match(CppParser::CloseBracket);
       break;
     }
 
@@ -21406,18 +21406,18 @@ CppParser::AnyOperatorContext* CppParser::anyOperator() {
     case 41: {
       enterOuterAlt(_localctx, 41);
       setState(2291);
-      match(CppParser::LeftParenthesis);
+      match(CppParser::OpenParenthesis);
       setState(2292);
-      match(CppParser::RightParenthesis);
+      match(CppParser::CloseParenthesis);
       break;
     }
 
     case 42: {
       enterOuterAlt(_localctx, 42);
       setState(2293);
-      match(CppParser::LeftBracket);
+      match(CppParser::OpenBracket);
       setState(2294);
-      match(CppParser::RightBracket);
+      match(CppParser::CloseBracket);
       break;
     }
 
@@ -21787,7 +21787,7 @@ CppParser::TemplateParameterContext* CppParser::templateParameter() {
       case CppParser::Virtual:
       case CppParser::Void:
       case CppParser::WChar:
-      case CppParser::LeftBracket: {
+      case CppParser::OpenBracket: {
         enterOuterAlt(_localctx, 2);
         setState(2322);
         parameterDeclaration();
@@ -22183,8 +22183,8 @@ CppParser::SimpleTemplateIdentifierContext* CppParser::simpleTemplateIdentifier(
       | (1ULL << (CppParser::Unsigned - 65))
       | (1ULL << (CppParser::Void - 65))
       | (1ULL << (CppParser::WChar - 65))
-      | (1ULL << (CppParser::LeftBracket - 65))
-      | (1ULL << (CppParser::LeftParenthesis - 65))
+      | (1ULL << (CppParser::OpenBracket - 65))
+      | (1ULL << (CppParser::OpenParenthesis - 65))
       | (1ULL << (CppParser::DoubleColon - 65))
       | (1ULL << (CppParser::Plus - 65))
       | (1ULL << (CppParser::Minus - 65))
@@ -22337,8 +22337,8 @@ CppParser::TemplateIdentifierContext* CppParser::templateIdentifier() {
         | (1ULL << (CppParser::Unsigned - 65))
         | (1ULL << (CppParser::Void - 65))
         | (1ULL << (CppParser::WChar - 65))
-        | (1ULL << (CppParser::LeftBracket - 65))
-        | (1ULL << (CppParser::LeftParenthesis - 65))
+        | (1ULL << (CppParser::OpenBracket - 65))
+        | (1ULL << (CppParser::OpenParenthesis - 65))
         | (1ULL << (CppParser::DoubleColon - 65))
         | (1ULL << (CppParser::Plus - 65))
         | (1ULL << (CppParser::Minus - 65))
@@ -22409,8 +22409,8 @@ CppParser::TemplateIdentifierContext* CppParser::templateIdentifier() {
         | (1ULL << (CppParser::Unsigned - 65))
         | (1ULL << (CppParser::Void - 65))
         | (1ULL << (CppParser::WChar - 65))
-        | (1ULL << (CppParser::LeftBracket - 65))
-        | (1ULL << (CppParser::LeftParenthesis - 65))
+        | (1ULL << (CppParser::OpenBracket - 65))
+        | (1ULL << (CppParser::OpenParenthesis - 65))
         | (1ULL << (CppParser::DoubleColon - 65))
         | (1ULL << (CppParser::Plus - 65))
         | (1ULL << (CppParser::Minus - 65))
@@ -22928,16 +22928,16 @@ CppParser::TemplateNameContext* CppParser::DeductionGuideContext::templateName()
   return getRuleContext<CppParser::TemplateNameContext>(0);
 }
 
-tree::TerminalNode* CppParser::DeductionGuideContext::LeftParenthesis() {
-  return getToken(CppParser::LeftParenthesis, 0);
+tree::TerminalNode* CppParser::DeductionGuideContext::OpenParenthesis() {
+  return getToken(CppParser::OpenParenthesis, 0);
 }
 
 CppParser::ParameterDeclarationClauseContext* CppParser::DeductionGuideContext::parameterDeclarationClause() {
   return getRuleContext<CppParser::ParameterDeclarationClauseContext>(0);
 }
 
-tree::TerminalNode* CppParser::DeductionGuideContext::RightParenthesis() {
-  return getToken(CppParser::RightParenthesis, 0);
+tree::TerminalNode* CppParser::DeductionGuideContext::CloseParenthesis() {
+  return getToken(CppParser::CloseParenthesis, 0);
 }
 
 tree::TerminalNode* CppParser::DeductionGuideContext::Arrow() {
@@ -23002,11 +23002,11 @@ CppParser::DeductionGuideContext* CppParser::deductionGuide() {
     setState(2437);
     templateName();
     setState(2438);
-    match(CppParser::LeftParenthesis);
+    match(CppParser::OpenParenthesis);
     setState(2439);
     parameterDeclarationClause();
     setState(2440);
-    match(CppParser::RightParenthesis);
+    match(CppParser::CloseParenthesis);
     setState(2441);
     match(CppParser::Arrow);
     setState(2442);
@@ -23257,16 +23257,16 @@ tree::TerminalNode* CppParser::HandlerContext::Catch() {
   return getToken(CppParser::Catch, 0);
 }
 
-tree::TerminalNode* CppParser::HandlerContext::LeftParenthesis() {
-  return getToken(CppParser::LeftParenthesis, 0);
+tree::TerminalNode* CppParser::HandlerContext::OpenParenthesis() {
+  return getToken(CppParser::OpenParenthesis, 0);
 }
 
 CppParser::ExceptionDeclarationContext* CppParser::HandlerContext::exceptionDeclaration() {
   return getRuleContext<CppParser::ExceptionDeclarationContext>(0);
 }
 
-tree::TerminalNode* CppParser::HandlerContext::RightParenthesis() {
-  return getToken(CppParser::RightParenthesis, 0);
+tree::TerminalNode* CppParser::HandlerContext::CloseParenthesis() {
+  return getToken(CppParser::CloseParenthesis, 0);
 }
 
 CppParser::CompoundStatementContext* CppParser::HandlerContext::compoundStatement() {
@@ -23310,11 +23310,11 @@ CppParser::HandlerContext* CppParser::handler() {
     setState(2460);
     match(CppParser::Catch);
     setState(2461);
-    match(CppParser::LeftParenthesis);
+    match(CppParser::OpenParenthesis);
     setState(2462);
     exceptionDeclaration();
     setState(2463);
-    match(CppParser::RightParenthesis);
+    match(CppParser::CloseParenthesis);
     setState(2464);
     compoundStatement();
    
@@ -23397,7 +23397,7 @@ CppParser::ExceptionDeclarationContext* CppParser::exceptionDeclaration() {
       _errHandler->sync(this);
 
       _la = _input->LA(1);
-      if (_la == CppParser::AlignAs || _la == CppParser::LeftBracket) {
+      if (_la == CppParser::AlignAs || _la == CppParser::OpenBracket) {
         setState(2466);
         attributeSpecifierSequence(0);
       }
@@ -23414,7 +23414,7 @@ CppParser::ExceptionDeclarationContext* CppParser::exceptionDeclaration() {
       _errHandler->sync(this);
 
       _la = _input->LA(1);
-      if (_la == CppParser::AlignAs || _la == CppParser::LeftBracket) {
+      if (_la == CppParser::AlignAs || _la == CppParser::OpenBracket) {
         setState(2472);
         attributeSpecifierSequence(0);
       }
@@ -23425,8 +23425,8 @@ CppParser::ExceptionDeclarationContext* CppParser::exceptionDeclaration() {
 
       _la = _input->LA(1);
       if (_la == CppParser::DeclType || ((((_la - 82) & ~ 0x3fULL) == 0) &&
-        ((1ULL << (_la - 82)) & ((1ULL << (CppParser::LeftBracket - 82))
-        | (1ULL << (CppParser::LeftParenthesis - 82))
+        ((1ULL << (_la - 82)) & ((1ULL << (CppParser::OpenBracket - 82))
+        | (1ULL << (CppParser::OpenParenthesis - 82))
         | (1ULL << (CppParser::Ellipsis - 82))
         | (1ULL << (CppParser::DoubleColon - 82))
         | (1ULL << (CppParser::Asterisk - 82))
@@ -23468,16 +23468,16 @@ tree::TerminalNode* CppParser::NoExceptionSpecifierContext::NoExcept() {
   return getToken(CppParser::NoExcept, 0);
 }
 
-tree::TerminalNode* CppParser::NoExceptionSpecifierContext::LeftParenthesis() {
-  return getToken(CppParser::LeftParenthesis, 0);
+tree::TerminalNode* CppParser::NoExceptionSpecifierContext::OpenParenthesis() {
+  return getToken(CppParser::OpenParenthesis, 0);
 }
 
 CppParser::ConstantExpressionContext* CppParser::NoExceptionSpecifierContext::constantExpression() {
   return getRuleContext<CppParser::ConstantExpressionContext>(0);
 }
 
-tree::TerminalNode* CppParser::NoExceptionSpecifierContext::RightParenthesis() {
-  return getToken(CppParser::RightParenthesis, 0);
+tree::TerminalNode* CppParser::NoExceptionSpecifierContext::CloseParenthesis() {
+  return getToken(CppParser::CloseParenthesis, 0);
 }
 
 tree::TerminalNode* CppParser::NoExceptionSpecifierContext::Throw() {
@@ -23525,11 +23525,11 @@ CppParser::NoExceptionSpecifierContext* CppParser::noExceptionSpecifier() {
       setState(2482);
       match(CppParser::NoExcept);
       setState(2483);
-      match(CppParser::LeftParenthesis);
+      match(CppParser::OpenParenthesis);
       setState(2484);
       constantExpression();
       setState(2485);
-      match(CppParser::RightParenthesis);
+      match(CppParser::CloseParenthesis);
       break;
     }
 
@@ -23545,9 +23545,9 @@ CppParser::NoExceptionSpecifierContext* CppParser::noExceptionSpecifier() {
       setState(2488);
       match(CppParser::Throw);
       setState(2489);
-      match(CppParser::LeftParenthesis);
+      match(CppParser::OpenParenthesis);
       setState(2490);
-      match(CppParser::RightParenthesis);
+      match(CppParser::CloseParenthesis);
       break;
     }
 
@@ -24592,8 +24592,8 @@ std::vector<std::string> CppParser::_symbolicNames = {
   "Short", "Signed", "SizeOf", "Static", "StaticAssert", "StaticCast", "Struct", 
   "Switch", "Template", "This", "ThreadLocal", "Throw", "True", "Try", "TypeDef", 
   "TypeId", "TypeName", "Union", "Unsigned", "Using", "Virtual", "Void", 
-  "Volatile", "WChar", "While", "Override", "Final", "LeftBrace", "RightBrace", 
-  "LeftBracket", "RightBracket", "LeftParenthesis", "RightParenthesis", 
+  "Volatile", "WChar", "While", "Override", "Final", "OpenBrace", "CloseBrace", 
+  "OpenBracket", "CloseBracket", "OpenParenthesis", "CloseParenthesis", 
   "Semicolon", "Colon", "Ellipsis", "QuestionMark", "DoubleColon", "Period", 
   "PeriodAsterisk", "Plus", "Minus", "Asterisk", "ForwardSlash", "Percent", 
   "Caret", "Ampersand", "VerticalBar", "Tilde", "ExclamationMark", "Equal", 

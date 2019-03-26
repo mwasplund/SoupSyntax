@@ -15,14 +15,14 @@ namespace Soup::Syntax
         /// </summary>
         SubscriptExpression(
             std::shared_ptr<const Expression> leftExpression,
-            std::shared_ptr<const SyntaxToken> leftBracket, 
+            std::shared_ptr<const SyntaxToken> openBracket, 
             std::shared_ptr<const Expression> rightExpression,
-            std::shared_ptr<const SyntaxToken> rightBracket) :
+            std::shared_ptr<const SyntaxToken> closeBracket) :
             Expression(SyntaxNodeType::SubscriptExpression),
             m_leftExpression(std::move(leftExpression)),
-            m_leftBracket(std::move(leftBracket)),
+            m_openBracket(std::move(openBracket)),
             m_rightExpression(std::move(rightExpression)),
-            m_rightBracket(std::move(rightBracket))
+            m_closeBracket(std::move(closeBracket))
         {
         }
 
@@ -38,9 +38,9 @@ namespace Soup::Syntax
         /// <summary>
         /// The left bracket token
         /// </summary>
-        const SyntaxToken& GetLeftBracket() const
+        const SyntaxToken& GetOpenBracket() const
         {
-            return *m_leftBracket;
+            return *m_openBracket;
         }
 
         /// <summary>
@@ -54,9 +54,9 @@ namespace Soup::Syntax
         /// <summary>
         /// The right bracket token
         /// </summary>
-        const SyntaxToken& GetRightBracket() const
+        const SyntaxToken& GetCloseBracket() const
         {
-            return *m_rightBracket;
+            return *m_closeBracket;
         }
 
         /// <summary>
@@ -67,9 +67,9 @@ namespace Soup::Syntax
             return std::vector<SyntaxNodeChild>(
                 {
                     SyntaxNodeChild(m_leftExpression),
-                    SyntaxNodeChild(m_leftBracket),
+                    SyntaxNodeChild(m_openBracket),
                     SyntaxNodeChild(m_rightExpression),
-                    SyntaxNodeChild(m_rightBracket),
+                    SyntaxNodeChild(m_closeBracket),
                 });
         }
 
@@ -87,9 +87,9 @@ namespace Soup::Syntax
         bool operator ==(const SubscriptExpression& rhs) const
         {
             return *m_leftExpression == *rhs.m_leftExpression &&
-                *m_leftBracket == *rhs.m_leftBracket &&
+                *m_openBracket == *rhs.m_openBracket &&
                 *m_rightExpression == *rhs.m_rightExpression &&
-                *m_rightBracket == *rhs.m_rightBracket;
+                *m_closeBracket == *rhs.m_closeBracket;
         }
 
         bool operator !=(const SubscriptExpression& rhs) const
@@ -108,8 +108,8 @@ namespace Soup::Syntax
 
     private:
         std::shared_ptr<const Expression> m_leftExpression;
-        std::shared_ptr<const SyntaxToken> m_leftBracket;
+        std::shared_ptr<const SyntaxToken> m_openBracket;
         std::shared_ptr<const Expression> m_rightExpression;
-        std::shared_ptr<const SyntaxToken> m_rightBracket;
+        std::shared_ptr<const SyntaxToken> m_closeBracket;
     };
 }
