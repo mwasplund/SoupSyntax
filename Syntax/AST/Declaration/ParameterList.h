@@ -1,5 +1,4 @@
 ﻿#pragma once
-#include "SyntaxList.h"
 
 namespace Soup::Syntax
 {

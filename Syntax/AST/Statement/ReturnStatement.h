@@ -39,7 +39,8 @@ namespace Soup::Syntax
         /// </summary>
         const Expression& GetExpression() const
         {
-            // TODO: Throw and add UTs
+            if (!HasExpression())
+                throw std::runtime_error("No Expression present.");
             return *m_expression;
         }
 

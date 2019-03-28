@@ -17,6 +17,8 @@ namespace Soup::Syntax
         DeleteFunctionBody,
         ElseClause,
         EmptyStatement,
+        EnumDeclaration,
+        EnumeratorDefinition,
         FunctionDeclaration,
         FunctionDefinition,
         IfStatement,

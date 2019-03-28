@@ -77,7 +77,8 @@ namespace Soup::Syntax
         /// </summary>
         const ElseClause& GetElseClause() const
         {
-            // TODO: Throw and add UTs
+            if (!HasElseClause())
+                throw std::runtime_error("No ElseClause present.");
             return *m_elseClause;
         }
 

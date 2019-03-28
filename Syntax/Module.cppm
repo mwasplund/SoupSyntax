@@ -28,6 +28,8 @@ namespace Soup::Syntax
     class DeclarationSpecifier;
     class DefaultFunctionBody;
     class DeleteFunctionBody;
+    class EnumDeclaration;
+    class EnumeratorDefinition;
     class FunctionDeclaration;
     class FunctionDefinition;
     class InitializerDeclarator;
@@ -54,10 +56,12 @@ namespace Soup::Syntax
 #include "AST\SyntaxTrivia.h"
 #include "AST\SyntaxTokenType.h"
 #include "AST\SyntaxToken.h"
+#include "AST\SyntaxUtils.h"
 #include "AST\Visitor\ISyntaxVisitor.h"
 #include "AST\SyntaxNodeType.h"
 #include "AST\SyntaxNode.h"
 #include "AST\SyntaxNodeChild.h"
+#include "AST\SyntaxList.h"
 #include "AST\Expression\Expression.h"
 #include "AST\Expression\BinaryOperator.h"
 #include "AST\Expression\BinaryExpression.h"
@@ -83,6 +87,8 @@ namespace Soup::Syntax
 #include "AST\Declaration\DeclarationSequence.h"
 #include "AST\Declaration\DefaultFunctionBody.h"
 #include "AST\Declaration\DeleteFunctionBody.h"
+#include "AST\Declaration\EnumeratorDefinition.h"
+#include "AST\Declaration\EnumDeclaration.h"
 #include "AST\Declaration\Parameter.h"
 #include "AST\Declaration\ParameterList.h"
 #include "AST\Declaration\PrimitiveDataType.h"

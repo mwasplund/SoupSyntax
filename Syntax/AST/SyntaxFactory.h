@@ -168,6 +168,51 @@ namespace Soup::Syntax
         }
 
         /// <summary>
+        /// Create a EnumDeclaration
+        /// </summary>
+        static std::shared_ptr<const EnumDeclaration> CreateEnumDeclaration(
+            std::shared_ptr<const SyntaxToken> enumToken,
+            std::shared_ptr<const SyntaxToken> classToken,
+            std::shared_ptr<const SyntaxToken> identifierToken,
+            std::shared_ptr<const SyntaxToken> openBraceToken,
+            std::shared_ptr<const SyntaxList<EnumeratorDefinition>> enumeratorList,
+            std::shared_ptr<const SyntaxToken> closeBraceToken)
+        {
+            // Note: The class and identifier tokens are optional
+            if (enumToken == nullptr)
+                throw std::runtime_error("ArgumentNull - enumToken");
+            if (openBraceToken == nullptr)
+                throw std::runtime_error("ArgumentNull - openBraceToken");
+            if (enumeratorList == nullptr)
+                throw std::runtime_error("ArgumentNull - enumeratorList");
+            if (closeBraceToken == nullptr)
+                throw std::runtime_error("ArgumentNull - closeBraceToken");
+
+            return std::shared_ptr<const EnumDeclaration>(
+                new EnumDeclaration(
+                    std::move(enumToken),
+                    std::move(classToken),
+                    std::move(identifierToken),
+                    std::move(openBraceToken),
+                    std::move(enumeratorList),
+                    std::move(closeBraceToken)));
+        }
+
+        /// <summary>
+        /// Create a EnumeratorDefinition
+        /// </summary>
+        static std::shared_ptr<const EnumeratorDefinition> CreateEnumeratorDefinition(
+            std::shared_ptr<const SyntaxToken> identifierToken)
+        {
+            if (identifierToken == nullptr)
+                throw std::runtime_error("ArgumentNull - identifierToken");
+
+            return std::shared_ptr<const EnumeratorDefinition>(
+                new EnumeratorDefinition(
+                    std::move(identifierToken)));
+        }
+
+        /// <summary>
         /// Create a FunctionDeclaration
         /// </summary>
         static std::shared_ptr<const FunctionDeclaration> CreateFunctionDeclaration(

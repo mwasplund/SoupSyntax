@@ -9,10 +9,10 @@ namespace Soup::Syntax
     {
     public:
         VariableDeclaration(
-            std::shared_ptr<const DeclarationSpecifier>&& DeclarationSpecifier,
+            std::shared_ptr<const DeclarationSpecifier>&& declarationSpecifier,
             std::shared_ptr<const InitializerDeclaratorList>&& initializerDeclaratorList) :
             Declaration(SyntaxNodeType::SimpleDefinition),
-            m_DeclarationSpecifier(std::move(DeclarationSpecifier)),
+            m_declarationSpecifier(std::move(declarationSpecifier)),
             m_initializerDeclaratorList(std::move(initializerDeclaratorList))
         {
         }
@@ -22,7 +22,7 @@ namespace Soup::Syntax
         /// </summary>
         const DeclarationSpecifier& GetDeclarationSpecifier() const
         {
-            return *m_DeclarationSpecifier;
+            return *m_declarationSpecifier;
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace Soup::Syntax
         {
             return std::vector<SyntaxNodeChild>(
                 {
-                    SyntaxNodeChild(m_DeclarationSpecifier),
+                    SyntaxNodeChild(m_declarationSpecifier),
                     SyntaxNodeChild(m_initializerDeclaratorList),
                 });
         }
@@ -58,7 +58,7 @@ namespace Soup::Syntax
         /// </summary>
         bool operator ==(const SimpleDefinition& rhs) const
         {
-            return *m_DeclarationSpecifier == *rhs.m_DeclarationSpecifier &&
+            return *m_declarationSpecifier == *rhs.m_declarationSpecifier &&
                 *m_initializerDeclaratorList == *rhs.m_initializerDeclaratorList;
         }
 
@@ -77,7 +77,7 @@ namespace Soup::Syntax
         }
 
     private:
-        std::shared_ptr<const DeclarationSpecifier> m_DeclarationSpecifier;
+        std::shared_ptr<const DeclarationSpecifier> m_declarationSpecifier;
         std::shared_ptr<const InitializerDeclaratorList> m_initializerDeclaratorList;
     };
 }

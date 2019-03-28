@@ -41,6 +41,8 @@ namespace Soup::Syntax
         /// </summary>
         const SyntaxNode& GetInitializer() const
         {
+            if (!HasInitializer())
+                throw std::runtime_error("No Initializer present.");
             return *m_initializer;
         }
 

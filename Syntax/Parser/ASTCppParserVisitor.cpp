@@ -1620,10 +1620,57 @@ antlrcpp::Any ASTCppParserVisitor::visitElaboratedTypeSpecifier(CppParser::Elabo
     throw std::logic_error(std::string(__func__) + " NotImplemented");
 }
 
+struct EnumeratorListResult
+{
+    std::vector<std::shared_ptr<const EnumeratorDefinition>> Items;
+    std::vector<std::shared_ptr<const SyntaxToken>> Separators;
+};
+
 antlrcpp::Any ASTCppParserVisitor::visitEnumSpecifier(CppParser::EnumSpecifierContext* context)
 {
     Trace(L"VisitEnumSpecifier");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+    auto enumHeadContext = context->enumHead();
+    auto enumKeyContext = enumHeadContext->enumKey();
+
+    // Check for the optional enum class
+    std::shared_ptr<const SyntaxToken> classToken = nullptr;
+    if (enumKeyContext->Class() != nullptr)
+    {
+        classToken = CreateToken(SyntaxTokenType::Class, enumKeyContext->Class());
+    }
+    else if (enumKeyContext->Struct() != nullptr)
+    {
+        classToken = CreateToken(SyntaxTokenType::Struct, enumKeyContext->Struct());
+    }
+
+    // Check for the optional enum head name
+    std::shared_ptr<const SyntaxToken> identifierToken = nullptr;
+    if (enumHeadContext->enumHeadName() != nullptr)
+    {
+        auto enumHeadNameContext = enumHeadContext->enumHeadName();
+        identifierToken = CreateToken(SyntaxTokenType::Identifier, enumHeadNameContext->Identifier());
+    }
+
+    // Check for the optional enumerator list
+    EnumeratorListResult enumeratorList = {};
+    if (context->enumeratorList() != nullptr)
+    {
+        // TODO: Extra trailing comma
+        auto enumeratorListContext = context->enumeratorList();
+        enumeratorList = visit(context->enumeratorList())
+            .as<EnumeratorListResult>();
+    }
+
+    return std::static_pointer_cast<const SyntaxNode>(
+        SyntaxFactory::CreateEnumDeclaration(
+            CreateToken(SyntaxTokenType::Enum, enumKeyContext->Enum()),
+            std::move(classToken),
+            std::move(identifierToken),
+            CreateToken(SyntaxTokenType::OpenBrace, context->OpenBrace()),
+            std::make_shared<const SyntaxList<EnumeratorDefinition>>(
+                std::move(enumeratorList.Items),
+                std::move(enumeratorList.Separators)),
+            CreateToken(SyntaxTokenType::CloseBrace, context->CloseBrace())));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitEnumHead(CppParser::EnumHeadContext* context)
@@ -1659,13 +1706,31 @@ antlrcpp::Any ASTCppParserVisitor::visitEnumBase(CppParser::EnumBaseContext* con
 antlrcpp::Any ASTCppParserVisitor::visitEnumeratorList(CppParser::EnumeratorListContext* context)
 {
     Trace(L"VisitEnumeratorList");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+
+    // Handle the recursive rule
+    EnumeratorListResult enumeratorList = {};
+    if (context->enumeratorList() != nullptr)
+    {
+        enumeratorList = visit(context->enumeratorList())
+            .as<EnumeratorListResult>();
+        enumeratorList.Separators.push_back(
+            CreateToken(SyntaxTokenType::Comma, context->Comma()));
+    }
+
+    // Handle the next item
+    auto enumeratorDefinition = visit(context->enumeratorDefinition())
+            .as<std::shared_ptr<const EnumeratorDefinition>>();
+    enumeratorList.Items.push_back(std::move(enumeratorDefinition));
+
+    return enumeratorList;
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitEnumeratorDefinition(CppParser::EnumeratorDefinitionContext* context)
 {
     Trace(L"VisitEnumeratorDefinition");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+    auto enumeratorContext = context->enumerator();
+    return SyntaxFactory::CreateEnumeratorDefinition(
+        CreateToken(SyntaxTokenType::Identifier, enumeratorContext->Identifier()));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitEnumerator(CppParser::EnumeratorContext* context)

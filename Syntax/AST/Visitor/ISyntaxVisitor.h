@@ -18,6 +18,8 @@ namespace Soup::Syntax
         virtual void Visit(const DeleteFunctionBody& node) = 0;
         virtual void Visit(const ElseClause& node) = 0;
         virtual void Visit(const EmptyStatement& node) = 0;
+        virtual void Visit(const EnumDeclaration& node) = 0;
+        virtual void Visit(const EnumeratorDefinition& node) = 0;
         virtual void Visit(const FunctionDeclaration& node) = 0;
         virtual void Visit(const FunctionDefinition& node) = 0;
         virtual void Visit(const IfStatement& node) = 0;

@@ -97,6 +97,10 @@ namespace Soup::Syntax
                     return L"ElseClause";
                 case SyntaxNodeType::EmptyStatement:
                     return L"EmptyStatement";
+                case SyntaxNodeType::EnumDeclaration:
+                    return L"EnumDeclaration";
+                case SyntaxNodeType::EnumeratorDefinition:
+                    return L"EnumeratorDefinition";
                 case SyntaxNodeType::FunctionDefinition:
                     return L"FunctionDefinition";
                 case SyntaxNodeType::IfStatement:

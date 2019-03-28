@@ -5,6 +5,8 @@ import SoupSyntax;
 #include "AST\Declaration\DeclarationSpecifierTests.gen.h"
 #include "AST\Declaration\DefaultFunctionBodyTests.gen.h"
 #include "AST\Declaration\DeleteFunctionBodyTests.gen.h"
+#include "AST\Declaration\EnumDeclarationTests.gen.h"
+#include "AST\Declaration\EnumeratorDefinitionTests.gen.h"
 #include "AST\Declaration\FunctionDefinitionTests.gen.h"
 #include "AST\Declaration\InitializerDeclaratorListTests.gen.h"
 #include "AST\Declaration\InitializerDeclaratorTests.gen.h"
@@ -37,6 +39,8 @@ import SoupSyntax;
 #include "Parser\SyntaxMiscTests.gen.h"
 #include "Parser\SyntaxNamespaceTests.gen.h"
 
+#include "Parser\Declaration\ParseEnumDeclarationTests.gen.h"
+
 #include "Parser\Expression\ParseBinaryExpressionTests.gen.h"
 #include "Parser\Expression\ParseLiteralExpressionTests.gen.h"
 #include "Parser\Expression\ParseNameExpressionTests.gen.h"
@@ -58,6 +62,8 @@ int main()
     state += RunDeclarationSpecifierTests();
     state += RunDefaultFunctionBodyTests();
     state += RunDeleteFunctionBodyTests();
+    state += RunEnumDeclarationTests();
+    state += RunEnumeratorDefinitionTests();
     state += RunFunctionDefinitionTests();
     state += RunInitializerDeclaratorListTests();
     state += RunInitializerDeclaratorTests();
@@ -89,6 +95,8 @@ int main()
     state += RunSyntaxFunctionTests();
     state += RunSyntaxMiscTests();
     state += RunSyntaxNamespaceTests();
+
+    state += RunParseEnumDeclarationTests();
 
     state += RunParseBinaryExpressionTests();
     state += RunParseLiteralExpressionTests();

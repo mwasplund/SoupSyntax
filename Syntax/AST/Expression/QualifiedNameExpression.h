@@ -57,7 +57,8 @@ namespace Soup::Syntax
         /// </summary>
         const NameExpression& GetLeft() const
         {
-            // TODO: Throw and add UTs
+            if (!HasLeft())
+                throw std::runtime_error("No LeftExpression present.");
             return *m_left;
         }
 
