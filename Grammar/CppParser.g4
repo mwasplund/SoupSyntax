@@ -823,7 +823,7 @@ memberSpecification:
 	accessSpecifier Colon memberSpecification?;
 
 memberDeclaration:
-	attributeSpecifierSequence? declarationSpecifierSequence? memberDeclaratorList? Semicolon |
+	attributeSpecifierSequence? declarationSpecifierSequence memberDeclaratorList Semicolon |
 	functionDefinition |
 	usingDeclaration |
 	staticAssertDeclaration |

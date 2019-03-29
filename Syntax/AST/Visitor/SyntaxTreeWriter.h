@@ -83,6 +83,10 @@ namespace Soup::Syntax
             {
                 case SyntaxNodeType::BinaryExpression:
                     return L"BinaryExpression";
+                case SyntaxNodeType::CatchClause:
+                    return L"CatchClause";
+                case SyntaxNodeType::ClassDeclaration:
+                    return L"ClassDeclaration";
                 case SyntaxNodeType::CompoundStatement:
                     return L"CompoundStatement";
                 case SyntaxNodeType::DeclarationSequence:
@@ -95,6 +99,8 @@ namespace Soup::Syntax
                     return L"DeleteFunctionBody";
                 case SyntaxNodeType::ElseClause:
                     return L"ElseClause";
+                case SyntaxNodeType::EmptyDeclaration:
+                    return L"EmptyDeclaration";
                 case SyntaxNodeType::EmptyStatement:
                     return L"EmptyStatement";
                 case SyntaxNodeType::EnumDeclaration:

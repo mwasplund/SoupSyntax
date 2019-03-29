@@ -15,7 +15,7 @@ namespace Soup::Syntax::UnitTests
                 nullptr,
                 nullptr,
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                std::make_shared<const SyntaxList<EnumeratorDefinition>>(
+                std::make_shared<const SyntaxSeparatorList<EnumeratorDefinition>>(
                     std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                     {}),
                     std::vector<std::shared_ptr<const SyntaxToken>>(
@@ -41,7 +41,7 @@ namespace Soup::Syntax::UnitTests
                 uut->GetOpenBraceToken(),
                 L"Verify left brace token matches.");
             Assert::AreEqual(
-                *std::make_shared<const SyntaxList<EnumeratorDefinition>>(
+                *std::make_shared<const SyntaxSeparatorList<EnumeratorDefinition>>(
                     std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                     {}),
                     std::vector<std::shared_ptr<const SyntaxToken>>(
@@ -62,7 +62,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"MyEnum"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                std::make_shared<const SyntaxList<EnumeratorDefinition>>(
+                std::make_shared<const SyntaxSeparatorList<EnumeratorDefinition>>(
                     std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                     {
                         SyntaxFactory::CreateEnumeratorDefinition(
@@ -103,7 +103,7 @@ namespace Soup::Syntax::UnitTests
                 uut->GetOpenBraceToken(),
                 L"Verify left brace token matches.");
             Assert::AreEqual(
-                *std::make_shared<const SyntaxList<EnumeratorDefinition>>(
+                *std::make_shared<const SyntaxSeparatorList<EnumeratorDefinition>>(
                     std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                     {
                         SyntaxFactory::CreateEnumeratorDefinition(
@@ -131,7 +131,7 @@ namespace Soup::Syntax::UnitTests
                 nullptr,
                 nullptr,
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                std::make_shared<const SyntaxList<EnumeratorDefinition>>(
+                std::make_shared<const SyntaxSeparatorList<EnumeratorDefinition>>(
                     std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                     {}),
                     std::vector<std::shared_ptr<const SyntaxToken>>(
@@ -157,7 +157,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"MyEnum"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                std::make_shared<const SyntaxList<EnumeratorDefinition>>(
+                std::make_shared<const SyntaxSeparatorList<EnumeratorDefinition>>(
                     std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                     {
                         SyntaxFactory::CreateEnumeratorDefinition(
@@ -199,7 +199,7 @@ namespace Soup::Syntax::UnitTests
                 nullptr,
                 nullptr,
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                std::make_shared<const SyntaxList<EnumeratorDefinition>>(
+                std::make_shared<const SyntaxSeparatorList<EnumeratorDefinition>>(
                     std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                     {}),
                     std::vector<std::shared_ptr<const SyntaxToken>>(
@@ -212,7 +212,7 @@ namespace Soup::Syntax::UnitTests
                     nullptr,
                     nullptr,
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                    std::make_shared<const SyntaxList<EnumeratorDefinition>>(
+                    std::make_shared<const SyntaxSeparatorList<EnumeratorDefinition>>(
                         std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                         {}),
                         std::vector<std::shared_ptr<const SyntaxToken>>(
@@ -230,7 +230,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"MyEnum"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                std::make_shared<const SyntaxList<EnumeratorDefinition>>(
+                std::make_shared<const SyntaxSeparatorList<EnumeratorDefinition>>(
                     std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                     {
                         SyntaxFactory::CreateEnumeratorDefinition(
@@ -250,7 +250,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"MyEnum"),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                    std::make_shared<const SyntaxList<EnumeratorDefinition>>(
+                    std::make_shared<const SyntaxSeparatorList<EnumeratorDefinition>>(
                         std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                         {
                             SyntaxFactory::CreateEnumeratorDefinition(
@@ -275,7 +275,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"MyEnum"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                std::make_shared<const SyntaxList<EnumeratorDefinition>>(
+                std::make_shared<const SyntaxSeparatorList<EnumeratorDefinition>>(
                     std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                     {
                         SyntaxFactory::CreateEnumeratorDefinition(
@@ -300,7 +300,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"MyEnum"),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                    std::make_shared<const SyntaxList<EnumeratorDefinition>>(
+                    std::make_shared<const SyntaxSeparatorList<EnumeratorDefinition>>(
                         std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                         {
                             SyntaxFactory::CreateEnumeratorDefinition(
@@ -325,7 +325,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"MyEnum"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                std::make_shared<const SyntaxList<EnumeratorDefinition>>(
+                std::make_shared<const SyntaxSeparatorList<EnumeratorDefinition>>(
                     std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                     {
                         SyntaxFactory::CreateEnumeratorDefinition(
@@ -345,7 +345,7 @@ namespace Soup::Syntax::UnitTests
                     nullptr,
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"MyEnum"),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                    std::make_shared<const SyntaxList<EnumeratorDefinition>>(
+                    std::make_shared<const SyntaxSeparatorList<EnumeratorDefinition>>(
                         std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                         {
                             SyntaxFactory::CreateEnumeratorDefinition(
@@ -370,7 +370,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"MyEnum"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                std::make_shared<const SyntaxList<EnumeratorDefinition>>(
+                std::make_shared<const SyntaxSeparatorList<EnumeratorDefinition>>(
                     std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                     {
                         SyntaxFactory::CreateEnumeratorDefinition(
@@ -395,7 +395,7 @@ namespace Soup::Syntax::UnitTests
                         {}),
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"MyEnum"),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                    std::make_shared<const SyntaxList<EnumeratorDefinition>>(
+                    std::make_shared<const SyntaxSeparatorList<EnumeratorDefinition>>(
                         std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                         {
                             SyntaxFactory::CreateEnumeratorDefinition(
@@ -420,7 +420,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"MyEnum"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                std::make_shared<const SyntaxList<EnumeratorDefinition>>(
+                std::make_shared<const SyntaxSeparatorList<EnumeratorDefinition>>(
                     std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                     {
                         SyntaxFactory::CreateEnumeratorDefinition(
@@ -440,7 +440,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
                     nullptr,
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                    std::make_shared<const SyntaxList<EnumeratorDefinition>>(
+                    std::make_shared<const SyntaxSeparatorList<EnumeratorDefinition>>(
                         std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                         {
                             SyntaxFactory::CreateEnumeratorDefinition(
@@ -465,7 +465,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"MyEnum"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                std::make_shared<const SyntaxList<EnumeratorDefinition>>(
+                std::make_shared<const SyntaxSeparatorList<EnumeratorDefinition>>(
                     std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                     {
                         SyntaxFactory::CreateEnumeratorDefinition(
@@ -485,7 +485,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"MyEnum2"),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                    std::make_shared<const SyntaxList<EnumeratorDefinition>>(
+                    std::make_shared<const SyntaxSeparatorList<EnumeratorDefinition>>(
                         std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                         {
                             SyntaxFactory::CreateEnumeratorDefinition(
@@ -510,7 +510,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"MyEnum"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                std::make_shared<const SyntaxList<EnumeratorDefinition>>(
+                std::make_shared<const SyntaxSeparatorList<EnumeratorDefinition>>(
                     std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                     {
                         SyntaxFactory::CreateEnumeratorDefinition(
@@ -535,7 +535,7 @@ namespace Soup::Syntax::UnitTests
                             SyntaxFactory::CreateTrivia(L" ", TextSpan()),
                         },
                         {}),
-                    std::make_shared<const SyntaxList<EnumeratorDefinition>>(
+                    std::make_shared<const SyntaxSeparatorList<EnumeratorDefinition>>(
                         std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                         {
                             SyntaxFactory::CreateEnumeratorDefinition(
@@ -560,7 +560,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"MyEnum"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                std::make_shared<const SyntaxList<EnumeratorDefinition>>(
+                std::make_shared<const SyntaxSeparatorList<EnumeratorDefinition>>(
                     std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                     {
                         SyntaxFactory::CreateEnumeratorDefinition(
@@ -585,7 +585,7 @@ namespace Soup::Syntax::UnitTests
                             SyntaxFactory::CreateTrivia(L" ", TextSpan()),
                         },
                         {}),
-                    std::make_shared<const SyntaxList<EnumeratorDefinition>>(
+                    std::make_shared<const SyntaxSeparatorList<EnumeratorDefinition>>(
                         std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                         {
                             SyntaxFactory::CreateEnumeratorDefinition(
@@ -606,7 +606,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"MyEnum"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                std::make_shared<const SyntaxList<EnumeratorDefinition>>(
+                std::make_shared<const SyntaxSeparatorList<EnumeratorDefinition>>(
                     std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                     {
                         SyntaxFactory::CreateEnumeratorDefinition(
@@ -626,7 +626,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"MyEnum"),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                    std::make_shared<const SyntaxList<EnumeratorDefinition>>(
+                    std::make_shared<const SyntaxSeparatorList<EnumeratorDefinition>>(
                         std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                         {
                             SyntaxFactory::CreateEnumeratorDefinition(

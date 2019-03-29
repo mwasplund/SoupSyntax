@@ -3,9 +3,9 @@
 namespace Soup::Syntax
 {
     /// <summary>
-    /// The initializer declarator list node
+    /// An empty declaration that consists of a single semicolon
     /// </summary>
-    export class InitializerDeclaratorList final : public SyntaxNode
+    export class EmptyDeclaration final : public Declaration
     {
         friend class SyntaxFactory;
 
@@ -13,20 +13,20 @@ namespace Soup::Syntax
         /// <summary>
         /// Initialize
         /// </summary>
-        InitializerDeclaratorList(
-            std::shared_ptr<const SyntaxSeparatorList<InitializerDeclarator>> items) :
-            SyntaxNode(SyntaxNodeType::InitializerDeclaratorList),
-            m_items(std::move(items))
+        EmptyDeclaration(
+            std::shared_ptr<const SyntaxToken> semicolonToken) :
+            Declaration(SyntaxNodeType::EmptyDeclaration),
+            m_semicolonToken(std::move(semicolonToken))
         {
         }
 
     public:
         /// <summary>
-        /// Gets the list of items
+        /// Gets the SyntaxToken for the semicolon.
         /// </summary>
-        const SyntaxSeparatorList<InitializerDeclarator>& GetItems() const
+        const SyntaxToken& GetSemicolonToken() const
         {
-            return *m_items;
+            return *m_semicolonToken;
         }
 
         /// <summary>
@@ -34,10 +34,10 @@ namespace Soup::Syntax
         /// </summary>
         virtual std::vector<SyntaxNodeChild> GetChildren() const override final
         {
-            std::vector<SyntaxNodeChild> children;
-
-            auto itemsChildren = m_items->GetChildren();
-            children.insert(children.end(), itemsChildren.begin(), itemsChildren.end());
+            std::vector<SyntaxNodeChild> children(
+            {
+                SyntaxNodeChild(m_semicolonToken),
+            });
 
             return children;
         }
@@ -53,12 +53,12 @@ namespace Soup::Syntax
         /// <summary>
         /// Equality operator
         /// </summary>
-        bool operator ==(const InitializerDeclaratorList& rhs) const
+        bool operator ==(const EmptyDeclaration& rhs) const
         {
-            return *m_items == *rhs.m_items;
+            return *m_semicolonToken == *rhs.m_semicolonToken;
         }
 
-        bool operator !=(const InitializerDeclaratorList& rhs) const
+        bool operator !=(const EmptyDeclaration& rhs) const
         {
             return !(*this == rhs);
         }
@@ -69,10 +69,10 @@ namespace Soup::Syntax
         /// </summary>
         virtual bool Equals(const SyntaxNode& rhs) const final
         {
-            return *this == static_cast<const InitializerDeclaratorList&>(rhs);
+            return *this == static_cast<const EmptyDeclaration&>(rhs);
         }
 
     private:
-        std::shared_ptr<const SyntaxSeparatorList<InitializerDeclarator>> m_items;
+        std::shared_ptr<const SyntaxToken> m_semicolonToken;
     };
 }

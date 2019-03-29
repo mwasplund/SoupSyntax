@@ -19,7 +19,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Function")),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                    std::make_shared<const SyntaxList<Parameter>>(
+                    std::make_shared<const SyntaxSeparatorList<Parameter>>(
                         std::vector<std::shared_ptr<const Parameter>>(
                         {
                             SyntaxFactory::CreateParameter(
@@ -56,7 +56,7 @@ namespace Soup::Syntax::UnitTests
             TestUtils::AreEqual(
                 *SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                    std::make_shared<const SyntaxList<Parameter>>(
+                    std::make_shared<const SyntaxSeparatorList<Parameter>>(
                         std::vector<std::shared_ptr<const Parameter>>(
                         {
                             SyntaxFactory::CreateParameter(
@@ -93,7 +93,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Function")),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                    std::make_shared<const SyntaxList<Parameter>>(
+                    std::make_shared<const SyntaxSeparatorList<Parameter>>(
                         std::vector<std::shared_ptr<const Parameter>>(
                         {
                             SyntaxFactory::CreateParameter(
@@ -124,7 +124,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxNodeChild(
                         SyntaxFactory::CreateParameterList(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                            std::make_shared<const SyntaxList<Parameter>>(
+                            std::make_shared<const SyntaxSeparatorList<Parameter>>(
                                 std::vector<std::shared_ptr<const Parameter>>(
                                 {
                                     SyntaxFactory::CreateParameter(
@@ -160,7 +160,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Function")),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                    std::make_shared<const SyntaxList<Parameter>>(
+                    std::make_shared<const SyntaxSeparatorList<Parameter>>(
                         std::vector<std::shared_ptr<const Parameter>>(
                         {
                             SyntaxFactory::CreateParameter(
@@ -188,7 +188,7 @@ namespace Soup::Syntax::UnitTests
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Function")),
                     SyntaxFactory::CreateParameterList(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                        std::make_shared<const SyntaxList<Parameter>>(
+                        std::make_shared<const SyntaxSeparatorList<Parameter>>(
                             std::vector<std::shared_ptr<const Parameter>>(
                             {
                                 SyntaxFactory::CreateParameter(
@@ -222,7 +222,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Function")),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                    std::make_shared<const SyntaxList<Parameter>>(
+                    std::make_shared<const SyntaxSeparatorList<Parameter>>(
                         std::vector<std::shared_ptr<const Parameter>>(
                         {
                             SyntaxFactory::CreateParameter(
@@ -250,7 +250,7 @@ namespace Soup::Syntax::UnitTests
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Function")),
                     SyntaxFactory::CreateParameterList(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                        std::make_shared<const SyntaxList<Parameter>>(
+                        std::make_shared<const SyntaxSeparatorList<Parameter>>(
                             std::vector<std::shared_ptr<const Parameter>>(
                             {
                                 SyntaxFactory::CreateParameter(
@@ -284,7 +284,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Function")),
                     SyntaxFactory::CreateParameterList(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                        std::make_shared<const SyntaxList<Parameter>>(
+                        std::make_shared<const SyntaxSeparatorList<Parameter>>(
                             std::vector<std::shared_ptr<const Parameter>>(
                             {
                                 SyntaxFactory::CreateParameter(
@@ -312,7 +312,7 @@ namespace Soup::Syntax::UnitTests
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"OtherFunction")),
                     SyntaxFactory::CreateParameterList(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                        std::make_shared<const SyntaxList<Parameter>>(
+                        std::make_shared<const SyntaxSeparatorList<Parameter>>(
                             std::vector<std::shared_ptr<const Parameter>>(
                             {
                                 SyntaxFactory::CreateParameter(
@@ -346,7 +346,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Function")),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                    std::make_shared<const SyntaxList<Parameter>>(
+                    std::make_shared<const SyntaxSeparatorList<Parameter>>(
                         std::vector<std::shared_ptr<const Parameter>>(
                         {
                             SyntaxFactory::CreateParameter(
@@ -374,7 +374,7 @@ namespace Soup::Syntax::UnitTests
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Function")),
                     SyntaxFactory::CreateParameterList(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                        std::make_shared<const SyntaxList<Parameter>>(
+                        std::make_shared<const SyntaxSeparatorList<Parameter>>(
                             std::vector<std::shared_ptr<const Parameter>>(),
                             std::vector<std::shared_ptr<const SyntaxToken>>()),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
@@ -399,7 +399,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Function")),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                    std::make_shared<const SyntaxList<Parameter>>(
+                    std::make_shared<const SyntaxSeparatorList<Parameter>>(
                         std::vector<std::shared_ptr<const Parameter>>(
                         {
                             SyntaxFactory::CreateParameter(
@@ -427,7 +427,7 @@ namespace Soup::Syntax::UnitTests
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Function")),
                     SyntaxFactory::CreateParameterList(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                        std::make_shared<const SyntaxList<Parameter>>(
+                        std::make_shared<const SyntaxSeparatorList<Parameter>>(
                             std::vector<std::shared_ptr<const Parameter>>(
                             {
                                 SyntaxFactory::CreateParameter(

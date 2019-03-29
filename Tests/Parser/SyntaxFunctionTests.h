@@ -28,7 +28,7 @@ namespace Soup::Syntax::UnitTests
                             {})),
                     SyntaxFactory::CreateParameterList(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                        std::make_shared<SyntaxList<Parameter>>(
+                        std::make_shared<SyntaxSeparatorList<Parameter>>(
                             std::vector<std::shared_ptr<const Parameter>>(),
                             std::vector<std::shared_ptr<const SyntaxToken>>()),
                         SyntaxFactory::CreateKeywordToken(
@@ -81,7 +81,7 @@ namespace Soup::Syntax::UnitTests
                             {})),
                     SyntaxFactory::CreateParameterList(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                        std::make_shared<SyntaxList<Parameter>>(
+                        std::make_shared<SyntaxSeparatorList<Parameter>>(
                             std::vector<std::shared_ptr<const Parameter>>(),
                             std::vector<std::shared_ptr<const SyntaxToken>>()),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
@@ -127,7 +127,7 @@ namespace Soup::Syntax::UnitTests
                             {})),
                     SyntaxFactory::CreateParameterList(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                        std::make_shared<SyntaxList<Parameter>>(
+                        std::make_shared<SyntaxSeparatorList<Parameter>>(
                             std::vector<std::shared_ptr<const Parameter>>(),
                             std::vector<std::shared_ptr<const SyntaxToken>>()),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
@@ -173,7 +173,7 @@ namespace Soup::Syntax::UnitTests
                             {})),
                     SyntaxFactory::CreateParameterList(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                        std::make_shared<SyntaxList<Parameter>>(
+                        std::make_shared<SyntaxSeparatorList<Parameter>>(
                             std::vector<std::shared_ptr<const Parameter>>(),
                             std::vector<std::shared_ptr<const SyntaxToken>>()),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),

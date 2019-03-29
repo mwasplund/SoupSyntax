@@ -1380,7 +1380,7 @@ antlrcpp::Any ASTCppParserVisitor::visitSimpleDeclaration(CppParser::SimpleDecla
         visit(context->declarationSpecifierSequence())
             .as<std::vector<antlrcpp::Any>>());
     auto initializerDeclaratorList = SyntaxFactory::CreateInitializerDeclaratorList(
-        std::make_shared<const SyntaxList<InitializerDeclarator>>(
+        std::make_shared<const SyntaxSeparatorList<InitializerDeclarator>>(
             visit(context->initializerDeclaratorList())
                 .as<std::vector<std::shared_ptr<const InitializerDeclarator>>>(),
             std::vector<std::shared_ptr<const SyntaxToken>>()));
@@ -1402,7 +1402,9 @@ antlrcpp::Any ASTCppParserVisitor::visitStaticAssertDeclaration(CppParser::Stati
 antlrcpp::Any ASTCppParserVisitor::visitEmptyDeclaration(CppParser::EmptyDeclarationContext* context)
 {
     Trace(L"VisitEmptyDeclaration");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+    return std::static_pointer_cast<const SyntaxNode>(
+        SyntaxFactory::CreateEmptyDeclaration(
+            CreateToken(SyntaxTokenType::Semicolon, context->Semicolon())));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitAttributeDeclaration(CppParser::AttributeDeclarationContext* context)
@@ -1667,7 +1669,7 @@ antlrcpp::Any ASTCppParserVisitor::visitEnumSpecifier(CppParser::EnumSpecifierCo
             std::move(classToken),
             std::move(identifierToken),
             CreateToken(SyntaxTokenType::OpenBrace, context->OpenBrace()),
-            std::make_shared<const SyntaxList<EnumeratorDefinition>>(
+            std::make_shared<const SyntaxSeparatorList<EnumeratorDefinition>>(
                 std::move(enumeratorList.Items),
                 std::move(enumeratorList.Separators)),
             CreateToken(SyntaxTokenType::CloseBrace, context->CloseBrace())));
@@ -1972,7 +1974,7 @@ antlrcpp::Any ASTCppParserVisitor::visitFunctionParameters(CppParser::FunctionPa
     Trace(L"VisitFunctionParameters");
 
     auto parameterList = visit(context->parameterDeclarationClause())
-        .as<std::shared_ptr<const SyntaxList<Parameter>>>();
+        .as<std::shared_ptr<const SyntaxSeparatorList<Parameter>>>();
 
     Trace(L"VisitFunctionParameters2");
     return std::static_pointer_cast<const SyntaxNode>(
@@ -2071,7 +2073,7 @@ antlrcpp::Any ASTCppParserVisitor::visitParameterDeclarationClause(CppParser::Pa
     }
     else
     {
-        return std::make_shared<const SyntaxList<Parameter>>(
+        return std::make_shared<const SyntaxSeparatorList<Parameter>>(
             std::vector<std::shared_ptr<const Parameter>>(),
             std::vector<std::shared_ptr<const SyntaxToken>>());
     }
@@ -2081,7 +2083,7 @@ antlrcpp::Any ASTCppParserVisitor::visitParameterDeclarationList(CppParser::Para
 {
     Trace(L"VisitParameterDeclarationList");
 
-    return std::make_shared<const SyntaxList<Parameter>>(
+    return std::make_shared<const SyntaxSeparatorList<Parameter>>(
         std::vector<std::shared_ptr<const Parameter>>(),
         std::vector<std::shared_ptr<const SyntaxToken>>());
 }
@@ -2222,7 +2224,52 @@ antlrcpp::Any ASTCppParserVisitor::visitExpressionOrBracedInitializerList(CppPar
 antlrcpp::Any ASTCppParserVisitor::visitClassSpecifier(CppParser::ClassSpecifierContext* context)
 {
     Trace(L"VisitClassSpecifier");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+    auto classHeadContext = context->classHead();
+    auto classKeyContext = classHeadContext->classKey();
+
+    // Check for the optional enum class
+    std::shared_ptr<const SyntaxToken> classToken = nullptr;
+    if (classKeyContext->Class() != nullptr)
+    {
+        classToken = CreateToken(SyntaxTokenType::Class, classKeyContext->Class());
+    }
+    else if (classKeyContext->Struct() != nullptr)
+    {
+        classToken = CreateToken(SyntaxTokenType::Struct, classKeyContext->Struct());
+    }
+    else if (classKeyContext->Union() != nullptr)
+    {
+        classToken = CreateToken(SyntaxTokenType::Union, classKeyContext->Union());
+    }
+
+    // Check for the optional class head name
+    std::shared_ptr<const SyntaxToken> identifierToken = nullptr;
+    if (classHeadContext->classHeadName() != nullptr)
+    {
+        // TODO: Template and nexted name
+        auto classHeadNameContext = classHeadContext->classHeadName();
+        identifierToken = CreateToken(
+            SyntaxTokenType::Identifier,
+            classHeadNameContext->className()->Identifier());
+    }
+
+    // Check for the optional member specification
+    std::vector<std::shared_ptr<const Declaration>> memberSpecifiers = {};
+    if (context->memberSpecification() != nullptr)
+    {
+        // TODO: Extra trailing comma
+        memberSpecifiers = visit(context->memberSpecification())
+            .as<std::vector<std::shared_ptr<const Declaration>>>();
+    }
+
+    return std::static_pointer_cast<const SyntaxNode>(
+        SyntaxFactory::CreateClassDeclaration(
+            std::move(classToken),
+            std::move(identifierToken),
+            CreateToken(SyntaxTokenType::OpenBrace, context->OpenBrace()),
+            std::make_shared<const SyntaxList<Declaration>>(
+                std::move(memberSpecifiers)),
+            CreateToken(SyntaxTokenType::CloseBrace, context->CloseBrace())));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitClassHead(CppParser::ClassHeadContext* context)
@@ -2252,13 +2299,47 @@ antlrcpp::Any ASTCppParserVisitor::visitClassKey(CppParser::ClassKeyContext* con
 antlrcpp::Any ASTCppParserVisitor::visitMemberSpecification(CppParser::MemberSpecificationContext* context)
 {
     Trace(L"VisitMemberSpecification");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+
+    // Handle the recursive rule
+    std::vector<std::shared_ptr<const Declaration>> memberSpecifiers = {};
+    if (context->memberSpecification() != nullptr)
+    {
+        memberSpecifiers = visit(context->memberSpecification())
+            .as<std::vector<std::shared_ptr<const Declaration>>>();
+    }
+
+    // Handle the next item
+    if (context->accessSpecifier() != nullptr)
+    {
+        throw std::logic_error(std::string(__func__) + " NotImplemented");
+    }
+    else if (context->memberDeclaration() != nullptr)
+    {
+        auto member = std::dynamic_pointer_cast<const Declaration>(
+            visit(context->memberDeclaration())
+                .as<std::shared_ptr<const SyntaxNode>>());
+        memberSpecifiers.push_back(std::move(member));
+    }
+    else
+    {
+        throw std::runtime_error("Unknown member specification.");
+    }
+
+    return memberSpecifiers;
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitMemberDeclaration(CppParser::MemberDeclarationContext* context)
 {
     Trace(L"VisitMemberDeclaration");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+    if (context->Semicolon() != nullptr)
+    {
+        throw std::logic_error(std::string(__func__) + " NotImplemented");
+    }
+    else
+    {
+        // All the remaining items are uni
+        return visitChildren(context);
+    }
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitMemberDeclaratorList(CppParser::MemberDeclaratorListContext* context)

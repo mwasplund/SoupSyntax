@@ -12,7 +12,7 @@ namespace Soup::Syntax::UnitTests
         {
             // a, b
             auto uut = SyntaxFactory::CreateInitializerDeclaratorList(
-                std::make_shared<const SyntaxList<InitializerDeclarator>>(
+                std::make_shared<const SyntaxSeparatorList<InitializerDeclarator>>(
                     std::vector<std::shared_ptr<const InitializerDeclarator>>(
                     {
                         SyntaxFactory::CreateInitializerDeclarator(
@@ -31,7 +31,7 @@ namespace Soup::Syntax::UnitTests
                 uut->GetType(),
                 L"Verify has correct type.");
             Assert::AreEqual(
-                *std::make_shared<const SyntaxList<InitializerDeclarator>>(
+                *std::make_shared<const SyntaxSeparatorList<InitializerDeclarator>>(
                     std::vector<std::shared_ptr<const InitializerDeclarator>>(
                     {
                         SyntaxFactory::CreateInitializerDeclarator(
@@ -53,7 +53,7 @@ namespace Soup::Syntax::UnitTests
         {
             // a, b
             auto uut = SyntaxFactory::CreateInitializerDeclaratorList(
-                std::make_shared<const SyntaxList<InitializerDeclarator>>(
+                std::make_shared<const SyntaxSeparatorList<InitializerDeclarator>>(
                     std::vector<std::shared_ptr<const InitializerDeclarator>>(
                     {
                         SyntaxFactory::CreateInitializerDeclarator(
@@ -92,7 +92,7 @@ namespace Soup::Syntax::UnitTests
         {
             // a, b
             auto uut = SyntaxFactory::CreateInitializerDeclaratorList(
-                std::make_shared<const SyntaxList<InitializerDeclarator>>(
+                std::make_shared<const SyntaxSeparatorList<InitializerDeclarator>>(
                     std::vector<std::shared_ptr<const InitializerDeclarator>>(
                     {
                         SyntaxFactory::CreateInitializerDeclarator(
@@ -108,7 +108,7 @@ namespace Soup::Syntax::UnitTests
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateInitializerDeclaratorList(
-                    std::make_shared<const SyntaxList<InitializerDeclarator>>(
+                    std::make_shared<const SyntaxSeparatorList<InitializerDeclarator>>(
                         std::vector<std::shared_ptr<const InitializerDeclarator>>(
                         {
                             SyntaxFactory::CreateInitializerDeclarator(
@@ -130,7 +130,7 @@ namespace Soup::Syntax::UnitTests
         {
             // a, b
             auto uut = SyntaxFactory::CreateInitializerDeclaratorList(
-                std::make_shared<const SyntaxList<InitializerDeclarator>>(
+                std::make_shared<const SyntaxSeparatorList<InitializerDeclarator>>(
                     std::vector<std::shared_ptr<const InitializerDeclarator>>(
                     {
                         SyntaxFactory::CreateInitializerDeclarator(
@@ -146,7 +146,7 @@ namespace Soup::Syntax::UnitTests
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateInitializerDeclaratorList(
-                    std::make_shared<const SyntaxList<InitializerDeclarator>>(
+                    std::make_shared<const SyntaxSeparatorList<InitializerDeclarator>>(
                         std::vector<std::shared_ptr<const InitializerDeclarator>>(
                         {
                             SyntaxFactory::CreateInitializerDeclarator(
@@ -164,7 +164,7 @@ namespace Soup::Syntax::UnitTests
         {
             // a, b
             auto uut = SyntaxFactory::CreateInitializerDeclaratorList(
-                std::make_shared<const SyntaxList<InitializerDeclarator>>(
+                std::make_shared<const SyntaxSeparatorList<InitializerDeclarator>>(
                     std::vector<std::shared_ptr<const InitializerDeclarator>>(
                     {
                         SyntaxFactory::CreateInitializerDeclarator(
@@ -180,7 +180,7 @@ namespace Soup::Syntax::UnitTests
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateInitializerDeclaratorList(
-                    std::make_shared<const SyntaxList<InitializerDeclarator>>(
+                    std::make_shared<const SyntaxSeparatorList<InitializerDeclarator>>(
                         std::vector<std::shared_ptr<const InitializerDeclarator>>(
                         {
                             SyntaxFactory::CreateInitializerDeclarator(

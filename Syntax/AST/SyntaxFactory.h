@@ -35,6 +35,35 @@ namespace Soup::Syntax
         }
 
         /// <summary>
+        /// Create a ClassDeclaration
+        /// </summary>
+        static std::shared_ptr<const ClassDeclaration> CreateClassDeclaration(
+            std::shared_ptr<const SyntaxToken> classToken,
+            std::shared_ptr<const SyntaxToken> identifierToken,
+            std::shared_ptr<const SyntaxToken> openBraceToken,
+            std::shared_ptr<const SyntaxList<Declaration>> memberDeclarations,
+            std::shared_ptr<const SyntaxToken> closeBraceToken)
+        {
+            // Note: The identifier token is optional
+            if (classToken == nullptr)
+                throw std::runtime_error("ArgumentNull - classToken");
+            if (openBraceToken == nullptr)
+                throw std::runtime_error("ArgumentNull - openBraceToken");
+            if (memberDeclarations == nullptr)
+                throw std::runtime_error("ArgumentNull - memberDeclarations");
+            if (closeBraceToken == nullptr)
+                throw std::runtime_error("ArgumentNull - closeBraceToken");
+
+            return std::shared_ptr<const ClassDeclaration>(
+                new ClassDeclaration(
+                    std::move(classToken),
+                    std::move(identifierToken),
+                    std::move(openBraceToken),
+                    std::move(memberDeclarations),
+                    std::move(closeBraceToken)));
+        }
+
+        /// <summary>
         /// Create a CompoundStatement
         /// </summary>
         static std::shared_ptr<const CompoundStatement> CreateCompoundStatement(
@@ -154,6 +183,20 @@ namespace Soup::Syntax
         }
 
         /// <summary>
+        /// Create a EmptyDeclaration
+        /// </summary>
+        static std::shared_ptr<const EmptyDeclaration> CreateEmptyDeclaration(
+            std::shared_ptr<const SyntaxToken> semicolonToken)
+        {
+            if (semicolonToken == nullptr)
+                throw std::runtime_error("ArgumentNull - semicolonToken");
+
+            return std::shared_ptr<const EmptyDeclaration>(
+                new EmptyDeclaration(
+                    std::move(semicolonToken)));
+        }
+
+        /// <summary>
         /// Create a EmptyStatement
         /// </summary>
         static std::shared_ptr<const EmptyStatement> CreateEmptyStatement(
@@ -175,7 +218,7 @@ namespace Soup::Syntax
             std::shared_ptr<const SyntaxToken> classToken,
             std::shared_ptr<const SyntaxToken> identifierToken,
             std::shared_ptr<const SyntaxToken> openBraceToken,
-            std::shared_ptr<const SyntaxList<EnumeratorDefinition>> enumeratorList,
+            std::shared_ptr<const SyntaxSeparatorList<EnumeratorDefinition>> enumeratorList,
             std::shared_ptr<const SyntaxToken> closeBraceToken)
         {
             // Note: The class and identifier tokens are optional
@@ -318,7 +361,7 @@ namespace Soup::Syntax
         /// Create a InitializerDeclaratorList
         /// </summary>
         static std::shared_ptr<const InitializerDeclaratorList> CreateInitializerDeclaratorList(
-            std::shared_ptr<const SyntaxList<InitializerDeclarator>> items)
+            std::shared_ptr<const SyntaxSeparatorList<InitializerDeclarator>> items)
         {
             if (items == nullptr)
                 throw std::runtime_error("ArgumentNull - items");
@@ -789,7 +832,7 @@ namespace Soup::Syntax
         /// </summary>
         static std::shared_ptr<const ParameterList> CreateParameterList(
             std::shared_ptr<const SyntaxToken> openParenthesisToken,
-            std::shared_ptr<const SyntaxList<Parameter>> parameters,
+            std::shared_ptr<const SyntaxSeparatorList<Parameter>> parameters,
             std::shared_ptr<const SyntaxToken> closeParenthesisToken)
         {
             if (openParenthesisToken == nullptr)

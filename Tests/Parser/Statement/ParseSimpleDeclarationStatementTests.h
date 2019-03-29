@@ -19,7 +19,7 @@ namespace Soup::Syntax::UnitTests
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                 SyntaxFactory::CreateInitializerDeclaratorList(
-                    std::make_shared<const SyntaxList<InitializerDeclarator>>(
+                    std::make_shared<const SyntaxSeparatorList<InitializerDeclarator>>(
                         std::vector<std::shared_ptr<const InitializerDeclarator>>(
                         {
                             SyntaxFactory::CreateInitializerDeclarator(
@@ -51,7 +51,7 @@ namespace Soup::Syntax::UnitTests
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                 SyntaxFactory::CreateInitializerDeclaratorList(
-                    std::make_shared<const SyntaxList<InitializerDeclarator>>(
+                    std::make_shared<const SyntaxSeparatorList<InitializerDeclarator>>(
                         std::vector<std::shared_ptr<const InitializerDeclarator>>(
                         {
                             SyntaxFactory::CreateInitializerDeclarator(
@@ -98,7 +98,7 @@ namespace Soup::Syntax::UnitTests
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                 SyntaxFactory::CreateInitializerDeclaratorList(
-                    std::make_shared<const SyntaxList<InitializerDeclarator>>(
+                    std::make_shared<const SyntaxSeparatorList<InitializerDeclarator>>(
                         std::vector<std::shared_ptr<const InitializerDeclarator>>(
                         {
                             SyntaxFactory::CreateInitializerDeclarator(
@@ -140,7 +140,7 @@ namespace Soup::Syntax::UnitTests
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                 SyntaxFactory::CreateInitializerDeclaratorList(
-                    std::make_shared<const SyntaxList<InitializerDeclarator>>(
+                    std::make_shared<const SyntaxSeparatorList<InitializerDeclarator>>(
                         std::vector<std::shared_ptr<const InitializerDeclarator>>(
                         {
                             SyntaxFactory::CreateInitializerDeclarator(
@@ -197,7 +197,7 @@ namespace Soup::Syntax::UnitTests
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                 SyntaxFactory::CreateInitializerDeclaratorList(
-                    std::make_shared<const SyntaxList<InitializerDeclarator>>(
+                    std::make_shared<const SyntaxSeparatorList<InitializerDeclarator>>(
                         std::vector<std::shared_ptr<const InitializerDeclarator>>(
                         {
                             SyntaxFactory::CreateInitializerDeclarator(
@@ -285,7 +285,7 @@ namespace Soup::Syntax::UnitTests
                             {}),
                     }),
                 SyntaxFactory::CreateInitializerDeclaratorList(
-                    std::make_shared<const SyntaxList<InitializerDeclarator>>(
+                    std::make_shared<const SyntaxSeparatorList<InitializerDeclarator>>(
                         std::vector<std::shared_ptr<const InitializerDeclarator>>(
                         {
                             SyntaxFactory::CreateInitializerDeclarator(

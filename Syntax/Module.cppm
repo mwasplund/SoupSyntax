@@ -24,10 +24,12 @@ namespace Soup::Syntax
     class UnaryExpression;
 
     // Declarations
+    class ClassDeclaration;
     class DeclarationSequence;
     class DeclarationSpecifier;
     class DefaultFunctionBody;
     class DeleteFunctionBody;
+    class EmptyDeclaration;
     class EnumDeclaration;
     class EnumeratorDefinition;
     class FunctionDeclaration;
@@ -62,6 +64,7 @@ namespace Soup::Syntax
 #include "AST\SyntaxNode.h"
 #include "AST\SyntaxNodeChild.h"
 #include "AST\SyntaxList.h"
+#include "AST\SyntaxSeparatorList.h"
 #include "AST\Expression\Expression.h"
 #include "AST\Expression\BinaryOperator.h"
 #include "AST\Expression\BinaryExpression.h"
@@ -84,9 +87,11 @@ namespace Soup::Syntax
 #include "AST\Statement\TryStatement.h"
 #include "AST\Declaration\DeclarationSpecifier.h"
 #include "AST\Declaration\Declaration.h"
+#include "AST\Declaration\ClassDeclaration.h"
 #include "AST\Declaration\DeclarationSequence.h"
 #include "AST\Declaration\DefaultFunctionBody.h"
 #include "AST\Declaration\DeleteFunctionBody.h"
+#include "AST\Declaration\EmptyDeclaration.h"
 #include "AST\Declaration\EnumeratorDefinition.h"
 #include "AST\Declaration\EnumDeclaration.h"
 #include "AST\Declaration\Parameter.h"

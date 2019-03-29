@@ -15,7 +15,7 @@ namespace Soup::Syntax
         /// </summary>
         ParameterList(
             std::shared_ptr<const SyntaxToken> openParenthesisToken,
-            std::shared_ptr<const SyntaxList<Parameter>> parameters,
+            std::shared_ptr<const SyntaxSeparatorList<Parameter>> parameters,
             std::shared_ptr<const SyntaxToken> closeParenthesisToken) :
             SyntaxNode(SyntaxNodeType::ParameterList),
             m_openParenthesisToken(std::move(openParenthesisToken)),
@@ -36,7 +36,7 @@ namespace Soup::Syntax
         /// <summary>
         /// Gets the list of parameters
         /// </summary>
-        const SyntaxList<Parameter>& GetParameters() const
+        const SyntaxSeparatorList<Parameter>& GetParameters() const
         {
             return *m_parameters;
         }
@@ -100,7 +100,7 @@ namespace Soup::Syntax
 
     private:
         std::shared_ptr<const SyntaxToken> m_openParenthesisToken;
-        std::shared_ptr<const SyntaxList<Parameter>> m_parameters;
+        std::shared_ptr<const SyntaxSeparatorList<Parameter>> m_parameters;
         std::shared_ptr<const SyntaxToken> m_closeParenthesisToken;
     };
 }

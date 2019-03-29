@@ -2,9 +2,11 @@ import std.core;
 import Antlr4.Runtime;
 import SoupSyntax;
 
+#include "AST\Declaration\ClassDeclarationTests.gen.h"
 #include "AST\Declaration\DeclarationSpecifierTests.gen.h"
 #include "AST\Declaration\DefaultFunctionBodyTests.gen.h"
 #include "AST\Declaration\DeleteFunctionBodyTests.gen.h"
+#include "AST\Declaration\EmptyDeclarationTests.gen.h"
 #include "AST\Declaration\EnumDeclarationTests.gen.h"
 #include "AST\Declaration\EnumeratorDefinitionTests.gen.h"
 #include "AST\Declaration\FunctionDefinitionTests.gen.h"
@@ -39,6 +41,7 @@ import SoupSyntax;
 #include "Parser\SyntaxMiscTests.gen.h"
 #include "Parser\SyntaxNamespaceTests.gen.h"
 
+#include "Parser\Declaration\ParseClassDeclarationTests.gen.h"
 #include "Parser\Declaration\ParseEnumDeclarationTests.gen.h"
 
 #include "Parser\Expression\ParseBinaryExpressionTests.gen.h"
@@ -59,9 +62,11 @@ int main()
 
     TestState state = { 0, 0 };
 
+    state += RunClassDeclarationTests();
     state += RunDeclarationSpecifierTests();
     state += RunDefaultFunctionBodyTests();
     state += RunDeleteFunctionBodyTests();
+    state += RunEmptyDeclarationTests();
     state += RunEnumDeclarationTests();
     state += RunEnumeratorDefinitionTests();
     state += RunFunctionDefinitionTests();
@@ -96,6 +101,7 @@ int main()
     state += RunSyntaxMiscTests();
     state += RunSyntaxNamespaceTests();
 
+    state += RunParseClassDeclarationTests();
     state += RunParseEnumDeclarationTests();
 
     state += RunParseBinaryExpressionTests();

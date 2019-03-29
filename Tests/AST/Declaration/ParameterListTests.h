@@ -13,7 +13,7 @@ namespace Soup::Syntax::UnitTests
             // (int parameter)
             auto uut = SyntaxFactory::CreateParameterList(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                std::make_shared<const SyntaxList<Parameter>>(
+                std::make_shared<const SyntaxSeparatorList<Parameter>>(
                     std::vector<std::shared_ptr<const Parameter>>(
                     {
                         SyntaxFactory::CreateParameter(
@@ -36,7 +36,7 @@ namespace Soup::Syntax::UnitTests
                 uut->GetOpenParenthesisToken(),
                 L"Verify left parenthesis token matches.");
             Assert::AreEqual(
-                *std::make_shared<const SyntaxList<Parameter>>(
+                *std::make_shared<const SyntaxSeparatorList<Parameter>>(
                     std::vector<std::shared_ptr<const Parameter>>(
                     {
                         SyntaxFactory::CreateParameter(
@@ -62,7 +62,7 @@ namespace Soup::Syntax::UnitTests
             // (int parameter)
             auto uut = SyntaxFactory::CreateParameterList(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                std::make_shared<const SyntaxList<Parameter>>(
+                std::make_shared<const SyntaxSeparatorList<Parameter>>(
                     std::vector<std::shared_ptr<const Parameter>>(
                     {
                         SyntaxFactory::CreateParameter(
@@ -99,7 +99,7 @@ namespace Soup::Syntax::UnitTests
             // (int parameter)
             auto uut = SyntaxFactory::CreateParameterList(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                std::make_shared<const SyntaxList<Parameter>>(
+                std::make_shared<const SyntaxSeparatorList<Parameter>>(
                     std::vector<std::shared_ptr<const Parameter>>(
                     {
                         SyntaxFactory::CreateParameter(
@@ -116,7 +116,7 @@ namespace Soup::Syntax::UnitTests
             TestUtils::AreEqual(
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                    std::make_shared<const SyntaxList<Parameter>>(
+                    std::make_shared<const SyntaxSeparatorList<Parameter>>(
                         std::vector<std::shared_ptr<const Parameter>>(
                         {
                             SyntaxFactory::CreateParameter(
@@ -139,7 +139,7 @@ namespace Soup::Syntax::UnitTests
             // (int parameter)
             auto uut = SyntaxFactory::CreateParameterList(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                std::make_shared<const SyntaxList<Parameter>>(
+                std::make_shared<const SyntaxSeparatorList<Parameter>>(
                     std::vector<std::shared_ptr<const Parameter>>(
                     {
                         SyntaxFactory::CreateParameter(
@@ -161,7 +161,7 @@ namespace Soup::Syntax::UnitTests
                             SyntaxFactory::CreateTrivia(L" ", TextSpan()),
                         },
                         {}),
-                    std::make_shared<const SyntaxList<Parameter>>(
+                    std::make_shared<const SyntaxSeparatorList<Parameter>>(
                         std::vector<std::shared_ptr<const Parameter>>(
                         {
                             SyntaxFactory::CreateParameter(
@@ -184,7 +184,7 @@ namespace Soup::Syntax::UnitTests
             // (int parameter)
             auto uut = SyntaxFactory::CreateParameterList(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                std::make_shared<const SyntaxList<Parameter>>(
+                std::make_shared<const SyntaxSeparatorList<Parameter>>(
                     std::vector<std::shared_ptr<const Parameter>>(
                     {
                         SyntaxFactory::CreateParameter(
@@ -201,7 +201,7 @@ namespace Soup::Syntax::UnitTests
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                    std::make_shared<const SyntaxList<Parameter>>(
+                    std::make_shared<const SyntaxSeparatorList<Parameter>>(
                         std::vector<std::shared_ptr<const Parameter>>(
                         {
                         }),
@@ -217,7 +217,7 @@ namespace Soup::Syntax::UnitTests
             // (int parameter)
             auto uut = SyntaxFactory::CreateParameterList(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                std::make_shared<const SyntaxList<Parameter>>(
+                std::make_shared<const SyntaxSeparatorList<Parameter>>(
                     std::vector<std::shared_ptr<const Parameter>>(
                     {
                         SyntaxFactory::CreateParameter(
@@ -234,7 +234,7 @@ namespace Soup::Syntax::UnitTests
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                    std::make_shared<const SyntaxList<Parameter>>(
+                    std::make_shared<const SyntaxSeparatorList<Parameter>>(
                         std::vector<std::shared_ptr<const Parameter>>(
                         {
                             SyntaxFactory::CreateParameter(

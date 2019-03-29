@@ -11,12 +11,14 @@ namespace Soup::Syntax
     public:
         virtual void Visit(const BinaryExpression& node) = 0;
         virtual void Visit(const CatchClause& node) = 0;
+        virtual void Visit(const ClassDeclaration& node) = 0;
         virtual void Visit(const CompoundStatement& node) = 0;
         virtual void Visit(const DeclarationSequence& node) = 0;
         virtual void Visit(const DeclarationSpecifier& node) = 0;
         virtual void Visit(const DefaultFunctionBody& node) = 0;
         virtual void Visit(const DeleteFunctionBody& node) = 0;
         virtual void Visit(const ElseClause& node) = 0;
+        virtual void Visit(const EmptyDeclaration& node) = 0;
         virtual void Visit(const EmptyStatement& node) = 0;
         virtual void Visit(const EnumDeclaration& node) = 0;
         virtual void Visit(const EnumeratorDefinition& node) = 0;
