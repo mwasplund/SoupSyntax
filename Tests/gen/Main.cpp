@@ -37,12 +37,12 @@ import SoupSyntax;
 #include "Parser\LexerTests.gen.h"
 #include "Parser\ParserAttributesTests.gen.h"
 #include "Parser\ParserExpressionTests.gen.h"
-#include "Parser\SyntaxFunctionTests.gen.h"
 #include "Parser\SyntaxMiscTests.gen.h"
 #include "Parser\SyntaxNamespaceTests.gen.h"
 
 #include "Parser\Declaration\ParseClassDeclarationTests.gen.h"
 #include "Parser\Declaration\ParseEnumDeclarationTests.gen.h"
+#include "Parser\Declaration\ParseFunctionDefinitionTests.gen.h"
 
 #include "Parser\Expression\ParseBinaryExpressionTests.gen.h"
 #include "Parser\Expression\ParseLiteralExpressionTests.gen.h"
@@ -97,12 +97,12 @@ int main()
     state += RunLexerTests();
     state += RunParserAttributesTests();
     state += RunParserExpressionTests();
-    state += RunSyntaxFunctionTests();
     state += RunSyntaxMiscTests();
     state += RunSyntaxNamespaceTests();
 
     state += RunParseClassDeclarationTests();
     state += RunParseEnumDeclarationTests();
+    state += RunParseFunctionDefinitionTests();
 
     state += RunParseBinaryExpressionTests();
     state += RunParseLiteralExpressionTests();

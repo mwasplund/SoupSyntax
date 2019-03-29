@@ -1,13 +1,13 @@
 #pragma once
 #include "../RunTest.h"
-#include "SyntaxFunctionTests.h"
+#include "ParseFunctionDefinitionTests.h"
 
-TestState RunSyntaxFunctionTests()
+TestState RunParseFunctionDefinitionTests()
 {
-    auto testClass = std::make_unique<Soup::Syntax::UnitTests::SyntaxFunctionTests>();
+    auto testClass = std::make_unique<Soup::Syntax::UnitTests::ParseFunctionDefinitionTests>();
     TestState state = { 0, 0 };
 
-    std::wcout << L"Running SyntaxFunctionTests:" << std::endl;
+    std::wcout << L"Running ParseFunctionDefinitionTests:" << std::endl;
 
     std::wcout << L"SimpleFunctionRegular" << std::endl;
     state += RunTest([&testClass]() { testClass->SimpleFunctionRegular(); });
