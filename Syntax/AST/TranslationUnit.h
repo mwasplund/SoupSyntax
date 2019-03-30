@@ -7,19 +7,36 @@ namespace Soup::Syntax
     /// </summary>
     export class TranslationUnit : public SyntaxNode
     {
-    public:
-        TranslationUnit(std::shared_ptr<const DeclarationSequence>&& declarations) :
+        friend class SyntaxFactory;
+
+    private:
+        /// <summary>
+        /// Initialize
+        /// </summary>
+        TranslationUnit(
+            std::shared_ptr<const SyntaxList<Declaration>> declarations,
+            std::shared_ptr<const SyntaxToken> endOfFileToken) :
             SyntaxNode(SyntaxNodeType::TranslationUnit),
-            m_declarations(std::move(declarations))
+            m_declarations(std::move(declarations)),
+            m_endOfFileToken(std::move(endOfFileToken))
         {
+        }
+
+    public:
+        /// <summary>
+        /// Gets the option declaration sequence
+        /// </summary>
+        const SyntaxList<Declaration>& GetDeclarations() const
+        {
+            return *m_declarations;
         }
 
         /// <summary>
         /// Gets the option declaration sequence
         /// </summary>
-        const DeclarationSequence& GetDeclarations() const
+        const SyntaxToken& GetEndOfFileToken() const
         {
-            return *m_declarations;
+            return *m_endOfFileToken;
         }
 
         /// <summary>
@@ -27,10 +44,11 @@ namespace Soup::Syntax
         /// </summary>
         virtual std::vector<SyntaxNodeChild> GetChildren() const override final
         {
-            return std::vector<SyntaxNodeChild>(
-                {
-                    SyntaxNodeChild(m_declarations),
-                });
+            auto children = m_declarations->GetChildren();
+
+            children.push_back(SyntaxNodeChild(m_endOfFileToken));
+
+            return children;
         }
 
         /// <summary>
@@ -46,7 +64,8 @@ namespace Soup::Syntax
         /// </summary>
         bool operator ==(const TranslationUnit& rhs) const
         {
-            return *m_declarations == *rhs.m_declarations;
+            return *m_declarations == *rhs.m_declarations &&
+                *m_endOfFileToken == *rhs.m_endOfFileToken;
         }
 
         bool operator !=(const TranslationUnit& rhs) const
@@ -64,6 +83,7 @@ namespace Soup::Syntax
         }
 
     private:
-        std::shared_ptr<const DeclarationSequence> m_declarations;
+        std::shared_ptr<const SyntaxList<Declaration>> m_declarations;
+        std::shared_ptr<const SyntaxToken> m_endOfFileToken;
     };
 }

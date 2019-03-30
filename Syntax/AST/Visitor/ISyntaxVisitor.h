@@ -13,7 +13,6 @@ namespace Soup::Syntax
         virtual void Visit(const CatchClause& node) = 0;
         virtual void Visit(const ClassDeclaration& node) = 0;
         virtual void Visit(const CompoundStatement& node) = 0;
-        virtual void Visit(const DeclarationSequence& node) = 0;
         virtual void Visit(const DeclarationSpecifier& node) = 0;
         virtual void Visit(const DefaultFunctionBody& node) = 0;
         virtual void Visit(const DeleteFunctionBody& node) = 0;
@@ -22,6 +21,7 @@ namespace Soup::Syntax
         virtual void Visit(const EmptyStatement& node) = 0;
         virtual void Visit(const EnumDeclaration& node) = 0;
         virtual void Visit(const EnumeratorDefinition& node) = 0;
+        virtual void Visit(const ExpressionStatement& node) = 0;
         virtual void Visit(const FunctionDeclaration& node) = 0;
         virtual void Visit(const FunctionDefinition& node) = 0;
         virtual void Visit(const IfStatement& node) = 0;

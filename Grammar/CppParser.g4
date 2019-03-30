@@ -486,9 +486,9 @@ typeSpecifierSequence:
 	typeSpecifier typeSpecifierSequence;
 
 definingTypeSpecifier:
-	typeSpecifier; // |
-	// TODO classSpecifier |
-	// TODO enumSpecifier;
+	typeSpecifier |
+	classSpecifier |
+	enumSpecifier;
 
 definingTypeSpecifierSequence:
 	definingTypeSpecifier attributeSpecifierSequence? |
@@ -823,6 +823,7 @@ memberSpecification:
 	accessSpecifier Colon memberSpecification?;
 
 memberDeclaration:
+	// TODO: Collided with Empty when all were optional...
 	attributeSpecifierSequence? declarationSpecifierSequence memberDeclaratorList Semicolon |
 	functionDefinition |
 	usingDeclaration |

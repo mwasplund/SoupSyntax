@@ -256,6 +256,24 @@ namespace Soup::Syntax
         }
 
         /// <summary>
+        /// Create a ExpressionStatement
+        /// </summary>
+        static std::shared_ptr<const ExpressionStatement> CreateExpressionStatement(
+            std::shared_ptr<const Expression> expression,
+            std::shared_ptr<const SyntaxToken> semicolonToken)
+        {
+            if (expression == nullptr)
+                throw std::runtime_error("ArgumentNull - expression");
+            if (semicolonToken == nullptr)
+                throw std::runtime_error("ArgumentNull - semicolonToken");
+
+            return std::shared_ptr<const ExpressionStatement>(
+                new ExpressionStatement(
+                    std::move(expression),
+                    std::move(semicolonToken)));
+        }
+
+        /// <summary>
         /// Create a FunctionDeclaration
         /// </summary>
         static std::shared_ptr<const FunctionDeclaration> CreateFunctionDeclaration(
@@ -452,6 +470,9 @@ namespace Soup::Syntax
                      break;
                 case SyntaxTokenType::Else:
                      value = "else";
+                     break;
+                case SyntaxTokenType::EndOfFile:
+                     value = "\0";
                      break;
                 case SyntaxTokenType::Enum:
                      value = "enum";
@@ -981,6 +1002,24 @@ namespace Soup::Syntax
             return std::shared_ptr<const ThisExpression>(
                 new ThisExpression(
                     std::move(token)));
+        }
+
+        /// <summary>
+        /// Create a TranslationUnit
+        /// </summary>
+        static std::shared_ptr<const TranslationUnit> CreateTranslationUnit(
+            std::shared_ptr<const SyntaxList<Declaration>> declarations,
+            std::shared_ptr<const SyntaxToken> endOfFileToken)
+        {
+            if (declarations == nullptr)
+                throw std::runtime_error("ArgumentNull - declarations");
+            if (endOfFileToken == nullptr)
+                throw std::runtime_error("ArgumentNull - endOfFileToken");
+
+            return std::shared_ptr<const TranslationUnit>(
+                new TranslationUnit(
+                    std::move(declarations),
+                    std::move(endOfFileToken)));
         }
 
         /// <summary>

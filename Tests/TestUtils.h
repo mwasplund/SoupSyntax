@@ -61,12 +61,13 @@ class TestUtils
     }
 
     static std::shared_ptr<const TranslationUnit> CreateSingleDeclaration(
-        std::shared_ptr<const Declaration> &&declaration)
+        std::shared_ptr<const Declaration> declaration)
     {
-        return std::make_unique<const TranslationUnit>(
-            std::make_shared<const DeclarationSequence>(
+        return SyntaxFactory::CreateTranslationUnit(
+            std::make_shared<const SyntaxList<Declaration>>(
                 std::vector<std::shared_ptr<const Declaration>>{
-                    std::move(declaration)}));
+                    std::move(declaration)}),
+            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile));
     }
 
     static void AreEqual(
@@ -111,7 +112,7 @@ class TestUtils
         if (expected != actual)
         {
             std::stringstream errorMessage;
-            SyntaxWriter writer(errorMessage);
+            SyntaxTreeWriter writer(errorMessage);
             errorMessage << message << "\n";
             errorMessage << "Expected:\n";
             expected.Accept(writer);
@@ -130,7 +131,7 @@ class TestUtils
         if (*expected == *actual)
         {
             std::stringstream errorMessage;
-            SyntaxWriter writer(errorMessage);
+            SyntaxTreeWriter writer(errorMessage);
             errorMessage << message << "\n";
             errorMessage << "Expected:\n";
             expected->Accept(writer);

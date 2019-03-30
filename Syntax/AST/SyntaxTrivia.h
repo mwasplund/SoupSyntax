@@ -39,6 +39,14 @@ namespace Soup::Syntax
         }
 
         /// <summary>
+        /// Write the contents of the trivia to the provided stream
+        /// </summary>
+        void Write(std::ostream& stream) const
+        {
+            stream << m_value;
+        }
+
+        /// <summary>
         /// Equality operator
         /// </summary>
         bool operator==(const SyntaxTrivia &rhs) const
@@ -50,14 +58,6 @@ namespace Soup::Syntax
         bool operator!=(const SyntaxTrivia &rhs) const
         {
             return !(*this == rhs);
-        }
-
-        /// <summary>
-        /// Convert to string representation
-        /// </summary>
-        std::string ToString() const
-        {
-            return "SyntaxTrivia";
         }
 
     private:

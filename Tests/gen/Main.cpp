@@ -27,17 +27,19 @@ import SoupSyntax;
 #include "AST\Statement\CompoundStatementTests.gen.h"
 #include "AST\Statement\ElseClauseTests.gen.h"
 #include "AST\Statement\EmptyStatementTests.gen.h"
+#include "AST\Statement\ExpressionStatementTests.gen.h"
 #include "AST\Statement\IfStatementTests.gen.h"
 #include "AST\Statement\ReturnStatementTests.gen.h"
 #include "AST\Statement\SimpleDeclarationStatementTests.gen.h"
 
 #include "AST\SyntaxNodeChildTests.gen.h"
 #include "AST\SyntaxTokenTests.gen.h"
+#include "AST\TranslationUnitTests.gen.h"
 
 #include "Parser\LexerTests.gen.h"
 #include "Parser\ParserAttributesTests.gen.h"
 #include "Parser\ParserExpressionTests.gen.h"
-#include "Parser\SyntaxMiscTests.gen.h"
+#include "Parser\ParseTranslationUnitTests.gen.h"
 #include "Parser\SyntaxNamespaceTests.gen.h"
 
 #include "Parser\Declaration\ParseClassDeclarationTests.gen.h"
@@ -52,9 +54,13 @@ import SoupSyntax;
 #include "Parser\Expression\ParseUnaryExpressionTests.gen.h"
 
 #include "Parser\Statement\ParseCompoundStatementTests.gen.h"
+#include "Parser\Statement\ParseEmptyStatementTests.gen.h"
+#include "Parser\Statement\ParseExpressionStatementTests.gen.h"
 #include "Parser\Statement\ParseIfStatementTests.gen.h"
 #include "Parser\Statement\ParseReturnStatementTests.gen.h"
 #include "Parser\Statement\ParseSimpleDeclarationStatementTests.gen.h"
+
+#include "RoundTrip\RoundTripTests.gen.h"
 
 int main()
 {
@@ -87,17 +93,19 @@ int main()
     state += RunCompoundStatementTests();
     state += RunElseClauseTests();
     state += RunEmptyStatementTests();
+    state += RunExpressionStatementTests();
     state += RunIfStatementTests();
     state += RunReturnStatementTests();
     state += RunSimpleDeclarationStatementTests();
 
     state += RunSyntaxNodeChildTests();
     state += RunSyntaxTokenTests();
+    state += RunTranslationUnitTests();
 
     state += RunLexerTests();
     state += RunParserAttributesTests();
     state += RunParserExpressionTests();
-    state += RunSyntaxMiscTests();
+    state += RunParseTranslationUnitTests();
     state += RunSyntaxNamespaceTests();
 
     state += RunParseClassDeclarationTests();
@@ -114,7 +122,11 @@ int main()
     state += RunParseCompoundStatementTests();
     state += RunParseIfStatementTests();
     state += RunParseReturnStatementTests();
+    state += RunParseEmptyStatementTests();
+    state += RunParseExpressionStatementTests();
     state += RunParseSimpleDeclarationStatementTests();
+
+    state += RunRoundTripTests();
 
     std::cout << state.FailCount << " FAILED." << std::endl;
     std::cout << state.PassCount << " PASSED." << std::endl;

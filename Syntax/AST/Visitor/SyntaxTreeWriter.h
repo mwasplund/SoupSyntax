@@ -6,10 +6,10 @@ namespace Soup::Syntax
     /// <summary>
     /// Syntax Visitor used to write text representation of tree
     /// </summary>
-    export class SyntaxWriter : public SyntaxWalker
+    export class SyntaxTreeWriter : public SyntaxWalker
     {
     public:
-        SyntaxWriter(std::ostream& stream) : 
+        SyntaxTreeWriter(std::ostream& stream) : 
             m_stream(stream)
         {
         }
@@ -49,7 +49,7 @@ namespace Soup::Syntax
             }
 
             m_stream << "Token: ";
-            m_stream << token.GetValue();
+            m_stream << EscapeText(token.GetValue());
             m_stream << " [";
             m_stream << token.GetSpan().GetStart() << ", ";
             m_stream << token.GetSpan().GetEnd() << ")\n";
@@ -71,12 +71,13 @@ namespace Soup::Syntax
             }
 
             m_stream << location << "Trivia: \"";
-            m_stream << trivia.GetValue();
+            m_stream << EscapeText(trivia.GetValue());
             m_stream << "\" [";
             m_stream << trivia.GetSpan().GetStart() << ", ";
             m_stream << trivia.GetSpan().GetEnd() << ")\n";
         }
 
+    private:
         const char* ToString(SyntaxNodeType type)
         {
             switch (type)
@@ -89,8 +90,6 @@ namespace Soup::Syntax
                     return "ClassDeclaration";
                 case SyntaxNodeType::CompoundStatement:
                     return "CompoundStatement";
-                case SyntaxNodeType::DeclarationSequence:
-                    return "DeclarationSequence";
                 case SyntaxNodeType::DeclarationSpecifier:
                     return "DeclarationSpecifier";
                 case SyntaxNodeType::DefaultFunctionBody:
@@ -107,6 +106,8 @@ namespace Soup::Syntax
                     return "EnumDeclaration";
                 case SyntaxNodeType::EnumeratorDefinition:
                     return "EnumeratorDefinition";
+                case SyntaxNodeType::ExpressionStatement:
+                    return "ExpressionStatement";
                 case SyntaxNodeType::FunctionDefinition:
                     return "FunctionDefinition";
                 case SyntaxNodeType::IfStatement:
@@ -147,6 +148,30 @@ namespace Soup::Syntax
                     return "ValueEqualInitializer";
                 default:
                     throw std::logic_error(std::string("Unknown node: ") + std::to_string((int)type));
+            }
+        }
+
+        const std::string& EscapeText(const std::string& value)
+        {
+            // TODO: Generic solution find and replace
+            if (value == "\0")
+            {
+                static const std::string escapeValue = "\\0";
+                return escapeValue;
+            }
+            else if (value == "\n")
+            {
+                static const std::string escapeValue = "\\n";
+                return escapeValue;
+            }
+            else if (value == "\r\n")
+            {
+                static const std::string escapeValue = "\\r\\n";
+                return escapeValue;
+            }
+            else
+            {
+                return value;
             }
         }
 

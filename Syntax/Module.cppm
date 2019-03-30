@@ -11,7 +11,6 @@ namespace Soup::Syntax
     class SyntaxNode;
     class SyntaxNodeChild;
     class SyntaxToken;
-
     class TranslationUnit;
 
     // Expressions
@@ -25,7 +24,6 @@ namespace Soup::Syntax
 
     // Declarations
     class ClassDeclaration;
-    class DeclarationSequence;
     class DeclarationSpecifier;
     class DefaultFunctionBody;
     class DeleteFunctionBody;
@@ -48,6 +46,7 @@ namespace Soup::Syntax
     class CompoundStatement;
     class ElseClause;
     class EmptyStatement;
+    class ExpressionStatement;
     class IfStatement;
     class ReturnStatement;
     class SimpleDeclarationStatement;
@@ -82,13 +81,13 @@ namespace Soup::Syntax
 #include "AST\Statement\CatchClause.h"
 #include "AST\Statement\ElseClause.h"
 #include "AST\Statement\EmptyStatement.h"
+#include "AST\Statement\ExpressionStatement.h"
 #include "AST\Statement\IfStatement.h"
 #include "AST\Statement\ReturnStatement.h"
 #include "AST\Statement\TryStatement.h"
 #include "AST\Declaration\DeclarationSpecifier.h"
 #include "AST\Declaration\Declaration.h"
 #include "AST\Declaration\ClassDeclaration.h"
-#include "AST\Declaration\DeclarationSequence.h"
 #include "AST\Declaration\DefaultFunctionBody.h"
 #include "AST\Declaration\DeleteFunctionBody.h"
 #include "AST\Declaration\EmptyDeclaration.h"
@@ -103,15 +102,16 @@ namespace Soup::Syntax
 #include "AST\Declaration\InitializerDeclarator.h"
 #include "AST\Declaration\InitializerDeclaratorList.h"
 #include "AST\Declaration\RegularFunctionBody.h"
-#include "AST\Declaration\TranslationUnit.h"
 #include "AST\Declaration\TryFunctionBody.h"
 #include "AST\Declaration\ValueEqualInitializer.h"
 #include "AST\Statement\SimpleDeclarationStatement.h"
-#include "AST\SyntaxTree.h"
+#include "AST\TranslationUnit.h"
 #include "AST\Visitor\DefaultSyntaxVisitor.h"
 #include "AST\Visitor\SyntaxWalker.h"
+#include "AST\Visitor\SyntaxSourceWriter.h"
 #include "AST\Visitor\SyntaxTreeWriter.h"
 #include "AST\SyntaxFactory.h"
+#include "AST\SyntaxTree.h"
 #include "Parser\Grammar\CppLexer.h"
 #include "Parser\Grammar\CppParser.h"
 #include "Parser\Grammar\CppParserBaseVisitor.h"
@@ -120,3 +120,4 @@ namespace Soup::Syntax
 #include "Parser\ASTCppParserVisitor.h"
 #include "Parser\LexerExceptionErrorListener.h"
 #include "Parser\ParserExceptionErrorListener.h"
+#include "Parser\SyntaxParser.h"

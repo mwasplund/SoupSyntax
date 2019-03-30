@@ -84,11 +84,24 @@ namespace Soup::Syntax
         }
 
         /// <summary>
-        /// Convert to string representation
+        /// Write the contents of the token to the provided stream
         /// </summary>
-        std::string ToString() const
+        void Write(std::ostream& stream) const
         {
-            return std::to_string((int)m_type) + ", " + m_value;
+            // Write the leading trivia
+            for (auto& trivia : m_leadingTrivia)
+            {
+                trivia.Write(stream);
+            }
+
+            // Write the raw token value
+            stream << m_value;
+
+            // Write the trailing trivia
+            for (auto& trivia : m_trailingTrivia)
+            {
+                trivia.Write(stream);
+            }
         }
 
     private:

@@ -31,6 +31,7 @@ namespace Soup::Syntax
         Double,
         DynamicCast,
         Else,
+        EndOfFile,
         Enum,
         Explicit,
         Export,

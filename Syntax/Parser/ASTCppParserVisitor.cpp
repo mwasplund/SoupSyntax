@@ -40,14 +40,17 @@ antlrcpp::Any ASTCppParserVisitor::visitTranslationUnit(CppParser::TranslationUn
     Trace("VisitTranslationUnit");
 
     // Check for the optional declaration sequences
-    std::shared_ptr<const DeclarationSequence> declarationSequence = nullptr;
+    std::vector<std::shared_ptr<const Declaration>> declarationSequence = {};
     if (context->declarationSequence() != nullptr)
     {
         declarationSequence = visit(context->declarationSequence())
-            .as<std::shared_ptr<const DeclarationSequence>>();
+            .as<std::vector<std::shared_ptr<const Declaration>>>();
     }
 
-    return std::make_shared<const TranslationUnit>(std::move(declarationSequence));
+    return SyntaxFactory::CreateTranslationUnit(
+        std::make_shared<const SyntaxList<Declaration>>(
+            std::move(declarationSequence)),
+        CreateToken(SyntaxTokenType::EndOfFile, context->EOF()));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitPrimaryExpression(CppParser::PrimaryExpressionContext* context)
@@ -1165,7 +1168,14 @@ antlrcpp::Any ASTCppParserVisitor::visitExpressionStatement(CppParser::Expressio
     Trace("VisitExpressionStatement");
     if (context->expression() != nullptr)
     {
-        throw std::logic_error(std::string(__func__) + " NotImplemented");
+        auto expression = std::dynamic_pointer_cast<const Expression>(
+            visit(context->expression())
+                .as<std::shared_ptr<const SyntaxNode>>());
+
+        return std::static_pointer_cast<const SyntaxNode>(
+            SyntaxFactory::CreateExpressionStatement(
+                std::move(expression),
+                CreateToken(SyntaxTokenType::Semicolon, context->Semicolon())));
     }
     else
     {
@@ -1322,30 +1332,21 @@ antlrcpp::Any ASTCppParserVisitor::visitDeclarationSequence(CppParser::Declarati
     Trace("VisitDeclarationSequence");
 
     // Handle the recursive rule
-    std::shared_ptr<const DeclarationSequence> sequence;
+    std::vector<std::shared_ptr<const Declaration>> declarations;
     auto childSequence = context->declarationSequence();
     if (childSequence != nullptr)
     {
-        sequence = visit(childSequence)
-            .as<std::shared_ptr<const DeclarationSequence>>();
-    }
-    else
-    {
-        std::vector<std::shared_ptr<const Declaration>> declarations;
-        sequence = std::make_shared<const DeclarationSequence>(
-            std::move(declarations));
+        declarations = visit(childSequence)
+            .as<std::vector<std::shared_ptr<const Declaration>>>();
     }
 
     // Handle the new item
-    auto declaration = context->declaration();
-    auto declarationNode = visit(declaration)
-        .as<std::shared_ptr<const SyntaxNode>>();
-    auto declarations = sequence->GetDeclarations();
-    declarations.push_back(
-        std::static_pointer_cast<const Declaration>(declarationNode));
+    auto declaration = std::dynamic_pointer_cast<const Declaration>(
+        visit(context->declaration())
+            .as<std::shared_ptr<const SyntaxNode>>());
+    declarations.push_back(declaration);
 
-    return std::make_shared<const DeclarationSequence>(
-        std::move(declarations));
+    return declarations;
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitDeclaration(CppParser::DeclarationContext *context)

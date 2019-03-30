@@ -29,11 +29,6 @@ namespace Soup::Syntax
             DefaultVisit(node);
         }
 
-        virtual void Visit(const DeclarationSequence& node) override
-        {
-            DefaultVisit(node);
-        }
-
         virtual void Visit(const DeclarationSpecifier& node) override
         {
             DefaultVisit(node);
@@ -70,6 +65,11 @@ namespace Soup::Syntax
         }
 
         virtual void Visit(const EnumeratorDefinition& node) override
+        {
+            DefaultVisit(node);
+        }
+
+        virtual void Visit(const ExpressionStatement& node) override
         {
             DefaultVisit(node);
         }
