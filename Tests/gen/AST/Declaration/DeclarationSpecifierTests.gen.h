@@ -9,38 +9,49 @@ TestState RunDeclarationSpecifierTests()
 
     std::cout << "Running DeclarationSpecifierTests:" << std::endl;
 
-    std::cout << "InitializeSimpleNoModifiers" << std::endl;
-    state += RunTest([&testClass]() { testClass->InitializeSimpleNoModifiers(); });
+    state += RunTest(
+        "InitializeSimpleNoModifiers",
+        [&testClass]() { testClass->InitializeSimpleNoModifiers(); });
 
-    std::cout << "InitializeSimpleWithModifiers" << std::endl;
-    state += RunTest([&testClass]() { testClass->InitializeSimpleWithModifiers(); });
+    state += RunTest(
+        "InitializeSimpleWithModifiers",
+        [&testClass]() { testClass->InitializeSimpleWithModifiers(); });
 
-    std::cout << "GetChildrenNoModifiers" << std::endl;
-    state += RunTest([&testClass]() { testClass->GetChildrenNoModifiers(); });
+    state += RunTest(
+        "GetChildrenNoModifiers",
+        [&testClass]() { testClass->GetChildrenNoModifiers(); });
 
-    std::cout << "GetChildrenWithModifiers" << std::endl;
-    state += RunTest([&testClass]() { testClass->GetChildrenWithModifiers(); });
+    state += RunTest(
+        "GetChildrenWithModifiers",
+        [&testClass]() { testClass->GetChildrenWithModifiers(); });
 
-    std::cout << "OperatorEqualNoModifiers" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorEqualNoModifiers(); });
+    state += RunTest(
+        "OperatorEqualNoModifiers",
+        [&testClass]() { testClass->OperatorEqualNoModifiers(); });
 
-    std::cout << "OperatorEqualWithModifiers" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorEqualWithModifiers(); });
+    state += RunTest(
+        "OperatorEqualWithModifiers",
+        [&testClass]() { testClass->OperatorEqualWithModifiers(); });
 
-    std::cout << "OperatorNotEqualNoLeadingModifiers" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualNoLeadingModifiers(); });
+    state += RunTest(
+        "OperatorNotEqualNoLeadingModifiers",
+        [&testClass]() { testClass->OperatorNotEqualNoLeadingModifiers(); });
 
-    std::cout << "OperatorNotEqualLeadingModifiers" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualLeadingModifiers(); });
+    state += RunTest(
+        "OperatorNotEqualLeadingModifiers",
+        [&testClass]() { testClass->OperatorNotEqualLeadingModifiers(); });
 
-    std::cout << "OperatorNotEqualTypeSpecifier" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualTypeSpecifier(); });
+    state += RunTest(
+        "OperatorNotEqualTypeSpecifier",
+        [&testClass]() { testClass->OperatorNotEqualTypeSpecifier(); });
 
-    std::cout << "OperatorNotEqualNoTrailingModifiers" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualNoTrailingModifiers(); });
+    state += RunTest(
+        "OperatorNotEqualNoTrailingModifiers",
+        [&testClass]() { testClass->OperatorNotEqualNoTrailingModifiers(); });
 
-    std::cout << "OperatorNotEqualTrailingModifiers" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualTrailingModifiers(); });
+    state += RunTest(
+        "OperatorNotEqualTrailingModifiers",
+        [&testClass]() { testClass->OperatorNotEqualTrailingModifiers(); });
 
     return state;
 }

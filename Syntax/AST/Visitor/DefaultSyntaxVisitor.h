@@ -104,6 +104,11 @@ namespace Soup::Syntax
             DefaultVisit(node);
         }
 
+        virtual void Visit(const NamespaceDefinition& node) override
+        {
+            DefaultVisit(node);
+        }
+
         virtual void Visit(const Parameter& node) override
         {
             DefaultVisit(node);

@@ -13,17 +13,20 @@ struct TestState
     }
 };
 
-TestState RunTest(std::function<void(void)> test)
+TestState RunTest(
+    std::string testName,
+    std::function<void(void)> test)
 {
     try
     {
+        // std::cout << "Running: " << testName << std::endl;
         test();
-        // std::cout << "Test PASS!" << std::endl;
+        // std::cout << "PASS: " << testName << std::endl;
         return TestState{ 0, 1 };
     }
     catch (std::exception& ex)
     {
-        std::cout << "Test FAIL!" << std::endl;
+        std::cout << "FAIL: " << testName << std::endl;
         std::cout << typeid(ex).name() << std::endl;
 
         if (!std::string(ex.what()).empty())
@@ -33,9 +36,16 @@ TestState RunTest(std::function<void(void)> test)
     }
     catch (...)
     {
-        std::cout << "Test FAIL!" << std::endl;
+        std::cout << "FAIL: " << testName << std::endl;
         std::cout << "Unknown error..." << std::endl;
     }
 
     return TestState{ 1, 0 };
+}
+
+// DEPRECATED
+TestState RunTest(
+    std::function<void(void)> test)
+{
+    return RunTest("UNKNOWN", test);
 }

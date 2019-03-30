@@ -12,6 +12,7 @@ import SoupSyntax;
 #include "AST\Declaration\FunctionDefinitionTests.gen.h"
 #include "AST\Declaration\InitializerDeclaratorListTests.gen.h"
 #include "AST\Declaration\InitializerDeclaratorTests.gen.h"
+#include "AST\Declaration\NamespaceDefinitionTests.gen.h"
 #include "AST\Declaration\ParameterListTests.gen.h"
 #include "AST\Declaration\ParameterTests.gen.h"
 #include "AST\Declaration\PrimitiveDataTypeDeclarationTests.gen.h"
@@ -45,6 +46,7 @@ import SoupSyntax;
 #include "Parser\Declaration\ParseClassDeclarationTests.gen.h"
 #include "Parser\Declaration\ParseEnumDeclarationTests.gen.h"
 #include "Parser\Declaration\ParseFunctionDefinitionTests.gen.h"
+#include "Parser\Declaration\ParseNamespaceDefinitionTests.gen.h"
 
 #include "Parser\Expression\ParseBinaryExpressionTests.gen.h"
 #include "Parser\Expression\ParseLiteralExpressionTests.gen.h"
@@ -78,6 +80,7 @@ int main()
     state += RunFunctionDefinitionTests();
     state += RunInitializerDeclaratorListTests();
     state += RunInitializerDeclaratorTests();
+    state += RunNamespaceDefinitionTests();
     state += RunParameterListTests();
     state += RunParameterTests();
     state += RunPrimitiveDataTypeDeclarationTests();
@@ -111,6 +114,7 @@ int main()
     state += RunParseClassDeclarationTests();
     state += RunParseEnumDeclarationTests();
     state += RunParseFunctionDefinitionTests();
+    state += RunParseNamespaceDefinitionTests();
 
     state += RunParseBinaryExpressionTests();
     state += RunParseLiteralExpressionTests();

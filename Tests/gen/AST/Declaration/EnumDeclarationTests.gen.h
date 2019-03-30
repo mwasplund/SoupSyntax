@@ -9,47 +9,61 @@ TestState RunEnumDeclarationTests()
 
     std::cout << "Running EnumDeclarationTests:" << std::endl;
 
-    std::cout << "InitializeNoClassOrIdentifier" << std::endl;
-    state += RunTest([&testClass]() { testClass->InitializeNoClassOrIdentifier(); });
+    state += RunTest(
+        "InitializeNoClassOrIdentifier",
+        [&testClass]() { testClass->InitializeNoClassOrIdentifier(); });
 
-    std::cout << "InitializeWithClassAndIdentifier" << std::endl;
-    state += RunTest([&testClass]() { testClass->InitializeWithClassAndIdentifier(); });
+    state += RunTest(
+        "InitializeWithClassAndIdentifier",
+        [&testClass]() { testClass->InitializeWithClassAndIdentifier(); });
 
-    std::cout << "GetChildrenNoClassOrIdentifier" << std::endl;
-    state += RunTest([&testClass]() { testClass->GetChildrenNoClassOrIdentifier(); });
+    state += RunTest(
+        "GetChildrenNoClassOrIdentifier",
+        [&testClass]() { testClass->GetChildrenNoClassOrIdentifier(); });
 
-    std::cout << "GetChildrenWithClassAndIdentifier" << std::endl;
-    state += RunTest([&testClass]() { testClass->GetChildrenWithClassAndIdentifier(); });
+    state += RunTest(
+        "GetChildrenWithClassAndIdentifier",
+        [&testClass]() { testClass->GetChildrenWithClassAndIdentifier(); });
 
-    std::cout << "OperatorEqualNoClassOrIdentifier" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorEqualNoClassOrIdentifier(); });
+    state += RunTest(
+        "OperatorEqualNoClassOrIdentifier",
+        [&testClass]() { testClass->OperatorEqualNoClassOrIdentifier(); });
 
-    std::cout << "OperatorEqualWithClassAndIdentifier" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorEqualWithClassAndIdentifier(); });
+    state += RunTest(
+        "OperatorEqualWithClassAndIdentifier",
+        [&testClass]() { testClass->OperatorEqualWithClassAndIdentifier(); });
 
-    std::cout << "OperatorNotEqualEnumToken" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualEnumToken(); });
+    state += RunTest(
+        "OperatorNotEqualEnumToken",
+        [&testClass]() { testClass->OperatorNotEqualEnumToken(); });
 
-    std::cout << "OperatorNotEqualNoClass" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualNoClass(); });
+    state += RunTest(
+        "OperatorNotEqualNoClass",
+        [&testClass]() { testClass->OperatorNotEqualNoClass(); });
 
-    std::cout << "OperatorNotEqualWithClass" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualWithClass(); });
+    state += RunTest(
+        "OperatorNotEqualWithClass",
+        [&testClass]() { testClass->OperatorNotEqualWithClass(); });
 
-    std::cout << "OperatorNotEqualNoIdentifier" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualNoIdentifier(); });
+    state += RunTest(
+        "OperatorNotEqualNoIdentifier",
+        [&testClass]() { testClass->OperatorNotEqualNoIdentifier(); });
 
-    std::cout << "OperatorNotEqualWithIdentifier" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualWithIdentifier(); });
+    state += RunTest(
+        "OperatorNotEqualWithIdentifier",
+        [&testClass]() { testClass->OperatorNotEqualWithIdentifier(); });
 
-    std::cout << "OperatorNotEqualOpenBraceToken" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualOpenBraceToken(); });
+    state += RunTest(
+        "OperatorNotEqualOpenBraceToken",
+        [&testClass]() { testClass->OperatorNotEqualOpenBraceToken(); });
 
-    std::cout << "OperatorNotEqualEnumeratorList" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualEnumeratorList(); });
+    state += RunTest(
+        "OperatorNotEqualEnumeratorList",
+        [&testClass]() { testClass->OperatorNotEqualEnumeratorList(); });
 
-    std::cout << "OperatorNotEqualCloseBraceToken" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualCloseBraceToken(); });
+    state += RunTest(
+        "OperatorNotEqualCloseBraceToken",
+        [&testClass]() { testClass->OperatorNotEqualCloseBraceToken(); });
 
     return state;
 }

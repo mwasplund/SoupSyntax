@@ -1,13 +1,13 @@
 #pragma once
-#include "ClassDeclarationTests.h"
+#include "NamespaceDefinitionTests.h"
 #include "../RunTest.h"
 
-TestState RunClassDeclarationTests()
+TestState RunNamespaceDefinitionTests()
 {
-    auto testClass = std::make_unique<Soup::Syntax::UnitTests::ClassDeclarationTests>();
+    auto testClass = std::make_unique<Soup::Syntax::UnitTests::NamespaceDefinitionTests>();
     TestState state = { 0, 0 };
 
-    std::cout << "Running ClassDeclarationTests:" << std::endl;
+    std::cout << "Running NamespaceDefinitionTests:" << std::endl;
 
     state += RunTest(
         "InitializeNoIdentifier",
@@ -34,8 +34,8 @@ TestState RunClassDeclarationTests()
         [&testClass]() { testClass->OperatorEqualWithIdentifier(); });
 
     state += RunTest(
-        "OperatorNotEqualClassToken",
-        [&testClass]() { testClass->OperatorNotEqualClassToken(); });
+        "OperatorNotEqualNamespaceToken",
+        [&testClass]() { testClass->OperatorNotEqualNamespaceToken(); });
 
     state += RunTest(
         "OperatorNotEqualNoIdentifier",
@@ -50,8 +50,8 @@ TestState RunClassDeclarationTests()
         [&testClass]() { testClass->OperatorNotEqualOpenBraceToken(); });
 
     state += RunTest(
-        "OperatorNotEqualMemberDeclarations",
-        [&testClass]() { testClass->OperatorNotEqualMemberDeclarations(); });
+        "OperatorNotEqualBody",
+        [&testClass]() { testClass->OperatorNotEqualBody(); });
 
     state += RunTest(
         "OperatorNotEqualCloseBraceToken",

@@ -9,23 +9,29 @@ TestState RunParseSimpleDeclarationStatementTests()
 
     std::cout << "Running ParseSimpleDeclarationStatementTests:" << std::endl;
 
-    std::cout << "SingleIntVariable" << std::endl;
-    state += RunTest([&testClass]() { testClass->SingleIntVariable(); });
+    state += RunTest(
+        "SingleIntVariable",
+        [&testClass]() { testClass->SingleIntVariable(); });
 
-    std::cout << "SingleIntVariableWithInitializer" << std::endl;
-    state += RunTest([&testClass]() { testClass->SingleIntVariableWithInitializer(); });
+    state += RunTest(
+        "SingleIntVariableWithInitializer",
+        [&testClass]() { testClass->SingleIntVariableWithInitializer(); });
 
-    std::cout << "DoubleIntVariable" << std::endl;
-    state += RunTest([&testClass]() { testClass->DoubleIntVariable(); });
+    state += RunTest(
+        "DoubleIntVariable",
+        [&testClass]() { testClass->DoubleIntVariable(); });
 
-    std::cout << "DoubleIntVariableSingleWithInitializer" << std::endl;
-    state += RunTest([&testClass]() { testClass->DoubleIntVariableSingleWithInitializer(); });
+    state += RunTest(
+        "DoubleIntVariableSingleWithInitializer",
+        [&testClass]() { testClass->DoubleIntVariableSingleWithInitializer(); });
 
-    std::cout << "DoubleIntVariableBothWithInitializer" << std::endl;
-    state += RunTest([&testClass]() { testClass->DoubleIntVariableBothWithInitializer(); });
+    state += RunTest(
+        "DoubleIntVariableBothWithInitializer",
+        [&testClass]() { testClass->DoubleIntVariableBothWithInitializer(); });
 
-    std::cout << "SingleIntLeadingAndTrailingModifierVariable" << std::endl;
-    state += RunTest([&testClass]() { testClass->SingleIntLeadingAndTrailingModifierVariable(); });
+    state += RunTest(
+        "SingleIntLeadingAndTrailingModifierVariable",
+        [&testClass]() { testClass->SingleIntLeadingAndTrailingModifierVariable(); });
 
     return state;
 }

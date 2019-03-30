@@ -9,17 +9,21 @@ TestState RunEnumeratorDefinitionTests()
 
     std::cout << "Running EnumeratorDefinitionTests:" << std::endl;
 
-    std::cout << "Initialize" << std::endl;
-    state += RunTest([&testClass]() { testClass->Initialize(); });
+    state += RunTest(
+        "Initialize",
+        [&testClass]() { testClass->Initialize(); });
 
-    std::cout << "GetChildren" << std::endl;
-    state += RunTest([&testClass]() { testClass->GetChildren(); });
+    state += RunTest(
+        "GetChildren",
+        [&testClass]() { testClass->GetChildren(); });
 
-    std::cout << "OperatorEqual" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorEqual(); });
+    state += RunTest(
+        "OperatorEqual",
+        [&testClass]() { testClass->OperatorEqual(); });
 
-    std::cout << "OperatorNotEqualIdentifierToken" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualIdentifierToken(); });
+    state += RunTest(
+        "OperatorNotEqualIdentifierToken",
+        [&testClass]() { testClass->OperatorNotEqualIdentifierToken(); });
 
     return state;
 }

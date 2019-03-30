@@ -1751,13 +1751,35 @@ antlrcpp::Any ASTCppParserVisitor::visitNamespaceDefinition(CppParser::Namespace
 antlrcpp::Any ASTCppParserVisitor::visitNamedNamespaceDefinition(CppParser::NamedNamespaceDefinitionContext* context)
 {
     Trace("VisitNamedNamespaceDefinition");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+
+    // Inline? Namespace attributeSpecifierSequence? Identifier OpenBrace namespaceBody CloseBrace;
+    auto namespaceBody = visit(context->namespaceBody())
+        .as<std::shared_ptr<const SyntaxList<Declaration>>>();
+
+    return std::static_pointer_cast<const SyntaxNode>(
+        SyntaxFactory::CreateNamespaceDefinition(
+            CreateToken(SyntaxTokenType::Namespace, context->Namespace()),
+            CreateToken(SyntaxTokenType::Identifier, context->Identifier()),
+            CreateToken(SyntaxTokenType::OpenBrace, context->OpenBrace()),
+            std::move(namespaceBody),
+            CreateToken(SyntaxTokenType::CloseBrace, context->CloseBrace())));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitUnnamedNamespaceDefinition(CppParser::UnnamedNamespaceDefinitionContext* context)
 {
     Trace("VisitUnnamedNamespaceDefinition");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+
+    // Inline? Namespace attributeSpecifierSequence? OpenBrace namespaceBody CloseBrace;
+    auto namespaceBody = visit(context->namespaceBody())
+        .as<std::shared_ptr<const SyntaxList<Declaration>>>();
+
+    return std::static_pointer_cast<const SyntaxNode>(
+        SyntaxFactory::CreateNamespaceDefinition(
+            CreateToken(SyntaxTokenType::Namespace, context->Namespace()),
+            nullptr,
+            CreateToken(SyntaxTokenType::OpenBrace, context->OpenBrace()),
+            std::move(namespaceBody),
+            CreateToken(SyntaxTokenType::CloseBrace, context->CloseBrace())));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitNestedNamespaceDefinition(CppParser::NestedNamespaceDefinitionContext* context)
@@ -1775,7 +1797,17 @@ antlrcpp::Any ASTCppParserVisitor::visitEnclosingNamespaceSpecifier(CppParser::E
 antlrcpp::Any ASTCppParserVisitor::visitNamespaceBody(CppParser::NamespaceBodyContext* context)
 {
     Trace("VisitNamespaceBody");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+
+    // Check for the optional declaration sequences
+    std::vector<std::shared_ptr<const Declaration>> declarationSequence = {};
+    if (context->declarationSequence() != nullptr)
+    {
+        declarationSequence = visit(context->declarationSequence())
+            .as<std::vector<std::shared_ptr<const Declaration>>>();
+    }
+
+    return std::make_shared<const SyntaxList<Declaration>>(
+            std::move(declarationSequence));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitNamespaceAliasDefinition(CppParser::NamespaceAliasDefinitionContext* context)

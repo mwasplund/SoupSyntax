@@ -9,23 +9,29 @@ TestState RunDeleteFunctionBodyTests()
 
     std::cout << "Running DeleteFunctionBodyTests:" << std::endl;
 
-    std::cout << "InitializeSimple" << std::endl;
-    state += RunTest([&testClass]() { testClass->InitializeSimple(); });
+    state += RunTest(
+        "InitializeSimple",
+        [&testClass]() { testClass->InitializeSimple(); });
 
-    std::cout << "GetChildren" << std::endl;
-    state += RunTest([&testClass]() { testClass->GetChildren(); });
+    state += RunTest(
+        "GetChildren",
+        [&testClass]() { testClass->GetChildren(); });
 
-    std::cout << "OperatorEqual" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorEqual(); });
+    state += RunTest(
+        "OperatorEqual",
+        [&testClass]() { testClass->OperatorEqual(); });
 
-    std::cout << "OperatorNotEqualEqualToken" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualEqualToken(); });
+    state += RunTest(
+        "OperatorNotEqualEqualToken",
+        [&testClass]() { testClass->OperatorNotEqualEqualToken(); });
 
-    std::cout << "OperatorNotEqualDeleteToken" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualDeleteToken(); });
+    state += RunTest(
+        "OperatorNotEqualDeleteToken",
+        [&testClass]() { testClass->OperatorNotEqualDeleteToken(); });
 
-    std::cout << "OperatorNotEqualSemicolonToken" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualSemicolonToken(); });
+    state += RunTest(
+        "OperatorNotEqualSemicolonToken",
+        [&testClass]() { testClass->OperatorNotEqualSemicolonToken(); });
 
     return state;
 }

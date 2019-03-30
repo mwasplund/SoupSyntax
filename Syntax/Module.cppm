@@ -34,6 +34,7 @@ namespace Soup::Syntax
     class FunctionDefinition;
     class InitializerDeclarator;
     class InitializerDeclaratorList;
+    class NamespaceDefinition;
     class Parameter;
     class ParameterList;
     class PrimitiveDataTypeDeclaration;
@@ -93,6 +94,7 @@ namespace Soup::Syntax
 #include "AST\Declaration\EmptyDeclaration.h"
 #include "AST\Declaration\EnumeratorDefinition.h"
 #include "AST\Declaration\EnumDeclaration.h"
+#include "AST\Declaration\NamespaceDefinition.h"
 #include "AST\Declaration\Parameter.h"
 #include "AST\Declaration\ParameterList.h"
 #include "AST\Declaration\PrimitiveDataType.h"

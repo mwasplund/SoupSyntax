@@ -9,12 +9,21 @@ TestState RunParserExpressionTests()
 
     std::cout << "Running ParserExpressionTests:" << std::endl;
 
-    std::cout << "SingleRule_PrimaryExpressions" << std::endl;
-    state += RunTest([&testClass]() { testClass->SingleRule_PrimaryExpressions("1"); });
-    state += RunTest([&testClass]() { testClass->SingleRule_PrimaryExpressions("cout"); });
-    state += RunTest([&testClass]() { testClass->SingleRule_PrimaryExpressions("std::string::npos"); });
-    state += RunTest([&testClass]() { testClass->SingleRule_PrimaryExpressions("[]() { return 1; }]"); });
-    state += RunTest([&testClass]() { testClass->SingleRule_PrimaryExpressions("all(true, true, true, false)"); });
+    state += RunTest(
+        "SingleRule_PrimaryExpressions[1]",
+        [&testClass]() { testClass->SingleRule_PrimaryExpressions("1"); });
+    state += RunTest(
+        "SingleRule_PrimaryExpressions[cout]",
+        [&testClass]() { testClass->SingleRule_PrimaryExpressions("cout"); });
+    state += RunTest(
+        "SingleRule_PrimaryExpressions[std::string::npos]",
+        [&testClass]() { testClass->SingleRule_PrimaryExpressions("std::string::npos"); });
+    state += RunTest(
+        "SingleRule_PrimaryExpressions[[]() { return 1; }]]",
+        [&testClass]() { testClass->SingleRule_PrimaryExpressions("[]() { return 1; }]"); });
+    state += RunTest(
+        "SingleRule_PrimaryExpressions[all(true, true, true, false)]",
+        [&testClass]() { testClass->SingleRule_PrimaryExpressions("all(true, true, true, false)"); });
 
     std::cout << "SingleRule_UnqualifiedIdentifier" << std::endl;
     state += RunTest([&testClass]() { testClass->SingleRule_UnqualifiedIdentifier("cout"); });

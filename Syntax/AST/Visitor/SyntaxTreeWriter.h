@@ -118,6 +118,8 @@ namespace Soup::Syntax
                     return "InitializerDeclaratorList";
                 case SyntaxNodeType::LiteralExpression:
                     return "LiteralExpression";
+                case SyntaxNodeType::NamespaceDefinition:
+                    return "NamespaceDefinition";
                 case SyntaxNodeType::Parameter:
                     return "Parameter";
                 case SyntaxNodeType::ParameterList:

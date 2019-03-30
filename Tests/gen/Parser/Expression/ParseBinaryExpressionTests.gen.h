@@ -9,107 +9,138 @@ TestState RunParseBinaryExpressionTests()
 
     std::cout << "Running ParseBinaryExpressionTests:" << std::endl;
 
-    std::cout << "IdentifierAddition" << std::endl;
-    state += RunTest([&testClass]() { testClass->IdentifierAddition(); });
+    state += RunTest(
+        "IdentifierAddition",
+        [&testClass]() { testClass->IdentifierAddition(); });
 
-    std::cout << "IdentifierSubtraction" << std::endl;
-    state += RunTest([&testClass]() { testClass->IdentifierSubtraction(); });
+    state += RunTest(
+        "IdentifierSubtraction",
+        [&testClass]() { testClass->IdentifierSubtraction(); });
 
-    std::cout << "IdentifierMultiplication" << std::endl;
-    state += RunTest([&testClass]() { testClass->IdentifierMultiplication(); });
+    state += RunTest(
+        "IdentifierMultiplication",
+        [&testClass]() { testClass->IdentifierMultiplication(); });
 
     std::cout << "IdentifierDivision" << std::endl;
     state += RunTest([&testClass]() { testClass->IdentifierDivision(); });
 
-    std::cout << "IdentifierModulo" << std::endl;
-    state += RunTest([&testClass]() { testClass->IdentifierModulo(); });
+    state += RunTest(
+        "IdentifierModulo",
+        [&testClass]() { testClass->IdentifierModulo(); });
 
-    std::cout << "IdentifierBitwiseAnd" << std::endl;
-    state += RunTest([&testClass]() { testClass->IdentifierBitwiseAnd(); });
+    state += RunTest(
+        "IdentifierBitwiseAnd",
+        [&testClass]() { testClass->IdentifierBitwiseAnd(); });
 
-    std::cout << "IdentifierBitwiseOr" << std::endl;
-    state += RunTest([&testClass]() { testClass->IdentifierBitwiseOr(); });
+    state += RunTest(
+        "IdentifierBitwiseOr",
+        [&testClass]() { testClass->IdentifierBitwiseOr(); });
 
-    std::cout << "IdentifierBitwiseExclusiveOr" << std::endl;
-    state += RunTest([&testClass]() { testClass->IdentifierBitwiseExclusiveOr(); });
+    state += RunTest(
+        "IdentifierBitwiseExclusiveOr",
+        [&testClass]() { testClass->IdentifierBitwiseExclusiveOr(); });
 
-    std::cout << "IdentifierBitwiseLeftShift" << std::endl;
-    state += RunTest([&testClass]() { testClass->IdentifierBitwiseLeftShift(); });
+    state += RunTest(
+        "IdentifierBitwiseLeftShift",
+        [&testClass]() { testClass->IdentifierBitwiseLeftShift(); });
 
-    std::cout << "IdentifierBitwiseRightShift" << std::endl;
-    state += RunTest([&testClass]() { testClass->IdentifierBitwiseRightShift(); });
+    state += RunTest(
+        "IdentifierBitwiseRightShift",
+        [&testClass]() { testClass->IdentifierBitwiseRightShift(); });
 
-    std::cout << "IdentifierSimpleAssignment" << std::endl;
-    state += RunTest([&testClass]() { testClass->IdentifierSimpleAssignment(); });
+    state += RunTest(
+        "IdentifierSimpleAssignment",
+        [&testClass]() { testClass->IdentifierSimpleAssignment(); });
 
-    std::cout << "IdentifierAdditionAssignment" << std::endl;
-    state += RunTest([&testClass]() { testClass->IdentifierAdditionAssignment(); });
+    state += RunTest(
+        "IdentifierAdditionAssignment",
+        [&testClass]() { testClass->IdentifierAdditionAssignment(); });
 
-    std::cout << "IdentifierSubtractionAssignment" << std::endl;
-    state += RunTest([&testClass]() { testClass->IdentifierSubtractionAssignment(); });
+    state += RunTest(
+        "IdentifierSubtractionAssignment",
+        [&testClass]() { testClass->IdentifierSubtractionAssignment(); });
 
-    std::cout << "IdentifierMultiplicationAssignment" << std::endl;
-    state += RunTest([&testClass]() { testClass->IdentifierMultiplicationAssignment(); });
+    state += RunTest(
+        "IdentifierMultiplicationAssignment",
+        [&testClass]() { testClass->IdentifierMultiplicationAssignment(); });
 
-    std::cout << "IdentifierDivisionAssignment" << std::endl;
-    state += RunTest([&testClass]() { testClass->IdentifierDivisionAssignment(); });
+    state += RunTest(
+        "IdentifierDivisionAssignment",
+        [&testClass]() { testClass->IdentifierDivisionAssignment(); });
 
-    std::cout << "IdentifierModuloAssignment" << std::endl;
-    state += RunTest([&testClass]() { testClass->IdentifierModuloAssignment(); });
+    state += RunTest(
+        "IdentifierModuloAssignment",
+        [&testClass]() { testClass->IdentifierModuloAssignment(); });
 
-    std::cout << "IdentifierBitwiseExclusiveOrAssignment" << std::endl;
-    state += RunTest([&testClass]() { testClass->IdentifierBitwiseExclusiveOrAssignment(); });
+    state += RunTest(
+        "IdentifierBitwiseExclusiveOrAssignment",
+        [&testClass]() { testClass->IdentifierBitwiseExclusiveOrAssignment(); });
 
-    std::cout << "IdentifierBitwiseAndAssignment" << std::endl;
-    state += RunTest([&testClass]() { testClass->IdentifierBitwiseAndAssignment(); });
+    state += RunTest(
+        "IdentifierBitwiseAndAssignment",
+        [&testClass]() { testClass->IdentifierBitwiseAndAssignment(); });
 
-    std::cout << "IdentifierBitwiseOrAssignment" << std::endl;
-    state += RunTest([&testClass]() { testClass->IdentifierBitwiseOrAssignment(); });
+    state += RunTest(
+        "IdentifierBitwiseOrAssignment",
+        [&testClass]() { testClass->IdentifierBitwiseOrAssignment(); });
 
-    std::cout << "IdentifierBitwiseLeftShiftAssignment" << std::endl;
-    state += RunTest([&testClass]() { testClass->IdentifierBitwiseLeftShiftAssignment(); });
+    state += RunTest(
+        "IdentifierBitwiseLeftShiftAssignment",
+        [&testClass]() { testClass->IdentifierBitwiseLeftShiftAssignment(); });
 
-    std::cout << "IdentifierBitwiseRightShiftAssignment" << std::endl;
-    state += RunTest([&testClass]() { testClass->IdentifierBitwiseRightShiftAssignment(); });
+    state += RunTest(
+        "IdentifierBitwiseRightShiftAssignment",
+        [&testClass]() { testClass->IdentifierBitwiseRightShiftAssignment(); });
 
-    std::cout << "IdentifierEquals" << std::endl;
-    state += RunTest([&testClass]() { testClass->IdentifierEquals(); });
+    state += RunTest(
+        "IdentifierEquals",
+        [&testClass]() { testClass->IdentifierEquals(); });
 
-    std::cout << "IdentifierNotEquals" << std::endl;
-    state += RunTest([&testClass]() { testClass->IdentifierNotEquals(); });
+    state += RunTest(
+        "IdentifierNotEquals",
+        [&testClass]() { testClass->IdentifierNotEquals(); });
 
-    std::cout << "IdentifierLessThan" << std::endl;
-    state += RunTest([&testClass]() { testClass->IdentifierLessThan(); });
+    state += RunTest(
+        "IdentifierLessThan",
+        [&testClass]() { testClass->IdentifierLessThan(); });
 
-    std::cout << "IdentifierGreaterThan" << std::endl;
+    // std::cout << "IdentifierGreaterThan" << std::endl;
     // TODO : Not consuming all tokens... state += RunTest([&testClass]() { testClass->IdentifierGreaterThan(); });
 
-    std::cout << "IdentifierLessThanOrEqual" << std::endl;
-    state += RunTest([&testClass]() { testClass->IdentifierLessThanOrEqual(); });
+    state += RunTest(
+        "IdentifierLessThanOrEqual",
+        [&testClass]() { testClass->IdentifierLessThanOrEqual(); });
 
-    std::cout << "IdentifierGreaterThanOrEqual" << std::endl;
-    state += RunTest([&testClass]() { testClass->IdentifierGreaterThanOrEqual(); });
+    state += RunTest(
+        "IdentifierGreaterThanOrEqual",
+        [&testClass]() { testClass->IdentifierGreaterThanOrEqual(); });
 
-    std::cout << "IdentifierThreeWayComparison" << std::endl;
+    // std::cout << "IdentifierThreeWayComparison" << std::endl;
     // TODO state += RunTest([&testClass]() { testClass->IdentifierThreeWayComparison(); });
 
-    std::cout << "IdentifierLogicalAnd" << std::endl;
-    state += RunTest([&testClass]() { testClass->IdentifierLogicalAnd(); });
+    state += RunTest(
+        "IdentifierLogicalAnd",
+        [&testClass]() { testClass->IdentifierLogicalAnd(); });
 
-    std::cout << "IdentifierLogicalOr" << std::endl;
-    state += RunTest([&testClass]() { testClass->IdentifierLogicalOr(); });
+    state += RunTest(
+        "IdentifierLogicalOr",
+        [&testClass]() { testClass->IdentifierLogicalOr(); });
 
-    std::cout << "IdentifierMemberOfObject" << std::endl;
-    state += RunTest([&testClass]() { testClass->IdentifierMemberOfObject(); });
+    state += RunTest(
+        "IdentifierMemberOfObject",
+        [&testClass]() { testClass->IdentifierMemberOfObject(); });
 
-    std::cout << "IdentifierMemberOfPointer" << std::endl;
-    state += RunTest([&testClass]() { testClass->IdentifierMemberOfPointer(); });
+    state += RunTest(
+        "IdentifierMemberOfPointer",
+        [&testClass]() { testClass->IdentifierMemberOfPointer(); });
 
-    std::cout << "IdentifierPointerToMemberOfObject" << std::endl;
-    state += RunTest([&testClass]() { testClass->IdentifierPointerToMemberOfObject(); });
+    state += RunTest(
+        "IdentifierPointerToMemberOfObject",
+        [&testClass]() { testClass->IdentifierPointerToMemberOfObject(); });
 
-    std::cout << "IdentifierPointerToMemberOfPointer" << std::endl;
-    state += RunTest([&testClass]() { testClass->IdentifierPointerToMemberOfPointer(); });
+    state += RunTest(
+        "IdentifierPointerToMemberOfPointer",
+        [&testClass]() { testClass->IdentifierPointerToMemberOfPointer(); });
 
     return state;
 }

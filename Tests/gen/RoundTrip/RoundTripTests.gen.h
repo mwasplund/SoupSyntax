@@ -9,14 +9,27 @@ TestState RunRoundTripTests()
 
     std::cout << "Running RoundTripTests:" << std::endl;
 
-    std::cout << "RoundTrip" << std::endl;
-    state += RunTest([&testClass]() { testClass->RoundTrip("BlockComment.cpp"); });
-    state += RunTest([&testClass]() { testClass->RoundTrip("EmptyFile.cpp"); });
-    state += RunTest([&testClass]() { testClass->RoundTrip("HelloWorld.cpp"); });
-    state += RunTest([&testClass]() { testClass->RoundTrip("LineComment.cpp"); });
-    // state += RunTest([&testClass]() { testClass->RoundTrip("Namespace.cpp"); });
-    // state += RunTest([&testClass]() { testClass->RoundTrip("SimpleClass.cpp"); });
-    //state += RunTest([&testClass]() { testClass->RoundTrip("TemplateArguments.cpp"); });
+    state += RunTest(
+        "RoundTrip[BlockComment.cpp]",
+        [&testClass]() { testClass->RoundTrip("BlockComment.cpp"); });
+    state += RunTest(
+        "RoundTrip[EmptyFile.cpp]",
+        [&testClass]() { testClass->RoundTrip("EmptyFile.cpp"); });
+    state += RunTest(
+        "RoundTrip[HelloWorld.cpp]",
+        [&testClass]() { testClass->RoundTrip("HelloWorld.cpp"); });
+    state += RunTest(
+        "RoundTrip[LineComment.cpp]",
+        [&testClass]() { testClass->RoundTrip("LineComment.cpp"); });
+    state += RunTest(
+        "RoundTrip[Namespace.cpp]",
+        [&testClass]() { testClass->RoundTrip("Namespace.cpp"); });
+    // state += RunTest(
+    //    "RoundTrip[SimpleClass.cpp]",
+    //    [&testClass]() { testClass->RoundTrip("SimpleClass.cpp"); });
+    //state += RunTest(
+    //    "RoundTrip[TemplateArguments.cpp]",
+    //    [&testClass]() { testClass->RoundTrip("TemplateArguments.cpp"); });
 
     return state;
 }
