@@ -7,27 +7,27 @@ TestState RunSubscriptExpressionTests()
     auto testClass = std::make_unique<Soup::Syntax::UnitTests::SubscriptExpressionTests>();
     TestState state = { 0, 0 };
 
-    std::wcout << L"Running SubscriptExpressionTests:" << std::endl;
+    std::cout << "Running SubscriptExpressionTests:" << std::endl;
 
-    std::wcout << L"InitializeSimple" << std::endl;
+    std::cout << "InitializeSimple" << std::endl;
     state += RunTest([&testClass]() { testClass->InitializeSimple(); });
 
-    std::wcout << L"GetChildren" << std::endl;
+    std::cout << "GetChildren" << std::endl;
     state += RunTest([&testClass]() { testClass->GetChildren(); });
 
-    std::wcout << L"OperatorEqual" << std::endl;
+    std::cout << "OperatorEqual" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorEqual(); });
 
-    std::wcout << L"OperatorNotEqualLeft" << std::endl;
+    std::cout << "OperatorNotEqualLeft" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorNotEqualLeft(); });
 
-    std::wcout << L"OperatorNotEqualOpenBracket" << std::endl;
+    std::cout << "OperatorNotEqualOpenBracket" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorNotEqualOpenBracket(); });
 
-    std::wcout << L"OperatorNotEqualRight" << std::endl;
+    std::cout << "OperatorNotEqualRight" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorNotEqualRight(); });
 
-    std::wcout << L"OperatorNotEqualCloseBracket" << std::endl;
+    std::cout << "OperatorNotEqualCloseBracket" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorNotEqualCloseBracket(); });
 
     return state;

@@ -381,386 +381,386 @@ namespace Soup::Syntax
             std::vector<SyntaxTrivia> leadingTrivia,
             std::vector<SyntaxTrivia> trailingTrivia)
         {
-            std::wstring value;
+            std::string value;
             switch (type)
             {
                 case SyntaxTokenType::AlignAs:
-                    value = L"alignas";
+                    value = "alignas";
                     break;
                 case SyntaxTokenType::AlignOf:
-                     value = L"alignof";
+                     value = "alignof";
                      break;
                 case SyntaxTokenType::Asm:
-                     value = L"asm";
+                     value = "asm";
                      break;
                 case SyntaxTokenType::Auto:
-                     value = L"auto";
+                     value = "auto";
                      break;
                 case SyntaxTokenType::Bool:
-                     value = L"bool";
+                     value = "boo";
                      break;
                 case SyntaxTokenType::Break:
-                     value = L"break";
+                     value = "break";
                      break;
                 case SyntaxTokenType::Case:
-                     value = L"case";
+                     value = "case";
                      break;
                 case SyntaxTokenType::Catch:
-                     value = L"catch";
+                     value = "catch";
                      break;
                 case SyntaxTokenType::Char:
-                     value = L"char";
+                     value = "char";
                      break;
                 case SyntaxTokenType::Char16:
-                     value = L"char16_t";
+                     value = "char16_t";
                      break;
                 case SyntaxTokenType::Char32:
-                     value = L"char32_t";
+                     value = "char32_t";
                      break;
                 case SyntaxTokenType::Class:
-                     value = L"class";
+                     value = "class";
                      break;
                 case SyntaxTokenType::Const:
-                     value = L"const";
+                     value = "const";
                      break;
                 case SyntaxTokenType::ConstExpr:
-                     value = L"constexpr";
+                     value = "constexpr";
                      break;
                 case SyntaxTokenType::ConstCast:
-                     value = L"const_cast";
+                     value = "const_cast";
                      break;
                 case SyntaxTokenType::Continue:
-                     value = L"continue";
+                     value = "continue";
                      break;
                 case SyntaxTokenType::DeclType:
-                     value = L"decltype";
+                     value = "decltype";
                      break;
                 case SyntaxTokenType::Default:
-                     value = L"default";
+                     value = "default";
                      break;
                 case SyntaxTokenType::Delete:
-                     value = L"delete";
+                     value = "delete";
                      break;
                 case SyntaxTokenType::Do:
-                     value = L"do";
+                     value = "do";
                      break;
                 case SyntaxTokenType::Double:
-                     value = L"double";
+                     value = "double";
                      break;
                 case SyntaxTokenType::DynamicCast:
-                     value = L"dynamic_cast";
+                     value = "dynamic_cast";
                      break;
                 case SyntaxTokenType::Else:
-                     value = L"else";
+                     value = "else";
                      break;
                 case SyntaxTokenType::Enum:
-                     value = L"enum";
+                     value = "enum";
                      break;
                 case SyntaxTokenType::Explicit:
-                     value = L"explicit";
+                     value = "explicit";
                      break;
                 case SyntaxTokenType::Export:
-                     value = L"export";
+                     value = "export";
                      break;
                 case SyntaxTokenType::Extern:
-                     value = L"extern";
+                     value = "extern";
                      break;
                 case SyntaxTokenType::False:
-                     value = L"false";
+                     value = "false";
                      break;
                 case SyntaxTokenType::Float:
-                     value = L"float";
+                     value = "float";
                      break;
                 case SyntaxTokenType::For:
-                     value = L"for";
+                     value = "for";
                      break;
                 case SyntaxTokenType::Friend:
-                     value = L"friend";
+                     value = "friend";
                      break;
                 case SyntaxTokenType::GoTo:
-                     value = L"goto";
+                     value = "goto";
                      break;
                 case SyntaxTokenType::If:
-                     value = L"if";
+                     value = "if";
                      break;
                 case SyntaxTokenType::Inline:
-                     value = L"inline";
+                     value = "inline";
                      break;
                 case SyntaxTokenType::Int:
-                     value = L"int";
+                     value = "int";
                      break;
                 case SyntaxTokenType::Long:
-                     value = L"long";
+                     value = "long";
                      break;
                 case SyntaxTokenType::Mutable:
-                     value = L"mutable";
+                     value = "mutable";
                      break;
                 case SyntaxTokenType::Namespace:
-                     value = L"namespace";
+                     value = "namespace";
                      break;
                 case SyntaxTokenType::New:
-                     value = L"new";
+                     value = "new";
                      break;
                 case SyntaxTokenType::NoExcept:
-                     value = L"noexcept";
+                     value = "noexcept";
                      break;
                 case SyntaxTokenType::Nullptr:
-                     value = L"nullptr";
+                     value = "nullptr";
                      break;
                 case SyntaxTokenType::Operator:
-                     value = L"operator";
+                     value = "operator";
                      break;
                 case SyntaxTokenType::Private:
-                     value = L"private";
+                     value = "private";
                      break;
                 case SyntaxTokenType::Protected:
-                     value = L"protected";
+                     value = "protected";
                      break;
                 case SyntaxTokenType::Public:
-                     value = L"public";
+                     value = "public";
                      break;
                 case SyntaxTokenType::Register:
-                     value = L"register";
+                     value = "register";
                      break;
                 case SyntaxTokenType::ReinterpretCast:
-                     value = L"reinterpret_cast";
+                     value = "reinterpret_cast";
                      break;
                 case SyntaxTokenType::Return:
-                     value = L"return";
+                     value = "return";
                      break;
                 case SyntaxTokenType::Short:
-                     value = L"short";
+                     value = "short";
                      break;
                 case SyntaxTokenType::Signed:
-                     value = L"signed";
+                     value = "signed";
                      break;
                 case SyntaxTokenType::SizeOf:
-                     value = L"sizeof";
+                     value = "sizeof";
                      break;
                 case SyntaxTokenType::Static:
-                     value = L"static";
+                     value = "static";
                      break;
                 case SyntaxTokenType::StaticAssert:
-                     value = L"static_assert";
+                     value = "static_assert";
                      break;
                 case SyntaxTokenType::StaticCast:
-                     value = L"static_cast";
+                     value = "static_cast";
                      break;
                 case SyntaxTokenType::Struct:
-                     value = L"struct";
+                     value = "struct";
                      break;
                 case SyntaxTokenType::Switch:
-                     value = L"switch";
+                     value = "switch";
                      break;
                 case SyntaxTokenType::Template:
-                     value = L"template";
+                     value = "template";
                      break;
                 case SyntaxTokenType::This:
-                     value = L"this";
+                     value = "this";
                      break;
                 case SyntaxTokenType::ThreadLocal:
-                     value = L"thread_local";
+                     value = "thread_loca";
                      break;
                 case SyntaxTokenType::Throw:
-                     value = L"throw";
+                     value = "throw";
                      break;
                 case SyntaxTokenType::True:
-                     value = L"true";
+                     value = "true";
                      break;
                 case SyntaxTokenType::Try:
-                     value = L"try";
+                     value = "try";
                      break;
                 case SyntaxTokenType::TypeDef:
-                     value = L"typedef";
+                     value = "typedef";
                      break;
                 case SyntaxTokenType::TypeId:
-                     value = L"typeid";
+                     value = "typeid";
                      break;
                 case SyntaxTokenType::TypeName:
-                     value = L"typename";
+                     value = "typename";
                      break;
                 case SyntaxTokenType::Union:
-                     value = L"union";
+                     value = "union";
                      break;
                 case SyntaxTokenType::Unsigned:
-                     value = L"unsigned";
+                     value = "unsigned";
                      break;
                 case SyntaxTokenType::Using:
-                     value = L"using";
+                     value = "using";
                      break;
                 case SyntaxTokenType::Virtual:
-                     value = L"virtual";
+                     value = "virtua";
                      break;
                 case SyntaxTokenType::Void:
-                     value = L"void";
+                     value = "void";
                      break;
                 case SyntaxTokenType::Volatile:
-                     value = L"volatile";
+                     value = "volatile";
                      break;
                 case SyntaxTokenType::WChar:
-                     value = L"wchar_t";
+                     value = "wchar_t";
                      break;
                 case SyntaxTokenType::While:
-                     value = L"while";
+                     value = "while";
                      break;
                 case SyntaxTokenType::Override:
-                     value = L"override";
+                     value = "override";
                      break;
                 case SyntaxTokenType::Final:
-                     value = L"final";
+                     value = "fina";
                      break;
                 case SyntaxTokenType::OpenBrace:
-                     value = L"{";
+                     value = "{";
                      break;
                 case SyntaxTokenType::CloseBrace:
-                     value = L"}";
+                     value = "}";
                      break;
                 case SyntaxTokenType::OpenBracket:
-                     value = L"[";
+                     value = "[";
                      break;
                 case SyntaxTokenType::CloseBracket:
-                     value = L"]";
+                     value = "]";
                      break;
                 case SyntaxTokenType::OpenParenthesis:
-                     value = L"(";
+                     value = "(";
                      break;
                 case SyntaxTokenType::CloseParenthesis:
-                     value = L")";
+                     value = ")";
                      break;
                 case SyntaxTokenType::Semicolon:
-                     value = L";";
+                     value = ";";
                      break;
                 case SyntaxTokenType::Colon:
-                     value = L":";
+                     value = ":";
                      break;
                 case SyntaxTokenType::Ellipsis:
-                     value = L"...";
+                     value = "...";
                      break;
                 case SyntaxTokenType::QuestionMark:
-                     value = L"?";
+                     value = "?";
                      break;
                 case SyntaxTokenType::DoubleColon:
-                     value = L"::";
+                     value = "::";
                      break;
                 case SyntaxTokenType::Period:
-                     value = L".";
+                     value = ".";
                      break;
                 case SyntaxTokenType::PeriodAsterisk:
-                     value = L".*";
+                     value = ".*";
                      break;
                 case SyntaxTokenType::Plus:
-                     value = L"+";
+                     value = "+";
                      break;
                 case SyntaxTokenType::Minus:
-                     value = L"-";
+                     value = "-";
                      break;
                 case SyntaxTokenType::Asterisk:
-                     value = L"*";
+                     value = "*";
                      break;
                 case SyntaxTokenType::ForwardSlash:
-                     value = L"/";
+                     value = "/";
                      break;
                 case SyntaxTokenType::Percent:
-                     value = L"%";
+                     value = "%";
                      break;
                 case SyntaxTokenType::Caret:
-                     value = L"^";
+                     value = "^";
                      break;
                 case SyntaxTokenType::Ampersand:
-                     value = L"&";
+                     value = "&";
                      break;
                 case SyntaxTokenType::VerticalBar:
-                     value = L"|";
+                     value = "|";
                      break;
                 case SyntaxTokenType::Tilde:
-                     value = L"~";
+                     value = "~";
                      break;
                 case SyntaxTokenType::ExclamationMark:
-                     value = L"!";
+                     value = "!";
                      break;
                 case SyntaxTokenType::Equal:
-                     value = L"=";
+                     value = "=";
                      break;
                 case SyntaxTokenType::LessThan:
-                     value = L"<";
+                     value = "<";
                      break;
                 case SyntaxTokenType::GreaterThan:
-                     value = L">";
+                     value = ">";
                      break;
                 case SyntaxTokenType::PlusEqual:
-                     value = L"+=";
+                     value = "+=";
                      break;
                 case SyntaxTokenType::MinusEqual:
-                     value = L"-=";
+                     value = "-=";
                      break;
                 case SyntaxTokenType::AsteriskEqual:
-                     value = L"*=";
+                     value = "*=";
                      break;
                 case SyntaxTokenType::ForwardSlashEqual:
-                     value = L"/=";
+                     value = "/=";
                      break;
                 case SyntaxTokenType::PercentEqual:
-                     value = L"%=";
+                     value = "%=";
                      break;
                 case SyntaxTokenType::CaretEqual:
-                     value = L"^=";
+                     value = "^=";
                      break;
                 case SyntaxTokenType::AmpersandEqual:
-                     value = L"&=";
+                     value = "&=";
                      break;
                 case SyntaxTokenType::VerticalBarEqual:
-                     value = L"|=";
+                     value = "|=";
                      break;
                 case SyntaxTokenType::DoubleLessThan:
-                     value = L"<<";
+                     value = "<<";
                      break;
                 case SyntaxTokenType::DoubleGreaterThan:
-                     value = L">>";
+                     value = ">>";
                      break;
                 case SyntaxTokenType::DoubleLessThanEqual:
-                     value = L"<<=";
+                     value = "<<=";
                      break;
                 case SyntaxTokenType::DoubleGreaterThanEqual:
-                     value = L">>=";
+                     value = ">>=";
                      break;
                 case SyntaxTokenType::DoubleEqual:
-                     value = L"==";
+                     value = "==";
                      break;
                 case SyntaxTokenType::ExclamationMarkEqual:
-                     value = L"!=";
+                     value = "!=";
                      break;
                 case SyntaxTokenType::LessThanEqual:
-                     value = L"<=";
+                     value = "<=";
                      break;
                 case SyntaxTokenType::LessThanEqualGreaterThan:
-                     value = L"<=>";
+                     value = "<=>";
                      break;
                 case SyntaxTokenType::GreaterThanEqual:
-                     value = L">=";
+                     value = ">=";
                      break;
                 case SyntaxTokenType::DoubleAmpersand:
-                     value = L"&&";
+                     value = "&&";
                      break;
                 case SyntaxTokenType::DoubleVerticalBar:
-                     value = L"||";
+                     value = "||";
                      break;
                 case SyntaxTokenType::DoublePlus:
-                     value = L"++";
+                     value = "++";
                      break;
                 case SyntaxTokenType::DoubleMinus:
-                     value = L"--";
+                     value = "--";
                      break;
                 case SyntaxTokenType::Comma:
-                     value = L",";
+                     value = ",";
                      break;
                 case SyntaxTokenType::ArrowAsterisk:
-                     value = L"->*";
+                     value = "->*";
                      break;
                 case SyntaxTokenType::Arrow:
-                     value = L"->";
+                     value = "->";
                      break;
                 case SyntaxTokenType::Zero:
-                     value = L"0";
+                     value = "0";
                      break;
                 case SyntaxTokenType::IntegerLiteral:
                 case SyntaxTokenType::FloatingPointLiteral:
@@ -1009,7 +1009,7 @@ namespace Soup::Syntax
         /// Create a SyntaxTrivia
         /// </summary>
         static SyntaxTrivia CreateTrivia(
-            std::wstring value,
+            std::string value,
             TextSpan span)
         {
             return SyntaxTrivia(
@@ -1042,7 +1042,7 @@ namespace Soup::Syntax
         /// </summary>
         static std::shared_ptr<const SyntaxToken> CreateUniqueToken(
             SyntaxTokenType type,
-            std::wstring value,
+            std::string value,
             std::vector<SyntaxTrivia> leadingTrivia,
             std::vector<SyntaxTrivia> trailingTrivia)
         {
@@ -1075,7 +1075,7 @@ namespace Soup::Syntax
         /// </summary>
         static std::shared_ptr<const SyntaxToken> CreateUniqueToken(
             SyntaxTokenType type,
-            std::wstring value)
+            std::string value)
         {
             return CreateUniqueToken(
                     type,

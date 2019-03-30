@@ -14,7 +14,7 @@ namespace Soup::Syntax::UnitTests
             auto expected = std::make_shared<const TranslationUnit>(nullptr);
 
             auto actual = TestUtils::GenerateAST(source);
-            TestUtils::AreEqual(expected, actual, L"Verify AST matches.");
+            TestUtils::AreEqual(expected, actual, "Verify AST matches.");
         }
     };
 }

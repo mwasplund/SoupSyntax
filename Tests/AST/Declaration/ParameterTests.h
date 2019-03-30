@@ -22,19 +22,19 @@ namespace Soup::Syntax::UnitTests
             Assert::AreEqual(
                 SyntaxNodeType::Parameter,
                 uut->GetType(),
-                L"Verify has correct type.");
+                "Verify has correct type.");
             TestUtils::AreEqual(
                 *SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                     PrimitiveDataType::Int,
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
                 uut->GetDeclarationSpecifier(),
-                L"Verify declaration specifier sequence matches.");
+                "Verify declaration specifier sequence matches.");
             TestUtils::AreEqual(
                 *SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                     PrimitiveDataType::Int,
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
                 uut->GetDeclarator(),
-                L"Verify declarator matches.");
+                "Verify declarator matches.");
         }
 
         // [[Fact]]
@@ -61,7 +61,7 @@ namespace Soup::Syntax::UnitTests
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                 }),
                 uut->GetChildren(),
-                L"Verify children match.");
+                "Verify children match.");
         }
 
         // [[Fact]]
@@ -85,7 +85,7 @@ namespace Soup::Syntax::UnitTests
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                 uut,
-                L"Verify matches.");
+                "Verify matches.");
         }
 
         // [[Fact]]
@@ -109,7 +109,7 @@ namespace Soup::Syntax::UnitTests
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                 uut,
-                L"Verify does not match.");
+                "Verify does not match.");
         }
 
         // [[Fact]]
@@ -133,7 +133,7 @@ namespace Soup::Syntax::UnitTests
                         PrimitiveDataType::Double,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Double))),
                 uut,
-                L"Verify does not match.");
+                "Verify does not match.");
         }
     };
 }

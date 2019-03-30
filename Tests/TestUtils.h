@@ -72,7 +72,7 @@ class TestUtils
     static void AreEqual(
         const std::vector<std::shared_ptr<const SyntaxToken>>& expected,
         const std::vector<std::shared_ptr<const SyntaxToken>>& actual,
-        const std::wstring& message)
+        const std::string& message)
     {
         bool areEqual = std::equal(
             begin(expected),
@@ -89,15 +89,15 @@ class TestUtils
     static void AreEqual(
         const std::shared_ptr<const SyntaxNode>& expected,
         const std::shared_ptr<const SyntaxNode>& actual,
-        const std::wstring& message)
+        const std::string& message)
     {
         if (actual == nullptr)
         {
-            Assert::Fail(L"Actual was null.");
+            Assert::Fail("Actual was null.");
         }
         else if (expected == nullptr)
         {
-            Assert::Fail(L"Expected was null.");
+            Assert::Fail("Expected was null.");
         }
 
         AreEqual(*expected, *actual, message);
@@ -106,16 +106,16 @@ class TestUtils
     static void AreEqual(
         const SyntaxNode& expected,
         const SyntaxNode& actual,
-        const std::wstring& message)
+        const std::string& message)
     {
         if (expected != actual)
         {
-            std::wstringstream errorMessage;
+            std::stringstream errorMessage;
             SyntaxWriter writer(errorMessage);
-            errorMessage << message << L"\n";
-            errorMessage << L"Expected:\n";
+            errorMessage << message << "\n";
+            errorMessage << "Expected:\n";
             expected.Accept(writer);
-            errorMessage << L"Actual:\n";
+            errorMessage << "Actual:\n";
             actual.Accept(writer);
 
             Assert::Fail(errorMessage.str());
@@ -125,16 +125,16 @@ class TestUtils
     static void AreNotEqual(
         const std::shared_ptr<const SyntaxNode>& expected,
         const std::shared_ptr<const SyntaxNode>& actual,
-        const std::wstring& message)
+        const std::string& message)
     {
         if (*expected == *actual)
         {
-            std::wstringstream errorMessage;
+            std::stringstream errorMessage;
             SyntaxWriter writer(errorMessage);
-            errorMessage << message << L"\n";
-            errorMessage << L"Expected:\n";
+            errorMessage << message << "\n";
+            errorMessage << "Expected:\n";
             expected->Accept(writer);
-            errorMessage << L"Actual:\n";
+            errorMessage << "Actual:\n";
             actual->Accept(writer);
 
             Assert::Fail(errorMessage.str());

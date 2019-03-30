@@ -9,7 +9,7 @@ namespace Soup::Syntax
     export class SyntaxWriter : public SyntaxWalker
     {
     public:
-        SyntaxWriter(std::wostream& stream) : 
+        SyntaxWriter(std::ostream& stream) : 
             m_stream(stream)
         {
         }
@@ -19,7 +19,7 @@ namespace Soup::Syntax
         {
             for (auto i = 0u; i < GetDepth(); i++)
             {
-                m_stream << L"  ";
+                m_stream << "  ";
             }
 
             m_stream << ToString(node.GetType());
@@ -29,7 +29,7 @@ namespace Soup::Syntax
             //     builder.Builder.Append(name.ToString());
             // }
 
-            m_stream << L"\n";
+            m_stream << "\n";
 
             SyntaxWalker::DefaultVisit(node);
         }
@@ -39,118 +39,118 @@ namespace Soup::Syntax
             // Write the leading trivia
             for (auto& trivia : token.GetLeadingTrivia())
             {
-                VisitTrivia(trivia, L"Leading");
+                VisitTrivia(trivia, "Leading");
             }
 
             // Write the token
             for (auto i = 0u; i < GetDepth(); i++)
             {
-                m_stream << L"  ";
+                m_stream << "  ";
             }
 
-            m_stream << L"Token: ";
+            m_stream << "Token: ";
             m_stream << token.GetValue();
-            m_stream << L" [";
-            m_stream << token.GetSpan().GetStart() << L", ";
-            m_stream << token.GetSpan().GetEnd() << L")\n";
+            m_stream << " [";
+            m_stream << token.GetSpan().GetStart() << ", ";
+            m_stream << token.GetSpan().GetEnd() << ")\n";
 
             // Write the trailing trivia
             for (auto& trivia : token.GetTrailingTrivia())
             {
-                VisitTrivia(trivia, L"Trailing");
+                VisitTrivia(trivia, "Trailing");
             }
 
             SyntaxWalker::VisitToken(token);
         }
 
-        void VisitTrivia(const SyntaxTrivia& trivia, const wchar_t* location)
+        void VisitTrivia(const SyntaxTrivia& trivia, const char* location)
         {
             for (auto i = 0u; i < GetDepth(); i++)
             {
-                m_stream << L"  ";
+                m_stream << "  ";
             }
 
-            m_stream << location << L"Trivia: \"";
+            m_stream << location << "Trivia: \"";
             m_stream << trivia.GetValue();
-            m_stream << L"\" [";
-            m_stream << trivia.GetSpan().GetStart() << L", ";
-            m_stream << trivia.GetSpan().GetEnd() << L")\n";
+            m_stream << "\" [";
+            m_stream << trivia.GetSpan().GetStart() << ", ";
+            m_stream << trivia.GetSpan().GetEnd() << ")\n";
         }
 
-        const wchar_t* ToString(SyntaxNodeType type)
+        const char* ToString(SyntaxNodeType type)
         {
             switch (type)
             {
                 case SyntaxNodeType::BinaryExpression:
-                    return L"BinaryExpression";
+                    return "BinaryExpression";
                 case SyntaxNodeType::CatchClause:
-                    return L"CatchClause";
+                    return "CatchClause";
                 case SyntaxNodeType::ClassDeclaration:
-                    return L"ClassDeclaration";
+                    return "ClassDeclaration";
                 case SyntaxNodeType::CompoundStatement:
-                    return L"CompoundStatement";
+                    return "CompoundStatement";
                 case SyntaxNodeType::DeclarationSequence:
-                    return L"DeclarationSequence";
+                    return "DeclarationSequence";
                 case SyntaxNodeType::DeclarationSpecifier:
-                    return L"DeclarationSpecifier";
+                    return "DeclarationSpecifier";
                 case SyntaxNodeType::DefaultFunctionBody:
-                    return L"DefaultFunctionBody";
+                    return "DefaultFunctionBody";
                 case SyntaxNodeType::DeleteFunctionBody:
-                    return L"DeleteFunctionBody";
+                    return "DeleteFunctionBody";
                 case SyntaxNodeType::ElseClause:
-                    return L"ElseClause";
+                    return "ElseClause";
                 case SyntaxNodeType::EmptyDeclaration:
-                    return L"EmptyDeclaration";
+                    return "EmptyDeclaration";
                 case SyntaxNodeType::EmptyStatement:
-                    return L"EmptyStatement";
+                    return "EmptyStatement";
                 case SyntaxNodeType::EnumDeclaration:
-                    return L"EnumDeclaration";
+                    return "EnumDeclaration";
                 case SyntaxNodeType::EnumeratorDefinition:
-                    return L"EnumeratorDefinition";
+                    return "EnumeratorDefinition";
                 case SyntaxNodeType::FunctionDefinition:
-                    return L"FunctionDefinition";
+                    return "FunctionDefinition";
                 case SyntaxNodeType::IfStatement:
-                    return L"IfStatement";
+                    return "IfStatement";
                 case SyntaxNodeType::InitializerDeclarator:
-                    return L"InitializerDeclarator";
+                    return "InitializerDeclarator";
                 case SyntaxNodeType::InitializerDeclaratorList:
-                    return L"InitializerDeclaratorList";
+                    return "InitializerDeclaratorList";
                 case SyntaxNodeType::LiteralExpression:
-                    return L"LiteralExpression";
+                    return "LiteralExpression";
                 case SyntaxNodeType::Parameter:
-                    return L"Parameter";
+                    return "Parameter";
                 case SyntaxNodeType::ParameterList:
-                    return L"ParameterList";
+                    return "ParameterList";
                 case SyntaxNodeType::PrimitiveDataTypeDeclaration:
-                    return L"PrimitiveDataTypeDeclaration";
+                    return "PrimitiveDataTypeDeclaration";
                 case SyntaxNodeType::QualifiedNameExpression:
-                    return L"QualifiedNameExpression";
+                    return "QualifiedNameExpression";
                 case SyntaxNodeType::RegularFunctionBody:
-                    return L"RegularFunctionBody";
+                    return "RegularFunctionBody";
                 case SyntaxNodeType::ReturnStatement:
-                    return L"ReturnStatement";
+                    return "ReturnStatement";
                 case SyntaxNodeType::SimpleDeclarationStatement:
-                    return L"SimpleDeclarationStatement";
+                    return "SimpleDeclarationStatement";
                 case SyntaxNodeType::SimpleNameExpression:
-                    return L"SimpleNameExpression";
+                    return "SimpleNameExpression";
                 case SyntaxNodeType::SubscriptExpression:
-                    return L"SubscriptExpression";
+                    return "SubscriptExpression";
                 case SyntaxNodeType::ThisExpression:
-                    return L"ThisExpression";
+                    return "ThisExpression";
                 case SyntaxNodeType::TranslationUnit:
-                    return L"TranslationUnit";
+                    return "TranslationUnit";
                 case SyntaxNodeType::TryFunctionBody:
-                    return L"TryFunctionBody";
+                    return "TryFunctionBody";
                 case SyntaxNodeType::UnaryExpression:
-                    return L"UnaryExpression";
+                    return "UnaryExpression";
                 case SyntaxNodeType::ValueEqualInitializer:
-                    return L"ValueEqualInitializer";
+                    return "ValueEqualInitializer";
                 default:
                     throw std::logic_error(std::string("Unknown node: ") + std::to_string((int)type));
             }
         }
 
     private:
-        std::wostream& m_stream;
+        std::ostream& m_stream;
     };
 }

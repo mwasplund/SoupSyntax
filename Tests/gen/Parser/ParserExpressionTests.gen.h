@@ -7,16 +7,16 @@ TestState RunParserExpressionTests()
     auto testClass = std::make_unique<Soup::Syntax::UnitTests::ParserExpressionTests>();
     TestState state = { 0, 0 };
 
-    std::wcout << L"Running ParserExpressionTests:" << std::endl;
+    std::cout << "Running ParserExpressionTests:" << std::endl;
 
-    std::wcout << L"SingleRule_PrimaryExpressions" << std::endl;
+    std::cout << "SingleRule_PrimaryExpressions" << std::endl;
     state += RunTest([&testClass]() { testClass->SingleRule_PrimaryExpressions("1"); });
     state += RunTest([&testClass]() { testClass->SingleRule_PrimaryExpressions("cout"); });
     state += RunTest([&testClass]() { testClass->SingleRule_PrimaryExpressions("std::string::npos"); });
     state += RunTest([&testClass]() { testClass->SingleRule_PrimaryExpressions("[]() { return 1; }]"); });
     state += RunTest([&testClass]() { testClass->SingleRule_PrimaryExpressions("all(true, true, true, false)"); });
 
-    std::wcout << L"SingleRule_UnqualifiedIdentifier" << std::endl;
+    std::cout << "SingleRule_UnqualifiedIdentifier" << std::endl;
     state += RunTest([&testClass]() { testClass->SingleRule_UnqualifiedIdentifier("cout"); });
     state += RunTest([&testClass]() { testClass->SingleRule_UnqualifiedIdentifier("operator new"); });
     state += RunTest([&testClass]() { testClass->SingleRule_UnqualifiedIdentifier("operator bool"); });
@@ -25,12 +25,12 @@ TestState RunParserExpressionTests()
     // TODO state += RunTest([&testClass]() { testClass->SingleRule_UnqualifiedIdentifier("~MyClass"); });
     state += RunTest([&testClass]() { testClass->SingleRule_UnqualifiedIdentifier("~decltype(str)"); });
 
-    std::wcout << L"SingleRule_QualifiedIdentifier" << std::endl;
+    std::cout << "SingleRule_QualifiedIdentifier" << std::endl;
     state += RunTest([&testClass]() { testClass->SingleRule_QualifiedIdentifier("std::string::npos"); });
     //state += RunTest([&testClass]() { testClass->SingleRule_QualifiedIdentifier("::tolower"); });
     //state += RunTest([&testClass]() { testClass->SingleRule_QualifiedIdentifier("::std::count"); });
 
-    std::wcout << L"SingleRule_LambdaExpression" << std::endl;
+    std::cout << "SingleRule_LambdaExpression" << std::endl;
     state += RunTest([&testClass]() { testClass->SingleRule_LambdaExpression("[]{}"); });
     state += RunTest([&testClass]() { testClass->SingleRule_LambdaExpression("[](){}"); });
     state += RunTest([&testClass]() { testClass->SingleRule_LambdaExpression("[]()->int{return 1;}"); });
@@ -41,7 +41,7 @@ TestState RunParserExpressionTests()
     //state += RunTest([&testClass]() { testClass->SingleRule_LambdaExpression("[](int i = 6) { return i + 4; }"); });
     //state += RunTest([&testClass]() { testClass->SingleRule_LambdaExpression("[&]{ use(i, x); }"); });
 
-    std::wcout << L"SingleRule_AssignmentOperator" << std::endl;
+    std::cout << "SingleRule_AssignmentOperator" << std::endl;
     state += RunTest([&testClass]() { testClass->SingleRule_AssignmentOperator("="); });
     state += RunTest([&testClass]() { testClass->SingleRule_AssignmentOperator("+="); });
     state += RunTest([&testClass]() { testClass->SingleRule_AssignmentOperator("-="); });
@@ -54,7 +54,7 @@ TestState RunParserExpressionTests()
     state += RunTest([&testClass]() { testClass->SingleRule_AssignmentOperator(">>="); });
     state += RunTest([&testClass]() { testClass->SingleRule_AssignmentOperator("<<="); });
 
-    std::wcout << L"SingleRule_UnaryOperator" << std::endl;
+    std::cout << "SingleRule_UnaryOperator" << std::endl;
     state += RunTest([&testClass]() { testClass->SingleRule_UnaryOperator("+"); });
     state += RunTest([&testClass]() { testClass->SingleRule_UnaryOperator("-"); });
     state += RunTest([&testClass]() { testClass->SingleRule_UnaryOperator("&"); });
@@ -62,7 +62,7 @@ TestState RunParserExpressionTests()
     state += RunTest([&testClass]() { testClass->SingleRule_UnaryOperator("~"); });
     state += RunTest([&testClass]() { testClass->SingleRule_UnaryOperator("!"); });
 
-    std::wcout << L"SingleRule_AnyOperator" << std::endl;
+    std::cout << "SingleRule_AnyOperator" << std::endl;
     state += RunTest([&testClass]() { testClass->SingleRule_AnyOperator("new"); });
     state += RunTest([&testClass]() { testClass->SingleRule_AnyOperator("delete"); });
     state += RunTest([&testClass]() { testClass->SingleRule_AnyOperator("new[]"); });
@@ -106,7 +106,7 @@ TestState RunParserExpressionTests()
     state += RunTest([&testClass]() { testClass->SingleRule_AnyOperator("()"); });
     state += RunTest([&testClass]() { testClass->SingleRule_AnyOperator("[]"); });
 
-    std::wcout << L"SingleRule_OperatorFunctionIdentifier" << std::endl;
+    std::cout << "SingleRule_OperatorFunctionIdentifier" << std::endl;
     state += RunTest([&testClass]() { testClass->SingleRule_OperatorFunctionIdentifier("operator new"); });
     state += RunTest([&testClass]() { testClass->SingleRule_OperatorFunctionIdentifier("operator delete"); });
     state += RunTest([&testClass]() { testClass->SingleRule_OperatorFunctionIdentifier("operator new[]"); });
@@ -150,7 +150,7 @@ TestState RunParserExpressionTests()
     state += RunTest([&testClass]() { testClass->SingleRule_OperatorFunctionIdentifier("operator()"); });
     state += RunTest([&testClass]() { testClass->SingleRule_OperatorFunctionIdentifier("operator[]"); });
 
-    std::wcout << L"SingleRule_AttributeSpecifier" << std::endl;
+    std::cout << "SingleRule_AttributeSpecifier" << std::endl;
     state += RunTest([&testClass]() { testClass->SingleRule_AttributeSpecifier("[[noreturn]]"); });
     state += RunTest([&testClass]() { testClass->SingleRule_AttributeSpecifier("[[carries_dependency]]"); });
     state += RunTest([&testClass]() { testClass->SingleRule_AttributeSpecifier("[[deprecated]]"); });
@@ -159,7 +159,7 @@ TestState RunParserExpressionTests()
     state += RunTest([&testClass]() { testClass->SingleRule_AttributeSpecifier("[[nodiscard]]"); });
     state += RunTest([&testClass]() { testClass->SingleRule_AttributeSpecifier("[[maybe_unused]]"); });
 
-    std::wcout << L"SingleRule_FunctionDefinition" << std::endl;
+    std::cout << "SingleRule_FunctionDefinition" << std::endl;
     state += RunTest([&testClass]() { testClass->SingleRule_FunctionDefinition("void DoIt(){}"); });
 
     return state;

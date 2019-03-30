@@ -159,7 +159,7 @@ namespace Soup::Syntax::UnitTests
         // [[InlineData("0b101010")]]
         // [[InlineData("18446744073709550592ull")]]
         // [[InlineData("18'446'744'073'709'550'592llu")]]
-        // [[InlineData("1844'6744'0737'0955'0592uLL")]]
+        // [[InlineData("1844'6744'0737'0955'0592uL")]]
         // [[InlineData("184467'440737'0'95505'92LLU")]]
         // [[InlineData("0xDeAdBeEfU")]]
         // [[InlineData("0XdeadBEEFu")]]
@@ -248,7 +248,7 @@ namespace Soup::Syntax::UnitTests
 
         // [[Theory]]
         // User Defined
-        // [[InlineData("\"abc\"_L")]]
+        // [[InlineData("\"abc\"_")]]
         // [[InlineData("\"xyz\"_M")]]
         void SingleToken_UserDefinedStringLiteral(std::string value)
         {
@@ -266,7 +266,7 @@ namespace Soup::Syntax::UnitTests
 
         // [[Theory]]
         // [[InlineData("//")]]
-        // [[InlineData("// L")]]
+        // [[InlineData("// ")]]
         // [[InlineData("// A longer comment text")]]
         void SingleToken_LineComment(std::string value)
         {
@@ -300,8 +300,8 @@ namespace Soup::Syntax::UnitTests
             auto tokens = lexer->getAllTokens();
 
             // Verify we got the single expected token
-            Assert::AreEqual((size_t)1, tokens.size(), L"Verify one token.");
-            Assert::AreEqual(expectedToken, tokens[0]->getType(), L"Verify token type.");
+            Assert::AreEqual((size_t)1, tokens.size(), "Verify one token.");
+            Assert::AreEqual(expectedToken, tokens[0]->getType(), "Verify token type.");
         }
     };
 }

@@ -17,19 +17,19 @@ namespace Soup::Syntax::UnitTests
             Assert::AreEqual(
                 SyntaxNodeType::DeleteFunctionBody,
                 uut->GetType(),
-                L"Verify has correct type.");
+                "Verify has correct type.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                 uut->GetEqualToken(),
-                L"Verify equal token matches.");
+                "Verify equal token matches.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Delete),
                 uut->GetDeleteToken(),
-                L"Verify delete token matches.");
+                "Verify delete token matches.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon),
                 uut->GetSemicolonToken(),
-                L"Verify semicolon token matches.");
+                "Verify semicolon token matches.");
         }
 
         // [[Fact]]
@@ -47,7 +47,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 }),
                 uut->GetChildren(),
-                L"Verify children match.");
+                "Verify children match.");
         }
 
         // [[Fact]]
@@ -64,7 +64,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Delete),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 uut,
-                L"Verify matches.");
+                "Verify matches.");
         }
 
         // [[Fact]]
@@ -80,14 +80,14 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::Equal,
                         {
-                            SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 1)),
+                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 1)),
                         },
                         {
                         }),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Delete),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 uut,
-                L"Verify do not match.");
+                "Verify do not match.");
         }
 
         // [[Fact]]
@@ -104,13 +104,13 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::Delete,
                         {
-                            SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 1)),
+                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 1)),
                         },
                         {
                         }),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 uut,
-                L"Verify do not match.");
+                "Verify do not match.");
         }
 
         // [[Fact]]
@@ -128,12 +128,12 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::Semicolon,
                         {
-                            SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 1)),
+                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 1)),
                         },
                         {
                         })),
                 uut,
-                L"Verify do not match.");
+                "Verify do not match.");
         }
     };
 }

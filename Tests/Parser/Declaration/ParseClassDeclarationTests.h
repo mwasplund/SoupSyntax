@@ -25,7 +25,7 @@ namespace Soup::Syntax::UnitTests
             TestUtils::AreEqual(
                 expected,
                 expression,
-                L"Verify identifier matches expected.");
+                "Verify identifier matches expected.");
         }
 
         // [Fact]
@@ -38,15 +38,15 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
                 SyntaxFactory::CreateUniqueToken(
                     SyntaxTokenType::Identifier,
-                    L"MyClass",
+                    "MyClass",
                     {
-                        SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0))
+                        SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
                     },
                     {}),
                 SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::OpenBrace,
                     {
-                        SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0))
+                        SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
                     },
                     {}),
                 std::make_shared<const SyntaxList<Declaration>>(
@@ -56,21 +56,21 @@ namespace Soup::Syntax::UnitTests
                             SyntaxFactory::CreateKeywordToken(
                                 SyntaxTokenType::Semicolon,
                                 {
-                                    SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0))
+                                    SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
                                 },
                                 {})),
                     })),
                 SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::CloseBrace,
                     {
-                        SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0))
+                        SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
                     },
                     {}));
 
             TestUtils::AreEqual(
                 expected,
                 expression,
-                L"Verify identifier matches expected.");
+                "Verify identifier matches expected.");
         }
 
     private:

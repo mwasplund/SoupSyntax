@@ -26,9 +26,9 @@ namespace Soup::Syntax::UnitTests
                                 SyntaxFactory::CreateSimpleNameExpression(
                                     SyntaxFactory::CreateUniqueToken(
                                         SyntaxTokenType::Identifier,
-                                        L"i",
+                                        "i",
                                         {
-                                            SyntaxFactory::CreateTrivia(L" ", TextSpan()),
+                                            SyntaxFactory::CreateTrivia(" ", TextSpan()),
                                         },
                                         {})),
                                 nullptr),
@@ -36,7 +36,7 @@ namespace Soup::Syntax::UnitTests
                         std::vector<std::shared_ptr<const SyntaxToken>>())),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
-            TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
+            TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
         // [Fact]
@@ -58,32 +58,32 @@ namespace Soup::Syntax::UnitTests
                                 SyntaxFactory::CreateSimpleNameExpression(
                                     SyntaxFactory::CreateUniqueToken(
                                         SyntaxTokenType::Identifier,
-                                        L"i",
+                                        "i",
                                         {
-                                            SyntaxFactory::CreateTrivia(L" ", TextSpan()),
+                                            SyntaxFactory::CreateTrivia(" ", TextSpan()),
                                         },
                                         {})),
                                 SyntaxFactory::CreateValueEqualInitializer(
                                     SyntaxFactory::CreateKeywordToken(
                                         SyntaxTokenType::Equal,
                                         {
-                                            SyntaxFactory::CreateTrivia(L" ", TextSpan()),
+                                            SyntaxFactory::CreateTrivia(" ", TextSpan()),
                                         },
                                         {}),
                                     SyntaxFactory::CreateLiteralExpression(
                                         LiteralType::Integer,
                                         SyntaxFactory::CreateUniqueToken(
                                             SyntaxTokenType::IntegerLiteral,
-                                            L"0",
+                                            "0",
                                             {
-                                                SyntaxFactory::CreateTrivia(L" ", TextSpan()),
+                                                SyntaxFactory::CreateTrivia(" ", TextSpan()),
                                             },
                                             {})))),
                         }),
                         std::vector<std::shared_ptr<const SyntaxToken>>())),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
-            TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
+            TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
         // [Fact]
@@ -105,9 +105,9 @@ namespace Soup::Syntax::UnitTests
                                 SyntaxFactory::CreateSimpleNameExpression(
                                     SyntaxFactory::CreateUniqueToken(
                                         SyntaxTokenType::Identifier,
-                                        L"i",
+                                        "i",
                                         {
-                                            SyntaxFactory::CreateTrivia(L" ", TextSpan()),
+                                            SyntaxFactory::CreateTrivia(" ", TextSpan()),
                                         },
                                         {})),
                                 nullptr),
@@ -115,9 +115,9 @@ namespace Soup::Syntax::UnitTests
                                 SyntaxFactory::CreateSimpleNameExpression(
                                     SyntaxFactory::CreateUniqueToken(
                                         SyntaxTokenType::Identifier,
-                                        L"j",
+                                        "j",
                                         {
-                                            SyntaxFactory::CreateTrivia(L" ", TextSpan()),
+                                            SyntaxFactory::CreateTrivia(" ", TextSpan()),
                                         },
                                         {})),
                                 nullptr),
@@ -125,7 +125,7 @@ namespace Soup::Syntax::UnitTests
                         std::vector<std::shared_ptr<const SyntaxToken>>())),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
-            TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
+            TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
         // [Fact]
@@ -147,34 +147,34 @@ namespace Soup::Syntax::UnitTests
                                 SyntaxFactory::CreateSimpleNameExpression(
                                     SyntaxFactory::CreateUniqueToken(
                                         SyntaxTokenType::Identifier,
-                                        L"i",
+                                        "i",
                                         {
-                                            SyntaxFactory::CreateTrivia(L" ", TextSpan()),
+                                            SyntaxFactory::CreateTrivia(" ", TextSpan()),
                                         },
                                         {})),
                                 SyntaxFactory::CreateValueEqualInitializer(
                                     SyntaxFactory::CreateKeywordToken(
                                         SyntaxTokenType::Equal,
                                         {
-                                            SyntaxFactory::CreateTrivia(L" ", TextSpan()),
+                                            SyntaxFactory::CreateTrivia(" ", TextSpan()),
                                         },
                                         {}),
                                     SyntaxFactory::CreateLiteralExpression(
                                         LiteralType::Integer,
                                         SyntaxFactory::CreateUniqueToken(
                                             SyntaxTokenType::IntegerLiteral,
-                                            L"0",
+                                            "0",
                                             {
-                                                SyntaxFactory::CreateTrivia(L" ", TextSpan()),
+                                                SyntaxFactory::CreateTrivia(" ", TextSpan()),
                                             },
                                             {})))),
                             SyntaxFactory::CreateInitializerDeclarator(
                                 SyntaxFactory::CreateSimpleNameExpression(
                                     SyntaxFactory::CreateUniqueToken(
                                         SyntaxTokenType::Identifier,
-                                        L"j",
+                                        "j",
                                         {
-                                            SyntaxFactory::CreateTrivia(L" ", TextSpan()),
+                                            SyntaxFactory::CreateTrivia(" ", TextSpan()),
                                         },
                                         {})),
                                 nullptr),
@@ -182,7 +182,7 @@ namespace Soup::Syntax::UnitTests
                         std::vector<std::shared_ptr<const SyntaxToken>>())),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
-            TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
+            TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
         // [Fact]
@@ -204,57 +204,57 @@ namespace Soup::Syntax::UnitTests
                                 SyntaxFactory::CreateSimpleNameExpression(
                                     SyntaxFactory::CreateUniqueToken(
                                         SyntaxTokenType::Identifier,
-                                        L"i",
+                                        "i",
                                         {
-                                            SyntaxFactory::CreateTrivia(L" ", TextSpan()),
+                                            SyntaxFactory::CreateTrivia(" ", TextSpan()),
                                         },
                                         {})),
                                 SyntaxFactory::CreateValueEqualInitializer(
                                     SyntaxFactory::CreateKeywordToken(
                                         SyntaxTokenType::Equal,
                                         {
-                                            SyntaxFactory::CreateTrivia(L" ", TextSpan()),
+                                            SyntaxFactory::CreateTrivia(" ", TextSpan()),
                                         },
                                         {}),
                                     SyntaxFactory::CreateLiteralExpression(
                                         LiteralType::Integer,
                                         SyntaxFactory::CreateUniqueToken(
                                             SyntaxTokenType::IntegerLiteral,
-                                            L"0",
+                                            "0",
                                             {
-                                                SyntaxFactory::CreateTrivia(L" ", TextSpan()),
+                                                SyntaxFactory::CreateTrivia(" ", TextSpan()),
                                             },
                                             {})))),
                             SyntaxFactory::CreateInitializerDeclarator(
                                 SyntaxFactory::CreateSimpleNameExpression(
                                     SyntaxFactory::CreateUniqueToken(
                                         SyntaxTokenType::Identifier,
-                                        L"j",
+                                        "j",
                                         {
-                                            SyntaxFactory::CreateTrivia(L" ", TextSpan()),
+                                            SyntaxFactory::CreateTrivia(" ", TextSpan()),
                                         },
                                         {})),
                                 SyntaxFactory::CreateValueEqualInitializer(
                                     SyntaxFactory::CreateKeywordToken(
                                         SyntaxTokenType::Equal,
                                         {
-                                            SyntaxFactory::CreateTrivia(L" ", TextSpan()),
+                                            SyntaxFactory::CreateTrivia(" ", TextSpan()),
                                         },
                                         {}),
                                     SyntaxFactory::CreateLiteralExpression(
                                         LiteralType::Integer,
                                         SyntaxFactory::CreateUniqueToken(
                                             SyntaxTokenType::IntegerLiteral,
-                                            L"1",
+                                            "1",
                                             {
-                                                SyntaxFactory::CreateTrivia(L" ", TextSpan()),
+                                                SyntaxFactory::CreateTrivia(" ", TextSpan()),
                                             },
                                             {})))),
                         }),
                         std::vector<std::shared_ptr<const SyntaxToken>>())),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
-            TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
+            TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
         // [Fact]
@@ -273,14 +273,14 @@ namespace Soup::Syntax::UnitTests
                         SyntaxFactory::CreateKeywordToken(
                             SyntaxTokenType::Int,
                             {
-                                SyntaxFactory::CreateTrivia(L" ", TextSpan()),
+                                SyntaxFactory::CreateTrivia(" ", TextSpan()),
                             },
                             {})),
                     {
                         SyntaxFactory::CreateKeywordToken(
                             SyntaxTokenType::ConstExpr,
                             {
-                                SyntaxFactory::CreateTrivia(L" ", TextSpan()),
+                                SyntaxFactory::CreateTrivia(" ", TextSpan()),
                             },
                             {}),
                     }),
@@ -292,9 +292,9 @@ namespace Soup::Syntax::UnitTests
                                 SyntaxFactory::CreateSimpleNameExpression(
                                     SyntaxFactory::CreateUniqueToken(
                                         SyntaxTokenType::Identifier,
-                                        L"i",
+                                        "i",
                                         {
-                                            SyntaxFactory::CreateTrivia(L" ", TextSpan()),
+                                            SyntaxFactory::CreateTrivia(" ", TextSpan()),
                                         },
                                         {})),
                                 nullptr),
@@ -302,7 +302,7 @@ namespace Soup::Syntax::UnitTests
                         std::vector<std::shared_ptr<const SyntaxToken>>())),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
-            TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
+            TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
     private:

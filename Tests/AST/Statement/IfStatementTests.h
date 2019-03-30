@@ -14,7 +14,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
@@ -23,32 +23,32 @@ namespace Soup::Syntax::UnitTests
             Assert::AreEqual(
                 SyntaxNodeType::IfStatement,
                 uut->GetType(),
-                L"Verify has correct type.");
+                "Verify has correct type.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
                 uut->GetIfToken(),
-                L"Verify if token matches.");
+                "Verify if token matches.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 uut->GetOpenParenthesisToken(),
-                L"Verify left parenthesis token matches.");
+                "Verify left parenthesis token matches.");
             TestUtils::AreEqual(
                 *SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
                 uut->GetConditionExpression(),
-                L"Verify condition expression matches.");
+                "Verify condition expression matches.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 uut->GetCloseParenthesisToken(),
-                L"Verify right parenthesis token matches.");
+                "Verify right parenthesis token matches.");
             TestUtils::AreEqual(
                 *SyntaxFactory::CreateEmptyStatement(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 uut->GetStatement(),
-                L"Verify statement matches.");
+                "Verify statement matches.");
             Assert::IsFalse(
                 uut->HasElseClause(),
-                L"Verify has no else clause.");
+                "Verify has no else clause.");
         }
 
         // [[Fact]]
@@ -58,7 +58,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
@@ -70,39 +70,39 @@ namespace Soup::Syntax::UnitTests
             Assert::AreEqual(
                 SyntaxNodeType::IfStatement,
                 uut->GetType(),
-                L"Verify has correct type.");
+                "Verify has correct type.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
                 uut->GetIfToken(),
-                L"Verify if token matches.");
+                "Verify if token matches.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 uut->GetOpenParenthesisToken(),
-                L"Verify left parenthesis token matches.");
+                "Verify left parenthesis token matches.");
             TestUtils::AreEqual(
                 *SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
                 uut->GetConditionExpression(),
-                L"Verify condition expression matches.");
+                "Verify condition expression matches.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 uut->GetCloseParenthesisToken(),
-                L"Verify right parenthesis token matches.");
+                "Verify right parenthesis token matches.");
             TestUtils::AreEqual(
                 *SyntaxFactory::CreateEmptyStatement(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 uut->GetStatement(),
-                L"Verify statement matches.");
+                "Verify statement matches.");
             Assert::IsTrue(
                 uut->HasElseClause(),
-                L"Verify has else clause.");
+                "Verify has else clause.");
             TestUtils::AreEqual(
                 *SyntaxFactory::CreateElseClause(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Else),
                     SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))),
                 uut->GetElseClause(),
-                L"Verify else clause matches.");
+                "Verify else clause matches.");
         }
 
         // [[Fact]]
@@ -112,7 +112,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
@@ -124,13 +124,13 @@ namespace Soup::Syntax::UnitTests
                     SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If)),
                     SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis)),
                     SyntaxNodeChild(SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value"))),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value"))),
                     SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
                     SyntaxNodeChild(SyntaxFactory::CreateEmptyStatement(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))),
                 }),
                 uut->GetChildren(),
-                L"Verify children match.");
+                "Verify children match.");
         }
 
         // [[Fact]]
@@ -140,7 +140,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
@@ -155,7 +155,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If)),
                     SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis)),
                     SyntaxNodeChild(SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value"))),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value"))),
                     SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
                     SyntaxNodeChild(SyntaxFactory::CreateEmptyStatement(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))),
@@ -165,7 +165,7 @@ namespace Soup::Syntax::UnitTests
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)))),
                 }),
                 uut->GetChildren(),
-                L"Verify children match.");
+                "Verify children match.");
         }
 
         // [[Fact]]
@@ -175,7 +175,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
@@ -186,13 +186,13 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                     SyntaxFactory::CreateEmptyStatement(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                     nullptr),
                 uut,
-                L"Verify matches.");
+                "Verify matches.");
         }
 
         // [[Fact]]
@@ -202,7 +202,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
@@ -216,7 +216,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                     SyntaxFactory::CreateEmptyStatement(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
@@ -225,7 +225,7 @@ namespace Soup::Syntax::UnitTests
                         SyntaxFactory::CreateEmptyStatement(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)))),
                 uut,
-                L"Verify matches.");
+                "Verify matches.");
         }
 
         // [[Fact]]
@@ -235,7 +235,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
@@ -246,19 +246,19 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::If,
                         {
-                            SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 1)),
+                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 1)),
                         },
                         {
                         }),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                     SyntaxFactory::CreateEmptyStatement(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                     nullptr),
                 uut,
-                L"Verify do not match.");
+                "Verify do not match.");
         }
 
         // [[Fact]]
@@ -268,7 +268,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
@@ -280,18 +280,18 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::OpenParenthesis,
                         {
-                            SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 1)),
+                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 1)),
                         },
                         {
                         }),
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                     SyntaxFactory::CreateEmptyStatement(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                     nullptr),
                 uut,
-                L"Verify do not match.");
+                "Verify do not match.");
         }
 
         // [[Fact]]
@@ -301,7 +301,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
@@ -312,13 +312,13 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value2")),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value2")),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                     SyntaxFactory::CreateEmptyStatement(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                     nullptr),
                 uut,
-                L"Verify do not match.");
+                "Verify do not match.");
         }
 
         // [[Fact]]
@@ -328,7 +328,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
@@ -339,11 +339,11 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::CloseParenthesis,
                         {
-                            SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 1)),
+                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 1)),
                         },
                         {
                         }),
@@ -351,7 +351,7 @@ namespace Soup::Syntax::UnitTests
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                     nullptr),
                 uut,
-                L"Verify do not match.");
+                "Verify do not match.");
         }
 
         // [[Fact]]
@@ -361,7 +361,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
@@ -372,19 +372,19 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                     SyntaxFactory::CreateEmptyStatement(
                             SyntaxFactory::CreateKeywordToken(
                                 SyntaxTokenType::Semicolon,
                                 {
-                                    SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 1)),
+                                    SyntaxFactory::CreateTrivia(" ", TextSpan(0, 1)),
                                 },
                                 {
                                 })),
                     nullptr),
                 uut,
-                L"Verify do not match.");
+                "Verify do not match.");
         }
 
         // [[Fact]]
@@ -394,7 +394,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
@@ -405,7 +405,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                     SyntaxFactory::CreateEmptyStatement(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
@@ -414,7 +414,7 @@ namespace Soup::Syntax::UnitTests
                         SyntaxFactory::CreateEmptyStatement(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)))),
                 uut,
-                L"Verify do not match.");
+                "Verify do not match.");
         }
 
         // [[Fact]]
@@ -424,7 +424,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
@@ -438,7 +438,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"value")),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                     SyntaxFactory::CreateEmptyStatement(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
@@ -446,14 +446,14 @@ namespace Soup::Syntax::UnitTests
                         SyntaxFactory::CreateKeywordToken(
                             SyntaxTokenType::Else,
                             {
-                                SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 1)),
+                                SyntaxFactory::CreateTrivia(" ", TextSpan(0, 1)),
                             },
                             {
                             }),
                         SyntaxFactory::CreateEmptyStatement(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)))),
                 uut,
-                L"Verify do not match.");
+                "Verify do not match.");
         }
     };
 }

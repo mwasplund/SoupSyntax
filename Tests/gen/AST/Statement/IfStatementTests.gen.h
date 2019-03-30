@@ -7,45 +7,45 @@ TestState RunIfStatementTests()
     auto testClass = std::make_unique<Soup::Syntax::UnitTests::IfStatementTests>();
     TestState state = { 0, 0 };
 
-    std::wcout << L"Running IfStatementTests:" << std::endl;
+    std::cout << "Running IfStatementTests:" << std::endl;
 
-    std::wcout << L"InitializeNoElseClause" << std::endl;
+    std::cout << "InitializeNoElseClause" << std::endl;
     state += RunTest([&testClass]() { testClass->InitializeNoElseClause(); });
 
-    std::wcout << L"InitializeWithElseClause" << std::endl;
+    std::cout << "InitializeWithElseClause" << std::endl;
     state += RunTest([&testClass]() { testClass->InitializeWithElseClause(); });
 
-    std::wcout << L"GetChildrenNoElseClause" << std::endl;
+    std::cout << "GetChildrenNoElseClause" << std::endl;
     state += RunTest([&testClass]() { testClass->GetChildrenNoElseClause(); });
 
-    std::wcout << L"GetChildrenWithElseClause" << std::endl;
+    std::cout << "GetChildrenWithElseClause" << std::endl;
     state += RunTest([&testClass]() { testClass->GetChildrenWithElseClause(); });
 
-    std::wcout << L"OperatorEqualNoElseClause" << std::endl;
+    std::cout << "OperatorEqualNoElseClause" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorEqualNoElseClause(); });
 
-    std::wcout << L"OperatorEqualWithElseClause" << std::endl;
+    std::cout << "OperatorEqualWithElseClause" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorEqualWithElseClause(); });
 
-    std::wcout << L"OperatorNotEqualIfToken" << std::endl;
+    std::cout << "OperatorNotEqualIfToken" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorNotEqualIfToken(); });
 
-    std::wcout << L"OperatorNotEqualOpenParenthesisToken" << std::endl;
+    std::cout << "OperatorNotEqualOpenParenthesisToken" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorNotEqualOpenParenthesisToken(); });
 
-    std::wcout << L"OperatorNotEqualConditionExpression" << std::endl;
+    std::cout << "OperatorNotEqualConditionExpression" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorNotEqualConditionExpression(); });
 
-    std::wcout << L"OperatorNotEqualCloseParenthesisToken" << std::endl;
+    std::cout << "OperatorNotEqualCloseParenthesisToken" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorNotEqualCloseParenthesisToken(); });
 
-    std::wcout << L"OperatorNotEqualStatement" << std::endl;
+    std::cout << "OperatorNotEqualStatement" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorNotEqualStatement(); });
 
-    std::wcout << L"OperatorNotEqualNoElseClause" << std::endl;
+    std::cout << "OperatorNotEqualNoElseClause" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorNotEqualNoElseClause(); });
 
-    std::wcout << L"OperatorNotEqualWithElseClause" << std::endl;
+    std::cout << "OperatorNotEqualWithElseClause" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorNotEqualWithElseClause(); });
 
     return state;

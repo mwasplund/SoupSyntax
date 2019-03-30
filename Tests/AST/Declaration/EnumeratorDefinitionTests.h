@@ -11,58 +11,58 @@ namespace Soup::Syntax::UnitTests
         void Initialize()
         {
             auto uut = SyntaxFactory::CreateEnumeratorDefinition(
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"EnumValue"));
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "EnumValue"));
 
             Assert::AreEqual(
                 SyntaxNodeType::EnumeratorDefinition,
                 uut->GetType(),
-                L"Verify has correct type.");
+                "Verify has correct type.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"EnumValue"),
+                *SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "EnumValue"),
                 uut->GetIdentifierToken(),
-                L"Verify enum token matches.");
+                "Verify enum token matches.");
         }
 
         // [[Fact]]
         void GetChildren()
         {
             auto uut = SyntaxFactory::CreateEnumeratorDefinition(
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"EnumValue"));
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "EnumValue"));
 
             Assert::AreEqual(
                 std::vector<SyntaxNodeChild>(
                 {
                     SyntaxNodeChild(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"EnumValue")),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "EnumValue")),
                 }),
                 uut->GetChildren(),
-                L"Verify children match.");
+                "Verify children match.");
         }
 
         // [[Fact]]
         void OperatorEqual()
         {
             auto uut = SyntaxFactory::CreateEnumeratorDefinition(
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"EnumValue"));
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "EnumValue"));
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateEnumeratorDefinition(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"EnumValue")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "EnumValue")),
                 uut,
-                L"Verify matches.");
+                "Verify matches.");
         }
 
         // [[Fact]]
         void OperatorNotEqualIdentifierToken()
         {
             auto uut = SyntaxFactory::CreateEnumeratorDefinition(
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"EnumValue"));
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "EnumValue"));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateEnumeratorDefinition(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"EnumValue2")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "EnumValue2")),
                 uut,
-                L"Verify do not match.");
+                "Verify do not match.");
         }
     };
 }

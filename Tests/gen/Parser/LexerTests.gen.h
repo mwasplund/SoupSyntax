@@ -7,9 +7,9 @@ TestState RunLexerTests()
     auto testClass = std::make_unique<Soup::Syntax::UnitTests::LexerTests>();
     TestState state = { 0, 0 };
 
-    std::wcout << L"Running LexerTests:" << std::endl;
+    std::cout << "Running LexerTests:" << std::endl;
 
-    std::wcout << L"SingleToken_Keyword" << std::endl;
+    std::cout << "SingleToken_Keyword" << std::endl;
     state += RunTest([&testClass]() { testClass->SingleToken_Keyword("alignas", CppLexer::AlignAs); });
     state += RunTest([&testClass]() { testClass->SingleToken_Keyword("asm", CppLexer::Asm); });
     state += RunTest([&testClass]() { testClass->SingleToken_Keyword("auto", CppLexer::Auto); });
@@ -83,7 +83,7 @@ TestState RunLexerTests()
     state += RunTest([&testClass]() { testClass->SingleToken_Keyword("wchar_t", CppLexer::WChar); });
     state += RunTest([&testClass]() { testClass->SingleToken_Keyword("while", CppLexer::While); });
 
-    std::wcout << L"SingleToken_OperatorsAndPunctuation" << std::endl;
+    std::cout << "SingleToken_OperatorsAndPunctuation" << std::endl;
     state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("{", CppLexer::OpenBrace); });
     state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("}", CppLexer::CloseBrace); });
     state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("[", CppLexer::OpenBracket); });
@@ -136,10 +136,10 @@ TestState RunLexerTests()
     state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("->*", CppLexer::ArrowAsterisk); });
     state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("->", CppLexer::Arrow); });
 
-    std::wcout << L"SingleToken_OperatorsAndPunctuation" << std::endl;
+    std::cout << "SingleToken_OperatorsAndPunctuation" << std::endl;
     state += RunTest([&testClass]() { testClass->SingleToken_Zero("0"); });
 
-    std::wcout << L"SingleToken_IntegerLiteral" << std::endl;
+    std::cout << "SingleToken_IntegerLiteral" << std::endl;
     state += RunTest([&testClass]() { testClass->SingleToken_IntegerLiteral("1"); });
     state += RunTest([&testClass]() { testClass->SingleToken_IntegerLiteral("42"); });
     state += RunTest([&testClass]() { testClass->SingleToken_IntegerLiteral("052"); });
@@ -148,12 +148,12 @@ TestState RunLexerTests()
     state += RunTest([&testClass]() { testClass->SingleToken_IntegerLiteral("0b101010"); });
     state += RunTest([&testClass]() { testClass->SingleToken_IntegerLiteral("18446744073709550592ull"); });
     state += RunTest([&testClass]() { testClass->SingleToken_IntegerLiteral("18'446'744'073'709'550'592llu"); });
-    state += RunTest([&testClass]() { testClass->SingleToken_IntegerLiteral("1844'6744'0737'0955'0592uLL"); });
+    state += RunTest([&testClass]() { testClass->SingleToken_IntegerLiteral("1844'6744'0737'0955'0592uL"); });
     state += RunTest([&testClass]() { testClass->SingleToken_IntegerLiteral("184467'440737'0'95505'92LLU"); });
     state += RunTest([&testClass]() { testClass->SingleToken_IntegerLiteral("0xDeAdBeEfU"); });
     state += RunTest([&testClass]() { testClass->SingleToken_IntegerLiteral("0XdeadBEEFu"); });
 
-    std::wcout << L"SingleToken_FloatingPointLiteral" << std::endl;
+    std::cout << "SingleToken_FloatingPointLiteral" << std::endl;
     state += RunTest([&testClass]() { testClass->SingleToken_FloatingPointLiteral("0.0f"); });
     state += RunTest([&testClass]() { testClass->SingleToken_FloatingPointLiteral("1.0"); });
     state += RunTest([&testClass]() { testClass->SingleToken_FloatingPointLiteral("1'00.1f"); });
@@ -164,7 +164,7 @@ TestState RunLexerTests()
     state += RunTest([&testClass]() { testClass->SingleToken_FloatingPointLiteral(".1E4f"); });
     state += RunTest([&testClass]() { testClass->SingleToken_FloatingPointLiteral("0x10.1p0"); });
 
-    std::wcout << L"SingleToken_CharacterLiteral" << std::endl;
+    std::cout << "SingleToken_CharacterLiteral" << std::endl;
     state += RunTest([&testClass]() { testClass->SingleToken_CharacterLiteral("'1'"); });
     state += RunTest([&testClass]() { testClass->SingleToken_CharacterLiteral("'\\0'"); });
     state += RunTest([&testClass]() { testClass->SingleToken_CharacterLiteral("L'A'"); });
@@ -172,7 +172,7 @@ TestState RunLexerTests()
     state += RunTest([&testClass]() { testClass->SingleToken_CharacterLiteral("u8'A'"); });
     state += RunTest([&testClass]() { testClass->SingleToken_CharacterLiteral("U'A'"); });
 
-    std::wcout << L"SingleToken_StringLiteral" << std::endl;
+    std::cout << "SingleToken_StringLiteral" << std::endl;
     state += RunTest([&testClass]() { testClass->SingleToken_StringLiteral("\"\""); });
     state += RunTest([&testClass]() { testClass->SingleToken_StringLiteral("\" \""); });
     state += RunTest([&testClass]() { testClass->SingleToken_StringLiteral("\"Some cool text!\tYay.\""); });
@@ -181,7 +181,7 @@ TestState RunLexerTests()
     state += RunTest([&testClass]() { testClass->SingleToken_StringLiteral("u8\" \""); });
     state += RunTest([&testClass]() { testClass->SingleToken_StringLiteral("L\" \""); });
 
-    std::wcout << L"SingleToken_UserDefinedIntegerLiteral" << std::endl;
+    std::cout << "SingleToken_UserDefinedIntegerLiteral" << std::endl;
     state += RunTest([&testClass]() { testClass->SingleToken_UserDefinedIntegerLiteral("12_km"); });
     state += RunTest([&testClass]() { testClass->SingleToken_UserDefinedIntegerLiteral("123_mytype"); });
     state += RunTest([&testClass]() { testClass->SingleToken_UserDefinedIntegerLiteral("0x123ABC_print"); });
@@ -195,29 +195,29 @@ TestState RunLexerTests()
     state += RunTest([&testClass]() { testClass->SingleToken_UserDefinedIntegerLiteral("1y"); });
     state += RunTest([&testClass]() { testClass->SingleToken_UserDefinedIntegerLiteral("1d"); });
 
-    std::wcout << L"SingleToken_UserDefinedFloatingPointLiteral" << std::endl;
+    std::cout << "SingleToken_UserDefinedFloatingPointLiteral" << std::endl;
     state += RunTest([&testClass]() { testClass->SingleToken_UserDefinedFloatingPointLiteral("2.2_km"); });
     state += RunTest([&testClass]() { testClass->SingleToken_UserDefinedFloatingPointLiteral("0.5_Pa"); });
     state += RunTest([&testClass]() { testClass->SingleToken_UserDefinedFloatingPointLiteral("90.0_deg"); });
 
-    std::wcout << L"SingleToken_UserDefinedCharacterLiteral" << std::endl;
+    std::cout << "SingleToken_UserDefinedCharacterLiteral" << std::endl;
     state += RunTest([&testClass]() { testClass->SingleToken_UserDefinedCharacterLiteral("'c'_X"); });
 
-    std::wcout << L"SingleToken_UserDefinedStringLiteral" << std::endl;
-    state += RunTest([&testClass]() { testClass->SingleToken_UserDefinedStringLiteral("\"abc\"_L"); });
+    std::cout << "SingleToken_UserDefinedStringLiteral" << std::endl;
+    state += RunTest([&testClass]() { testClass->SingleToken_UserDefinedStringLiteral("\"abc\"_"); });
     state += RunTest([&testClass]() { testClass->SingleToken_UserDefinedStringLiteral("\"xyz\"_M"); });
 
-    std::wcout << L"SingleToken_BlockComment" << std::endl;
+    std::cout << "SingleToken_BlockComment" << std::endl;
     state += RunTest([&testClass]() { testClass->SingleToken_BlockComment("/**/"); });
     state += RunTest([&testClass]() { testClass->SingleToken_BlockComment("/* */"); });
     state += RunTest([&testClass]() { testClass->SingleToken_BlockComment("/* Hey a comment\n On many lines\n */"); });
 
-    std::wcout << L"SingleToken_LineComment" << std::endl;
+    std::cout << "SingleToken_LineComment" << std::endl;
     state += RunTest([&testClass]() { testClass->SingleToken_LineComment("//"); });
     state += RunTest([&testClass]() { testClass->SingleToken_LineComment("// "); });
     state += RunTest([&testClass]() { testClass->SingleToken_LineComment("// A longer comment text"); });
 
-    std::wcout << L"SingleToken_Identifier" << std::endl;
+    std::cout << "SingleToken_Identifier" << std::endl;
     state += RunTest([&testClass]() { testClass->SingleToken_Identifier("a"); });
     state += RunTest([&testClass]() { testClass->SingleToken_Identifier("x"); });
     state += RunTest([&testClass]() { testClass->SingleToken_Identifier("myVariable"); });

@@ -7,33 +7,33 @@ TestState RunInitializerDeclaratorTests()
     auto testClass = std::make_unique<Soup::Syntax::UnitTests::InitializerDeclaratorTests>();
     TestState state = { 0, 0 };
 
-    std::wcout << L"Running InitializerDeclaratorTests:" << std::endl;
+    std::cout << "Running InitializerDeclaratorTests:" << std::endl;
 
-    std::wcout << L"InitializeSimpleNoInitializer" << std::endl;
+    std::cout << "InitializeSimpleNoInitializer" << std::endl;
     state += RunTest([&testClass]() { testClass->InitializeSimpleNoInitializer(); });
 
-    std::wcout << L"InitializeSimpleWithInitializer" << std::endl;
+    std::cout << "InitializeSimpleWithInitializer" << std::endl;
     state += RunTest([&testClass]() { testClass->InitializeSimpleWithInitializer(); });
 
-    std::wcout << L"GetChildrenNoInitializer" << std::endl;
+    std::cout << "GetChildrenNoInitializer" << std::endl;
     state += RunTest([&testClass]() { testClass->GetChildrenNoInitializer(); });
 
-    std::wcout << L"GetChildrenWithInitializer" << std::endl;
+    std::cout << "GetChildrenWithInitializer" << std::endl;
     state += RunTest([&testClass]() { testClass->GetChildrenWithInitializer(); });
 
-    std::wcout << L"OperatorEqualNoInitializer" << std::endl;
+    std::cout << "OperatorEqualNoInitializer" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorEqualNoInitializer(); });
 
-    std::wcout << L"OperatorEqualWithInitializer" << std::endl;
+    std::cout << "OperatorEqualWithInitializer" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorEqualWithInitializer(); });
 
-    std::wcout << L"OperatorNotEqualDeclarator" << std::endl;
+    std::cout << "OperatorNotEqualDeclarator" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorNotEqualDeclarator(); });
 
-    std::wcout << L"OperatorNotEqualNoInitializer" << std::endl;
+    std::cout << "OperatorNotEqualNoInitializer" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorNotEqualNoInitializer(); });
 
-    std::wcout << L"OperatorNotEqualWithInitializer" << std::endl;
+    std::cout << "OperatorNotEqualWithInitializer" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorNotEqualWithInitializer(); });
 
     return state;

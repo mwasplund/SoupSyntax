@@ -15,12 +15,12 @@ namespace Soup::Syntax::UnitTests
             Assert::AreEqual(
                 SyntaxNodeType::ThisExpression,
                 uut->GetType(),
-                L"Verify has correct type.");
-            Assert::AreEqual(SyntaxNodeType::ThisExpression, uut->GetType(), L"Verify type matches.");
+                "Verify has correct type.");
+            Assert::AreEqual(SyntaxNodeType::ThisExpression, uut->GetType(), "Verify type matches.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::This),
                 uut->GetToken(),
-                L"Verify token matches.");
+                "Verify token matches.");
         }
 
         // [[Fact]]
@@ -34,7 +34,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::This)),
                 }),
                 uut->GetChildren(),
-                L"Verify children match.");
+                "Verify children match.");
         }
 
         // [[Fact]]
@@ -47,7 +47,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateThisExpression(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::This)),
                 uut,
-                L"Verify matches.");
+                "Verify matches.");
         }
 
         // [[Fact]]
@@ -61,11 +61,11 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::This,
                         {
-                            SyntaxFactory::CreateTrivia(L" ", TextSpan())
+                            SyntaxFactory::CreateTrivia(" ", TextSpan())
                         },
                         {})),
                 uut,
-                L"Verify do not match.");
+                "Verify do not match.");
         }
     };
 }

@@ -19,7 +19,7 @@ namespace Soup::Syntax::UnitTests
                             PrimitiveDataType::Void,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Function")),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
                     nullptr,
                     std::make_shared<RegularFunctionBody>(
                         SyntaxFactory::CreateCompoundStatement(
@@ -29,7 +29,7 @@ namespace Soup::Syntax::UnitTests
 
             auto actual = TestUtils::GenerateAST(source);
 
-            TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
+            TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
         // [Fact]
@@ -45,7 +45,7 @@ namespace Soup::Syntax::UnitTests
                             PrimitiveDataType::Void,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Function")),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
                     nullptr,
                     std::make_shared<RegularFunctionBody>(
                         SyntaxFactory::CreateCompoundStatement(
@@ -55,7 +55,7 @@ namespace Soup::Syntax::UnitTests
 
             auto actual = TestUtils::GenerateAST(source);
 
-            TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
+            TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
         // [Fact]
@@ -71,7 +71,7 @@ namespace Soup::Syntax::UnitTests
                             PrimitiveDataType::Void,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Function")),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
                     nullptr,
                     std::make_shared<RegularFunctionBody>(
                         SyntaxFactory::CreateCompoundStatement(
@@ -81,7 +81,7 @@ namespace Soup::Syntax::UnitTests
 
             auto actual = TestUtils::GenerateAST(source);
 
-            TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
+            TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
     };
 }

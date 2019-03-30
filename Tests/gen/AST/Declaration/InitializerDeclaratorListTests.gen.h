@@ -7,21 +7,21 @@ TestState RunInitializerDeclaratorListTests()
     auto testClass = std::make_unique<Soup::Syntax::UnitTests::InitializerDeclaratorListTests>();
     TestState state = { 0, 0 };
 
-    std::wcout << L"Running InitializerDeclaratorListTests:" << std::endl;
+    std::cout << "Running InitializerDeclaratorListTests:" << std::endl;
 
-    std::wcout << L"InitializeSimple" << std::endl;
+    std::cout << "InitializeSimple" << std::endl;
     state += RunTest([&testClass]() { testClass->InitializeSimple(); });
 
-    std::wcout << L"GetChildren" << std::endl;
+    std::cout << "GetChildren" << std::endl;
     state += RunTest([&testClass]() { testClass->GetChildren(); });
 
-    std::wcout << L"OperatorEqual" << std::endl;
+    std::cout << "OperatorEqua" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorEqual(); });
 
-    std::wcout << L"OperatorNotEqualLessItems" << std::endl;
+    std::cout << "OperatorNotEqualLessItems" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorNotEqualLessItems(); });
 
-    std::wcout << L"OperatorNotEqualWithItems" << std::endl;
+    std::cout << "OperatorNotEqualWithItems" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorNotEqualWithItems(); });
 
     return state;

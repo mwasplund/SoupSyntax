@@ -16,7 +16,7 @@ namespace Soup::Syntax::UnitTests
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Function")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     std::make_shared<const SyntaxSeparatorList<Parameter>>(
@@ -40,19 +40,19 @@ namespace Soup::Syntax::UnitTests
             Assert::AreEqual(
                 SyntaxNodeType::FunctionDefinition,
                 uut->GetType(),
-                L"Verify has correct type.");
+                "Verify has correct type.");
             TestUtils::AreEqual(
                 *SyntaxFactory::CreateDeclarationSpecifier(
                     SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
                 uut->GetReturnType(),
-                L"Verify return type matches.");
+                "Verify return type matches.");
             TestUtils::AreEqual(
                 *SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Function")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
                 uut->GetIdentifier(),
-                L"Verify identifier matches.");
+                "Verify identifier matches.");
             TestUtils::AreEqual(
                 *SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
@@ -70,14 +70,14 @@ namespace Soup::Syntax::UnitTests
                         std::vector<std::shared_ptr<const SyntaxToken>>()),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
                 uut->GetParameterList(),
-                L"Verify parameter list matches.");
+                "Verify parameter list matches.");
             TestUtils::AreEqual(
                 *SyntaxFactory::CreateDeleteFunctionBody(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Delete),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 uut->GetBody(),
-                L"Verify body matches.");
+                "Verify body matches.");
         }
 
         // [[Fact]]
@@ -90,7 +90,7 @@ namespace Soup::Syntax::UnitTests
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Function")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     std::make_shared<const SyntaxSeparatorList<Parameter>>(
@@ -120,7 +120,7 @@ namespace Soup::Syntax::UnitTests
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void)))),
                     SyntaxNodeChild(
                         SyntaxFactory::CreateSimpleNameExpression(
-                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Function"))),
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function"))),
                     SyntaxNodeChild(
                         SyntaxFactory::CreateParameterList(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
@@ -144,7 +144,7 @@ namespace Soup::Syntax::UnitTests
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))),
                 }),
                 uut->GetChildren(),
-                L"Verify children match.");
+                "Verify children match.");
         }
 
         // [[Fact]]
@@ -157,7 +157,7 @@ namespace Soup::Syntax::UnitTests
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Function")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     std::make_shared<const SyntaxSeparatorList<Parameter>>(
@@ -185,7 +185,7 @@ namespace Soup::Syntax::UnitTests
                             PrimitiveDataType::Void,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Function")),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
                     SyntaxFactory::CreateParameterList(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                         std::make_shared<const SyntaxSeparatorList<Parameter>>(
@@ -206,7 +206,7 @@ namespace Soup::Syntax::UnitTests
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Delete),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))),
                 uut,
-                L"Verify matches.");
+                "Verify matches.");
         }
 
         // [[Fact]]
@@ -219,7 +219,7 @@ namespace Soup::Syntax::UnitTests
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Function")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     std::make_shared<const SyntaxSeparatorList<Parameter>>(
@@ -247,7 +247,7 @@ namespace Soup::Syntax::UnitTests
                             PrimitiveDataType::Int,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Function")),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
                     SyntaxFactory::CreateParameterList(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                         std::make_shared<const SyntaxSeparatorList<Parameter>>(
@@ -268,7 +268,7 @@ namespace Soup::Syntax::UnitTests
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Delete),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))),
                 uut,
-                L"Verify does not match.");
+                "Verify does not match.");
         }
 
         // [[Fact]]
@@ -281,7 +281,7 @@ namespace Soup::Syntax::UnitTests
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Function")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
                     SyntaxFactory::CreateParameterList(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                         std::make_shared<const SyntaxSeparatorList<Parameter>>(
@@ -309,7 +309,7 @@ namespace Soup::Syntax::UnitTests
                             PrimitiveDataType::Void,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"OtherFunction")),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "OtherFunction")),
                     SyntaxFactory::CreateParameterList(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                         std::make_shared<const SyntaxSeparatorList<Parameter>>(
@@ -330,7 +330,7 @@ namespace Soup::Syntax::UnitTests
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Delete),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))),
                 uut,
-                L"Verify does not match.");
+                "Verify does not match.");
         }
 
         // [[Fact]]
@@ -343,7 +343,7 @@ namespace Soup::Syntax::UnitTests
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Function")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     std::make_shared<const SyntaxSeparatorList<Parameter>>(
@@ -371,7 +371,7 @@ namespace Soup::Syntax::UnitTests
                             PrimitiveDataType::Void,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Function")),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
                     SyntaxFactory::CreateParameterList(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                         std::make_shared<const SyntaxSeparatorList<Parameter>>(
@@ -383,7 +383,7 @@ namespace Soup::Syntax::UnitTests
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Delete),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))),
                 uut,
-                L"Verify does not match.");
+                "Verify does not match.");
         }
 
         // [[Fact]]
@@ -396,7 +396,7 @@ namespace Soup::Syntax::UnitTests
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Function")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     std::make_shared<const SyntaxSeparatorList<Parameter>>(
@@ -424,7 +424,7 @@ namespace Soup::Syntax::UnitTests
                             PrimitiveDataType::Void,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"Function")),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
                     SyntaxFactory::CreateParameterList(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                         std::make_shared<const SyntaxSeparatorList<Parameter>>(
@@ -445,7 +445,7 @@ namespace Soup::Syntax::UnitTests
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Default),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))),
                 uut,
-                L"Verify does not match.");
+                "Verify does not match.");
         }
     };
 }

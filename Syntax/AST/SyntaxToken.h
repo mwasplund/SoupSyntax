@@ -16,7 +16,7 @@ namespace Soup::Syntax
         /// </summary>
         SyntaxToken(
             SyntaxTokenType type,
-            std::wstring value,
+            std::string value,
             std::vector<SyntaxTrivia> leadingTrivia,
             std::vector<SyntaxTrivia> trailingTrivia) :
             m_type(type),
@@ -38,7 +38,7 @@ namespace Soup::Syntax
         /// <summary>
         /// Get the raw token value
         /// </summary>
-        const std::wstring& GetValue() const
+        const std::string& GetValue() const
         {
             return m_value;
         }
@@ -86,14 +86,14 @@ namespace Soup::Syntax
         /// <summary>
         /// Convert to string representation
         /// </summary>
-        std::wstring ToString() const
+        std::string ToString() const
         {
-            return std::to_wstring((int)m_type) + L", " + m_value;
+            return std::to_string((int)m_type) + ", " + m_value;
         }
 
     private:
         SyntaxTokenType m_type;
-        std::wstring m_value;
+        std::string m_value;
         std::vector<SyntaxTrivia> m_leadingTrivia;
         std::vector<SyntaxTrivia> m_trailingTrivia;
     };

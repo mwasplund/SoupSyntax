@@ -7,36 +7,36 @@ TestState RunReturnStatementTests()
     auto testClass = std::make_unique<Soup::Syntax::UnitTests::ReturnStatementTests>();
     TestState state = { 0, 0 };
 
-    std::wcout << L"Running ReturnStatementTests:" << std::endl;
+    std::cout << "Running ReturnStatementTests:" << std::endl;
 
-    std::wcout << L"InitializeNoExpression" << std::endl;
+    std::cout << "InitializeNoExpression" << std::endl;
     state += RunTest([&testClass]() { testClass->InitializeNoExpression(); });
 
-    std::wcout << L"InitializeWithExpression" << std::endl;
+    std::cout << "InitializeWithExpression" << std::endl;
     state += RunTest([&testClass]() { testClass->InitializeWithExpression(); });
 
-    std::wcout << L"GetChildrenNoExpression" << std::endl;
+    std::cout << "GetChildrenNoExpression" << std::endl;
     state += RunTest([&testClass]() { testClass->GetChildrenNoExpression(); });
 
-    std::wcout << L"GetChildrenWithExpression" << std::endl;
+    std::cout << "GetChildrenWithExpression" << std::endl;
     state += RunTest([&testClass]() { testClass->GetChildrenWithExpression(); });
 
-    std::wcout << L"OperatorEqualNoExpression" << std::endl;
+    std::cout << "OperatorEqualNoExpression" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorEqualNoExpression(); });
 
-    std::wcout << L"OperatorEqualWithExpression" << std::endl;
+    std::cout << "OperatorEqualWithExpression" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorEqualWithExpression(); });
 
-    std::wcout << L"OperatorNotEqualReturnToken" << std::endl;
+    std::cout << "OperatorNotEqualReturnToken" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorNotEqualReturnToken(); });
 
-    std::wcout << L"OperatorNotEqualNoExpression" << std::endl;
+    std::cout << "OperatorNotEqualNoExpression" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorNotEqualNoExpression(); });
 
-    std::wcout << L"OperatorNotEqualWithExpression" << std::endl;
+    std::cout << "OperatorNotEqualWithExpression" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorNotEqualWithExpression(); });
 
-    std::wcout << L"OperatorNotEqualSemicolonToken" << std::endl;
+    std::cout << "OperatorNotEqualSemicolonToken" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorNotEqualSemicolonToken(); });
 
     return state;

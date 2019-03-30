@@ -16,11 +16,11 @@ namespace Soup::Syntax::UnitTests
             Assert::AreEqual(
                 SyntaxNodeType::EmptyDeclaration,
                 uut->GetType(),
-                L"Verify has correct type.");
+                "Verify has correct type.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon),
                 uut->GetSemicolonToken(),
-                L"Verify semicolon token matches.");
+                "Verify semicolon token matches.");
         }
 
         // [[Fact]]
@@ -34,7 +34,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 }),
                 uut->GetChildren(),
-                L"Verify children match.");
+                "Verify children match.");
         }
 
         // [[Fact]]
@@ -47,7 +47,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateEmptyDeclaration(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 uut,
-                L"Verify matches.");
+                "Verify matches.");
         }
 
         // [[Fact]]
@@ -61,12 +61,12 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::Semicolon,
                         {
-                            SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 1)),
+                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 1)),
                         },
                         {
                         })),
                 uut,
-                L"Verify do not match.");
+                "Verify do not match.");
         }
     };
 }

@@ -8,14 +8,14 @@ namespace Soup.StaticAnalysis.UnitTests
     {
     public:
         // [[Theory]]
-        // [[InlineData(L"BlockComment")]]
-        // [[InlineData(L"HelloWorld")]]
-        // [[InlineData(L"LineComment")]]
-        // [[InlineData(L"Namespace")]]
-        // [[InlineData(L"NameSpace")]]
-        void BlockComment(std::wstring name)
+        // [[InlineData("BlockComment")]]
+        // [[InlineData("HelloWorld")]]
+        // [[InlineData("LineComment")]]
+        // [[InlineData("Namespace")]]
+        // [[InlineData("NameSpace")]]
+        void BlockComment(std::string name)
         {
-            std::filesystem::path sourceFilePath("Parser/RoundTripInput/" + name + L".cpp")
+            std::filesystem::path sourceFilePath("Parser/RoundTripInput/" + name + ".cpp")
             std::ifstream sourceFile(sourceFilePath);
 
             var inputSource = new AntlrInputStream(file);

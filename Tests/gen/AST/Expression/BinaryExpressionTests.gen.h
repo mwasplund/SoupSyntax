@@ -7,27 +7,27 @@ TestState RunBinaryExpressionTests()
     auto testClass = std::make_unique<Soup::Syntax::UnitTests::BinaryExpressionTests>();
     TestState state = { 0, 0 };
 
-    std::wcout << L"Running BinaryExpressionTests:" << std::endl;
+    std::cout << "Running BinaryExpressionTests:" << std::endl;
 
-    std::wcout << L"InitializeSimple" << std::endl;
+    std::cout << "InitializeSimple" << std::endl;
     state += RunTest([&testClass]() { testClass->InitializeSimple(); });
 
-    std::wcout << L"GetChildren" << std::endl;
+    std::cout << "GetChildren" << std::endl;
     state += RunTest([&testClass]() { testClass->GetChildren(); });
 
-    std::wcout << L"OperatorEqual" << std::endl;
+    std::cout << "OperatorEqual" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorEqual(); });
 
-    std::wcout << L"OperatorNotEqualOperatorType" << std::endl;
+    std::cout << "OperatorNotEqualOperatorType" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorNotEqualOperatorType(); });
 
-    std::wcout << L"OperatorNotEqualLeft" << std::endl;
+    std::cout << "OperatorNotEqualLeft" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorNotEqualLeft(); });
 
-    std::wcout << L"OperatorNotEqualOperatorToken" << std::endl;
+    std::cout << "OperatorNotEqualOperatorToken" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorNotEqualOperatorToken(); });
 
-    std::wcout << L"OperatorNotEqualRight" << std::endl;
+    std::cout << "OperatorNotEqualRight" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorNotEqualRight(); });
 
     return state;

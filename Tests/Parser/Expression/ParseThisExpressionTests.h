@@ -16,7 +16,7 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateThisExpression(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::This));
 
-            TestUtils::AreEqual(expected, actual, L"Verify node matches.");
+            TestUtils::AreEqual(expected, actual, "Verify node matches.");
         }
 
     private:

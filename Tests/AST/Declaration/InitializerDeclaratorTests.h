@@ -13,21 +13,21 @@ namespace Soup::Syntax::UnitTests
             // a
             auto uut = SyntaxFactory::CreateInitializerDeclarator(
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 nullptr);
 
             Assert::AreEqual(
                 SyntaxNodeType::InitializerDeclarator,
                 uut->GetType(),
-                L"Verify has correct type.");
+                "Verify has correct type.");
             TestUtils::AreEqual(
                 *SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 uut->GetDeclarator(),
-                L"Verify declarator matches.");
+                "Verify declarator matches.");
             Assert::IsFalse(
                 uut->HasInitializer(),
-                L"Verify has no initializer.");
+                "Verify has no initializer.");
         }
 
         // [[Fact]]
@@ -36,33 +36,33 @@ namespace Soup::Syntax::UnitTests
             // a = 2
             auto uut = SyntaxFactory::CreateInitializerDeclarator(
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 SyntaxFactory::CreateValueEqualInitializer(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"2"))));
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "2"))));
 
             Assert::AreEqual(
                 SyntaxNodeType::InitializerDeclarator,
                 uut->GetType(),
-                L"Verify has correct type.");
+                "Verify has correct type.");
             TestUtils::AreEqual(
                 *SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 uut->GetDeclarator(),
-                L"Verify declarator matches.");
+                "Verify declarator matches.");
             Assert::IsTrue(
                 uut->HasInitializer(),
-                L"Verify has initializer.");
+                "Verify has initializer.");
             TestUtils::AreEqual(
                 *SyntaxFactory::CreateValueEqualInitializer(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"2"))),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "2"))),
                 uut->GetInitializer(),
-                L"Verify initializer matches.");
+                "Verify initializer matches.");
         }
 
         // [[Fact]]
@@ -71,17 +71,17 @@ namespace Soup::Syntax::UnitTests
             // a
             auto uut = SyntaxFactory::CreateInitializerDeclarator(
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 nullptr);
 
             Assert::AreEqual(
                 std::vector<SyntaxNodeChild>({
                     SyntaxNodeChild(
                         SyntaxFactory::CreateSimpleNameExpression(
-                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a"))),
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
                 }),
                 uut->GetChildren(),
-                L"Verify children match.");
+                "Verify children match.");
         }
 
         // [[Fact]]
@@ -90,26 +90,26 @@ namespace Soup::Syntax::UnitTests
             // a = 2
             auto uut = SyntaxFactory::CreateInitializerDeclarator(
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 SyntaxFactory::CreateValueEqualInitializer(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"2"))));
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "2"))));
 
             Assert::AreEqual(
                 std::vector<SyntaxNodeChild>({
                     SyntaxNodeChild(
                         SyntaxFactory::CreateSimpleNameExpression(
-                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a"))),
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
                     SyntaxNodeChild(SyntaxFactory::CreateValueEqualInitializer(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                         SyntaxFactory::CreateLiteralExpression(
                             LiteralType::Integer,
-                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"2")))),
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "2")))),
                 }),
                 uut->GetChildren(),
-                L"Verify children match.");
+                "Verify children match.");
         }
 
         // [[Fact]]
@@ -118,16 +118,16 @@ namespace Soup::Syntax::UnitTests
             // a
             auto uut = SyntaxFactory::CreateInitializerDeclarator(
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 nullptr);
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateInitializerDeclarator(
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                     nullptr),
                 uut,
-                L"Verify matches.");
+                "Verify matches.");
         }
 
         // [[Fact]]
@@ -136,24 +136,24 @@ namespace Soup::Syntax::UnitTests
             // a = 2
             auto uut = SyntaxFactory::CreateInitializerDeclarator(
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 SyntaxFactory::CreateValueEqualInitializer(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"2"))));
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "2"))));
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateInitializerDeclarator(
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                     SyntaxFactory::CreateValueEqualInitializer(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                         SyntaxFactory::CreateLiteralExpression(
                             LiteralType::Integer,
-                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"2")))),
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "2")))),
                 uut,
-                L"Verify matches.");
+                "Verify matches.");
         }
 
         // [[Fact]]
@@ -162,24 +162,24 @@ namespace Soup::Syntax::UnitTests
             // a = 2
             auto uut = SyntaxFactory::CreateInitializerDeclarator(
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 SyntaxFactory::CreateValueEqualInitializer(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"2"))));
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "2"))));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateInitializerDeclarator(
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                     SyntaxFactory::CreateValueEqualInitializer(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                         SyntaxFactory::CreateLiteralExpression(
                             LiteralType::Integer,
-                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"2")))),
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "2")))),
                 uut,
-                L"Verify does not match.");
+                "Verify does not match.");
         }
 
         // [[Fact]]
@@ -188,20 +188,20 @@ namespace Soup::Syntax::UnitTests
             // a = 2
             auto uut = SyntaxFactory::CreateInitializerDeclarator(
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 SyntaxFactory::CreateValueEqualInitializer(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"2"))));
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "2"))));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateInitializerDeclarator(
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                     nullptr),
                 uut,
-                L"Verify does not match.");
+                "Verify does not match.");
         }
 
         // [[Fact]]
@@ -210,24 +210,24 @@ namespace Soup::Syntax::UnitTests
             // a = 2
             auto uut = SyntaxFactory::CreateInitializerDeclarator(
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 SyntaxFactory::CreateValueEqualInitializer(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"2"))));
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "2"))));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateInitializerDeclarator(
                     SyntaxFactory::CreateSimpleNameExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                     SyntaxFactory::CreateValueEqualInitializer(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                         SyntaxFactory::CreateLiteralExpression(
                             LiteralType::Integer,
-                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"3")))),
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "3")))),
                 uut,
-                L"Verify does not match.");
+                "Verify does not match.");
         }
     };
 }

@@ -28,7 +28,7 @@ namespace Soup::Syntax::UnitTests
             TestUtils::AreEqual(
                 expected,
                 expression,
-                L"Verify identifier matches expected.");
+                "Verify identifier matches expected.");
         }
 
         // [Fact]
@@ -42,20 +42,20 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::Class,
                     {
-                        SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0))
+                        SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
                     },
                     {}),
                 SyntaxFactory::CreateUniqueToken(
                     SyntaxTokenType::Identifier,
-                    L"MyEnum",
+                    "MyEnum",
                     {
-                        SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0))
+                        SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
                     },
                     {}),
                 SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::OpenBrace,
                     {
-                        SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0))
+                        SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
                     },
                     {}),
                 std::make_shared<const SyntaxSeparatorList<EnumeratorDefinition>>(
@@ -64,17 +64,17 @@ namespace Soup::Syntax::UnitTests
                         SyntaxFactory::CreateEnumeratorDefinition(
                             SyntaxFactory::CreateUniqueToken(
                                 SyntaxTokenType::Identifier,
-                                L"Value1",
+                                "Value1",
                                 {
-                                    SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0))
+                                    SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
                                 },
                                 {})),
                         SyntaxFactory::CreateEnumeratorDefinition(
                             SyntaxFactory::CreateUniqueToken(
                                 SyntaxTokenType::Identifier,
-                                L"Value2",
+                                "Value2",
                                 {
-                                    SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0))
+                                    SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
                                 },
                                 {})),
                     }),
@@ -85,14 +85,14 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::CloseBrace,
                     {
-                        SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0))
+                        SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
                     },
                     {}));
 
             TestUtils::AreEqual(
                 expected,
                 expression,
-                L"Verify identifier matches expected.");
+                "Verify identifier matches expected.");
         }
 
     private:

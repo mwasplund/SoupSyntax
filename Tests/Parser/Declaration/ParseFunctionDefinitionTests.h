@@ -21,9 +21,9 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateUniqueToken(
                         SyntaxTokenType::Identifier,
-                        L"Function",
+                        "Function",
                         {
-                            SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0)),
+                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
                         },
                         {})),
                 SyntaxFactory::CreateParameterList(
@@ -35,28 +35,28 @@ namespace Soup::Syntax::UnitTests
                         SyntaxTokenType::CloseParenthesis,
                         {},
                         {
-                            SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0)),
+                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
                         })),
                 std::make_shared<RegularFunctionBody>(
                     SyntaxFactory::CreateCompoundStatement(
                         SyntaxFactory::CreateKeywordToken(
                             SyntaxTokenType::OpenBrace,
                             {
-                                SyntaxFactory::CreateTrivia(L"\n", TextSpan(0, 0)),
-                                SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0)),
+                                SyntaxFactory::CreateTrivia("\n", TextSpan(0, 0)),
+                                SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
                             },
                             {}),
                         {},
                         SyntaxFactory::CreateKeywordToken(
                             SyntaxTokenType::CloseBrace,
                             {
-                                SyntaxFactory::CreateTrivia(L"\n", TextSpan(0, 0)),
+                                SyntaxFactory::CreateTrivia("\n", TextSpan(0, 0)),
                             },
                             {}))));
 
             auto actual = ParseFunctionDefinition(source);
 
-            TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
+            TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
         // [Fact]
@@ -73,9 +73,9 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateUniqueToken(
                         SyntaxTokenType::Identifier,
-                        L"Function",
+                        "Function",
                         {
-                            SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0)),
+                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
                         },
                         {})),
                 SyntaxFactory::CreateParameterList(
@@ -88,20 +88,20 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::Equal,
                         {
-                            SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0)),
+                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
                         },
                         {}),
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::Default,
                         {
-                            SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0)),
+                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
                         },
                         {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)));
 
             auto actual = ParseFunctionDefinition(source);
 
-            TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
+            TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
         // [Fact]
@@ -118,9 +118,9 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateUniqueToken(
                         SyntaxTokenType::Identifier,
-                        L"Function",
+                        "Function",
                         {
-                            SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0)),
+                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
                         },
                         {})),
                 SyntaxFactory::CreateParameterList(
@@ -133,20 +133,20 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::Equal,
                         {
-                            SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0)),
+                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
                         },
                         {}),
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::Delete,
                         {
-                            SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0)),
+                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
                         },
                         {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)));
 
             auto actual = ParseFunctionDefinition(source);
 
-            TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
+            TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
         // [Fact]
@@ -163,9 +163,9 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateUniqueToken(
                         SyntaxTokenType::Identifier,
-                        L"Function",
+                        "Function",
                         {
-                            SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0)),
+                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
                         },
                         {})),
                 SyntaxFactory::CreateParameterList(
@@ -178,20 +178,20 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::Equal,
                         {
-                            SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0)),
+                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
                         },
                         {}),
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::Delete,
                         {
-                            SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0)),
+                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
                         },
                         {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)));
 
             auto actual = ParseFunctionDefinition(source);
 
-            TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
+            TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
     private:

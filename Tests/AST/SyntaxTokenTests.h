@@ -11,10 +11,10 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Nullptr);
 
-            Assert::AreEqual(SyntaxTokenType::Nullptr, uut->GetType(), L"Verify type matches.");
-            Assert::AreEqual(std::wstring(L"nullptr"), uut->GetValue(), L"Verify value matches.");
-            Assert::IsTrue(uut->GetLeadingTrivia().empty(), L"Verify no leading trivia.");
-            Assert::IsTrue(uut->GetTrailingTrivia().empty(), L"Verify no trailing trivia.");
+            Assert::AreEqual(SyntaxTokenType::Nullptr, uut->GetType(), "Verify type matches.");
+            Assert::AreEqual(std::string("nullptr"), uut->GetValue(), "Verify value matches.");
+            Assert::IsTrue(uut->GetLeadingTrivia().empty(), "Verify no leading trivia.");
+            Assert::IsTrue(uut->GetTrailingTrivia().empty(), "Verify no trailing trivia.");
         }
 
         // [[Fact]]
@@ -25,7 +25,7 @@ namespace Soup::Syntax::UnitTests
             Assert::AreEqual(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Nullptr),
                 uut,
-                L"Verify matches.");
+                "Verify matches.");
         }
 
         // [[Fact]]
@@ -34,9 +34,9 @@ namespace Soup::Syntax::UnitTests
             auto uut = SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Nullptr);
 
             Assert::AreNotEqual(
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"nullptr"),
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "nullptr"),
                 uut,
-                L"Verify do not match.");
+                "Verify do not match.");
         }
 
         // [[Fact]]
@@ -44,12 +44,12 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateUniqueToken(
                 SyntaxTokenType::Identifier,
-                L"a");
+                "a");
 
             Assert::AreNotEqual(
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b"),
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b"),
                 uut,
-                L"Verify do not match.");
+                "Verify do not match.");
         }
     };
 }

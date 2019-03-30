@@ -14,12 +14,12 @@ namespace Soup::Syntax::UnitTests
         {
             auto expression = ParseLiteralExpression(sourceCode);
 
-            Assert::NotNull(expression, L"Verify cast.");
-            Assert::AreEqual(LiteralType::Integer, expression->GetLiteralType(), L"Verify type matches expected.");
+            Assert::NotNull(expression, "Verify cast.");
+            Assert::AreEqual(LiteralType::Integer, expression->GetLiteralType(), "Verify type matches expected.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, Convert(sourceCode)),
+                *SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, sourceCode),
                 expression->GetToken(),
-                L"Verify value matches entire source.");
+                "Verify value matches entire source.");
         }
 
         // [Theory]
@@ -28,12 +28,12 @@ namespace Soup::Syntax::UnitTests
         {
             auto expression = ParseLiteralExpression(sourceCode);
 
-            Assert::NotNull(expression, L"Verify cast.");
-            Assert::AreEqual(LiteralType::Floating, expression->GetLiteralType(), L"Verify type matches expected.");
+            Assert::NotNull(expression, "Verify cast.");
+            Assert::AreEqual(LiteralType::Floating, expression->GetLiteralType(), "Verify type matches expected.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateUniqueToken(SyntaxTokenType::FloatingPointLiteral, Convert(sourceCode)),
+                *SyntaxFactory::CreateUniqueToken(SyntaxTokenType::FloatingPointLiteral, sourceCode),
                 expression->GetToken(),
-                L"Verify value matches entire source.");
+                "Verify value matches entire source.");
         }
 
         // [Theory]
@@ -42,12 +42,12 @@ namespace Soup::Syntax::UnitTests
         {
             auto expression = ParseLiteralExpression(sourceCode);
 
-            Assert::NotNull(expression, L"Verify cast.");
-            Assert::AreEqual(LiteralType::Character, expression->GetLiteralType(), L"Verify type matches expected.");
+            Assert::NotNull(expression, "Verify cast.");
+            Assert::AreEqual(LiteralType::Character, expression->GetLiteralType(), "Verify type matches expected.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateUniqueToken(SyntaxTokenType::CharacterLiteral, Convert(sourceCode)),
+                *SyntaxFactory::CreateUniqueToken(SyntaxTokenType::CharacterLiteral, sourceCode),
                 expression->GetToken(),
-                L"Verify value matches entire source.");
+                "Verify value matches entire source.");
         }
 
         // [Theory]
@@ -56,12 +56,12 @@ namespace Soup::Syntax::UnitTests
         {
             auto expression = ParseLiteralExpression(sourceCode);
 
-            Assert::NotNull(expression, L"Verify cast.");
-            Assert::AreEqual(LiteralType::Pointer, expression->GetLiteralType(), L"Verify type matches expected.");
+            Assert::NotNull(expression, "Verify cast.");
+            Assert::AreEqual(LiteralType::Pointer, expression->GetLiteralType(), "Verify type matches expected.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Nullptr),
                 expression->GetToken(),
-                L"Verify value matches entire source.");
+                "Verify value matches entire source.");
         }
 
         // [Theory]
@@ -70,12 +70,12 @@ namespace Soup::Syntax::UnitTests
         {
             auto expression = ParseLiteralExpression(sourceCode);
 
-            Assert::NotNull(expression, L"Verify cast.");
-            Assert::AreEqual(LiteralType::String, expression->GetLiteralType(), L"Verify type matches expected.");
+            Assert::NotNull(expression, "Verify cast.");
+            Assert::AreEqual(LiteralType::String, expression->GetLiteralType(), "Verify type matches expected.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateUniqueToken(SyntaxTokenType::StringLiteral, Convert(sourceCode)),
+                *SyntaxFactory::CreateUniqueToken(SyntaxTokenType::StringLiteral, sourceCode),
                 expression->GetToken(),
-                L"Verify value matches entire source.");
+                "Verify value matches entire source.");
         }
 
         // [Theory]
@@ -85,12 +85,12 @@ namespace Soup::Syntax::UnitTests
         {
             auto expression = ParseLiteralExpression(sourceCode);
 
-            Assert::NotNull(expression, L"Verify cast.");
-            Assert::AreEqual(LiteralType::Boolean, expression->GetLiteralType(), L"Verify type matches expected.");
+            Assert::NotNull(expression, "Verify cast.");
+            Assert::AreEqual(LiteralType::Boolean, expression->GetLiteralType(), "Verify type matches expected.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(type),
                 expression->GetToken(),
-                L"Verify value matches entire source.");
+                "Verify value matches entire source.");
         }
 
         // [Theory]
@@ -99,22 +99,15 @@ namespace Soup::Syntax::UnitTests
         {
             auto expression = ParseLiteralExpression(sourceCode);
 
-            Assert::NotNull(expression, L"Verify cast.");
-            Assert::AreEqual(LiteralType::UserDefined, expression->GetLiteralType(), L"Verify type matches expected.");
+            Assert::NotNull(expression, "Verify cast.");
+            Assert::AreEqual(LiteralType::UserDefined, expression->GetLiteralType(), "Verify type matches expected.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateUniqueToken(SyntaxTokenType::UserDefinedLiteral, Convert(sourceCode)),
+                *SyntaxFactory::CreateUniqueToken(SyntaxTokenType::UserDefinedLiteral, sourceCode),
                 expression->GetToken(),
-                L"Verify value matches entire source.");
+                "Verify value matches entire source.");
         }
 
     private:
-        std::wstring Convert(const std::string& value)
-        {
-            // Convert the token text to wide characters
-            std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
-            return converter.from_bytes(value);
-        }
-
         std::shared_ptr<const LiteralExpression> ParseLiteralExpression(std::string& sourceCode)
         {
             auto uut = TestUtils::BuildParser(sourceCode);

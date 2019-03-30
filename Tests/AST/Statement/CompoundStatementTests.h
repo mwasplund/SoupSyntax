@@ -18,19 +18,19 @@ namespace Soup::Syntax::UnitTests
             Assert::AreEqual(
                 SyntaxNodeType::CompoundStatement,
                 uut->GetType(),
-                L"Verify has correct type.");
+                "Verify has correct type.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 uut->GetOpenBraceToken(),
-                L"Verify left brace token matches.");
+                "Verify left brace token matches.");
             Assert::AreEqual<int>(
                 0,
                 uut->GetStatements().size(),
-                L"Verify condition expression matches.");
+                "Verify condition expression matches.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace),
                 uut->GetCloseBraceToken(),
-                L"Verify right brace token matches.");
+                "Verify right brace token matches.");
         }
 
         // [[Fact]]
@@ -49,26 +49,26 @@ namespace Soup::Syntax::UnitTests
             Assert::AreEqual(
                 SyntaxNodeType::CompoundStatement,
                 uut->GetType(),
-                L"Verify has correct type.");
+                "Verify has correct type.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 uut->GetOpenBraceToken(),
-                L"Verify left brace token matches.");
+                "Verify left brace token matches.");
             Assert::AreEqual<int>(
                 1,
                 uut->GetStatements().size(),
-                L"Verify condition expression matches.");
+                "Verify condition expression matches.");
             TestUtils::AreEqual(
                 SyntaxFactory::CreateReturnStatement(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
                     nullptr,
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 uut->GetStatements().at(0),
-                L"Verify condition expression matches.");
+                "Verify condition expression matches.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace),
                 uut->GetCloseBraceToken(),
-                L"Verify right brace token matches.");
+                "Verify right brace token matches.");
         }
 
         // [[Fact]]
@@ -86,7 +86,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 }),
                 uut->GetChildren(),
-                L"Verify children match.");
+                "Verify children match.");
         }
 
         // [[Fact]]
@@ -113,7 +113,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 }),
                 uut->GetChildren(),
-                L"Verify children match.");
+                "Verify children match.");
         }
 
         // [[Fact]]
@@ -130,7 +130,7 @@ namespace Soup::Syntax::UnitTests
                     {},
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 uut,
-                L"Verify matches.");
+                "Verify matches.");
         }
 
         // [[Fact]]
@@ -157,7 +157,7 @@ namespace Soup::Syntax::UnitTests
                     },
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 uut,
-                L"Verify matches.");
+                "Verify matches.");
         }
 
         // [[Fact]]
@@ -173,13 +173,13 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::OpenBrace,
                         {
-                            SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 1)),
+                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 1)),
                         },
                         {}),
                     {},
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 uut,
-                L"Verify do not match.");
+                "Verify do not match.");
         }
 
         // [[Fact]]
@@ -201,7 +201,7 @@ namespace Soup::Syntax::UnitTests
                     },
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 uut,
-                L"Verify do not match.");
+                "Verify do not match.");
         }
 
         // [[Fact]]
@@ -225,7 +225,7 @@ namespace Soup::Syntax::UnitTests
                             SyntaxFactory::CreateKeywordToken(
                                 SyntaxTokenType::Return,
                                 {
-                                    SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 1)),
+                                    SyntaxFactory::CreateTrivia(" ", TextSpan(0, 1)),
                                 },
                                 {}),
                             nullptr,
@@ -233,7 +233,7 @@ namespace Soup::Syntax::UnitTests
                     },
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 uut,
-                L"Verify do not match.");
+                "Verify do not match.");
         }
 
         // [[Fact]]
@@ -251,11 +251,11 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::CloseBrace,
                         {
-                            SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 1)),
+                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 1)),
                         },
                         {})),
                 uut,
-                L"Verify do not match.");
+                "Verify do not match.");
         }
     };
 }

@@ -18,23 +18,23 @@ TestState RunTest(std::function<void(void)> test)
     try
     {
         test();
-        // std::wcout << L"Test PASS!" << std::endl;
+        // std::cout << "Test PASS!" << std::endl;
         return TestState{ 0, 1 };
     }
     catch (std::exception& ex)
     {
-        std::wcout << L"Test FAIL!" << std::endl;
-        std::wcout << typeid(ex).name() << std::endl;
+        std::cout << "Test FAIL!" << std::endl;
+        std::cout << typeid(ex).name() << std::endl;
 
         if (!std::string(ex.what()).empty())
         {
-            std::wcout << ex.what() << std::endl;
+            std::cout << ex.what() << std::endl;
         }
     }
     catch (...)
     {
-        std::wcout << L"Test FAIL!" << std::endl;
-        std::wcout << L"Unknown error..." << std::endl;
+        std::cout << "Test FAIL!" << std::endl;
+        std::cout << "Unknown error..." << std::endl;
     }
 
     return TestState{ 1, 0 };

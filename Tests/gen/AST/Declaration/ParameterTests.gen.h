@@ -7,21 +7,21 @@ TestState RunParameterTests()
     auto testClass = std::make_unique<Soup::Syntax::UnitTests::ParameterTests>();
     TestState state = { 0, 0 };
 
-    std::wcout << L"Running ParameterTests:" << std::endl;
+    std::cout << "Running ParameterTests:" << std::endl;
 
-    std::wcout << L"InitializeSimple" << std::endl;
+    std::cout << "InitializeSimple" << std::endl;
     state += RunTest([&testClass]() { testClass->InitializeSimple(); });
 
-    std::wcout << L"GetChildren" << std::endl;
+    std::cout << "GetChildren" << std::endl;
     state += RunTest([&testClass]() { testClass->GetChildren(); });
 
-    std::wcout << L"OperatorEqual" << std::endl;
+    std::cout << "OperatorEqual" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorEqual(); });
 
-    std::wcout << L"OperatorNotEqualDeclarationSpecifier" << std::endl;
+    std::cout << "OperatorNotEqualDeclarationSpecifier" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorNotEqualDeclarationSpecifier(); });
 
-    std::wcout << L"OperatorNotEqualDeclarator" << std::endl;
+    std::cout << "OperatorNotEqualDeclarator" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorNotEqualDeclarator(); });
 
     return state;

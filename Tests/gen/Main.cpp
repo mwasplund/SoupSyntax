@@ -58,7 +58,7 @@ import SoupSyntax;
 
 int main()
 {
-    std::wcout << L"Running Tests..." << std::endl;
+    std::cout << "Running Tests..." << std::endl;
 
     TestState state = { 0, 0 };
 
@@ -116,8 +116,8 @@ int main()
     state += RunParseReturnStatementTests();
     state += RunParseSimpleDeclarationStatementTests();
 
-    std::wcout << state.FailCount << L" FAILED." << std::endl;
-    std::wcout << state.PassCount << L" PASSED." << std::endl;
+    std::cout << state.FailCount << " FAILED." << std::endl;
+    std::cout << state.PassCount << " PASSED." << std::endl;
 
     return 0;
 }

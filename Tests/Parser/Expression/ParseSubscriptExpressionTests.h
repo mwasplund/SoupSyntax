@@ -16,14 +16,14 @@ namespace Soup::Syntax::UnitTests
 
             auto expected = SyntaxFactory::CreateSubscriptExpression(
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"1")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1")),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket));
 
-            TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
+            TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
     private:

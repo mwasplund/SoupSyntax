@@ -17,9 +17,9 @@ namespace Soup::Syntax::UnitTests
                 UnaryOperator::Plus,
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Plus),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")));
 
-            TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
+            TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
         // [Fact]
@@ -32,9 +32,9 @@ namespace Soup::Syntax::UnitTests
                 UnaryOperator::Minus,
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Minus),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")));
 
-            TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
+            TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
         // [Fact]
@@ -47,9 +47,9 @@ namespace Soup::Syntax::UnitTests
                 UnaryOperator::BitwiseNot,
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Tilde),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")));
 
-            TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
+            TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
         // [Fact]
@@ -62,9 +62,9 @@ namespace Soup::Syntax::UnitTests
                 UnaryOperator::PreIncrement,
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoublePlus),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")));
 
-            TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
+            TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
         // [Fact]
@@ -77,9 +77,9 @@ namespace Soup::Syntax::UnitTests
                 UnaryOperator::PreDecrement,
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleMinus),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")));
 
-            TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
+            TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
         // [Fact]
@@ -92,9 +92,9 @@ namespace Soup::Syntax::UnitTests
                 UnaryOperator::PostIncrement,
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoublePlus),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")));
 
-            TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
+            TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
         // [Fact]
@@ -107,9 +107,9 @@ namespace Soup::Syntax::UnitTests
                 UnaryOperator::PostDecrement,
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleMinus),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")));
 
-            TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
+            TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
         // [Fact]
@@ -122,9 +122,9 @@ namespace Soup::Syntax::UnitTests
                 UnaryOperator::LogicalNot,
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::ExclamationMark),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")));
 
-            TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
+            TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
         // [Fact]
@@ -137,9 +137,9 @@ namespace Soup::Syntax::UnitTests
                 UnaryOperator::Indirection,
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Asterisk),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")));
 
-            TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
+            TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
         // [Fact]
@@ -152,9 +152,9 @@ namespace Soup::Syntax::UnitTests
                 UnaryOperator::AddressOf,
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Ampersand),
                 SyntaxFactory::CreateSimpleNameExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")));
 
-            TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
+            TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
     private:

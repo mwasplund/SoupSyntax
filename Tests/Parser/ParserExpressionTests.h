@@ -17,7 +17,7 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = TestUtils::BuildParser(sourceCode);
             auto context = uut.Parser->primaryExpression();
-            Assert::NotNull(context, L"Verify context is not null.");
+            Assert::NotNull(context, "Verify context is not null.");
         }
 
         // [Theory]
@@ -32,7 +32,7 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = TestUtils::BuildParser(sourceCode);
             auto context = uut.Parser->unqualifiedIdentifier();
-            Assert::NotNull(context, L"Verify context is not null.");
+            Assert::NotNull(context, "Verify context is not null.");
         }
 
         // [Theory]
@@ -43,7 +43,7 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = TestUtils::BuildParser(sourceCode);
             auto context = uut.Parser->qualifiedIdentifier();
-            Assert::NotNull(context, L"Verify context is not null.");
+            Assert::NotNull(context, "Verify context is not null.");
         }
 
         // [Theory]
@@ -60,7 +60,7 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = TestUtils::BuildParser(sourceCode);
             auto context = uut.Parser->lambdaExpression();
-            Assert::NotNull(context, L"Verify context is not null.");
+            Assert::NotNull(context, "Verify context is not null.");
         }
 
         // [Theory]
@@ -79,7 +79,7 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = TestUtils::BuildParser(sourceCode);
             auto context = uut.Parser->assignmentOperator();
-            Assert::NotNull(context, L"Verify context is not null.");
+            Assert::NotNull(context, "Verify context is not null.");
         }
 
         // [Theory]
@@ -93,7 +93,7 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = TestUtils::BuildParser(sourceCode);
             auto context = uut.Parser->unaryOperator();
-            Assert::NotNull(context, L"Verify context is not null.");
+            Assert::NotNull(context, "Verify context is not null.");
         }
 
         // [Theory]
@@ -143,7 +143,7 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = TestUtils::BuildParser(sourceCode);
             auto context = uut.Parser->anyOperator();
-            Assert::NotNull(context, L"Verify context is not null.");
+            Assert::NotNull(context, "Verify context is not null.");
         }
 
         // [Theory]
@@ -193,7 +193,7 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = TestUtils::BuildParser(sourceCode);
             auto context = uut.Parser->operatorFunctionIdentifier();
-            Assert::NotNull(context, L"Verify context is not null.");
+            Assert::NotNull(context, "Verify context is not null.");
         }
 
         // [Theory]
@@ -209,7 +209,7 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = TestUtils::BuildParser(sourceCode);
             auto context = uut.Parser->attributeSpecifier();
-            Assert::NotNull(context, L"Verify context is not null.");
+            Assert::NotNull(context, "Verify context is not null.");
         }
 
         // [Theory]
@@ -218,7 +218,7 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = TestUtils::BuildParser(sourceCode);
             auto context = uut.Parser->functionDefinition();
-            Assert::NotNull(context, L"Verify context is not null.");
+            Assert::NotNull(context, "Verify context is not null.");
         }
     };
 }

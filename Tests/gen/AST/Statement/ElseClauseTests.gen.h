@@ -7,21 +7,21 @@ TestState RunElseClauseTests()
     auto testClass = std::make_unique<Soup::Syntax::UnitTests::ElseClauseTests>();
     TestState state = { 0, 0 };
 
-    std::wcout << L"Running ElseClauseTests:" << std::endl;
+    std::cout << "Running ElseClauseTests:" << std::endl;
 
-    std::wcout << L"InitializeSimple" << std::endl;
+    std::cout << "InitializeSimple" << std::endl;
     state += RunTest([&testClass]() { testClass->InitializeSimple(); });
 
-    std::wcout << L"GetChildren" << std::endl;
+    std::cout << "GetChildren" << std::endl;
     state += RunTest([&testClass]() { testClass->GetChildren(); });
 
-    std::wcout << L"OperatorEqual" << std::endl;
+    std::cout << "OperatorEqual" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorEqual(); });
 
-    std::wcout << L"OperatorNotEqualElseToken" << std::endl;
+    std::cout << "OperatorNotEqualElseToken" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorNotEqualElseToken(); });
 
-    std::wcout << L"OperatorNotEqualStatement" << std::endl;
+    std::cout << "OperatorNotEqualStatement" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorNotEqualStatement(); });
 
     return state;

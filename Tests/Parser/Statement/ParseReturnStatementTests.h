@@ -18,7 +18,7 @@ namespace Soup::Syntax::UnitTests
                 nullptr,
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
-            TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
+            TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
         // [Fact]
@@ -33,14 +33,14 @@ namespace Soup::Syntax::UnitTests
                     LiteralType::Integer,
                     SyntaxFactory::CreateUniqueToken(
                         SyntaxTokenType::IntegerLiteral,
-                        L"1",
+                        "1",
                         {
-                            SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0))
+                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
                         },
                         {})),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
-            TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
+            TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
         // [Fact]
@@ -54,14 +54,14 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateSimpleNameExpression(
                     SyntaxFactory::CreateUniqueToken(
                         SyntaxTokenType::Identifier,
-                        L"a",
+                        "a",
                         {
-                            SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0))
+                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
                         },
                         {})),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
-            TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
+            TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
     private:

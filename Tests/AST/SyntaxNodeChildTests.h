@@ -12,12 +12,12 @@ namespace Soup::Syntax::UnitTests
             auto uut = SyntaxNodeChild(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void));
 
-            Assert::IsFalse(uut.IsNode(), L"Verify is not a node.");
-            Assert::IsTrue(uut.IsToken(), L"Verify is a token.");
+            Assert::IsFalse(uut.IsNode(), "Verify is not a node.");
+            Assert::IsTrue(uut.IsToken(), "Verify is a token.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void),
                 uut.AsToken(),
-                L"Verify value matches.");
+                "Verify value matches.");
         }
 
         // [[Fact]]
@@ -30,7 +30,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxNodeChild(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void)),
                 uut,
-                L"Verify matches.");
+                "Verify matches.");
         }
 
         // [[Fact]]
@@ -43,7 +43,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxNodeChild(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
                 uut,
-                L"Verify do not match.");
+                "Verify do not match.");
         }
 
         // [[Fact]]
@@ -56,9 +56,9 @@ namespace Soup::Syntax::UnitTests
                 SyntaxNodeChild(
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"1"))),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1"))),
                 uut,
-                L"Verify do not match.");
+                "Verify do not match.");
         }
 
         // [[Fact]]
@@ -67,16 +67,16 @@ namespace Soup::Syntax::UnitTests
             auto uut = SyntaxNodeChild(
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"1")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1")));
 
-            Assert::IsTrue(uut.IsNode(), L"Verify is a node.");
-            Assert::IsFalse(uut.IsToken(), L"Verify is not a token.");
+            Assert::IsTrue(uut.IsNode(), "Verify is a node.");
+            Assert::IsFalse(uut.IsToken(), "Verify is not a token.");
             TestUtils::AreEqual(
                 *SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"1")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1")),
                 uut.AsNode(),
-                L"Verify value matches.");
+                "Verify value matches.");
         }
 
         // [[Fact]]
@@ -85,15 +85,15 @@ namespace Soup::Syntax::UnitTests
             auto uut = SyntaxNodeChild(
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"1")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1")));
 
             Assert::AreEqual(
                 SyntaxNodeChild(
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"1"))),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1"))),
                 uut,
-                L"Verify matches.");
+                "Verify matches.");
         }
 
         // [[Fact]]
@@ -102,13 +102,13 @@ namespace Soup::Syntax::UnitTests
             auto uut = SyntaxNodeChild(
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"1")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1")));
 
             Assert::AreNotEqual(
                 SyntaxNodeChild(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void)),
                 uut,
-                L"Verify do not match.");
+                "Verify do not match.");
         }
 
         // [[Fact]]
@@ -117,15 +117,15 @@ namespace Soup::Syntax::UnitTests
             auto uut = SyntaxNodeChild(
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"1")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1")));
 
             Assert::AreNotEqual(
                 SyntaxNodeChild(
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"2"))),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "2"))),
                 uut,
-                L"Verify do not match.");
+                "Verify do not match.");
         }
     };
 }

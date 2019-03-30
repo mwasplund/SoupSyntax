@@ -7,30 +7,30 @@ TestState RunSyntaxNodeChildTests()
     auto testClass = std::make_unique<Soup::Syntax::UnitTests::SyntaxNodeChildTests>();
     TestState state = { 0, 0 };
 
-    std::wcout << L"Running SyntaxNodeChildTests:" << std::endl;
+    std::cout << "Running SyntaxNodeChildTests:" << std::endl;
 
-    std::wcout << L"TokenInitializeSimple" << std::endl;
+    std::cout << "TokenInitializeSimple" << std::endl;
     state += RunTest([&testClass]() { testClass->TokenInitialize(); });
 
-    std::wcout << L"TokenOperatorEqual" << std::endl;
+    std::cout << "TokenOperatorEqual" << std::endl;
     state += RunTest([&testClass]() { testClass->TokenOperatorEqual(); });
 
-    std::wcout << L"TokenOperatorNotEqualToken" << std::endl;
+    std::cout << "TokenOperatorNotEqualToken" << std::endl;
     state += RunTest([&testClass]() { testClass->TokenOperatorNotEqualToken(); });
 
-    std::wcout << L"TokenOperatorNotEqualNode" << std::endl;
+    std::cout << "TokenOperatorNotEqualNode" << std::endl;
     state += RunTest([&testClass]() { testClass->TokenOperatorNotEqualNode(); });
 
-    std::wcout << L"NodeInitializeSimple" << std::endl;
+    std::cout << "NodeInitializeSimple" << std::endl;
     state += RunTest([&testClass]() { testClass->NodeInitialize(); });
 
-    std::wcout << L"NodeOperatorEqual" << std::endl;
+    std::cout << "NodeOperatorEqual" << std::endl;
     state += RunTest([&testClass]() { testClass->NodeOperatorEqual(); });
 
-    std::wcout << L"NodeOperatorNotEqualToken" << std::endl;
+    std::cout << "NodeOperatorNotEqualToken" << std::endl;
     state += RunTest([&testClass]() { testClass->NodeOperatorNotEqualToken(); });
 
-    std::wcout << L"NodeOperatorNotEqualNode" << std::endl;
+    std::cout << "NodeOperatorNotEqualNode" << std::endl;
     state += RunTest([&testClass]() { testClass->NodeOperatorNotEqualNode(); });
 
     return state;

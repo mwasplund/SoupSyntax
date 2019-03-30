@@ -17,11 +17,11 @@ namespace Soup::Syntax::UnitTests
                     {
                         SyntaxFactory::CreateInitializerDeclarator(
                             SyntaxFactory::CreateSimpleNameExpression(
-                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                             nullptr),
                         SyntaxFactory::CreateInitializerDeclarator(
                             SyntaxFactory::CreateSimpleNameExpression(
-                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")),
+                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                             nullptr),
                     }),
                     std::vector<std::shared_ptr<const SyntaxToken>>()));
@@ -29,23 +29,23 @@ namespace Soup::Syntax::UnitTests
             Assert::AreEqual(
                 SyntaxNodeType::InitializerDeclaratorList,
                 uut->GetType(),
-                L"Verify has correct type.");
+                "Verify has correct type.");
             Assert::AreEqual(
                 *std::make_shared<const SyntaxSeparatorList<InitializerDeclarator>>(
                     std::vector<std::shared_ptr<const InitializerDeclarator>>(
                     {
                         SyntaxFactory::CreateInitializerDeclarator(
                             SyntaxFactory::CreateSimpleNameExpression(
-                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                             nullptr),
                         SyntaxFactory::CreateInitializerDeclarator(
                             SyntaxFactory::CreateSimpleNameExpression(
-                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")),
+                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                             nullptr),
                     }),
                     std::vector<std::shared_ptr<const SyntaxToken>>()),
                 uut->GetItems(),
-                L"Verify items match.");
+                "Verify items match.");
         }
 
         // [[Fact]]
@@ -58,11 +58,11 @@ namespace Soup::Syntax::UnitTests
                     {
                         SyntaxFactory::CreateInitializerDeclarator(
                             SyntaxFactory::CreateSimpleNameExpression(
-                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                             nullptr),
                         SyntaxFactory::CreateInitializerDeclarator(
                             SyntaxFactory::CreateSimpleNameExpression(
-                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")),
+                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                             nullptr),
                     }),
                     std::vector<std::shared_ptr<const SyntaxToken>>({
@@ -74,17 +74,17 @@ namespace Soup::Syntax::UnitTests
                     SyntaxNodeChild(
                         SyntaxFactory::CreateInitializerDeclarator(
                             SyntaxFactory::CreateSimpleNameExpression(
-                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                             nullptr)),
                     SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma)),
                     SyntaxNodeChild(
                         SyntaxFactory::CreateInitializerDeclarator(
                             SyntaxFactory::CreateSimpleNameExpression(
-                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")),
+                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                             nullptr)),
                 }),
                 uut->GetChildren(),
-                L"Verify children match.");
+                "Verify children match.");
         }
 
         // [[Fact]]
@@ -97,11 +97,11 @@ namespace Soup::Syntax::UnitTests
                     {
                         SyntaxFactory::CreateInitializerDeclarator(
                             SyntaxFactory::CreateSimpleNameExpression(
-                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                             nullptr),
                         SyntaxFactory::CreateInitializerDeclarator(
                             SyntaxFactory::CreateSimpleNameExpression(
-                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")),
+                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                             nullptr),
                     }),
                     std::vector<std::shared_ptr<const SyntaxToken>>()));
@@ -113,16 +113,16 @@ namespace Soup::Syntax::UnitTests
                         {
                             SyntaxFactory::CreateInitializerDeclarator(
                                 SyntaxFactory::CreateSimpleNameExpression(
-                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                                 nullptr),
                             SyntaxFactory::CreateInitializerDeclarator(
                                 SyntaxFactory::CreateSimpleNameExpression(
-                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")),
+                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                                 nullptr),
                         }),
                         std::vector<std::shared_ptr<const SyntaxToken>>())),
                 uut,
-                L"Verify matches.");
+                "Verify matches.");
         }
 
         // [[Fact]]
@@ -135,11 +135,11 @@ namespace Soup::Syntax::UnitTests
                     {
                         SyntaxFactory::CreateInitializerDeclarator(
                             SyntaxFactory::CreateSimpleNameExpression(
-                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                             nullptr),
                         SyntaxFactory::CreateInitializerDeclarator(
                             SyntaxFactory::CreateSimpleNameExpression(
-                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")),
+                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                             nullptr),
                     }),
                     std::vector<std::shared_ptr<const SyntaxToken>>()));
@@ -151,12 +151,12 @@ namespace Soup::Syntax::UnitTests
                         {
                             SyntaxFactory::CreateInitializerDeclarator(
                                 SyntaxFactory::CreateSimpleNameExpression(
-                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"c")),
+                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "c")),
                                 nullptr),
                         }),
                         std::vector<std::shared_ptr<const SyntaxToken>>())),
                 uut,
-                L"Verify does not match.");
+                "Verify does not match.");
         }
 
         // [[Fact]]
@@ -169,11 +169,11 @@ namespace Soup::Syntax::UnitTests
                     {
                         SyntaxFactory::CreateInitializerDeclarator(
                             SyntaxFactory::CreateSimpleNameExpression(
-                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"a")),
+                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                             nullptr),
                         SyntaxFactory::CreateInitializerDeclarator(
                             SyntaxFactory::CreateSimpleNameExpression(
-                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")),
+                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                             nullptr),
                     }),
                     std::vector<std::shared_ptr<const SyntaxToken>>()));
@@ -185,16 +185,16 @@ namespace Soup::Syntax::UnitTests
                         {
                             SyntaxFactory::CreateInitializerDeclarator(
                                 SyntaxFactory::CreateSimpleNameExpression(
-                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"c")),
+                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "c")),
                                 nullptr),
                             SyntaxFactory::CreateInitializerDeclarator(
                                 SyntaxFactory::CreateSimpleNameExpression(
-                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"b")),
+                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                                 nullptr),
                         }),
                         std::vector<std::shared_ptr<const SyntaxToken>>())),
                 uut,
-                L"Verify does not match.");
+                "Verify does not match.");
         }
     };
 }

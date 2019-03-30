@@ -17,15 +17,15 @@ namespace Soup::Syntax::UnitTests
             Assert::AreEqual(
                 SyntaxNodeType::PrimitiveDataTypeDeclaration,
                 uut->GetType(),
-                L"Verify has correct type.");
+                "Verify has correct type.");
             Assert::AreEqual(
                 PrimitiveDataType::Int,
                 uut->GetPrimitiveType(),
-                L"Verify primitive type matches.");
+                "Verify primitive type matches.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int),
                 uut->GetToken(),
-                L"Verify token matches.");
+                "Verify token matches.");
         }
 
         // [[Fact]]
@@ -40,7 +40,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
                 }),
                 uut->GetChildren(),
-                L"Verify children match.");
+                "Verify children match.");
         }
 
         // [[Fact]]
@@ -55,7 +55,7 @@ namespace Soup::Syntax::UnitTests
                     PrimitiveDataType::Int,
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
                 uut,
-                L"Verify matches.");
+                "Verify matches.");
         }
 
         // [[Fact]]
@@ -70,7 +70,7 @@ namespace Soup::Syntax::UnitTests
                     PrimitiveDataType::Double,
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
                 uut,
-                L"Verify does not match.");
+                "Verify does not match.");
         }
 
         // [[Fact]]
@@ -86,11 +86,11 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::Int,
                         {
-                            SyntaxFactory::CreateTrivia(L" ", TextSpan())
+                            SyntaxFactory::CreateTrivia(" ", TextSpan())
                         },
                         {})),
                 uut,
-                L"Verify does not match.");
+                "Verify does not match.");
         }
     };
 }

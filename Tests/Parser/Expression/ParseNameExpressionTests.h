@@ -14,11 +14,11 @@ namespace Soup::Syntax::UnitTests
             auto expression = std::dynamic_pointer_cast<const SimpleNameExpression>(
                 ParseNameExpression(sourceCode));
 
-            Assert::NotNull(expression, L"Verify cast.");
+            Assert::NotNull(expression, "Verify cast.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, Convert(sourceCode)),
+                *SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, sourceCode),
                 expression->GetIdentifier(),
-                L"Verify identifier matches expected.");
+                "Verify identifier matches expected.");
         }
 
         // [Fact]
@@ -28,33 +28,26 @@ namespace Soup::Syntax::UnitTests
             auto expression = std::dynamic_pointer_cast<const QualifiedNameExpression>(
                 ParseNameExpression(sourceCode));
 
-            Assert::NotNull(expression, L"Verify cast.");
+            Assert::NotNull(expression, "Verify cast.");
 
             auto left = dynamic_cast<const SimpleNameExpression&>(expression->GetLeft());
             auto right = expression->GetRight();
 
             Assert::AreEqual(
-                *SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"NameLeft"),
+                *SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "NameLeft"),
                 left.GetIdentifier(),
-                L"Verify left identifier matches expected.");
+                "Verify left identifier matches expected.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
                 expression->GetScopeResolutionToken(),
-                L"Verify double colon token matches expected.");
+                "Verify double colon token matches expected.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"NameRight"),
+                *SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "NameRight"),
                 right.GetIdentifier(),
-                L"Verify right identifier matches expected.");
+                "Verify right identifier matches expected.");
         }
 
     private:
-        std::wstring Convert(const std::string& value)
-        {
-            // Convert the token text to wide characters
-            std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
-            return converter.from_bytes(value);
-        }
-
         std::shared_ptr<const NameExpression> ParseNameExpression(std::string& sourceCode)
         {
             auto uut = TestUtils::BuildParser(sourceCode);

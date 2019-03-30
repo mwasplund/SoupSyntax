@@ -7,15 +7,15 @@ TestState RunSyntaxFunctionTests()
     auto testClass = std::make_unique<Soup::Syntax::UnitTests::SyntaxFunctionTests>();
     TestState state = { 0, 0 };
 
-    std::wcout << L"Running SyntaxFunctionTests:" << std::endl;
+    std::cout << "Running SyntaxFunctionTests:" << std::endl;
 
-    std::wcout << L"SimpleFunctionRegular" << std::endl;
+    std::cout << "SimpleFunctionRegular" << std::endl;
     // state += RunTest([&testClass]() { testClass->SimpleFunctionRegular(); });
 
-    std::wcout << L"SimpleFunctionDefault" << std::endl;
+    std::cout << "SimpleFunctionDefault" << std::endl;
     // state += RunTest([&testClass]() { testClass->SimpleFunctionDefault(); });
 
-    std::wcout << L"SimpleFunctionDelete" << std::endl;
+    std::cout << "SimpleFunctionDelete" << std::endl;
     // state += RunTest([&testClass]() { testClass->SimpleFunctionDelete(); });
 
     return state;

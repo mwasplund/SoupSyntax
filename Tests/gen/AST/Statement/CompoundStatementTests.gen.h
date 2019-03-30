@@ -7,36 +7,36 @@ TestState RunCompoundStatementTests()
     auto testClass = std::make_unique<Soup::Syntax::UnitTests::CompoundStatementTests>();
     TestState state = { 0, 0 };
 
-    std::wcout << L"Running CompoundStatementTests:" << std::endl;
+    std::cout << "Running CompoundStatementTests:" << std::endl;
 
-    std::wcout << L"InitializeEmpty" << std::endl;
+    std::cout << "InitializeEmpty" << std::endl;
     state += RunTest([&testClass]() { testClass->InitializeEmpty(); });
 
-    std::wcout << L"InitializeSingleStatement" << std::endl;
+    std::cout << "InitializeSingleStatement" << std::endl;
     state += RunTest([&testClass]() { testClass->InitializeSingleStatement(); });
 
-    std::wcout << L"GetChildrenEmpty" << std::endl;
+    std::cout << "GetChildrenEmpty" << std::endl;
     state += RunTest([&testClass]() { testClass->GetChildrenEmpty(); });
 
-    std::wcout << L"GetChildrenSingleStatement" << std::endl;
+    std::cout << "GetChildrenSingleStatement" << std::endl;
     state += RunTest([&testClass]() { testClass->GetChildrenSingleStatement(); });
 
-    std::wcout << L"OperatorEqualEmpty" << std::endl;
+    std::cout << "OperatorEqualEmpty" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorEqualEmpty(); });
 
-    std::wcout << L"OperatorEqualSingleStatement" << std::endl;
+    std::cout << "OperatorEqualSingleStatement" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorEqualSingleStatement(); });
 
-    std::wcout << L"OperatorNotEqualOpenBraceToken" << std::endl;
+    std::cout << "OperatorNotEqualOpenBraceToken" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorNotEqualOpenBraceToken(); });
 
-    std::wcout << L"OperatorNotEqualEmpty" << std::endl;
+    std::cout << "OperatorNotEqualEmpty" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorNotEqualEmpty(); });
 
-    std::wcout << L"OperatorNotEqualSingleStatement" << std::endl;
+    std::cout << "OperatorNotEqualSingleStatement" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorNotEqualSingleStatement(); });
 
-    std::wcout << L"OperatorNotEqualCloseBraceToken" << std::endl;
+    std::cout << "OperatorNotEqualCloseBraceToken" << std::endl;
     state += RunTest([&testClass]() { testClass->OperatorNotEqualCloseBraceToken(); });
 
     return state;

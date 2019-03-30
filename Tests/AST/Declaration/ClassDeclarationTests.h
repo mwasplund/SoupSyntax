@@ -22,28 +22,28 @@ namespace Soup::Syntax::UnitTests
             Assert::AreEqual(
                 SyntaxNodeType::ClassDeclaration,
                 uut->GetType(),
-                L"Verify has correct type.");
+                "Verify has correct type.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
                 uut->GetClassToken(),
-                L"Verify class token matches.");
+                "Verify class token matches.");
             Assert::IsFalse(
                 uut->HasIdentifierToken(),
-                L"Verify has no identifier token.");
+                "Verify has no identifier token.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 uut->GetOpenBraceToken(),
-                L"Verify left brace token matches.");
+                "Verify left brace token matches.");
             Assert::AreEqual(
                 *std::make_shared<const SyntaxList<Declaration>>(
                     std::vector<std::shared_ptr<const Declaration>>(
                     {})),
                 uut->GetMemberDeclarations(),
-                L"Verify enumerator list matches.");
+                "Verify enumerator list matches.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace),
                 uut->GetCloseBraceToken(),
-                L"Verify right brace token matches.");
+                "Verify right brace token matches.");
         }
 
         // [[Fact]]
@@ -51,7 +51,7 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateClassDeclaration(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"MyClass"),
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 std::make_shared<const SyntaxList<Declaration>>(
                     std::vector<std::shared_ptr<const Declaration>>(
@@ -64,22 +64,22 @@ namespace Soup::Syntax::UnitTests
             Assert::AreEqual(
                 SyntaxNodeType::ClassDeclaration,
                 uut->GetType(),
-                L"Verify has correct type.");
+                "Verify has correct type.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
                 uut->GetClassToken(),
-                L"Verify class token matches.");
+                "Verify class token matches.");
             Assert::IsTrue(
                 uut->HasIdentifierToken(),
-                L"Verify has identifier token.");
+                "Verify has identifier token.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"MyClass"),
+                *SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"),
                 uut->GetIdentifierToken(),
-                L"Verify identifier token matches.");
+                "Verify identifier token matches.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 uut->GetOpenBraceToken(),
-                L"Verify left brace token matches.");
+                "Verify left brace token matches.");
             Assert::AreEqual(
                 *std::make_shared<const SyntaxList<Declaration>>(
                     std::vector<std::shared_ptr<const Declaration>>(
@@ -88,11 +88,11 @@ namespace Soup::Syntax::UnitTests
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                     })),
                 uut->GetMemberDeclarations(),
-                L"Verify member declarations list matches.");
+                "Verify member declarations list matches.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace),
                 uut->GetCloseBraceToken(),
-                L"Verify right brace token matches.");
+                "Verify right brace token matches.");
         }
 
         // [[Fact]]
@@ -115,7 +115,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 }),
                 uut->GetChildren(),
-                L"Verify children match.");
+                "Verify children match.");
         }
 
         // [[Fact]]
@@ -123,7 +123,7 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateClassDeclaration(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"MyClass"),
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 std::make_shared<const SyntaxList<Declaration>>(
                     std::vector<std::shared_ptr<const Declaration>>(
@@ -137,7 +137,7 @@ namespace Soup::Syntax::UnitTests
                 std::vector<SyntaxNodeChild>(
                 {
                     SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class)),
-                    SyntaxNodeChild(SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"MyClass")),
+                    SyntaxNodeChild(SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass")),
                     SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace)),
                     SyntaxNodeChild(
                         SyntaxFactory::CreateEmptyDeclaration(
@@ -145,7 +145,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 }),
                 uut->GetChildren(),
-                L"Verify children match.");
+                "Verify children match.");
         }
 
         // [[Fact]]
@@ -170,7 +170,7 @@ namespace Soup::Syntax::UnitTests
                         {})),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 uut,
-                L"Verify matches.");
+                "Verify matches.");
         }
 
         // [[Fact]]
@@ -178,7 +178,7 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateClassDeclaration(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"MyClass"),
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 std::make_shared<const SyntaxList<Declaration>>(
                     std::vector<std::shared_ptr<const Declaration>>(
@@ -191,7 +191,7 @@ namespace Soup::Syntax::UnitTests
             TestUtils::AreEqual(
                 SyntaxFactory::CreateClassDeclaration(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"MyClass"),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                     std::make_shared<const SyntaxList<Declaration>>(
                         std::vector<std::shared_ptr<const Declaration>>(
@@ -201,7 +201,7 @@ namespace Soup::Syntax::UnitTests
                         })),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 uut,
-                L"Verify matches.");
+                "Verify matches.");
         }
 
         // [[Fact]]
@@ -209,7 +209,7 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateClassDeclaration(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"MyClass"),
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 std::make_shared<const SyntaxList<Declaration>>(
                     std::vector<std::shared_ptr<const Declaration>>(
@@ -222,7 +222,7 @@ namespace Soup::Syntax::UnitTests
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateClassDeclaration(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Struct),
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"MyClass"),
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 std::make_shared<const SyntaxList<Declaration>>(
                     std::vector<std::shared_ptr<const Declaration>>(
@@ -232,7 +232,7 @@ namespace Soup::Syntax::UnitTests
                     })),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 uut,
-                L"Verify do not match.");
+                "Verify do not match.");
         }
 
         // [[Fact]]
@@ -240,7 +240,7 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateClassDeclaration(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"MyClass"),
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 std::make_shared<const SyntaxList<Declaration>>(
                     std::vector<std::shared_ptr<const Declaration>>(
@@ -263,7 +263,7 @@ namespace Soup::Syntax::UnitTests
                         })),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 uut,
-                L"Verify do not match.");
+                "Verify do not match.");
         }
 
         // [[Fact]]
@@ -271,7 +271,7 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateClassDeclaration(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"MyClass"),
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 std::make_shared<const SyntaxList<Declaration>>(
                     std::vector<std::shared_ptr<const Declaration>>(
@@ -284,7 +284,7 @@ namespace Soup::Syntax::UnitTests
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateClassDeclaration(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"MyClass2"),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass2"),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                     std::make_shared<const SyntaxList<Declaration>>(
                         std::vector<std::shared_ptr<const Declaration>>(
@@ -294,7 +294,7 @@ namespace Soup::Syntax::UnitTests
                         })),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 uut,
-                L"Verify do not match.");
+                "Verify do not match.");
         }
 
         // [[Fact]]
@@ -302,7 +302,7 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateClassDeclaration(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"MyClass"),
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 std::make_shared<const SyntaxList<Declaration>>(
                     std::vector<std::shared_ptr<const Declaration>>(
@@ -315,11 +315,11 @@ namespace Soup::Syntax::UnitTests
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateClassDeclaration(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"MyClass"),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"),
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::OpenBrace,
                         {
-                            SyntaxFactory::CreateTrivia(L" ", TextSpan()),
+                            SyntaxFactory::CreateTrivia(" ", TextSpan()),
                         },
                         {}),
                     std::make_shared<const SyntaxList<Declaration>>(
@@ -330,7 +330,7 @@ namespace Soup::Syntax::UnitTests
                         })),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 uut,
-                L"Verify do not match.");
+                "Verify do not match.");
         }
 
         // [[Fact]]
@@ -338,7 +338,7 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateClassDeclaration(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"MyClass"),
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 std::make_shared<const SyntaxList<Declaration>>(
                     std::vector<std::shared_ptr<const Declaration>>(
@@ -351,14 +351,14 @@ namespace Soup::Syntax::UnitTests
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateClassDeclaration(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"MyClass"),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                     std::make_shared<const SyntaxList<Declaration>>(
                         std::vector<std::shared_ptr<const Declaration>>(
                         {})),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 uut,
-                L"Verify do not match.");
+                "Verify do not match.");
         }
 
         // [[Fact]]
@@ -366,7 +366,7 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateClassDeclaration(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"MyClass"),
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 std::make_shared<const SyntaxList<Declaration>>(
                     std::vector<std::shared_ptr<const Declaration>>(
@@ -379,7 +379,7 @@ namespace Soup::Syntax::UnitTests
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateClassDeclaration(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, L"MyClass"),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                     std::make_shared<const SyntaxList<Declaration>>(
                         std::vector<std::shared_ptr<const Declaration>>(
@@ -390,11 +390,11 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::CloseBrace,
                         {
-                            SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 1)),
+                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 1)),
                         },
                         {})),
                 uut,
-                L"Verify do not match.");
+                "Verify do not match.");
         }
     };
 }

@@ -18,7 +18,7 @@ namespace Soup::Syntax::UnitTests
                 {},
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
-            TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
+            TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
         // [Fact]
@@ -34,17 +34,17 @@ namespace Soup::Syntax::UnitTests
                         SyntaxFactory::CreateKeywordToken(
                             SyntaxTokenType::Return,
                             {
-                                SyntaxFactory::CreateTrivia(L"\n", TextSpan(0, 0)),
-                                SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0)),
+                                SyntaxFactory::CreateTrivia("\n", TextSpan(0, 0)),
+                                SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
                             },
                             {}),
                         SyntaxFactory::CreateLiteralExpression(
                             LiteralType::Integer,
                             SyntaxFactory::CreateUniqueToken(
                                 SyntaxTokenType::IntegerLiteral,
-                                L"1",
+                                "1",
                                 {
-                                    SyntaxFactory::CreateTrivia(L" ", TextSpan(0, 0))
+                                    SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
                                 },
                                 {})),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
@@ -52,11 +52,11 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::CloseBrace,
                     {
-                        SyntaxFactory::CreateTrivia(L"\n", TextSpan(0, 0)),
+                        SyntaxFactory::CreateTrivia("\n", TextSpan(0, 0)),
                     },
                     {}));
 
-            TestUtils::AreEqual(expected, actual, L"Verify matches expected.");
+            TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
     private:

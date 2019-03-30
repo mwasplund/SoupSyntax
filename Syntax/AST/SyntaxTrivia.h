@@ -15,7 +15,7 @@ namespace Soup::Syntax
         /// <summary>
         /// Initialize
         /// </summary>
-        SyntaxTrivia(std::wstring value, TextSpan span) :
+        SyntaxTrivia(std::string value, TextSpan span) :
             m_value(std::move(value)),
             m_span(span)
         {
@@ -25,7 +25,7 @@ namespace Soup::Syntax
         /// <summary>
         /// Get the string value of the trivia
         /// </summary>
-        const std::wstring& GetValue() const
+        const std::string& GetValue() const
         {
             return m_value;
         }
@@ -55,13 +55,13 @@ namespace Soup::Syntax
         /// <summary>
         /// Convert to string representation
         /// </summary>
-        std::wstring ToString() const
+        std::string ToString() const
         {
-            return L"SyntaxTrivia";
+            return "SyntaxTrivia";
         }
 
     private:
-        std::wstring m_value;
+        std::string m_value;
         TextSpan m_span;
     };
 }

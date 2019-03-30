@@ -19,19 +19,19 @@ namespace Soup::Syntax::UnitTests
             Assert::AreEqual(
                 SyntaxNodeType::DeclarationSpecifier,
                 uut->GetType(),
-                L"Verify has correct type.");
+                "Verify has correct type.");
             Assert::IsTrue(
                 uut->GetLeadingModifiers().empty(),
-                L"Verify leading modifier tokens match.");
+                "Verify leading modifier tokens match.");
             TestUtils::AreEqual(
                 *SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                     PrimitiveDataType::Int,
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
                 uut->GetTypeSpecifier(),
-                L"Verify type specifier matches.");
+                "Verify type specifier matches.");
             Assert::IsTrue(
                 uut->GetTrailingModifiers().empty(),
-                L"Verify trailing modifier tokens match.");
+                "Verify trailing modifier tokens match.");
         }
 
         // [[Fact]]
@@ -54,27 +54,27 @@ namespace Soup::Syntax::UnitTests
             Assert::AreEqual(
                 SyntaxNodeType::DeclarationSpecifier,
                 uut->GetType(),
-                L"Verify has correct type.");
+                "Verify has correct type.");
             TestUtils::AreEqual(
                 std::vector<std::shared_ptr<const SyntaxToken>>({
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Static),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::ThreadLocal),
                 }),
                 uut->GetLeadingModifiers(),
-                L"Verify leading modifier tokens match.");
+                "Verify leading modifier tokens match.");
             TestUtils::AreEqual(
                 *SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                     PrimitiveDataType::Int,
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
                 uut->GetTypeSpecifier(),
-                L"Verify type specifier matches.");
+                "Verify type specifier matches.");
             TestUtils::AreEqual(
                 std::vector<std::shared_ptr<const SyntaxToken>>({
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Friend),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Mutable),
                 }),
                 uut->GetTrailingModifiers(),
-                L"Verify trailing modifier tokens match.");
+                "Verify trailing modifier tokens match.");
         }
 
         // [[Fact]]
@@ -94,7 +94,7 @@ namespace Soup::Syntax::UnitTests
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                 }),
                 uut->GetChildren(),
-                L"Verify children match.");
+                "Verify children match.");
         }
 
         // [[Fact]]
@@ -126,7 +126,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Mutable)),
                 }),
                 uut->GetChildren(),
-                L"Verify children match.");
+                "Verify children match.");
         }
 
         // [[Fact]]
@@ -144,7 +144,7 @@ namespace Soup::Syntax::UnitTests
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                 uut,
-                L"Verify matches.");
+                "Verify matches.");
         }
 
         // [[Fact]]
@@ -178,7 +178,7 @@ namespace Soup::Syntax::UnitTests
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Mutable),
                     }),
                 uut,
-                L"Verify matches.");
+                "Verify matches.");
         }
 
         // [[Fact]]
@@ -209,7 +209,7 @@ namespace Soup::Syntax::UnitTests
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Mutable),
                     }),
                 uut,
-                L"Verify does not match.");
+                "Verify does not match.");
         }
 
         // [[Fact]]
@@ -243,7 +243,7 @@ namespace Soup::Syntax::UnitTests
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Mutable),
                     }),
                 uut,
-                L"Verify does not match.");
+                "Verify does not match.");
         }
 
         // [[Fact]]
@@ -277,7 +277,7 @@ namespace Soup::Syntax::UnitTests
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Mutable),
                     }),
                 uut,
-                L"Verify does not match.");
+                "Verify does not match.");
         }
 
         // [[Fact]]
@@ -308,7 +308,7 @@ namespace Soup::Syntax::UnitTests
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
                     {}),
                 uut,
-                L"Verify does not match.");
+                "Verify does not match.");
         }
 
         // [[Fact]]
@@ -342,7 +342,7 @@ namespace Soup::Syntax::UnitTests
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Mutable),
                     }),
                 uut,
-                L"Verify does not match.");
+                "Verify does not match.");
         }
     };
 }

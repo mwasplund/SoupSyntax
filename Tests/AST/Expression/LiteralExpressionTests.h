@@ -11,17 +11,17 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateLiteralExpression(
                 LiteralType::Integer,
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"1"));
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1"));
 
             Assert::AreEqual(
                 SyntaxNodeType::LiteralExpression,
                 uut->GetType(),
-                L"Verify has correct type.");
-            Assert::AreEqual(LiteralType::Integer, uut->GetLiteralType(), L"Verify type matches.");
+                "Verify has correct type.");
+            Assert::AreEqual(LiteralType::Integer, uut->GetLiteralType(), "Verify type matches.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"1"),
+                *SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1"),
                 uut->GetToken(),
-                L"Verify value matches.");
+                "Verify value matches.");
         }
 
         // [[Fact]]
@@ -29,14 +29,14 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateLiteralExpression(
                 LiteralType::Integer,
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"1"));
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1"));
 
             Assert::AreEqual(
                 std::vector<SyntaxNodeChild>({
-                    SyntaxNodeChild(SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"1")),
+                    SyntaxNodeChild(SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1")),
                 }),
                 uut->GetChildren(),
-                L"Verify children match.");
+                "Verify children match.");
         }
 
         // [[Fact]]
@@ -44,14 +44,14 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateLiteralExpression(
                 LiteralType::Integer,
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"1"));
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1"));
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"1")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1")),
                 uut,
-                L"Verify matches.");
+                "Verify matches.");
         }
 
         // [[Fact]]
@@ -59,14 +59,14 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateLiteralExpression(
                 LiteralType::Integer,
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"1"));
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1"));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Floating,
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"1")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1")),
                 uut,
-                L"Verify do not match.");
+                "Verify do not match.");
         }
 
         // [[Fact]]
@@ -74,14 +74,14 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateLiteralExpression(
                 LiteralType::Integer,
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"1"));
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1"));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, L"2")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "2")),
                 uut,
-                L"Verify do not match.");
+                "Verify do not match.");
         }
     };
 }
