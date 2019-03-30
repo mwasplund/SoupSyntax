@@ -9,14 +9,17 @@ TestState RunParseReturnStatementTests()
 
     std::cout << "Running ParseReturnStatementTests:" << std::endl;
 
-    std::cout << "ReturnNoExpression" << std::endl;
-    state += RunTest([&testClass]() { testClass->ReturnNoExpression(); });
+    state += RunTest(
+        "ReturnNoExpression",
+        [&testClass]() { testClass->ReturnNoExpression(); });
 
-    std::cout << "ReturnLiteralExpression" << std::endl;
-    state += RunTest([&testClass]() { testClass->ReturnLiteralExpression(); });
+    state += RunTest(
+        "ReturnLiteralExpression",
+        [&testClass]() { testClass->ReturnLiteralExpression(); });
 
-    std::cout << "ReturnSimpleNameExpression" << std::endl;
-    state += RunTest([&testClass]() { testClass->ReturnSimpleNameExpression(); });
+    state += RunTest(
+        "ReturnSimpleNameExpression",
+        [&testClass]() { testClass->ReturnSimpleNameExpression(); });
 
     return state;
 }

@@ -9,8 +9,9 @@ TestState RunParseExpressionStatementTests()
 
     std::cout << "Running ParseExpressionStatementTests:" << std::endl;
 
-    std::cout << "SimpleNameExpression" << std::endl;
-    state += RunTest([&testClass]() { testClass->SimpleNameExpression(); });
+    state += RunTest(
+        "SimpleNameExpression",
+        [&testClass]() { testClass->SimpleNameExpression(); });
 
     return state;
 }

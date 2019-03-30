@@ -9,8 +9,9 @@ TestState RunParseEmptyStatementTests()
 
     std::cout << "Running ParseEmptyStatementTests:" << std::endl;
 
-    std::cout << "Simple" << std::endl;
-    state += RunTest([&testClass]() { testClass->Simple(); });
+    state += RunTest(
+        "Simple",
+        [&testClass]() { testClass->Simple(); });
 
     return state;
 }

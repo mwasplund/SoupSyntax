@@ -9,14 +9,17 @@ TestState RunParseIfStatementTests()
 
     std::cout << "Running ParseIfStatementTests:" << std::endl;
 
-    std::cout << "IfEmptyStatement" << std::endl;
-    state += RunTest([&testClass]() { testClass->IfEmptyStatement(); });
+    state += RunTest(
+        "IfEmptyStatement",
+        [&testClass]() { testClass->IfEmptyStatement(); });
 
-    std::cout << "IfEmptyStatementWithElseClause" << std::endl;
-    state += RunTest([&testClass]() { testClass->IfEmptyStatementWithElseClause(); });
+    state += RunTest(
+        "IfEmptyStatementWithElseClause",
+        [&testClass]() { testClass->IfEmptyStatementWithElseClause(); });
 
-    std::cout << "IfStatementReturnWithElseClause" << std::endl;
-    state += RunTest([&testClass]() { testClass->IfStatementReturnWithElseClause(); });
+    state += RunTest(
+        "IfStatementReturnWithElseClause",
+        [&testClass]() { testClass->IfStatementReturnWithElseClause(); });
 
     return state;
 }

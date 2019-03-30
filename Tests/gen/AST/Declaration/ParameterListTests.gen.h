@@ -9,23 +9,29 @@ TestState RunParameterListTests()
 
     std::cout << "Running ParameterListTests:" << std::endl;
 
-    std::cout << "InitializeSimple" << std::endl;
-    state += RunTest([&testClass]() { testClass->InitializeSimple(); });
+    state += RunTest(
+        "InitializeSimple",
+        [&testClass]() { testClass->InitializeSimple(); });
 
-    std::cout << "GetChildren" << std::endl;
-    state += RunTest([&testClass]() { testClass->GetChildren(); });
+    state += RunTest(
+        "GetChildren",
+        [&testClass]() { testClass->GetChildren(); });
 
-    std::cout << "OperatorEqual" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorEqual(); });
+    state += RunTest(
+        "OperatorEqual",
+        [&testClass]() { testClass->OperatorEqual(); });
 
-    std::cout << "OperatorNotEqualOpenParenthesisToken" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualOpenParenthesisToken(); });
+    state += RunTest(
+        "OperatorNotEqualOpenParenthesisToken",
+        [&testClass]() { testClass->OperatorNotEqualOpenParenthesisToken(); });
 
-    std::cout << "OperatorNotEqualParameters" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualParameters(); });
+    state += RunTest(
+        "OperatorNotEqualParameters",
+        [&testClass]() { testClass->OperatorNotEqualParameters(); });
 
-    std::cout << "OperatorNotEqualCloseParenthesisToken" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualCloseParenthesisToken(); });
+    state += RunTest(
+        "OperatorNotEqualCloseParenthesisToken",
+        [&testClass]() { testClass->OperatorNotEqualCloseParenthesisToken(); });
 
     return state;
 }

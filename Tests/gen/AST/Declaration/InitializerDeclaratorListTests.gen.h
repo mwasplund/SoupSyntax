@@ -9,20 +9,25 @@ TestState RunInitializerDeclaratorListTests()
 
     std::cout << "Running InitializerDeclaratorListTests:" << std::endl;
 
-    std::cout << "InitializeSimple" << std::endl;
-    state += RunTest([&testClass]() { testClass->InitializeSimple(); });
+    state += RunTest(
+        "InitializeSimple",
+        [&testClass]() { testClass->InitializeSimple(); });
 
-    std::cout << "GetChildren" << std::endl;
-    state += RunTest([&testClass]() { testClass->GetChildren(); });
+    state += RunTest(
+        "GetChildren",
+        [&testClass]() { testClass->GetChildren(); });
 
-    std::cout << "OperatorEqua" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorEqual(); });
+    state += RunTest(
+        "OperatorEqual",
+        [&testClass]() { testClass->OperatorEqual(); });
 
-    std::cout << "OperatorNotEqualLessItems" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualLessItems(); });
+    state += RunTest(
+        "OperatorNotEqualLessItems",
+        [&testClass]() { testClass->OperatorNotEqualLessItems(); });
 
-    std::cout << "OperatorNotEqualWithItems" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualWithItems(); });
+    state += RunTest(
+        "OperatorNotEqualWithItems",
+        [&testClass]() { testClass->OperatorNotEqualWithItems(); });
 
     return state;
 }

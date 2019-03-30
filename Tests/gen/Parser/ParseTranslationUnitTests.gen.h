@@ -9,14 +9,17 @@ TestState RunParseTranslationUnitTests()
 
     std::cout << "Running ParseTranslationUnitTests:" << std::endl;
 
-    std::cout << "EmptyFile" << std::endl;
-    state += RunTest([&testClass]() { testClass->EmptyFile(); });
+    state += RunTest(
+        "EmptyFile",
+        [&testClass]() { testClass->EmptyFile(); });
 
-    std::cout << "OnlyTrivia" << std::endl;
-    state += RunTest([&testClass]() { testClass->OnlyTrivia(); });
+    state += RunTest(
+        "OnlyTrivia",
+        [&testClass]() { testClass->OnlyTrivia(); });
 
-    std::cout << "SingleEmptyDeclaration" << std::endl;
-    state += RunTest([&testClass]() { testClass->SingleEmptyDeclaration(); });
+    state += RunTest(
+        "SingleEmptyDeclaration",
+        [&testClass]() { testClass->SingleEmptyDeclaration(); });
 
     return state;
 }

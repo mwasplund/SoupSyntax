@@ -9,13 +9,13 @@ TestState RunSyntaxNamespaceTests()
 
     std::cout << "Running SyntaxNamespaceTests:" << std::endl;
 
-    std::cout << "SimpleNamedNamespace" << std::endl;
+    // TODO std::cout << "SimpleNamedNamespace" << std::endl;
     //state += RunTest([&testClass]() { testClass->SimpleNamedNamespace(); });
 
-    std::cout << "SimpleUnnamedNamespace" << std::endl;
+    // TODO std::cout << "SimpleUnnamedNamespace" << std::endl;
     //state += RunTest([&testClass]() { testClass->SimpleUnnamedNamespace(); });
 
-    std::cout << "SimpleNestedNamespace" << std::endl;
+    // TODO std::cout << "SimpleNestedNamespace" << std::endl;
     //state += RunTest([&testClass]() { testClass->SimpleNestedNamespace(); });
 
     return state;

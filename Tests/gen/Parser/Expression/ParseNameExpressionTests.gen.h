@@ -9,11 +9,13 @@ TestState RunParseNameExpressionTests()
 
     std::cout << "Running ParseNameExpressionTests:" << std::endl;
 
-    std::cout << "SingleSimpleNameExpression" << std::endl;
-    state += RunTest([&testClass]() { testClass->SingleSimpleNameExpression(); });
+    state += RunTest(
+        "SingleSimpleNameExpression",
+        [&testClass]() { testClass->SingleSimpleNameExpression(); });
     
-    std::cout << "SingleQualifiedNameExpression" << std::endl;
-    state += RunTest([&testClass]() { testClass->SingleQualifiedNameExpression(); });
+    state += RunTest(
+        "SingleQualifiedNameExpression",
+        [&testClass]() { testClass->SingleQualifiedNameExpression(); });
 
     return state;
 }

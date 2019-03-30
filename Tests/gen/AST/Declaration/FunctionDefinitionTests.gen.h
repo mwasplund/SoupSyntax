@@ -9,26 +9,33 @@ TestState RunFunctionDefinitionTests()
 
     std::cout << "Running FunctionDefinitionTests:" << std::endl;
 
-    std::cout << "InitializeSimple" << std::endl;
-    state += RunTest([&testClass]() { testClass->InitializeSimple(); });
+    state += RunTest(
+        "InitializeSimple",
+        [&testClass]() { testClass->InitializeSimple(); });
 
-    std::cout << "GetChildren" << std::endl;
-    state += RunTest([&testClass]() { testClass->GetChildren(); });
+    state += RunTest(
+        "GetChildren",
+        [&testClass]() { testClass->GetChildren(); });
 
-    std::cout << "OperatorEqual" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorEqual(); });
+    state += RunTest(
+        "OperatorEqual",
+        [&testClass]() { testClass->OperatorEqual(); });
 
-    std::cout << "OperatorNotEqualReturnType" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualReturnType(); });
+    state += RunTest(
+        "OperatorNotEqualReturnType",
+        [&testClass]() { testClass->OperatorNotEqualReturnType(); });
 
-    std::cout << "OperatorNotEqualIdentifier" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualIdentifier(); });
+    state += RunTest(
+        "OperatorNotEqualIdentifier",
+        [&testClass]() { testClass->OperatorNotEqualIdentifier(); });
 
-    std::cout << "OperatorNotEqualParameterList" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualParameterList(); });
+    state += RunTest(
+        "OperatorNotEqualParameterList",
+        [&testClass]() { testClass->OperatorNotEqualParameterList(); });
 
-    std::cout << "OperatorNotEqualBody" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualBody(); });
+    state += RunTest(
+        "OperatorNotEqualBody",
+        [&testClass]() { testClass->OperatorNotEqualBody(); });
 
     return state;
 }

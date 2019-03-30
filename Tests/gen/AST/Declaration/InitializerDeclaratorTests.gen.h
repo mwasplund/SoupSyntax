@@ -9,32 +9,41 @@ TestState RunInitializerDeclaratorTests()
 
     std::cout << "Running InitializerDeclaratorTests:" << std::endl;
 
-    std::cout << "InitializeSimpleNoInitializer" << std::endl;
-    state += RunTest([&testClass]() { testClass->InitializeSimpleNoInitializer(); });
+    state += RunTest(
+        "InitializeSimpleNoInitializer",
+        [&testClass]() { testClass->InitializeSimpleNoInitializer(); });
 
-    std::cout << "InitializeSimpleWithInitializer" << std::endl;
-    state += RunTest([&testClass]() { testClass->InitializeSimpleWithInitializer(); });
+    state += RunTest(
+        "InitializeSimpleWithInitializer",
+        [&testClass]() { testClass->InitializeSimpleWithInitializer(); });
 
-    std::cout << "GetChildrenNoInitializer" << std::endl;
-    state += RunTest([&testClass]() { testClass->GetChildrenNoInitializer(); });
+    state += RunTest(
+        "GetChildrenNoInitializer",
+        [&testClass]() { testClass->GetChildrenNoInitializer(); });
 
-    std::cout << "GetChildrenWithInitializer" << std::endl;
-    state += RunTest([&testClass]() { testClass->GetChildrenWithInitializer(); });
+    state += RunTest(
+        "GetChildrenWithInitializer" ,
+        [&testClass]() { testClass->GetChildrenWithInitializer(); });
 
-    std::cout << "OperatorEqualNoInitializer" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorEqualNoInitializer(); });
+    state += RunTest(
+        "OperatorEqualNoInitializer",
+        [&testClass]() { testClass->OperatorEqualNoInitializer(); });
 
-    std::cout << "OperatorEqualWithInitializer" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorEqualWithInitializer(); });
+    state += RunTest(
+        "OperatorEqualWithInitializer",
+        [&testClass]() { testClass->OperatorEqualWithInitializer(); });
 
-    std::cout << "OperatorNotEqualDeclarator" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualDeclarator(); });
+    state += RunTest(
+        "OperatorNotEqualDeclarator",
+        [&testClass]() { testClass->OperatorNotEqualDeclarator(); });
 
-    std::cout << "OperatorNotEqualNoInitializer" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualNoInitializer(); });
+    state += RunTest(
+        "OperatorNotEqualNoInitializer",
+        [&testClass]() { testClass->OperatorNotEqualNoInitializer(); });
 
-    std::cout << "OperatorNotEqualWithInitializer" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualWithInitializer(); });
+    state += RunTest(
+        "OperatorNotEqualWithInitializer",
+        [&testClass]() { testClass->OperatorNotEqualWithInitializer(); });
 
     return state;
 }

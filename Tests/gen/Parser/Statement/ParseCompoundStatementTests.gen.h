@@ -9,11 +9,13 @@ TestState RunParseCompoundStatementTests()
 
     std::cout << "Running ParseCompoundStatementTests:" << std::endl;
 
-    std::cout << "EmptyCompoundStatement" << std::endl;
-    state += RunTest([&testClass]() { testClass->EmptyCompoundStatement(); });
+    state += RunTest(
+        "EmptyCompoundStatement",
+        [&testClass]() { testClass->EmptyCompoundStatement(); });
 
-    std::cout << "CompoundStatementWithSingleStatment" << std::endl;
-    state += RunTest([&testClass]() { testClass->CompoundStatementWithSingleStatment(); });
+    state += RunTest(
+        "CompoundStatementWithSingleStatment",
+        [&testClass]() { testClass->CompoundStatementWithSingleStatment(); });
 
     return state;
 }
