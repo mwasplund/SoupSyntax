@@ -93,8 +93,11 @@ namespace Soup::Syntax
         virtual antlrcpp::Any visitStaticAssertDeclaration(CppParser::StaticAssertDeclarationContext *context) override final;
         virtual antlrcpp::Any visitEmptyDeclaration(CppParser::EmptyDeclarationContext *context) override final;
         virtual antlrcpp::Any visitAttributeDeclaration(CppParser::AttributeDeclarationContext *context) override final;
-        virtual antlrcpp::Any visitDeclarationSpecifier(CppParser::DeclarationSpecifierContext *context) override final;
+        virtual antlrcpp::Any visitDeclarationModifier(CppParser::DeclarationModifierContext *context) override final;
         virtual antlrcpp::Any visitDeclarationSpecifierSequence(CppParser::DeclarationSpecifierSequenceContext *context) override final;
+        virtual antlrcpp::Any visitLeadingDeclarationModifierSequence(CppParser::LeadingDeclarationModifierSequenceContext *context) override final;
+        virtual antlrcpp::Any visitTrailingDeclarationModifierSequence(CppParser::TrailingDeclarationModifierSequenceContext *context) override final;
+        virtual antlrcpp::Any visitDeclarationModifierSequence(CppParser::DeclarationModifierSequenceContext *context) override final;
         virtual antlrcpp::Any visitStorageClassSpecifier(CppParser::StorageClassSpecifierContext *context) override final;
         virtual antlrcpp::Any visitFunctionSpecifier(CppParser::FunctionSpecifierContext *context) override final;
         virtual antlrcpp::Any visitTypeSpecifier(CppParser::TypeSpecifierContext *context) override final;
@@ -240,8 +243,6 @@ namespace Soup::Syntax
         std::shared_ptr<const QualifiedNameExpression> visitNextRightQualifiedNestedNames(
             std::shared_ptr<const QualifiedNameExpression> leftQualifiedName,
             CppParser::NestedNameSpecifierSequenceContext* context);
-        std::shared_ptr<const DeclarationSpecifier> CreateDeclarationSpecifier(
-            std::vector<antlrcpp::Any>& declarationSpecifierSequence);
 
     private:
         antlr4::BufferedTokenStream* m_tokenStream;

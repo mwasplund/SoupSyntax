@@ -14,6 +14,10 @@ TestState RunParseSimpleDeclarationTests()
         [&testClass]() { testClass->SingleIntVariable(); });
 
     state += RunTest(
+        "SingleClassVariable",
+        [&testClass]() { testClass->SingleClassVariable(); });
+
+    state += RunTest(
         "SingleIntVariableWithInitializer",
         [&testClass]() { testClass->SingleIntVariableWithInitializer(); });
 

@@ -6,3 +6,6 @@
 obj/
 bin/
 .soup/
+
+# VSCode
+.vscode/ipch/

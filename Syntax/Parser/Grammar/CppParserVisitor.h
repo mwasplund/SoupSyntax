@@ -183,9 +183,15 @@ public:
 
     virtual antlrcpp::Any visitAttributeDeclaration(CppParser::AttributeDeclarationContext *context) = 0;
 
-    virtual antlrcpp::Any visitDeclarationSpecifier(CppParser::DeclarationSpecifierContext *context) = 0;
+    virtual antlrcpp::Any visitDeclarationModifier(CppParser::DeclarationModifierContext *context) = 0;
 
     virtual antlrcpp::Any visitDeclarationSpecifierSequence(CppParser::DeclarationSpecifierSequenceContext *context) = 0;
+
+    virtual antlrcpp::Any visitLeadingDeclarationModifierSequence(CppParser::LeadingDeclarationModifierSequenceContext *context) = 0;
+
+    virtual antlrcpp::Any visitTrailingDeclarationModifierSequence(CppParser::TrailingDeclarationModifierSequenceContext *context) = 0;
+
+    virtual antlrcpp::Any visitDeclarationModifierSequence(CppParser::DeclarationModifierSequenceContext *context) = 0;
 
     virtual antlrcpp::Any visitStorageClassSpecifier(CppParser::StorageClassSpecifierContext *context) = 0;
 

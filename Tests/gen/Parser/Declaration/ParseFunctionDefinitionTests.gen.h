@@ -9,17 +9,21 @@ TestState RunParseFunctionDefinitionTests()
 
     std::cout << "Running ParseFunctionDefinitionTests:" << std::endl;
 
-    std::cout << "SimpleFunctionRegular" << std::endl;
-    state += RunTest([&testClass]() { testClass->SimpleFunctionRegular(); });
+    state += RunTest(
+        "SimpleFunctionRegular",
+        [&testClass]() { testClass->SimpleFunctionRegular(); });
 
-    std::cout << "SimpleFunctionDefault" << std::endl;
-    state += RunTest([&testClass]() { testClass->SimpleFunctionDefault(); });
+    state += RunTest(
+        "SimpleFunctionDefault",
+        [&testClass]() { testClass->SimpleFunctionDefault(); });
 
-    std::cout << "SimpleFunctionDelete" << std::endl;
-    state += RunTest([&testClass]() { testClass->SimpleFunctionDelete(); });
+    state += RunTest(
+        "SimpleFunctionDelete",
+        [&testClass]() { testClass->SimpleFunctionDelete(); });
 
-    std::cout << "SimpleFunctionParameter" << std::endl;
-    state += RunTest([&testClass]() { testClass->SimpleFunctionParameter(); });
+    state += RunTest(
+        "SimpleFunctionParameter",
+        [&testClass]() { testClass->SimpleFunctionParameter(); });
 
     return state;
 }

@@ -262,11 +262,20 @@ public:
   virtual void enterAttributeDeclaration(CppParser::AttributeDeclarationContext * /*ctx*/) override { }
   virtual void exitAttributeDeclaration(CppParser::AttributeDeclarationContext * /*ctx*/) override { }
 
-  virtual void enterDeclarationSpecifier(CppParser::DeclarationSpecifierContext * /*ctx*/) override { }
-  virtual void exitDeclarationSpecifier(CppParser::DeclarationSpecifierContext * /*ctx*/) override { }
+  virtual void enterDeclarationModifier(CppParser::DeclarationModifierContext * /*ctx*/) override { }
+  virtual void exitDeclarationModifier(CppParser::DeclarationModifierContext * /*ctx*/) override { }
 
   virtual void enterDeclarationSpecifierSequence(CppParser::DeclarationSpecifierSequenceContext * /*ctx*/) override { }
   virtual void exitDeclarationSpecifierSequence(CppParser::DeclarationSpecifierSequenceContext * /*ctx*/) override { }
+
+  virtual void enterLeadingDeclarationModifierSequence(CppParser::LeadingDeclarationModifierSequenceContext * /*ctx*/) override { }
+  virtual void exitLeadingDeclarationModifierSequence(CppParser::LeadingDeclarationModifierSequenceContext * /*ctx*/) override { }
+
+  virtual void enterTrailingDeclarationModifierSequence(CppParser::TrailingDeclarationModifierSequenceContext * /*ctx*/) override { }
+  virtual void exitTrailingDeclarationModifierSequence(CppParser::TrailingDeclarationModifierSequenceContext * /*ctx*/) override { }
+
+  virtual void enterDeclarationModifierSequence(CppParser::DeclarationModifierSequenceContext * /*ctx*/) override { }
+  virtual void exitDeclarationModifierSequence(CppParser::DeclarationModifierSequenceContext * /*ctx*/) override { }
 
   virtual void enterStorageClassSpecifier(CppParser::StorageClassSpecifierContext * /*ctx*/) override { }
   virtual void exitStorageClassSpecifier(CppParser::StorageClassSpecifierContext * /*ctx*/) override { }

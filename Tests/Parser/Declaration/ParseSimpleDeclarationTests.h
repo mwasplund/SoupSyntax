@@ -40,6 +40,37 @@ namespace Soup::Syntax::UnitTests
         }
 
         // [Fact]
+        void SingleClassVariable()
+        {
+            auto sourceCode = std::string("MyClass i;");
+            auto actual = ParseSimpleDeclaration(sourceCode);
+
+            auto expected = SyntaxFactory::CreateSimpleDeclaration(
+                SyntaxFactory::CreateDeclarationSpecifier(
+                    SyntaxFactory::CreateSimpleNameExpression(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"))),
+                SyntaxFactory::CreateInitializerDeclaratorList(
+                    std::make_shared<const SyntaxSeparatorList<InitializerDeclarator>>(
+                        std::vector<std::shared_ptr<const InitializerDeclarator>>(
+                        {
+                            SyntaxFactory::CreateInitializerDeclarator(
+                                SyntaxFactory::CreateSimpleNameExpression(
+                                    SyntaxFactory::CreateUniqueToken(
+                                        SyntaxTokenType::Identifier,
+                                        "i",
+                                        {
+                                            SyntaxFactory::CreateTrivia(" ", TextSpan()),
+                                        },
+                                        {})),
+                                nullptr),
+                        }),
+                        std::vector<std::shared_ptr<const SyntaxToken>>())),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
+
+            TestUtils::AreEqual(expected, actual, "Verify matches expected.");
+        }
+
+        // [Fact]
         void SingleIntVariableWithInitializer()
         {
             auto sourceCode = std::string("int i = 0;");

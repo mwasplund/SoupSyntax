@@ -343,11 +343,23 @@ public:
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitDeclarationSpecifier(CppParser::DeclarationSpecifierContext *ctx) override {
+  virtual antlrcpp::Any visitDeclarationModifier(CppParser::DeclarationModifierContext *ctx) override {
     return visitChildren(ctx);
   }
 
   virtual antlrcpp::Any visitDeclarationSpecifierSequence(CppParser::DeclarationSpecifierSequenceContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitLeadingDeclarationModifierSequence(CppParser::LeadingDeclarationModifierSequenceContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitTrailingDeclarationModifierSequence(CppParser::TrailingDeclarationModifierSequenceContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitDeclarationModifierSequence(CppParser::DeclarationModifierSequenceContext *ctx) override {
     return visitChildren(ctx);
   }
 

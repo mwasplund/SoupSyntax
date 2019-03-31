@@ -452,9 +452,8 @@ emptyDeclaration:
 attributeDeclaration:
 	attributeSpecifierSequence Semicolon;
 
-declarationSpecifier:
+declarationModifier:
 	storageClassSpecifier |
-	definingTypeSpecifier |
 	functionSpecifier |
 	Friend |
 	TypeDef |
@@ -462,8 +461,16 @@ declarationSpecifier:
 	Inline;
 
 declarationSpecifierSequence:
-	declarationSpecifier attributeSpecifierSequence? |
-	declarationSpecifier declarationSpecifierSequence;
+	leadingDeclarationModifierSequence? definingTypeSpecifier trailingDeclarationModifierSequence? attributeSpecifierSequence?;
+
+leadingDeclarationModifierSequence:
+	declarationModifierSequence;
+
+trailingDeclarationModifierSequence:
+	declarationModifierSequence;
+
+declarationModifierSequence:
+	declarationModifier declarationModifierSequence?;
 
 storageClassSpecifier:
 	Static |
@@ -476,10 +483,10 @@ functionSpecifier:
 	Explicit;
 
 typeSpecifier:
-	simpleTypeSpecifier;// |
-	// TODO elaboratedTypeSpecifier |
-	// TODO typenameSpecifier |
-	// TODO constVolatileQualifier;
+	simpleTypeSpecifier |
+	elaboratedTypeSpecifier |
+	typenameSpecifier |
+	constVolatileQualifier;
 
 typeSpecifierSequence:
 	typeSpecifier attributeSpecifierSequence? |
@@ -495,7 +502,7 @@ definingTypeSpecifierSequence:
 	definingTypeSpecifier definingTypeSpecifierSequence;
 
 simpleTypeSpecifier:
-	// TODO nestedNameSpecifier? typeName |
+	nestedNameSpecifier? typeName |
 	// TODO nestedNameSpecifier Template simpleTemplateIdentifier |
 	// TODO nestedNameSpecifier? templateName |
 	Char |
@@ -997,8 +1004,8 @@ templateArgumentList:
 	templateArgumentList Comma templateArgument Ellipsis?;
 
 templateArgument:
-	constantExpression |
-	typeIdentifier |
+	// TODO constantExpression |
+	// TODO typeIdentifier |
 	identifierExpression;
 
 typenameSpecifier:

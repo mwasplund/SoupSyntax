@@ -260,11 +260,20 @@ public:
   virtual void enterAttributeDeclaration(CppParser::AttributeDeclarationContext *ctx) = 0;
   virtual void exitAttributeDeclaration(CppParser::AttributeDeclarationContext *ctx) = 0;
 
-  virtual void enterDeclarationSpecifier(CppParser::DeclarationSpecifierContext *ctx) = 0;
-  virtual void exitDeclarationSpecifier(CppParser::DeclarationSpecifierContext *ctx) = 0;
+  virtual void enterDeclarationModifier(CppParser::DeclarationModifierContext *ctx) = 0;
+  virtual void exitDeclarationModifier(CppParser::DeclarationModifierContext *ctx) = 0;
 
   virtual void enterDeclarationSpecifierSequence(CppParser::DeclarationSpecifierSequenceContext *ctx) = 0;
   virtual void exitDeclarationSpecifierSequence(CppParser::DeclarationSpecifierSequenceContext *ctx) = 0;
+
+  virtual void enterLeadingDeclarationModifierSequence(CppParser::LeadingDeclarationModifierSequenceContext *ctx) = 0;
+  virtual void exitLeadingDeclarationModifierSequence(CppParser::LeadingDeclarationModifierSequenceContext *ctx) = 0;
+
+  virtual void enterTrailingDeclarationModifierSequence(CppParser::TrailingDeclarationModifierSequenceContext *ctx) = 0;
+  virtual void exitTrailingDeclarationModifierSequence(CppParser::TrailingDeclarationModifierSequenceContext *ctx) = 0;
+
+  virtual void enterDeclarationModifierSequence(CppParser::DeclarationModifierSequenceContext *ctx) = 0;
+  virtual void exitDeclarationModifierSequence(CppParser::DeclarationModifierSequenceContext *ctx) = 0;
 
   virtual void enterStorageClassSpecifier(CppParser::StorageClassSpecifierContext *ctx) = 0;
   virtual void exitStorageClassSpecifier(CppParser::StorageClassSpecifierContext *ctx) = 0;
