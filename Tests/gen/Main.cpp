@@ -16,6 +16,7 @@ import SoupSyntax;
 #include "AST\Declaration\ParameterListTests.gen.h"
 #include "AST\Declaration\ParameterTests.gen.h"
 #include "AST\Declaration\PrimitiveDataTypeDeclarationTests.gen.h"
+#include "AST\Declaration\SimpleDeclarationTests.gen.h"
 #include "AST\Declaration\ValueEqualInitializerTests.gen.h"
 
 #include "AST\Expression\BinaryExpressionTests.gen.h"
@@ -26,12 +27,12 @@ import SoupSyntax;
 #include "AST\Expression\UnaryExpressionTests.gen.h"
 
 #include "AST\Statement\CompoundStatementTests.gen.h"
+#include "AST\Statement\DeclarationStatementTests.gen.h"
 #include "AST\Statement\ElseClauseTests.gen.h"
 #include "AST\Statement\EmptyStatementTests.gen.h"
 #include "AST\Statement\ExpressionStatementTests.gen.h"
 #include "AST\Statement\IfStatementTests.gen.h"
 #include "AST\Statement\ReturnStatementTests.gen.h"
-#include "AST\Statement\SimpleDeclarationStatementTests.gen.h"
 
 #include "AST\SyntaxNodeChildTests.gen.h"
 #include "AST\SyntaxTokenTests.gen.h"
@@ -47,6 +48,7 @@ import SoupSyntax;
 #include "Parser\Declaration\ParseEnumDeclarationTests.gen.h"
 #include "Parser\Declaration\ParseFunctionDefinitionTests.gen.h"
 #include "Parser\Declaration\ParseNamespaceDefinitionTests.gen.h"
+#include "Parser\Declaration\ParseSimpleDeclarationTests.gen.h"
 
 #include "Parser\Expression\ParseBinaryExpressionTests.gen.h"
 #include "Parser\Expression\ParseLiteralExpressionTests.gen.h"
@@ -60,7 +62,6 @@ import SoupSyntax;
 #include "Parser\Statement\ParseExpressionStatementTests.gen.h"
 #include "Parser\Statement\ParseIfStatementTests.gen.h"
 #include "Parser\Statement\ParseReturnStatementTests.gen.h"
-#include "Parser\Statement\ParseSimpleDeclarationStatementTests.gen.h"
 
 #include "RoundTrip\RoundTripTests.gen.h"
 
@@ -84,6 +85,7 @@ int main()
     state += RunParameterListTests();
     state += RunParameterTests();
     state += RunPrimitiveDataTypeDeclarationTests();
+    state += RunSimpleDeclarationTests();
     state += RunValueEqualInitializerTests();
 
     state += RunBinaryExpressionTests();
@@ -99,7 +101,7 @@ int main()
     state += RunExpressionStatementTests();
     state += RunIfStatementTests();
     state += RunReturnStatementTests();
-    state += RunSimpleDeclarationStatementTests();
+    state += RunDeclarationStatementTests();
 
     state += RunSyntaxNodeChildTests();
     state += RunSyntaxTokenTests();
@@ -115,6 +117,7 @@ int main()
     state += RunParseEnumDeclarationTests();
     state += RunParseFunctionDefinitionTests();
     state += RunParseNamespaceDefinitionTests();
+    state += RunParseSimpleDeclarationTests();
 
     state += RunParseBinaryExpressionTests();
     state += RunParseLiteralExpressionTests();
@@ -128,7 +131,6 @@ int main()
     state += RunParseReturnStatementTests();
     state += RunParseEmptyStatementTests();
     state += RunParseExpressionStatementTests();
-    state += RunParseSimpleDeclarationStatementTests();
 
     state += RunRoundTripTests();
 

@@ -24,9 +24,9 @@ TestState RunRoundTripTests()
     state += RunTest(
         "RoundTrip[Namespace.cpp]",
         [&testClass]() { testClass->RoundTrip("Namespace.cpp"); });
-    // state += RunTest(
-    //    "RoundTrip[SimpleClass.cpp]",
-    //    [&testClass]() { testClass->RoundTrip("SimpleClass.cpp"); });
+    state += RunTest(
+       "RoundTrip[SimpleClass.cpp]",
+       [&testClass]() { testClass->RoundTrip("SimpleClass.cpp"); });
     //state += RunTest(
     //    "RoundTrip[TemplateArguments.cpp]",
     //    [&testClass]() { testClass->RoundTrip("TemplateArguments.cpp"); });

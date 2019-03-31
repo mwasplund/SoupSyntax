@@ -4,14 +4,14 @@
 
 namespace Soup::Syntax::UnitTests
 {
-    class SimpleDeclarationStatementTests
+    class SimpleDeclarationTests
     {
     public:
         // [[Fact]]
         void InitializeSimple()
         {
             // int i;
-            auto uut = SyntaxFactory::CreateSimpleDeclarationStatement(
+            auto uut = SyntaxFactory::CreateSimpleDeclaration(
                 SyntaxFactory::CreateDeclarationSpecifier(
                     SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Int,
@@ -29,7 +29,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             Assert::AreEqual(
-                SyntaxNodeType::SimpleDeclarationStatement,
+                SyntaxNodeType::SimpleDeclaration,
                 uut->GetType(),
                 "Verify has correct type.");
             Assert::AreEqual(
@@ -62,7 +62,7 @@ namespace Soup::Syntax::UnitTests
         void GetChildren()
         {
             // int i;
-            auto uut = SyntaxFactory::CreateSimpleDeclarationStatement(
+            auto uut = SyntaxFactory::CreateSimpleDeclaration(
                 SyntaxFactory::CreateDeclarationSpecifier(
                     SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Int,
@@ -108,7 +108,7 @@ namespace Soup::Syntax::UnitTests
         void OperatorEqual()
         {
             // int i;
-            auto uut = SyntaxFactory::CreateSimpleDeclarationStatement(
+            auto uut = SyntaxFactory::CreateSimpleDeclaration(
                 SyntaxFactory::CreateDeclarationSpecifier(
                     SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Int,
@@ -126,7 +126,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreEqual(
-                SyntaxFactory::CreateSimpleDeclarationStatement(
+                SyntaxFactory::CreateSimpleDeclaration(
                     SyntaxFactory::CreateDeclarationSpecifier(
                         SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                             PrimitiveDataType::Int,
@@ -150,7 +150,7 @@ namespace Soup::Syntax::UnitTests
         void OperatorNotEqualDeclarationSpecifier()
         {
             // int i;
-            auto uut = SyntaxFactory::CreateSimpleDeclarationStatement(
+            auto uut = SyntaxFactory::CreateSimpleDeclaration(
                 SyntaxFactory::CreateDeclarationSpecifier(
                     SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Int,
@@ -168,7 +168,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreNotEqual(
-                SyntaxFactory::CreateSimpleDeclarationStatement(
+                SyntaxFactory::CreateSimpleDeclaration(
                     SyntaxFactory::CreateDeclarationSpecifier(
                         SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                             PrimitiveDataType::Long,
@@ -192,7 +192,7 @@ namespace Soup::Syntax::UnitTests
         void OperatorNotEqualInitializerDeclaratorList()
         {
             // int i;
-            auto uut = SyntaxFactory::CreateSimpleDeclarationStatement(
+            auto uut = SyntaxFactory::CreateSimpleDeclaration(
                 SyntaxFactory::CreateDeclarationSpecifier(
                     SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Int,
@@ -210,7 +210,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreNotEqual(
-                SyntaxFactory::CreateSimpleDeclarationStatement(
+                SyntaxFactory::CreateSimpleDeclaration(
                     SyntaxFactory::CreateDeclarationSpecifier(
                         SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                             PrimitiveDataType::Int,
@@ -234,7 +234,7 @@ namespace Soup::Syntax::UnitTests
         void OperatorNotEqualSemicolonToken()
         {
             // int i;
-            auto uut = SyntaxFactory::CreateSimpleDeclarationStatement(
+            auto uut = SyntaxFactory::CreateSimpleDeclaration(
                 SyntaxFactory::CreateDeclarationSpecifier(
                     SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Int,
@@ -252,7 +252,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreNotEqual(
-                SyntaxFactory::CreateSimpleDeclarationStatement(
+                SyntaxFactory::CreateSimpleDeclaration(
                     SyntaxFactory::CreateDeclarationSpecifier(
                         SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                             PrimitiveDataType::Int,

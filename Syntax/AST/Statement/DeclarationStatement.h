@@ -3,10 +3,11 @@
 namespace Soup::Syntax
 {
     /// <summary>
-    /// The initializer declarator list node
-    /// TODO: Can this be a direct list on the parent?
+    /// Declaration statement node that allows for block declarations to 
+    /// also be interpreted as statements
+    /// TODO: Possibly introduce BlockDeclaration class to limit declarations allowed
     /// </summary>
-    export class InitializerDeclaratorList final : public SyntaxNode
+    export class DeclarationStatement final : public Statement
     {
         friend class SyntaxFactory;
 
@@ -14,20 +15,20 @@ namespace Soup::Syntax
         /// <summary>
         /// Initialize
         /// </summary>
-        InitializerDeclaratorList(
-            std::shared_ptr<const SyntaxSeparatorList<InitializerDeclarator>> items) :
-            SyntaxNode(SyntaxNodeType::InitializerDeclaratorList),
-            m_items(std::move(items))
+        DeclarationStatement(
+            std::shared_ptr<const Declaration> declaration) :
+            Statement(SyntaxNodeType::DeclarationStatement),
+            m_declaration(std::move(declaration))
         {
         }
 
     public:
         /// <summary>
-        /// Gets the list of items
+        /// Gets the declaration
         /// </summary>
-        const SyntaxSeparatorList<InitializerDeclarator>& GetItems() const
+        const Declaration& GetDeclaration() const
         {
-            return *m_items;
+            return *m_declaration;
         }
 
         /// <summary>
@@ -35,10 +36,10 @@ namespace Soup::Syntax
         /// </summary>
         virtual std::vector<SyntaxNodeChild> GetChildren() const override final
         {
-            std::vector<SyntaxNodeChild> children;
-
-            auto itemsChildren = m_items->GetChildren();
-            children.insert(children.end(), itemsChildren.begin(), itemsChildren.end());
+            std::vector<SyntaxNodeChild> children(
+            {
+                SyntaxNodeChild(m_declaration),
+            });
 
             return children;
         }
@@ -54,12 +55,12 @@ namespace Soup::Syntax
         /// <summary>
         /// Equality operator
         /// </summary>
-        bool operator ==(const InitializerDeclaratorList& rhs) const
+        bool operator ==(const DeclarationStatement& rhs) const
         {
-            return *m_items == *rhs.m_items;
+            return *m_declaration == *rhs.m_declaration;
         }
 
-        bool operator !=(const InitializerDeclaratorList& rhs) const
+        bool operator !=(const DeclarationStatement& rhs) const
         {
             return !(*this == rhs);
         }
@@ -70,10 +71,10 @@ namespace Soup::Syntax
         /// </summary>
         virtual bool Equals(const SyntaxNode& rhs) const final
         {
-            return *this == static_cast<const InitializerDeclaratorList&>(rhs);
+            return *this == static_cast<const DeclarationStatement&>(rhs);
         }
 
     private:
-        std::shared_ptr<const SyntaxSeparatorList<InitializerDeclarator>> m_items;
+        std::shared_ptr<const Declaration> m_declaration;
     };
 }

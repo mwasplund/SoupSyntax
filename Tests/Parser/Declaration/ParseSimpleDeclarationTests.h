@@ -4,16 +4,16 @@
 
 namespace Soup::Syntax::UnitTests
 {
-    class ParseSimpleDeclarationStatementTests
+    class ParseSimpleDeclarationTests
     {
     public:
         // [Fact]
         void SingleIntVariable()
         {
             auto sourceCode = std::string("int i;");
-            auto actual = ParseSimpleDeclarationStatement(sourceCode);
+            auto actual = ParseSimpleDeclaration(sourceCode);
 
-            auto expected = SyntaxFactory::CreateSimpleDeclarationStatement(
+            auto expected = SyntaxFactory::CreateSimpleDeclaration(
                 SyntaxFactory::CreateDeclarationSpecifier(
                     SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Int,
@@ -43,9 +43,9 @@ namespace Soup::Syntax::UnitTests
         void SingleIntVariableWithInitializer()
         {
             auto sourceCode = std::string("int i = 0;");
-            auto actual = ParseSimpleDeclarationStatement(sourceCode);
+            auto actual = ParseSimpleDeclaration(sourceCode);
 
-            auto expected = SyntaxFactory::CreateSimpleDeclarationStatement(
+            auto expected = SyntaxFactory::CreateSimpleDeclaration(
                 SyntaxFactory::CreateDeclarationSpecifier(
                     SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Int,
@@ -90,9 +90,9 @@ namespace Soup::Syntax::UnitTests
         void DoubleIntVariable()
         {
             auto sourceCode = std::string("int i, j;");
-            auto actual = ParseSimpleDeclarationStatement(sourceCode);
+            auto actual = ParseSimpleDeclaration(sourceCode);
 
-            auto expected = SyntaxFactory::CreateSimpleDeclarationStatement(
+            auto expected = SyntaxFactory::CreateSimpleDeclaration(
                 SyntaxFactory::CreateDeclarationSpecifier(
                     SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Int,
@@ -132,9 +132,9 @@ namespace Soup::Syntax::UnitTests
         void DoubleIntVariableSingleWithInitializer()
         {
             auto sourceCode = std::string("int i = 0, j;");
-            auto actual = ParseSimpleDeclarationStatement(sourceCode);
+            auto actual = ParseSimpleDeclaration(sourceCode);
 
-            auto expected = SyntaxFactory::CreateSimpleDeclarationStatement(
+            auto expected = SyntaxFactory::CreateSimpleDeclaration(
                 SyntaxFactory::CreateDeclarationSpecifier(
                     SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Int,
@@ -189,9 +189,9 @@ namespace Soup::Syntax::UnitTests
         void DoubleIntVariableBothWithInitializer()
         {
             auto sourceCode = std::string("int i = 0, j = 1;");
-            auto actual = ParseSimpleDeclarationStatement(sourceCode);
+            auto actual = ParseSimpleDeclaration(sourceCode);
 
-            auto expected = SyntaxFactory::CreateSimpleDeclarationStatement(
+            auto expected = SyntaxFactory::CreateSimpleDeclaration(
                 SyntaxFactory::CreateDeclarationSpecifier(
                     SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Int,
@@ -261,9 +261,9 @@ namespace Soup::Syntax::UnitTests
         void SingleIntLeadingAndTrailingModifierVariable()
         {
             auto sourceCode = std::string("static int constexpr i;");
-            auto actual = ParseSimpleDeclarationStatement(sourceCode);
+            auto actual = ParseSimpleDeclaration(sourceCode);
 
-            auto expected = SyntaxFactory::CreateSimpleDeclarationStatement(
+            auto expected = SyntaxFactory::CreateSimpleDeclaration(
                 SyntaxFactory::CreateDeclarationSpecifier(
                     {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Static),
@@ -306,7 +306,7 @@ namespace Soup::Syntax::UnitTests
         }
 
     private:
-        std::shared_ptr<const SimpleDeclarationStatement> ParseSimpleDeclarationStatement(std::string& sourceCode)
+        std::shared_ptr<const SimpleDeclaration> ParseSimpleDeclaration(std::string& sourceCode)
         {
             auto uut = TestUtils::BuildParser(sourceCode);
             auto context = uut.Parser->simpleDeclaration();
@@ -315,7 +315,7 @@ namespace Soup::Syntax::UnitTests
             auto node = uut.Visitor->visit(context)
                 .as<std::shared_ptr<const SyntaxNode>>();
 
-            return std::dynamic_pointer_cast<const SimpleDeclarationStatement>(node);
+            return std::dynamic_pointer_cast<const SimpleDeclaration>(node);
         }
     };
 }

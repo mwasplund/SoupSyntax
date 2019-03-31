@@ -24,9 +24,13 @@ namespace Soup::Syntax
                 {
                     child.AsNode().Accept(*this);
                 }
-                else
+                else if (child.IsToken())
                 {
                     VisitToken(child.AsToken());
+                }
+                else
+                {
+                    throw std::runtime_error("Unknown child type.");
                 }
             }
 

@@ -6,7 +6,7 @@ namespace Soup::Syntax
     /// A statement that introduces, creates, and optionally initializes 
     /// one or more identifiers.
     /// </summary>
-    export class SimpleDeclarationStatement final : public Statement
+    export class SimpleDeclaration final : public Declaration
     {
         friend class SyntaxFactory;
 
@@ -14,11 +14,11 @@ namespace Soup::Syntax
         /// <summary>
         /// Initialize
         /// </summary>
-        SimpleDeclarationStatement(
+        SimpleDeclaration(
             std::shared_ptr<const DeclarationSpecifier> declarationSpecifier,
             std::shared_ptr<const InitializerDeclaratorList> initializerDeclaratorList,
             std::shared_ptr<const SyntaxToken> semicolonToken) :
-            Statement(SyntaxNodeType::SimpleDeclarationStatement),
+            Declaration(SyntaxNodeType::SimpleDeclaration),
             m_declarationSpecifier(std::move(declarationSpecifier)),
             m_initializerDeclaratorList(std::move(initializerDeclaratorList)),
             m_semicolonToken(std::move(semicolonToken))
@@ -76,14 +76,14 @@ namespace Soup::Syntax
         /// <summary>
         /// Equality operator
         /// </summary>
-        bool operator ==(const SimpleDeclarationStatement& rhs) const
+        bool operator ==(const SimpleDeclaration& rhs) const
         {
             return *m_declarationSpecifier == *rhs.m_declarationSpecifier &&
                 *m_initializerDeclaratorList == *rhs.m_initializerDeclaratorList &&
                 *m_semicolonToken == *rhs.m_semicolonToken;
         }
 
-        bool operator !=(const SimpleDeclarationStatement& rhs) const
+        bool operator !=(const SimpleDeclaration& rhs) const
         {
             return !(*this == rhs);
         }
@@ -94,7 +94,7 @@ namespace Soup::Syntax
         /// </summary>
         virtual bool Equals(const SyntaxNode& rhs) const final
         {
-            return *this == static_cast<const SimpleDeclarationStatement&>(rhs);
+            return *this == static_cast<const SimpleDeclaration&>(rhs);
         }
 
     private:

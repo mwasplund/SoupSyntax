@@ -44,7 +44,10 @@ namespace Soup::Syntax
         /// </summary>
         virtual std::vector<SyntaxNodeChild> GetChildren() const override final
         {
-            auto children = m_declarations->GetChildren();
+            std::vector<SyntaxNodeChild> children;
+
+            auto declarationChildren = m_declarations->GetChildren();
+            children.insert(children.end(), declarationChildren.begin(), declarationChildren.end());
 
             children.push_back(SyntaxNodeChild(m_endOfFileToken));
 

@@ -1,13 +1,13 @@
 #pragma once
-#include "ParseSimpleDeclarationStatementTests.h"
+#include "ParseSimpleDeclarationTests.h"
 #include "../../RunTest.h"
 
-TestState RunParseSimpleDeclarationStatementTests()
+TestState RunParseSimpleDeclarationTests()
 {
-    auto testClass = std::make_unique<Soup::Syntax::UnitTests::ParseSimpleDeclarationStatementTests>();
+    auto testClass = std::make_unique<Soup::Syntax::UnitTests::ParseSimpleDeclarationTests>();
     TestState state = { 0, 0 };
 
-    std::cout << "Running ParseSimpleDeclarationStatementTests:" << std::endl;
+    std::cout << "Running ParseSimpleDeclarationTests:" << std::endl;
 
     state += RunTest(
         "SingleIntVariable",

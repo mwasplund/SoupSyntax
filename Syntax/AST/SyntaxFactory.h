@@ -102,6 +102,20 @@ namespace Soup::Syntax
         }
 
         /// <summary>
+        /// Create a DeclarationStatement
+        /// </summary>
+        static std::shared_ptr<const DeclarationStatement> CreateDeclarationStatement(
+            std::shared_ptr<const Declaration> declaration)
+        {
+            if (declaration == nullptr)
+                throw std::runtime_error("ArgumentNull - declaration");
+
+            return std::shared_ptr<const DeclarationStatement>(
+                new DeclarationStatement(
+                    std::move(declaration)));
+        }
+
+        /// <summary>
         /// Create a DeclarationSpecifier
         /// </summary>
         static std::shared_ptr<const DeclarationSpecifier> CreateDeclarationSpecifier(
@@ -383,8 +397,6 @@ namespace Soup::Syntax
         {
             if (items == nullptr)
                 throw std::runtime_error("ArgumentNull - items");
-            if (items->GetItems().empty())
-                throw std::runtime_error("InitializerDeclaratorList cannot be empty.");
 
             return std::shared_ptr<const InitializerDeclaratorList>(
                 new InitializerDeclaratorList(
@@ -955,9 +967,9 @@ namespace Soup::Syntax
         }
 
         /// <summary>
-        /// Create a SimpleDeclarationStatement
+        /// Create a SimpleDeclaration
         /// </summary>
-        static std::shared_ptr<const SimpleDeclarationStatement> CreateSimpleDeclarationStatement(
+        static std::shared_ptr<const SimpleDeclaration> CreateSimpleDeclaration(
             std::shared_ptr<const DeclarationSpecifier> declarationSpecifier,
             std::shared_ptr<const InitializerDeclaratorList> initializerDeclaratorList,
             std::shared_ptr<const SyntaxToken> semicolonToken)
@@ -969,8 +981,8 @@ namespace Soup::Syntax
             if (semicolonToken == nullptr)
                 throw std::runtime_error("ArgumentNull - semicolonToken");
 
-            return std::shared_ptr<const SimpleDeclarationStatement>(
-                new SimpleDeclarationStatement(
+            return std::shared_ptr<const SimpleDeclaration>(
+                new SimpleDeclaration(
                     std::move(declarationSpecifier),
                     std::move(initializerDeclaratorList),
                     std::move(semicolonToken)));

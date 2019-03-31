@@ -40,17 +40,18 @@ namespace Soup::Syntax
     class PrimitiveDataTypeDeclaration;
     class RegularFunctionBody;
     class TryFunctionBody;
+    class SimpleDeclaration;
     class ValueEqualInitializer;
 
     // Statements
     class CatchClause;
     class CompoundStatement;
+    class DeclarationStatement;
     class ElseClause;
     class EmptyStatement;
     class ExpressionStatement;
     class IfStatement;
     class ReturnStatement;
-    class SimpleDeclarationStatement;
     class TryStatement;
 }
 
@@ -105,8 +106,9 @@ namespace Soup::Syntax
 #include "AST\Declaration\InitializerDeclaratorList.h"
 #include "AST\Declaration\RegularFunctionBody.h"
 #include "AST\Declaration\TryFunctionBody.h"
+#include "AST\Declaration\SimpleDeclaration.h"
 #include "AST\Declaration\ValueEqualInitializer.h"
-#include "AST\Statement\SimpleDeclarationStatement.h"
+#include "AST\Statement\DeclarationStatement.h"
 #include "AST\TranslationUnit.h"
 #include "AST\Visitor\DefaultSyntaxVisitor.h"
 #include "AST\Visitor\SyntaxWalker.h"

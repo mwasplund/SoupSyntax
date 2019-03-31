@@ -1332,7 +1332,7 @@ antlrcpp::Any ASTCppParserVisitor::visitDeclarationSequence(CppParser::Declarati
     Trace("VisitDeclarationSequence");
 
     // Handle the recursive rule
-    std::vector<std::shared_ptr<const Declaration>> declarations;
+    std::vector<std::shared_ptr<const Declaration>> declarations = {};
     auto childSequence = context->declarationSequence();
     if (childSequence != nullptr)
     {
@@ -1344,6 +1344,11 @@ antlrcpp::Any ASTCppParserVisitor::visitDeclarationSequence(CppParser::Declarati
     auto declaration = std::dynamic_pointer_cast<const Declaration>(
         visit(context->declaration())
             .as<std::shared_ptr<const SyntaxNode>>());
+    if (declaration == nullptr)
+    {
+        throw std::runtime_error("Syntax node was not a declaration.");
+    }
+
     declarations.push_back(declaration);
 
     return declarations;
@@ -1380,17 +1385,23 @@ antlrcpp::Any ASTCppParserVisitor::visitSimpleDeclaration(CppParser::SimpleDecla
     auto declarationSpecifier = CreateDeclarationSpecifier(
         visit(context->declarationSpecifierSequence())
             .as<std::vector<antlrcpp::Any>>());
-    auto initializerDeclaratorList = SyntaxFactory::CreateInitializerDeclaratorList(
-        std::make_shared<const SyntaxSeparatorList<InitializerDeclarator>>(
-            visit(context->initializerDeclaratorList())
-                .as<std::vector<std::shared_ptr<const InitializerDeclarator>>>(),
-            std::vector<std::shared_ptr<const SyntaxToken>>()));
+
+    // Check for optional initializer declarator list
+    std::vector<std::shared_ptr<const InitializerDeclarator>> initializerDeclaratorList;
+    if (context->initializerDeclaratorList() != nullptr)
+    {
+        initializerDeclaratorList = visit(context->initializerDeclaratorList())
+            .as<std::vector<std::shared_ptr<const InitializerDeclarator>>>();
+    }
 
     // TODO
     return std::static_pointer_cast<const SyntaxNode>(
-        SyntaxFactory::CreateSimpleDeclarationStatement(
+        SyntaxFactory::CreateSimpleDeclaration(
             std::move(declarationSpecifier),
-            std::move(initializerDeclaratorList),
+            SyntaxFactory::CreateInitializerDeclaratorList(
+                std::make_shared<const SyntaxSeparatorList<InitializerDeclarator>>(
+                    std::move(initializerDeclaratorList),
+                    std::vector<std::shared_ptr<const SyntaxToken>>())),
             CreateToken(SyntaxTokenType::Semicolon, context->Semicolon())));
 }
 

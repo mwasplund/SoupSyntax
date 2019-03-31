@@ -16,12 +16,20 @@ namespace Soup::Syntax
             m_node(std::move(node)),
             m_token(nullptr)
         {
+            if (!IsNode())
+            {
+                throw std::logic_error("Child of type node must have node.");
+            }
         }
         
         SyntaxNodeChild(std::shared_ptr<const SyntaxToken> token) :
             m_node(nullptr),
             m_token(std::move(token))
         {
+            if (!IsToken())
+            {
+                throw std::logic_error("Child of type token must have token.");
+            }
         }
 
         /// <summary>

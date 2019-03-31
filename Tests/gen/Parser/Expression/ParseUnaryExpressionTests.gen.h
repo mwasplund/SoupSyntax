@@ -9,35 +9,45 @@ TestState RunParseUnaryExpressionTests()
 
     std::cout << "Running ParseUnaryExpressionTests:" << std::endl;
 
-    std::cout << "SingleIdentifierPlus" << std::endl;
-    state += RunTest([&testClass]() { testClass->SingleIdentifierPlus(); });
+    state += RunTest(
+        "SingleIdentifierPlus",
+        [&testClass]() { testClass->SingleIdentifierPlus(); });
 
-    std::cout << "SingleIdentifierMinus" << std::endl;
-    state += RunTest([&testClass]() { testClass->SingleIdentifierMinus(); });
+    state += RunTest(
+        "SingleIdentifierMinus",
+        [&testClass]() { testClass->SingleIdentifierMinus(); });
 
-    std::cout << "SingleIdentifierBitwiseNot" << std::endl;
-    state += RunTest([&testClass]() { testClass->SingleIdentifierBitwiseNot(); });
+    state += RunTest(
+        "SingleIdentifierBitwiseNot",
+        [&testClass]() { testClass->SingleIdentifierBitwiseNot(); });
 
-    std::cout << "SingleIdentifierPreIncrement" << std::endl;
-    state += RunTest([&testClass]() { testClass->SingleIdentifierPreIncrement(); });
+    state += RunTest(
+        "SingleIdentifierPreIncrement",
+        [&testClass]() { testClass->SingleIdentifierPreIncrement(); });
 
-    std::cout << "SingleIdentifierPreDecrement" << std::endl;
-    state += RunTest([&testClass]() { testClass->SingleIdentifierPreDecrement(); });
+    state += RunTest(
+        "SingleIdentifierPreDecrement",
+        [&testClass]() { testClass->SingleIdentifierPreDecrement(); });
 
-    std::cout << "SingleIdentifierPostIncrement" << std::endl;
-    state += RunTest([&testClass]() { testClass->SingleIdentifierPostIncrement(); });
+    state += RunTest(
+        "SingleIdentifierPostIncrement",
+        [&testClass]() { testClass->SingleIdentifierPostIncrement(); });
 
-    std::cout << "SingleIdentifierPostDecrement" << std::endl;
-    state += RunTest([&testClass]() { testClass->SingleIdentifierPostDecrement(); });
+    state += RunTest(
+        "SingleIdentifierPostDecrement",
+        [&testClass]() { testClass->SingleIdentifierPostDecrement(); });
 
-    std::cout << "SingleIdentifierLogicalNot" << std::endl;
-    state += RunTest([&testClass]() { testClass->SingleIdentifierLogicalNot(); });
+    state += RunTest(
+        "SingleIdentifierLogicalNot",
+        [&testClass]() { testClass->SingleIdentifierLogicalNot(); });
 
-    std::cout << "SingleIdentifierIndirection" << std::endl;
-    state += RunTest([&testClass]() { testClass->SingleIdentifierIndirection(); });
+    state += RunTest(
+        "SingleIdentifierIndirection",
+        [&testClass]() { testClass->SingleIdentifierIndirection(); });
 
-    std::cout << "SingleIdentifierAddressOf" << std::endl;
-    state += RunTest([&testClass]() { testClass->SingleIdentifierAddressOf(); });
+    state += RunTest(
+        "SingleIdentifierAddressOf",
+        [&testClass]() { testClass->SingleIdentifierAddressOf(); });
 
     return state;
 }

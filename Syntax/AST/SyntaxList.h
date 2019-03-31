@@ -18,6 +18,14 @@ namespace Soup::Syntax
             std::vector<std::shared_ptr<const TNode>> items) :
             m_items(std::move(items))
         {
+            // TODO: Debug only?
+            for (auto& item : m_items)
+            {
+                if (item == nullptr)
+                {
+                    throw std::runtime_error("No null items allowed");
+                }
+            }
         }
 
         /// <summary>

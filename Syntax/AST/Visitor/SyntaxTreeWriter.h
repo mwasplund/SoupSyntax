@@ -132,8 +132,8 @@ namespace Soup::Syntax
                     return "RegularFunctionBody";
                 case SyntaxNodeType::ReturnStatement:
                     return "ReturnStatement";
-                case SyntaxNodeType::SimpleDeclarationStatement:
-                    return "SimpleDeclarationStatement";
+                case SyntaxNodeType::SimpleDeclaration:
+                    return "SimpleDeclaration";
                 case SyntaxNodeType::SimpleNameExpression:
                     return "SimpleNameExpression";
                 case SyntaxNodeType::SubscriptExpression:

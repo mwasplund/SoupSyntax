@@ -20,6 +20,22 @@ namespace Soup::Syntax
             m_items(std::move(items)),
             m_separators(std::move(separators))
         {
+            // TODO: Debug only?
+            for (auto& item : m_items)
+            {
+                if (item == nullptr)
+                {
+                    throw std::runtime_error("No null items allowed");
+                }
+            }
+
+            for (auto& separator : m_separators)
+            {
+                if (separator == nullptr)
+                {
+                    throw std::runtime_error("No null separators allowed");
+                }
+            }
         }
 
         /// <summary>
