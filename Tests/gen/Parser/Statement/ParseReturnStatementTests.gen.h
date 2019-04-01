@@ -4,20 +4,20 @@
 
 TestState RunParseReturnStatementTests()
 {
+    std::string className = "ParseReturnStatementTests";
     auto testClass = std::make_unique<Soup::Syntax::UnitTests::ParseReturnStatementTests>();
     TestState state = { 0, 0 };
 
-    std::cout << "Running ParseReturnStatementTests:" << std::endl;
-
     state += RunTest(
+        className,
         "ReturnNoExpression",
         [&testClass]() { testClass->ReturnNoExpression(); });
-
     state += RunTest(
+        className,
         "ReturnLiteralExpression",
         [&testClass]() { testClass->ReturnLiteralExpression(); });
-
     state += RunTest(
+        className,
         "ReturnSimpleNameExpression",
         [&testClass]() { testClass->ReturnSimpleNameExpression(); });
 

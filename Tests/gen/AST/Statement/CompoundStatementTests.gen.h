@@ -4,40 +4,50 @@
 
 TestState RunCompoundStatementTests()
 {
+    std::string className = "CompoundStatementTests";
     auto testClass = std::make_unique<Soup::Syntax::UnitTests::CompoundStatementTests>();
     TestState state = { 0, 0 };
 
-    std::cout << "Running CompoundStatementTests:" << std::endl;
-
-    std::cout << "InitializeEmpty" << std::endl;
-    state += RunTest([&testClass]() { testClass->InitializeEmpty(); });
-
-    std::cout << "InitializeSingleStatement" << std::endl;
-    state += RunTest([&testClass]() { testClass->InitializeSingleStatement(); });
-
-    std::cout << "GetChildrenEmpty" << std::endl;
-    state += RunTest([&testClass]() { testClass->GetChildrenEmpty(); });
-
-    std::cout << "GetChildrenSingleStatement" << std::endl;
-    state += RunTest([&testClass]() { testClass->GetChildrenSingleStatement(); });
-
-    std::cout << "OperatorEqualEmpty" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorEqualEmpty(); });
-
-    std::cout << "OperatorEqualSingleStatement" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorEqualSingleStatement(); });
-
-    std::cout << "OperatorNotEqualOpenBraceToken" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualOpenBraceToken(); });
-
-    std::cout << "OperatorNotEqualEmpty" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualEmpty(); });
-
-    std::cout << "OperatorNotEqualSingleStatement" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualSingleStatement(); });
-
-    std::cout << "OperatorNotEqualCloseBraceToken" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualCloseBraceToken(); });
+    state += RunTest(
+        className,
+        "InitializeEmpty",
+        [&testClass]() { testClass->InitializeEmpty(); });
+    state += RunTest(
+        className,
+        "InitializeSingleStatement",
+        [&testClass]() { testClass->InitializeSingleStatement(); });
+    state += RunTest(
+        className,
+        "GetChildrenEmpty",
+        [&testClass]() { testClass->GetChildrenEmpty(); });
+    state += RunTest(
+        className,
+        "GetChildrenSingleStatement",
+        [&testClass]() { testClass->GetChildrenSingleStatement(); });
+    state += RunTest(
+        className,
+        "OperatorEqualEmpty",
+        [&testClass]() { testClass->OperatorEqualEmpty(); });
+    state += RunTest(
+        className,
+        "OperatorEqualSingleStatement",
+        [&testClass]() { testClass->OperatorEqualSingleStatement(); });
+    state += RunTest(
+        className,
+        "OperatorNotEqualOpenBraceToken",
+        [&testClass]() { testClass->OperatorNotEqualOpenBraceToken(); });
+    state += RunTest(
+        className,
+        "OperatorNotEqualEmpty",
+        [&testClass]() { testClass->OperatorNotEqualEmpty(); });
+    state += RunTest(
+        className,
+        "OperatorNotEqualSingleStatement",
+        [&testClass]() { testClass->OperatorNotEqualSingleStatement(); });
+    state += RunTest(
+        className,
+        "OperatorNotEqualCloseBraceToken",
+        [&testClass]() { testClass->OperatorNotEqualCloseBraceToken(); });
 
     return state;
 }

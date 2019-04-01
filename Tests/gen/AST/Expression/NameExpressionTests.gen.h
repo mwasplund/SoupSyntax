@@ -4,61 +4,78 @@
 
 TestState RunNameExpressionTests()
 {
+    std::string className = "NameExpressionTests";
     auto testClass = std::make_unique<Soup::Syntax::UnitTests::NameExpressionTests>();
     TestState state = { 0, 0 };
 
-    std::cout << "Running NameExpressionTests:" << std::endl;
-
-    std::cout << "InitializeSimpleNameExpression" << std::endl;
-    state += RunTest([&testClass]() { testClass->InitializeSimpleNameExpression(); });
-
-    std::cout << "InitializeSingleQualifiedNameExpression" << std::endl;
-    state += RunTest([&testClass]() { testClass->InitializeSingleQualifiedNameExpression(); });
-
-    std::cout << "InitializeGlobalDoubleQualifiedNameExpression" << std::endl;
-    state += RunTest([&testClass]() { testClass->InitializeGlobalDoubleQualifiedNameExpression(); });
-
-    std::cout << "SimpleNameExpressionGetChildren" << std::endl;
-    state += RunTest([&testClass]() { testClass->SimpleNameExpressionGetChildren(); });
-
-    std::cout << "SimpleNameExpressionOperatorEqual" << std::endl;
-    state += RunTest([&testClass]() { testClass->SimpleNameExpressionOperatorEqual(); });
-
-    std::cout << "SimpleNameExpressionOperatorNotEqualIdentifier" << std::endl;
-    state += RunTest([&testClass]() { testClass->SimpleNameExpressionOperatorNotEqualIdentifier(); });
-
-    std::cout << "GlobalQualifiedNameExpressionGetChildren" << std::endl;
-    state += RunTest([&testClass]() { testClass->GlobalQualifiedNameExpressionGetChildren(); });
-
-    std::cout << "GlobalQualifiedNameExpressionEqual" << std::endl;
-    state += RunTest([&testClass]() { testClass->GlobalQualifiedNameExpressionEqual(); });
-
-    std::cout << "GlobalQualifiedNameExpressionNotEqualLeft" << std::endl;
-    state += RunTest([&testClass]() { testClass->GlobalQualifiedNameExpressionNotEqualLeft(); });
-
-    std::cout << "GlobalQualifiedNameExpressionNotEqualDoubleColonToken" << std::endl;
-    state += RunTest([&testClass]() { testClass->GlobalQualifiedNameExpressionNotEqualDoubleColonToken(); });
-
-    std::cout << "GlobalQualifiedNameExpressionNotEqualRight" << std::endl;
-    state += RunTest([&testClass]() { testClass->GlobalQualifiedNameExpressionNotEqualRight(); });
-
-    std::cout << "SingleQualifiedNameExpressionGetChildren" << std::endl;
-    state += RunTest([&testClass]() { testClass->SingleQualifiedNameExpressionGetChildren(); });
-
-    std::cout << "SingleQualifiedNameExpressionEqual" << std::endl;
-    state += RunTest([&testClass]() { testClass->SingleQualifiedNameExpressionEqual(); });
-
-    std::cout << "SingleQualifiedNameExpressionNotEqualLeft" << std::endl;
-    state += RunTest([&testClass]() { testClass->SingleQualifiedNameExpressionNotEqualLeft(); });
-
-    std::cout << "SingleQualifiedNameExpressionNotEqualLeftGlobal" << std::endl;
-    state += RunTest([&testClass]() { testClass->SingleQualifiedNameExpressionNotEqualLeftGlobal(); });
-
-    std::cout << "SingleQualifiedNameExpressionNotEqualDoubleColonToken" << std::endl;
-    state += RunTest([&testClass]() { testClass->SingleQualifiedNameExpressionNotEqualDoubleColonToken(); });
-
-    std::cout << "SingleQualifiedNameExpressionNotEqualRight" << std::endl;
-    state += RunTest([&testClass]() { testClass->SingleQualifiedNameExpressionNotEqualRight(); });
+    state += RunTest(
+        className,
+        "InitializeSimpleNameExpression",
+        [&testClass]() { testClass->InitializeSimpleNameExpression(); });
+    state += RunTest(
+        className,
+        "InitializeSingleQualifiedNameExpression",
+        [&testClass]() { testClass->InitializeSingleQualifiedNameExpression(); });
+    state += RunTest(
+        className,
+        "InitializeGlobalDoubleQualifiedNameExpression",
+        [&testClass]() { testClass->InitializeGlobalDoubleQualifiedNameExpression(); });
+    state += RunTest(
+        className,
+        "SimpleNameExpressionGetChildren",
+        [&testClass]() { testClass->SimpleNameExpressionGetChildren(); });
+    state += RunTest(
+        className,
+        "SimpleNameExpressionOperatorEqual",
+        [&testClass]() { testClass->SimpleNameExpressionOperatorEqual(); });
+    state += RunTest(
+        className,
+        "SimpleNameExpressionOperatorNotEqualIdentifier",
+        [&testClass]() { testClass->SimpleNameExpressionOperatorNotEqualIdentifier(); });
+    state += RunTest(
+        className,
+        "GlobalQualifiedNameExpressionGetChildren",
+        [&testClass]() { testClass->GlobalQualifiedNameExpressionGetChildren(); });
+    state += RunTest(
+        className,
+        "GlobalQualifiedNameExpressionEqual",
+        [&testClass]() { testClass->GlobalQualifiedNameExpressionEqual(); });
+    state += RunTest(
+        className,
+        "GlobalQualifiedNameExpressionNotEqualLeft",
+        [&testClass]() { testClass->GlobalQualifiedNameExpressionNotEqualLeft(); });
+    state += RunTest(
+        className,
+        "GlobalQualifiedNameExpressionNotEqualDoubleColonToken",
+        [&testClass]() { testClass->GlobalQualifiedNameExpressionNotEqualDoubleColonToken(); });
+    state += RunTest(
+        className,
+        "GlobalQualifiedNameExpressionNotEqualRight",
+        [&testClass]() { testClass->GlobalQualifiedNameExpressionNotEqualRight(); });
+    state += RunTest(
+        className,
+        "SingleQualifiedNameExpressionGetChildren",
+        [&testClass]() { testClass->SingleQualifiedNameExpressionGetChildren(); });
+    state += RunTest(
+        className,
+        "SingleQualifiedNameExpressionEqual",
+        [&testClass]() { testClass->SingleQualifiedNameExpressionEqual(); });
+    state += RunTest(
+        className,
+        "SingleQualifiedNameExpressionNotEqualLeft",
+        [&testClass]() { testClass->SingleQualifiedNameExpressionNotEqualLeft(); });
+    state += RunTest(
+        className,
+        "SingleQualifiedNameExpressionNotEqualLeftGlobal",
+        [&testClass]() { testClass->SingleQualifiedNameExpressionNotEqualLeftGlobal(); });
+    state += RunTest(
+        className,
+        "SingleQualifiedNameExpressionNotEqualDoubleColonToken",
+        [&testClass]() { testClass->SingleQualifiedNameExpressionNotEqualDoubleColonToken(); });
+    state += RunTest(
+        className,
+        "SingleQualifiedNameExpressionNotEqualRight",
+        [&testClass]() { testClass->SingleQualifiedNameExpressionNotEqualRight(); });
 
     return state;
 }

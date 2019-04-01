@@ -4,34 +4,42 @@
 
 TestState RunSyntaxNodeChildTests()
 {
+    std::string className = "SyntaxNodeChildTests";
     auto testClass = std::make_unique<Soup::Syntax::UnitTests::SyntaxNodeChildTests>();
     TestState state = { 0, 0 };
 
-    std::cout << "Running SyntaxNodeChildTests:" << std::endl;
-
-    std::cout << "TokenInitializeSimple" << std::endl;
-    state += RunTest([&testClass]() { testClass->TokenInitialize(); });
-
-    std::cout << "TokenOperatorEqual" << std::endl;
-    state += RunTest([&testClass]() { testClass->TokenOperatorEqual(); });
-
-    std::cout << "TokenOperatorNotEqualToken" << std::endl;
-    state += RunTest([&testClass]() { testClass->TokenOperatorNotEqualToken(); });
-
-    std::cout << "TokenOperatorNotEqualNode" << std::endl;
-    state += RunTest([&testClass]() { testClass->TokenOperatorNotEqualNode(); });
-
-    std::cout << "NodeInitializeSimple" << std::endl;
-    state += RunTest([&testClass]() { testClass->NodeInitialize(); });
-
-    std::cout << "NodeOperatorEqual" << std::endl;
-    state += RunTest([&testClass]() { testClass->NodeOperatorEqual(); });
-
-    std::cout << "NodeOperatorNotEqualToken" << std::endl;
-    state += RunTest([&testClass]() { testClass->NodeOperatorNotEqualToken(); });
-
-    std::cout << "NodeOperatorNotEqualNode" << std::endl;
-    state += RunTest([&testClass]() { testClass->NodeOperatorNotEqualNode(); });
+    state += RunTest(
+        className,
+        "TokenInitialize",
+        [&testClass]() { testClass->TokenInitialize(); });
+    state += RunTest(
+        className,
+        "TokenOperatorEqual",
+        [&testClass]() { testClass->TokenOperatorEqual(); });
+    state += RunTest(
+        className,
+        "TokenOperatorNotEqualToken",
+        [&testClass]() { testClass->TokenOperatorNotEqualToken(); });
+    state += RunTest(
+        className,
+        "TokenOperatorNotEqualNode",
+        [&testClass]() { testClass->TokenOperatorNotEqualNode(); });
+    state += RunTest(
+        className,
+        "NodeInitialize",
+        [&testClass]() { testClass->NodeInitialize(); });
+    state += RunTest(
+        className,
+        "NodeOperatorEqual",
+        [&testClass]() { testClass->NodeOperatorEqual(); });
+    state += RunTest(
+        className,
+        "NodeOperatorNotEqualToken",
+        [&testClass]() { testClass->NodeOperatorNotEqualToken(); });
+    state += RunTest(
+        className,
+        "NodeOperatorNotEqualNode",
+        [&testClass]() { testClass->NodeOperatorNotEqualNode(); });
 
     return state;
 }

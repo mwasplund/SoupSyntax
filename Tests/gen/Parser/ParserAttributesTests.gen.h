@@ -4,10 +4,9 @@
 
 TestState RunParserAttributesTests()
 {
+    std::string className = "ParserAttributesTests";
     auto testClass = std::make_unique<Soup::Syntax::UnitTests::ParserAttributesTests>();
     TestState state = { 0, 0 };
-
-    std::cout << "Running ParserAttributesTests:" << std::endl;
 
     return state;
 }

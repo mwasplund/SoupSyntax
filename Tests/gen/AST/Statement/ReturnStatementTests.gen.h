@@ -4,40 +4,50 @@
 
 TestState RunReturnStatementTests()
 {
+    std::string className = "ReturnStatementTests";
     auto testClass = std::make_unique<Soup::Syntax::UnitTests::ReturnStatementTests>();
     TestState state = { 0, 0 };
 
-    std::cout << "Running ReturnStatementTests:" << std::endl;
-
-    std::cout << "InitializeNoExpression" << std::endl;
-    state += RunTest([&testClass]() { testClass->InitializeNoExpression(); });
-
-    std::cout << "InitializeWithExpression" << std::endl;
-    state += RunTest([&testClass]() { testClass->InitializeWithExpression(); });
-
-    std::cout << "GetChildrenNoExpression" << std::endl;
-    state += RunTest([&testClass]() { testClass->GetChildrenNoExpression(); });
-
-    std::cout << "GetChildrenWithExpression" << std::endl;
-    state += RunTest([&testClass]() { testClass->GetChildrenWithExpression(); });
-
-    std::cout << "OperatorEqualNoExpression" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorEqualNoExpression(); });
-
-    std::cout << "OperatorEqualWithExpression" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorEqualWithExpression(); });
-
-    std::cout << "OperatorNotEqualReturnToken" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualReturnToken(); });
-
-    std::cout << "OperatorNotEqualNoExpression" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualNoExpression(); });
-
-    std::cout << "OperatorNotEqualWithExpression" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualWithExpression(); });
-
-    std::cout << "OperatorNotEqualSemicolonToken" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualSemicolonToken(); });
+    state += RunTest(
+        className,
+        "InitializeNoExpression",
+        [&testClass]() { testClass->InitializeNoExpression(); });
+    state += RunTest(
+        className,
+        "InitializeWithExpression",
+        [&testClass]() { testClass->InitializeWithExpression(); });
+    state += RunTest(
+        className,
+        "GetChildrenNoExpression",
+        [&testClass]() { testClass->GetChildrenNoExpression(); });
+    state += RunTest(
+        className,
+        "GetChildrenWithExpression",
+        [&testClass]() { testClass->GetChildrenWithExpression(); });
+    state += RunTest(
+        className,
+        "OperatorEqualNoExpression",
+        [&testClass]() { testClass->OperatorEqualNoExpression(); });
+    state += RunTest(
+        className,
+        "OperatorEqualWithExpression",
+        [&testClass]() { testClass->OperatorEqualWithExpression(); });
+    state += RunTest(
+        className,
+        "OperatorNotEqualReturnToken",
+        [&testClass]() { testClass->OperatorNotEqualReturnToken(); });
+    state += RunTest(
+        className,
+        "OperatorNotEqualNoExpression",
+        [&testClass]() { testClass->OperatorNotEqualNoExpression(); });
+    state += RunTest(
+        className,
+        "OperatorNotEqualWithExpression",
+        [&testClass]() { testClass->OperatorNotEqualWithExpression(); });
+    state += RunTest(
+        className,
+        "OperatorNotEqualSemicolonToken",
+        [&testClass]() { testClass->OperatorNotEqualSemicolonToken(); });
 
     return state;
 }

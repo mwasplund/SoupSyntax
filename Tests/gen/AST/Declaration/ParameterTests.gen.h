@@ -4,25 +4,30 @@
 
 TestState RunParameterTests()
 {
+    std::string className = "ParameterTests";
     auto testClass = std::make_unique<Soup::Syntax::UnitTests::ParameterTests>();
     TestState state = { 0, 0 };
 
-    std::cout << "Running ParameterTests:" << std::endl;
-
-    std::cout << "InitializeSimple" << std::endl;
-    state += RunTest([&testClass]() { testClass->InitializeSimple(); });
-
-    std::cout << "GetChildren" << std::endl;
-    state += RunTest([&testClass]() { testClass->GetChildren(); });
-
-    std::cout << "OperatorEqual" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorEqual(); });
-
-    std::cout << "OperatorNotEqualDeclarationSpecifier" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualDeclarationSpecifier(); });
-
-    std::cout << "OperatorNotEqualDeclarator" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualDeclarator(); });
+    state += RunTest(
+        className,
+        "InitializeSimple",
+        [&testClass]() { testClass->InitializeSimple(); });
+    state += RunTest(
+        className,
+        "GetChildren",
+        [&testClass]() { testClass->GetChildren(); });
+    state += RunTest(
+        className,
+        "OperatorEqual",
+        [&testClass]() { testClass->OperatorEqual(); });
+    state += RunTest(
+        className,
+        "OperatorNotEqualDeclarationSpecifier",
+        [&testClass]() { testClass->OperatorNotEqualDeclarationSpecifier(); });
+    state += RunTest(
+        className,
+        "OperatorNotEqualDeclarator",
+        [&testClass]() { testClass->OperatorNotEqualDeclarator(); });
 
     return state;
 }

@@ -4,31 +4,38 @@
 
 TestState RunUnaryExpressionTests()
 {
+    std::string className = "UnaryExpressionTests";
     auto testClass = std::make_unique<Soup::Syntax::UnitTests::UnaryExpressionTests>();
     TestState state = { 0, 0 };
 
-    std::cout << "Running UnaryExpressionTests:" << std::endl;
-
-    std::cout << "InitializeSimple" << std::endl;
-    state += RunTest([&testClass]() { testClass->InitializeSimple(); });
-
-    std::cout << "PrefixOperatorGetChildren" << std::endl;
-    state += RunTest([&testClass]() { testClass->PrefixOperatorGetChildren(); });
-
-    std::cout << "PostfixOperatorGetChildren" << std::endl;
-    state += RunTest([&testClass]() { testClass->PostfixOperatorGetChildren(); });
-
-    std::cout << "OperatorEqual" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorEqual(); });
-
-    std::cout << "OperatorNotEqualOperator" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualOperator(); });
-
-    std::cout << "OperatorNotEqualOperand" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualOperand(); });
-
-    std::cout << "OperatorNotEqualOperatorToken" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualOperatorToken(); });
+    state += RunTest(
+        className,
+        "InitializeSimple",
+        [&testClass]() { testClass->InitializeSimple(); });
+    state += RunTest(
+        className,
+        "PrefixOperatorGetChildren",
+        [&testClass]() { testClass->PrefixOperatorGetChildren(); });
+    state += RunTest(
+        className,
+        "PostfixOperatorGetChildren",
+        [&testClass]() { testClass->PostfixOperatorGetChildren(); });
+    state += RunTest(
+        className,
+        "OperatorEqual",
+        [&testClass]() { testClass->OperatorEqual(); });
+    state += RunTest(
+        className,
+        "OperatorNotEqualOperator",
+        [&testClass]() { testClass->OperatorNotEqualOperator(); });
+    state += RunTest(
+        className,
+        "OperatorNotEqualOperand",
+        [&testClass]() { testClass->OperatorNotEqualOperand(); });
+    state += RunTest(
+        className,
+        "OperatorNotEqualOperatorToken",
+        [&testClass]() { testClass->OperatorNotEqualOperatorToken(); });
 
     return state;
 }

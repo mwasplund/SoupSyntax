@@ -4,32 +4,32 @@
 
 TestState RunSimpleDeclarationTests()
 {
+    std::string className = "SimpleDeclarationTests";
     auto testClass = std::make_unique<Soup::Syntax::UnitTests::SimpleDeclarationTests>();
     TestState state = { 0, 0 };
 
-    std::cout << "Running SimpleDeclarationTests:" << std::endl;
-
     state += RunTest(
+        className,
         "InitializeSimple",
         [&testClass]() { testClass->InitializeSimple(); });
-
     state += RunTest(
+        className,
         "GetChildren",
         [&testClass]() { testClass->GetChildren(); });
-
     state += RunTest(
+        className,
         "OperatorEqual",
         [&testClass]() { testClass->OperatorEqual(); });
-
     state += RunTest(
+        className,
         "OperatorNotEqualDeclarationSpecifier",
         [&testClass]() { testClass->OperatorNotEqualDeclarationSpecifier(); });
-
     state += RunTest(
+        className,
         "OperatorNotEqualInitializerDeclaratorList",
         [&testClass]() { testClass->OperatorNotEqualInitializerDeclaratorList(); });
-
     state += RunTest(
+        className,
         "OperatorNotEqualSemicolonToken",
         [&testClass]() { testClass->OperatorNotEqualSemicolonToken(); });
 

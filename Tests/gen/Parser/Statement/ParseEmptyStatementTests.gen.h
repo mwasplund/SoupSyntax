@@ -4,12 +4,12 @@
 
 TestState RunParseEmptyStatementTests()
 {
+    std::string className = "ParseEmptyStatementTests";
     auto testClass = std::make_unique<Soup::Syntax::UnitTests::ParseEmptyStatementTests>();
     TestState state = { 0, 0 };
 
-    std::cout << "Running ParseEmptyStatementTests:" << std::endl;
-
     state += RunTest(
+        className,
         "Simple",
         [&testClass]() { testClass->Simple(); });
 

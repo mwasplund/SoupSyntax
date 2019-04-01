@@ -14,6 +14,7 @@ struct TestState
 };
 
 TestState RunTest(
+    std::string className,
     std::string testName,
     std::function<void(void)> test)
 {
@@ -36,7 +37,7 @@ TestState RunTest(
     }
     catch (...)
     {
-        std::cout << "FAIL: " << testName << std::endl;
+        std::cout << "FAIL: " << className << "::" << testName << std::endl;
         std::cout << "Unknown error..." << std::endl;
     }
 
@@ -47,5 +48,5 @@ TestState RunTest(
 TestState RunTest(
     std::function<void(void)> test)
 {
-    return RunTest("UNKNOWN", test);
+    return RunTest("UNKNOWN", "UNKNOWN", test);
 }

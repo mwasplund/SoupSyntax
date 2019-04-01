@@ -4,16 +4,18 @@
 
 TestState RunParseClassDeclarationTests()
 {
+    std::string className = "ParseClassDeclarationTests";
     auto testClass = std::make_unique<Soup::Syntax::UnitTests::ParseClassDeclarationTests>();
     TestState state = { 0, 0 };
 
-    std::cout << "Running ParseClassDeclarationTests:" << std::endl;
-
-    std::cout << "SingleSimpleClassDeclaration" << std::endl;
-    state += RunTest([&testClass]() { testClass->SingleSimpleClassDeclaration(); });
-
-    std::cout << "SingleClassDeclaration" << std::endl;
-    state += RunTest([&testClass]() { testClass->SingleClassDeclaration(); });
+    state += RunTest(
+        className,
+        "SingleSimpleClassDeclaration",
+        [&testClass]() { testClass->SingleSimpleClassDeclaration(); });
+    state += RunTest(
+        className,
+        "SingleClassDeclaration",
+        [&testClass]() { testClass->SingleClassDeclaration(); });
 
     return state;
 }

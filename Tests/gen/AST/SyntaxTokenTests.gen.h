@@ -4,22 +4,26 @@
 
 TestState RunSyntaxTokenTests()
 {
+    std::string className = "SyntaxTokenTests";
     auto testClass = std::make_unique<Soup::Syntax::UnitTests::SyntaxTokenTests>();
     TestState state = { 0, 0 };
 
-    std::cout << "Running SyntaxTokenTests:" << std::endl;
-
-    std::cout << "InitializeSimple" << std::endl;
-    state += RunTest([&testClass]() { testClass->InitializeSimple(); });
-
-    std::cout << "OperatorEqual" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorEqual(); });
-
-    std::cout << "OperatorNotEqualType" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualType(); });
-
-    std::cout << "OperatorNotEqualValue" << std::endl;
-    state += RunTest([&testClass]() { testClass->OperatorNotEqualValue(); });
+    state += RunTest(
+        className,
+        "InitializeSimple",
+        [&testClass]() { testClass->InitializeSimple(); });
+    state += RunTest(
+        className,
+        "OperatorEqual",
+        [&testClass]() { testClass->OperatorEqual(); });
+    state += RunTest(
+        className,
+        "OperatorNotEqualType",
+        [&testClass]() { testClass->OperatorNotEqualType(); });
+    state += RunTest(
+        className,
+        "OperatorNotEqualValue",
+        [&testClass]() { testClass->OperatorNotEqualValue(); });
 
     return state;
 }

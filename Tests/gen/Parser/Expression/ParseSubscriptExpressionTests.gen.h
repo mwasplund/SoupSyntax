@@ -4,13 +4,14 @@
 
 TestState RunParseSubscriptExpressionTests()
 {
+    std::string className = "ParseSubscriptExpressionTests";
     auto testClass = std::make_unique<Soup::Syntax::UnitTests::ParseSubscriptExpressionTests>();
     TestState state = { 0, 0 };
 
-    std::cout << "Running ParseSubscriptExpressionTests:" << std::endl;
-
-    std::cout << "SingleSubscriptExpression" << std::endl;
-    state += RunTest([&testClass]() { testClass->SingleSubscriptExpression(); });
+    state += RunTest(
+        className,
+        "SingleSubscriptExpression",
+        [&testClass]() { testClass->SingleSubscriptExpression(); });
 
     return state;
 }

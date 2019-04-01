@@ -4,12 +4,12 @@
 
 TestState RunParseExpressionStatementTests()
 {
+    std::string className = "ParseExpressionStatementTests";
     auto testClass = std::make_unique<Soup::Syntax::UnitTests::ParseExpressionStatementTests>();
     TestState state = { 0, 0 };
 
-    std::cout << "Running ParseExpressionStatementTests:" << std::endl;
-
     state += RunTest(
+        className,
         "SimpleNameExpression",
         [&testClass]() { testClass->SimpleNameExpression(); });
 
