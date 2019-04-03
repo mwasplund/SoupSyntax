@@ -179,6 +179,24 @@ namespace Soup::Syntax
         }
 
         /// <summary>
+        /// Create a DestructorIdentifierExpression
+        /// </summary>
+        static std::shared_ptr<const DestructorIdentifierExpression> CreateDestructorIdentifierExpression(
+            std::shared_ptr<const SyntaxToken> tildeToken,
+            std::shared_ptr<const SyntaxToken> identifierToken)
+        {
+            if (tildeToken == nullptr)
+                throw std::runtime_error("ArgumentNull - tildeToken");
+            if (identifierToken == nullptr)
+                throw std::runtime_error("ArgumentNull - identifierToken");
+
+            return std::shared_ptr<const DestructorIdentifierExpression>(
+                new DestructorIdentifierExpression(
+                    std::move(tildeToken),
+                    std::move(identifierToken)));
+        }
+
+        /// <summary>
         /// Create a ElseClause
         /// </summary>
         static std::shared_ptr<const ElseClause> CreateElseClause(
@@ -292,7 +310,7 @@ namespace Soup::Syntax
         /// </summary>
         static std::shared_ptr<const FunctionDeclaration> CreateFunctionDeclaration(
             std::shared_ptr<const DeclarationSpecifier> returnType,
-            std::shared_ptr<const NameExpression> identifier,
+            std::shared_ptr<const IdentifierExpression> identifier,
             std::shared_ptr<const ParameterList> parameterList,
             std::shared_ptr<const SyntaxNode> body)
         {
@@ -318,7 +336,7 @@ namespace Soup::Syntax
         /// </summary>
         static std::shared_ptr<const FunctionDefinition> CreateFunctionDefinition(
             std::shared_ptr<const DeclarationSpecifier> returnType,
-            std::shared_ptr<const NameExpression> identifier,
+            std::shared_ptr<const IdentifierExpression> identifier,
             std::shared_ptr<const ParameterList> parameterList,
             std::shared_ptr<const SyntaxNode> body)
         {
@@ -925,12 +943,12 @@ namespace Soup::Syntax
         }
 
         /// <summary>
-        /// Create a QualifiedNameExpression
+        /// Create a QualifiedIdentifierExpression
         /// </summary>
-        static std::shared_ptr<const QualifiedNameExpression> CreateQualifiedNameExpression(
-            std::shared_ptr<const NameExpression> left,
+        static std::shared_ptr<const QualifiedIdentifierExpression> CreateQualifiedIdentifierExpression(
+            std::shared_ptr<const IdentifierExpression> left,
             std::shared_ptr<const SyntaxToken> scopeResolutionToken,
-            std::shared_ptr<const SimpleNameExpression> right)
+            std::shared_ptr<const UnqualifiedIdentifierExpression> right)
         {
             // A null left identifier indicates a global scope
             if (scopeResolutionToken == nullptr)
@@ -938,8 +956,8 @@ namespace Soup::Syntax
             // TODO: if (right == nullptr)
             //     throw std::runtime_error("ArgumentNull - right");
 
-            return std::shared_ptr<const QualifiedNameExpression>(
-                new QualifiedNameExpression(
+            return std::shared_ptr<const QualifiedIdentifierExpression>(
+                new QualifiedIdentifierExpression(
                     std::move(left),
                     std::move(scopeResolutionToken),
                     std::move(right)));
@@ -989,17 +1007,43 @@ namespace Soup::Syntax
         }
 
         /// <summary>
-        /// Create a SimpleNameExpression
+        /// Create a SimpleIdentifierExpression
         /// </summary>
-        static std::shared_ptr<const SimpleNameExpression> CreateSimpleNameExpression(
-            std::shared_ptr<const SyntaxToken> identifier)
+        static std::shared_ptr<const SimpleIdentifierExpression> CreateSimpleIdentifierExpression(
+            std::shared_ptr<const SyntaxToken> identifierToken)
         {
-            if (identifier == nullptr)
-                throw std::runtime_error("ArgumentNull - identifier");
+            if (identifierToken == nullptr)
+                throw std::runtime_error("ArgumentNull - identifierToken");
 
-            return std::shared_ptr<const SimpleNameExpression>(
-                new SimpleNameExpression(
-                    std::move(identifier)));
+            return std::shared_ptr<const SimpleIdentifierExpression>(
+                new SimpleIdentifierExpression(
+                    std::move(identifierToken)));
+        }
+
+        /// <summary>
+        /// Create a SimpleTemplateIdentifierExpression
+        /// </summary>
+        static std::shared_ptr<const SimpleTemplateIdentifierExpression> CreateSimpleTemplateIdentifierExpression(
+            std::shared_ptr<const SyntaxToken> identifierToken,
+            std::shared_ptr<const SyntaxToken> lessThanToken,
+            std::shared_ptr<const SyntaxSeparatorList<Expression>> templateArgumentList,
+            std::shared_ptr<const SyntaxToken> greaterThanToken)
+        {
+            if (identifierToken == nullptr)
+                throw std::runtime_error("ArgumentNull - identifierToken");
+            if (lessThanToken == nullptr)
+                throw std::runtime_error("ArgumentNull - lessThanToken");
+            if (templateArgumentList == nullptr)
+                throw std::runtime_error("ArgumentNull - templateArgumentList");
+            if (greaterThanToken == nullptr)
+                throw std::runtime_error("ArgumentNull - greaterThanToken");
+
+            return std::shared_ptr<const SimpleTemplateIdentifierExpression>(
+                new SimpleTemplateIdentifierExpression(
+                    std::move(identifierToken),
+                    std::move(lessThanToken),
+                    std::move(templateArgumentList),
+                    std::move(greaterThanToken)));
         }
 
         /// <summary>

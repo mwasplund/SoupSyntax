@@ -18,7 +18,7 @@ namespace Soup::Syntax::UnitTests
                         SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                             PrimitiveDataType::Void,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                    SyntaxFactory::CreateSimpleNameExpression(
+                    SyntaxFactory::CreateSimpleIdentifierExpression(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
                     nullptr,
                     std::make_shared<RegularFunctionBody>(
@@ -44,7 +44,7 @@ namespace Soup::Syntax::UnitTests
                         SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                             PrimitiveDataType::Void,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                    SyntaxFactory::CreateSimpleNameExpression(
+                    SyntaxFactory::CreateSimpleIdentifierExpression(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
                     nullptr,
                     std::make_shared<RegularFunctionBody>(
@@ -70,7 +70,7 @@ namespace Soup::Syntax::UnitTests
                         SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                             PrimitiveDataType::Void,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                    SyntaxFactory::CreateSimpleNameExpression(
+                    SyntaxFactory::CreateSimpleIdentifierExpression(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
                     nullptr,
                     std::make_shared<RegularFunctionBody>(

@@ -23,7 +23,7 @@ namespace Soup::Syntax::UnitTests
                         std::vector<std::shared_ptr<const InitializerDeclarator>>(
                         {
                             SyntaxFactory::CreateInitializerDeclarator(
-                                SyntaxFactory::CreateSimpleNameExpression(
+                                SyntaxFactory::CreateSimpleIdentifierExpression(
                                     SyntaxFactory::CreateUniqueToken(
                                         SyntaxTokenType::Identifier,
                                         "i",
@@ -47,17 +47,60 @@ namespace Soup::Syntax::UnitTests
 
             auto expected = SyntaxFactory::CreateSimpleDeclaration(
                 SyntaxFactory::CreateDeclarationSpecifier(
-                    SyntaxFactory::CreateSimpleNameExpression(
+                    SyntaxFactory::CreateSimpleIdentifierExpression(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"))),
                 SyntaxFactory::CreateInitializerDeclaratorList(
                     std::make_shared<const SyntaxSeparatorList<InitializerDeclarator>>(
                         std::vector<std::shared_ptr<const InitializerDeclarator>>(
                         {
                             SyntaxFactory::CreateInitializerDeclarator(
-                                SyntaxFactory::CreateSimpleNameExpression(
+                                SyntaxFactory::CreateSimpleIdentifierExpression(
                                     SyntaxFactory::CreateUniqueToken(
                                         SyntaxTokenType::Identifier,
                                         "i",
+                                        {
+                                            SyntaxFactory::CreateTrivia(" ", TextSpan()),
+                                        },
+                                        {})),
+                                nullptr),
+                        }),
+                        std::vector<std::shared_ptr<const SyntaxToken>>())),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
+
+            TestUtils::AreEqual(expected, actual, "Verify matches expected.");
+        }
+
+        // [Fact]
+        void SingleTemplateClassVariable()
+        {
+            auto sourceCode = std::string("std::vector<ClassA> value1;");
+            auto actual = ParseSimpleDeclaration(sourceCode);
+
+            auto expected = SyntaxFactory::CreateSimpleDeclaration(
+                SyntaxFactory::CreateDeclarationSpecifier(
+                    SyntaxFactory::CreateQualifiedIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifierExpression(
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "std")),
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
+                        SyntaxFactory::CreateSimpleTemplateIdentifierExpression(
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "vector"),
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LessThan),
+                            std::make_shared<const SyntaxSeparatorList<Expression>>(
+                                std::vector<std::shared_ptr<const Expression>>({
+                                    SyntaxFactory::CreateSimpleIdentifierExpression(
+                                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "ClassA")),
+                                }),
+                                std::vector<std::shared_ptr<const SyntaxToken>>({})),
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan)))),
+                SyntaxFactory::CreateInitializerDeclaratorList(
+                    std::make_shared<const SyntaxSeparatorList<InitializerDeclarator>>(
+                        std::vector<std::shared_ptr<const InitializerDeclarator>>(
+                        {
+                            SyntaxFactory::CreateInitializerDeclarator(
+                                SyntaxFactory::CreateSimpleIdentifierExpression(
+                                    SyntaxFactory::CreateUniqueToken(
+                                        SyntaxTokenType::Identifier,
+                                        "value1",
                                         {
                                             SyntaxFactory::CreateTrivia(" ", TextSpan()),
                                         },
@@ -86,7 +129,7 @@ namespace Soup::Syntax::UnitTests
                         std::vector<std::shared_ptr<const InitializerDeclarator>>(
                         {
                             SyntaxFactory::CreateInitializerDeclarator(
-                                SyntaxFactory::CreateSimpleNameExpression(
+                                SyntaxFactory::CreateSimpleIdentifierExpression(
                                     SyntaxFactory::CreateUniqueToken(
                                         SyntaxTokenType::Identifier,
                                         "i",
@@ -133,7 +176,7 @@ namespace Soup::Syntax::UnitTests
                         std::vector<std::shared_ptr<const InitializerDeclarator>>(
                         {
                             SyntaxFactory::CreateInitializerDeclarator(
-                                SyntaxFactory::CreateSimpleNameExpression(
+                                SyntaxFactory::CreateSimpleIdentifierExpression(
                                     SyntaxFactory::CreateUniqueToken(
                                         SyntaxTokenType::Identifier,
                                         "i",
@@ -143,7 +186,7 @@ namespace Soup::Syntax::UnitTests
                                         {})),
                                 nullptr),
                             SyntaxFactory::CreateInitializerDeclarator(
-                                SyntaxFactory::CreateSimpleNameExpression(
+                                SyntaxFactory::CreateSimpleIdentifierExpression(
                                     SyntaxFactory::CreateUniqueToken(
                                         SyntaxTokenType::Identifier,
                                         "j",
@@ -175,7 +218,7 @@ namespace Soup::Syntax::UnitTests
                         std::vector<std::shared_ptr<const InitializerDeclarator>>(
                         {
                             SyntaxFactory::CreateInitializerDeclarator(
-                                SyntaxFactory::CreateSimpleNameExpression(
+                                SyntaxFactory::CreateSimpleIdentifierExpression(
                                     SyntaxFactory::CreateUniqueToken(
                                         SyntaxTokenType::Identifier,
                                         "i",
@@ -200,7 +243,7 @@ namespace Soup::Syntax::UnitTests
                                             },
                                             {})))),
                             SyntaxFactory::CreateInitializerDeclarator(
-                                SyntaxFactory::CreateSimpleNameExpression(
+                                SyntaxFactory::CreateSimpleIdentifierExpression(
                                     SyntaxFactory::CreateUniqueToken(
                                         SyntaxTokenType::Identifier,
                                         "j",
@@ -232,7 +275,7 @@ namespace Soup::Syntax::UnitTests
                         std::vector<std::shared_ptr<const InitializerDeclarator>>(
                         {
                             SyntaxFactory::CreateInitializerDeclarator(
-                                SyntaxFactory::CreateSimpleNameExpression(
+                                SyntaxFactory::CreateSimpleIdentifierExpression(
                                     SyntaxFactory::CreateUniqueToken(
                                         SyntaxTokenType::Identifier,
                                         "i",
@@ -257,7 +300,7 @@ namespace Soup::Syntax::UnitTests
                                             },
                                             {})))),
                             SyntaxFactory::CreateInitializerDeclarator(
-                                SyntaxFactory::CreateSimpleNameExpression(
+                                SyntaxFactory::CreateSimpleIdentifierExpression(
                                     SyntaxFactory::CreateUniqueToken(
                                         SyntaxTokenType::Identifier,
                                         "j",
@@ -320,7 +363,7 @@ namespace Soup::Syntax::UnitTests
                         std::vector<std::shared_ptr<const InitializerDeclarator>>(
                         {
                             SyntaxFactory::CreateInitializerDeclarator(
-                                SyntaxFactory::CreateSimpleNameExpression(
+                                SyntaxFactory::CreateSimpleIdentifierExpression(
                                     SyntaxFactory::CreateUniqueToken(
                                         SyntaxTokenType::Identifier,
                                         "i",

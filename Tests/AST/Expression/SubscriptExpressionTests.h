@@ -10,7 +10,7 @@ namespace Soup::Syntax::UnitTests
         void InitializeSimple()
         {
             auto uut = SyntaxFactory::CreateSubscriptExpression(
-                SyntaxFactory::CreateSimpleNameExpression(
+                SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
                 SyntaxFactory::CreateLiteralExpression(
@@ -23,7 +23,7 @@ namespace Soup::Syntax::UnitTests
                 uut->GetType(),
                 "Verify has correct type.");
             TestUtils::AreEqual(
-                *SyntaxFactory::CreateSimpleNameExpression(
+                *SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 uut->GetLeft(),
                 "Verify left expression matches.");
@@ -47,7 +47,7 @@ namespace Soup::Syntax::UnitTests
         void GetChildren()
         {
             auto uut = SyntaxFactory::CreateSubscriptExpression(
-                SyntaxFactory::CreateSimpleNameExpression(
+                SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
                 SyntaxFactory::CreateLiteralExpression(
@@ -58,7 +58,7 @@ namespace Soup::Syntax::UnitTests
             Assert::AreEqual(
                 std::vector<SyntaxNodeChild>({
                     SyntaxNodeChild(
-                        SyntaxFactory::CreateSimpleNameExpression(
+                        SyntaxFactory::CreateSimpleIdentifierExpression(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
                     SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket)),
                     SyntaxNodeChild(
@@ -75,7 +75,7 @@ namespace Soup::Syntax::UnitTests
         void OperatorEqual()
         {
             auto uut = SyntaxFactory::CreateSubscriptExpression(
-                SyntaxFactory::CreateSimpleNameExpression(
+                SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
                 SyntaxFactory::CreateLiteralExpression(
@@ -85,7 +85,7 @@ namespace Soup::Syntax::UnitTests
 
             Assert::AreEqual(
                 SyntaxFactory::CreateSubscriptExpression(
-                    SyntaxFactory::CreateSimpleNameExpression(
+                    SyntaxFactory::CreateSimpleIdentifierExpression(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
                     SyntaxFactory::CreateLiteralExpression(
@@ -100,7 +100,7 @@ namespace Soup::Syntax::UnitTests
         void OperatorNotEqualLeft()
         {
             auto uut = SyntaxFactory::CreateSubscriptExpression(
-                SyntaxFactory::CreateSimpleNameExpression(
+                SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
                 SyntaxFactory::CreateLiteralExpression(
@@ -110,7 +110,7 @@ namespace Soup::Syntax::UnitTests
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateSubscriptExpression(
-                    SyntaxFactory::CreateSimpleNameExpression(
+                    SyntaxFactory::CreateSimpleIdentifierExpression(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
                     SyntaxFactory::CreateLiteralExpression(
@@ -125,7 +125,7 @@ namespace Soup::Syntax::UnitTests
         void OperatorNotEqualOpenBracket()
         {
             auto uut = SyntaxFactory::CreateSubscriptExpression(
-                SyntaxFactory::CreateSimpleNameExpression(
+                SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
                 SyntaxFactory::CreateLiteralExpression(
@@ -135,7 +135,7 @@ namespace Soup::Syntax::UnitTests
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateSubscriptExpression(
-                    SyntaxFactory::CreateSimpleNameExpression(
+                    SyntaxFactory::CreateSimpleIdentifierExpression(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::OpenBracket,
@@ -155,7 +155,7 @@ namespace Soup::Syntax::UnitTests
         void OperatorNotEqualRight()
         {
             auto uut = SyntaxFactory::CreateSubscriptExpression(
-                SyntaxFactory::CreateSimpleNameExpression(
+                SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
                 SyntaxFactory::CreateLiteralExpression(
@@ -165,7 +165,7 @@ namespace Soup::Syntax::UnitTests
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateSubscriptExpression(
-                    SyntaxFactory::CreateSimpleNameExpression(
+                    SyntaxFactory::CreateSimpleIdentifierExpression(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
                     SyntaxFactory::CreateLiteralExpression(
@@ -180,7 +180,7 @@ namespace Soup::Syntax::UnitTests
         void OperatorNotEqualCloseBracket()
         {
             auto uut = SyntaxFactory::CreateSubscriptExpression(
-                SyntaxFactory::CreateSimpleNameExpression(
+                SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
                 SyntaxFactory::CreateLiteralExpression(
@@ -190,7 +190,7 @@ namespace Soup::Syntax::UnitTests
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateSubscriptExpression(
-                    SyntaxFactory::CreateSimpleNameExpression(
+                    SyntaxFactory::CreateSimpleIdentifierExpression(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
                     SyntaxFactory::CreateLiteralExpression(

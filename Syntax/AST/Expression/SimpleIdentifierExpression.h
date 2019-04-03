@@ -3,9 +3,9 @@
 namespace Soup::Syntax
 {
     /// <summary>
-    /// A simple name expression referencing a single Identifier
+    /// A simple identifier expression referencing a single Identifier
     /// </summary>
-    export class SimpleNameExpression final : public NameExpression
+    export class SimpleIdentifierExpression final : public UnqualifiedIdentifierExpression
     {
         friend class SyntaxFactory;
 
@@ -13,9 +13,9 @@ namespace Soup::Syntax
         /// <summary>
         /// Initialize
         /// </summary>
-        SimpleNameExpression(std::shared_ptr<const SyntaxToken> identifier) :
-            NameExpression(SyntaxNodeType::SimpleNameExpression),
-            m_identifier(std::move(identifier))
+        SimpleIdentifierExpression(std::shared_ptr<const SyntaxToken> identifierToken) :
+            UnqualifiedIdentifierExpression(SyntaxNodeType::SimpleIdentifierExpression),
+            m_identifierToken(std::move(identifierToken))
         {
         }
 
@@ -23,9 +23,9 @@ namespace Soup::Syntax
         /// <summary>
         /// Gets the identifier token
         /// </summary>
-        const SyntaxToken& GetIdentifier() const
+        const SyntaxToken& GetIdentifierToken() const
         {
-            return *m_identifier;
+            return *m_identifierToken;
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace Soup::Syntax
         {
             return std::vector<SyntaxNodeChild>(
                 {
-                    SyntaxNodeChild(m_identifier),
+                    SyntaxNodeChild(m_identifierToken),
                 });
         }
 
@@ -50,12 +50,12 @@ namespace Soup::Syntax
         /// <summary>
         /// Equality operator
         /// </summary>
-        bool operator ==(const SimpleNameExpression& rhs) const
+        bool operator ==(const SimpleIdentifierExpression& rhs) const
         {
-            return *m_identifier == *rhs.m_identifier;
+            return *m_identifierToken == *rhs.m_identifierToken;
         }
 
-        bool operator !=(const SimpleNameExpression& rhs) const
+        bool operator !=(const SimpleIdentifierExpression& rhs) const
         {
             return !(*this == rhs);
         }
@@ -66,10 +66,10 @@ namespace Soup::Syntax
         /// </summary>
         virtual bool Equals(const SyntaxNode& rhs) const final
         {
-            return *this == static_cast<const SimpleNameExpression&>(rhs);
+            return *this == static_cast<const SimpleIdentifierExpression&>(rhs);
         }
 
     private:
-        std::shared_ptr<const SyntaxToken> m_identifier;
+        std::shared_ptr<const SyntaxToken> m_identifierToken;
     };
 }

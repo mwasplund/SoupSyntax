@@ -15,7 +15,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                SyntaxFactory::CreateSimpleNameExpression(
+                SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
@@ -49,7 +49,7 @@ namespace Soup::Syntax::UnitTests
                 uut->GetReturnType(),
                 "Verify return type matches.");
             TestUtils::AreEqual(
-                *SyntaxFactory::CreateSimpleNameExpression(
+                *SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
                 uut->GetIdentifier(),
                 "Verify identifier matches.");
@@ -89,7 +89,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                SyntaxFactory::CreateSimpleNameExpression(
+                SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
@@ -119,7 +119,7 @@ namespace Soup::Syntax::UnitTests
                                 PrimitiveDataType::Void,
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void)))),
                     SyntaxNodeChild(
-                        SyntaxFactory::CreateSimpleNameExpression(
+                        SyntaxFactory::CreateSimpleIdentifierExpression(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function"))),
                     SyntaxNodeChild(
                         SyntaxFactory::CreateParameterList(
@@ -156,7 +156,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                SyntaxFactory::CreateSimpleNameExpression(
+                SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
@@ -184,7 +184,7 @@ namespace Soup::Syntax::UnitTests
                         SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                             PrimitiveDataType::Void,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                    SyntaxFactory::CreateSimpleNameExpression(
+                    SyntaxFactory::CreateSimpleIdentifierExpression(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
                     SyntaxFactory::CreateParameterList(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
@@ -218,7 +218,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                SyntaxFactory::CreateSimpleNameExpression(
+                SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
@@ -246,7 +246,7 @@ namespace Soup::Syntax::UnitTests
                         SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                             PrimitiveDataType::Int,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
-                    SyntaxFactory::CreateSimpleNameExpression(
+                    SyntaxFactory::CreateSimpleIdentifierExpression(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
                     SyntaxFactory::CreateParameterList(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
@@ -280,7 +280,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                SyntaxFactory::CreateSimpleNameExpression(
+                SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
                     SyntaxFactory::CreateParameterList(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
@@ -308,7 +308,7 @@ namespace Soup::Syntax::UnitTests
                         SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                             PrimitiveDataType::Void,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                    SyntaxFactory::CreateSimpleNameExpression(
+                    SyntaxFactory::CreateSimpleIdentifierExpression(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "OtherFunction")),
                     SyntaxFactory::CreateParameterList(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
@@ -342,7 +342,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                SyntaxFactory::CreateSimpleNameExpression(
+                SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
@@ -370,7 +370,7 @@ namespace Soup::Syntax::UnitTests
                         SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                             PrimitiveDataType::Void,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                    SyntaxFactory::CreateSimpleNameExpression(
+                    SyntaxFactory::CreateSimpleIdentifierExpression(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
                     SyntaxFactory::CreateParameterList(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
@@ -395,7 +395,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                SyntaxFactory::CreateSimpleNameExpression(
+                SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
@@ -423,7 +423,7 @@ namespace Soup::Syntax::UnitTests
                         SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                             PrimitiveDataType::Void,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                    SyntaxFactory::CreateSimpleNameExpression(
+                    SyntaxFactory::CreateSimpleIdentifierExpression(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
                     SyntaxFactory::CreateParameterList(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),

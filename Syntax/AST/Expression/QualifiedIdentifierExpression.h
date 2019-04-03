@@ -3,12 +3,14 @@
 namespace Soup::Syntax
 {
     /// <summary>
-    /// A Qualified name expression
+    /// A Qualified identifier expression
     /// Includes a double colon qualifier for a simple name along with
     /// an optional recursive name expression that can be either another
     /// qualified name or a simple name.
+    /// TODO: All items to the left must be either identifier or template
+    /// see if we can subclass the left to force this
     /// </summary>
-    export class QualifiedNameExpression final : public NameExpression
+    export class QualifiedIdentifierExpression final : public IdentifierExpression
     {
         friend class SyntaxFactory;
 
@@ -16,11 +18,11 @@ namespace Soup::Syntax
         /// <summary>
         /// Initialize
         /// </summary>
-        QualifiedNameExpression(
-            std::shared_ptr<const NameExpression> left,
+        QualifiedIdentifierExpression(
+            std::shared_ptr<const IdentifierExpression> left,
             std::shared_ptr<const SyntaxToken> scopeResolutionToken,
-            std::shared_ptr<const SimpleNameExpression> right) :
-            NameExpression(SyntaxNodeType::QualifiedNameExpression),
+            std::shared_ptr<const UnqualifiedIdentifierExpression> right) :
+            IdentifierExpression(SyntaxNodeType::QualifiedIdentifierExpression),
             m_left(std::move(left)),
             m_scopeResolutionToken(std::move(scopeResolutionToken)),
             m_right(std::move(right))
@@ -29,14 +31,14 @@ namespace Soup::Syntax
 
     public:
         /// <summary>
-        /// Create a clone with the right name replaced
+        /// Create a clone with the right identifier replaced
         /// </summary>
-        std::shared_ptr<const QualifiedNameExpression> WithRight(
-            std::shared_ptr<const SimpleNameExpression> right) const
+        std::shared_ptr<const QualifiedIdentifierExpression> WithRight(
+            std::shared_ptr<const UnqualifiedIdentifierExpression> right) const
         {
             // TODO : Use syntax factory
-            return std::shared_ptr<const QualifiedNameExpression>(
-                new QualifiedNameExpression(
+            return std::shared_ptr<const QualifiedIdentifierExpression>(
+                new QualifiedIdentifierExpression(
                     m_left,
                     m_scopeResolutionToken,
                     std::move(right)));
@@ -55,7 +57,7 @@ namespace Soup::Syntax
         /// Gets the left name expression
         /// Can be either recursive qualified or simple.
         /// </summary>
-        const NameExpression& GetLeft() const
+        const IdentifierExpression& GetLeft() const
         {
             if (!HasLeft())
                 throw std::runtime_error("No LeftExpression present.");
@@ -73,7 +75,7 @@ namespace Soup::Syntax
         /// <summary>
         /// Gets the right simple name expressions
         /// </summary>
-        const SimpleNameExpression& GetRight() const
+        const UnqualifiedIdentifierExpression& GetRight() const
         {
             return *m_right;
         }
@@ -106,7 +108,7 @@ namespace Soup::Syntax
         /// <summary>
         /// Equality operator
         /// </summary>
-        bool operator ==(const QualifiedNameExpression& rhs) const
+        bool operator ==(const QualifiedIdentifierExpression& rhs) const
         {
             // The left expression is optional
             bool leftEqual = false;
@@ -124,7 +126,7 @@ namespace Soup::Syntax
                 *m_right == *rhs.m_right;
         }
 
-        bool operator !=(const QualifiedNameExpression& rhs) const
+        bool operator !=(const QualifiedIdentifierExpression& rhs) const
         {
             return !(*this == rhs);
         }
@@ -135,12 +137,12 @@ namespace Soup::Syntax
         /// </summary>
         virtual bool Equals(const SyntaxNode& rhs) const final
         {
-            return *this == static_cast<const QualifiedNameExpression&>(rhs);
+            return *this == static_cast<const QualifiedIdentifierExpression&>(rhs);
         }
 
     private:
-        std::shared_ptr<const NameExpression> m_left;
+        std::shared_ptr<const IdentifierExpression> m_left;
         std::shared_ptr<const SyntaxToken> m_scopeResolutionToken;
-        std::shared_ptr<const SimpleNameExpression> m_right;
+        std::shared_ptr<const UnqualifiedIdentifierExpression> m_right;
     };
 }

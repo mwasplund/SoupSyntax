@@ -15,9 +15,11 @@ namespace Soup::Syntax
 
     // Expressions
     class BinaryExpression;
+    class DestructorIdentifierExpression;
     class LiteralExpression;
-    class QualifiedNameExpression;
-    class SimpleNameExpression;
+    class QualifiedIdentifierExpression;
+    class SimpleIdentifierExpression;
+    class SimpleTemplateIdentifierExpression;
     class SubscriptExpression;
     class ThisExpression;
     class UnaryExpression;
@@ -67,15 +69,18 @@ namespace Soup::Syntax
 #include "AST\SyntaxList.h"
 #include "AST\SyntaxSeparatorList.h"
 #include "AST\Expression\Expression.h"
+#include "AST\Expression\IdentifierExpression.h"
+#include "AST\Expression\UnqualifiedIdentifierExpression.h"
 #include "AST\Expression\BinaryOperator.h"
 #include "AST\Expression\BinaryExpression.h"
+#include "AST\Expression\DestructorIdentifierExpression.h"
 #include "AST\Expression\LiteralType.h"
 #include "AST\Expression\LiteralExpression.h"
-#include "AST\Expression\NameExpression.h"
-#include "AST\Expression\SimpleNameExpression.h"
+#include "AST\Expression\SimpleIdentifierExpression.h"
+#include "AST\Expression\SimpleTemplateIdentifierExpression.h"
 #include "AST\Expression\SubscriptExpression.h"
 #include "AST\Expression\ThisExpression.h"
-#include "AST\Expression\QualifiedNameExpression.h"
+#include "AST\Expression\QualifiedIdentifierExpression.h"
 #include "AST\Expression\UnaryOperator.h"
 #include "AST\Expression\UnaryExpression.h"
 #include "AST\Statement\Statement.h"

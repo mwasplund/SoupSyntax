@@ -20,8 +20,11 @@ import SoupSyntax;
 #include "AST\Declaration\ValueEqualInitializerTests.gen.h"
 
 #include "AST\Expression\BinaryExpressionTests.gen.h"
+#include "AST\Expression\DestructorIdentifierExpressionTests.gen.h"
 #include "AST\Expression\LiteralExpressionTests.gen.h"
-#include "AST\Expression\NameExpressionTests.gen.h"
+#include "AST\Expression\QualifiedIdentifierExpressionTests.gen.h"
+#include "AST\Expression\SimpleIdentifierExpressionTests.gen.h"
+#include "AST\Expression\SimpleTemplateIdentifierExpressionTests.gen.h"
 #include "AST\Expression\SubscriptExpressionTests.gen.h"
 #include "AST\Expression\ThisExpressionTests.gen.h"
 #include "AST\Expression\UnaryExpressionTests.gen.h"
@@ -51,8 +54,8 @@ import SoupSyntax;
 #include "Parser\Declaration\ParseSimpleDeclarationTests.gen.h"
 
 #include "Parser\Expression\ParseBinaryExpressionTests.gen.h"
+#include "Parser\Expression\ParseIdentifierExpressionTests.gen.h"
 #include "Parser\Expression\ParseLiteralExpressionTests.gen.h"
-#include "Parser\Expression\ParseNameExpressionTests.gen.h"
 #include "Parser\Expression\ParseSubscriptExpressionTests.gen.h"
 #include "Parser\Expression\ParseThisExpressionTests.gen.h"
 #include "Parser\Expression\ParseUnaryExpressionTests.gen.h"
@@ -89,8 +92,11 @@ int main()
     state += RunValueEqualInitializerTests();
 
     state += RunBinaryExpressionTests();
+    state += RunDestructorIdentifierExpressionTests();
     state += RunLiteralExpressionTests();
-    state += RunNameExpressionTests();
+    state += RunQualifiedIdentifierExpressionTests();
+    state += RunSimpleIdentifierExpressionTests();
+    state += RunSimpleTemplateIdentifierExpressionTests();
     state += RunSubscriptExpressionTests();
     state += RunThisExpressionTests();
     state += RunUnaryExpressionTests();
@@ -120,8 +126,8 @@ int main()
     state += RunParseSimpleDeclarationTests();
 
     state += RunParseBinaryExpressionTests();
+    state += RunParseIdentifierExpressionTests();
     state += RunParseLiteralExpressionTests();
-    state += RunParseNameExpressionTests();
     state += RunParseSubscriptExpressionTests();
     state += RunParseThisExpressionTests();
     state += RunParseUnaryExpressionTests();

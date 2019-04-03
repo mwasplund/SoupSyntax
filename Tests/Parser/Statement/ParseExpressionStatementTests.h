@@ -8,13 +8,13 @@ namespace Soup::Syntax::UnitTests
     {
     public:
         // [Fact]
-        void SimpleNameExpression()
+        void SimpleIdentifierExpression()
         {
             auto sourceCode = std::string("a;");
             auto actual = ParseExpressionStatement(sourceCode);
 
             auto expected = SyntaxFactory::CreateExpressionStatement(
-                SyntaxFactory::CreateSimpleNameExpression(
+                SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 

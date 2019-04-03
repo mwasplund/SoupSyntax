@@ -18,7 +18,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                SyntaxFactory::CreateSimpleNameExpression(
+                SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(
                         SyntaxTokenType::Identifier,
                         "Function",
@@ -70,7 +70,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                SyntaxFactory::CreateSimpleNameExpression(
+                SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(
                         SyntaxTokenType::Identifier,
                         "Function",
@@ -115,7 +115,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                SyntaxFactory::CreateSimpleNameExpression(
+                SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(
                         SyntaxTokenType::Identifier,
                         "Function",
@@ -160,7 +160,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                SyntaxFactory::CreateSimpleNameExpression(
+                SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(
                         SyntaxTokenType::Identifier,
                         "Function",

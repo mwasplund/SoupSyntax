@@ -48,9 +48,9 @@ namespace Soup::Syntax
                 m_stream << "  ";
             }
 
-            m_stream << "Token: ";
+            m_stream << "Token: \"";
             m_stream << EscapeText(token.GetValue());
-            m_stream << " [";
+            m_stream << "\" [";
             m_stream << token.GetSpan().GetStart() << ", ";
             m_stream << token.GetSpan().GetEnd() << ")\n";
 
@@ -96,6 +96,8 @@ namespace Soup::Syntax
                     return "DefaultFunctionBody";
                 case SyntaxNodeType::DeleteFunctionBody:
                     return "DeleteFunctionBody";
+                case SyntaxNodeType::DestructorIdentifierExpression:
+                    return "DestructorIdentifierExpression";
                 case SyntaxNodeType::ElseClause:
                     return "ElseClause";
                 case SyntaxNodeType::EmptyDeclaration:
@@ -126,16 +128,18 @@ namespace Soup::Syntax
                     return "ParameterList";
                 case SyntaxNodeType::PrimitiveDataTypeDeclaration:
                     return "PrimitiveDataTypeDeclaration";
-                case SyntaxNodeType::QualifiedNameExpression:
-                    return "QualifiedNameExpression";
+                case SyntaxNodeType::QualifiedIdentifierExpression:
+                    return "QualifiedIdentifierExpression";
                 case SyntaxNodeType::RegularFunctionBody:
                     return "RegularFunctionBody";
                 case SyntaxNodeType::ReturnStatement:
                     return "ReturnStatement";
                 case SyntaxNodeType::SimpleDeclaration:
                     return "SimpleDeclaration";
-                case SyntaxNodeType::SimpleNameExpression:
-                    return "SimpleNameExpression";
+                case SyntaxNodeType::SimpleIdentifierExpression:
+                    return "SimpleIdentifierExpression";
+                case SyntaxNodeType::SimpleTemplateIdentifierExpression:
+                    return "SimpleTemplateIdentifierExpression";
                 case SyntaxNodeType::SubscriptExpression:
                     return "SubscriptExpression";
                 case SyntaxNodeType::ThisExpression:

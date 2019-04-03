@@ -1,6 +1,13 @@
 ﻿module SoupSyntax;
 using namespace Soup::Syntax;
 
+template<class T>
+struct SeparatorListResult
+{
+    std::vector<std::shared_ptr<const T>> Items;
+    std::vector<std::shared_ptr<const SyntaxToken>> Separators;
+};
+
 void Trace(const char* message)
 {
     // std::cout << message << std::endl;
@@ -86,11 +93,15 @@ antlrcpp::Any ASTCppParserVisitor::visitUnqualifiedIdentifier(CppParser::Unquali
             SyntaxTokenType::Identifier,
             context->Identifier());
         return std::static_pointer_cast<const SyntaxNode>(
-            SyntaxFactory::CreateSimpleNameExpression(std::move(identifier)));
+            SyntaxFactory::CreateSimpleIdentifierExpression(std::move(identifier)));
+    }
+    else if (context->Tilde() != nullptr)
+    {
+        throw std::logic_error(std::string(__func__) + " NotImplemented");
     }
     else
     {
-        throw std::logic_error(std::string(__func__) + " NotImplemented");
+        return visitChildren(context);
     }
 }
 
@@ -98,10 +109,10 @@ antlrcpp::Any ASTCppParserVisitor::visitQualifiedIdentifier(
     CppParser::QualifiedIdentifierContext* context)
 {
     Trace("VisitQualifiedIdentifier");
-    auto qualifiedName = std::dynamic_pointer_cast<const QualifiedNameExpression>(
+    auto qualifiedName = std::dynamic_pointer_cast<const QualifiedIdentifierExpression>(
         visit(context->nestedNameSpecifier())
             .as<std::shared_ptr<const SyntaxNode>>());
-    auto simpleName = std::dynamic_pointer_cast<const SimpleNameExpression>(
+    auto simpleName = std::dynamic_pointer_cast<const UnqualifiedIdentifierExpression>(
         visit(context->unqualifiedIdentifier())
             .as<std::shared_ptr<const SyntaxNode>>());
 
@@ -124,22 +135,22 @@ antlrcpp::Any ASTCppParserVisitor::visitNestedNameSpecifier(CppParser::NestedNam
                 context->DoubleColon());
 
     // Jump through hoops to convert antlr right recursion into the tree left recursion
-    std::shared_ptr<const SimpleNameExpression> rightName = nullptr;
+    std::shared_ptr<const SimpleIdentifierExpression> rightName = nullptr;
     if (context->nestedNameSpecifierSequence() != nullptr)
     {
         rightName = GetNextSimpleName(context->nestedNameSpecifierSequence());
     }
 
     // Build the actual qualified expression
-    std::shared_ptr<const QualifiedNameExpression> qualifiedName = nullptr;
+    std::shared_ptr<const QualifiedIdentifierExpression> qualifiedName = nullptr;
     if (context->Identifier() != nullptr)
     {
         // Simple name qualified expression
-        auto leftName = SyntaxFactory::CreateSimpleNameExpression(
+        auto leftName = SyntaxFactory::CreateSimpleIdentifierExpression(
             CreateToken(
                 SyntaxTokenType::Identifier,
                 context->Identifier()));
-        qualifiedName = SyntaxFactory::CreateQualifiedNameExpression(
+        qualifiedName = SyntaxFactory::CreateQualifiedIdentifierExpression(
             std::move(leftName),
             std::move(doubleColonToken),
             std::move(rightName));
@@ -151,7 +162,7 @@ antlrcpp::Any ASTCppParserVisitor::visitNestedNameSpecifier(CppParser::NestedNam
     else
     {
         // Global qualified expression
-        qualifiedName = SyntaxFactory::CreateQualifiedNameExpression(
+        qualifiedName = SyntaxFactory::CreateQualifiedIdentifierExpression(
             nullptr,
             std::move(doubleColonToken),
             std::move(rightName));
@@ -1581,8 +1592,25 @@ antlrcpp::Any ASTCppParserVisitor::visitSimpleTypeSpecifier(CppParser::SimpleTyp
     Trace("VisitSimpleTypeSpecifier");
     if (context->typeName() != nullptr)
     {
-        // TODO: nestedNameSpecifier
-        return visit(context->typeName());
+        // Check for the optional nested name specifier
+        if (context->nestedNameSpecifier() != nullptr)
+        {
+            auto qualifiedName = std::dynamic_pointer_cast<const QualifiedIdentifierExpression>(
+                visit(context->nestedNameSpecifier())
+                    .as<std::shared_ptr<const SyntaxNode>>());
+
+            auto simpleName = std::dynamic_pointer_cast<const UnqualifiedIdentifierExpression>(
+                visit(context->typeName())
+                    .as<std::shared_ptr<const SyntaxNode>>());
+
+            // Replace the right name with the current unqlaified name
+            return std::static_pointer_cast<const SyntaxNode>(
+                qualifiedName->WithRight(std::move(simpleName)));
+        }
+        else
+        {
+            return visit(context->typeName());
+        }
     }
     else if (context->Char() != nullptr)
     {
@@ -1692,12 +1720,12 @@ antlrcpp::Any ASTCppParserVisitor::visitTypeName(CppParser::TypeNameContext* con
     if (context->Identifier() != nullptr)
     {
         return std::static_pointer_cast<const SyntaxNode>(
-            SyntaxFactory::CreateSimpleNameExpression(
+            SyntaxFactory::CreateSimpleIdentifierExpression(
                 CreateToken(SyntaxTokenType::Identifier, context->Identifier())));
     }
     else
     {
-        throw std::logic_error(std::string(__func__) + " NotImplemented");
+        return visit(context->simpleTemplateIdentifier());
     }
 }
 
@@ -1712,12 +1740,6 @@ antlrcpp::Any ASTCppParserVisitor::visitElaboratedTypeSpecifier(CppParser::Elabo
     Trace("VisitElaboratedTypeSpecifier");
     throw std::logic_error(std::string(__func__) + " NotImplemented");
 }
-
-struct EnumeratorListResult
-{
-    std::vector<std::shared_ptr<const EnumeratorDefinition>> Items;
-    std::vector<std::shared_ptr<const SyntaxToken>> Separators;
-};
 
 antlrcpp::Any ASTCppParserVisitor::visitEnumSpecifier(CppParser::EnumSpecifierContext* context)
 {
@@ -1745,13 +1767,13 @@ antlrcpp::Any ASTCppParserVisitor::visitEnumSpecifier(CppParser::EnumSpecifierCo
     }
 
     // Check for the optional enumerator list
-    EnumeratorListResult enumeratorList = {};
+    SeparatorListResult<EnumeratorDefinition> enumeratorList = {};
     if (context->enumeratorList() != nullptr)
     {
         // TODO: Extra trailing comma
         auto enumeratorListContext = context->enumeratorList();
         enumeratorList = visit(context->enumeratorList())
-            .as<EnumeratorListResult>();
+            .as<SeparatorListResult<EnumeratorDefinition>>();
     }
 
     return std::static_pointer_cast<const SyntaxNode>(
@@ -1801,11 +1823,11 @@ antlrcpp::Any ASTCppParserVisitor::visitEnumeratorList(CppParser::EnumeratorList
     Trace("VisitEnumeratorList");
 
     // Handle the recursive rule
-    EnumeratorListResult enumeratorList = {};
+    SeparatorListResult<EnumeratorDefinition> enumeratorList = {};
     if (context->enumeratorList() != nullptr)
     {
         enumeratorList = visit(context->enumeratorList())
-            .as<EnumeratorListResult>();
+            .as<SeparatorListResult<EnumeratorDefinition>>();
         enumeratorList.Separators.push_back(
             CreateToken(SyntaxTokenType::Comma, context->Comma()));
     }
@@ -2231,7 +2253,7 @@ antlrcpp::Any ASTCppParserVisitor::visitFunctionDefinition(CppParser::FunctionDe
 
     // Analyze the declarator
     auto declaratorContext = context->functionDeclarator();
-    auto identifier = std::dynamic_pointer_cast<const NameExpression>(
+    auto identifier = std::dynamic_pointer_cast<const IdentifierExpression>(
         visit(declaratorContext->identifierExpression())
             .as<std::shared_ptr<const SyntaxNode>>());
     auto parameterList = std::dynamic_pointer_cast<const ParameterList>(
@@ -2616,26 +2638,67 @@ antlrcpp::Any ASTCppParserVisitor::visitTypeParameterKey(CppParser::TypeParamete
 
 antlrcpp::Any ASTCppParserVisitor::visitSimpleTemplateIdentifier(CppParser::SimpleTemplateIdentifierContext* context)
 {
+    // templateName LessThan templateArgumentList? GreaterThan
     Trace("VisitSimpleTemplateIdentifier");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+
+    // Check for the optional template argument list
+    SeparatorListResult<Expression> argumentList = {};
+    if (context->templateArgumentList() != nullptr)
+    {
+        argumentList = visit(context->templateArgumentList())
+            .as<SeparatorListResult<Expression>>();
+    }
+
+    return std::static_pointer_cast<const SyntaxNode>(
+        SyntaxFactory::CreateSimpleTemplateIdentifierExpression(
+            CreateToken(SyntaxTokenType::Identifier, context->templateName()->Identifier()),
+            CreateToken(SyntaxTokenType::LessThan, context->LessThan()),
+            std::make_shared<const SyntaxSeparatorList<Expression>>(
+                std::move(argumentList.Items),
+                std::move(argumentList.Separators)),
+            CreateToken(SyntaxTokenType::GreaterThan, context->GreaterThan())));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitTemplateIdentifier(CppParser::TemplateIdentifierContext* context)
 {
     Trace("VisitTemplateIdentifier");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+    if (context->simpleTemplateIdentifier() != nullptr)
+    {
+        return visit(context->simpleTemplateIdentifier());
+    }
+    else
+    {
+        throw std::logic_error(std::string(__func__) + " NotImplemented");
+    }
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitTemplateArgumentList(CppParser::TemplateArgumentListContext* context)
 {
     Trace("VisitTemplateArgumentList");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+
+    // Handle the recursive rule
+    SeparatorListResult<Expression> templateArgumentList = {};
+    if (context->templateArgumentList() != nullptr)
+    {
+        templateArgumentList = visit(context->templateArgumentList())
+            .as<SeparatorListResult<Expression>>();
+        templateArgumentList.Separators.push_back(
+            CreateToken(SyntaxTokenType::Comma, context->Comma()));
+    }
+
+    // Handle the next item
+    auto templateArgument = std::dynamic_pointer_cast<const Expression>(
+        visit(context->templateArgument())
+            .as<std::shared_ptr<const SyntaxNode>>());
+    templateArgumentList.Items.push_back(std::move(templateArgument));
+
+    return templateArgumentList;
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitTemplateArgument(CppParser::TemplateArgumentContext* context)
 {
     Trace("VisitTemplateArgument");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+    return visitChildren(context);
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitTypenameSpecifier(CppParser::TypenameSpecifierContext* context)
@@ -2962,7 +3025,7 @@ std::shared_ptr<const SyntaxToken> ASTCppParserVisitor::CreateToken(
     }
 }
 
-std::shared_ptr<const SimpleNameExpression> ASTCppParserVisitor::GetNextSimpleName(
+std::shared_ptr<const SimpleIdentifierExpression> ASTCppParserVisitor::GetNextSimpleName(
     CppParser::NestedNameSpecifierSequenceContext* context)
 {
     Trace("GetNextSimpleName");
@@ -2970,7 +3033,7 @@ std::shared_ptr<const SimpleNameExpression> ASTCppParserVisitor::GetNextSimpleNa
     if (context->Identifier() != nullptr)
     {
         // Simple name qualified expression
-        return SyntaxFactory::CreateSimpleNameExpression(
+        return SyntaxFactory::CreateSimpleIdentifierExpression(
             CreateToken(SyntaxTokenType::Identifier, context->Identifier()));
     }
     else if (context->simpleTemplateIdentifier() != nullptr)
@@ -2983,14 +3046,14 @@ std::shared_ptr<const SimpleNameExpression> ASTCppParserVisitor::GetNextSimpleNa
     }
 }
 
-std::shared_ptr<const QualifiedNameExpression> ASTCppParserVisitor::visitNextRightQualifiedNestedNames(
-    std::shared_ptr<const QualifiedNameExpression> leftQualifiedName,
+std::shared_ptr<const QualifiedIdentifierExpression> ASTCppParserVisitor::visitNextRightQualifiedNestedNames(
+    std::shared_ptr<const QualifiedIdentifierExpression> leftQualifiedName,
     CppParser::NestedNameSpecifierSequenceContext* context)
 {
     Trace("VisitNextRightQualifiedNestedNames");
 
     // Jump through hoops to convert antlr right recursion into the tree left recursion
-    std::shared_ptr<const SimpleNameExpression> rightName = nullptr;
+    std::shared_ptr<const SimpleIdentifierExpression> rightName = nullptr;
     if (context->nestedNameSpecifierSequence() != nullptr)
     {
         rightName = GetNextSimpleName(context->nestedNameSpecifierSequence());
@@ -3001,7 +3064,7 @@ std::shared_ptr<const QualifiedNameExpression> ASTCppParserVisitor::visitNextRig
                 SyntaxTokenType::DoubleColon,
                 context->DoubleColon());
     auto qualifiedName = 
-        SyntaxFactory::CreateQualifiedNameExpression(
+        SyntaxFactory::CreateQualifiedIdentifierExpression(
             std::move(leftQualifiedName),
             std::move(doubleColonToken),
             std::move(rightName));

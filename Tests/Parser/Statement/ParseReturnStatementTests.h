@@ -44,14 +44,14 @@ namespace Soup::Syntax::UnitTests
         }
 
         // [Fact]
-        void ReturnSimpleNameExpression()
+        void ReturnSimpleIdentifierExpression()
         {
             auto sourceCode = std::string("return a;");
             auto actual = ParseReturnStatement(sourceCode);
 
             auto expected = SyntaxFactory::CreateReturnStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
-                SyntaxFactory::CreateSimpleNameExpression(
+                SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(
                         SyntaxTokenType::Identifier,
                         "a",

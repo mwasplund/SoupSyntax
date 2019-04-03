@@ -49,6 +49,11 @@ namespace Soup::Syntax
             DefaultVisit(node);
         }
 
+        virtual void Visit(const DestructorIdentifierExpression& node) override
+        {
+            DefaultVisit(node);
+        }
+
         virtual void Visit(const ElseClause& node) override
         {
             DefaultVisit(node);
@@ -129,7 +134,7 @@ namespace Soup::Syntax
             DefaultVisit(node);
         }
 
-        virtual void Visit(const QualifiedNameExpression& node) override
+        virtual void Visit(const QualifiedIdentifierExpression& node) override
         {
             DefaultVisit(node);
         }
@@ -149,7 +154,12 @@ namespace Soup::Syntax
             DefaultVisit(node);
         }
 
-        virtual void Visit(const SimpleNameExpression& node) override
+        virtual void Visit(const SimpleIdentifierExpression& node) override
+        {
+            DefaultVisit(node);
+        }
+
+        virtual void Visit(const SimpleTemplateIdentifierExpression& node) override
         {
             DefaultVisit(node);
         }

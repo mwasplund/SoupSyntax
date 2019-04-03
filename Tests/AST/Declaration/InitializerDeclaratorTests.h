@@ -12,7 +12,7 @@ namespace Soup::Syntax::UnitTests
         {
             // a
             auto uut = SyntaxFactory::CreateInitializerDeclarator(
-                SyntaxFactory::CreateSimpleNameExpression(
+                SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 nullptr);
 
@@ -21,7 +21,7 @@ namespace Soup::Syntax::UnitTests
                 uut->GetType(),
                 "Verify has correct type.");
             TestUtils::AreEqual(
-                *SyntaxFactory::CreateSimpleNameExpression(
+                *SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 uut->GetDeclarator(),
                 "Verify declarator matches.");
@@ -35,7 +35,7 @@ namespace Soup::Syntax::UnitTests
         {
             // a = 2
             auto uut = SyntaxFactory::CreateInitializerDeclarator(
-                SyntaxFactory::CreateSimpleNameExpression(
+                SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 SyntaxFactory::CreateValueEqualInitializer(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
@@ -48,7 +48,7 @@ namespace Soup::Syntax::UnitTests
                 uut->GetType(),
                 "Verify has correct type.");
             TestUtils::AreEqual(
-                *SyntaxFactory::CreateSimpleNameExpression(
+                *SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 uut->GetDeclarator(),
                 "Verify declarator matches.");
@@ -70,14 +70,14 @@ namespace Soup::Syntax::UnitTests
         {
             // a
             auto uut = SyntaxFactory::CreateInitializerDeclarator(
-                SyntaxFactory::CreateSimpleNameExpression(
+                SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 nullptr);
 
             Assert::AreEqual(
                 std::vector<SyntaxNodeChild>({
                     SyntaxNodeChild(
-                        SyntaxFactory::CreateSimpleNameExpression(
+                        SyntaxFactory::CreateSimpleIdentifierExpression(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
                 }),
                 uut->GetChildren(),
@@ -89,7 +89,7 @@ namespace Soup::Syntax::UnitTests
         {
             // a = 2
             auto uut = SyntaxFactory::CreateInitializerDeclarator(
-                SyntaxFactory::CreateSimpleNameExpression(
+                SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 SyntaxFactory::CreateValueEqualInitializer(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
@@ -100,7 +100,7 @@ namespace Soup::Syntax::UnitTests
             Assert::AreEqual(
                 std::vector<SyntaxNodeChild>({
                     SyntaxNodeChild(
-                        SyntaxFactory::CreateSimpleNameExpression(
+                        SyntaxFactory::CreateSimpleIdentifierExpression(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
                     SyntaxNodeChild(SyntaxFactory::CreateValueEqualInitializer(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
@@ -117,13 +117,13 @@ namespace Soup::Syntax::UnitTests
         {
             // a
             auto uut = SyntaxFactory::CreateInitializerDeclarator(
-                SyntaxFactory::CreateSimpleNameExpression(
+                SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 nullptr);
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateInitializerDeclarator(
-                    SyntaxFactory::CreateSimpleNameExpression(
+                    SyntaxFactory::CreateSimpleIdentifierExpression(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                     nullptr),
                 uut,
@@ -135,7 +135,7 @@ namespace Soup::Syntax::UnitTests
         {
             // a = 2
             auto uut = SyntaxFactory::CreateInitializerDeclarator(
-                SyntaxFactory::CreateSimpleNameExpression(
+                SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 SyntaxFactory::CreateValueEqualInitializer(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
@@ -145,7 +145,7 @@ namespace Soup::Syntax::UnitTests
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateInitializerDeclarator(
-                    SyntaxFactory::CreateSimpleNameExpression(
+                    SyntaxFactory::CreateSimpleIdentifierExpression(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                     SyntaxFactory::CreateValueEqualInitializer(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
@@ -161,7 +161,7 @@ namespace Soup::Syntax::UnitTests
         {
             // a = 2
             auto uut = SyntaxFactory::CreateInitializerDeclarator(
-                SyntaxFactory::CreateSimpleNameExpression(
+                SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 SyntaxFactory::CreateValueEqualInitializer(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
@@ -171,7 +171,7 @@ namespace Soup::Syntax::UnitTests
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateInitializerDeclarator(
-                    SyntaxFactory::CreateSimpleNameExpression(
+                    SyntaxFactory::CreateSimpleIdentifierExpression(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                     SyntaxFactory::CreateValueEqualInitializer(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
@@ -187,7 +187,7 @@ namespace Soup::Syntax::UnitTests
         {
             // a = 2
             auto uut = SyntaxFactory::CreateInitializerDeclarator(
-                SyntaxFactory::CreateSimpleNameExpression(
+                SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 SyntaxFactory::CreateValueEqualInitializer(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
@@ -197,7 +197,7 @@ namespace Soup::Syntax::UnitTests
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateInitializerDeclarator(
-                    SyntaxFactory::CreateSimpleNameExpression(
+                    SyntaxFactory::CreateSimpleIdentifierExpression(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                     nullptr),
                 uut,
@@ -209,7 +209,7 @@ namespace Soup::Syntax::UnitTests
         {
             // a = 2
             auto uut = SyntaxFactory::CreateInitializerDeclarator(
-                SyntaxFactory::CreateSimpleNameExpression(
+                SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 SyntaxFactory::CreateValueEqualInitializer(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
@@ -219,7 +219,7 @@ namespace Soup::Syntax::UnitTests
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateInitializerDeclarator(
-                    SyntaxFactory::CreateSimpleNameExpression(
+                    SyntaxFactory::CreateSimpleIdentifierExpression(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                     SyntaxFactory::CreateValueEqualInitializer(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),

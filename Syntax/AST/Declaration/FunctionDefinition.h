@@ -12,7 +12,7 @@ namespace Soup::Syntax
     private:
         FunctionDefinition(
             std::shared_ptr<const DeclarationSpecifier> returnType,
-            std::shared_ptr<const NameExpression> identifier,
+            std::shared_ptr<const IdentifierExpression> identifier,
             std::shared_ptr<const ParameterList> parameterList,
             std::shared_ptr<const SyntaxNode> body) :
             Declaration(SyntaxNodeType::FunctionDefinition),
@@ -35,7 +35,7 @@ namespace Soup::Syntax
         /// <summary>
         /// Gets the identifier
         /// </summary>
-        const NameExpression& GetIdentifier() const
+        const IdentifierExpression& GetIdentifier() const
         {
             return *m_identifier;
         }
@@ -106,7 +106,7 @@ namespace Soup::Syntax
 
     private:
         std::shared_ptr<const DeclarationSpecifier> m_returnType;
-        std::shared_ptr<const NameExpression> m_identifier;
+        std::shared_ptr<const IdentifierExpression> m_identifier;
         std::shared_ptr<const ParameterList> m_parameterList;
         std::shared_ptr<const SyntaxNode> m_body;
     };

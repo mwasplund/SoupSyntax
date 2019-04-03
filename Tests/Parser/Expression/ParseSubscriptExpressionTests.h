@@ -15,7 +15,7 @@ namespace Soup::Syntax::UnitTests
             auto actual = ParseSubscriptExpression(sourceCode);
 
             auto expected = SyntaxFactory::CreateSubscriptExpression(
-                SyntaxFactory::CreateSimpleNameExpression(
+                SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
                 SyntaxFactory::CreateLiteralExpression(

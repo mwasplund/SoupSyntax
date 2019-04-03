@@ -17,6 +17,7 @@ namespace Soup::Syntax
         virtual void Visit(const DeclarationStatement& node) = 0;
         virtual void Visit(const DefaultFunctionBody& node) = 0;
         virtual void Visit(const DeleteFunctionBody& node) = 0;
+        virtual void Visit(const DestructorIdentifierExpression& node) = 0;
         virtual void Visit(const ElseClause& node) = 0;
         virtual void Visit(const EmptyDeclaration& node) = 0;
         virtual void Visit(const EmptyStatement& node) = 0;
@@ -33,11 +34,12 @@ namespace Soup::Syntax
         virtual void Visit(const Parameter& node) = 0;
         virtual void Visit(const ParameterList& node) = 0;
         virtual void Visit(const PrimitiveDataTypeDeclaration& node) = 0;
-        virtual void Visit(const QualifiedNameExpression& node) = 0;
+        virtual void Visit(const QualifiedIdentifierExpression& node) = 0;
         virtual void Visit(const RegularFunctionBody& node) = 0;
         virtual void Visit(const ReturnStatement& node) = 0;
         virtual void Visit(const SimpleDeclaration& node) = 0;
-        virtual void Visit(const SimpleNameExpression& node) = 0;
+        virtual void Visit(const SimpleIdentifierExpression& node) = 0;
+        virtual void Visit(const SimpleTemplateIdentifierExpression& node) = 0;
         virtual void Visit(const SubscriptExpression& node) = 0;
         virtual void Visit(const ThisExpression& node) = 0;
         virtual void Visit(const TranslationUnit& node) = 0;
