@@ -16,10 +16,10 @@ TestState RunParseUnaryExpressionTests()
         className,
         "SingleIdentifierMinus",
         [&testClass]() { testClass->SingleIdentifierMinus(); });
-    state += RunTest(
-        className,
-        "SingleIdentifierBitwiseNot",
-        [&testClass]() { testClass->SingleIdentifierBitwiseNot(); });
+    // TODO: Ambiguouse state += RunTest(
+    //     className,
+    //     "SingleIdentifierBitwiseNot",
+    //     [&testClass]() { testClass->SingleIdentifierBitwiseNot(); });
     state += RunTest(
         className,
         "SingleIdentifierPreIncrement",

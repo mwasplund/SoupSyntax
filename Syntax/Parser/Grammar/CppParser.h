@@ -478,6 +478,7 @@ public:
     ConversionFunctionIdentifierContext *conversionFunctionIdentifier();
     LiteralOperatorIdentifierContext *literalOperatorIdentifier();
     antlr4::tree::TerminalNode *Tilde();
+    ClassNameContext *className();
     DeclarationTypeSpecifierContext *declarationTypeSpecifier();
     TemplateIdentifierContext *templateIdentifier();
 

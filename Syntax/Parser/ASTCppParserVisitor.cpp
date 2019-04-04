@@ -95,7 +95,14 @@ antlrcpp::Any ASTCppParserVisitor::visitUnqualifiedIdentifier(CppParser::Unquali
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreateSimpleIdentifierExpression(std::move(identifier)));
     }
-    else if (context->Tilde() != nullptr)
+    else if (context->className() != nullptr)
+    {
+        return std::static_pointer_cast<const SyntaxNode>(
+            SyntaxFactory::CreateDestructorIdentifierExpression(
+                CreateToken(SyntaxTokenType::Tilde, context->Tilde()),
+                CreateToken(SyntaxTokenType::Identifier, context->className()->Identifier())));
+    }
+    else if (context->declarationTypeSpecifier() != nullptr)
     {
         throw std::logic_error(std::string(__func__) + " NotImplemented");
     }

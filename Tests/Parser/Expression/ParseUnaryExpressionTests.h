@@ -158,7 +158,7 @@ namespace Soup::Syntax::UnitTests
         }
 
     private:
-        std::shared_ptr<const UnaryExpression> ParseUnaryExpression(std::string& sourceCode)
+        std::shared_ptr<const SyntaxNode> ParseUnaryExpression(std::string& sourceCode)
         {
             auto uut = TestUtils::BuildParser(sourceCode);
             auto context = uut.Parser->unaryExpression();
@@ -167,7 +167,7 @@ namespace Soup::Syntax::UnitTests
             auto node = uut.Visitor->visit(context)
                 .as<std::shared_ptr<const SyntaxNode>>();
 
-            return std::dynamic_pointer_cast<const UnaryExpression>(node);
+            return node;
         }
     };
 }
