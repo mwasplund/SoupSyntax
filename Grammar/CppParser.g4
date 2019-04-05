@@ -890,7 +890,7 @@ accessSpecifier:
 /**************************/
 conversionFunctionIdentifier:
 	Operator conversionTypeIdentifier;
-	
+
 conversionTypeIdentifier:
 	typeSpecifierSequence conversionDeclarator?;
 
@@ -909,7 +909,7 @@ memberInitializer:
 	memberInitializerIdentifier bracedInitializerList;
 
 memberInitializerIdentifier:
-	classOrDecltype |
+	// TODO: classOrDecltype |
 	Identifier;
 
 /**************************/
@@ -918,7 +918,6 @@ memberInitializerIdentifier:
 operatorFunctionIdentifier:
 	Operator anyOperator;
 
-// operator is a keyword in C#
 anyOperator:
 	New |
 	Delete |

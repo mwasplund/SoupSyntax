@@ -25,7 +25,10 @@ namespace Soup::Syntax
     class UnaryExpression;
 
     // Declarations
+    class BracedInitializerList;
     class ClassDeclaration;
+    class ConstructorDefinition;
+    class ConstructorInitializer;
     class DeclarationSpecifier;
     class DefaultFunctionBody;
     class DeleteFunctionBody;
@@ -36,6 +39,7 @@ namespace Soup::Syntax
     class FunctionDefinition;
     class InitializerDeclarator;
     class InitializerDeclaratorList;
+    class MemberInitializer;
     class NamespaceDefinition;
     class Parameter;
     class ParameterList;
@@ -94,15 +98,19 @@ namespace Soup::Syntax
 #include "AST\Statement\TryStatement.h"
 #include "AST\Declaration\DeclarationSpecifier.h"
 #include "AST\Declaration\Declaration.h"
+#include "AST\Declaration\BracedInitializerList.h"
+#include "AST\Declaration\Parameter.h"
+#include "AST\Declaration\ParameterList.h"
 #include "AST\Declaration\ClassDeclaration.h"
+#include "AST\Declaration\MemberInitializer.h"
+#include "AST\Declaration\ConstructorInitializer.h"
+#include "AST\Declaration\ConstructorDefinition.h"
 #include "AST\Declaration\DefaultFunctionBody.h"
 #include "AST\Declaration\DeleteFunctionBody.h"
 #include "AST\Declaration\EmptyDeclaration.h"
 #include "AST\Declaration\EnumeratorDefinition.h"
 #include "AST\Declaration\EnumDeclaration.h"
 #include "AST\Declaration\NamespaceDefinition.h"
-#include "AST\Declaration\Parameter.h"
-#include "AST\Declaration\ParameterList.h"
 #include "AST\Declaration\PrimitiveDataType.h"
 #include "AST\Declaration\PrimitiveDataTypeDeclaration.h"
 #include "AST\Declaration\FunctionDeclaration.h"

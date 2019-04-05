@@ -84,12 +84,18 @@ namespace Soup::Syntax
             {
                 case SyntaxNodeType::BinaryExpression:
                     return "BinaryExpression";
+                case SyntaxNodeType::BracedInitializerList:
+                    return "BracedInitializerList";
                 case SyntaxNodeType::CatchClause:
                     return "CatchClause";
                 case SyntaxNodeType::ClassDeclaration:
                     return "ClassDeclaration";
                 case SyntaxNodeType::CompoundStatement:
                     return "CompoundStatement";
+                case SyntaxNodeType::ConstructorDefinition:
+                    return "ConstructorDefinition";
+                case SyntaxNodeType::ConstructorInitializer:
+                    return "ConstructorInitializer";
                 case SyntaxNodeType::DeclarationSpecifier:
                     return "DeclarationSpecifier";
                 case SyntaxNodeType::DefaultFunctionBody:
@@ -120,6 +126,8 @@ namespace Soup::Syntax
                     return "InitializerDeclaratorList";
                 case SyntaxNodeType::LiteralExpression:
                     return "LiteralExpression";
+                case SyntaxNodeType::MemberInitializer:
+                    return "MemberInitializer";
                 case SyntaxNodeType::NamespaceDefinition:
                     return "NamespaceDefinition";
                 case SyntaxNodeType::Parameter:

@@ -2,7 +2,10 @@ import std.core;
 import Antlr4.Runtime;
 import SoupSyntax;
 
+#include "AST\Declaration\BracedInitializerListTests.gen.h"
 #include "AST\Declaration\ClassDeclarationTests.gen.h"
+#include "AST\Declaration\ConstructorDefinitionTests.gen.h"
+#include "AST\Declaration\ConstructorInitializerTests.gen.h"
 #include "AST\Declaration\DeclarationSpecifierTests.gen.h"
 #include "AST\Declaration\DefaultFunctionBodyTests.gen.h"
 #include "AST\Declaration\DeleteFunctionBodyTests.gen.h"
@@ -12,6 +15,7 @@ import SoupSyntax;
 #include "AST\Declaration\FunctionDefinitionTests.gen.h"
 #include "AST\Declaration\InitializerDeclaratorListTests.gen.h"
 #include "AST\Declaration\InitializerDeclaratorTests.gen.h"
+#include "AST\Declaration\MemberInitializerTests.gen.h"
 #include "AST\Declaration\NamespaceDefinitionTests.gen.h"
 #include "AST\Declaration\ParameterListTests.gen.h"
 #include "AST\Declaration\ParameterTests.gen.h"
@@ -48,6 +52,7 @@ import SoupSyntax;
 #include "Parser\SyntaxNamespaceTests.gen.h"
 
 #include "Parser\Declaration\ParseClassDeclarationTests.gen.h"
+#include "Parser\Declaration\ParseConstructorDefinitionTests.gen.h"
 #include "Parser\Declaration\ParseEnumDeclarationTests.gen.h"
 #include "Parser\Declaration\ParseFunctionDefinitionTests.gen.h"
 #include "Parser\Declaration\ParseNamespaceDefinitionTests.gen.h"
@@ -74,7 +79,10 @@ int main()
 
     TestState state = { 0, 0 };
 
+    state += RunBracedInitializerListTests();
     state += RunClassDeclarationTests();
+    state += RunConstructorDefinitionTests();
+    state += RunConstructorInitializerTests();
     state += RunDeclarationSpecifierTests();
     state += RunDefaultFunctionBodyTests();
     state += RunDeleteFunctionBodyTests();
@@ -84,6 +92,7 @@ int main()
     state += RunFunctionDefinitionTests();
     state += RunInitializerDeclaratorListTests();
     state += RunInitializerDeclaratorTests();
+    state += RunMemberInitializerTests();
     state += RunNamespaceDefinitionTests();
     state += RunParameterListTests();
     state += RunParameterTests();
@@ -120,6 +129,7 @@ int main()
     state += RunSyntaxNamespaceTests();
 
     state += RunParseClassDeclarationTests();
+    state += RunParseConstructorDefinitionTests();
     state += RunParseEnumDeclarationTests();
     state += RunParseFunctionDefinitionTests();
     state += RunParseNamespaceDefinitionTests();

@@ -8,6 +8,9 @@ namespace Soup::Syntax
     export class VariableDeclaration final : public Declaration
     {
     public:
+        /// <summary>
+        /// Initialize
+        /// </summary>
         VariableDeclaration(
             std::shared_ptr<const DeclarationSpecifier>&& declarationSpecifier,
             std::shared_ptr<const InitializerDeclaratorList>&& initializerDeclaratorList) :

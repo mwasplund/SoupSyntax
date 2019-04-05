@@ -3837,7 +3837,6 @@ public:
   public:
     MemberInitializerIdentifierContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    ClassOrDecltypeContext *classOrDecltype();
     antlr4::tree::TerminalNode *Identifier();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;

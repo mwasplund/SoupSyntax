@@ -35,6 +35,28 @@ namespace Soup::Syntax
         }
 
         /// <summary>
+        /// Create a BracedInitializerList
+        /// </summary>
+        static std::shared_ptr<const BracedInitializerList> CreateBracedInitializerList(
+            std::shared_ptr<const SyntaxToken> openParenthesisToken,
+            std::shared_ptr<const SyntaxSeparatorList<Expression>> values,
+            std::shared_ptr<const SyntaxToken> closeParenthesisToken)
+        {
+            if (openParenthesisToken == nullptr)
+                throw std::runtime_error("ArgumentNull - openParenthesisToken");
+            if (values == nullptr)
+                throw std::runtime_error("ArgumentNull - values");
+            if (closeParenthesisToken == nullptr)
+                throw std::runtime_error("ArgumentNull - closeParenthesisToken");
+
+            return std::shared_ptr<const BracedInitializerList>(
+                new BracedInitializerList(
+                    std::move(openParenthesisToken),
+                    std::move(values),
+                    std::move(closeParenthesisToken)));
+        }
+
+        /// <summary>
         /// Create a ClassDeclaration
         /// </summary>
         static std::shared_ptr<const ClassDeclaration> CreateClassDeclaration(
@@ -81,6 +103,49 @@ namespace Soup::Syntax
                     std::move(openBraceToken),
                     std::move(statements),
                     std::move(closeBraceToken)));
+        }
+
+        /// <summary>
+        /// Create a ConstructorDefinition
+        /// </summary>
+        static std::shared_ptr<const ConstructorDefinition> CreateConstructorDefinition(
+            std::shared_ptr<const IdentifierExpression> identifier,
+            std::shared_ptr<const ParameterList> parameterList,
+            std::shared_ptr<const ConstructorInitializer> constructorInitializer,
+            std::shared_ptr<const SyntaxNode> body)
+        {
+            // Note: The constructor initializer is optional
+            if (identifier == nullptr)
+                throw std::runtime_error("ArgumentNull - identifier");
+            if (parameterList == nullptr)
+                throw std::runtime_error("ArgumentNull - parameterList");
+            if (body == nullptr)
+                throw std::runtime_error("ArgumentNull - body");
+
+            return std::shared_ptr<const ConstructorDefinition>(
+                new ConstructorDefinition(
+                    std::move(identifier),
+                    std::move(parameterList),
+                    std::move(constructorInitializer),
+                    std::move(body)));
+        }
+
+        /// <summary>
+        /// Create a ConstructorInitializer
+        /// </summary>
+        static std::shared_ptr<const ConstructorInitializer> CreateConstructorInitializer(
+            std::shared_ptr<const SyntaxToken> colonToken,
+            std::shared_ptr<const SyntaxSeparatorList<MemberInitializer>> initializers)
+        {
+            if (colonToken == nullptr)
+                throw std::runtime_error("ArgumentNull - colonToken");
+            if (initializers == nullptr)
+                throw std::runtime_error("ArgumentNull - initializers");
+
+            return std::shared_ptr<const ConstructorInitializer>(
+                new ConstructorInitializer(
+                    std::move(colonToken),
+                    std::move(initializers)));
         }
 
         /// <summary>
@@ -855,6 +920,24 @@ namespace Soup::Syntax
                 new LiteralExpression(
                     type,
                     std::move(token)));
+        }
+
+        /// <summary>
+        /// Create a MemberInitializer
+        /// </summary>
+        static std::shared_ptr<const MemberInitializer> CreateMemberInitializer(
+            std::shared_ptr<const SyntaxToken> identifierToken,
+            std::shared_ptr<const BracedInitializerList> initializer)
+        {
+            if (identifierToken == nullptr)
+                throw std::runtime_error("ArgumentNull - identifierToken");
+            if (initializer == nullptr)
+                throw std::runtime_error("ArgumentNull - initializer");
+
+            return std::shared_ptr<const MemberInitializer>(
+                new MemberInitializer(
+                    std::move(identifierToken),
+                    std::move(initializer)));
         }
 
         /// <summary>

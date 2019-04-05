@@ -2250,14 +2250,6 @@ antlrcpp::Any ASTCppParserVisitor::visitFunctionDefinition(CppParser::FunctionDe
 {
     Trace("VisitFunctionDefinition");
 
-    // Check for optional return type
-    std::shared_ptr<const DeclarationSpecifier> returnType = nullptr;
-    if (context->declarationSpecifierSequence() != nullptr)
-    {
-        returnType = visit(context->declarationSpecifierSequence())
-            .as<std::shared_ptr<const DeclarationSpecifier>>();
-    }
-
     // Analyze the declarator
     auto declaratorContext = context->functionDeclarator();
     auto identifier = std::dynamic_pointer_cast<const IdentifierExpression>(
@@ -2272,12 +2264,28 @@ antlrcpp::Any ASTCppParserVisitor::visitFunctionDefinition(CppParser::FunctionDe
     auto body = visit(context->functionBody())
         .as<std::shared_ptr<const SyntaxNode>>();
 
-    return std::static_pointer_cast<const SyntaxNode>(
-        SyntaxFactory::CreateFunctionDefinition(
-            std::move(returnType),
-            std::move(identifier),
-            std::move(parameterList),
-            std::move(body)));
+    // Check is a constructor or a regular function
+    if (context->declarationSpecifierSequence() != nullptr)
+    {
+        auto returnType = visit(context->declarationSpecifierSequence())
+            .as<std::shared_ptr<const DeclarationSpecifier>>();
+
+        return std::static_pointer_cast<const SyntaxNode>(
+            SyntaxFactory::CreateFunctionDefinition(
+                std::move(returnType),
+                std::move(identifier),
+                std::move(parameterList),
+                std::move(body)));
+    }
+    else
+    {
+        return std::static_pointer_cast<const SyntaxNode>(
+            SyntaxFactory::CreateConstructorDefinition(
+                std::move(identifier),
+                std::move(parameterList),
+                nullptr,
+                std::move(body)));
+    }
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitFunctionDeclarator(CppParser::FunctionDeclaratorContext *context)

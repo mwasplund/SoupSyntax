@@ -14,10 +14,10 @@ namespace Soup::Syntax
         /// Initialize
         /// </summary>
         Parameter(
-            std::shared_ptr<const SyntaxNode> DeclarationSpecifier,
+            std::shared_ptr<const SyntaxNode> declarationSpecifier,
             std::shared_ptr<const SyntaxNode> declarator) :
             SyntaxNode(SyntaxNodeType::Parameter),
-            m_DeclarationSpecifier(std::move(DeclarationSpecifier)),
+            m_declarationSpecifier(std::move(declarationSpecifier)),
             m_declarator(std::move(declarator))
         {
         }
@@ -28,7 +28,7 @@ namespace Soup::Syntax
         /// </summary>
         const SyntaxNode& GetDeclarationSpecifier() const
         {
-            return *m_DeclarationSpecifier;
+            return *m_declarationSpecifier;
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace Soup::Syntax
         {
             return std::vector<SyntaxNodeChild>(
                 {
-                    SyntaxNodeChild(m_DeclarationSpecifier),
+                    SyntaxNodeChild(m_declarationSpecifier),
                     SyntaxNodeChild(m_declarator),
                 });
         }
@@ -64,7 +64,7 @@ namespace Soup::Syntax
         /// </summary>
         bool operator ==(const Parameter& rhs) const
         {
-            return *m_DeclarationSpecifier == *rhs.m_DeclarationSpecifier &&
+            return *m_declarationSpecifier == *rhs.m_declarationSpecifier &&
                 *m_declarator == *rhs.m_declarator;
         }
 
@@ -83,7 +83,7 @@ namespace Soup::Syntax
         }
 
     private:
-        std::shared_ptr<const SyntaxNode> m_DeclarationSpecifier;
+        std::shared_ptr<const SyntaxNode> m_declarationSpecifier;
         std::shared_ptr<const SyntaxNode> m_declarator;
     };
 }
