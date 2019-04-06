@@ -10,12 +10,20 @@ TestState RunTranslationUnitTests()
 
     state += RunTest(
         className,
-        "Initialize",
-        [&testClass]() { testClass->Initialize(); });
+        "InitializeSimple",
+        [&testClass]() { testClass->InitializeSimple(); });
     state += RunTest(
         className,
-        "GetChildren",
-        [&testClass]() { testClass->GetChildren(); });
+        "InitializeComplex",
+        [&testClass]() { testClass->InitializeComplex(); });
+    state += RunTest(
+        className,
+        "GetChildrenSimple",
+        [&testClass]() { testClass->GetChildrenSimple(); });
+    state += RunTest(
+        className,
+        "GetChildrenComplex",
+        [&testClass]() { testClass->GetChildrenComplex(); });
     state += RunTest(
         className,
         "OperatorEqual",

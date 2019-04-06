@@ -20,6 +20,10 @@ TestState RunParseTranslationUnitTests()
         className,
         "SingleEmptyDeclaration",
         [&testClass]() { testClass->SingleEmptyDeclaration(); });
+    state += RunTest(
+        className,
+        "MultipleDeclarations",
+        [&testClass]() { testClass->MultipleDeclarations(); });
 
     return state;
 }

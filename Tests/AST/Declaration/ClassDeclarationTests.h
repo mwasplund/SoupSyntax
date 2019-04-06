@@ -56,6 +56,9 @@ namespace Soup::Syntax::UnitTests
                 std::make_shared<const SyntaxList<Declaration>>(
                     std::vector<std::shared_ptr<const Declaration>>(
                     {
+                        SyntaxFactory::CreateAccessorSpecifier(
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Public),
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Colon)),
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                     })),
@@ -84,6 +87,9 @@ namespace Soup::Syntax::UnitTests
                 *std::make_shared<const SyntaxList<Declaration>>(
                     std::vector<std::shared_ptr<const Declaration>>(
                     {
+                        SyntaxFactory::CreateAccessorSpecifier(
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Public),
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Colon)),
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                     })),
@@ -128,6 +134,9 @@ namespace Soup::Syntax::UnitTests
                 std::make_shared<const SyntaxList<Declaration>>(
                     std::vector<std::shared_ptr<const Declaration>>(
                     {
+                        SyntaxFactory::CreateAccessorSpecifier(
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Public),
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Colon)),
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                     })),
@@ -139,6 +148,10 @@ namespace Soup::Syntax::UnitTests
                     SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class)),
                     SyntaxNodeChild(SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass")),
                     SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace)),
+                    SyntaxNodeChild(
+                        SyntaxFactory::CreateAccessorSpecifier(
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Public),
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Colon))),
                     SyntaxNodeChild(
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))),
@@ -183,6 +196,9 @@ namespace Soup::Syntax::UnitTests
                 std::make_shared<const SyntaxList<Declaration>>(
                     std::vector<std::shared_ptr<const Declaration>>(
                     {
+                        SyntaxFactory::CreateAccessorSpecifier(
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Public),
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Colon)),
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                     })),
@@ -196,6 +212,9 @@ namespace Soup::Syntax::UnitTests
                     std::make_shared<const SyntaxList<Declaration>>(
                         std::vector<std::shared_ptr<const Declaration>>(
                         {
+                            SyntaxFactory::CreateAccessorSpecifier(
+                                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Public),
+                                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Colon)),
                             SyntaxFactory::CreateEmptyDeclaration(
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                         })),
@@ -214,6 +233,9 @@ namespace Soup::Syntax::UnitTests
                 std::make_shared<const SyntaxList<Declaration>>(
                     std::vector<std::shared_ptr<const Declaration>>(
                     {
+                        SyntaxFactory::CreateAccessorSpecifier(
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Public),
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Colon)),
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                     })),
@@ -227,6 +249,9 @@ namespace Soup::Syntax::UnitTests
                 std::make_shared<const SyntaxList<Declaration>>(
                     std::vector<std::shared_ptr<const Declaration>>(
                     {
+                        SyntaxFactory::CreateAccessorSpecifier(
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Public),
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Colon)),
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                     })),

@@ -2516,15 +2516,20 @@ antlrcpp::Any ASTCppParserVisitor::visitClassSpecifier(CppParser::ClassSpecifier
         // TODO: Extra trailing comma
         memberSpecifiers = visit(context->memberSpecification())
             .as<std::vector<std::shared_ptr<const Declaration>>>();
+
+        // The member specifiers are parsed in reverse order
+        std::reverse(memberSpecifiers.begin(), memberSpecifiers.end());
     }
+
+    auto memberSpecifiersList = std::make_shared<const SyntaxList<Declaration>>(
+                std::move(memberSpecifiers));
 
     return std::static_pointer_cast<const SyntaxNode>(
         SyntaxFactory::CreateClassDeclaration(
             std::move(classToken),
             std::move(identifierToken),
             CreateToken(SyntaxTokenType::OpenBrace, context->OpenBrace()),
-            std::make_shared<const SyntaxList<Declaration>>(
-                std::move(memberSpecifiers)),
+            std::move(memberSpecifiersList),
             CreateToken(SyntaxTokenType::CloseBrace, context->CloseBrace())));
 }
 

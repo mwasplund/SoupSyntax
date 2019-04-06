@@ -2,24 +2,8 @@
 // A class comment
 class MyClass
 {
-public:
-    // Comment on constructor
-    MyClass(int i) :
-      m_value(i)
-    {
-    }
-
-    // Comment on destructor
-    ~MyClass()
-    {
-        m_value = -1;
-    }
-
-    // Get The value
-    int GetValue() const
-    {
-        return m_value;
-    }
+    // Member variable
+    int m_value;
 
     // bool operator==(const MyClass& other)
     // {
@@ -27,6 +11,22 @@ public:
     // }
 
 private:
-    // Member variable
-    int m_value;
+
+    // Get The value
+    int GetValue()
+    {
+        return m_value;
+    }
+
+    // Comment on destructor
+    ~MyClass()
+    {
+        m_value = -1;
+    }
+    // Comment on constructor
+    MyClass(int i) :
+      m_value(i)
+    {
+    }
+public:
 };

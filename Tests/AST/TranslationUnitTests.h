@@ -8,12 +8,51 @@ namespace Soup::Syntax::UnitTests
     {
     public:
         // [[Fact]]
-        void Initialize()
+        void InitializeSimple()
+        {
+            auto uut = SyntaxFactory::CreateTranslationUnit(
+                std::make_shared<const SyntaxList<Declaration>>(
+                    std::vector<std::shared_ptr<const Declaration>>()),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile));
+
+            Assert::AreEqual(
+                SyntaxNodeType::TranslationUnit,
+                uut->GetType(),
+                "Verify has correct type.");
+            Assert::AreEqual(
+                *std::make_shared<const SyntaxList<Declaration>>(
+                    std::vector<std::shared_ptr<const Declaration>>()),
+                uut->GetDeclarations(),
+                "Verify declarations matches.");
+            Assert::AreEqual(
+                *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile),
+                uut->GetEndOfFileToken(),
+                "Verify end of tile token matches.");
+        }
+
+        // [[Fact]]
+        void InitializeComplex()
         {
             auto uut = SyntaxFactory::CreateTranslationUnit(
                 std::make_shared<const SyntaxList<Declaration>>(
                     std::vector<std::shared_ptr<const Declaration>>({
                         SyntaxFactory::CreateEmptyDeclaration(
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
+                        SyntaxFactory::CreateSimpleDeclaration(
+                            SyntaxFactory::CreateDeclarationSpecifier(
+                                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                    PrimitiveDataType::Int,
+                                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
+                            SyntaxFactory::CreateInitializerDeclaratorList(
+                                std::make_shared<const SyntaxSeparatorList<InitializerDeclarator>>(
+                                    std::vector<std::shared_ptr<const InitializerDeclarator>>(
+                                    {
+                                        SyntaxFactory::CreateInitializerDeclarator(
+                                            SyntaxFactory::CreateSimpleIdentifierExpression(
+                                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
+                                            nullptr),
+                                    }),
+                                    std::vector<std::shared_ptr<const SyntaxToken>>())),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                     })),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile));
@@ -27,6 +66,22 @@ namespace Soup::Syntax::UnitTests
                     std::vector<std::shared_ptr<const Declaration>>({
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
+                        SyntaxFactory::CreateSimpleDeclaration(
+                            SyntaxFactory::CreateDeclarationSpecifier(
+                                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                    PrimitiveDataType::Int,
+                                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
+                            SyntaxFactory::CreateInitializerDeclaratorList(
+                                std::make_shared<const SyntaxSeparatorList<InitializerDeclarator>>(
+                                    std::vector<std::shared_ptr<const InitializerDeclarator>>(
+                                    {
+                                        SyntaxFactory::CreateInitializerDeclarator(
+                                            SyntaxFactory::CreateSimpleIdentifierExpression(
+                                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
+                                            nullptr),
+                                    }),
+                                    std::vector<std::shared_ptr<const SyntaxToken>>())),
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                     })),
                 uut->GetDeclarations(),
                 "Verify declarations matches.");
@@ -37,12 +92,46 @@ namespace Soup::Syntax::UnitTests
         }
 
         // [[Fact]]
-        void GetChildren()
+        void GetChildrenSimple()
+        {
+            auto uut = SyntaxFactory::CreateTranslationUnit(
+                std::make_shared<const SyntaxList<Declaration>>(
+                    std::vector<std::shared_ptr<const Declaration>>()),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile));
+
+            Assert::AreEqual(
+                std::vector<SyntaxNodeChild>(
+                {
+                    SyntaxNodeChild(
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile)),
+                }),
+                uut->GetChildren(),
+                "Verify children match.");
+        }
+
+        // [[Fact]]
+        void GetChildrenComplex()
         {
             auto uut = SyntaxFactory::CreateTranslationUnit(
                 std::make_shared<const SyntaxList<Declaration>>(
                     std::vector<std::shared_ptr<const Declaration>>({
                         SyntaxFactory::CreateEmptyDeclaration(
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
+                        SyntaxFactory::CreateSimpleDeclaration(
+                            SyntaxFactory::CreateDeclarationSpecifier(
+                                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                    PrimitiveDataType::Int,
+                                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
+                            SyntaxFactory::CreateInitializerDeclaratorList(
+                                std::make_shared<const SyntaxSeparatorList<InitializerDeclarator>>(
+                                    std::vector<std::shared_ptr<const InitializerDeclarator>>(
+                                    {
+                                        SyntaxFactory::CreateInitializerDeclarator(
+                                            SyntaxFactory::CreateSimpleIdentifierExpression(
+                                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
+                                            nullptr),
+                                    }),
+                                    std::vector<std::shared_ptr<const SyntaxToken>>())),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                     })),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile));
@@ -52,6 +141,23 @@ namespace Soup::Syntax::UnitTests
                 {
                     SyntaxNodeChild(
                         SyntaxFactory::CreateEmptyDeclaration(
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))),
+                    SyntaxNodeChild(
+                        SyntaxFactory::CreateSimpleDeclaration(
+                            SyntaxFactory::CreateDeclarationSpecifier(
+                                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                    PrimitiveDataType::Int,
+                                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
+                            SyntaxFactory::CreateInitializerDeclaratorList(
+                                std::make_shared<const SyntaxSeparatorList<InitializerDeclarator>>(
+                                    std::vector<std::shared_ptr<const InitializerDeclarator>>(
+                                    {
+                                        SyntaxFactory::CreateInitializerDeclarator(
+                                            SyntaxFactory::CreateSimpleIdentifierExpression(
+                                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
+                                            nullptr),
+                                    }),
+                                    std::vector<std::shared_ptr<const SyntaxToken>>())),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))),
                     SyntaxNodeChild(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile)),

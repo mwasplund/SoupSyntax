@@ -79,7 +79,7 @@ public:
             auto errorExpected = 
                 message + 
                 " Expected<" + expected +
-                "> Actual<" + expected + ">";
+                "> Actual<" + actual + ">";
             Fail(errorExpected);
         }
     }

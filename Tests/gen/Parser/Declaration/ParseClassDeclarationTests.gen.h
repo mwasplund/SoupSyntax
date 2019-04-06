@@ -10,12 +10,16 @@ TestState RunParseClassDeclarationTests()
 
     state += RunTest(
         className,
-        "SingleSimpleClassDeclaration",
-        [&testClass]() { testClass->SingleSimpleClassDeclaration(); });
+        "Simple",
+        [&testClass]() { testClass->Simple(); });
     state += RunTest(
         className,
-        "SingleClassDeclaration",
-        [&testClass]() { testClass->SingleClassDeclaration(); });
+        "SingleDeclaration",
+        [&testClass]() { testClass->SingleDeclaration(); });
+    state += RunTest(
+        className,
+        "MultipleDeclarations",
+        [&testClass]() { testClass->MultipleDeclarations(); });
 
     return state;
 }
