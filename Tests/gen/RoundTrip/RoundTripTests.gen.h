@@ -14,8 +14,16 @@ TestState RunRoundTripTests()
         [&testClass]() { testClass->RoundTrip("BlockComment.cpp"); });
     state += RunTest(
         className,
-        "RoundTrip[ComplexClass.cpp]",
-        [&testClass]() { testClass->RoundTrip("ComplexClass.cpp"); });
+        "RoundTrip[ClassComplex.cpp]",
+        [&testClass]() { testClass->RoundTrip("ClassComplex.cpp"); });
+    state += RunTest(
+        className,
+        "RoundTrip[ClassConstructor.cpp]",
+        [&testClass]() { testClass->RoundTrip("ClassConstructor.cpp"); });
+    state += RunTest(
+        className,
+        "RoundTrip[ClassSimple.cpp]",
+        [&testClass]() { testClass->RoundTrip("ClassSimple.cpp"); });
     state += RunTest(
         className,
         "RoundTrip[EmptyFile.cpp]",
@@ -32,10 +40,6 @@ TestState RunRoundTripTests()
         className,
         "RoundTrip[Namespace.cpp]",
         [&testClass]() { testClass->RoundTrip("Namespace.cpp"); });
-    state += RunTest(
-        className,
-        "RoundTrip[SimpleClass.cpp]",
-        [&testClass]() { testClass->RoundTrip("SimpleClass.cpp"); });
     state += RunTest(
         className,
         "RoundTrip[TemplateArguments.cpp]",

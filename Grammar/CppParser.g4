@@ -905,7 +905,7 @@ memberInitializerList:
 	memberInitializerList Comma memberInitializer Ellipsis?;
 
 memberInitializer:
-	memberInitializerIdentifier OpenParenthesis expressionList? CloseParenthesis
+	memberInitializerIdentifier OpenParenthesis expressionList? CloseParenthesis |
 	memberInitializerIdentifier bracedInitializerList;
 
 memberInitializerIdentifier:

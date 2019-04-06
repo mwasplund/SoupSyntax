@@ -8,11 +8,13 @@ namespace Soup::Syntax::UnitTests
     public:
         // [[Theory]]
         // [[InlineData("BlockComment.cpp")]]
+        // [[InlineData("ClassComplex.cpp")]]
+        // [[InlineData("ClassConstructor.cpp")]]
+        // [[InlineData("ClassSimple.cpp")]]
         // [[InlineData("EmptyFile.cpp")]]
         // [[InlineData("HelloWorld.cpp")]]
         // [[InlineData("LineComment.cpp")]]
         // [[InlineData("Namespace.cpp")]]
-        // [[InlineData("SimpleClass.cpp")]]
         // [[InlineData("TemplateArguments.cpp")]]
         void RoundTrip(std::string name)
         {

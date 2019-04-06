@@ -171,7 +171,21 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     std::make_shared<SyntaxSeparatorList<Parameter>>(
-                        std::vector<std::shared_ptr<const Parameter>>(),
+                        std::vector<std::shared_ptr<const Parameter>>({
+                            SyntaxFactory::CreateParameter(
+                                SyntaxFactory::CreateDeclarationSpecifier(
+                                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                        PrimitiveDataType::Int,
+                                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
+                                SyntaxFactory::CreateSimpleIdentifierExpression(
+                                    SyntaxFactory::CreateUniqueToken(
+                                        SyntaxTokenType::Identifier,
+                                        "parameter",
+                                        {
+                                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
+                                        },
+                                        {}))),
+                        }),
                         std::vector<std::shared_ptr<const SyntaxToken>>()),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
                 SyntaxFactory::CreateDeleteFunctionBody(

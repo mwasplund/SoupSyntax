@@ -20,10 +20,10 @@ TestState RunParseConstructorDefinitionTests()
         className,
         "SimpleDelete",
         [&testClass]() { testClass->SimpleDelete(); });
-    // TODO: Antlr not happy state += RunTest(
-    //     className,
-    //     "ComplexParameterAndInitializer",
-    //     [&testClass]() { testClass->ComplexParameterAndInitializer(); });
+    state += RunTest(
+        className,
+        "ComplexParameterAndInitializer",
+        [&testClass]() { testClass->ComplexParameterAndInitializer(); });
 
     return state;
 }

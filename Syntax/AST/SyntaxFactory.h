@@ -35,28 +35,6 @@ namespace Soup::Syntax
         }
 
         /// <summary>
-        /// Create a BracedInitializerList
-        /// </summary>
-        static std::shared_ptr<const BracedInitializerList> CreateBracedInitializerList(
-            std::shared_ptr<const SyntaxToken> openParenthesisToken,
-            std::shared_ptr<const SyntaxSeparatorList<Expression>> values,
-            std::shared_ptr<const SyntaxToken> closeParenthesisToken)
-        {
-            if (openParenthesisToken == nullptr)
-                throw std::runtime_error("ArgumentNull - openParenthesisToken");
-            if (values == nullptr)
-                throw std::runtime_error("ArgumentNull - values");
-            if (closeParenthesisToken == nullptr)
-                throw std::runtime_error("ArgumentNull - closeParenthesisToken");
-
-            return std::shared_ptr<const BracedInitializerList>(
-                new BracedInitializerList(
-                    std::move(openParenthesisToken),
-                    std::move(values),
-                    std::move(closeParenthesisToken)));
-        }
-
-        /// <summary>
         /// Create a ClassDeclaration
         /// </summary>
         static std::shared_ptr<const ClassDeclaration> CreateClassDeclaration(
@@ -484,6 +462,28 @@ namespace Soup::Syntax
             return std::shared_ptr<const InitializerDeclaratorList>(
                 new InitializerDeclaratorList(
                     std::move(items)));
+        }
+
+        /// <summary>
+        /// Create a InitializerList
+        /// </summary>
+        static std::shared_ptr<const InitializerList> CreateInitializerList(
+            std::shared_ptr<const SyntaxToken> openToken,
+            std::shared_ptr<const SyntaxSeparatorList<Expression>> values,
+            std::shared_ptr<const SyntaxToken> closeToken)
+        {
+            if (openToken == nullptr)
+                throw std::runtime_error("ArgumentNull - openToken");
+            if (values == nullptr)
+                throw std::runtime_error("ArgumentNull - values");
+            if (closeToken == nullptr)
+                throw std::runtime_error("ArgumentNull - closeToken");
+
+            return std::shared_ptr<const InitializerList>(
+                new InitializerList(
+                    std::move(openToken),
+                    std::move(values),
+                    std::move(closeToken)));
         }
 
         /// <summary>
@@ -927,7 +927,7 @@ namespace Soup::Syntax
         /// </summary>
         static std::shared_ptr<const MemberInitializer> CreateMemberInitializer(
             std::shared_ptr<const SyntaxToken> identifierToken,
-            std::shared_ptr<const BracedInitializerList> initializer)
+            std::shared_ptr<const InitializerList> initializer)
         {
             if (identifierToken == nullptr)
                 throw std::runtime_error("ArgumentNull - identifierToken");

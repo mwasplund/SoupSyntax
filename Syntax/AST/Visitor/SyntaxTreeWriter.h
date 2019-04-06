@@ -84,8 +84,6 @@ namespace Soup::Syntax
             {
                 case SyntaxNodeType::BinaryExpression:
                     return "BinaryExpression";
-                case SyntaxNodeType::BracedInitializerList:
-                    return "BracedInitializerList";
                 case SyntaxNodeType::CatchClause:
                     return "CatchClause";
                 case SyntaxNodeType::ClassDeclaration:
@@ -124,6 +122,8 @@ namespace Soup::Syntax
                     return "InitializerDeclarator";
                 case SyntaxNodeType::InitializerDeclaratorList:
                     return "InitializerDeclaratorList";
+                case SyntaxNodeType::InitializerList:
+                    return "InitializerList";
                 case SyntaxNodeType::LiteralExpression:
                     return "LiteralExpression";
                 case SyntaxNodeType::MemberInitializer:

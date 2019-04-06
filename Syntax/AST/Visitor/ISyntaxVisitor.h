@@ -10,7 +10,6 @@ namespace Soup::Syntax
     {
     public:
         virtual void Visit(const BinaryExpression& node) = 0;
-        virtual void Visit(const BracedInitializerList& node) = 0;
         virtual void Visit(const CatchClause& node) = 0;
         virtual void Visit(const ClassDeclaration& node) = 0;
         virtual void Visit(const ConstructorDefinition& node) = 0;
@@ -32,6 +31,7 @@ namespace Soup::Syntax
         virtual void Visit(const IfStatement& node) = 0;
         virtual void Visit(const InitializerDeclarator& node) = 0;
         virtual void Visit(const InitializerDeclaratorList& node) = 0;
+        virtual void Visit(const InitializerList& node) = 0;
         virtual void Visit(const LiteralExpression& node) = 0;
         virtual void Visit(const MemberInitializer& node) = 0;
         virtual void Visit(const NamespaceDefinition& node) = 0;

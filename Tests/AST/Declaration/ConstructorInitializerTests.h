@@ -16,7 +16,7 @@ namespace Soup::Syntax::UnitTests
                     std::vector<std::shared_ptr<const MemberInitializer>>({
                         SyntaxFactory::CreateMemberInitializer(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"),
-                            SyntaxFactory::CreateBracedInitializerList(
+                            SyntaxFactory::CreateInitializerList(
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                                 std::make_shared<const SyntaxSeparatorList<Expression>>(
                                     std::vector<std::shared_ptr<const Expression>>(),
@@ -38,7 +38,7 @@ namespace Soup::Syntax::UnitTests
                     std::vector<std::shared_ptr<const MemberInitializer>>({
                         SyntaxFactory::CreateMemberInitializer(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"),
-                            SyntaxFactory::CreateBracedInitializerList(
+                            SyntaxFactory::CreateInitializerList(
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                                 std::make_shared<const SyntaxSeparatorList<Expression>>(
                                     std::vector<std::shared_ptr<const Expression>>(),
@@ -60,7 +60,7 @@ namespace Soup::Syntax::UnitTests
                     std::vector<std::shared_ptr<const MemberInitializer>>({
                         SyntaxFactory::CreateMemberInitializer(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"),
-                            SyntaxFactory::CreateBracedInitializerList(
+                            SyntaxFactory::CreateInitializerList(
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                                 std::make_shared<const SyntaxSeparatorList<Expression>>(
                                     std::vector<std::shared_ptr<const Expression>>(),
@@ -68,7 +68,7 @@ namespace Soup::Syntax::UnitTests
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))),
                         SyntaxFactory::CreateMemberInitializer(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b"),
-                            SyntaxFactory::CreateBracedInitializerList(
+                            SyntaxFactory::CreateInitializerList(
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                                 std::make_shared<const SyntaxSeparatorList<Expression>>(
                                     std::vector<std::shared_ptr<const Expression>>(),
@@ -92,7 +92,7 @@ namespace Soup::Syntax::UnitTests
                     std::vector<std::shared_ptr<const MemberInitializer>>({
                         SyntaxFactory::CreateMemberInitializer(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"),
-                            SyntaxFactory::CreateBracedInitializerList(
+                            SyntaxFactory::CreateInitializerList(
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                                 std::make_shared<const SyntaxSeparatorList<Expression>>(
                                     std::vector<std::shared_ptr<const Expression>>(),
@@ -100,7 +100,7 @@ namespace Soup::Syntax::UnitTests
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))),
                         SyntaxFactory::CreateMemberInitializer(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b"),
-                            SyntaxFactory::CreateBracedInitializerList(
+                            SyntaxFactory::CreateInitializerList(
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                                 std::make_shared<const SyntaxSeparatorList<Expression>>(
                                     std::vector<std::shared_ptr<const Expression>>(),
@@ -124,7 +124,7 @@ namespace Soup::Syntax::UnitTests
                     std::vector<std::shared_ptr<const MemberInitializer>>({
                         SyntaxFactory::CreateMemberInitializer(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"),
-                            SyntaxFactory::CreateBracedInitializerList(
+                            SyntaxFactory::CreateInitializerList(
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                                 std::make_shared<const SyntaxSeparatorList<Expression>>(
                                     std::vector<std::shared_ptr<const Expression>>(),
@@ -139,7 +139,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxNodeChild(
                         SyntaxFactory::CreateMemberInitializer(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"),
-                            SyntaxFactory::CreateBracedInitializerList(
+                            SyntaxFactory::CreateInitializerList(
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                                 std::make_shared<const SyntaxSeparatorList<Expression>>(
                                     std::vector<std::shared_ptr<const Expression>>(),
@@ -160,7 +160,7 @@ namespace Soup::Syntax::UnitTests
                     std::vector<std::shared_ptr<const MemberInitializer>>({
                         SyntaxFactory::CreateMemberInitializer(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"),
-                            SyntaxFactory::CreateBracedInitializerList(
+                            SyntaxFactory::CreateInitializerList(
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                                 std::make_shared<const SyntaxSeparatorList<Expression>>(
                                     std::vector<std::shared_ptr<const Expression>>(),
@@ -168,7 +168,7 @@ namespace Soup::Syntax::UnitTests
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))),
                         SyntaxFactory::CreateMemberInitializer(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b"),
-                            SyntaxFactory::CreateBracedInitializerList(
+                            SyntaxFactory::CreateInitializerList(
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                                 std::make_shared<const SyntaxSeparatorList<Expression>>(
                                     std::vector<std::shared_ptr<const Expression>>(),
@@ -185,7 +185,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxNodeChild(
                         SyntaxFactory::CreateMemberInitializer(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"),
-                            SyntaxFactory::CreateBracedInitializerList(
+                            SyntaxFactory::CreateInitializerList(
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                                 std::make_shared<const SyntaxSeparatorList<Expression>>(
                                     std::vector<std::shared_ptr<const Expression>>(),
@@ -195,7 +195,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxNodeChild(
                         SyntaxFactory::CreateMemberInitializer(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b"),
-                            SyntaxFactory::CreateBracedInitializerList(
+                            SyntaxFactory::CreateInitializerList(
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                                 std::make_shared<const SyntaxSeparatorList<Expression>>(
                                     std::vector<std::shared_ptr<const Expression>>(),
@@ -216,7 +216,7 @@ namespace Soup::Syntax::UnitTests
                     std::vector<std::shared_ptr<const MemberInitializer>>({
                         SyntaxFactory::CreateMemberInitializer(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"),
-                            SyntaxFactory::CreateBracedInitializerList(
+                            SyntaxFactory::CreateInitializerList(
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                                 std::make_shared<const SyntaxSeparatorList<Expression>>(
                                     std::vector<std::shared_ptr<const Expression>>(),
@@ -224,7 +224,7 @@ namespace Soup::Syntax::UnitTests
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))),
                         SyntaxFactory::CreateMemberInitializer(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b"),
-                            SyntaxFactory::CreateBracedInitializerList(
+                            SyntaxFactory::CreateInitializerList(
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                                 std::make_shared<const SyntaxSeparatorList<Expression>>(
                                     std::vector<std::shared_ptr<const Expression>>(),
@@ -242,7 +242,7 @@ namespace Soup::Syntax::UnitTests
                         std::vector<std::shared_ptr<const MemberInitializer>>({
                             SyntaxFactory::CreateMemberInitializer(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"),
-                                SyntaxFactory::CreateBracedInitializerList(
+                                SyntaxFactory::CreateInitializerList(
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                                     std::make_shared<const SyntaxSeparatorList<Expression>>(
                                         std::vector<std::shared_ptr<const Expression>>(),
@@ -250,7 +250,7 @@ namespace Soup::Syntax::UnitTests
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))),
                             SyntaxFactory::CreateMemberInitializer(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b"),
-                                SyntaxFactory::CreateBracedInitializerList(
+                                SyntaxFactory::CreateInitializerList(
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                                     std::make_shared<const SyntaxSeparatorList<Expression>>(
                                         std::vector<std::shared_ptr<const Expression>>(),
@@ -274,7 +274,7 @@ namespace Soup::Syntax::UnitTests
                     std::vector<std::shared_ptr<const MemberInitializer>>({
                         SyntaxFactory::CreateMemberInitializer(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"),
-                            SyntaxFactory::CreateBracedInitializerList(
+                            SyntaxFactory::CreateInitializerList(
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                                 std::make_shared<const SyntaxSeparatorList<Expression>>(
                                     std::vector<std::shared_ptr<const Expression>>(),
@@ -282,7 +282,7 @@ namespace Soup::Syntax::UnitTests
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))),
                         SyntaxFactory::CreateMemberInitializer(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b"),
-                            SyntaxFactory::CreateBracedInitializerList(
+                            SyntaxFactory::CreateInitializerList(
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                                 std::make_shared<const SyntaxSeparatorList<Expression>>(
                                     std::vector<std::shared_ptr<const Expression>>(),
@@ -305,7 +305,7 @@ namespace Soup::Syntax::UnitTests
                         std::vector<std::shared_ptr<const MemberInitializer>>({
                             SyntaxFactory::CreateMemberInitializer(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"),
-                                SyntaxFactory::CreateBracedInitializerList(
+                                SyntaxFactory::CreateInitializerList(
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                                     std::make_shared<const SyntaxSeparatorList<Expression>>(
                                         std::vector<std::shared_ptr<const Expression>>(),
@@ -313,7 +313,7 @@ namespace Soup::Syntax::UnitTests
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))),
                             SyntaxFactory::CreateMemberInitializer(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b"),
-                                SyntaxFactory::CreateBracedInitializerList(
+                                SyntaxFactory::CreateInitializerList(
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                                     std::make_shared<const SyntaxSeparatorList<Expression>>(
                                         std::vector<std::shared_ptr<const Expression>>(),
@@ -337,7 +337,7 @@ namespace Soup::Syntax::UnitTests
                     std::vector<std::shared_ptr<const MemberInitializer>>({
                         SyntaxFactory::CreateMemberInitializer(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"),
-                            SyntaxFactory::CreateBracedInitializerList(
+                            SyntaxFactory::CreateInitializerList(
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                                 std::make_shared<const SyntaxSeparatorList<Expression>>(
                                     std::vector<std::shared_ptr<const Expression>>(),
@@ -345,7 +345,7 @@ namespace Soup::Syntax::UnitTests
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))),
                         SyntaxFactory::CreateMemberInitializer(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b"),
-                            SyntaxFactory::CreateBracedInitializerList(
+                            SyntaxFactory::CreateInitializerList(
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                                 std::make_shared<const SyntaxSeparatorList<Expression>>(
                                     std::vector<std::shared_ptr<const Expression>>(),
@@ -363,7 +363,7 @@ namespace Soup::Syntax::UnitTests
                         std::vector<std::shared_ptr<const MemberInitializer>>({
                             SyntaxFactory::CreateMemberInitializer(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "c"),
-                                SyntaxFactory::CreateBracedInitializerList(
+                                SyntaxFactory::CreateInitializerList(
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                                     std::make_shared<const SyntaxSeparatorList<Expression>>(
                                         std::vector<std::shared_ptr<const Expression>>(),
@@ -371,7 +371,7 @@ namespace Soup::Syntax::UnitTests
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))),
                             SyntaxFactory::CreateMemberInitializer(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b"),
-                                SyntaxFactory::CreateBracedInitializerList(
+                                SyntaxFactory::CreateInitializerList(
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                                     std::make_shared<const SyntaxSeparatorList<Expression>>(
                                         std::vector<std::shared_ptr<const Expression>>(),

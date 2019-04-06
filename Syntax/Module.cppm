@@ -25,7 +25,6 @@ namespace Soup::Syntax
     class UnaryExpression;
 
     // Declarations
-    class BracedInitializerList;
     class ClassDeclaration;
     class ConstructorDefinition;
     class ConstructorInitializer;
@@ -39,6 +38,7 @@ namespace Soup::Syntax
     class FunctionDefinition;
     class InitializerDeclarator;
     class InitializerDeclaratorList;
+    class InitializerList;
     class MemberInitializer;
     class NamespaceDefinition;
     class Parameter;
@@ -98,10 +98,10 @@ namespace Soup::Syntax
 #include "AST\Statement\TryStatement.h"
 #include "AST\Declaration\DeclarationSpecifier.h"
 #include "AST\Declaration\Declaration.h"
-#include "AST\Declaration\BracedInitializerList.h"
 #include "AST\Declaration\Parameter.h"
 #include "AST\Declaration\ParameterList.h"
 #include "AST\Declaration\ClassDeclaration.h"
+#include "AST\Declaration\InitializerList.h"
 #include "AST\Declaration\MemberInitializer.h"
 #include "AST\Declaration\ConstructorInitializer.h"
 #include "AST\Declaration\ConstructorDefinition.h"

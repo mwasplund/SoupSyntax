@@ -3817,12 +3817,11 @@ public:
   public:
     MemberInitializerContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    std::vector<MemberInitializerIdentifierContext *> memberInitializerIdentifier();
-    MemberInitializerIdentifierContext* memberInitializerIdentifier(size_t i);
+    MemberInitializerIdentifierContext *memberInitializerIdentifier();
     antlr4::tree::TerminalNode *OpenParenthesis();
     antlr4::tree::TerminalNode *CloseParenthesis();
-    BracedInitializerListContext *bracedInitializerList();
     ExpressionListContext *expressionList();
+    BracedInitializerListContext *bracedInitializerList();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;

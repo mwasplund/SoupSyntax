@@ -1,11 +1,11 @@
 #pragma once
-#include "BracedInitializerListTests.h"
+#include "InitializerListTests.h"
 #include "../RunTest.h"
 
-TestState RunBracedInitializerListTests()
+TestState RunInitializerListTests()
 {
-    std::string className = "BracedInitializerListTests";
-    auto testClass = std::make_unique<Soup::Syntax::UnitTests::BracedInitializerListTests>();
+    std::string className = "InitializerListTests";
+    auto testClass = std::make_unique<Soup::Syntax::UnitTests::InitializerListTests>();
     TestState state = { 0, 0 };
 
     state += RunTest(

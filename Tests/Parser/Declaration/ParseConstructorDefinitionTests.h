@@ -126,7 +126,7 @@ namespace Soup::Syntax::UnitTests
         void ComplexParameterAndInitializer()
         {
             auto source = std::string(
-                "MyClass(int parameter) : m_value() {}");
+                "MyClass(int parameter) : m_value(parameter) {}");
 
             auto expected = SyntaxFactory::CreateConstructorDefinition(
                 SyntaxFactory::CreateSimpleIdentifierExpression(
@@ -134,16 +134,41 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     std::make_shared<SyntaxSeparatorList<Parameter>>(
-                        std::vector<std::shared_ptr<const Parameter>>(),
+                        std::vector<std::shared_ptr<const Parameter>>({
+                            SyntaxFactory::CreateParameter(
+                                SyntaxFactory::CreateDeclarationSpecifier(
+                                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                        PrimitiveDataType::Int,
+                                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
+                                SyntaxFactory::CreateSimpleIdentifierExpression(
+                                    SyntaxFactory::CreateUniqueToken(
+                                        SyntaxTokenType::Identifier,
+                                        "parameter",
+                                        {
+                                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
+                                        },
+                                        {}))),
+                        }),
                         std::vector<std::shared_ptr<const SyntaxToken>>()),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
                 SyntaxFactory::CreateConstructorInitializer(
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Colon),
+                    SyntaxFactory::CreateKeywordToken(
+                        SyntaxTokenType::Colon,
+                        {
+                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
+                        },
+                        {}),
                     std::make_shared<const SyntaxSeparatorList<MemberInitializer>>(
                         std::vector<std::shared_ptr<const MemberInitializer>>({
                             SyntaxFactory::CreateMemberInitializer(
-                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "m_value"),
-                                SyntaxFactory::CreateBracedInitializerList(
+                                SyntaxFactory::CreateUniqueToken(
+                                    SyntaxTokenType::Identifier,
+                                    "m_value",
+                                    {
+                                        SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
+                                    },
+                                    {}),
+                                SyntaxFactory::CreateInitializerList(
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                                     std::make_shared<const SyntaxSeparatorList<Expression>>(
                                         std::vector<std::shared_ptr<const Expression>>({
@@ -159,17 +184,11 @@ namespace Soup::Syntax::UnitTests
                         SyntaxFactory::CreateKeywordToken(
                             SyntaxTokenType::OpenBrace,
                             {
-                                SyntaxFactory::CreateTrivia("\n", TextSpan(0, 0)),
                                 SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
                             },
                             {}),
                         {},
-                        SyntaxFactory::CreateKeywordToken(
-                            SyntaxTokenType::CloseBrace,
-                            {
-                                SyntaxFactory::CreateTrivia("\n", TextSpan(0, 0)),
-                            },
-                            {}))));
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace))));
 
             auto actual = ParseConstructorDefinition(source);
 

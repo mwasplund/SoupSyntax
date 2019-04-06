@@ -14,11 +14,6 @@ namespace Soup::Syntax
             DefaultVisit(node);
         }
 
-        virtual void Visit(const BracedInitializerList& node) override
-        {
-            DefaultVisit(node);
-        }
-
         virtual void Visit(const CatchClause& node) override
         {
             DefaultVisit(node);
@@ -120,6 +115,11 @@ namespace Soup::Syntax
         }
 
         virtual void Visit(const InitializerDeclaratorList& node) override
+        {
+            DefaultVisit(node);
+        }
+
+        virtual void Visit(const InitializerList& node) override
         {
             DefaultVisit(node);
         }

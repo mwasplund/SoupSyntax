@@ -2,7 +2,6 @@ import std.core;
 import Antlr4.Runtime;
 import SoupSyntax;
 
-#include "AST\Declaration\BracedInitializerListTests.gen.h"
 #include "AST\Declaration\ClassDeclarationTests.gen.h"
 #include "AST\Declaration\ConstructorDefinitionTests.gen.h"
 #include "AST\Declaration\ConstructorInitializerTests.gen.h"
@@ -15,6 +14,7 @@ import SoupSyntax;
 #include "AST\Declaration\FunctionDefinitionTests.gen.h"
 #include "AST\Declaration\InitializerDeclaratorListTests.gen.h"
 #include "AST\Declaration\InitializerDeclaratorTests.gen.h"
+#include "AST\Declaration\InitializerListTests.gen.h"
 #include "AST\Declaration\MemberInitializerTests.gen.h"
 #include "AST\Declaration\NamespaceDefinitionTests.gen.h"
 #include "AST\Declaration\ParameterListTests.gen.h"
@@ -79,7 +79,6 @@ int main()
 
     TestState state = { 0, 0 };
 
-    state += RunBracedInitializerListTests();
     state += RunClassDeclarationTests();
     state += RunConstructorDefinitionTests();
     state += RunConstructorInitializerTests();
@@ -92,6 +91,7 @@ int main()
     state += RunFunctionDefinitionTests();
     state += RunInitializerDeclaratorListTests();
     state += RunInitializerDeclaratorTests();
+    state += RunInitializerListTests();
     state += RunMemberInitializerTests();
     state += RunNamespaceDefinitionTests();
     state += RunParameterListTests();

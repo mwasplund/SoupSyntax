@@ -15,10 +15,10 @@ namespace Soup::Syntax
         /// </summary>
         MemberInitializer(
             std::shared_ptr<const SyntaxToken> identifierToken,
-            std::shared_ptr<const BracedInitializerList> initializer) :
+            std::shared_ptr<const InitializerList> initializerList) :
             SyntaxNode(SyntaxNodeType::MemberInitializer),
             m_identifierToken(std::move(identifierToken)),
-            m_initializer(std::move(initializer))
+            m_initializerList(std::move(initializerList))
         {
         }
 
@@ -32,11 +32,11 @@ namespace Soup::Syntax
         }
 
         /// <summary>
-        /// Gets the initializer
+        /// Gets the initializer list
         /// </summary>
-        const BracedInitializerList& GetInitializer() const
+        const InitializerList& GetInitializerList() const
         {
-            return *m_initializer;
+            return *m_initializerList;
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace Soup::Syntax
             return std::vector<SyntaxNodeChild>(
                 {
                     SyntaxNodeChild(m_identifierToken),
-                    SyntaxNodeChild(m_initializer),
+                    SyntaxNodeChild(m_initializerList),
                 });
         }
 
@@ -65,7 +65,7 @@ namespace Soup::Syntax
         bool operator ==(const MemberInitializer& rhs) const
         {
             return *m_identifierToken == *rhs.m_identifierToken &&
-                *m_initializer == *rhs.m_initializer;
+                *m_initializerList == *rhs.m_initializerList;
         }
 
         bool operator !=(const MemberInitializer& rhs) const
@@ -84,6 +84,6 @@ namespace Soup::Syntax
 
     private:
         std::shared_ptr<const SyntaxToken> m_identifierToken;
-        std::shared_ptr<const BracedInitializerList> m_initializer;
+        std::shared_ptr<const InitializerList> m_initializerList;
     };
 }

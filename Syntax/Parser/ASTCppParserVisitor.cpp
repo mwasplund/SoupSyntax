@@ -440,7 +440,7 @@ antlrcpp::Any ASTCppParserVisitor::visitPostfixExpression(CppParser::PostfixExpr
 antlrcpp::Any ASTCppParserVisitor::visitExpressionList(CppParser::ExpressionListContext* context)
 {
     Trace("VisitExpressionList");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+    return visit(context->initializerList());
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitPseudoDestructorName(CppParser::PseudoDestructorNameContext* context)
@@ -2221,7 +2221,11 @@ antlrcpp::Any ASTCppParserVisitor::visitParameterDeclarationClause(CppParser::Pa
     // TODO Ellipsis
     if (context->parameterDeclarationList() != nullptr)
     {
-        return visit(context->parameterDeclarationList());
+        auto parameterListResult = visit(context->parameterDeclarationList())
+            .as<SeparatorListResult<Parameter>>();
+        return std::make_shared<const SyntaxSeparatorList<Parameter>>(
+            std::move(parameterListResult.Items),
+            std::move(parameterListResult.Separators));
     }
     else
     {
@@ -2235,15 +2239,48 @@ antlrcpp::Any ASTCppParserVisitor::visitParameterDeclarationList(CppParser::Para
 {
     Trace("VisitParameterDeclarationList");
 
-    return std::make_shared<const SyntaxSeparatorList<Parameter>>(
-        std::vector<std::shared_ptr<const Parameter>>(),
-        std::vector<std::shared_ptr<const SyntaxToken>>());
+    // Handle the recursive rule
+    SeparatorListResult<Parameter> parameterDeclarationList = {};
+    if (context->parameterDeclarationList() != nullptr)
+    {
+        parameterDeclarationList = visit(context->parameterDeclarationList())
+            .as<SeparatorListResult<Parameter>>();
+        parameterDeclarationList.Separators.push_back(
+            CreateToken(SyntaxTokenType::Comma, context->Comma()));
+    }
+
+    // Handle the next item
+    auto parameterDeclaration = visit(context->parameterDeclaration())
+            .as<std::shared_ptr<const Parameter>>();
+    parameterDeclarationList.Items.push_back(std::move(parameterDeclaration));
+
+    return parameterDeclarationList;
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitParameterDeclaration(CppParser::ParameterDeclarationContext* context)
 {
     Trace("VisitParameterDeclaration");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+
+    // attributeSpecifierSequence? declarationSpecifierSequence declarator |
+    // attributeSpecifierSequence? declarationSpecifierSequence declarator Equal initializerClause |
+    // attributeSpecifierSequence? declarationSpecifierSequence abstractDeclarator? |
+    // attributeSpecifierSequence? declarationSpecifierSequence abstractDeclarator? Equal initializerClause;
+    auto declarationSpecifier = visit(context->declarationSpecifierSequence())
+        .as<std::shared_ptr<const DeclarationSpecifier>>();
+    if (context->declarator() != nullptr)
+    {
+        auto declarator = visit(context->declarator())
+            .as<std::shared_ptr<const SyntaxNode>>();
+
+        // TODO: initializerClause
+        return SyntaxFactory::CreateParameter(
+            std::move(declarationSpecifier),
+            std::move(declarator));
+    }
+    else
+    {
+        throw std::logic_error(std::string(__func__) + " NotImplemented");
+    }
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitFunctionDefinition(CppParser::FunctionDefinitionContext* context)
@@ -2265,8 +2302,17 @@ antlrcpp::Any ASTCppParserVisitor::visitFunctionDefinition(CppParser::FunctionDe
         .as<std::shared_ptr<const SyntaxNode>>();
 
     // Check is a constructor or a regular function
+    // TODO: May want to specialize the parser for this to have unique paths
+    bool hasConstructorInitializer = 
+        context->functionBody()->regularFunctionBody() != nullptr &&
+        context->functionBody()->regularFunctionBody()->constructorInitializer() != nullptr;
     if (context->declarationSpecifierSequence() != nullptr)
     {
+        if (hasConstructorInitializer)
+        {
+            throw std::runtime_error("A regular function cannot have a constructor initializer.");
+        }
+
         auto returnType = visit(context->declarationSpecifierSequence())
             .as<std::shared_ptr<const DeclarationSpecifier>>();
 
@@ -2279,11 +2325,20 @@ antlrcpp::Any ASTCppParserVisitor::visitFunctionDefinition(CppParser::FunctionDe
     }
     else
     {
+        // Load the optional initializer
+        std::shared_ptr<const ConstructorInitializer> initializer = nullptr;
+        if (hasConstructorInitializer)
+        {
+            initializer = visit(
+                context->functionBody()->regularFunctionBody()->constructorInitializer())
+                    .as<std::shared_ptr<const ConstructorInitializer>>();
+        }
+
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreateConstructorDefinition(
                 std::move(identifier),
                 std::move(parameterList),
-                nullptr,
+                std::move(initializer),
                 std::move(body)));
     }
 }
@@ -2365,13 +2420,53 @@ antlrcpp::Any ASTCppParserVisitor::visitInitializerClause(CppParser::Initializer
 antlrcpp::Any ASTCppParserVisitor::visitInitializerList(CppParser::InitializerListContext* context)
 {
     Trace("VisitInitializerList");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+
+    // Handle the recursive rule
+    SeparatorListResult<Expression> initializerList = {};
+    if (context->initializerList() != nullptr)
+    {
+        initializerList = visit(context->initializerList())
+            .as<SeparatorListResult<Expression>>();
+        initializerList.Separators.push_back(
+            CreateToken(SyntaxTokenType::Comma, context->Comma()));
+    }
+
+    // Handle the next item
+    auto initializer = std::dynamic_pointer_cast<const Expression>(
+        visit(context->initializerClause())
+            .as<std::shared_ptr<const SyntaxNode>>());
+    initializerList.Items.push_back(std::move(initializer));
+
+    return initializerList;
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitBracedInitializerList(CppParser::BracedInitializerListContext* context)
 {
     Trace("VisitBracedInitializerList");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+
+    // Check for the optional expressions
+    SeparatorListResult<Expression> result = {};
+    if (context->initializerList() != nullptr)
+    {
+        result = visit(context->initializerList())
+            .as<const SeparatorListResult<Expression>>();
+
+        // Check for the optional trailing comma
+        if (context->Comma() != nullptr)
+        {
+            result.Separators.push_back(
+                CreateToken(SyntaxTokenType::Comma, context->Comma()));
+        }
+    }
+
+    auto values = std::make_shared<const SyntaxSeparatorList<Expression>>(
+        std::move(result.Items),
+        std::move(result.Separators));
+
+    return SyntaxFactory::CreateInitializerList(
+        CreateToken(SyntaxTokenType::OpenBrace, context->OpenBrace()),
+        std::move(values),
+        CreateToken(SyntaxTokenType::CloseBrace, context->CloseBrace()));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitExpressionOrBracedInitializerList(CppParser::ExpressionOrBracedInitializerListContext* context)
@@ -2582,19 +2677,77 @@ antlrcpp::Any ASTCppParserVisitor::visitConversionDeclarator(CppParser::Conversi
 antlrcpp::Any ASTCppParserVisitor::visitConstructorInitializer(CppParser::ConstructorInitializerContext* context)
 {
     Trace("VisitConstructorInitializer");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+
+    auto initializerList = visit(context->memberInitializerList())
+        .as<SeparatorListResult<MemberInitializer>>();
+
+    return SyntaxFactory::CreateConstructorInitializer(
+        CreateToken(SyntaxTokenType::Colon, context->Colon()),
+        std::make_shared<const SyntaxSeparatorList<MemberInitializer>>(
+            std::move(initializerList.Items),
+            std::move(initializerList.Separators)));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitMemberInitializerList(CppParser::MemberInitializerListContext* context)
 {
     Trace("VisitMemberInitializerList");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+
+    // Handle the recursive rule
+    SeparatorListResult<MemberInitializer> memberInitializerList = {};
+    if (context->memberInitializerList() != nullptr)
+    {
+        memberInitializerList = visit(context->memberInitializerList())
+            .as<SeparatorListResult<MemberInitializer>>();
+        memberInitializerList.Separators.push_back(
+            CreateToken(SyntaxTokenType::Comma, context->Comma()));
+    }
+
+    // Handle the next item
+    auto memberInitializer = visit(context->memberInitializer())
+            .as<std::shared_ptr<const MemberInitializer>>();
+    memberInitializerList.Items.push_back(std::move(memberInitializer));
+
+    return memberInitializerList;
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitMemberInitializer(CppParser::MemberInitializerContext* context)
 {
     Trace("VisitMemberInitializer");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+
+    // Handle the mutiple forms of initializers
+    std::shared_ptr<const InitializerList> initializerList = nullptr;
+    if (context->OpenParenthesis() != nullptr)
+    {
+        // Check for the optional expressions
+        SeparatorListResult<Expression> result = {};
+        if (context->expressionList() != nullptr)
+        {
+            result = visit(context->expressionList())
+                .as<const SeparatorListResult<Expression>>();
+        }
+
+        auto values = std::make_shared<const SyntaxSeparatorList<Expression>>(
+            std::move(result.Items),
+            std::move(result.Separators));
+
+        initializerList = SyntaxFactory::CreateInitializerList(
+            CreateToken(SyntaxTokenType::OpenParenthesis, context->OpenParenthesis()),
+            std::move(values),
+            CreateToken(SyntaxTokenType::CloseParenthesis, context->CloseParenthesis()));
+    }
+    else if (context->bracedInitializerList() != nullptr)
+    {
+        initializerList = visit(context->bracedInitializerList())
+            .as<std::shared_ptr<const InitializerList>>();
+    }
+    else
+    {
+        throw std::logic_error("Unknown Member Initializer");
+    }
+
+    return SyntaxFactory::CreateMemberInitializer(
+        CreateToken(SyntaxTokenType::Identifier, context->memberInitializerIdentifier()->Identifier()),
+        std::move(initializerList));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitMemberInitializerIdentifier(CppParser::MemberInitializerIdentifierContext* context)

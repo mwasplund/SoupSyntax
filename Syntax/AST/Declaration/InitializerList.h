@@ -3,9 +3,10 @@
 namespace Soup::Syntax
 {
     /// <summary>
-    /// The braced initializer list used to initialize values "(a, b)"
+    /// The initializer list used to initialize values surrounded by either 
+    /// braces or parenthesis "(a, b)" or "{a, b}"
     /// </summary>
-    export class BracedInitializerList final : public SyntaxNode
+    export class InitializerList final : public SyntaxNode
     {
         friend class SyntaxFactory;
 
@@ -13,24 +14,24 @@ namespace Soup::Syntax
         /// <summary>
         /// Initialize
         /// </summary>
-        BracedInitializerList(
-            std::shared_ptr<const SyntaxToken> openParenthesisToken,
+        InitializerList(
+            std::shared_ptr<const SyntaxToken> openToken,
             std::shared_ptr<const SyntaxSeparatorList<Expression>> values,
-            std::shared_ptr<const SyntaxToken> closeParenthesisToken) :
-            SyntaxNode(SyntaxNodeType::BracedInitializerList),
-            m_openParenthesisToken(std::move(openParenthesisToken)),
+            std::shared_ptr<const SyntaxToken> closeToken) :
+            SyntaxNode(SyntaxNodeType::InitializerList),
+            m_openToken(std::move(openToken)),
             m_values(std::move(values)),
-            m_closeParenthesisToken(std::move(closeParenthesisToken))
+            m_closeToken(std::move(closeToken))
         {
         }
 
     public:
         /// <summary>
-        /// Gets the left parenthesis token
+        /// Gets the left token
         /// </summary>
-        const SyntaxToken& GetOpenParenthesisToken() const
+        const SyntaxToken& GetOpenToken() const
         {
-            return *m_openParenthesisToken;
+            return *m_openToken;
         }
 
         /// <summary>
@@ -42,11 +43,11 @@ namespace Soup::Syntax
         }
 
         /// <summary>
-        /// Gets the right parenthesis token
+        /// Gets the right token
         /// </summary>
-        const SyntaxToken& GetCloseParenthesisToken() const
+        const SyntaxToken& GetCloseToken() const
         {
-            return *m_closeParenthesisToken;
+            return *m_closeToken;
         }
 
         /// <summary>
@@ -56,12 +57,12 @@ namespace Soup::Syntax
         {
             std::vector<SyntaxNodeChild> children;
 
-            children.push_back(SyntaxNodeChild(m_openParenthesisToken));
+            children.push_back(SyntaxNodeChild(m_openToken));
 
             auto valueChildren = m_values->GetChildren();
             children.insert(children.end(), valueChildren.begin(), valueChildren.end());
 
-            children.push_back(SyntaxNodeChild(m_closeParenthesisToken));
+            children.push_back(SyntaxNodeChild(m_closeToken));
 
             return children;
         }
@@ -77,14 +78,14 @@ namespace Soup::Syntax
         /// <summary>
         /// Equality operator
         /// </summary>
-        bool operator ==(const BracedInitializerList& rhs) const
+        bool operator ==(const InitializerList& rhs) const
         {
-            return *m_openParenthesisToken == *rhs.m_openParenthesisToken &&
+            return *m_openToken == *rhs.m_openToken &&
                 *m_values == *rhs.m_values &&
-                *m_closeParenthesisToken == *rhs.m_closeParenthesisToken;
+                *m_closeToken == *rhs.m_closeToken;
         }
 
-        bool operator !=(const BracedInitializerList& rhs) const
+        bool operator !=(const InitializerList& rhs) const
         {
             return !(*this == rhs);
         }
@@ -95,12 +96,12 @@ namespace Soup::Syntax
         /// </summary>
         virtual bool Equals(const SyntaxNode& rhs) const final
         {
-            return *this == static_cast<const BracedInitializerList&>(rhs);
+            return *this == static_cast<const InitializerList&>(rhs);
         }
 
     private:
-        std::shared_ptr<const SyntaxToken> m_openParenthesisToken;
+        std::shared_ptr<const SyntaxToken> m_openToken;
         std::shared_ptr<const SyntaxSeparatorList<Expression>> m_values;
-        std::shared_ptr<const SyntaxToken> m_closeParenthesisToken;
+        std::shared_ptr<const SyntaxToken> m_closeToken;
     };
 }

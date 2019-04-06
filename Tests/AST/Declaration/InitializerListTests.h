@@ -4,14 +4,14 @@
 
 namespace Soup::Syntax::UnitTests
 {
-    class BracedInitializerListTests
+    class InitializerListTests
     {
     public:
         // [[Fact]]
         void InitializeSimple()
         {
             // (a, b)
-            auto uut = SyntaxFactory::CreateBracedInitializerList(
+            auto uut = SyntaxFactory::CreateInitializerList(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 std::make_shared<const SyntaxSeparatorList<Expression>>(
                     std::vector<std::shared_ptr<const Expression>>(
@@ -27,13 +27,13 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis));
 
             Assert::AreEqual(
-                SyntaxNodeType::BracedInitializerList,
+                SyntaxNodeType::InitializerList,
                 uut->GetType(),
                 "Verify has correct type.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                uut->GetOpenParenthesisToken(),
-                "Verify left parenthesis token matches.");
+                uut->GetOpenToken(),
+                "Verify open token matches.");
             Assert::AreEqual(
                 *std::make_shared<const SyntaxSeparatorList<Expression>>(
                     std::vector<std::shared_ptr<const Expression>>(
@@ -50,15 +50,15 @@ namespace Soup::Syntax::UnitTests
                 "Verify values match.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
-                uut->GetCloseParenthesisToken(),
-                "Verify right parenthesis token matches.");
+                uut->GetCloseToken(),
+                "Verify right token matches.");
         }
 
         // [[Fact]]
         void GetChildren()
         {
             // (a, b)
-            auto uut = SyntaxFactory::CreateBracedInitializerList(
+            auto uut = SyntaxFactory::CreateInitializerList(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 std::make_shared<const SyntaxSeparatorList<Expression>>(
                     std::vector<std::shared_ptr<const Expression>>(
@@ -93,7 +93,7 @@ namespace Soup::Syntax::UnitTests
         void OperatorEqual()
         {
             // (a, b)
-            auto uut = SyntaxFactory::CreateBracedInitializerList(
+            auto uut = SyntaxFactory::CreateInitializerList(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 std::make_shared<const SyntaxSeparatorList<Expression>>(
                     std::vector<std::shared_ptr<const Expression>>(
@@ -109,7 +109,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis));
 
             TestUtils::AreEqual(
-                SyntaxFactory::CreateBracedInitializerList(
+                SyntaxFactory::CreateInitializerList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     std::make_shared<const SyntaxSeparatorList<Expression>>(
                         std::vector<std::shared_ptr<const Expression>>(
@@ -131,7 +131,7 @@ namespace Soup::Syntax::UnitTests
         void OperatorNotEqualOpenParenthesisToken()
         {
             // (a, b)
-            auto uut = SyntaxFactory::CreateBracedInitializerList(
+            auto uut = SyntaxFactory::CreateInitializerList(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 std::make_shared<const SyntaxSeparatorList<Expression>>(
                     std::vector<std::shared_ptr<const Expression>>(
@@ -147,7 +147,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis));
 
             TestUtils::AreNotEqual(
-                SyntaxFactory::CreateBracedInitializerList(
+                SyntaxFactory::CreateInitializerList(
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::OpenParenthesis,
                         {
@@ -174,7 +174,7 @@ namespace Soup::Syntax::UnitTests
         void OperatorNotEqualValues()
         {
             // (a, b)
-            auto uut = SyntaxFactory::CreateBracedInitializerList(
+            auto uut = SyntaxFactory::CreateInitializerList(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 std::make_shared<const SyntaxSeparatorList<Expression>>(
                     std::vector<std::shared_ptr<const Expression>>(
@@ -190,7 +190,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis));
 
             TestUtils::AreNotEqual(
-                SyntaxFactory::CreateBracedInitializerList(
+                SyntaxFactory::CreateInitializerList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     std::make_shared<const SyntaxSeparatorList<Expression>>(
                         std::vector<std::shared_ptr<const Expression>>(
@@ -212,7 +212,7 @@ namespace Soup::Syntax::UnitTests
         void OperatorNotEqualCloseParenthesisToken()
         {
             // (a, b)
-            auto uut = SyntaxFactory::CreateBracedInitializerList(
+            auto uut = SyntaxFactory::CreateInitializerList(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 std::make_shared<const SyntaxSeparatorList<Expression>>(
                     std::vector<std::shared_ptr<const Expression>>(
@@ -228,7 +228,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis));
 
             TestUtils::AreNotEqual(
-                SyntaxFactory::CreateBracedInitializerList(
+                SyntaxFactory::CreateInitializerList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     std::make_shared<const SyntaxSeparatorList<Expression>>(
                         std::vector<std::shared_ptr<const Expression>>(
