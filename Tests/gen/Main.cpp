@@ -16,6 +16,9 @@ import SoupSyntax;
 #include "AST\Declaration\InitializerDeclaratorListTests.gen.h"
 #include "AST\Declaration\InitializerDeclaratorTests.gen.h"
 #include "AST\Declaration\InitializerListTests.gen.h"
+#include "AST\Declaration\MemberDeclarationTests.gen.h"
+#include "AST\Declaration\MemberDeclaratorListTests.gen.h"
+#include "AST\Declaration\MemberDeclaratorTests.gen.h"
 #include "AST\Declaration\MemberInitializerTests.gen.h"
 #include "AST\Declaration\NamespaceDefinitionTests.gen.h"
 #include "AST\Declaration\ParameterListTests.gen.h"
@@ -57,6 +60,7 @@ import SoupSyntax;
 #include "Parser\Declaration\ParseConstructorDefinitionTests.gen.h"
 #include "Parser\Declaration\ParseEnumDeclarationTests.gen.h"
 #include "Parser\Declaration\ParseFunctionDefinitionTests.gen.h"
+#include "Parser\Declaration\ParseMemberDeclarationTests.gen.h"
 #include "Parser\Declaration\ParseNamespaceDefinitionTests.gen.h"
 #include "Parser\Declaration\ParseSimpleDeclarationTests.gen.h"
 
@@ -95,6 +99,9 @@ int main()
     state += RunInitializerDeclaratorListTests();
     state += RunInitializerDeclaratorTests();
     state += RunInitializerListTests();
+    state += RunMemberDeclarationTests();
+    state += RunMemberDeclaratorListTests();
+    state += RunMemberDeclaratorTests();
     state += RunMemberInitializerTests();
     state += RunNamespaceDefinitionTests();
     state += RunParameterListTests();
@@ -136,6 +143,7 @@ int main()
     state += RunParseConstructorDefinitionTests();
     state += RunParseEnumDeclarationTests();
     state += RunParseFunctionDefinitionTests();
+    state += RunParseMemberDeclarationTests();
     state += RunParseNamespaceDefinitionTests();
     state += RunParseSimpleDeclarationTests();
 

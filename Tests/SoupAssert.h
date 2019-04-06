@@ -69,6 +69,21 @@ public:
         }
     }
 
+    static void AreEqual(
+        const std::string& expected,
+        const std::string& actual,
+        const std::string& message)
+    {
+        if (expected != actual)
+        {
+            auto errorExpected = 
+                message + 
+                " Expected<" + expected +
+                "> Actual<" + expected + ">";
+            Fail(errorExpected);
+        }
+    }
+
     template<typename T>
     static typename std::enable_if<std::is_pointer<T>::value || is_shared_ptr<T>::value>::type AreNotEqual(
         T expected,

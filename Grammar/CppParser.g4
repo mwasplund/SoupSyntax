@@ -845,7 +845,8 @@ memberDeclaratorList:
 	memberDeclaratorList Comma memberDeclarator;
 
 memberDeclarator:
-	declarator virtualSpecifierSequence? pureSpecifier? |
+	// TODO: amiguous pureSpecifier must be converted from equal initializer
+	declarator virtualSpecifierSequence? |
 	declarator braceOrEqualInitializer |
 	Identifier? attributeSpecifierSequence? Colon constantExpression;
 

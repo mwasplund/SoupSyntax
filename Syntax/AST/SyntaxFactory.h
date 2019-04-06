@@ -941,6 +941,59 @@ namespace Soup::Syntax
         }
 
         /// <summary>
+        /// Create a MemberDeclaration
+        /// </summary>
+        static std::shared_ptr<const MemberDeclaration> CreateMemberDeclaration(
+            std::shared_ptr<const DeclarationSpecifier> declarationSpecifier,
+            std::shared_ptr<const MemberDeclaratorList> memberDeclaratorList,
+            std::shared_ptr<const SyntaxToken> semicolonToken)
+        {
+            if (declarationSpecifier == nullptr)
+                throw std::runtime_error("ArgumentNull - declarationSpecifier");
+            if (memberDeclaratorList == nullptr)
+                throw std::runtime_error("ArgumentNull - memberDeclaratorList");
+            if (semicolonToken == nullptr)
+                throw std::runtime_error("ArgumentNull - semicolonToken");
+
+            return std::shared_ptr<const MemberDeclaration>(
+                new MemberDeclaration(
+                    std::move(declarationSpecifier),
+                    std::move(memberDeclaratorList),
+                    std::move(semicolonToken)));
+        }
+
+        /// <summary>
+        /// Create a MemberDeclarator
+        /// </summary>
+        static std::shared_ptr<const MemberDeclarator> CreateMemberDeclarator(
+            std::shared_ptr<const SyntaxNode> declarator,
+            std::shared_ptr<const SyntaxNode> initializer)
+        {
+            // Note: the initializer is optional
+            if (declarator == nullptr)
+                throw std::runtime_error("ArgumentNull - declarator");
+
+            return std::shared_ptr<const MemberDeclarator>(
+                new MemberDeclarator(
+                    std::move(declarator),
+                    std::move(initializer)));
+        }
+
+        /// <summary>
+        /// Create a MemberDeclaratorList
+        /// </summary>
+        static std::shared_ptr<const MemberDeclaratorList> CreateMemberDeclaratorList(
+            std::shared_ptr<const SyntaxSeparatorList<MemberDeclarator>> items)
+        {
+            if (items == nullptr)
+                throw std::runtime_error("ArgumentNull - items");
+
+            return std::shared_ptr<const MemberDeclaratorList>(
+                new MemberDeclaratorList(
+                    std::move(items)));
+        }
+
+        /// <summary>
         /// Create a MemberInitializer
         /// </summary>
         static std::shared_ptr<const MemberInitializer> CreateMemberInitializer(

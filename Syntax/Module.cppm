@@ -40,6 +40,9 @@ namespace Soup::Syntax
     class InitializerDeclarator;
     class InitializerDeclaratorList;
     class InitializerList;
+    class MemberDeclaration;
+    class MemberDeclarator;
+    class MemberDeclaratorList;
     class MemberInitializer;
     class NamespaceDefinition;
     class Parameter;
@@ -104,6 +107,9 @@ namespace Soup::Syntax
 #include "AST\Declaration\ParameterList.h"
 #include "AST\Declaration\ClassDeclaration.h"
 #include "AST\Declaration\InitializerList.h"
+#include "AST\Declaration\MemberDeclarator.h"
+#include "AST\Declaration\MemberDeclaratorList.h"
+#include "AST\Declaration\MemberDeclaration.h"
 #include "AST\Declaration\MemberInitializer.h"
 #include "AST\Declaration\ConstructorInitializer.h"
 #include "AST\Declaration\ConstructorDefinition.h"

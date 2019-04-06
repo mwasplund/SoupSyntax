@@ -3579,7 +3579,6 @@ public:
     virtual size_t getRuleIndex() const override;
     DeclaratorContext *declarator();
     VirtualSpecifierSequenceContext *virtualSpecifierSequence();
-    PureSpecifierContext *pureSpecifier();
     BraceOrEqualInitializerContext *braceOrEqualInitializer();
     antlr4::tree::TerminalNode *Colon();
     ConstantExpressionContext *constantExpression();

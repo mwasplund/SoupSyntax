@@ -4,25 +4,25 @@
 
 namespace Soup::Syntax::UnitTests
 {
-    class ParseSimpleDeclarationTests
+    class ParseMemberDeclarationTests
     {
     public:
         // [Fact]
         void SingleIntVariable()
         {
             auto sourceCode = std::string("int i;");
-            auto actual = ParseSimpleDeclaration(sourceCode);
+            auto actual = ParseMemberDeclaration(sourceCode);
 
-            auto expected = SyntaxFactory::CreateSimpleDeclaration(
+            auto expected = SyntaxFactory::CreateMemberDeclaration(
                 SyntaxFactory::CreateDeclarationSpecifier(
                     SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
-                SyntaxFactory::CreateInitializerDeclaratorList(
-                    std::make_shared<const SyntaxSeparatorList<InitializerDeclarator>>(
-                        std::vector<std::shared_ptr<const InitializerDeclarator>>(
+              SyntaxFactory::CreateMemberDeclaratorList(
+                    std::make_shared<const SyntaxSeparatorList<MemberDeclarator>>(
+                        std::vector<std::shared_ptr<const MemberDeclarator>>(
                         {
-                            SyntaxFactory::CreateInitializerDeclarator(
+                            SyntaxFactory::CreateMemberDeclarator(
                                 SyntaxFactory::CreateSimpleIdentifierExpression(
                                     SyntaxFactory::CreateUniqueToken(
                                         SyntaxTokenType::Identifier,
@@ -43,17 +43,17 @@ namespace Soup::Syntax::UnitTests
         void SingleClassVariable()
         {
             auto sourceCode = std::string("MyClass i;");
-            auto actual = ParseSimpleDeclaration(sourceCode);
+            auto actual = ParseMemberDeclaration(sourceCode);
 
-            auto expected = SyntaxFactory::CreateSimpleDeclaration(
+            auto expected = SyntaxFactory::CreateMemberDeclaration(
                 SyntaxFactory::CreateDeclarationSpecifier(
                     SyntaxFactory::CreateSimpleIdentifierExpression(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"))),
-                SyntaxFactory::CreateInitializerDeclaratorList(
-                    std::make_shared<const SyntaxSeparatorList<InitializerDeclarator>>(
-                        std::vector<std::shared_ptr<const InitializerDeclarator>>(
+                SyntaxFactory::CreateMemberDeclaratorList(
+                    std::make_shared<const SyntaxSeparatorList<MemberDeclarator>>(
+                        std::vector<std::shared_ptr<const MemberDeclarator>>(
                         {
-                            SyntaxFactory::CreateInitializerDeclarator(
+                            SyntaxFactory::CreateMemberDeclarator(
                                 SyntaxFactory::CreateSimpleIdentifierExpression(
                                     SyntaxFactory::CreateUniqueToken(
                                         SyntaxTokenType::Identifier,
@@ -74,9 +74,9 @@ namespace Soup::Syntax::UnitTests
         void SingleTemplateClassVariable()
         {
             auto sourceCode = std::string("std::vector<ClassA> value1;");
-            auto actual = ParseSimpleDeclaration(sourceCode);
+            auto actual = ParseMemberDeclaration(sourceCode);
 
-            auto expected = SyntaxFactory::CreateSimpleDeclaration(
+            auto expected = SyntaxFactory::CreateMemberDeclaration(
                 SyntaxFactory::CreateDeclarationSpecifier(
                     SyntaxFactory::CreateQualifiedIdentifierExpression(
                         SyntaxFactory::CreateSimpleIdentifierExpression(
@@ -92,11 +92,11 @@ namespace Soup::Syntax::UnitTests
                                 }),
                                 std::vector<std::shared_ptr<const SyntaxToken>>({})),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan)))),
-                SyntaxFactory::CreateInitializerDeclaratorList(
-                    std::make_shared<const SyntaxSeparatorList<InitializerDeclarator>>(
-                        std::vector<std::shared_ptr<const InitializerDeclarator>>(
+                SyntaxFactory::CreateMemberDeclaratorList(
+                    std::make_shared<const SyntaxSeparatorList<MemberDeclarator>>(
+                        std::vector<std::shared_ptr<const MemberDeclarator>>(
                         {
-                            SyntaxFactory::CreateInitializerDeclarator(
+                            SyntaxFactory::CreateMemberDeclarator(
                                 SyntaxFactory::CreateSimpleIdentifierExpression(
                                     SyntaxFactory::CreateUniqueToken(
                                         SyntaxTokenType::Identifier,
@@ -117,18 +117,18 @@ namespace Soup::Syntax::UnitTests
         void SingleIntVariableWithInitializer()
         {
             auto sourceCode = std::string("int i = 0;");
-            auto actual = ParseSimpleDeclaration(sourceCode);
+            auto actual = ParseMemberDeclaration(sourceCode);
 
-            auto expected = SyntaxFactory::CreateSimpleDeclaration(
+            auto expected = SyntaxFactory::CreateMemberDeclaration(
                 SyntaxFactory::CreateDeclarationSpecifier(
                     SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
-                SyntaxFactory::CreateInitializerDeclaratorList(
-                    std::make_shared<const SyntaxSeparatorList<InitializerDeclarator>>(
-                        std::vector<std::shared_ptr<const InitializerDeclarator>>(
+                SyntaxFactory::CreateMemberDeclaratorList(
+                    std::make_shared<const SyntaxSeparatorList<MemberDeclarator>>(
+                        std::vector<std::shared_ptr<const MemberDeclarator>>(
                         {
-                            SyntaxFactory::CreateInitializerDeclarator(
+                            SyntaxFactory::CreateMemberDeclarator(
                                 SyntaxFactory::CreateSimpleIdentifierExpression(
                                     SyntaxFactory::CreateUniqueToken(
                                         SyntaxTokenType::Identifier,
@@ -164,18 +164,18 @@ namespace Soup::Syntax::UnitTests
         void DoubleIntVariable()
         {
             auto sourceCode = std::string("int i, j;");
-            auto actual = ParseSimpleDeclaration(sourceCode);
+            auto actual = ParseMemberDeclaration(sourceCode);
 
-            auto expected = SyntaxFactory::CreateSimpleDeclaration(
+            auto expected = SyntaxFactory::CreateMemberDeclaration(
                 SyntaxFactory::CreateDeclarationSpecifier(
                     SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
-                SyntaxFactory::CreateInitializerDeclaratorList(
-                    std::make_shared<const SyntaxSeparatorList<InitializerDeclarator>>(
-                        std::vector<std::shared_ptr<const InitializerDeclarator>>(
+                SyntaxFactory::CreateMemberDeclaratorList(
+                    std::make_shared<const SyntaxSeparatorList<MemberDeclarator>>(
+                        std::vector<std::shared_ptr<const MemberDeclarator>>(
                         {
-                            SyntaxFactory::CreateInitializerDeclarator(
+                            SyntaxFactory::CreateMemberDeclarator(
                                 SyntaxFactory::CreateSimpleIdentifierExpression(
                                     SyntaxFactory::CreateUniqueToken(
                                         SyntaxTokenType::Identifier,
@@ -185,7 +185,7 @@ namespace Soup::Syntax::UnitTests
                                         },
                                         {})),
                                 nullptr),
-                            SyntaxFactory::CreateInitializerDeclarator(
+                            SyntaxFactory::CreateMemberDeclarator(
                                 SyntaxFactory::CreateSimpleIdentifierExpression(
                                     SyntaxFactory::CreateUniqueToken(
                                         SyntaxTokenType::Identifier,
@@ -208,18 +208,18 @@ namespace Soup::Syntax::UnitTests
         void DoubleIntVariableSingleWithInitializer()
         {
             auto sourceCode = std::string("int i = 0, j;");
-            auto actual = ParseSimpleDeclaration(sourceCode);
+            auto actual = ParseMemberDeclaration(sourceCode);
 
-            auto expected = SyntaxFactory::CreateSimpleDeclaration(
+            auto expected = SyntaxFactory::CreateMemberDeclaration(
                 SyntaxFactory::CreateDeclarationSpecifier(
                     SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
-                SyntaxFactory::CreateInitializerDeclaratorList(
-                    std::make_shared<const SyntaxSeparatorList<InitializerDeclarator>>(
-                        std::vector<std::shared_ptr<const InitializerDeclarator>>(
+                SyntaxFactory::CreateMemberDeclaratorList(
+                    std::make_shared<const SyntaxSeparatorList<MemberDeclarator>>(
+                        std::vector<std::shared_ptr<const MemberDeclarator>>(
                         {
-                            SyntaxFactory::CreateInitializerDeclarator(
+                            SyntaxFactory::CreateMemberDeclarator(
                                 SyntaxFactory::CreateSimpleIdentifierExpression(
                                     SyntaxFactory::CreateUniqueToken(
                                         SyntaxTokenType::Identifier,
@@ -244,7 +244,7 @@ namespace Soup::Syntax::UnitTests
                                                 SyntaxFactory::CreateTrivia(" ", TextSpan()),
                                             },
                                             {})))),
-                            SyntaxFactory::CreateInitializerDeclarator(
+                            SyntaxFactory::CreateMemberDeclarator(
                                 SyntaxFactory::CreateSimpleIdentifierExpression(
                                     SyntaxFactory::CreateUniqueToken(
                                         SyntaxTokenType::Identifier,
@@ -267,18 +267,18 @@ namespace Soup::Syntax::UnitTests
         void DoubleIntVariableBothWithInitializer()
         {
             auto sourceCode = std::string("int i = 0, j = 1;");
-            auto actual = ParseSimpleDeclaration(sourceCode);
+            auto actual = ParseMemberDeclaration(sourceCode);
 
-            auto expected = SyntaxFactory::CreateSimpleDeclaration(
+            auto expected = SyntaxFactory::CreateMemberDeclaration(
                 SyntaxFactory::CreateDeclarationSpecifier(
                     SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
-                SyntaxFactory::CreateInitializerDeclaratorList(
-                    std::make_shared<const SyntaxSeparatorList<InitializerDeclarator>>(
-                        std::vector<std::shared_ptr<const InitializerDeclarator>>(
+                SyntaxFactory::CreateMemberDeclaratorList(
+                    std::make_shared<const SyntaxSeparatorList<MemberDeclarator>>(
+                        std::vector<std::shared_ptr<const MemberDeclarator>>(
                         {
-                            SyntaxFactory::CreateInitializerDeclarator(
+                            SyntaxFactory::CreateMemberDeclarator(
                                 SyntaxFactory::CreateSimpleIdentifierExpression(
                                     SyntaxFactory::CreateUniqueToken(
                                         SyntaxTokenType::Identifier,
@@ -303,7 +303,7 @@ namespace Soup::Syntax::UnitTests
                                                 SyntaxFactory::CreateTrivia(" ", TextSpan()),
                                             },
                                             {})))),
-                            SyntaxFactory::CreateInitializerDeclarator(
+                            SyntaxFactory::CreateMemberDeclarator(
                                 SyntaxFactory::CreateSimpleIdentifierExpression(
                                     SyntaxFactory::CreateUniqueToken(
                                         SyntaxTokenType::Identifier,
@@ -341,9 +341,9 @@ namespace Soup::Syntax::UnitTests
         void SingleIntLeadingAndTrailingModifierVariable()
         {
             auto sourceCode = std::string("static int constexpr i;");
-            auto actual = ParseSimpleDeclaration(sourceCode);
+            auto actual = ParseMemberDeclaration(sourceCode);
 
-            auto expected = SyntaxFactory::CreateSimpleDeclaration(
+            auto expected = SyntaxFactory::CreateMemberDeclaration(
                 SyntaxFactory::CreateDeclarationSpecifier(
                     {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Static),
@@ -364,11 +364,11 @@ namespace Soup::Syntax::UnitTests
                             },
                             {}),
                     }),
-                SyntaxFactory::CreateInitializerDeclaratorList(
-                    std::make_shared<const SyntaxSeparatorList<InitializerDeclarator>>(
-                        std::vector<std::shared_ptr<const InitializerDeclarator>>(
+                SyntaxFactory::CreateMemberDeclaratorList(
+                    std::make_shared<const SyntaxSeparatorList<MemberDeclarator>>(
+                        std::vector<std::shared_ptr<const MemberDeclarator>>(
                         {
-                            SyntaxFactory::CreateInitializerDeclarator(
+                            SyntaxFactory::CreateMemberDeclarator(
                                 SyntaxFactory::CreateSimpleIdentifierExpression(
                                     SyntaxFactory::CreateUniqueToken(
                                         SyntaxTokenType::Identifier,
@@ -386,16 +386,16 @@ namespace Soup::Syntax::UnitTests
         }
 
     private:
-        std::shared_ptr<const SimpleDeclaration> ParseSimpleDeclaration(std::string& sourceCode)
+        std::shared_ptr<const SyntaxNode> ParseMemberDeclaration(std::string& sourceCode)
         {
             auto uut = TestUtils::BuildParser(sourceCode);
-            auto context = uut.Parser->simpleDeclaration();
+            auto context = uut.Parser->memberDeclaration();
 
             // Convert the the abstract syntax tree
             auto node = uut.Visitor->visit(context)
                 .as<std::shared_ptr<const SyntaxNode>>();
 
-            return std::dynamic_pointer_cast<const SimpleDeclaration>(node);
+            return node;
         }
     };
 }
