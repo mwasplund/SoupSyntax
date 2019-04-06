@@ -846,7 +846,7 @@ memberDeclaratorList:
 
 memberDeclarator:
 	declarator virtualSpecifierSequence? pureSpecifier? |
-	declarator braceOrEqualInitializer? |
+	declarator braceOrEqualInitializer |
 	Identifier? attributeSpecifierSequence? Colon constantExpression;
 
 virtualSpecifierSequence:

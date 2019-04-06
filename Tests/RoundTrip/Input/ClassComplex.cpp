@@ -21,10 +21,10 @@ public:
         return m_value;
     }
 
-    bool operator==(const MyClass& other)
-    {
-        return m_value == rhs.m_value;
-    }
+    // bool operator==(const MyClass& other)
+    // {
+    //     return m_value == rhs.m_value;
+    // }
 
 private:
     // Member variable

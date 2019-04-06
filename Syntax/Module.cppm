@@ -25,6 +25,7 @@ namespace Soup::Syntax
     class UnaryExpression;
 
     // Declarations
+    class AccessorSpecifier;
     class ClassDeclaration;
     class ConstructorDefinition;
     class ConstructorInitializer;
@@ -98,6 +99,7 @@ namespace Soup::Syntax
 #include "AST\Statement\TryStatement.h"
 #include "AST\Declaration\DeclarationSpecifier.h"
 #include "AST\Declaration\Declaration.h"
+#include "AST\Declaration\AccessorSpecifier.h"
 #include "AST\Declaration\Parameter.h"
 #include "AST\Declaration\ParameterList.h"
 #include "AST\Declaration\ClassDeclaration.h"

@@ -2565,7 +2565,12 @@ antlrcpp::Any ASTCppParserVisitor::visitMemberSpecification(CppParser::MemberSpe
     // Handle the next item
     if (context->accessSpecifier() != nullptr)
     {
-        throw std::logic_error(std::string(__func__) + " NotImplemented");
+        auto accessorToken = visit(context->accessSpecifier())
+            .as<std::shared_ptr<const SyntaxToken>>();
+        auto member = SyntaxFactory::CreateAccessorSpecifier(
+            std::move(accessorToken),
+            CreateToken(SyntaxTokenType::Colon, context->Colon()));
+        memberSpecifiers.push_back(std::move(member));
     }
     else if (context->memberDeclaration() != nullptr)
     {
@@ -2653,7 +2658,22 @@ antlrcpp::Any ASTCppParserVisitor::visitClassOrDecltype(CppParser::ClassOrDeclty
 antlrcpp::Any ASTCppParserVisitor::visitAccessSpecifier(CppParser::AccessSpecifierContext* context)
 {
     Trace("VisitAccessSpecifier");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+    if (context->Private() != nullptr)
+    {
+        return CreateToken(SyntaxTokenType::Private, context->Private());
+    }
+    else if (context->Protected() != nullptr)
+    {
+        return CreateToken(SyntaxTokenType::Protected, context->Protected());
+    }
+    else if (context->Public() != nullptr)
+    {
+        return CreateToken(SyntaxTokenType::Public, context->Public());
+    }
+    else
+    {
+        throw std::logic_error("Unknown Accessor Specifier.");
+    }
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitConversionFunctionIdentifier(CppParser::ConversionFunctionIdentifierContext* context)

@@ -11,6 +11,24 @@ namespace Soup::Syntax
     {
     public:
         /// <summary>
+        /// Create a AccessorSpecifier
+        /// </summary>
+        static std::shared_ptr<const AccessorSpecifier> CreateAccessorSpecifier(
+            std::shared_ptr<const SyntaxToken> accessorToken,
+            std::shared_ptr<const SyntaxToken> colonToken)
+        {
+            if (accessorToken == nullptr)
+                throw std::runtime_error("ArgumentNull - accessorToken");
+            if (colonToken == nullptr)
+                throw std::runtime_error("ArgumentNull - colonToken");
+
+            return std::shared_ptr<const AccessorSpecifier>(
+                new AccessorSpecifier(
+                    std::move(accessorToken),
+                    std::move(colonToken)));
+        }
+
+        /// <summary>
         /// Create a BinaryExpression
         /// </summary>
         static std::shared_ptr<const BinaryExpression> CreateBinaryExpression(
