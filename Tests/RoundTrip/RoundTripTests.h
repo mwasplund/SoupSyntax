@@ -14,6 +14,7 @@ namespace Soup::Syntax::UnitTests
         // [[InlineData("EmptyFile.cpp")]]
         // [[InlineData("HelloWorld.cpp")]]
         // [[InlineData("LineComment.cpp")]]
+        // [[InlineData("LineComments.cpp")]]
         // [[InlineData("Namespace.cpp")]]
         // [[InlineData("TemplateArguments.cpp")]]
         void RoundTrip(std::string name)

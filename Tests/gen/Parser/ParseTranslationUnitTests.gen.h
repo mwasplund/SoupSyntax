@@ -18,6 +18,10 @@ TestState RunParseTranslationUnitTests()
         [&testClass]() { testClass->OnlyTrivia(); });
     state += RunTest(
         className,
+        "OnlyComments",
+        [&testClass]() { testClass->OnlyComments(); });
+    state += RunTest(
+        className,
         "SingleEmptyDeclaration",
         [&testClass]() { testClass->SingleEmptyDeclaration(); });
     state += RunTest(

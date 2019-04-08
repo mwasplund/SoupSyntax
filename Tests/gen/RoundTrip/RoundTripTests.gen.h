@@ -38,6 +38,10 @@ TestState RunRoundTripTests()
         [&testClass]() { testClass->RoundTrip("LineComment.cpp"); });
     state += RunTest(
         className,
+        "RoundTrip[LineComments.cpp]",
+        [&testClass]() { testClass->RoundTrip("LineComments.cpp"); });
+    state += RunTest(
+        className,
         "RoundTrip[Namespace.cpp]",
         [&testClass]() { testClass->RoundTrip("Namespace.cpp"); });
     state += RunTest(

@@ -41,6 +41,27 @@ namespace Soup::Syntax::UnitTests
         }
 
         // [Fact]
+        void OnlyComments()
+        {
+            auto sourceCode = std::string("//COMMENT\n//OTHER\0");
+            auto actual = ParseTranslationUnit(sourceCode);
+
+            auto expected = SyntaxFactory::CreateTranslationUnit(
+                std::make_shared<const SyntaxList<Declaration>>(
+                    std::vector<std::shared_ptr<const Declaration>>()),
+                SyntaxFactory::CreateKeywordToken(
+                    SyntaxTokenType::EndOfFile,
+                    {
+                        SyntaxFactory::CreateTrivia("//COMMENT", TextSpan()),
+                        SyntaxFactory::CreateTrivia("\n", TextSpan()),
+                        SyntaxFactory::CreateTrivia("//OTHER", TextSpan()),
+                    },
+                    {}));
+
+            TestUtils::AreEqual(expected, actual, "Verify matches expected.");
+        }
+
+        // [Fact]
         void SingleEmptyDeclaration()
         {
             auto sourceCode = std::string(" ; \0");

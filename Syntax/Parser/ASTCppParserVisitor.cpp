@@ -3268,12 +3268,17 @@ std::vector<SyntaxTrivia> ASTCppParserVisitor::GetLeadingTrivia(size_t index)
     // Get the trivia tokens to the left
     auto leftTriviaTokens = m_tokenStream->getHiddenTokensToLeft(index, CppLexer::TRIVIA);
 
-    // Skip over tokens past the first newline
+    // If there is another token in front of this token
+    // then Skip over tokens up to the first newline
     // If no newline all tokens are leading trivia
-    size_t firstToken = GetFirstNewlinePosition(leftTriviaTokens);
-    if (firstToken == std::numeric_limits<size_t>::max())
+    size_t firstToken = 0;
+    if (index != leftTriviaTokens.size())
     {
-        firstToken = 0;
+        firstToken = GetFirstNewlinePosition(leftTriviaTokens);
+        if (firstToken == std::numeric_limits<size_t>::max())
+        {
+            firstToken = 0;
+        }
     }
 
     // Convert all the applicable tokens to leading trivia
