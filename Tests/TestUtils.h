@@ -46,22 +46,6 @@ class TestUtils
         return container;
     }
 
-    static void PrintAllTokens(const std::string& source)
-    {
-        auto uut = BuildParser(source);
-        auto tokenCount = uut.TokenStream->size();
-        std::cout << "Tokens: ";
-
-        // Consume all of the tokens
-        uut.TokenStream->fill();
-        for (auto token : uut.TokenStream->getTokens())
-        {
-            std::cout << token->getText() << " ";
-        }
-
-        std::cout << std::endl;
-    }
-
     static std::shared_ptr<const TranslationUnit> GenerateAST(const std::string& source)
     {
         auto container = BuildParser(source);

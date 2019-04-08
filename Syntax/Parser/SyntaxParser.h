@@ -27,6 +27,13 @@ namespace Soup::Syntax
             return Parse(input.get());
         }
 
+        // TODO: Helper method?
+        static void PrintAllTokens(const std::string& source)
+        {
+            auto input = std::make_unique<antlr4::ANTLRInputStream>(source);
+            PrintAllTokens(input.get());
+        }
+
     private:
         static std::shared_ptr<const SyntaxTree> Parse(antlr4::ANTLRInputStream* input)
         {
@@ -54,6 +61,25 @@ namespace Soup::Syntax
                 .as<std::shared_ptr<const TranslationUnit>>();
 
             return std::make_shared<const SyntaxTree>(std::move(node));
+        }
+
+        static void PrintAllTokens(antlr4::ANTLRInputStream* input)
+        {
+            // Parse the file
+            auto lexer = std::make_unique<CppLexer>(input);
+            auto tokenStream = std::make_unique<antlr4::CommonTokenStream>(lexer.get());
+
+            auto tokenCount = tokenStream->size();
+            std::cout << "Tokens: ";
+
+            // Consume all of the tokens
+            tokenStream->fill();
+            for (auto token : tokenStream->getTokens())
+            {
+                std::cout << token->toString() << std::endl;
+            }
+
+            std::cout << std::endl;
         }
     };
 }
