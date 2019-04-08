@@ -16,6 +16,7 @@ namespace Soup::Syntax
     // Expressions
     class BinaryExpression;
     class DestructorIdentifierExpression;
+    class InvocationExpression;
     class LiteralExpression;
     class QualifiedIdentifierExpression;
     class SimpleIdentifierExpression;
@@ -78,6 +79,7 @@ namespace Soup::Syntax
 #include "AST\SyntaxSeparatorList.h"
 #include "AST\Expression\Expression.h"
 #include "AST\Expression\IdentifierExpression.h"
+#include "AST\Expression\InvocationExpression.h"
 #include "AST\Expression\UnqualifiedIdentifierExpression.h"
 #include "AST\Expression\BinaryOperator.h"
 #include "AST\Expression\BinaryExpression.h"

@@ -32,6 +32,7 @@ namespace Soup::Syntax
         InitializerDeclarator,
         InitializerDeclaratorList,
         InitializerList,
+        InvocationExpression,
         LiteralExpression,
         MemberDeclaration,
         MemberDeclarator,

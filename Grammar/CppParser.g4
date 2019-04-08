@@ -149,7 +149,7 @@ foldOperator:
 	ArrowAsterisk;
 
 explicitTypeCoversionOperatorExpression:
-	simpleTypeSpecifier OpenParenthesis expressionList? CloseParenthesis |
+	// TODO: "Ambiguous in postfixExpression" simpleTypeSpecifier OpenParenthesis expressionList? CloseParenthesis |
 	typenameSpecifier OpenParenthesis expressionList? CloseParenthesis;
 
 postfixOperator:

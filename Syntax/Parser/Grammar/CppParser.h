@@ -773,11 +773,10 @@ public:
   public:
     ExplicitTypeCoversionOperatorExpressionContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    SimpleTypeSpecifierContext *simpleTypeSpecifier();
+    TypenameSpecifierContext *typenameSpecifier();
     antlr4::tree::TerminalNode *OpenParenthesis();
     antlr4::tree::TerminalNode *CloseParenthesis();
     ExpressionListContext *expressionList();
-    TypenameSpecifierContext *typenameSpecifier();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;

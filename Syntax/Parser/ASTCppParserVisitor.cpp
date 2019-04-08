@@ -336,6 +336,32 @@ antlrcpp::Any ASTCppParserVisitor::visitPostfixExpression(CppParser::PostfixExpr
         else if (context->OpenParenthesis() != nullptr)
         {
             // postfixExpression OpenParenthesis expressionList? CloseParenthesis
+            auto openParenthesisToken = CreateToken(
+                SyntaxTokenType::OpenParenthesis,
+                context->OpenParenthesis());
+
+            // Check for the optional expression list
+            SeparatorListResult<Expression> expressionList = {};
+            if (context->expressionList() != nullptr)
+            {
+                expressionList = visit(context->expressionList())
+                    .as<const SeparatorListResult<Expression>>();
+            }
+
+            auto parameters = std::make_shared<const SyntaxSeparatorList<Expression>>(
+                std::move(expressionList.Items),
+                std::move(expressionList.Separators));
+
+            auto closeParenthesisToken = CreateToken(
+                SyntaxTokenType::CloseParenthesis,
+                context->CloseParenthesis());
+
+            return std::static_pointer_cast<const SyntaxNode>(
+                SyntaxFactory::CreateInvocationExpression(
+                    std::move(recursiveExpression),
+                    std::move(openParenthesisToken),
+                    std::move(parameters),
+                    std::move(closeParenthesisToken)));
         }
         else if (context->memberAccessOperator() != nullptr)
         {
@@ -350,7 +376,7 @@ antlrcpp::Any ASTCppParserVisitor::visitPostfixExpression(CppParser::PostfixExpr
             }
             else
             {
-                throw std::logic_error(std::string(__func__) + " NotImplemented");
+                throw std::logic_error(std::string(__func__) + "memberAccessOperator NotImplemented");
             }
             
             auto memberAccessOperator = context->memberAccessOperator();
@@ -415,26 +441,31 @@ antlrcpp::Any ASTCppParserVisitor::visitPostfixExpression(CppParser::PostfixExpr
         if (context->explicitTypeCoversionOperatorExpression() != nullptr)
         {
             // explicitTypeCoversionOperatorExpression
+            throw std::logic_error(std::string(__func__) + "explicitTypeCoversionOperatorExpression NotImplemented");
         }
         else if (context->simpleTypeSpecifier() != nullptr)
         {
             // simpleTypeSpecifier bracedInitializerList
+            throw std::logic_error(std::string(__func__) + "simpleTypeSpecifier NotImplemented");
         }
         else if (context->typenameSpecifier() != nullptr)
         {
             // typenameSpecifier bracedInitializerList
+            throw std::logic_error(std::string(__func__) + "typenameSpecifier NotImplemented");
         }
         else if (context->namedCastExpression() != nullptr)
         {
             // namedCastExpression
+            throw std::logic_error(std::string(__func__) + "namedCastExpression NotImplemented");
         }
         else if (context->typeIdentificationExpression() != nullptr)
         {
             // typeIdentificationExpression
+            throw std::logic_error(std::string(__func__) + "typeIdentificationExpression NotImplemented");
         }
     }
 
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+    throw std::logic_error(std::string(__func__) + "Fallthrough NotImplemented");
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitExpressionList(CppParser::ExpressionListContext* context)
@@ -1342,7 +1373,14 @@ antlrcpp::Any ASTCppParserVisitor::visitJumpStatement(CppParser::JumpStatementCo
 antlrcpp::Any ASTCppParserVisitor::visitDeclarationStatement(CppParser::DeclarationStatementContext* context)
 {
     Trace("VisitDeclarationStatement");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+
+    auto declaration = std::dynamic_pointer_cast<const Declaration>(
+        visit(context->blockDeclaration())
+            .as<std::shared_ptr<const SyntaxNode>>());
+    
+    // Create the wrapper statement for the declaration
+    return std::static_pointer_cast<const SyntaxNode>(
+        SyntaxFactory::CreateDeclarationStatement(std::move(declaration)));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitDeclarationSequence(CppParser::DeclarationSequenceContext* context)

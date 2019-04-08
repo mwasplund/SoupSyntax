@@ -505,6 +505,32 @@ namespace Soup::Syntax
         }
 
         /// <summary>
+        /// Create a InvocationExpression
+        /// </summary>
+        static std::shared_ptr<const InvocationExpression> CreateInvocationExpression(
+            std::shared_ptr<const Expression> leftExpression,
+            std::shared_ptr<const SyntaxToken> openParenthesisToken,
+            std::shared_ptr<const SyntaxSeparatorList<Expression>> parameters,
+            std::shared_ptr<const SyntaxToken> closeParenthesisToken)
+        {
+            if (leftExpression == nullptr)
+                throw std::runtime_error("ArgumentNull - leftExpression");
+            if (openParenthesisToken == nullptr)
+                throw std::runtime_error("ArgumentNull - openParenthesisToken");
+            if (parameters == nullptr)
+                throw std::runtime_error("ArgumentNull - parameters");
+            if (closeParenthesisToken == nullptr)
+                throw std::runtime_error("ArgumentNull - closeParenthesisToken");
+
+            return std::shared_ptr<const InvocationExpression>(
+                new InvocationExpression(
+                    std::move(leftExpression),
+                    std::move(openParenthesisToken),
+                    std::move(parameters),
+                    std::move(closeParenthesisToken)));
+        }
+
+        /// <summary>
         /// Create a SyntaxToken
         /// </summary>
         static std::shared_ptr<const SyntaxToken> CreateKeywordToken(

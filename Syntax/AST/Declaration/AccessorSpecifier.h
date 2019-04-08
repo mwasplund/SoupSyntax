@@ -3,7 +3,8 @@
 namespace Soup::Syntax
 {
     /// <summary>
-    /// Accessor specifier
+    /// Accessor specifier for class declaration
+    /// ex. "public:"
     /// </summary>
     export class AccessorSpecifier final : public Declaration
     {

@@ -29,6 +29,7 @@ import SoupSyntax;
 
 #include "AST\Expression\BinaryExpressionTests.gen.h"
 #include "AST\Expression\DestructorIdentifierExpressionTests.gen.h"
+#include "AST\Expression\InvocationExpressionTests.gen.h"
 #include "AST\Expression\LiteralExpressionTests.gen.h"
 #include "AST\Expression\QualifiedIdentifierExpressionTests.gen.h"
 #include "AST\Expression\SimpleIdentifierExpressionTests.gen.h"
@@ -66,6 +67,7 @@ import SoupSyntax;
 
 #include "Parser\Expression\ParseBinaryExpressionTests.gen.h"
 #include "Parser\Expression\ParseIdentifierExpressionTests.gen.h"
+#include "Parser\Expression\ParseInvocationExpressionTests.gen.h"
 #include "Parser\Expression\ParseLiteralExpressionTests.gen.h"
 #include "Parser\Expression\ParseSubscriptExpressionTests.gen.h"
 #include "Parser\Expression\ParseThisExpressionTests.gen.h"
@@ -112,6 +114,7 @@ int main()
 
     state += RunBinaryExpressionTests();
     state += RunDestructorIdentifierExpressionTests();
+    state += RunInvocationExpressionTests();
     state += RunLiteralExpressionTests();
     state += RunQualifiedIdentifierExpressionTests();
     state += RunSimpleIdentifierExpressionTests();
@@ -149,6 +152,7 @@ int main()
 
     state += RunParseBinaryExpressionTests();
     state += RunParseIdentifierExpressionTests();
+    state += RunParseInvocationExpressionTests();
     state += RunParseLiteralExpressionTests();
     state += RunParseSubscriptExpressionTests();
     state += RunParseThisExpressionTests();

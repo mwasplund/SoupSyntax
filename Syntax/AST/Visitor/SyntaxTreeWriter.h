@@ -126,6 +126,8 @@ namespace Soup::Syntax
                     return "InitializerDeclaratorList";
                 case SyntaxNodeType::InitializerList:
                     return "InitializerList";
+                case SyntaxNodeType::InvocationExpression:
+                    return "InvocationExpression";
                 case SyntaxNodeType::LiteralExpression:
                     return "LiteralExpression";
                 case SyntaxNodeType::MemberDeclaration:

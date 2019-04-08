@@ -33,6 +33,7 @@ namespace Soup::Syntax
         virtual void Visit(const InitializerDeclarator& node) = 0;
         virtual void Visit(const InitializerDeclaratorList& node) = 0;
         virtual void Visit(const InitializerList& node) = 0;
+        virtual void Visit(const InvocationExpression& node) = 0;
         virtual void Visit(const LiteralExpression& node) = 0;
         virtual void Visit(const MemberDeclaration& node) = 0;
         virtual void Visit(const MemberDeclarator& node) = 0;
