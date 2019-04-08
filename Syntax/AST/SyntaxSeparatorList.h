@@ -8,7 +8,10 @@ namespace Soup::Syntax
     export template<class TNode>
     class SyntaxSeparatorList final
     {
-        static_assert(std::is_base_of<SyntaxNode, TNode>::value, "TNode must be derived from SyntaxNode.");
+        static_assert(
+            std::is_base_of<SyntaxNode, TNode>::value ||
+            std::is_same<SyntaxToken, TNode>::value,
+            "TNode must be derived from SyntaxNode or be a SyntaxToken.");
 
     public:
         /// <summary>

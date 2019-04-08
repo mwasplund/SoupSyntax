@@ -1016,14 +1016,15 @@ namespace Soup::Syntax
         /// </summary>
         static std::shared_ptr<const NamespaceDefinition> CreateNamespaceDefinition(
             std::shared_ptr<const SyntaxToken> namespaceToken,
-            std::shared_ptr<const SyntaxToken> identifierToken,
+            std::shared_ptr<const SyntaxSeparatorList<SyntaxToken>> identifierNameList,
             std::shared_ptr<const SyntaxToken> openBraceToken,
             std::shared_ptr<const SyntaxList<Declaration>> memberDeclarations,
             std::shared_ptr<const SyntaxToken> closeBraceToken)
         {
-            // Note: The identifier token is optional
             if (namespaceToken == nullptr)
                 throw std::runtime_error("ArgumentNull - namespaceToken");
+            if (identifierNameList == nullptr)
+                throw std::runtime_error("ArgumentNull - identifierNameList");
             if (openBraceToken == nullptr)
                 throw std::runtime_error("ArgumentNull - openBraceToken");
             if (memberDeclarations == nullptr)
@@ -1034,7 +1035,7 @@ namespace Soup::Syntax
             return std::shared_ptr<const NamespaceDefinition>(
                 new NamespaceDefinition(
                     std::move(namespaceToken),
-                    std::move(identifierToken),
+                    std::move(identifierNameList),
                     std::move(openBraceToken),
                     std::move(memberDeclarations),
                     std::move(closeBraceToken)));

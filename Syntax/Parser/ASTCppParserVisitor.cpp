@@ -1875,10 +1875,15 @@ antlrcpp::Any ASTCppParserVisitor::visitNamedNamespaceDefinition(CppParser::Name
     auto namespaceBody = visit(context->namespaceBody())
         .as<std::shared_ptr<const SyntaxList<Declaration>>>();
 
+    // Create a namespace with a single identifier
     return std::static_pointer_cast<const SyntaxNode>(
         SyntaxFactory::CreateNamespaceDefinition(
             CreateToken(SyntaxTokenType::Namespace, context->Namespace()),
-            CreateToken(SyntaxTokenType::Identifier, context->Identifier()),
+            std::make_shared<const SyntaxSeparatorList<SyntaxToken>>(
+                std::vector<std::shared_ptr<const SyntaxToken>>({
+                    CreateToken(SyntaxTokenType::Identifier, context->Identifier()),
+                }),
+                std::vector<std::shared_ptr<const SyntaxToken>>()),
             CreateToken(SyntaxTokenType::OpenBrace, context->OpenBrace()),
             std::move(namespaceBody),
             CreateToken(SyntaxTokenType::CloseBrace, context->CloseBrace())));
@@ -1892,10 +1897,13 @@ antlrcpp::Any ASTCppParserVisitor::visitUnnamedNamespaceDefinition(CppParser::Un
     auto namespaceBody = visit(context->namespaceBody())
         .as<std::shared_ptr<const SyntaxList<Declaration>>>();
 
+    // Create a namespace with no name identifiers
     return std::static_pointer_cast<const SyntaxNode>(
         SyntaxFactory::CreateNamespaceDefinition(
             CreateToken(SyntaxTokenType::Namespace, context->Namespace()),
-            nullptr,
+            std::make_shared<const SyntaxSeparatorList<SyntaxToken>>(
+                std::vector<std::shared_ptr<const SyntaxToken>>(),
+                std::vector<std::shared_ptr<const SyntaxToken>>()),
             CreateToken(SyntaxTokenType::OpenBrace, context->OpenBrace()),
             std::move(namespaceBody),
             CreateToken(SyntaxTokenType::CloseBrace, context->CloseBrace())));
@@ -1904,13 +1912,51 @@ antlrcpp::Any ASTCppParserVisitor::visitUnnamedNamespaceDefinition(CppParser::Un
 antlrcpp::Any ASTCppParserVisitor::visitNestedNamespaceDefinition(CppParser::NestedNamespaceDefinitionContext* context)
 {
     Trace("VisitNestedNamespaceDefinition");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+
+    // Namespace enclosingNamespaceSpecifier DoubleColon Identifier OpenBrace namespaceBody CloseBrace;
+    auto enclosingNamespaceSpecifier = visit(context->enclosingNamespaceSpecifier())
+        .as<SeparatorListResult<SyntaxToken>>();
+
+    // Add the final identifier
+    enclosingNamespaceSpecifier.Separators.push_back(
+        CreateToken(SyntaxTokenType::DoubleColon, context->DoubleColon()));
+    auto identifierToken = CreateToken(SyntaxTokenType::Identifier, context->Identifier());
+    enclosingNamespaceSpecifier.Items.push_back(identifierToken);
+
+    auto namespaceBody = visit(context->namespaceBody())
+        .as<std::shared_ptr<const SyntaxList<Declaration>>>();
+
+    // Create a namespace with nested identifiers
+    return std::static_pointer_cast<const SyntaxNode>(
+        SyntaxFactory::CreateNamespaceDefinition(
+            CreateToken(SyntaxTokenType::Namespace, context->Namespace()),
+            std::make_shared<const SyntaxSeparatorList<SyntaxToken>>(
+                std::move(enclosingNamespaceSpecifier.Items),
+                std::move(enclosingNamespaceSpecifier.Separators)),
+            CreateToken(SyntaxTokenType::OpenBrace, context->OpenBrace()),
+            std::move(namespaceBody),
+            CreateToken(SyntaxTokenType::CloseBrace, context->CloseBrace())));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitEnclosingNamespaceSpecifier(CppParser::EnclosingNamespaceSpecifierContext* context)
 {
     Trace("VisitEnclosingNamespaceSpecifier");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+
+    // Handle the recursive rule
+    SeparatorListResult<SyntaxToken> enclosingNamespaceSpecifier;
+    if (context->enclosingNamespaceSpecifier() != nullptr)
+    {
+        enclosingNamespaceSpecifier = visit(context->enclosingNamespaceSpecifier())
+            .as<SeparatorListResult<SyntaxToken>>();
+        enclosingNamespaceSpecifier.Separators.push_back(
+            CreateToken(SyntaxTokenType::DoubleColon, context->DoubleColon()));
+    }
+
+    // Handle the new identifier
+    auto identifierToken = CreateToken(SyntaxTokenType::Identifier, context->Identifier());
+    enclosingNamespaceSpecifier.Items.push_back(identifierToken);
+
+    return enclosingNamespaceSpecifier;
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitNamespaceBody(CppParser::NamespaceBodyContext* context)

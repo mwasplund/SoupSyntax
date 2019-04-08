@@ -570,7 +570,7 @@ enumerator:
 namespaceDefinition:
 	namedNamespaceDefinition |
 	unnamedNamespaceDefinition |
-	nestedNamespaceDefinition;
+	nestedNamespaceDefinition; // C++ 17
 
 namedNamespaceDefinition:
 	Inline? Namespace attributeSpecifierSequence? Identifier OpenBrace namespaceBody CloseBrace;
@@ -582,7 +582,8 @@ nestedNamespaceDefinition:
 	Namespace enclosingNamespaceSpecifier DoubleColon Identifier OpenBrace namespaceBody CloseBrace;
 
 enclosingNamespaceSpecifier:
-	Identifier enclosingNamespaceSpecifier DoubleColon Identifier;
+	Identifier |
+	enclosingNamespaceSpecifier DoubleColon Identifier;
 
 namespaceBody:
 	declarationSequence?;

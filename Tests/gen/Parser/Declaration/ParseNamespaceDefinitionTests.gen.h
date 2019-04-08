@@ -14,6 +14,14 @@ TestState RunParseNamespaceDefinitionTests()
         [&testClass]() { testClass->SimpleAnonymous(); });
     state += RunTest(
         className,
+        "SimpleNamed",
+        [&testClass]() { testClass->SimpleNamed(); });
+    state += RunTest(
+        className,
+        "NestedName",
+        [&testClass]() { testClass->NestedName(); });
+    state += RunTest(
+        className,
         "SimpleNamedNamespaceSingleDeclaration",
         [&testClass]() { testClass->SimpleNamedNamespaceSingleDeclaration(); });
 

@@ -15,13 +15,13 @@ namespace Soup::Syntax
         /// </summary>
         NamespaceDefinition(
             std::shared_ptr<const SyntaxToken> namespaceToken,
-            std::shared_ptr<const SyntaxToken> identifierToken,
+            std::shared_ptr<const SyntaxSeparatorList<SyntaxToken>> nameIdentifierList,
             std::shared_ptr<const SyntaxToken> openBraceToken,
             std::shared_ptr<const SyntaxList<Declaration>> body,
             std::shared_ptr<const SyntaxToken> closeBraceToken) :
             Declaration(SyntaxNodeType::NamespaceDefinition),
             m_namespaceToken(std::move(namespaceToken)),
-            m_identifierToken(std::move(identifierToken)),
+            m_nameIdentifierList(std::move(nameIdentifierList)),
             m_openBraceToken(std::move(openBraceToken)),
             m_body(std::move(body)),
             m_closeBraceToken(std::move(closeBraceToken))
@@ -38,22 +38,11 @@ namespace Soup::Syntax
         }
 
         /// <summary>
-        /// Gets a value indicating whether the optional SyntaxToken 
-        /// for the identifier is present.
+        /// Gets the list of colon separated name identifiers.
         /// </summary>
-        bool HasIdentifierToken() const
+        const SyntaxSeparatorList<SyntaxToken>& GetNameIdentifierList() const
         {
-            return m_identifierToken != nullptr;
-        }
-
-        /// <summary>
-        /// Gets the optional SyntaxToken for the class/struct keyword.
-        /// </summary>
-        const SyntaxToken& GetIdentifierToken() const
-        {
-            if (!HasIdentifierToken())
-                throw std::runtime_error("No IdentifierToken present.");
-            return *m_identifierToken;
+            return *m_nameIdentifierList;
         }
 
         /// <summary>
@@ -89,10 +78,8 @@ namespace Soup::Syntax
 
             children.push_back(SyntaxNodeChild(m_namespaceToken));
 
-            if (HasIdentifierToken())
-            {
-                children.push_back(SyntaxNodeChild(m_identifierToken));
-            }
+            auto nameIdentifierChildren = m_nameIdentifierList->GetChildren();
+            children.insert(children.end(), nameIdentifierChildren.begin(), nameIdentifierChildren.end());
 
             children.push_back(SyntaxNodeChild(m_openBraceToken));
     
@@ -118,7 +105,7 @@ namespace Soup::Syntax
         bool operator ==(const NamespaceDefinition& rhs) const
         {
             return *m_namespaceToken == *rhs.m_namespaceToken &&
-                SyntaxUtils::AreOptionalValuesEqual(m_identifierToken, rhs.m_identifierToken) &&
+                *m_nameIdentifierList == *rhs.m_nameIdentifierList &&
                 *m_openBraceToken == *rhs.m_openBraceToken &&
                 *m_body == *rhs.m_body &&
                 *m_closeBraceToken == *rhs.m_closeBraceToken;
@@ -140,7 +127,7 @@ namespace Soup::Syntax
 
     private:
         std::shared_ptr<const SyntaxToken> m_namespaceToken;
-        std::shared_ptr<const SyntaxToken> m_identifierToken;
+        std::shared_ptr<const SyntaxSeparatorList<SyntaxToken>> m_nameIdentifierList;
         std::shared_ptr<const SyntaxToken> m_openBraceToken;
         std::shared_ptr<const SyntaxList<Declaration>> m_body;
         std::shared_ptr<const SyntaxToken> m_closeBraceToken;

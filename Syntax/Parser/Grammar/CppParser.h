@@ -2428,8 +2428,7 @@ public:
   public:
     EnclosingNamespaceSpecifierContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    std::vector<antlr4::tree::TerminalNode *> Identifier();
-    antlr4::tree::TerminalNode* Identifier(size_t i);
+    antlr4::tree::TerminalNode *Identifier();
     EnclosingNamespaceSpecifierContext *enclosingNamespaceSpecifier();
     antlr4::tree::TerminalNode *DoubleColon();
 
@@ -2441,7 +2440,7 @@ public:
   };
 
   EnclosingNamespaceSpecifierContext* enclosingNamespaceSpecifier();
-
+  EnclosingNamespaceSpecifierContext* enclosingNamespaceSpecifier(int precedence);
   class  NamespaceBodyContext : public antlr4::ParserRuleContext {
   public:
     NamespaceBodyContext(antlr4::ParserRuleContext *parent, size_t invokingState);
@@ -4407,6 +4406,7 @@ public:
   bool statementSequenceSempred(StatementSequenceContext *_localctx, size_t predicateIndex);
   bool declarationSequenceSempred(DeclarationSequenceContext *_localctx, size_t predicateIndex);
   bool enumeratorListSempred(EnumeratorListContext *_localctx, size_t predicateIndex);
+  bool enclosingNamespaceSpecifierSempred(EnclosingNamespaceSpecifierContext *_localctx, size_t predicateIndex);
   bool usingDeclaratorListSempred(UsingDeclaratorListContext *_localctx, size_t predicateIndex);
   bool attributeSpecifierSequenceSempred(AttributeSpecifierSequenceContext *_localctx, size_t predicateIndex);
   bool attributeListSempred(AttributeListContext *_localctx, size_t predicateIndex);

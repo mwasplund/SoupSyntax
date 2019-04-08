@@ -12,11 +12,12 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateNamespaceDefinition(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Namespace),
-                nullptr,
+                std::make_shared<const SyntaxSeparatorList<SyntaxToken>>(
+                    std::vector<std::shared_ptr<const SyntaxToken>>(),
+                    std::vector<std::shared_ptr<const SyntaxToken>>()),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 std::make_shared<const SyntaxList<Declaration>>(
-                    std::vector<std::shared_ptr<const Declaration>>(
-                    {})),
+                    std::vector<std::shared_ptr<const Declaration>>()),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             Assert::AreEqual(
@@ -27,17 +28,19 @@ namespace Soup::Syntax::UnitTests
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Namespace),
                 uut->GetNamespaceToken(),
                 "Verify namespace token matches.");
-            Assert::IsFalse(
-                uut->HasIdentifierToken(),
-                "Verify has no identifier token.");
+            Assert::AreEqual(
+                *std::make_shared<const SyntaxSeparatorList<SyntaxToken>>(
+                    std::vector<std::shared_ptr<const SyntaxToken>>(),
+                    std::vector<std::shared_ptr<const SyntaxToken>>()),
+                uut->GetNameIdentifierList(),
+                "Verify name identifier list matches.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 uut->GetOpenBraceToken(),
                 "Verify left brace token matches.");
             Assert::AreEqual(
                 *std::make_shared<const SyntaxList<Declaration>>(
-                    std::vector<std::shared_ptr<const Declaration>>(
-                    {})),
+                    std::vector<std::shared_ptr<const Declaration>>()),
                 uut->GetBody(),
                 "Verify the body matches.");
             Assert::AreEqual(
@@ -51,7 +54,14 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateNamespaceDefinition(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Namespace),
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyNamespace"),
+                std::make_shared<const SyntaxSeparatorList<SyntaxToken>>(
+                    std::vector<std::shared_ptr<const SyntaxToken>>({
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "BaseNamespace"),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "SubNamespace"),
+                    }),
+                    std::vector<std::shared_ptr<const SyntaxToken>>({
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
+                    })),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 std::make_shared<const SyntaxList<Declaration>>(
                     std::vector<std::shared_ptr<const Declaration>>(
@@ -69,13 +79,17 @@ namespace Soup::Syntax::UnitTests
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Namespace),
                 uut->GetNamespaceToken(),
                 "Verify namespace token matches.");
-            Assert::IsTrue(
-                uut->HasIdentifierToken(),
-                "Verify has identifier token.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyNamespace"),
-                uut->GetIdentifierToken(),
-                "Verify identifier token matches.");
+                *std::make_shared<const SyntaxSeparatorList<SyntaxToken>>(
+                    std::vector<std::shared_ptr<const SyntaxToken>>({
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "BaseNamespace"),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "SubNamespace"),
+                    }),
+                    std::vector<std::shared_ptr<const SyntaxToken>>({
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
+                    })),
+                uut->GetNameIdentifierList(),
+                "Verify name identifier list matches.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 uut->GetOpenBraceToken(),
@@ -100,7 +114,9 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateNamespaceDefinition(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Namespace),
-                nullptr,
+                std::make_shared<const SyntaxSeparatorList<SyntaxToken>>(
+                    std::vector<std::shared_ptr<const SyntaxToken>>(),
+                    std::vector<std::shared_ptr<const SyntaxToken>>()),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 std::make_shared<const SyntaxList<Declaration>>(
                     std::vector<std::shared_ptr<const Declaration>>({})),
@@ -122,7 +138,14 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateNamespaceDefinition(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Namespace),
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyNamespace"),
+                std::make_shared<const SyntaxSeparatorList<SyntaxToken>>(
+                    std::vector<std::shared_ptr<const SyntaxToken>>({
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "BaseNamespace"),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "SubNamespace"),
+                    }),
+                    std::vector<std::shared_ptr<const SyntaxToken>>({
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
+                    })),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 std::make_shared<const SyntaxList<Declaration>>(
                     std::vector<std::shared_ptr<const Declaration>>(
@@ -136,7 +159,9 @@ namespace Soup::Syntax::UnitTests
                 std::vector<SyntaxNodeChild>(
                 {
                     SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Namespace)),
-                    SyntaxNodeChild(SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyNamespace")),
+                    SyntaxNodeChild(SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "BaseNamespace")),
+                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon)),
+                    SyntaxNodeChild(SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "SubNamespace")),
                     SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace)),
                     SyntaxNodeChild(
                         SyntaxFactory::CreateEmptyDeclaration(
@@ -152,7 +177,9 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateNamespaceDefinition(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Namespace),
-                nullptr,
+                std::make_shared<const SyntaxSeparatorList<SyntaxToken>>(
+                    std::vector<std::shared_ptr<const SyntaxToken>>(),
+                    std::vector<std::shared_ptr<const SyntaxToken>>()),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 std::make_shared<const SyntaxList<Declaration>>(
                     std::vector<std::shared_ptr<const Declaration>>(
@@ -165,7 +192,9 @@ namespace Soup::Syntax::UnitTests
             TestUtils::AreEqual(
                 SyntaxFactory::CreateNamespaceDefinition(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Namespace),
-                    nullptr,
+                    std::make_shared<const SyntaxSeparatorList<SyntaxToken>>(
+                        std::vector<std::shared_ptr<const SyntaxToken>>(),
+                        std::vector<std::shared_ptr<const SyntaxToken>>()),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                     std::make_shared<const SyntaxList<Declaration>>(
                         std::vector<std::shared_ptr<const Declaration>>(
@@ -183,7 +212,14 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateNamespaceDefinition(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Namespace),
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyNamespace"),
+                std::make_shared<const SyntaxSeparatorList<SyntaxToken>>(
+                    std::vector<std::shared_ptr<const SyntaxToken>>({
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "BaseNamespace"),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "SubNamespace"),
+                    }),
+                    std::vector<std::shared_ptr<const SyntaxToken>>({
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
+                    })),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 std::make_shared<const SyntaxList<Declaration>>(
                     std::vector<std::shared_ptr<const Declaration>>(
@@ -195,8 +231,15 @@ namespace Soup::Syntax::UnitTests
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateNamespaceDefinition(
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Namespace),
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyNamespace"),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Namespace),
+                    std::make_shared<const SyntaxSeparatorList<SyntaxToken>>(
+                        std::vector<std::shared_ptr<const SyntaxToken>>({
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "BaseNamespace"),
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "SubNamespace"),
+                        }),
+                        std::vector<std::shared_ptr<const SyntaxToken>>({
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
+                        })),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                     std::make_shared<const SyntaxList<Declaration>>(
                         std::vector<std::shared_ptr<const Declaration>>(
@@ -214,7 +257,14 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateNamespaceDefinition(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Namespace),
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyNamespace"),
+                std::make_shared<const SyntaxSeparatorList<SyntaxToken>>(
+                    std::vector<std::shared_ptr<const SyntaxToken>>({
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "BaseNamespace"),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "SubNamespace"),
+                    }),
+                    std::vector<std::shared_ptr<const SyntaxToken>>({
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
+                    })),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 std::make_shared<const SyntaxList<Declaration>>(
                     std::vector<std::shared_ptr<const Declaration>>(
@@ -226,8 +276,20 @@ namespace Soup::Syntax::UnitTests
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateNamespaceDefinition(
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Namespace),
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyNamespace2"),
+                    SyntaxFactory::CreateKeywordToken(
+                        SyntaxTokenType::Namespace,
+                        {
+                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 1)),
+                        },
+                        {}),
+                    std::make_shared<const SyntaxSeparatorList<SyntaxToken>>(
+                    std::vector<std::shared_ptr<const SyntaxToken>>({
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "BaseNamespace"),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "SubNamespace"),
+                    }),
+                    std::vector<std::shared_ptr<const SyntaxToken>>({
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
+                    })),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                     std::make_shared<const SyntaxList<Declaration>>(
                         std::vector<std::shared_ptr<const Declaration>>(
@@ -245,7 +307,14 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateNamespaceDefinition(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Namespace),
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyNamespace"),
+                std::make_shared<const SyntaxSeparatorList<SyntaxToken>>(
+                    std::vector<std::shared_ptr<const SyntaxToken>>({
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "BaseNamespace"),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "SubNamespace"),
+                    }),
+                    std::vector<std::shared_ptr<const SyntaxToken>>({
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
+                    })),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 std::make_shared<const SyntaxList<Declaration>>(
                     std::vector<std::shared_ptr<const Declaration>>(
@@ -258,7 +327,9 @@ namespace Soup::Syntax::UnitTests
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateNamespaceDefinition(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Namespace),
-                    nullptr,
+                    std::make_shared<const SyntaxSeparatorList<SyntaxToken>>(
+                        std::vector<std::shared_ptr<const SyntaxToken>>(),
+                        std::vector<std::shared_ptr<const SyntaxToken>>()),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                     std::make_shared<const SyntaxList<Declaration>>(
                         std::vector<std::shared_ptr<const Declaration>>(
@@ -276,7 +347,14 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateNamespaceDefinition(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Namespace),
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyNamespace"),
+                std::make_shared<const SyntaxSeparatorList<SyntaxToken>>(
+                    std::vector<std::shared_ptr<const SyntaxToken>>({
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "BaseNamespace"),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "SubNamespace"),
+                    }),
+                    std::vector<std::shared_ptr<const SyntaxToken>>({
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
+                    })),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 std::make_shared<const SyntaxList<Declaration>>(
                     std::vector<std::shared_ptr<const Declaration>>(
@@ -289,7 +367,14 @@ namespace Soup::Syntax::UnitTests
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateNamespaceDefinition(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Namespace),
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyNamespace2"),
+                    std::make_shared<const SyntaxSeparatorList<SyntaxToken>>(
+                    std::vector<std::shared_ptr<const SyntaxToken>>({
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "BaseNamespace2"),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "SubNamespace"),
+                    }),
+                    std::vector<std::shared_ptr<const SyntaxToken>>({
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
+                    })),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                     std::make_shared<const SyntaxList<Declaration>>(
                         std::vector<std::shared_ptr<const Declaration>>(
@@ -307,7 +392,14 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateNamespaceDefinition(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Namespace),
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyNamespace"),
+                std::make_shared<const SyntaxSeparatorList<SyntaxToken>>(
+                    std::vector<std::shared_ptr<const SyntaxToken>>({
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "BaseNamespace"),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "SubNamespace"),
+                    }),
+                    std::vector<std::shared_ptr<const SyntaxToken>>({
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
+                    })),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 std::make_shared<const SyntaxList<Declaration>>(
                     std::vector<std::shared_ptr<const Declaration>>(
@@ -320,7 +412,14 @@ namespace Soup::Syntax::UnitTests
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateNamespaceDefinition(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Namespace),
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyNamespace"),
+                    std::make_shared<const SyntaxSeparatorList<SyntaxToken>>(
+                        std::vector<std::shared_ptr<const SyntaxToken>>({
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "BaseNamespace"),
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "SubNamespace"),
+                        }),
+                        std::vector<std::shared_ptr<const SyntaxToken>>({
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
+                        })),
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::OpenBrace,
                         {
@@ -343,7 +442,14 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateNamespaceDefinition(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Namespace),
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyNamespace"),
+                std::make_shared<const SyntaxSeparatorList<SyntaxToken>>(
+                    std::vector<std::shared_ptr<const SyntaxToken>>({
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "BaseNamespace"),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "SubNamespace"),
+                    }),
+                    std::vector<std::shared_ptr<const SyntaxToken>>({
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
+                    })),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 std::make_shared<const SyntaxList<Declaration>>(
                     std::vector<std::shared_ptr<const Declaration>>(
@@ -356,11 +462,17 @@ namespace Soup::Syntax::UnitTests
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateNamespaceDefinition(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Namespace),
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyNamespace"),
+                    std::make_shared<const SyntaxSeparatorList<SyntaxToken>>(
+                        std::vector<std::shared_ptr<const SyntaxToken>>({
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "BaseNamespace"),
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "SubNamespace"),
+                        }),
+                        std::vector<std::shared_ptr<const SyntaxToken>>({
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
+                        })),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                     std::make_shared<const SyntaxList<Declaration>>(
-                        std::vector<std::shared_ptr<const Declaration>>(
-                        {})),
+                        std::vector<std::shared_ptr<const Declaration>>()),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 uut,
                 "Verify do not match.");
@@ -371,7 +483,14 @@ namespace Soup::Syntax::UnitTests
         {
             auto uut = SyntaxFactory::CreateNamespaceDefinition(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Namespace),
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyNamespace"),
+                std::make_shared<const SyntaxSeparatorList<SyntaxToken>>(
+                    std::vector<std::shared_ptr<const SyntaxToken>>({
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "BaseNamespace"),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "SubNamespace"),
+                    }),
+                    std::vector<std::shared_ptr<const SyntaxToken>>({
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
+                    })),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 std::make_shared<const SyntaxList<Declaration>>(
                     std::vector<std::shared_ptr<const Declaration>>(
@@ -384,7 +503,14 @@ namespace Soup::Syntax::UnitTests
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateNamespaceDefinition(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Namespace),
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyNamespace"),
+                    std::make_shared<const SyntaxSeparatorList<SyntaxToken>>(
+                        std::vector<std::shared_ptr<const SyntaxToken>>({
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "BaseNamespace"),
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "SubNamespace"),
+                        }),
+                        std::vector<std::shared_ptr<const SyntaxToken>>({
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
+                        })),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                     std::make_shared<const SyntaxList<Declaration>>(
                         std::vector<std::shared_ptr<const Declaration>>(
