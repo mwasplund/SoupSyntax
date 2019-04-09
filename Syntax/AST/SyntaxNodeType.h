@@ -8,6 +8,8 @@ namespace Soup::Syntax
     /// </summary>
     export enum class SyntaxNodeType
     {
+        Attribute,
+        AttributeSpecifier,
         AccessorSpecifier,
         BinaryExpression,
         CatchClause,

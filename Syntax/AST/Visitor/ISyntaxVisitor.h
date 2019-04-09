@@ -9,6 +9,8 @@ namespace Soup::Syntax
     export class ISyntaxVisitor
     {
     public:
+        virtual void Visit(const Attribute& node) = 0;
+        virtual void Visit(const AttributeSpecifier& node) = 0;
         virtual void Visit(const AccessorSpecifier& node) = 0;
         virtual void Visit(const BinaryExpression& node) = 0;
         virtual void Visit(const CatchClause& node) = 0;

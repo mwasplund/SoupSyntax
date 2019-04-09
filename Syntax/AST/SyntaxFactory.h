@@ -11,6 +11,50 @@ namespace Soup::Syntax
     {
     public:
         /// <summary>
+        /// Create a Attribute
+        /// </summary>
+        static std::shared_ptr<const Attribute> CreateAttribute(
+            std::shared_ptr<const SyntaxToken> identifierToken)
+        {
+            if (identifierToken == nullptr)
+                throw std::runtime_error("ArgumentNull - identifierToken");
+
+            return std::shared_ptr<const Attribute>(
+                new Attribute(
+                    std::move(identifierToken)));
+        }
+
+        /// <summary>
+        /// Create a AttributeSpecifier
+        /// </summary>
+        static std::shared_ptr<const AttributeSpecifier> CreateAttributeSpecifier(
+            std::shared_ptr<const SyntaxToken> outerOpenBracketTokens,
+            std::shared_ptr<const SyntaxToken> innerOpenBracketTokens,
+            std::shared_ptr<const SyntaxSeparatorList<Attribute>> attributes,
+            std::shared_ptr<const SyntaxToken> innerCloseBracketTokens,
+            std::shared_ptr<const SyntaxToken> outerCloseBracketTokens)
+        {
+            if (outerOpenBracketTokens == nullptr)
+                throw std::runtime_error("ArgumentNull - outerOpenBracketTokens");
+            if (innerOpenBracketTokens == nullptr)
+                throw std::runtime_error("ArgumentNull - innerOpenBracketTokens");
+            if (attributes == nullptr)
+                throw std::runtime_error("ArgumentNull - attributes");
+            if (innerCloseBracketTokens == nullptr)
+                throw std::runtime_error("ArgumentNull - innerCloseBracketTokens");
+            if (outerCloseBracketTokens == nullptr)
+                throw std::runtime_error("ArgumentNull - outerCloseBracketTokens");
+
+            return std::shared_ptr<const AttributeSpecifier>(
+                new AttributeSpecifier(
+                    std::move(outerOpenBracketTokens),
+                    std::move(innerOpenBracketTokens),
+                    std::move(attributes),
+                    std::move(innerCloseBracketTokens),
+                    std::move(outerCloseBracketTokens)));
+        }
+
+        /// <summary>
         /// Create a AccessorSpecifier
         /// </summary>
         static std::shared_ptr<const AccessorSpecifier> CreateAccessorSpecifier(

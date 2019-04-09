@@ -9,6 +9,16 @@ namespace Soup::Syntax
     export class DefaultSyntaxVisitor : public ISyntaxVisitor
     {
     public:
+        virtual void Visit(const Attribute& node) override
+        {
+            DefaultVisit(node);
+        }
+
+        virtual void Visit(const AttributeSpecifier& node) override
+        {
+            DefaultVisit(node);
+        }
+
         virtual void Visit(const AccessorSpecifier& node) override
         {
             DefaultVisit(node);

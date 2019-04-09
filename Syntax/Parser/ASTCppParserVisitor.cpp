@@ -2070,7 +2070,25 @@ antlrcpp::Any ASTCppParserVisitor::visitAttributeSpecifierSequence(CppParser::At
 antlrcpp::Any ASTCppParserVisitor::visitAttributeSpecifier(CppParser::AttributeSpecifierContext* context)
 {
     Trace("VisitAttributeSpecifier");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+    if (context->alignmentSpecifier() != nullptr)
+    {
+        return visit(context->alignmentSpecifier());
+    }
+    else
+    {
+        // OpenBracket OpenBracket attributeUsingPrefix? attributeList CloseBracket CloseBracket
+        auto attributeList = visit(context->attributeList())
+            .as<SeparatorListResult<Attribute>>();
+
+        return SyntaxFactory::CreateAttributeSpecifier(
+            CreateToken(SyntaxTokenType::OpenBracket, context->OpenBracket().at(0)),
+            CreateToken(SyntaxTokenType::OpenBracket, context->OpenBracket().at(1)),
+            std::make_shared<const SyntaxSeparatorList<Attribute>>(
+                std::move(attributeList.Items),
+                std::move(attributeList.Separators)),
+            CreateToken(SyntaxTokenType::CloseBracket, context->CloseBracket().at(0)),
+            CreateToken(SyntaxTokenType::CloseBracket, context->CloseBracket().at(1)));
+    }
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitAlignmentSpecifier(CppParser::AlignmentSpecifierContext* context)
@@ -2088,13 +2106,53 @@ antlrcpp::Any ASTCppParserVisitor::visitAttributeUsingPrefix(CppParser::Attribut
 antlrcpp::Any ASTCppParserVisitor::visitAttributeList(CppParser::AttributeListContext* context)
 {
     Trace("VisitAttributeList");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+
+    // Handle the recursive rule
+    SeparatorListResult<Attribute> attributeList;
+    if (context->attributeList() != nullptr)
+    {
+        attributeList = visit(context->attributeList())
+            .as<SeparatorListResult<Attribute>>();
+        attributeList.Separators.push_back(
+            CreateToken(SyntaxTokenType::Comma, context->Comma()));
+    }
+
+    // Handle the optional new attribute
+    if (context->attribute() != nullptr)
+    {
+        auto attribute = visit(context->attribute())
+            .as<std::shared_ptr<const Attribute>>();
+        attributeList.Items.push_back(attribute);
+    }
+
+    if (context->Ellipsis() != nullptr)
+    {
+        throw std::logic_error(std::string(__func__) + " NotImplemented");
+    }
+
+    return attributeList;
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitAttribute(CppParser::AttributeContext* context)
 {
     Trace("VisitAttribute");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+
+    // Check for optional arguments
+    if (context->attributeArgumentClause() != nullptr)
+    {
+        throw std::logic_error(std::string(__func__) + " NotImplemented");
+    }
+
+    // Check for optional scoped token
+    if (context->attributeToken()->attributeScopedToken() != nullptr)
+    {
+        throw std::logic_error(std::string(__func__) + " NotImplemented");
+    }
+    else
+    {
+        return SyntaxFactory::CreateAttribute(
+            CreateToken(SyntaxTokenType::Identifier, context->attributeToken()->Identifier()));
+    }
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitAttributeToken(CppParser::AttributeTokenContext* context)

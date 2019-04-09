@@ -2,6 +2,9 @@ import std.core;
 import Antlr4.Runtime;
 import SoupSyntax;
 
+#include "AST\Attribute\AttributeTests.gen.h"
+#include "AST\Attribute\AttributeSpecifierTests.gen.h"
+
 #include "AST\Declaration\AccessorSpecifierTests.gen.h"
 #include "AST\Declaration\ClassDeclarationTests.gen.h"
 #include "AST\Declaration\ConstructorDefinitionTests.gen.h"
@@ -56,6 +59,8 @@ import SoupSyntax;
 #include "Parser\ParseTranslationUnitTests.gen.h"
 #include "Parser\SyntaxNamespaceTests.gen.h"
 
+#include "Parser\Attribute\ParseAttributeSpecifierTests.gen.h"
+
 #include "Parser\Declaration\ParseAccessorSpecifierTests.gen.h"
 #include "Parser\Declaration\ParseClassDeclarationTests.gen.h"
 #include "Parser\Declaration\ParseConstructorDefinitionTests.gen.h"
@@ -86,6 +91,9 @@ int main()
     std::cout << "Running Tests..." << std::endl;
 
     TestState state = { 0, 0 };
+
+    state += RunAttributeTests();
+    state += RunAttributeSpecifierTests();
 
     state += RunAccessorSpecifierTests();
     state += RunClassDeclarationTests();
@@ -140,6 +148,8 @@ int main()
     state += RunParserExpressionTests();
     state += RunParseTranslationUnitTests();
     state += RunSyntaxNamespaceTests();
+
+    state += RunParseAttributeSpecifierTests();
 
     state += RunParseAccessorSpecifierTests();
     state += RunParseClassDeclarationTests();

@@ -13,6 +13,10 @@ namespace Soup::Syntax
     class SyntaxToken;
     class TranslationUnit;
 
+    // Attribute
+    class Attribute;
+    class AttributeSpecifier;
+
     // Expressions
     class BinaryExpression;
     class DestructorIdentifierExpression;
@@ -77,6 +81,8 @@ namespace Soup::Syntax
 #include "AST\SyntaxNodeChild.h"
 #include "AST\SyntaxList.h"
 #include "AST\SyntaxSeparatorList.h"
+#include "AST\Attribute\Attribute.h"
+#include "AST\Attribute\AttributeSpecifier.h"
 #include "AST\Expression\Expression.h"
 #include "AST\Expression\IdentifierExpression.h"
 #include "AST\Expression\InvocationExpression.h"

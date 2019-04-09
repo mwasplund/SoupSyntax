@@ -82,6 +82,10 @@ namespace Soup::Syntax
         {
             switch (type)
             {
+                case SyntaxNodeType::Attribute:
+                    return "Attribute";
+                case SyntaxNodeType::AttributeSpecifier:
+                    return "AttributeSpecifier";
                 case SyntaxNodeType::AccessorSpecifier:
                     return "AccessorSpecifier";
                 case SyntaxNodeType::BinaryExpression:

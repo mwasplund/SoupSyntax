@@ -6,7 +6,7 @@ namespace Soup::Syntax::UnitTests
     class SyntaxTokenTests
     {
     public:
-        // [[Fact]]
+        [[Fact]]
         void InitializeSimple()
         {
             auto uut = SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Nullptr);
@@ -17,7 +17,7 @@ namespace Soup::Syntax::UnitTests
             Assert::IsTrue(uut->GetTrailingTrivia().empty(), "Verify no trailing trivia.");
         }
 
-        // [[Fact]]
+        [ [Fact]]
         void OperatorEqual()
         {
             auto uut = SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Nullptr);
@@ -28,7 +28,7 @@ namespace Soup::Syntax::UnitTests
                 "Verify matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualType()
         {
             auto uut = SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Nullptr);
@@ -39,7 +39,7 @@ namespace Soup::Syntax::UnitTests
                 "Verify do not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualValue()
         {
             auto uut = SyntaxFactory::CreateUniqueToken(
@@ -53,4 +53,3 @@ namespace Soup::Syntax::UnitTests
         }
     };
 }
-                                                      
