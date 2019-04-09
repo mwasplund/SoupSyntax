@@ -204,6 +204,76 @@ namespace Soup::Syntax::UnitTests
         }
 
         // [[Fact]]
+        void OperatorNotEqualAttributeSpecifier()
+        {
+            // void Function(int parameter) = delete;
+            auto uut = SyntaxFactory::CreateFunctionDefinition(
+                SyntaxFactory::CreateDeclarationSpecifier(
+                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                        PrimitiveDataType::Void,
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
+                SyntaxFactory::CreateSimpleIdentifierExpression(
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
+                SyntaxFactory::CreateParameterList(
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
+                    std::make_shared<const SyntaxSeparatorList<Parameter>>(
+                        std::vector<std::shared_ptr<const Parameter>>(
+                        {
+                            SyntaxFactory::CreateParameter(
+                                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                    PrimitiveDataType::Int,
+                                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
+                                SyntaxFactory::CreateSimpleIdentifierExpression(
+                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "parameter"))),
+                        }),
+                        std::vector<std::shared_ptr<const SyntaxToken>>()),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
+                SyntaxFactory::CreateDeleteFunctionBody(
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Delete),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)));
+
+            TestUtils::AreNotEqual(
+                SyntaxFactory::CreateFunctionDefinition(
+                    SyntaxFactory::CreateSyntaxList<AttributeSpecifier>({
+                        SyntaxFactory::CreateAttributeSpecifier(
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
+                            std::make_shared<const SyntaxSeparatorList<Attribute>>(
+                                std::vector<std::shared_ptr<const Attribute>>(),
+                                std::vector<std::shared_ptr<const SyntaxToken>>()),
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket),
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket)),
+                    }),
+                    SyntaxFactory::CreateDeclarationSpecifier(
+                        SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                            PrimitiveDataType::Void,
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
+                    SyntaxFactory::CreateSimpleIdentifierExpression(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
+                    SyntaxFactory::CreateParameterList(
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
+                        std::make_shared<const SyntaxSeparatorList<Parameter>>(
+                            std::vector<std::shared_ptr<const Parameter>>(
+                            {
+                                SyntaxFactory::CreateParameter(
+                                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                        PrimitiveDataType::Int,
+                                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
+                                    SyntaxFactory::CreateSimpleIdentifierExpression(
+                                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "parameter"))),
+                            }),
+                            std::vector<std::shared_ptr<const SyntaxToken>>()),
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
+                    SyntaxFactory::CreateDeleteFunctionBody(
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Delete),
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))),
+                uut,
+                "Verify does not match.");
+        }
+
+        // [[Fact]]
         void OperatorNotEqualReturnType()
         {
             // void Function(int parameter) = delete;

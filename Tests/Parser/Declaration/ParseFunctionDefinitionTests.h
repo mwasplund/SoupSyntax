@@ -208,6 +208,66 @@ namespace Soup::Syntax::UnitTests
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
+        // [Fact]
+        void SimpleFunctionAttribute()
+        {
+            auto source = std::string(
+                "[[]] void Function() = delete;");
+
+            auto expected = SyntaxFactory::CreateFunctionDefinition(
+                SyntaxFactory::CreateSyntaxList<AttributeSpecifier>({
+                    SyntaxFactory::CreateAttributeSpecifier(
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
+                        std::make_shared<const SyntaxSeparatorList<Attribute>>(
+                            std::vector<std::shared_ptr<const Attribute>>(),
+                            std::vector<std::shared_ptr<const SyntaxToken>>()),
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket),
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket)),
+                }),
+                SyntaxFactory::CreateDeclarationSpecifier(
+                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                        PrimitiveDataType::Void,
+                        SyntaxFactory::CreateKeywordToken(
+                            SyntaxTokenType::Void,
+                            {
+                                SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
+                            },
+                            {}))),
+                SyntaxFactory::CreateSimpleIdentifierExpression(
+                    SyntaxFactory::CreateUniqueToken(
+                        SyntaxTokenType::Identifier,
+                        "Function",
+                        {
+                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
+                        },
+                        {})),
+                SyntaxFactory::CreateParameterList(
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
+                    std::make_shared<SyntaxSeparatorList<Parameter>>(
+                        std::vector<std::shared_ptr<const Parameter>>(),
+                        std::vector<std::shared_ptr<const SyntaxToken>>()),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
+                SyntaxFactory::CreateDeleteFunctionBody(
+                    SyntaxFactory::CreateKeywordToken(
+                        SyntaxTokenType::Equal,
+                        {
+                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
+                        },
+                        {}),
+                    SyntaxFactory::CreateKeywordToken(
+                        SyntaxTokenType::Delete,
+                        {
+                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
+                        },
+                        {}),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)));
+
+            auto actual = ParseFunctionDefinition(source);
+
+            TestUtils::AreEqual(expected, actual, "Verify matches expected.");
+        }
+
     private:
         std::shared_ptr<const FunctionDefinition> ParseFunctionDefinition(std::string& sourceCode)
         {

@@ -13,6 +13,7 @@ class MyClass
 private:
 
     // Get The value
+    [[AwesomeMethod]]
     int GetValue()
     {
         return m_value;

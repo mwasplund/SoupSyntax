@@ -11,11 +11,13 @@ namespace Soup::Syntax
 
     private:
         FunctionDefinition(
+            std::shared_ptr<const SyntaxList<AttributeSpecifier>> attributeSpecifierSequence,
             std::shared_ptr<const DeclarationSpecifier> returnType,
             std::shared_ptr<const IdentifierExpression> identifier,
             std::shared_ptr<const ParameterList> parameterList,
             std::shared_ptr<const SyntaxNode> body) :
             Declaration(SyntaxNodeType::FunctionDefinition),
+            m_attributeSpecifierSequence(std::move(attributeSpecifierSequence)),
             m_returnType(std::move(returnType)),
             m_identifier(std::move(identifier)),
             m_parameterList(std::move(parameterList)),
@@ -24,6 +26,14 @@ namespace Soup::Syntax
         }
 
     public:
+        /// <summary>
+        /// Gets the attribute specifier sequence
+        /// </summary>
+        const SyntaxList<AttributeSpecifier>& GetAttributeSpecifierSequence() const
+        {
+            return *m_attributeSpecifierSequence;
+        }
+
         /// <summary>
         /// Gets the return type
         /// </summary>
@@ -61,13 +71,17 @@ namespace Soup::Syntax
         /// </summary>
         virtual std::vector<SyntaxNodeChild> GetChildren() const override final
         {
-            return std::vector<SyntaxNodeChild>(
-            {
-                SyntaxNodeChild(m_returnType),
-                SyntaxNodeChild(m_identifier),
-                SyntaxNodeChild(m_parameterList),
-                SyntaxNodeChild(m_body),
-            });
+            std::vector<SyntaxNodeChild> children;
+
+            auto attributeSpecifierChildren = m_attributeSpecifierSequence->GetChildren();
+            children.insert(children.end(), attributeSpecifierChildren.begin(), attributeSpecifierChildren.end());
+
+            children.push_back(SyntaxNodeChild(m_returnType));
+            children.push_back(SyntaxNodeChild(m_identifier));
+            children.push_back(SyntaxNodeChild(m_parameterList));
+            children.push_back(SyntaxNodeChild(m_body));
+
+            return children;
         }
 
         /// <summary>
@@ -83,7 +97,7 @@ namespace Soup::Syntax
         /// </summary>
         bool operator ==(const FunctionDefinition& rhs) const
         {
-            return 
+            return *m_attributeSpecifierSequence == *rhs.m_attributeSpecifierSequence &&
                 *m_returnType == *rhs.m_returnType &&
                 *m_identifier == *rhs.m_identifier &&
                 *m_parameterList == *rhs.m_parameterList &&
@@ -105,6 +119,7 @@ namespace Soup::Syntax
         }
 
     private:
+        std::shared_ptr<const SyntaxList<AttributeSpecifier>> m_attributeSpecifierSequence;
         std::shared_ptr<const DeclarationSpecifier> m_returnType;
         std::shared_ptr<const IdentifierExpression> m_identifier;
         std::shared_ptr<const ParameterList> m_parameterList;

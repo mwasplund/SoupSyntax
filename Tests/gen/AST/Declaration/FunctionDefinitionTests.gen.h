@@ -22,8 +22,8 @@ TestState RunFunctionDefinitionTests()
         [&testClass]() { testClass->OperatorEqual(); });
     state += RunTest(
         className,
-        "OperatorNotEqualReturnType",
-        [&testClass]() { testClass->OperatorNotEqualReturnType(); });
+        "OperatorNotEqualAttributeSpecifier",
+        [&testClass]() { testClass->OperatorNotEqualAttributeSpecifier(); });
     state += RunTest(
         className,
         "OperatorNotEqualIdentifier",

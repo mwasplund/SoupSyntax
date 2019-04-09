@@ -24,6 +24,10 @@ TestState RunParseFunctionDefinitionTests()
         className,
         "SimpleFunctionParameter",
         [&testClass]() { testClass->SimpleFunctionParameter(); });
+    state += RunTest(
+        className,
+        "SimpleFunctionAttribute",
+        [&testClass]() { testClass->SimpleFunctionAttribute(); });
 
     return state;
 }

@@ -440,11 +440,14 @@ namespace Soup::Syntax
         /// Create a FunctionDefinition
         /// </summary>
         static std::shared_ptr<const FunctionDefinition> CreateFunctionDefinition(
+            std::shared_ptr<const SyntaxList<AttributeSpecifier>> attributeSpecifierSequence,
             std::shared_ptr<const DeclarationSpecifier> returnType,
             std::shared_ptr<const IdentifierExpression> identifier,
             std::shared_ptr<const ParameterList> parameterList,
             std::shared_ptr<const SyntaxNode> body)
         {
+            if (attributeSpecifierSequence == nullptr)
+                throw std::runtime_error("ArgumentNull - attributeSpecifierSequence");
             if (returnType == nullptr)
                 throw std::runtime_error("ArgumentNull - returnType");
             if (identifier == nullptr)
@@ -456,10 +459,29 @@ namespace Soup::Syntax
 
             return std::shared_ptr<const FunctionDefinition>(
                 new FunctionDefinition(
+                    std::move(attributeSpecifierSequence),
                     std::move(returnType),
                     std::move(identifier),
                     std::move(parameterList),
                     std::move(body)));
+        }
+
+        /// <summary>
+        /// Create a FunctionDefinition
+        /// Overload that adds an empty attribute specifier sequence
+        /// </summary>
+        static std::shared_ptr<const FunctionDefinition> CreateFunctionDefinition(
+            std::shared_ptr<const DeclarationSpecifier> returnType,
+            std::shared_ptr<const IdentifierExpression> identifier,
+            std::shared_ptr<const ParameterList> parameterList,
+            std::shared_ptr<const SyntaxNode> body)
+        {
+            return CreateFunctionDefinition(
+                CreateSyntaxList<AttributeSpecifier>({}),
+                std::move(returnType),
+                std::move(identifier),
+                std::move(parameterList),
+                std::move(body));
         }
 
         /// <summary>
@@ -1295,6 +1317,17 @@ namespace Soup::Syntax
                     std::move(openBracket),
                     std::move(rightExpression),
                     std::move(closeBracket)));
+        }
+
+        /// <summary>
+        /// Create a SimpleDeclaration
+        /// </summary>
+        template<typename T>
+        static std::shared_ptr<const SyntaxList<T>> CreateSyntaxList(
+            std::vector<std::shared_ptr<const T>> items)
+        {
+            return std::make_shared<const SyntaxList<T>>(
+                    std::move(items));
         }
 
         /// <summary>

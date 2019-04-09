@@ -2064,7 +2064,21 @@ antlrcpp::Any ASTCppParserVisitor::visitLinkageSpecification(CppParser::LinkageS
 antlrcpp::Any ASTCppParserVisitor::visitAttributeSpecifierSequence(CppParser::AttributeSpecifierSequenceContext* context)
 {
     Trace("VisitAttributeSpecifierSequence");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+
+    // Check for the recursive rule
+    std::vector<std::shared_ptr<const AttributeSpecifier>> attributeSpecifierSequence;
+    if (context->attributeSpecifierSequence() != nullptr)
+    {
+        attributeSpecifierSequence = visit(context->attributeSpecifierSequence())
+            .as<std::vector<std::shared_ptr<const AttributeSpecifier>>>();
+    }
+
+    // Handle the new attribute specifier
+    auto attributeSpecifier = visit(context->attributeSpecifier())
+        .as<std::shared_ptr<const AttributeSpecifier>>();
+    attributeSpecifierSequence.push_back(attributeSpecifier);
+
+    return attributeSpecifierSequence;
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitAttributeSpecifier(CppParser::AttributeSpecifierContext* context)
@@ -2431,6 +2445,14 @@ antlrcpp::Any ASTCppParserVisitor::visitFunctionDefinition(CppParser::FunctionDe
 {
     Trace("VisitFunctionDefinition");
 
+    // Check for the optional attribute specifiers
+    std::vector<std::shared_ptr<const AttributeSpecifier>> attributeSpecifierSequence;
+    if (context->attributeSpecifierSequence() != nullptr)
+    {
+        attributeSpecifierSequence = visit(context->attributeSpecifierSequence())
+            .as<std::vector<std::shared_ptr<const AttributeSpecifier>>>();
+    }
+
     // Analyze the declarator
     auto declaratorContext = context->functionDeclarator();
     auto identifier = std::dynamic_pointer_cast<const IdentifierExpression>(
@@ -2462,6 +2484,8 @@ antlrcpp::Any ASTCppParserVisitor::visitFunctionDefinition(CppParser::FunctionDe
 
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreateFunctionDefinition(
+                SyntaxFactory::CreateSyntaxList<AttributeSpecifier>(
+                    std::move(attributeSpecifierSequence)),
                 std::move(returnType),
                 std::move(identifier),
                 std::move(parameterList),
