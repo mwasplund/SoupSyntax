@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-namespace Soup::Syntax
+namespace Soup::Syntax::InnerTree
 {
     /// <summary>
     /// The base identifier expression for all unqualified identifiers that terminate

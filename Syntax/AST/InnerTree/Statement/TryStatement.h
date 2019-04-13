@@ -1,13 +1,13 @@
 ﻿#pragma once
 
-namespace Soup::Syntax
+namespace Soup::Syntax::InnerTree
 {
     /// <summary>
     /// Try statement node
     /// </summary>
     export class TryStatement final : public Statement
     {
-        friend class SyntaxFactory;
+        friend class ::Soup::Syntax::SyntaxFactory;
 
     private:
         /// <summary>
@@ -47,32 +47,6 @@ namespace Soup::Syntax
         const std::vector<std::shared_ptr<const CatchClause>>& GetCatchClauses() const
         {
             return m_catchClauses;
-        }
-
-        /// <summary>
-        /// Get the collection of children nodes and tokens
-        /// </summary>
-        virtual std::vector<SyntaxNodeChild> GetChildren() const override final
-        {
-            std::vector<SyntaxNodeChild> children;
-
-            children.push_back(SyntaxNodeChild(m_tryToken));
-            children.push_back(SyntaxNodeChild(m_compoundStatement));
-    
-            for (auto& catchClause : m_catchClauses)
-            {
-                children.push_back(SyntaxNodeChild(catchClause));
-            }
-
-            return children;
-        }
-
-        /// <summary>
-        /// Visitor Accept
-        /// </summary>
-        virtual void Accept(ISyntaxVisitor& visitor) const override final
-        {
-            visitor.Visit(*this);
         }
 
         /// <summary>

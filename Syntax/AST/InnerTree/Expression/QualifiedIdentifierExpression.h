@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-namespace Soup::Syntax
+namespace Soup::Syntax::InnerTree
 {
     /// <summary>
     /// A Qualified identifier expression
@@ -12,7 +12,7 @@ namespace Soup::Syntax
     /// </summary>
     export class QualifiedIdentifierExpression final : public IdentifierExpression
     {
-        friend class SyntaxFactory;
+        friend class ::Soup::Syntax::SyntaxFactory;
 
     private:
         /// <summary>
@@ -78,31 +78,6 @@ namespace Soup::Syntax
         const UnqualifiedIdentifierExpression& GetRight() const
         {
             return *m_right;
-        }
-
-        /// <summary>
-        /// Get the collection of children nodes and tokens
-        /// </summary>
-        virtual std::vector<SyntaxNodeChild> GetChildren() const override final
-        {
-            std::vector<SyntaxNodeChild> children;
-            if (HasLeft())
-            {
-                children.push_back(SyntaxNodeChild(m_left));
-            }
-
-            children.push_back(SyntaxNodeChild(m_scopeResolutionToken));
-            children.push_back(SyntaxNodeChild(m_right));
-
-            return children;
-        }
-
-        /// <summary>
-        /// Visitor Accept
-        /// </summary>
-        virtual void Accept(ISyntaxVisitor& visitor) const override final
-        {
-            visitor.Visit(*this);
         }
 
         /// <summary>

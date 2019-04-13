@@ -1,13 +1,13 @@
 ﻿#pragma once
 
-namespace Soup::Syntax
+namespace Soup::Syntax::InnerTree
 {
     /// <summary>
     /// A member initializer for initializing member values in a constructor initializer
     /// </summary>
     export class MemberInitializer final : public SyntaxNode
     {
-        friend class SyntaxFactory;
+        friend class ::Soup::Syntax::SyntaxFactory;
 
     private:
         /// <summary>
@@ -37,26 +37,6 @@ namespace Soup::Syntax
         const InitializerList& GetInitializerList() const
         {
             return *m_initializerList;
-        }
-
-        /// <summary>
-        /// Get the collection of children nodes and tokens
-        /// </summary>
-        virtual std::vector<SyntaxNodeChild> GetChildren() const override final
-        {
-            return std::vector<SyntaxNodeChild>(
-                {
-                    SyntaxNodeChild(m_identifierToken),
-                    SyntaxNodeChild(m_initializerList),
-                });
-        }
-
-        /// <summary>
-        /// Visitor Accept
-        /// </summary>
-        virtual void Accept(ISyntaxVisitor& visitor) const override final
-        {
-            visitor.Visit(*this);
         }
 
         /// <summary>

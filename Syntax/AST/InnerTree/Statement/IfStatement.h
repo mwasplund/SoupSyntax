@@ -1,13 +1,13 @@
 ﻿#pragma once
 
-namespace Soup::Syntax
+namespace Soup::Syntax::InnerTree
 {
     /// <summary>
     /// If statement node
     /// </summary>
     export class IfStatement final : public Statement
     {
-        friend class SyntaxFactory;
+        friend class ::Soup::Syntax::SyntaxFactory;
 
     private:
         /// <summary>
@@ -88,36 +88,6 @@ namespace Soup::Syntax
         bool HasElseClause() const
         {
             return m_elseClause != nullptr;
-        }
-
-        /// <summary>
-        /// Get the collection of children nodes and tokens
-        /// </summary>
-        virtual std::vector<SyntaxNodeChild> GetChildren() const override final
-        {
-            std::vector<SyntaxNodeChild> children(
-            {
-                SyntaxNodeChild(m_ifToken),
-                SyntaxNodeChild(m_openParenthesisToken),
-                SyntaxNodeChild(m_conditionExpression),
-                SyntaxNodeChild(m_closeParenthesisToken),
-                SyntaxNodeChild(m_statement),
-            });
-
-            if (HasElseClause())
-            {
-                children.push_back(SyntaxNodeChild(m_elseClause));
-            }
-
-            return children;
-        }
-
-        /// <summary>
-        /// Visitor Accept
-        /// </summary>
-        virtual void Accept(ISyntaxVisitor& visitor) const override final
-        {
-            visitor.Visit(*this);
         }
 
         /// <summary>

@@ -1,13 +1,13 @@
 ﻿#pragma once
 
-namespace Soup::Syntax
+namespace Soup::Syntax::InnerTree
 {
     /// <summary>
     /// The delete function body
     /// </summary>
     export class DeleteFunctionBody final : public SyntaxNode
     {
-        friend class SyntaxFactory;
+        friend class ::Soup::Syntax::SyntaxFactory;
 
     private:
         /// <summary>
@@ -47,27 +47,6 @@ namespace Soup::Syntax
         const SyntaxToken& GetSemicolonToken() const
         {
             return *m_semicolonToken;
-        }
-
-        /// <summary>
-        /// Get the collection of children nodes and tokens
-        /// </summary>
-        virtual std::vector<SyntaxNodeChild> GetChildren() const override final
-        {
-            return std::vector<SyntaxNodeChild>(
-                {
-                    SyntaxNodeChild(m_equalToken),
-                    SyntaxNodeChild(m_deleteToken),
-                    SyntaxNodeChild(m_semicolonToken),
-                });
-        }
-
-        /// <summary>
-        /// Visitor Accept
-        /// </summary>
-        virtual void Accept(ISyntaxVisitor& visitor) const override final
-        {
-            visitor.Visit(*this);
         }
 
         /// <summary>

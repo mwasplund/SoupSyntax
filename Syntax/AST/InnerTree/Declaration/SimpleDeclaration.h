@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-namespace Soup::Syntax
+namespace Soup::Syntax::InnerTree
 {
     /// <summary>
     /// A statement that introduces, creates, and optionally initializes 
@@ -8,7 +8,7 @@ namespace Soup::Syntax
     /// </summary>
     export class SimpleDeclaration final : public Declaration
     {
-        friend class SyntaxFactory;
+        friend class ::Soup::Syntax::SyntaxFactory;
 
     private:
         /// <summary>
@@ -48,29 +48,6 @@ namespace Soup::Syntax
         const SyntaxToken& GetSemicolonToken() const
         {
             return *m_semicolonToken;
-        }
-
-        /// <summary>
-        /// Get the collection of children nodes and tokens
-        /// </summary>
-        virtual std::vector<SyntaxNodeChild> GetChildren() const override final
-        {
-            std::vector<SyntaxNodeChild> children(
-            {
-                SyntaxNodeChild(m_declarationSpecifier),
-                SyntaxNodeChild(m_initializerDeclaratorList),
-                SyntaxNodeChild(m_semicolonToken),
-            });
-
-            return children;
-        }
-
-        /// <summary>
-        /// Visitor Accept
-        /// </summary>
-        virtual void Accept(ISyntaxVisitor& visitor) const override final
-        {
-            visitor.Visit(*this);
         }
 
         /// <summary>

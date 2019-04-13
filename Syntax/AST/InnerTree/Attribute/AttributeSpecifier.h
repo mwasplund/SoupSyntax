@@ -1,13 +1,13 @@
 ﻿#pragma once
 
-namespace Soup::Syntax
+namespace Soup::Syntax::InnerTree
 {
     /// <summary>
     /// The attribute sepecifier
     /// </summary>
     export class AttributeSpecifier final : public SyntaxNode
     {
-        friend class SyntaxFactory;
+        friend class ::Soup::Syntax::SyntaxFactory;
 
     private:
         /// <summary>
@@ -67,33 +67,6 @@ namespace Soup::Syntax
         const SyntaxToken& GetOuterCloseBracketToken() const
         {
             return *m_outerCloseBracketTokens;
-        }
-
-        /// <summary>
-        /// Get the collection of children nodes and tokens
-        /// </summary>
-        virtual std::vector<SyntaxNodeChild> GetChildren() const override final
-        {
-            std::vector<SyntaxNodeChild> children;
-
-            children.push_back(SyntaxNodeChild(m_outerOpenBracketTokens));
-            children.push_back(SyntaxNodeChild(m_innerOpenBracketTokens));
-
-            auto attributeChildren = m_attributes->GetChildren();
-            children.insert(children.end(), attributeChildren.begin(), attributeChildren.end());
-
-            children.push_back(SyntaxNodeChild(m_innerCloseBracketTokens));
-            children.push_back(SyntaxNodeChild(m_outerCloseBracketTokens));
-
-            return children;
-        }
-
-        /// <summary>
-        /// Visitor Accept
-        /// </summary>
-        virtual void Accept(ISyntaxVisitor& visitor) const override final
-        {
-            visitor.Visit(*this);
         }
 
         /// <summary>

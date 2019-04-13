@@ -1,13 +1,13 @@
 ﻿#pragma once
 
-namespace Soup::Syntax
+namespace Soup::Syntax::InnerTree
 {
     /// <summary>
     /// The parameter
     /// </summary>
     export class Parameter final : public SyntaxNode
     {
-        friend class SyntaxFactory;
+        friend class ::Soup::Syntax::SyntaxFactory;
 
     private:
         /// <summary>
@@ -37,26 +37,6 @@ namespace Soup::Syntax
         const SyntaxNode& GetDeclarator() const
         {
             return *m_declarator;
-        }
-
-        /// <summary>
-        /// Get the collection of children nodes and tokens
-        /// </summary>
-        virtual std::vector<SyntaxNodeChild> GetChildren() const override final
-        {
-            return std::vector<SyntaxNodeChild>(
-                {
-                    SyntaxNodeChild(m_declarationSpecifier),
-                    SyntaxNodeChild(m_declarator),
-                });
-        }
-
-        /// <summary>
-        /// Visitor Accept
-        /// </summary>
-        virtual void Accept(ISyntaxVisitor& visitor) const override final
-        {
-            visitor.Visit(*this);
         }
 
         /// <summary>

@@ -1,13 +1,13 @@
 ﻿#pragma once
 
-namespace Soup::Syntax
+namespace Soup::Syntax::InnerTree
 {
     /// <summary>
     /// The function parameter list
     /// </summary>
     export class ParameterList final : public SyntaxNode
     {
-        friend class SyntaxFactory;
+        friend class ::Soup::Syntax::SyntaxFactory;
 
     private:
         /// <summary>
@@ -47,31 +47,6 @@ namespace Soup::Syntax
         const SyntaxToken& GetCloseParenthesisToken() const
         {
             return *m_closeParenthesisToken;
-        }
-
-        /// <summary>
-        /// Get the collection of children nodes and tokens
-        /// </summary>
-        virtual std::vector<SyntaxNodeChild> GetChildren() const override final
-        {
-            std::vector<SyntaxNodeChild> children;
-
-            children.push_back(SyntaxNodeChild(m_openParenthesisToken));
-
-            auto parameterChildren = m_parameters->GetChildren();
-            children.insert(children.end(), parameterChildren.begin(), parameterChildren.end());
-
-            children.push_back(SyntaxNodeChild(m_closeParenthesisToken));
-
-            return children;
-        }
-
-        /// <summary>
-        /// Visitor Accept
-        /// </summary>
-        virtual void Accept(ISyntaxVisitor& visitor) const override final
-        {
-            visitor.Visit(*this);
         }
 
         /// <summary>

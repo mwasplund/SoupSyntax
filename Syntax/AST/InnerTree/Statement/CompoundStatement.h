@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-namespace Soup::Syntax
+namespace Soup::Syntax::InnerTree
 {
     /// <summary>
     /// Compound statement node that represents a collection of statments wrapped
@@ -9,7 +9,7 @@ namespace Soup::Syntax
     /// </summary>
     export class CompoundStatement final : public SyntaxNode
     {
-        friend class SyntaxFactory;
+        friend class ::Soup::Syntax::SyntaxFactory;
 
     private:
         /// <summary>
@@ -49,33 +49,6 @@ namespace Soup::Syntax
         const SyntaxToken& GetCloseBraceToken() const
         {
             return *m_closeBraceToken;
-        }
-
-        /// <summary>
-        /// Get the collection of children nodes and tokens
-        /// </summary>
-        virtual std::vector<SyntaxNodeChild> GetChildren() const override final
-        {
-            std::vector<SyntaxNodeChild> children;
-
-            children.push_back(SyntaxNodeChild(m_openBraceToken));
-    
-            for (auto& statement : m_statements)
-            {
-                children.push_back(SyntaxNodeChild(statement));
-            }
-
-            children.push_back(SyntaxNodeChild(m_closeBraceToken));
-
-            return children;
-        }
-
-        /// <summary>
-        /// Visitor Accept
-        /// </summary>
-        virtual void Accept(ISyntaxVisitor& visitor) const override final
-        {
-            visitor.Visit(*this);
         }
 
         /// <summary>

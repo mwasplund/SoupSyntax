@@ -46,7 +46,7 @@ class TestUtils
         return container;
     }
 
-    static std::shared_ptr<const TranslationUnit> GenerateAST(const std::string& source)
+    static std::shared_ptr<const InnerTree::TranslationUnit> GenerateAST(const std::string& source)
     {
         auto container = BuildParser(source);
 
@@ -55,17 +55,17 @@ class TestUtils
 
         // Convert the the abstract syntax tree
         auto ast = container.Visitor->visit(translationUnit)
-            .as<std::shared_ptr<const TranslationUnit>>();
+            .as<std::shared_ptr<const InnerTree::TranslationUnit>>();
 
         return ast;
     }
 
-    static std::shared_ptr<const TranslationUnit> CreateSingleDeclaration(
-        std::shared_ptr<const Declaration> declaration)
+    static std::shared_ptr<const InnerTree::TranslationUnit> CreateSingleDeclaration(
+        std::shared_ptr<const InnerTree::Declaration> declaration)
     {
         return SyntaxFactory::CreateTranslationUnit(
-            std::make_shared<const SyntaxList<Declaration>>(
-                std::vector<std::shared_ptr<const Declaration>>{
+            std::make_shared<const InnerTree::SyntaxList<InnerTree::Declaration>>(
+                std::vector<std::shared_ptr<const InnerTree::Declaration>>{
                     std::move(declaration)}),
             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile));
     }
@@ -88,8 +88,8 @@ class TestUtils
     }
 
     static void AreEqual(
-        const std::shared_ptr<const SyntaxNode>& expected,
-        const std::shared_ptr<const SyntaxNode>& actual,
+        const std::shared_ptr<const InnerTree::SyntaxNode>& expected,
+        const std::shared_ptr<const InnerTree::SyntaxNode>& actual,
         const std::string& message)
     {
         if (actual == nullptr)
@@ -105,38 +105,38 @@ class TestUtils
     }
 
     static void AreEqual(
-        const SyntaxNode& expected,
-        const SyntaxNode& actual,
+        const InnerTree::SyntaxNode& expected,
+        const InnerTree::SyntaxNode& actual,
         const std::string& message)
     {
         if (expected != actual)
         {
             std::stringstream errorMessage;
-            SyntaxTreeWriter writer(errorMessage);
+            // TODO SyntaxTreeWriter writer(errorMessage);
             errorMessage << message << "\n";
             errorMessage << "Expected:\n";
-            expected.Accept(writer);
+            //expected.Accept(writer);
             errorMessage << "Actual:\n";
-            actual.Accept(writer);
+            //actual.Accept(writer);
 
             Assert::Fail(errorMessage.str());
         }
     }
 
     static void AreNotEqual(
-        const std::shared_ptr<const SyntaxNode>& expected,
-        const std::shared_ptr<const SyntaxNode>& actual,
+        const std::shared_ptr<const InnerTree::SyntaxNode>& expected,
+        const std::shared_ptr<const InnerTree::SyntaxNode>& actual,
         const std::string& message)
     {
         if (*expected == *actual)
         {
             std::stringstream errorMessage;
-            SyntaxTreeWriter writer(errorMessage);
+            // TODO: SyntaxTreeWriter writer(errorMessage);
             errorMessage << message << "\n";
             errorMessage << "Expected:\n";
-            expected->Accept(writer);
+            //expected->Accept(writer);
             errorMessage << "Actual:\n";
-            actual->Accept(writer);
+            //actual->Accept(writer);
 
             Assert::Fail(errorMessage.str());
         }

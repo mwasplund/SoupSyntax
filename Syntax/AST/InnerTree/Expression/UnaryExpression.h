@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-namespace Soup::Syntax
+namespace Soup::Syntax::InnerTree
 {
     /// <summary>
     /// Unary Expression consisting of a single operand expression and
@@ -8,7 +8,7 @@ namespace Soup::Syntax
     /// </summary>
     export class UnaryExpression : public Expression
     {
-        friend class SyntaxFactory;
+        friend class ::Soup::Syntax::SyntaxFactory;
 
     private:
         /// <summary>
@@ -26,30 +26,6 @@ namespace Soup::Syntax
         }
 
     public:
-        /// <summary>
-        /// Gets a value indicating whether the operator is prefix or postfix
-        /// </summary>
-        bool IsPostfixOperator() const
-        {
-            switch (m_operator)
-            {
-                case UnaryOperator::PostIncrement:
-                case UnaryOperator::PostDecrement:
-                    return true;
-                case UnaryOperator::Plus:
-                case UnaryOperator::Minus:
-                case UnaryOperator::BitwiseNot:
-                case UnaryOperator::PreIncrement:
-                case UnaryOperator::PreDecrement:
-                case UnaryOperator::LogicalNot:
-                case UnaryOperator::Indirection:
-                case UnaryOperator::AddressOf:
-                    return false;
-                default:
-                    throw std::logic_error("Unknown operator.");
-            }
-        }
-
         /// <summary>
         /// The operator
         /// </summary>
@@ -72,37 +48,6 @@ namespace Soup::Syntax
         const Expression& GetOperand() const
         {
             return *m_operand;
-        }
-
-        /// <summary>
-        /// Get the collection of children nodes and tokens
-        /// </summary>
-        virtual std::vector<SyntaxNodeChild> GetChildren() const override final
-        {
-            if (IsPostfixOperator())
-            {
-                return std::vector<SyntaxNodeChild>(
-                {
-                    SyntaxNodeChild(m_operand),
-                    SyntaxNodeChild(m_operatorToken),
-                });
-            }
-            else
-            {
-                return std::vector<SyntaxNodeChild>(
-                {
-                    SyntaxNodeChild(m_operatorToken),
-                    SyntaxNodeChild(m_operand),
-                });
-            }
-        }
-
-        /// <summary>
-        /// Visitor Accept
-        /// </summary>
-        virtual void Accept(ISyntaxVisitor& visitor) const override final
-        {
-            visitor.Visit(*this);
         }
 
         /// <summary>

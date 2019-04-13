@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-namespace Soup::Syntax
+namespace Soup::Syntax::InnerTree
 {
     /// <summary>
     /// Invocation Expression that represents an invocation of a single
@@ -9,7 +9,7 @@ namespace Soup::Syntax
     /// </summary>
     export class InvocationExpression : public Expression
     {
-        friend class SyntaxFactory;
+        friend class ::Soup::Syntax::SyntaxFactory;
 
     private:
         /// <summary>
@@ -59,32 +59,6 @@ namespace Soup::Syntax
         const SyntaxToken& GetCloseParenthesisToken() const
         {
             return *m_closeParenthesis;
-        }
-
-        /// <summary>
-        /// Get the collection of children nodes and tokens
-        /// </summary>
-        virtual std::vector<SyntaxNodeChild> GetChildren() const override final
-        {
-            std::vector<SyntaxNodeChild> children;
-
-            children.push_back(SyntaxNodeChild(m_leftExpression));
-            children.push_back(SyntaxNodeChild(m_openParenthesis));
-
-            auto parameterChildren = m_parameters->GetChildren();
-            children.insert(children.end(), parameterChildren.begin(), parameterChildren.end());
-
-            children.push_back(SyntaxNodeChild(m_closeParenthesis));
-
-            return children;
-        }
-
-        /// <summary>
-        /// Visitor Accept
-        /// </summary>
-        virtual void Accept(ISyntaxVisitor& visitor) const override final
-        {
-            visitor.Visit(*this);
         }
 
         /// <summary>

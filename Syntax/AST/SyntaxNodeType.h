@@ -28,7 +28,6 @@ namespace Soup::Syntax
         EnumDeclaration,
         EnumeratorDefinition,
         ExpressionStatement,
-        FunctionDeclaration,
         FunctionDefinition,
         IfStatement,
         InitializerDeclarator,

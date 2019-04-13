@@ -1,5 +1,6 @@
 ﻿module SoupSyntax;
 using namespace Soup::Syntax;
+using namespace Soup::Syntax::InnerTree;
 
 template<class T>
 struct SeparatorListResult
@@ -3370,9 +3371,8 @@ std::vector<SyntaxTrivia> ASTCppParserVisitor::GetLeadingTrivia(size_t index)
         auto& triviaToken = leftTriviaTokens[i];
 
         std::string triviaText = triviaToken->getText();
-        TextSpan triviaSpan = TextSpan(0, 0);
         leadingTrivia.push_back(
-            SyntaxFactory::CreateTrivia(std::move(triviaText), triviaSpan));
+            SyntaxFactory::CreateTrivia(std::move(triviaText)));
     }
 
     return leadingTrivia;
@@ -3398,9 +3398,8 @@ std::vector<SyntaxTrivia> ASTCppParserVisitor::GetTrailingTrivia(size_t index)
             auto& triviaToken = rightTriviaTokens[i];
 
             std::string triviaText = triviaToken->getText();
-            TextSpan triviaSpan = TextSpan(0, 0);
             trailingTrivia.push_back(
-                SyntaxFactory::CreateTrivia(std::move(triviaText), triviaSpan));
+                SyntaxFactory::CreateTrivia(std::move(triviaText)));
         }
     }
 

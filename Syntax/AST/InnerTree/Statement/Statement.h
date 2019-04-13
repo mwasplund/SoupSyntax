@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Soup::Syntax
+namespace Soup::Syntax::InnerTree
 {
     /// <summary>
     /// Compound statement node

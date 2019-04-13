@@ -1,13 +1,13 @@
 ﻿#pragma once
 
-namespace Soup::Syntax
+namespace Soup::Syntax::InnerTree
 {
     /// <summary>
     /// The function definition class.
     /// </summary>
     export class FunctionDefinition final : public Declaration
     {
-        friend class SyntaxFactory;
+        friend class ::Soup::Syntax::SyntaxFactory;
 
     private:
         FunctionDefinition(
@@ -64,32 +64,6 @@ namespace Soup::Syntax
         const SyntaxNode& GetBody() const
         {
             return *m_body;
-        }
-
-        /// <summary>
-        /// Get the collection of children nodes and tokens
-        /// </summary>
-        virtual std::vector<SyntaxNodeChild> GetChildren() const override final
-        {
-            std::vector<SyntaxNodeChild> children;
-
-            auto attributeSpecifierChildren = m_attributeSpecifierSequence->GetChildren();
-            children.insert(children.end(), attributeSpecifierChildren.begin(), attributeSpecifierChildren.end());
-
-            children.push_back(SyntaxNodeChild(m_returnType));
-            children.push_back(SyntaxNodeChild(m_identifier));
-            children.push_back(SyntaxNodeChild(m_parameterList));
-            children.push_back(SyntaxNodeChild(m_body));
-
-            return children;
-        }
-
-        /// <summary>
-        /// Visitor Accept
-        /// </summary>
-        virtual void Accept(ISyntaxVisitor& visitor) const override final
-        {
-            visitor.Visit(*this);
         }
 
         /// <summary>

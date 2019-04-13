@@ -1,13 +1,13 @@
 ﻿#pragma once
 
-namespace Soup::Syntax
+namespace Soup::Syntax::InnerTree
 {
     /// <summary>
     /// Namespace definition
     /// </summary>
     export class NamespaceDefinition final : public Declaration
     {
-        friend class SyntaxFactory;
+        friend class ::Soup::Syntax::SyntaxFactory;
 
     private:
         /// <summary>
@@ -67,36 +67,6 @@ namespace Soup::Syntax
         const SyntaxToken& GetCloseBraceToken() const
         {
             return *m_closeBraceToken;
-        }
-
-        /// <summary>
-        /// Get the collection of children nodes and tokens
-        /// </summary>
-        virtual std::vector<SyntaxNodeChild> GetChildren() const override final
-        {
-            std::vector<SyntaxNodeChild> children;
-
-            children.push_back(SyntaxNodeChild(m_namespaceToken));
-
-            auto nameIdentifierChildren = m_nameIdentifierList->GetChildren();
-            children.insert(children.end(), nameIdentifierChildren.begin(), nameIdentifierChildren.end());
-
-            children.push_back(SyntaxNodeChild(m_openBraceToken));
-    
-            auto bodyChildren = m_body->GetChildren();
-            children.insert(children.end(), bodyChildren.begin(), bodyChildren.end());
-
-            children.push_back(SyntaxNodeChild(m_closeBraceToken));
-
-            return children;
-        }
-
-        /// <summary>
-        /// Visitor Accept
-        /// </summary>
-        virtual void Accept(ISyntaxVisitor& visitor) const override final
-        {
-            visitor.Visit(*this);
         }
 
         /// <summary>

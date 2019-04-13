@@ -4,13 +4,21 @@ export module SoupSyntax;
 import std.core;
 import Antlr4.Runtime;
 
-
 // Predefine nodes to get around circular references
+// used in the visitors
 namespace Soup::Syntax
 {
+    // Core
+    class SyntaxFactory;
+    class SyntaxToken;
+    class SyntaxTrivia;
+}
+
+namespace Soup::Syntax::InnerTree
+{
+    // Core
     class SyntaxNode;
     class SyntaxNodeChild;
-    class SyntaxToken;
     class TranslationUnit;
 
     // Attribute
@@ -40,7 +48,6 @@ namespace Soup::Syntax
     class EmptyDeclaration;
     class EnumDeclaration;
     class EnumeratorDefinition;
-    class FunctionDeclaration;
     class FunctionDefinition;
     class InitializerDeclarator;
     class InitializerDeclaratorList;
@@ -70,81 +77,83 @@ namespace Soup::Syntax
     class TryStatement;
 }
 
-#include "AST\TextSpan.h"
+#include "AST\BinaryOperator.h"
+#include "AST\LiteralType.h"
+#include "AST\PrimitiveDataType.h"
+//#include "AST\TextSpan.h"
 #include "AST\SyntaxTrivia.h"
 #include "AST\SyntaxTokenType.h"
 #include "AST\SyntaxToken.h"
 #include "AST\SyntaxUtils.h"
-#include "AST\Visitor\ISyntaxVisitor.h"
+//#include "AST\Visitor\ISyntaxVisitor.h"
 #include "AST\SyntaxNodeType.h"
-#include "AST\SyntaxNode.h"
-#include "AST\SyntaxNodeChild.h"
-#include "AST\SyntaxList.h"
-#include "AST\SyntaxSeparatorList.h"
-#include "AST\Attribute\Attribute.h"
-#include "AST\Attribute\AttributeSpecifier.h"
-#include "AST\Expression\Expression.h"
-#include "AST\Expression\IdentifierExpression.h"
-#include "AST\Expression\InvocationExpression.h"
-#include "AST\Expression\UnqualifiedIdentifierExpression.h"
-#include "AST\Expression\BinaryOperator.h"
-#include "AST\Expression\BinaryExpression.h"
-#include "AST\Expression\DestructorIdentifierExpression.h"
-#include "AST\Expression\LiteralType.h"
-#include "AST\Expression\LiteralExpression.h"
-#include "AST\Expression\SimpleIdentifierExpression.h"
-#include "AST\Expression\SimpleTemplateIdentifierExpression.h"
-#include "AST\Expression\SubscriptExpression.h"
-#include "AST\Expression\ThisExpression.h"
-#include "AST\Expression\QualifiedIdentifierExpression.h"
-#include "AST\Expression\UnaryOperator.h"
-#include "AST\Expression\UnaryExpression.h"
-#include "AST\Statement\Statement.h"
-#include "AST\Statement\CompoundStatement.h"
-#include "AST\Statement\CatchClause.h"
-#include "AST\Statement\ElseClause.h"
-#include "AST\Statement\EmptyStatement.h"
-#include "AST\Statement\ExpressionStatement.h"
-#include "AST\Statement\IfStatement.h"
-#include "AST\Statement\ReturnStatement.h"
-#include "AST\Statement\TryStatement.h"
-#include "AST\Declaration\DeclarationSpecifier.h"
-#include "AST\Declaration\Declaration.h"
-#include "AST\Declaration\AccessorSpecifier.h"
-#include "AST\Declaration\Parameter.h"
-#include "AST\Declaration\ParameterList.h"
-#include "AST\Declaration\ClassDeclaration.h"
-#include "AST\Declaration\InitializerList.h"
-#include "AST\Declaration\MemberDeclarator.h"
-#include "AST\Declaration\MemberDeclaratorList.h"
-#include "AST\Declaration\MemberDeclaration.h"
-#include "AST\Declaration\MemberInitializer.h"
-#include "AST\Declaration\ConstructorInitializer.h"
-#include "AST\Declaration\ConstructorDefinition.h"
-#include "AST\Declaration\DefaultFunctionBody.h"
-#include "AST\Declaration\DeleteFunctionBody.h"
-#include "AST\Declaration\EmptyDeclaration.h"
-#include "AST\Declaration\EnumeratorDefinition.h"
-#include "AST\Declaration\EnumDeclaration.h"
-#include "AST\Declaration\NamespaceDefinition.h"
-#include "AST\Declaration\PrimitiveDataType.h"
-#include "AST\Declaration\PrimitiveDataTypeDeclaration.h"
-#include "AST\Declaration\FunctionDeclaration.h"
-#include "AST\Declaration\FunctionDefinition.h"
-#include "AST\Declaration\InitializerDeclarator.h"
-#include "AST\Declaration\InitializerDeclaratorList.h"
-#include "AST\Declaration\RegularFunctionBody.h"
-#include "AST\Declaration\TryFunctionBody.h"
-#include "AST\Declaration\SimpleDeclaration.h"
-#include "AST\Declaration\ValueEqualInitializer.h"
-#include "AST\Statement\DeclarationStatement.h"
-#include "AST\TranslationUnit.h"
-#include "AST\Visitor\DefaultSyntaxVisitor.h"
-#include "AST\Visitor\SyntaxWalker.h"
-#include "AST\Visitor\SyntaxSourceWriter.h"
-#include "AST\Visitor\SyntaxTreeWriter.h"
+#include "AST\UnaryOperator.h"
+
+#include "AST\InnerTree\SyntaxNode.h"
+#include "AST\InnerTree\SyntaxList.h"
+#include "AST\InnerTree\SyntaxSeparatorList.h"
+#include "AST\InnerTree\Attribute\Attribute.h"
+#include "AST\InnerTree\Attribute\AttributeSpecifier.h"
+#include "AST\InnerTree\Expression\Expression.h"
+#include "AST\InnerTree\Expression\IdentifierExpression.h"
+#include "AST\InnerTree\Expression\InvocationExpression.h"
+#include "AST\InnerTree\Expression\UnqualifiedIdentifierExpression.h"
+#include "AST\InnerTree\Expression\BinaryExpression.h"
+#include "AST\InnerTree\Expression\DestructorIdentifierExpression.h"
+#include "AST\InnerTree\Expression\LiteralExpression.h"
+#include "AST\InnerTree\Expression\SimpleIdentifierExpression.h"
+#include "AST\InnerTree\Expression\SimpleTemplateIdentifierExpression.h"
+#include "AST\InnerTree\Expression\SubscriptExpression.h"
+#include "AST\InnerTree\Expression\ThisExpression.h"
+#include "AST\InnerTree\Expression\QualifiedIdentifierExpression.h"
+#include "AST\InnerTree\Expression\UnaryExpression.h"
+#include "AST\InnerTree\Statement\Statement.h"
+#include "AST\InnerTree\Statement\CompoundStatement.h"
+#include "AST\InnerTree\Statement\CatchClause.h"
+#include "AST\InnerTree\Statement\ElseClause.h"
+#include "AST\InnerTree\Statement\EmptyStatement.h"
+#include "AST\InnerTree\Statement\ExpressionStatement.h"
+#include "AST\InnerTree\Statement\IfStatement.h"
+#include "AST\InnerTree\Statement\ReturnStatement.h"
+#include "AST\InnerTree\Statement\TryStatement.h"
+#include "AST\InnerTree\Declaration\DeclarationSpecifier.h"
+#include "AST\InnerTree\Declaration\Declaration.h"
+#include "AST\InnerTree\Declaration\AccessorSpecifier.h"
+#include "AST\InnerTree\Declaration\Parameter.h"
+#include "AST\InnerTree\Declaration\ParameterList.h"
+#include "AST\InnerTree\Declaration\ClassDeclaration.h"
+#include "AST\InnerTree\Declaration\InitializerList.h"
+#include "AST\InnerTree\Declaration\MemberDeclarator.h"
+#include "AST\InnerTree\Declaration\MemberDeclaratorList.h"
+#include "AST\InnerTree\Declaration\MemberDeclaration.h"
+#include "AST\InnerTree\Declaration\MemberInitializer.h"
+#include "AST\InnerTree\Declaration\ConstructorInitializer.h"
+#include "AST\InnerTree\Declaration\ConstructorDefinition.h"
+#include "AST\InnerTree\Declaration\DefaultFunctionBody.h"
+#include "AST\InnerTree\Declaration\DeleteFunctionBody.h"
+#include "AST\InnerTree\Declaration\EmptyDeclaration.h"
+#include "AST\InnerTree\Declaration\EnumeratorDefinition.h"
+#include "AST\InnerTree\Declaration\EnumDeclaration.h"
+#include "AST\InnerTree\Declaration\NamespaceDefinition.h"
+#include "AST\InnerTree\Declaration\PrimitiveDataTypeDeclaration.h"
+#include "AST\InnerTree\Declaration\FunctionDefinition.h"
+#include "AST\InnerTree\Declaration\InitializerDeclarator.h"
+#include "AST\InnerTree\Declaration\InitializerDeclaratorList.h"
+#include "AST\InnerTree\Declaration\RegularFunctionBody.h"
+#include "AST\InnerTree\Declaration\TryFunctionBody.h"
+#include "AST\InnerTree\Declaration\SimpleDeclaration.h"
+#include "AST\InnerTree\Declaration\ValueEqualInitializer.h"
+#include "AST\InnerTree\Statement\DeclarationStatement.h"
+#include "AST\InnerTree\TranslationUnit.h"
+
 #include "AST\SyntaxFactory.h"
 #include "AST\SyntaxTree.h"
+
+//#include "AST\Visitor\DefaultSyntaxVisitor.h"
+//#include "AST\Visitor\SyntaxWalker.h"
+//#include "AST\Visitor\SyntaxSourceWriter.h"
+//#include "AST\Visitor\SyntaxTreeWriter.h"
+
 #include "Parser\Grammar\CppLexer.h"
 #include "Parser\Grammar\CppParser.h"
 #include "Parser\Grammar\CppParserBaseVisitor.h"

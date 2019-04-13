@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-namespace Soup::Syntax
+namespace Soup::Syntax::InnerTree
 {
     /// <summary>
     /// The initializer list used to initialize values surrounded by either 
@@ -8,7 +8,7 @@ namespace Soup::Syntax
     /// </summary>
     export class InitializerList final : public SyntaxNode
     {
-        friend class SyntaxFactory;
+        friend class ::Soup::Syntax::SyntaxFactory;
 
     private:
         /// <summary>
@@ -48,31 +48,6 @@ namespace Soup::Syntax
         const SyntaxToken& GetCloseToken() const
         {
             return *m_closeToken;
-        }
-
-        /// <summary>
-        /// Get the collection of children nodes and tokens
-        /// </summary>
-        virtual std::vector<SyntaxNodeChild> GetChildren() const override final
-        {
-            std::vector<SyntaxNodeChild> children;
-
-            children.push_back(SyntaxNodeChild(m_openToken));
-
-            auto valueChildren = m_values->GetChildren();
-            children.insert(children.end(), valueChildren.begin(), valueChildren.end());
-
-            children.push_back(SyntaxNodeChild(m_closeToken));
-
-            return children;
-        }
-
-        /// <summary>
-        /// Visitor Accept
-        /// </summary>
-        virtual void Accept(ISyntaxVisitor& visitor) const override final
-        {
-            visitor.Visit(*this);
         }
 
         /// <summary>

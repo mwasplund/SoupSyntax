@@ -1,13 +1,13 @@
 ﻿#pragma once
 
-namespace Soup::Syntax
+namespace Soup::Syntax::InnerTree
 {
     /// <summary>
     /// A simple template identifier expression referencing a single Identifier
     /// </summary>
     export class SimpleTemplateIdentifierExpression final : public UnqualifiedIdentifierExpression
     {
-        friend class SyntaxFactory;
+        friend class ::Soup::Syntax::SyntaxFactory;
 
     private:
         /// <summary>
@@ -57,32 +57,6 @@ namespace Soup::Syntax
         const SyntaxToken& GetGreaterThanToken() const
         {
             return *m_greaterThanToken;
-        }
-
-        /// <summary>
-        /// Get the collection of children nodes and tokens
-        /// </summary>
-        virtual std::vector<SyntaxNodeChild> GetChildren() const override final
-        {
-            std::vector<SyntaxNodeChild> children;
-
-            children.push_back(SyntaxNodeChild(m_identifierToken));
-            children.push_back(SyntaxNodeChild(m_lessThanToken));
-
-            auto templateArgumentChildren = m_templateArgumentList->GetChildren();
-            children.insert(children.end(), templateArgumentChildren.begin(), templateArgumentChildren.end());
-
-            children.push_back(SyntaxNodeChild(m_greaterThanToken));
-
-            return children;
-        }
-
-        /// <summary>
-        /// Visitor Accept
-        /// </summary>
-        virtual void Accept(ISyntaxVisitor& visitor) const override final
-        {
-            visitor.Visit(*this);
         }
 
         /// <summary>

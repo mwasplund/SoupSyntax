@@ -1,13 +1,13 @@
 ﻿#pragma once
 
-namespace Soup::Syntax
+namespace Soup::Syntax::InnerTree
 {
     /// <summary>
     /// Declaration specifier sequence
     /// </summary>
     export class DeclarationSpecifier final : public SyntaxNode
     {
-        friend class SyntaxFactory;
+        friend class ::Soup::Syntax::SyntaxFactory;
 
     private:
         /// <summary>
@@ -47,35 +47,6 @@ namespace Soup::Syntax
         const std::vector<std::shared_ptr<const SyntaxToken>>& GetTrailingModifiers() const
         {
             return m_trailingModifiers;
-        }
-
-        /// <summary>
-        /// Get the collection of children nodes and tokens
-        /// </summary>
-        virtual std::vector<SyntaxNodeChild> GetChildren() const override final
-        {
-            std::vector<SyntaxNodeChild> children;
-            for (auto& specifier : m_leadingModifiers)
-            {
-                children.push_back(SyntaxNodeChild(specifier));
-            }
-
-            children.push_back(SyntaxNodeChild(m_typeSpecifier));
-
-            for (auto& specifier : m_trailingModifiers)
-            {
-                children.push_back(SyntaxNodeChild(specifier));
-            }
-    
-            return children;
-        }
-
-        /// <summary>
-        /// Visitor Accept
-        /// </summary>
-        virtual void Accept(ISyntaxVisitor& visitor) const override final
-        {
-            visitor.Visit(*this);
         }
 
         /// <summary>

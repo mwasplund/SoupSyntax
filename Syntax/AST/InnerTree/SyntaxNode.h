@@ -1,10 +1,10 @@
 ﻿
 #pragma once
 
-namespace Soup::Syntax
+namespace Soup::Syntax::InnerTree
 {
     /// <summary>
-    /// Base syntax node
+    /// Base syntax node of the inner tree that maintains the down hierarchy
     /// </summary>
     export class SyntaxNode
     {
@@ -13,23 +13,8 @@ namespace Soup::Syntax
         /// Initialize
         /// </summary>
         SyntaxNode(SyntaxNodeType type) :
-            m_type(type),
-            m_parent(nullptr)
-            m_span(),
-            m_fullSpan()
+            m_type(type)
         {
-        }
-
-        /// <summary>
-        /// Get the node type
-        /// </summary>
-        void SetParent(SyntaxNode* value) const
-        {
-            if (value == nullptr)
-                throw std::runtime_error("Cannot set parent to null.");
-            if (m_parent != nullptr)
-                throw std::runtime_error("Cannot set parent. Already set.");
-            m_parent = value;
         }
 
     public:
@@ -40,50 +25,6 @@ namespace Soup::Syntax
         {
             return m_type;
         }
-
-        /// <summary>
-        /// Get a value indicating whether the node has a parent attached
-        /// </summary>
-        bool HasParent() const
-        {
-            return m_parent != nullptr;
-        }
-
-        /// <summary>
-        /// Get the parent node
-        /// </summary>
-        SyntaxNode& GetParent() const
-        {
-            if (m_parent == nullptr)
-                throw std::runtime_error("No parent attached.");
-            return *m_parent;
-        }
-
-        /// <summary>
-        /// Get the text span for the node
-        /// </summary>
-        TextSpan GetSpan() const
-        {
-            return m_span;
-        }
-
-        /// <summary>
-        /// Get the text span for the node including all leading and trailing trivial
-        /// </summary>
-        TextSpan GetFullSpan() const
-        {
-            return m_fullSpan;
-        }
-
-        /// <summary>
-        /// Get the collection of children nodes and tokens
-        /// </summary>
-        virtual std::vector<SyntaxNodeChild> GetChildren() const = 0;
-
-        /// <summary>
-        /// Visitor Accept
-        /// </summary>
-        virtual void Accept(ISyntaxVisitor& visitor) const = 0;
 
         /// <summary>
         /// Equality operator
@@ -99,17 +40,41 @@ namespace Soup::Syntax
             return !(*this == rhs);
         }
 
-    private:
+    protected:
         /// <summary>
-        /// Shared equality check
+        /// Shared polymorphic equality check
         /// Only called when the types are verified to be equal
         /// </summary>
         virtual bool Equals(const SyntaxNode& rhs) const = 0;
 
+        /// <summary>
+        /// Get the shared pointer to myself
+        /// </summary>
+        template<typename T>
+        std::shared_ptr<T> GetSelf() const
+        {
+            auto sharedSelf = m_self;
+            if (sharedSelf == nullptr)
+                throw std::runtime_error("Failed to get self pointer.");
+
+            auto typedSelf = std::dynamic_pointer_cast<T>();
+            if (typedSelf == nullptr)
+                throw std::runtime_error("Failed to get cast self pointer.");
+
+            return typedSelf;
+        }
+
+        /// <summary>
+        /// Set the weak reference to myself
+        /// </summary>
+        template<typename T>
+        void SetSelf(std::shared_ptr<SyntaxNode> self) const
+        {
+            m_self = self;
+        }
+
     private:
         SyntaxNodeType m_type;
-        TextSpan m_span;
-        TextSpan m_fullSpan;
-        SyntaxNode* m_parent;
+        std::weak_ptr<SyntaxNode> m_self;
     };
 }

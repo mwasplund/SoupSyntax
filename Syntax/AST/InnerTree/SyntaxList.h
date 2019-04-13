@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-namespace Soup::Syntax
+namespace Soup::Syntax::InnerTree
 {
     /// <summary>
     /// The syntax list
@@ -34,21 +34,6 @@ namespace Soup::Syntax
         const std::vector<std::shared_ptr<const TNode>>& GetItems() const
         {
             return m_items;
-        }
-
-        /// <summary>
-        /// Get the collection of children nodes and tokens
-        /// </summary>
-        std::vector<SyntaxNodeChild> GetChildren() const
-        {
-            std::vector<SyntaxNodeChild> children;
-
-            for (size_t i = 0; i < m_items.size(); i++)
-            {
-                children.push_back(SyntaxNodeChild(m_items.at(i)));
-            }
-
-            return children;
         }
 
         /// <summary>

@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-namespace Soup::Syntax
+namespace Soup::Syntax::InnerTree
 {
     /// <summary>
     /// The initializer declarator list node
@@ -8,7 +8,7 @@ namespace Soup::Syntax
     /// </summary>
     export class InitializerDeclaratorList final : public SyntaxNode
     {
-        friend class SyntaxFactory;
+        friend class ::Soup::Syntax::SyntaxFactory;
 
     private:
         /// <summary>
@@ -28,27 +28,6 @@ namespace Soup::Syntax
         const SyntaxSeparatorList<InitializerDeclarator>& GetItems() const
         {
             return *m_items;
-        }
-
-        /// <summary>
-        /// Get the collection of children nodes and tokens
-        /// </summary>
-        virtual std::vector<SyntaxNodeChild> GetChildren() const override final
-        {
-            std::vector<SyntaxNodeChild> children;
-
-            auto itemsChildren = m_items->GetChildren();
-            children.insert(children.end(), itemsChildren.begin(), itemsChildren.end());
-
-            return children;
-        }
-
-        /// <summary>
-        /// Visitor Accept
-        /// </summary>
-        virtual void Accept(ISyntaxVisitor& visitor) const override final
-        {
-            visitor.Visit(*this);
         }
 
         /// <summary>

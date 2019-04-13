@@ -1,13 +1,13 @@
 ﻿#pragma once
 
-namespace Soup::Syntax
+namespace Soup::Syntax::InnerTree
 {
     /// <summary>
     /// The root translation unit node
     /// </summary>
     export class TranslationUnit : public SyntaxNode
     {
-        friend class SyntaxFactory;
+        friend class ::Soup::Syntax::SyntaxFactory;
 
     private:
         /// <summary>
@@ -37,29 +37,6 @@ namespace Soup::Syntax
         const SyntaxToken& GetEndOfFileToken() const
         {
             return *m_endOfFileToken;
-        }
-
-        /// <summary>
-        /// Get the collection of children nodes and tokens
-        /// </summary>
-        virtual std::vector<SyntaxNodeChild> GetChildren() const override final
-        {
-            std::vector<SyntaxNodeChild> children;
-
-            auto declarationChildren = m_declarations->GetChildren();
-            children.insert(children.end(), declarationChildren.begin(), declarationChildren.end());
-
-            children.push_back(SyntaxNodeChild(m_endOfFileToken));
-
-            return children;
-        }
-
-        /// <summary>
-        /// Visitor Accept
-        /// </summary>
-        virtual void Accept(ISyntaxVisitor& visitor) const override final
-        {
-            visitor.Visit(*this);
         }
 
         /// <summary>

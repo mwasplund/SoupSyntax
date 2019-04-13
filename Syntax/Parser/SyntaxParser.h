@@ -58,7 +58,7 @@ namespace Soup::Syntax
 
             // Convert the the abstract syntax tree
             auto node = visitor->visit(context)
-                .as<std::shared_ptr<const TranslationUnit>>();
+                .as<std::shared_ptr<const InnerTree::TranslationUnit>>();
 
             return std::make_shared<const SyntaxTree>(std::move(node));
         }

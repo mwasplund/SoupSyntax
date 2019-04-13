@@ -13,24 +13,24 @@ namespace Soup::Syntax
         /// <summary>
         /// Create a Attribute
         /// </summary>
-        static std::shared_ptr<const Attribute> CreateAttribute(
+        static std::shared_ptr<const InnerTree::Attribute> CreateAttribute(
             std::shared_ptr<const SyntaxToken> identifierToken)
         {
             if (identifierToken == nullptr)
                 throw std::runtime_error("ArgumentNull - identifierToken");
 
-            return std::shared_ptr<const Attribute>(
-                new Attribute(
+            return std::shared_ptr<const InnerTree::Attribute>(
+                new InnerTree::Attribute(
                     std::move(identifierToken)));
         }
 
         /// <summary>
         /// Create a AttributeSpecifier
         /// </summary>
-        static std::shared_ptr<const AttributeSpecifier> CreateAttributeSpecifier(
+        static std::shared_ptr<const InnerTree::AttributeSpecifier> CreateAttributeSpecifier(
             std::shared_ptr<const SyntaxToken> outerOpenBracketTokens,
             std::shared_ptr<const SyntaxToken> innerOpenBracketTokens,
-            std::shared_ptr<const SyntaxSeparatorList<Attribute>> attributes,
+            std::shared_ptr<const InnerTree::SyntaxSeparatorList<InnerTree::Attribute>> attributes,
             std::shared_ptr<const SyntaxToken> innerCloseBracketTokens,
             std::shared_ptr<const SyntaxToken> outerCloseBracketTokens)
         {
@@ -45,8 +45,8 @@ namespace Soup::Syntax
             if (outerCloseBracketTokens == nullptr)
                 throw std::runtime_error("ArgumentNull - outerCloseBracketTokens");
 
-            return std::shared_ptr<const AttributeSpecifier>(
-                new AttributeSpecifier(
+            return std::shared_ptr<const InnerTree::AttributeSpecifier>(
+                new InnerTree::AttributeSpecifier(
                     std::move(outerOpenBracketTokens),
                     std::move(innerOpenBracketTokens),
                     std::move(attributes),
@@ -57,7 +57,7 @@ namespace Soup::Syntax
         /// <summary>
         /// Create a AccessorSpecifier
         /// </summary>
-        static std::shared_ptr<const AccessorSpecifier> CreateAccessorSpecifier(
+        static std::shared_ptr<const InnerTree::AccessorSpecifier> CreateAccessorSpecifier(
             std::shared_ptr<const SyntaxToken> accessorToken,
             std::shared_ptr<const SyntaxToken> colonToken)
         {
@@ -66,8 +66,8 @@ namespace Soup::Syntax
             if (colonToken == nullptr)
                 throw std::runtime_error("ArgumentNull - colonToken");
 
-            return std::shared_ptr<const AccessorSpecifier>(
-                new AccessorSpecifier(
+            return std::shared_ptr<const InnerTree::AccessorSpecifier>(
+                new InnerTree::AccessorSpecifier(
                     std::move(accessorToken),
                     std::move(colonToken)));
         }
@@ -75,11 +75,11 @@ namespace Soup::Syntax
         /// <summary>
         /// Create a BinaryExpression
         /// </summary>
-        static std::shared_ptr<const BinaryExpression> CreateBinaryExpression(
+        static std::shared_ptr<const InnerTree::BinaryExpression> CreateBinaryExpression(
             BinaryOperator binaryOperator,
-            std::shared_ptr<const Expression> leftOperand,
+            std::shared_ptr<const InnerTree::Expression> leftOperand,
             std::shared_ptr<const SyntaxToken> operatorToken,
-            std::shared_ptr<const Expression> rightOperand)
+            std::shared_ptr<const InnerTree::Expression> rightOperand)
         {
             if (leftOperand == nullptr)
                 throw std::runtime_error("ArgumentNull - leftOperand");
@@ -88,8 +88,8 @@ namespace Soup::Syntax
             if (rightOperand == nullptr)
                 throw std::runtime_error("ArgumentNull - rightOperand");
 
-            return std::shared_ptr<const BinaryExpression>(
-                new BinaryExpression(
+            return std::shared_ptr<const InnerTree::BinaryExpression>(
+                new InnerTree::BinaryExpression(
                     binaryOperator,
                     std::move(leftOperand),
                     std::move(operatorToken),
@@ -99,11 +99,11 @@ namespace Soup::Syntax
         /// <summary>
         /// Create a ClassDeclaration
         /// </summary>
-        static std::shared_ptr<const ClassDeclaration> CreateClassDeclaration(
+        static std::shared_ptr<const InnerTree::ClassDeclaration> CreateClassDeclaration(
             std::shared_ptr<const SyntaxToken> classToken,
             std::shared_ptr<const SyntaxToken> identifierToken,
             std::shared_ptr<const SyntaxToken> openBraceToken,
-            std::shared_ptr<const SyntaxList<Declaration>> memberDeclarations,
+            std::shared_ptr<const InnerTree::SyntaxList<InnerTree::Declaration>> memberDeclarations,
             std::shared_ptr<const SyntaxToken> closeBraceToken)
         {
             // Note: The identifier token is optional
@@ -116,8 +116,8 @@ namespace Soup::Syntax
             if (closeBraceToken == nullptr)
                 throw std::runtime_error("ArgumentNull - closeBraceToken");
 
-            return std::shared_ptr<const ClassDeclaration>(
-                new ClassDeclaration(
+            return std::shared_ptr<const InnerTree::ClassDeclaration>(
+                new InnerTree::ClassDeclaration(
                     std::move(classToken),
                     std::move(identifierToken),
                     std::move(openBraceToken),
@@ -128,9 +128,9 @@ namespace Soup::Syntax
         /// <summary>
         /// Create a CompoundStatement
         /// </summary>
-        static std::shared_ptr<const CompoundStatement> CreateCompoundStatement(
+        static std::shared_ptr<const InnerTree::CompoundStatement> CreateCompoundStatement(
             std::shared_ptr<const SyntaxToken> openBraceToken,
-            std::vector<std::shared_ptr<const Statement>> statements,
+            std::vector<std::shared_ptr<const InnerTree::Statement>> statements,
             std::shared_ptr<const SyntaxToken> closeBraceToken)
         {
             if (openBraceToken == nullptr)
@@ -138,8 +138,8 @@ namespace Soup::Syntax
             if (closeBraceToken == nullptr)
                 throw std::runtime_error("ArgumentNull - closeBraceToken");
 
-            return std::shared_ptr<const CompoundStatement>(
-                new CompoundStatement(
+            return std::shared_ptr<const InnerTree::CompoundStatement>(
+                new InnerTree::CompoundStatement(
                     std::move(openBraceToken),
                     std::move(statements),
                     std::move(closeBraceToken)));
@@ -148,11 +148,11 @@ namespace Soup::Syntax
         /// <summary>
         /// Create a ConstructorDefinition
         /// </summary>
-        static std::shared_ptr<const ConstructorDefinition> CreateConstructorDefinition(
-            std::shared_ptr<const IdentifierExpression> identifier,
-            std::shared_ptr<const ParameterList> parameterList,
-            std::shared_ptr<const ConstructorInitializer> constructorInitializer,
-            std::shared_ptr<const SyntaxNode> body)
+        static std::shared_ptr<const InnerTree::ConstructorDefinition> CreateConstructorDefinition(
+            std::shared_ptr<const InnerTree::IdentifierExpression> identifier,
+            std::shared_ptr<const InnerTree::ParameterList> parameterList,
+            std::shared_ptr<const InnerTree::ConstructorInitializer> constructorInitializer,
+            std::shared_ptr<const InnerTree::SyntaxNode> body)
         {
             // Note: The constructor initializer is optional
             if (identifier == nullptr)
@@ -162,8 +162,8 @@ namespace Soup::Syntax
             if (body == nullptr)
                 throw std::runtime_error("ArgumentNull - body");
 
-            return std::shared_ptr<const ConstructorDefinition>(
-                new ConstructorDefinition(
+            return std::shared_ptr<const InnerTree::ConstructorDefinition>(
+                new InnerTree::ConstructorDefinition(
                     std::move(identifier),
                     std::move(parameterList),
                     std::move(constructorInitializer),
@@ -173,17 +173,17 @@ namespace Soup::Syntax
         /// <summary>
         /// Create a ConstructorInitializer
         /// </summary>
-        static std::shared_ptr<const ConstructorInitializer> CreateConstructorInitializer(
+        static std::shared_ptr<const InnerTree::ConstructorInitializer> CreateConstructorInitializer(
             std::shared_ptr<const SyntaxToken> colonToken,
-            std::shared_ptr<const SyntaxSeparatorList<MemberInitializer>> initializers)
+            std::shared_ptr<const InnerTree::SyntaxSeparatorList<InnerTree::MemberInitializer>> initializers)
         {
             if (colonToken == nullptr)
                 throw std::runtime_error("ArgumentNull - colonToken");
             if (initializers == nullptr)
                 throw std::runtime_error("ArgumentNull - initializers");
 
-            return std::shared_ptr<const ConstructorInitializer>(
-                new ConstructorInitializer(
+            return std::shared_ptr<const InnerTree::ConstructorInitializer>(
+                new InnerTree::ConstructorInitializer(
                     std::move(colonToken),
                     std::move(initializers)));
         }
@@ -192,15 +192,15 @@ namespace Soup::Syntax
         /// Create a DeclarationSpecifier
         /// Overload that excludes optional leading and trailing modifiers
         /// </summary>
-        static std::shared_ptr<const DeclarationSpecifier> CreateDeclarationSpecifier(
-            std::shared_ptr<const SyntaxNode> typeSpecifier)
+        static std::shared_ptr<const InnerTree::DeclarationSpecifier> CreateDeclarationSpecifier(
+            std::shared_ptr<const InnerTree::SyntaxNode> typeSpecifier)
         {
             // Note: both the leading and trailing modifiers are optional
             if (typeSpecifier == nullptr)
                 throw std::runtime_error("ArgumentNull - typeSpecifier");
 
-            return std::shared_ptr<const DeclarationSpecifier>(
-                new DeclarationSpecifier(
+            return std::shared_ptr<const InnerTree::DeclarationSpecifier>(
+                new InnerTree::DeclarationSpecifier(
                     {},
                     std::move(typeSpecifier),
                     {}));
@@ -209,31 +209,31 @@ namespace Soup::Syntax
         /// <summary>
         /// Create a DeclarationStatement
         /// </summary>
-        static std::shared_ptr<const DeclarationStatement> CreateDeclarationStatement(
-            std::shared_ptr<const Declaration> declaration)
+        static std::shared_ptr<const InnerTree::DeclarationStatement> CreateDeclarationStatement(
+            std::shared_ptr<const InnerTree::Declaration> declaration)
         {
             if (declaration == nullptr)
                 throw std::runtime_error("ArgumentNull - declaration");
 
-            return std::shared_ptr<const DeclarationStatement>(
-                new DeclarationStatement(
+            return std::shared_ptr<const InnerTree::DeclarationStatement>(
+                new InnerTree::DeclarationStatement(
                     std::move(declaration)));
         }
 
         /// <summary>
         /// Create a DeclarationSpecifier
         /// </summary>
-        static std::shared_ptr<const DeclarationSpecifier> CreateDeclarationSpecifier(
+        static std::shared_ptr<const InnerTree::DeclarationSpecifier> CreateDeclarationSpecifier(
             std::vector<std::shared_ptr<const SyntaxToken>> leadingModifiers,
-            std::shared_ptr<const SyntaxNode> typeSpecifier,
+            std::shared_ptr<const InnerTree::SyntaxNode> typeSpecifier,
             std::vector<std::shared_ptr<const SyntaxToken>> trailingModifiers)
         {
             // Note: both the leading and trailing modifiers are optional
             if (typeSpecifier == nullptr)
                 throw std::runtime_error("ArgumentNull - typeSpecifier");
 
-            return std::shared_ptr<const DeclarationSpecifier>(
-                new DeclarationSpecifier(
+            return std::shared_ptr<const InnerTree::DeclarationSpecifier>(
+                new InnerTree::DeclarationSpecifier(
                     std::move(leadingModifiers),
                     std::move(typeSpecifier),
                     std::move(trailingModifiers)));
@@ -242,7 +242,7 @@ namespace Soup::Syntax
         /// <summary>
         /// Create a DefaultFunctionBody
         /// </summary>
-        static std::shared_ptr<const DefaultFunctionBody> CreateDefaultFunctionBody(
+        static std::shared_ptr<const InnerTree::DefaultFunctionBody> CreateDefaultFunctionBody(
             std::shared_ptr<const SyntaxToken> equalToken,
             std::shared_ptr<const SyntaxToken> defaultToken,
             std::shared_ptr<const SyntaxToken> semicolonToken)
@@ -254,8 +254,8 @@ namespace Soup::Syntax
             if (semicolonToken == nullptr)
                 throw std::runtime_error("ArgumentNull - semicolonToken");
 
-            return std::shared_ptr<const DefaultFunctionBody>(
-                new DefaultFunctionBody(
+            return std::shared_ptr<const InnerTree::DefaultFunctionBody>(
+                new InnerTree::DefaultFunctionBody(
                     std::move(equalToken),
                     std::move(defaultToken),
                     std::move(semicolonToken)));
@@ -264,7 +264,7 @@ namespace Soup::Syntax
         /// <summary>
         /// Create a DeleteFunctionBody
         /// </summary>
-        static std::shared_ptr<const DeleteFunctionBody> CreateDeleteFunctionBody(
+        static std::shared_ptr<const InnerTree::DeleteFunctionBody> CreateDeleteFunctionBody(
             std::shared_ptr<const SyntaxToken> equalToken,
             std::shared_ptr<const SyntaxToken> deleteToken,
             std::shared_ptr<const SyntaxToken> semicolonToken)
@@ -276,8 +276,8 @@ namespace Soup::Syntax
             if (semicolonToken == nullptr)
                 throw std::runtime_error("ArgumentNull - semicolonToken");
 
-            return std::shared_ptr<const DeleteFunctionBody>(
-                new DeleteFunctionBody(
+            return std::shared_ptr<const InnerTree::DeleteFunctionBody>(
+                new InnerTree::DeleteFunctionBody(
                     std::move(equalToken),
                     std::move(deleteToken),
                     std::move(semicolonToken)));
@@ -286,7 +286,7 @@ namespace Soup::Syntax
         /// <summary>
         /// Create a DestructorIdentifierExpression
         /// </summary>
-        static std::shared_ptr<const DestructorIdentifierExpression> CreateDestructorIdentifierExpression(
+        static std::shared_ptr<const InnerTree::DestructorIdentifierExpression> CreateDestructorIdentifierExpression(
             std::shared_ptr<const SyntaxToken> tildeToken,
             std::shared_ptr<const SyntaxToken> identifierToken)
         {
@@ -295,8 +295,8 @@ namespace Soup::Syntax
             if (identifierToken == nullptr)
                 throw std::runtime_error("ArgumentNull - identifierToken");
 
-            return std::shared_ptr<const DestructorIdentifierExpression>(
-                new DestructorIdentifierExpression(
+            return std::shared_ptr<const InnerTree::DestructorIdentifierExpression>(
+                new InnerTree::DestructorIdentifierExpression(
                     std::move(tildeToken),
                     std::move(identifierToken)));
         }
@@ -304,17 +304,17 @@ namespace Soup::Syntax
         /// <summary>
         /// Create a ElseClause
         /// </summary>
-        static std::shared_ptr<const ElseClause> CreateElseClause(
+        static std::shared_ptr<const InnerTree::ElseClause> CreateElseClause(
             std::shared_ptr<const SyntaxToken> elseToken,
-            std::shared_ptr<const Statement> statement)
+            std::shared_ptr<const InnerTree::Statement> statement)
         {
             if (elseToken == nullptr)
                 throw std::runtime_error("ArgumentNull - elseToken");
             if (statement == nullptr)
                 throw std::runtime_error("ArgumentNull - statement");
 
-            return std::shared_ptr<const ElseClause>(
-                new ElseClause(
+            return std::shared_ptr<const InnerTree::ElseClause>(
+                new InnerTree::ElseClause(
                     std::move(elseToken),
                     std::move(statement)));
         }
@@ -322,40 +322,40 @@ namespace Soup::Syntax
         /// <summary>
         /// Create a EmptyDeclaration
         /// </summary>
-        static std::shared_ptr<const EmptyDeclaration> CreateEmptyDeclaration(
+        static std::shared_ptr<const InnerTree::EmptyDeclaration> CreateEmptyDeclaration(
             std::shared_ptr<const SyntaxToken> semicolonToken)
         {
             if (semicolonToken == nullptr)
                 throw std::runtime_error("ArgumentNull - semicolonToken");
 
-            return std::shared_ptr<const EmptyDeclaration>(
-                new EmptyDeclaration(
+            return std::shared_ptr<const InnerTree::EmptyDeclaration>(
+                new InnerTree::EmptyDeclaration(
                     std::move(semicolonToken)));
         }
 
         /// <summary>
         /// Create a EmptyStatement
         /// </summary>
-        static std::shared_ptr<const EmptyStatement> CreateEmptyStatement(
+        static std::shared_ptr<const InnerTree::EmptyStatement> CreateEmptyStatement(
             std::shared_ptr<const SyntaxToken> semicolonToken)
         {
             if (semicolonToken == nullptr)
                 throw std::runtime_error("ArgumentNull - semicolonToken");
 
-            return std::shared_ptr<const EmptyStatement>(
-                new EmptyStatement(
+            return std::shared_ptr<const InnerTree::EmptyStatement>(
+                new InnerTree::EmptyStatement(
                     std::move(semicolonToken)));
         }
 
         /// <summary>
         /// Create a EnumDeclaration
         /// </summary>
-        static std::shared_ptr<const EnumDeclaration> CreateEnumDeclaration(
+        static std::shared_ptr<const InnerTree::EnumDeclaration> CreateEnumDeclaration(
             std::shared_ptr<const SyntaxToken> enumToken,
             std::shared_ptr<const SyntaxToken> classToken,
             std::shared_ptr<const SyntaxToken> identifierToken,
             std::shared_ptr<const SyntaxToken> openBraceToken,
-            std::shared_ptr<const SyntaxSeparatorList<EnumeratorDefinition>> enumeratorList,
+            std::shared_ptr<const InnerTree::SyntaxSeparatorList<InnerTree::EnumeratorDefinition>> enumeratorList,
             std::shared_ptr<const SyntaxToken> closeBraceToken)
         {
             // Note: The class and identifier tokens are optional
@@ -368,8 +368,8 @@ namespace Soup::Syntax
             if (closeBraceToken == nullptr)
                 throw std::runtime_error("ArgumentNull - closeBraceToken");
 
-            return std::shared_ptr<const EnumDeclaration>(
-                new EnumDeclaration(
+            return std::shared_ptr<const InnerTree::EnumDeclaration>(
+                new InnerTree::EnumDeclaration(
                     std::move(enumToken),
                     std::move(classToken),
                     std::move(identifierToken),
@@ -381,22 +381,22 @@ namespace Soup::Syntax
         /// <summary>
         /// Create a EnumeratorDefinition
         /// </summary>
-        static std::shared_ptr<const EnumeratorDefinition> CreateEnumeratorDefinition(
+        static std::shared_ptr<const InnerTree::EnumeratorDefinition> CreateEnumeratorDefinition(
             std::shared_ptr<const SyntaxToken> identifierToken)
         {
             if (identifierToken == nullptr)
                 throw std::runtime_error("ArgumentNull - identifierToken");
 
-            return std::shared_ptr<const EnumeratorDefinition>(
-                new EnumeratorDefinition(
+            return std::shared_ptr<const InnerTree::EnumeratorDefinition>(
+                new InnerTree::EnumeratorDefinition(
                     std::move(identifierToken)));
         }
 
         /// <summary>
         /// Create a ExpressionStatement
         /// </summary>
-        static std::shared_ptr<const ExpressionStatement> CreateExpressionStatement(
-            std::shared_ptr<const Expression> expression,
+        static std::shared_ptr<const InnerTree::ExpressionStatement> CreateExpressionStatement(
+            std::shared_ptr<const InnerTree::Expression> expression,
             std::shared_ptr<const SyntaxToken> semicolonToken)
         {
             if (expression == nullptr)
@@ -404,47 +404,21 @@ namespace Soup::Syntax
             if (semicolonToken == nullptr)
                 throw std::runtime_error("ArgumentNull - semicolonToken");
 
-            return std::shared_ptr<const ExpressionStatement>(
-                new ExpressionStatement(
+            return std::shared_ptr<const InnerTree::ExpressionStatement>(
+                new InnerTree::ExpressionStatement(
                     std::move(expression),
                     std::move(semicolonToken)));
         }
 
         /// <summary>
-        /// Create a FunctionDeclaration
-        /// </summary>
-        static std::shared_ptr<const FunctionDeclaration> CreateFunctionDeclaration(
-            std::shared_ptr<const DeclarationSpecifier> returnType,
-            std::shared_ptr<const IdentifierExpression> identifier,
-            std::shared_ptr<const ParameterList> parameterList,
-            std::shared_ptr<const SyntaxNode> body)
-        {
-            if (returnType == nullptr)
-                throw std::runtime_error("ArgumentNull - returnType");
-            if (identifier == nullptr)
-                throw std::runtime_error("ArgumentNull - identifier");
-            if (parameterList == nullptr)
-                throw std::runtime_error("ArgumentNull - parameterList");
-            if (body == nullptr)
-                throw std::runtime_error("ArgumentNull - body");
-
-            return std::shared_ptr<const FunctionDeclaration>(
-                new FunctionDeclaration(
-                    std::move(returnType),
-                    std::move(identifier),
-                    std::move(parameterList),
-                    std::move(body)));
-        }
-
-        /// <summary>
         /// Create a FunctionDefinition
         /// </summary>
-        static std::shared_ptr<const FunctionDefinition> CreateFunctionDefinition(
-            std::shared_ptr<const SyntaxList<AttributeSpecifier>> attributeSpecifierSequence,
-            std::shared_ptr<const DeclarationSpecifier> returnType,
-            std::shared_ptr<const IdentifierExpression> identifier,
-            std::shared_ptr<const ParameterList> parameterList,
-            std::shared_ptr<const SyntaxNode> body)
+        static std::shared_ptr<const InnerTree::FunctionDefinition> CreateFunctionDefinition(
+            std::shared_ptr<const InnerTree::SyntaxList<InnerTree::AttributeSpecifier>> attributeSpecifierSequence,
+            std::shared_ptr<const InnerTree::DeclarationSpecifier> returnType,
+            std::shared_ptr<const InnerTree::IdentifierExpression> identifier,
+            std::shared_ptr<const InnerTree::ParameterList> parameterList,
+            std::shared_ptr<const InnerTree::SyntaxNode> body)
         {
             if (attributeSpecifierSequence == nullptr)
                 throw std::runtime_error("ArgumentNull - attributeSpecifierSequence");
@@ -457,8 +431,8 @@ namespace Soup::Syntax
             if (body == nullptr)
                 throw std::runtime_error("ArgumentNull - body");
 
-            return std::shared_ptr<const FunctionDefinition>(
-                new FunctionDefinition(
+            return std::shared_ptr<const InnerTree::FunctionDefinition>(
+                new InnerTree::FunctionDefinition(
                     std::move(attributeSpecifierSequence),
                     std::move(returnType),
                     std::move(identifier),
@@ -470,14 +444,14 @@ namespace Soup::Syntax
         /// Create a FunctionDefinition
         /// Overload that adds an empty attribute specifier sequence
         /// </summary>
-        static std::shared_ptr<const FunctionDefinition> CreateFunctionDefinition(
-            std::shared_ptr<const DeclarationSpecifier> returnType,
-            std::shared_ptr<const IdentifierExpression> identifier,
-            std::shared_ptr<const ParameterList> parameterList,
-            std::shared_ptr<const SyntaxNode> body)
+        static std::shared_ptr<const InnerTree::FunctionDefinition> CreateFunctionDefinition(
+            std::shared_ptr<const InnerTree::DeclarationSpecifier> returnType,
+            std::shared_ptr<const InnerTree::IdentifierExpression> identifier,
+            std::shared_ptr<const InnerTree::ParameterList> parameterList,
+            std::shared_ptr<const InnerTree::SyntaxNode> body)
         {
             return CreateFunctionDefinition(
-                CreateSyntaxList<AttributeSpecifier>({}),
+                CreateSyntaxList<InnerTree::AttributeSpecifier>({}),
                 std::move(returnType),
                 std::move(identifier),
                 std::move(parameterList),
@@ -487,13 +461,13 @@ namespace Soup::Syntax
         /// <summary>
         /// Create a IfStatement
         /// </summary>
-        static std::shared_ptr<const IfStatement> CreateIfStatement(
+        static std::shared_ptr<const InnerTree::IfStatement> CreateIfStatement(
             std::shared_ptr<const SyntaxToken> ifToken,
             std::shared_ptr<const SyntaxToken> openParenthesisToken,
-            std::shared_ptr<const Expression> conditionExpression,
+            std::shared_ptr<const InnerTree::Expression> conditionExpression,
             std::shared_ptr<const SyntaxToken> closeParenthesisToken,
-            std::shared_ptr<const Statement> statement,
-            std::shared_ptr<const ElseClause> elseClause)
+            std::shared_ptr<const InnerTree::Statement> statement,
+            std::shared_ptr<const InnerTree::ElseClause> elseClause)
         {
             // Note: The else clause is optional
             if (ifToken == nullptr)
@@ -507,8 +481,8 @@ namespace Soup::Syntax
             if (statement == nullptr)
                 throw std::runtime_error("ArgumentNull - statement");
 
-            return std::shared_ptr<const IfStatement>(
-                new IfStatement(
+            return std::shared_ptr<const InnerTree::IfStatement>(
+                new InnerTree::IfStatement(
                     std::move(ifToken),
                     std::move(openParenthesisToken),
                     std::move(conditionExpression),
@@ -520,16 +494,16 @@ namespace Soup::Syntax
         /// <summary>
         /// Create a InitializerDeclarator
         /// </summary>
-        static std::shared_ptr<const InitializerDeclarator> CreateInitializerDeclarator(
-            std::shared_ptr<const SyntaxNode> declarator,
-            std::shared_ptr<const SyntaxNode> initializer)
+        static std::shared_ptr<const InnerTree::InitializerDeclarator> CreateInitializerDeclarator(
+            std::shared_ptr<const InnerTree::SyntaxNode> declarator,
+            std::shared_ptr<const InnerTree::SyntaxNode> initializer)
         {
             // Note: the initializer is optional
             if (declarator == nullptr)
                 throw std::runtime_error("ArgumentNull - declarator");
 
-            return std::shared_ptr<const InitializerDeclarator>(
-                new InitializerDeclarator(
+            return std::shared_ptr<const InnerTree::InitializerDeclarator>(
+                new InnerTree::InitializerDeclarator(
                     std::move(declarator),
                     std::move(initializer)));
         }
@@ -537,23 +511,23 @@ namespace Soup::Syntax
         /// <summary>
         /// Create a InitializerDeclaratorList
         /// </summary>
-        static std::shared_ptr<const InitializerDeclaratorList> CreateInitializerDeclaratorList(
-            std::shared_ptr<const SyntaxSeparatorList<InitializerDeclarator>> items)
+        static std::shared_ptr<const InnerTree::InitializerDeclaratorList> CreateInitializerDeclaratorList(
+            std::shared_ptr<const InnerTree::SyntaxSeparatorList<InnerTree::InitializerDeclarator>> items)
         {
             if (items == nullptr)
                 throw std::runtime_error("ArgumentNull - items");
 
-            return std::shared_ptr<const InitializerDeclaratorList>(
-                new InitializerDeclaratorList(
+            return std::shared_ptr<const InnerTree::InitializerDeclaratorList>(
+                new InnerTree::InitializerDeclaratorList(
                     std::move(items)));
         }
 
         /// <summary>
         /// Create a InitializerList
         /// </summary>
-        static std::shared_ptr<const InitializerList> CreateInitializerList(
+        static std::shared_ptr<const InnerTree::InitializerList> CreateInitializerList(
             std::shared_ptr<const SyntaxToken> openToken,
-            std::shared_ptr<const SyntaxSeparatorList<Expression>> values,
+            std::shared_ptr<const InnerTree::SyntaxSeparatorList<InnerTree::Expression>> values,
             std::shared_ptr<const SyntaxToken> closeToken)
         {
             if (openToken == nullptr)
@@ -563,8 +537,8 @@ namespace Soup::Syntax
             if (closeToken == nullptr)
                 throw std::runtime_error("ArgumentNull - closeToken");
 
-            return std::shared_ptr<const InitializerList>(
-                new InitializerList(
+            return std::shared_ptr<const InnerTree::InitializerList>(
+                new InnerTree::InitializerList(
                     std::move(openToken),
                     std::move(values),
                     std::move(closeToken)));
@@ -573,10 +547,10 @@ namespace Soup::Syntax
         /// <summary>
         /// Create a InvocationExpression
         /// </summary>
-        static std::shared_ptr<const InvocationExpression> CreateInvocationExpression(
-            std::shared_ptr<const Expression> leftExpression,
+        static std::shared_ptr<const InnerTree::InvocationExpression> CreateInvocationExpression(
+            std::shared_ptr<const InnerTree::Expression> leftExpression,
             std::shared_ptr<const SyntaxToken> openParenthesisToken,
-            std::shared_ptr<const SyntaxSeparatorList<Expression>> parameters,
+            std::shared_ptr<const InnerTree::SyntaxSeparatorList<InnerTree::Expression>> parameters,
             std::shared_ptr<const SyntaxToken> closeParenthesisToken)
         {
             if (leftExpression == nullptr)
@@ -588,8 +562,8 @@ namespace Soup::Syntax
             if (closeParenthesisToken == nullptr)
                 throw std::runtime_error("ArgumentNull - closeParenthesisToken");
 
-            return std::shared_ptr<const InvocationExpression>(
-                new InvocationExpression(
+            return std::shared_ptr<const InnerTree::InvocationExpression>(
+                new InnerTree::InvocationExpression(
                     std::move(leftExpression),
                     std::move(openParenthesisToken),
                     std::move(parameters),
@@ -1019,15 +993,15 @@ namespace Soup::Syntax
         /// <summary>
         /// Create a LiteralExpression
         /// </summary>
-        static std::shared_ptr<const LiteralExpression> CreateLiteralExpression(
+        static std::shared_ptr<const InnerTree::LiteralExpression> CreateLiteralExpression(
             LiteralType type,
             std::shared_ptr<const SyntaxToken> token)
         {
             if (token == nullptr)
                 throw std::runtime_error("ArgumentNull - token");
 
-            return std::shared_ptr<const LiteralExpression>(
-                new LiteralExpression(
+            return std::shared_ptr<const InnerTree::LiteralExpression>(
+                new InnerTree::LiteralExpression(
                     type,
                     std::move(token)));
         }
@@ -1035,9 +1009,9 @@ namespace Soup::Syntax
         /// <summary>
         /// Create a MemberDeclaration
         /// </summary>
-        static std::shared_ptr<const MemberDeclaration> CreateMemberDeclaration(
-            std::shared_ptr<const DeclarationSpecifier> declarationSpecifier,
-            std::shared_ptr<const MemberDeclaratorList> memberDeclaratorList,
+        static std::shared_ptr<const InnerTree::MemberDeclaration> CreateMemberDeclaration(
+            std::shared_ptr<const InnerTree::DeclarationSpecifier> declarationSpecifier,
+            std::shared_ptr<const InnerTree::MemberDeclaratorList> memberDeclaratorList,
             std::shared_ptr<const SyntaxToken> semicolonToken)
         {
             if (declarationSpecifier == nullptr)
@@ -1047,8 +1021,8 @@ namespace Soup::Syntax
             if (semicolonToken == nullptr)
                 throw std::runtime_error("ArgumentNull - semicolonToken");
 
-            return std::shared_ptr<const MemberDeclaration>(
-                new MemberDeclaration(
+            return std::shared_ptr<const InnerTree::MemberDeclaration>(
+                new InnerTree::MemberDeclaration(
                     std::move(declarationSpecifier),
                     std::move(memberDeclaratorList),
                     std::move(semicolonToken)));
@@ -1057,16 +1031,16 @@ namespace Soup::Syntax
         /// <summary>
         /// Create a MemberDeclarator
         /// </summary>
-        static std::shared_ptr<const MemberDeclarator> CreateMemberDeclarator(
-            std::shared_ptr<const SyntaxNode> declarator,
-            std::shared_ptr<const SyntaxNode> initializer)
+        static std::shared_ptr<const InnerTree::MemberDeclarator> CreateMemberDeclarator(
+            std::shared_ptr<const InnerTree::SyntaxNode> declarator,
+            std::shared_ptr<const InnerTree::SyntaxNode> initializer)
         {
             // Note: the initializer is optional
             if (declarator == nullptr)
                 throw std::runtime_error("ArgumentNull - declarator");
 
-            return std::shared_ptr<const MemberDeclarator>(
-                new MemberDeclarator(
+            return std::shared_ptr<const InnerTree::MemberDeclarator>(
+                new InnerTree::MemberDeclarator(
                     std::move(declarator),
                     std::move(initializer)));
         }
@@ -1074,31 +1048,31 @@ namespace Soup::Syntax
         /// <summary>
         /// Create a MemberDeclaratorList
         /// </summary>
-        static std::shared_ptr<const MemberDeclaratorList> CreateMemberDeclaratorList(
-            std::shared_ptr<const SyntaxSeparatorList<MemberDeclarator>> items)
+        static std::shared_ptr<const InnerTree::MemberDeclaratorList> CreateMemberDeclaratorList(
+            std::shared_ptr<const InnerTree::SyntaxSeparatorList<InnerTree::MemberDeclarator>> items)
         {
             if (items == nullptr)
                 throw std::runtime_error("ArgumentNull - items");
 
-            return std::shared_ptr<const MemberDeclaratorList>(
-                new MemberDeclaratorList(
+            return std::shared_ptr<const InnerTree::MemberDeclaratorList>(
+                new InnerTree::MemberDeclaratorList(
                     std::move(items)));
         }
 
         /// <summary>
         /// Create a MemberInitializer
         /// </summary>
-        static std::shared_ptr<const MemberInitializer> CreateMemberInitializer(
+        static std::shared_ptr<const InnerTree::MemberInitializer> CreateMemberInitializer(
             std::shared_ptr<const SyntaxToken> identifierToken,
-            std::shared_ptr<const InitializerList> initializer)
+            std::shared_ptr<const InnerTree::InitializerList> initializer)
         {
             if (identifierToken == nullptr)
                 throw std::runtime_error("ArgumentNull - identifierToken");
             if (initializer == nullptr)
                 throw std::runtime_error("ArgumentNull - initializer");
 
-            return std::shared_ptr<const MemberInitializer>(
-                new MemberInitializer(
+            return std::shared_ptr<const InnerTree::MemberInitializer>(
+                new InnerTree::MemberInitializer(
                     std::move(identifierToken),
                     std::move(initializer)));
         }
@@ -1106,11 +1080,11 @@ namespace Soup::Syntax
         /// <summary>
         /// Create a NamespaceDefinition
         /// </summary>
-        static std::shared_ptr<const NamespaceDefinition> CreateNamespaceDefinition(
+        static std::shared_ptr<const InnerTree::NamespaceDefinition> CreateNamespaceDefinition(
             std::shared_ptr<const SyntaxToken> namespaceToken,
-            std::shared_ptr<const SyntaxSeparatorList<SyntaxToken>> identifierNameList,
+            std::shared_ptr<const InnerTree::SyntaxSeparatorList<SyntaxToken>> identifierNameList,
             std::shared_ptr<const SyntaxToken> openBraceToken,
-            std::shared_ptr<const SyntaxList<Declaration>> memberDeclarations,
+            std::shared_ptr<const InnerTree::SyntaxList<InnerTree::Declaration>> memberDeclarations,
             std::shared_ptr<const SyntaxToken> closeBraceToken)
         {
             if (namespaceToken == nullptr)
@@ -1124,8 +1098,8 @@ namespace Soup::Syntax
             if (closeBraceToken == nullptr)
                 throw std::runtime_error("ArgumentNull - closeBraceToken");
 
-            return std::shared_ptr<const NamespaceDefinition>(
-                new NamespaceDefinition(
+            return std::shared_ptr<const InnerTree::NamespaceDefinition>(
+                new InnerTree::NamespaceDefinition(
                     std::move(namespaceToken),
                     std::move(identifierNameList),
                     std::move(openBraceToken),
@@ -1136,17 +1110,17 @@ namespace Soup::Syntax
         /// <summary>
         /// Create a Parameter
         /// </summary>
-        static std::shared_ptr<const Parameter> CreateParameter(
-            std::shared_ptr<const SyntaxNode> declarationSpecifier,
-            std::shared_ptr<const SyntaxNode> declarator)
+        static std::shared_ptr<const InnerTree::Parameter> CreateParameter(
+            std::shared_ptr<const InnerTree::SyntaxNode> declarationSpecifier,
+            std::shared_ptr<const InnerTree::SyntaxNode> declarator)
         {
             if (declarationSpecifier == nullptr)
                 throw std::runtime_error("ArgumentNull - declarationSpecifier");
             if (declarator == nullptr)
                 throw std::runtime_error("ArgumentNull - declarator");
 
-            return std::shared_ptr<const Parameter>(
-                new Parameter(
+            return std::shared_ptr<const InnerTree::Parameter>(
+                new InnerTree::Parameter(
                     std::move(declarationSpecifier),
                     std::move(declarator)));
         }
@@ -1154,9 +1128,9 @@ namespace Soup::Syntax
         /// <summary>
         /// Create a ParameterList
         /// </summary>
-        static std::shared_ptr<const ParameterList> CreateParameterList(
+        static std::shared_ptr<const InnerTree::ParameterList> CreateParameterList(
             std::shared_ptr<const SyntaxToken> openParenthesisToken,
-            std::shared_ptr<const SyntaxSeparatorList<Parameter>> parameters,
+            std::shared_ptr<const InnerTree::SyntaxSeparatorList<InnerTree::Parameter>> parameters,
             std::shared_ptr<const SyntaxToken> closeParenthesisToken)
         {
             if (openParenthesisToken == nullptr)
@@ -1166,8 +1140,8 @@ namespace Soup::Syntax
             if (closeParenthesisToken == nullptr)
                 throw std::runtime_error("ArgumentNull - closeParenthesisToken");
 
-            return std::shared_ptr<const ParameterList>(
-                new ParameterList(
+            return std::shared_ptr<const InnerTree::ParameterList>(
+                new InnerTree::ParameterList(
                     std::move(openParenthesisToken),
                     std::move(parameters),
                     std::move(closeParenthesisToken)));
@@ -1176,15 +1150,15 @@ namespace Soup::Syntax
         /// <summary>
         /// Create a PrimitiveDataTypeDeclaration
         /// </summary>
-        static std::shared_ptr<const PrimitiveDataTypeDeclaration> CreatePrimitiveDataTypeDeclaration(
+        static std::shared_ptr<const InnerTree::PrimitiveDataTypeDeclaration> CreatePrimitiveDataTypeDeclaration(
             PrimitiveDataType type,
             std::shared_ptr<const SyntaxToken> token)
         {
             if (token == nullptr)
                 throw std::runtime_error("ArgumentNull - token");
 
-            return std::shared_ptr<const PrimitiveDataTypeDeclaration>(
-                new PrimitiveDataTypeDeclaration(
+            return std::shared_ptr<const InnerTree::PrimitiveDataTypeDeclaration>(
+                new InnerTree::PrimitiveDataTypeDeclaration(
                     type,
                     std::move(token)));
         }
@@ -1192,10 +1166,10 @@ namespace Soup::Syntax
         /// <summary>
         /// Create a QualifiedIdentifierExpression
         /// </summary>
-        static std::shared_ptr<const QualifiedIdentifierExpression> CreateQualifiedIdentifierExpression(
-            std::shared_ptr<const IdentifierExpression> left,
+        static std::shared_ptr<const InnerTree::QualifiedIdentifierExpression> CreateQualifiedIdentifierExpression(
+            std::shared_ptr<const InnerTree::IdentifierExpression> left,
             std::shared_ptr<const SyntaxToken> scopeResolutionToken,
-            std::shared_ptr<const UnqualifiedIdentifierExpression> right)
+            std::shared_ptr<const InnerTree::UnqualifiedIdentifierExpression> right)
         {
             // A null left identifier indicates a global scope
             if (scopeResolutionToken == nullptr)
@@ -1203,8 +1177,8 @@ namespace Soup::Syntax
             // TODO: if (right == nullptr)
             //     throw std::runtime_error("ArgumentNull - right");
 
-            return std::shared_ptr<const QualifiedIdentifierExpression>(
-                new QualifiedIdentifierExpression(
+            return std::shared_ptr<const InnerTree::QualifiedIdentifierExpression>(
+                new InnerTree::QualifiedIdentifierExpression(
                     std::move(left),
                     std::move(scopeResolutionToken),
                     std::move(right)));
@@ -1213,9 +1187,9 @@ namespace Soup::Syntax
         /// <summary>
         /// Create a ReturnStatement
         /// </summary>
-        static std::shared_ptr<const ReturnStatement> CreateReturnStatement(
+        static std::shared_ptr<const InnerTree::ReturnStatement> CreateReturnStatement(
             std::shared_ptr<const SyntaxToken> returnToken,
-            std::shared_ptr<const Expression> expression,
+            std::shared_ptr<const InnerTree::Expression> expression,
             std::shared_ptr<const SyntaxToken> semicolonToken)
         {
             // Note: The Expression is optional
@@ -1224,8 +1198,8 @@ namespace Soup::Syntax
             if (semicolonToken == nullptr)
                 throw std::runtime_error("ArgumentNull - semicolonToken");
 
-            return std::shared_ptr<const ReturnStatement>(
-                new ReturnStatement(
+            return std::shared_ptr<const InnerTree::ReturnStatement>(
+                new InnerTree::ReturnStatement(
                     std::move(returnToken),
                     std::move(expression),
                     std::move(semicolonToken)));
@@ -1234,9 +1208,9 @@ namespace Soup::Syntax
         /// <summary>
         /// Create a SimpleDeclaration
         /// </summary>
-        static std::shared_ptr<const SimpleDeclaration> CreateSimpleDeclaration(
-            std::shared_ptr<const DeclarationSpecifier> declarationSpecifier,
-            std::shared_ptr<const InitializerDeclaratorList> initializerDeclaratorList,
+        static std::shared_ptr<const InnerTree::SimpleDeclaration> CreateSimpleDeclaration(
+            std::shared_ptr<const InnerTree::DeclarationSpecifier> declarationSpecifier,
+            std::shared_ptr<const InnerTree::InitializerDeclaratorList> initializerDeclaratorList,
             std::shared_ptr<const SyntaxToken> semicolonToken)
         {
             if (declarationSpecifier == nullptr)
@@ -1246,8 +1220,8 @@ namespace Soup::Syntax
             if (semicolonToken == nullptr)
                 throw std::runtime_error("ArgumentNull - semicolonToken");
 
-            return std::shared_ptr<const SimpleDeclaration>(
-                new SimpleDeclaration(
+            return std::shared_ptr<const InnerTree::SimpleDeclaration>(
+                new InnerTree::SimpleDeclaration(
                     std::move(declarationSpecifier),
                     std::move(initializerDeclaratorList),
                     std::move(semicolonToken)));
@@ -1256,24 +1230,24 @@ namespace Soup::Syntax
         /// <summary>
         /// Create a SimpleIdentifierExpression
         /// </summary>
-        static std::shared_ptr<const SimpleIdentifierExpression> CreateSimpleIdentifierExpression(
+        static std::shared_ptr<const InnerTree::SimpleIdentifierExpression> CreateSimpleIdentifierExpression(
             std::shared_ptr<const SyntaxToken> identifierToken)
         {
             if (identifierToken == nullptr)
                 throw std::runtime_error("ArgumentNull - identifierToken");
 
-            return std::shared_ptr<const SimpleIdentifierExpression>(
-                new SimpleIdentifierExpression(
+            return std::shared_ptr<const InnerTree::SimpleIdentifierExpression>(
+                new InnerTree::SimpleIdentifierExpression(
                     std::move(identifierToken)));
         }
 
         /// <summary>
         /// Create a SimpleTemplateIdentifierExpression
         /// </summary>
-        static std::shared_ptr<const SimpleTemplateIdentifierExpression> CreateSimpleTemplateIdentifierExpression(
+        static std::shared_ptr<const InnerTree::SimpleTemplateIdentifierExpression> CreateSimpleTemplateIdentifierExpression(
             std::shared_ptr<const SyntaxToken> identifierToken,
             std::shared_ptr<const SyntaxToken> lessThanToken,
-            std::shared_ptr<const SyntaxSeparatorList<Expression>> templateArgumentList,
+            std::shared_ptr<const InnerTree::SyntaxSeparatorList<InnerTree::Expression>> templateArgumentList,
             std::shared_ptr<const SyntaxToken> greaterThanToken)
         {
             if (identifierToken == nullptr)
@@ -1285,8 +1259,8 @@ namespace Soup::Syntax
             if (greaterThanToken == nullptr)
                 throw std::runtime_error("ArgumentNull - greaterThanToken");
 
-            return std::shared_ptr<const SimpleTemplateIdentifierExpression>(
-                new SimpleTemplateIdentifierExpression(
+            return std::shared_ptr<const InnerTree::SimpleTemplateIdentifierExpression>(
+                new InnerTree::SimpleTemplateIdentifierExpression(
                     std::move(identifierToken),
                     std::move(lessThanToken),
                     std::move(templateArgumentList),
@@ -1296,10 +1270,10 @@ namespace Soup::Syntax
         /// <summary>
         /// Create a SubscriptExpression
         /// </summary>
-        static std::shared_ptr<const SubscriptExpression> CreateSubscriptExpression(
-            std::shared_ptr<const Expression> leftExpression,
+        static std::shared_ptr<const InnerTree::SubscriptExpression> CreateSubscriptExpression(
+            std::shared_ptr<const InnerTree::Expression> leftExpression,
             std::shared_ptr<const SyntaxToken> openBracket, 
-            std::shared_ptr<const Expression> rightExpression,
+            std::shared_ptr<const InnerTree::Expression> rightExpression,
             std::shared_ptr<const SyntaxToken> closeBracket)
         {
             if (leftExpression == nullptr)
@@ -1311,8 +1285,8 @@ namespace Soup::Syntax
             if (closeBracket == nullptr)
                 throw std::runtime_error("ArgumentNull - closeBracket");
 
-            return std::shared_ptr<const SubscriptExpression>(
-                new SubscriptExpression(
+            return std::shared_ptr<const InnerTree::SubscriptExpression>(
+                new InnerTree::SubscriptExpression(
                     std::move(leftExpression),
                     std::move(openBracket),
                     std::move(rightExpression),
@@ -1323,32 +1297,32 @@ namespace Soup::Syntax
         /// Create a SimpleDeclaration
         /// </summary>
         template<typename T>
-        static std::shared_ptr<const SyntaxList<T>> CreateSyntaxList(
+        static std::shared_ptr<const InnerTree::SyntaxList<T>> CreateSyntaxList(
             std::vector<std::shared_ptr<const T>> items)
         {
-            return std::make_shared<const SyntaxList<T>>(
+            return std::make_shared<const InnerTree::SyntaxList<T>>(
                     std::move(items));
         }
 
         /// <summary>
         /// Create a ThisExpression
         /// </summary>
-        static std::shared_ptr<const ThisExpression> CreateThisExpression(
+        static std::shared_ptr<const InnerTree::ThisExpression> CreateThisExpression(
             std::shared_ptr<const SyntaxToken> token)
         {
             if (token == nullptr)
                 throw std::runtime_error("ArgumentNull - token");
 
-            return std::shared_ptr<const ThisExpression>(
-                new ThisExpression(
+            return std::shared_ptr<const InnerTree::ThisExpression>(
+                new InnerTree::ThisExpression(
                     std::move(token)));
         }
 
         /// <summary>
         /// Create a TranslationUnit
         /// </summary>
-        static std::shared_ptr<const TranslationUnit> CreateTranslationUnit(
-            std::shared_ptr<const SyntaxList<Declaration>> declarations,
+        static std::shared_ptr<const InnerTree::TranslationUnit> CreateTranslationUnit(
+            std::shared_ptr<const InnerTree::SyntaxList<InnerTree::Declaration>> declarations,
             std::shared_ptr<const SyntaxToken> endOfFileToken)
         {
             if (declarations == nullptr)
@@ -1356,8 +1330,8 @@ namespace Soup::Syntax
             if (endOfFileToken == nullptr)
                 throw std::runtime_error("ArgumentNull - endOfFileToken");
 
-            return std::shared_ptr<const TranslationUnit>(
-                new TranslationUnit(
+            return std::shared_ptr<const InnerTree::TranslationUnit>(
+                new InnerTree::TranslationUnit(
                     std::move(declarations),
                     std::move(endOfFileToken)));
         }
@@ -1365,10 +1339,10 @@ namespace Soup::Syntax
         /// <summary>
         /// Create a TryStatement
         /// </summary>
-        static std::shared_ptr<const TryStatement> CreateTryStatement(
+        static std::shared_ptr<const InnerTree::TryStatement> CreateTryStatement(
             std::shared_ptr<const SyntaxToken> tryToken,
-            std::shared_ptr<const CompoundStatement> compoundStatement,
-            std::vector<std::shared_ptr<const CatchClause>> catchClauses)
+            std::shared_ptr<const InnerTree::CompoundStatement> compoundStatement,
+            std::vector<std::shared_ptr<const InnerTree::CatchClause>> catchClauses)
         {
             if (tryToken == nullptr)
                 throw std::runtime_error("ArgumentNull - tryToken");
@@ -1377,8 +1351,8 @@ namespace Soup::Syntax
             if (catchClauses.empty())
                 throw std::runtime_error("CatchClauses must not be empty.");
 
-            return std::shared_ptr<const TryStatement>(
-                new TryStatement(
+            return std::shared_ptr<const InnerTree::TryStatement>(
+                new InnerTree::TryStatement(
                     std::move(tryToken),
                     std::move(compoundStatement),
                     std::move(catchClauses)));
@@ -1387,30 +1361,26 @@ namespace Soup::Syntax
         /// <summary>
         /// Create a SyntaxTrivia
         /// </summary>
-        static SyntaxTrivia CreateTrivia(
-            std::string value,
-            TextSpan span)
+        static SyntaxTrivia CreateTrivia(std::string value)
         {
-            return SyntaxTrivia(
-                std::move(value),
-                span);
+            return SyntaxTrivia(std::move(value));
         }
 
         /// <summary>
         /// Create a UnaryExpression
         /// </summary>
-        static std::shared_ptr<const UnaryExpression> CreateUnaryExpression(
+        static std::shared_ptr<const InnerTree::UnaryExpression> CreateUnaryExpression(
             UnaryOperator unaryOperator,
             std::shared_ptr<const SyntaxToken> operatorToken,
-            std::shared_ptr<const Expression> operand)
+            std::shared_ptr<const InnerTree::Expression> operand)
         {
             if (operatorToken == nullptr)
                 throw std::runtime_error("ArgumentNull - operatorToken");
             if (operand == nullptr)
                 throw std::runtime_error("ArgumentNull - operand");
 
-            return std::shared_ptr<const UnaryExpression>(
-                new UnaryExpression(
+            return std::shared_ptr<const InnerTree::UnaryExpression>(
+                new InnerTree::UnaryExpression(
                     unaryOperator,
                     std::move(operatorToken),
                     std::move(operand)));
@@ -1466,17 +1436,17 @@ namespace Soup::Syntax
         /// <summary>
         /// Create a ValueEqualInitializer
         /// </summary>
-        static std::shared_ptr<const ValueEqualInitializer> CreateValueEqualInitializer(
+        static std::shared_ptr<const InnerTree::ValueEqualInitializer> CreateValueEqualInitializer(
             std::shared_ptr<const SyntaxToken> equalToken,
-            std::shared_ptr<const Expression> expression)
+            std::shared_ptr<const InnerTree::Expression> expression)
         {
             if (equalToken == nullptr)
                 throw std::runtime_error("ArgumentNull - equalToken");
             if (expression == nullptr)
                 throw std::runtime_error("ArgumentNull - expression");
 
-            return std::shared_ptr<const ValueEqualInitializer>(
-                new ValueEqualInitializer(
+            return std::shared_ptr<const InnerTree::ValueEqualInitializer>(
+                new InnerTree::ValueEqualInitializer(
                     std::move(equalToken),
                     std::move(expression)));
         }

@@ -8,7 +8,7 @@ namespace Soup::Syntax
     /// </summary>
     export class SyntaxToken
     {
-        friend class SyntaxFactory;
+        friend class ::Soup::Syntax::SyntaxFactory;
 
     private:
         /// <summary>
@@ -41,14 +41,6 @@ namespace Soup::Syntax
         const std::string& GetValue() const
         {
             return m_value;
-        }
-
-        /// <summary>
-        /// Get the span of the token
-        /// </summary>
-        TextSpan GetSpan() const
-        {
-            return TextSpan();
         }
 
         /// <summary>

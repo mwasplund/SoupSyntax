@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-namespace Soup::Syntax
+namespace Soup::Syntax::InnerTree
 {
     /// <summary>
     /// The class constructor definition class.
@@ -8,7 +8,7 @@ namespace Soup::Syntax
     /// </summary>
     export class ConstructorDefinition final : public Declaration
     {
-        friend class SyntaxFactory;
+        friend class ::Soup::Syntax::SyntaxFactory;
 
     private:
         ConstructorDefinition(
@@ -65,34 +65,6 @@ namespace Soup::Syntax
         const SyntaxNode& GetBody() const
         {
             return *m_body;
-        }
-
-        /// <summary>
-        /// Get the collection of children nodes and tokens
-        /// </summary>
-        virtual std::vector<SyntaxNodeChild> GetChildren() const override final
-        {
-            std::vector<SyntaxNodeChild> children;
-
-            children.push_back(SyntaxNodeChild(m_identifier));
-            children.push_back(SyntaxNodeChild(m_parameterList));
-
-            if (HasConstructorInitializer())
-            {
-                children.push_back(SyntaxNodeChild(m_constructorInitializer));
-            }
-
-            children.push_back(SyntaxNodeChild(m_body));
-
-            return children;
-        }
-
-        /// <summary>
-        /// Visitor Accept
-        /// </summary>
-        virtual void Accept(ISyntaxVisitor& visitor) const override final
-        {
-            visitor.Visit(*this);
         }
 
         /// <summary>
