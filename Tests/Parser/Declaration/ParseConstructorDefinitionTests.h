@@ -158,7 +158,7 @@ namespace Soup::Syntax::UnitTests
                             SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
                         },
                         {}),
-                    std::make_shared<const SyntaxSeparatorList<MemberInitializer>>(
+                    SyntaxFactory::CreateSyntaxSeparatorList<MemberInitializer>(
                         std::vector<std::shared_ptr<const MemberInitializer>>({
                             SyntaxFactory::CreateMemberInitializer(
                                 SyntaxFactory::CreateUniqueToken(
@@ -170,7 +170,7 @@ namespace Soup::Syntax::UnitTests
                                     {}),
                                 SyntaxFactory::CreateInitializerList(
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                                    std::make_shared<const SyntaxSeparatorList<Expression>>(
+                                    SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
                                         std::vector<std::shared_ptr<const Expression>>({
                                             SyntaxFactory::CreateSimpleIdentifierExpression(
                                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "parameter")),

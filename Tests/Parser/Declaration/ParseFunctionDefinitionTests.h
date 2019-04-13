@@ -219,7 +219,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateAttributeSpecifier(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
-                        std::make_shared<const SyntaxSeparatorList<Attribute>>(
+                        SyntaxFactory::CreateSyntaxSeparatorList<Attribute>(
                             std::vector<std::shared_ptr<const Attribute>>(),
                             std::vector<std::shared_ptr<const SyntaxToken>>()),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket),

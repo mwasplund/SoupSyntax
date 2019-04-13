@@ -1185,6 +1185,21 @@ namespace Soup::Syntax
         }
 
         /// <summary>
+        /// Create a RegularFunctionBody
+        /// </summary>
+        static std::shared_ptr<const InnerTree::RegularFunctionBody> CreateRegularFunctionBody(
+            std::shared_ptr<const InnerTree::CompoundStatement> statements
+        )
+        {
+            if (statements == nullptr)
+                throw std::runtime_error("ArgumentNull - statements");
+
+            return std::shared_ptr<const InnerTree::RegularFunctionBody>(
+                new InnerTree::RegularFunctionBody(
+                    std::move(statements)));
+        }
+
+        /// <summary>
         /// Create a ReturnStatement
         /// </summary>
         static std::shared_ptr<const InnerTree::ReturnStatement> CreateReturnStatement(
@@ -1294,14 +1309,29 @@ namespace Soup::Syntax
         }
 
         /// <summary>
-        /// Create a SimpleDeclaration
+        /// Create a SyntaxList
         /// </summary>
         template<typename T>
         static std::shared_ptr<const InnerTree::SyntaxList<T>> CreateSyntaxList(
             std::vector<std::shared_ptr<const T>> items)
         {
-            return std::make_shared<const InnerTree::SyntaxList<T>>(
-                    std::move(items));
+            return std::shared_ptr<const InnerTree::SyntaxList<T>>(
+                new InnerTree::SyntaxList<T>(
+                    std::move(items)));
+        }
+
+        /// <summary>
+        /// Create a SyntaxSeparatorList
+        /// </summary>
+        template<typename T>
+        static std::shared_ptr<const InnerTree::SyntaxSeparatorList<T>> CreateSyntaxSeparatorList(
+            std::vector<std::shared_ptr<const T>> items,
+            std::vector<std::shared_ptr<const SyntaxToken>> separators)
+        {
+            return std::shared_ptr<const InnerTree::SyntaxSeparatorList<T>>(
+                new  InnerTree::SyntaxSeparatorList<T>(
+                    std::move(items),
+                    std::move(separators)));
         }
 
         /// <summary>

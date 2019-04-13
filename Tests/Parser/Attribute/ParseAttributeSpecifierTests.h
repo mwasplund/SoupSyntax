@@ -17,7 +17,7 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateAttributeSpecifier(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
-                std::make_shared<const SyntaxSeparatorList<Attribute>>(
+                SyntaxFactory::CreateSyntaxSeparatorList<Attribute>(
                     std::vector<std::shared_ptr<const Attribute>>(),
                     std::vector<std::shared_ptr<const SyntaxToken>>()),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket),
@@ -38,22 +38,22 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::OpenBracket,
                     {
-                        SyntaxFactory::CreateTrivia(" ", TextSpan()),
+                        SyntaxFactory::CreateTrivia(" "),
                     },
                     {}),
-                std::make_shared<const SyntaxSeparatorList<Attribute>>(
+                SyntaxFactory::CreateSyntaxSeparatorList<Attribute>(
                     std::vector<std::shared_ptr<const Attribute>>(),
                     std::vector<std::shared_ptr<const SyntaxToken>>()),
                 SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::CloseBracket,
                     {
-                        SyntaxFactory::CreateTrivia("  ", TextSpan()),
+                        SyntaxFactory::CreateTrivia("  "),
                     },
                     {}),
                 SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::CloseBracket,
                     {
-                        SyntaxFactory::CreateTrivia("   ", TextSpan()),
+                        SyntaxFactory::CreateTrivia("   "),
                     },
                     {}));
 
@@ -70,7 +70,7 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateAttributeSpecifier(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
-                std::make_shared<const SyntaxSeparatorList<Attribute>>(
+                SyntaxFactory::CreateSyntaxSeparatorList<Attribute>(
                     std::vector<std::shared_ptr<const Attribute>>({
                         SyntaxFactory::CreateAttribute(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),

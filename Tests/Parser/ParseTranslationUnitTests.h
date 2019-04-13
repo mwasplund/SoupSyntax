@@ -14,7 +14,7 @@ namespace Soup::Syntax::UnitTests
             auto actual = ParseTranslationUnit(sourceCode);
 
             auto expected = SyntaxFactory::CreateTranslationUnit(
-                std::make_shared<const SyntaxList<Declaration>>(
+                SyntaxFactory::CreateSyntaxList<Declaration>(
                     std::vector<std::shared_ptr<const Declaration>>()),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile));
 
@@ -28,12 +28,12 @@ namespace Soup::Syntax::UnitTests
             auto actual = ParseTranslationUnit(sourceCode);
 
             auto expected = SyntaxFactory::CreateTranslationUnit(
-                std::make_shared<const SyntaxList<Declaration>>(
+                SyntaxFactory::CreateSyntaxList<Declaration>(
                     std::vector<std::shared_ptr<const Declaration>>()),
                 SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::EndOfFile,
                     {
-                        SyntaxFactory::CreateTrivia(" ", TextSpan()),
+                        SyntaxFactory::CreateTrivia(" "),
                     },
                     {}));
 
@@ -47,14 +47,14 @@ namespace Soup::Syntax::UnitTests
             auto actual = ParseTranslationUnit(sourceCode);
 
             auto expected = SyntaxFactory::CreateTranslationUnit(
-                std::make_shared<const SyntaxList<Declaration>>(
+                SyntaxFactory::CreateSyntaxList<Declaration>(
                     std::vector<std::shared_ptr<const Declaration>>()),
                 SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::EndOfFile,
                     {
-                        SyntaxFactory::CreateTrivia("//COMMENT", TextSpan()),
-                        SyntaxFactory::CreateTrivia("\n", TextSpan()),
-                        SyntaxFactory::CreateTrivia("//OTHER", TextSpan()),
+                        SyntaxFactory::CreateTrivia("//COMMENT"),
+                        SyntaxFactory::CreateTrivia("\n"),
+                        SyntaxFactory::CreateTrivia("//OTHER"),
                     },
                     {}));
 
@@ -68,21 +68,21 @@ namespace Soup::Syntax::UnitTests
             auto actual = ParseTranslationUnit(sourceCode);
 
             auto expected = SyntaxFactory::CreateTranslationUnit(
-                std::make_shared<const SyntaxList<Declaration>>(
+                SyntaxFactory::CreateSyntaxList<Declaration>(
                     std::vector<std::shared_ptr<const Declaration>>(
                     {
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(
                                 SyntaxTokenType::Semicolon,
                                 {
-                                    SyntaxFactory::CreateTrivia(" ", TextSpan()),
+                                    SyntaxFactory::CreateTrivia(" "),
                                 },
                                 {})),
                     })),
                 SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::EndOfFile,
                     {
-                        SyntaxFactory::CreateTrivia(" ", TextSpan()),
+                        SyntaxFactory::CreateTrivia(" "),
                     },
                     {}));
 
@@ -96,7 +96,7 @@ namespace Soup::Syntax::UnitTests
             auto actual = ParseTranslationUnit(sourceCode);
 
             auto expected = SyntaxFactory::CreateTranslationUnit(
-                std::make_shared<const SyntaxList<Declaration>>(
+                SyntaxFactory::CreateSyntaxList<Declaration>(
                     std::vector<std::shared_ptr<const Declaration>>(
                     {
                         SyntaxFactory::CreateEmptyDeclaration(
@@ -108,11 +108,11 @@ namespace Soup::Syntax::UnitTests
                                     SyntaxFactory::CreateKeywordToken(
                                         SyntaxTokenType::Int,
                                         {
-                                            SyntaxFactory::CreateTrivia("\n", TextSpan()),
+                                            SyntaxFactory::CreateTrivia("\n"),
                                         },
                                         {}))),
                             SyntaxFactory::CreateInitializerDeclaratorList(
-                                std::make_shared<const SyntaxSeparatorList<InitializerDeclarator>>(
+                                SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
                                     std::vector<std::shared_ptr<const InitializerDeclarator>>(
                                     {
                                         SyntaxFactory::CreateInitializerDeclarator(
@@ -121,7 +121,7 @@ namespace Soup::Syntax::UnitTests
                                                     SyntaxTokenType::Identifier,
                                                     "i",
                                                     {
-                                                        SyntaxFactory::CreateTrivia(" ", TextSpan()),
+                                                        SyntaxFactory::CreateTrivia(" "),
                                                     },
                                                     {})),
                                             nullptr),

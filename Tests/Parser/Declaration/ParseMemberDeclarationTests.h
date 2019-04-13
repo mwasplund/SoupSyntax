@@ -19,7 +19,7 @@ namespace Soup::Syntax::UnitTests
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
               SyntaxFactory::CreateMemberDeclaratorList(
-                    std::make_shared<const SyntaxSeparatorList<MemberDeclarator>>(
+                    SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
                         std::vector<std::shared_ptr<const MemberDeclarator>>(
                         {
                             SyntaxFactory::CreateMemberDeclarator(
@@ -28,7 +28,7 @@ namespace Soup::Syntax::UnitTests
                                         SyntaxTokenType::Identifier,
                                         "i",
                                         {
-                                            SyntaxFactory::CreateTrivia(" ", TextSpan()),
+                                            SyntaxFactory::CreateTrivia(" "),
                                         },
                                         {})),
                                 nullptr),
@@ -50,7 +50,7 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateSimpleIdentifierExpression(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"))),
                 SyntaxFactory::CreateMemberDeclaratorList(
-                    std::make_shared<const SyntaxSeparatorList<MemberDeclarator>>(
+                    SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
                         std::vector<std::shared_ptr<const MemberDeclarator>>(
                         {
                             SyntaxFactory::CreateMemberDeclarator(
@@ -59,7 +59,7 @@ namespace Soup::Syntax::UnitTests
                                         SyntaxTokenType::Identifier,
                                         "i",
                                         {
-                                            SyntaxFactory::CreateTrivia(" ", TextSpan()),
+                                            SyntaxFactory::CreateTrivia(" "),
                                         },
                                         {})),
                                 nullptr),
@@ -85,7 +85,7 @@ namespace Soup::Syntax::UnitTests
                         SyntaxFactory::CreateSimpleTemplateIdentifierExpression(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "vector"),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LessThan),
-                            std::make_shared<const SyntaxSeparatorList<Expression>>(
+                            SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
                                 std::vector<std::shared_ptr<const Expression>>({
                                     SyntaxFactory::CreateSimpleIdentifierExpression(
                                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "ClassA")),
@@ -93,7 +93,7 @@ namespace Soup::Syntax::UnitTests
                                 std::vector<std::shared_ptr<const SyntaxToken>>({})),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan)))),
                 SyntaxFactory::CreateMemberDeclaratorList(
-                    std::make_shared<const SyntaxSeparatorList<MemberDeclarator>>(
+                    SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
                         std::vector<std::shared_ptr<const MemberDeclarator>>(
                         {
                             SyntaxFactory::CreateMemberDeclarator(
@@ -102,7 +102,7 @@ namespace Soup::Syntax::UnitTests
                                         SyntaxTokenType::Identifier,
                                         "value1",
                                         {
-                                            SyntaxFactory::CreateTrivia(" ", TextSpan()),
+                                            SyntaxFactory::CreateTrivia(" "),
                                         },
                                         {})),
                                 nullptr),
@@ -125,7 +125,7 @@ namespace Soup::Syntax::UnitTests
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                 SyntaxFactory::CreateMemberDeclaratorList(
-                    std::make_shared<const SyntaxSeparatorList<MemberDeclarator>>(
+                    SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
                         std::vector<std::shared_ptr<const MemberDeclarator>>(
                         {
                             SyntaxFactory::CreateMemberDeclarator(
@@ -134,14 +134,14 @@ namespace Soup::Syntax::UnitTests
                                         SyntaxTokenType::Identifier,
                                         "i",
                                         {
-                                            SyntaxFactory::CreateTrivia(" ", TextSpan()),
+                                            SyntaxFactory::CreateTrivia(" "),
                                         },
                                         {})),
                                 SyntaxFactory::CreateValueEqualInitializer(
                                     SyntaxFactory::CreateKeywordToken(
                                         SyntaxTokenType::Equal,
                                         {
-                                            SyntaxFactory::CreateTrivia(" ", TextSpan()),
+                                            SyntaxFactory::CreateTrivia(" "),
                                         },
                                         {}),
                                     SyntaxFactory::CreateLiteralExpression(
@@ -150,7 +150,7 @@ namespace Soup::Syntax::UnitTests
                                             SyntaxTokenType::IntegerLiteral,
                                             "0",
                                             {
-                                                SyntaxFactory::CreateTrivia(" ", TextSpan()),
+                                                SyntaxFactory::CreateTrivia(" "),
                                             },
                                             {})))),
                         }),
@@ -172,7 +172,7 @@ namespace Soup::Syntax::UnitTests
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                 SyntaxFactory::CreateMemberDeclaratorList(
-                    std::make_shared<const SyntaxSeparatorList<MemberDeclarator>>(
+                    SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
                         std::vector<std::shared_ptr<const MemberDeclarator>>(
                         {
                             SyntaxFactory::CreateMemberDeclarator(
@@ -181,7 +181,7 @@ namespace Soup::Syntax::UnitTests
                                         SyntaxTokenType::Identifier,
                                         "i",
                                         {
-                                            SyntaxFactory::CreateTrivia(" ", TextSpan()),
+                                            SyntaxFactory::CreateTrivia(" "),
                                         },
                                         {})),
                                 nullptr),
@@ -191,7 +191,7 @@ namespace Soup::Syntax::UnitTests
                                         SyntaxTokenType::Identifier,
                                         "j",
                                         {
-                                            SyntaxFactory::CreateTrivia(" ", TextSpan()),
+                                            SyntaxFactory::CreateTrivia(" "),
                                         },
                                         {})),
                                 nullptr),
@@ -216,7 +216,7 @@ namespace Soup::Syntax::UnitTests
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                 SyntaxFactory::CreateMemberDeclaratorList(
-                    std::make_shared<const SyntaxSeparatorList<MemberDeclarator>>(
+                    SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
                         std::vector<std::shared_ptr<const MemberDeclarator>>(
                         {
                             SyntaxFactory::CreateMemberDeclarator(
@@ -225,14 +225,14 @@ namespace Soup::Syntax::UnitTests
                                         SyntaxTokenType::Identifier,
                                         "i",
                                         {
-                                            SyntaxFactory::CreateTrivia(" ", TextSpan()),
+                                            SyntaxFactory::CreateTrivia(" "),
                                         },
                                         {})),
                                 SyntaxFactory::CreateValueEqualInitializer(
                                     SyntaxFactory::CreateKeywordToken(
                                         SyntaxTokenType::Equal,
                                         {
-                                            SyntaxFactory::CreateTrivia(" ", TextSpan()),
+                                            SyntaxFactory::CreateTrivia(" "),
                                         },
                                         {}),
                                     SyntaxFactory::CreateLiteralExpression(
@@ -241,7 +241,7 @@ namespace Soup::Syntax::UnitTests
                                             SyntaxTokenType::IntegerLiteral,
                                             "0",
                                             {
-                                                SyntaxFactory::CreateTrivia(" ", TextSpan()),
+                                                SyntaxFactory::CreateTrivia(" "),
                                             },
                                             {})))),
                             SyntaxFactory::CreateMemberDeclarator(
@@ -250,7 +250,7 @@ namespace Soup::Syntax::UnitTests
                                         SyntaxTokenType::Identifier,
                                         "j",
                                         {
-                                            SyntaxFactory::CreateTrivia(" ", TextSpan()),
+                                            SyntaxFactory::CreateTrivia(" "),
                                         },
                                         {})),
                                 nullptr),
@@ -275,7 +275,7 @@ namespace Soup::Syntax::UnitTests
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                 SyntaxFactory::CreateMemberDeclaratorList(
-                    std::make_shared<const SyntaxSeparatorList<MemberDeclarator>>(
+                    SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
                         std::vector<std::shared_ptr<const MemberDeclarator>>(
                         {
                             SyntaxFactory::CreateMemberDeclarator(
@@ -284,14 +284,14 @@ namespace Soup::Syntax::UnitTests
                                         SyntaxTokenType::Identifier,
                                         "i",
                                         {
-                                            SyntaxFactory::CreateTrivia(" ", TextSpan()),
+                                            SyntaxFactory::CreateTrivia(" "),
                                         },
                                         {})),
                                 SyntaxFactory::CreateValueEqualInitializer(
                                     SyntaxFactory::CreateKeywordToken(
                                         SyntaxTokenType::Equal,
                                         {
-                                            SyntaxFactory::CreateTrivia(" ", TextSpan()),
+                                            SyntaxFactory::CreateTrivia(" "),
                                         },
                                         {}),
                                     SyntaxFactory::CreateLiteralExpression(
@@ -300,7 +300,7 @@ namespace Soup::Syntax::UnitTests
                                             SyntaxTokenType::IntegerLiteral,
                                             "0",
                                             {
-                                                SyntaxFactory::CreateTrivia(" ", TextSpan()),
+                                                SyntaxFactory::CreateTrivia(" "),
                                             },
                                             {})))),
                             SyntaxFactory::CreateMemberDeclarator(
@@ -309,14 +309,14 @@ namespace Soup::Syntax::UnitTests
                                         SyntaxTokenType::Identifier,
                                         "j",
                                         {
-                                            SyntaxFactory::CreateTrivia(" ", TextSpan()),
+                                            SyntaxFactory::CreateTrivia(" "),
                                         },
                                         {})),
                                 SyntaxFactory::CreateValueEqualInitializer(
                                     SyntaxFactory::CreateKeywordToken(
                                         SyntaxTokenType::Equal,
                                         {
-                                            SyntaxFactory::CreateTrivia(" ", TextSpan()),
+                                            SyntaxFactory::CreateTrivia(" "),
                                         },
                                         {}),
                                     SyntaxFactory::CreateLiteralExpression(
@@ -325,7 +325,7 @@ namespace Soup::Syntax::UnitTests
                                             SyntaxTokenType::IntegerLiteral,
                                             "1",
                                             {
-                                                SyntaxFactory::CreateTrivia(" ", TextSpan()),
+                                                SyntaxFactory::CreateTrivia(" "),
                                             },
                                             {})))),
                         }),
@@ -353,19 +353,19 @@ namespace Soup::Syntax::UnitTests
                         SyntaxFactory::CreateKeywordToken(
                             SyntaxTokenType::Int,
                             {
-                                SyntaxFactory::CreateTrivia(" ", TextSpan()),
+                                SyntaxFactory::CreateTrivia(" "),
                             },
                             {})),
                     {
                         SyntaxFactory::CreateKeywordToken(
                             SyntaxTokenType::ConstExpr,
                             {
-                                SyntaxFactory::CreateTrivia(" ", TextSpan()),
+                                SyntaxFactory::CreateTrivia(" "),
                             },
                             {}),
                     }),
                 SyntaxFactory::CreateMemberDeclaratorList(
-                    std::make_shared<const SyntaxSeparatorList<MemberDeclarator>>(
+                    SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
                         std::vector<std::shared_ptr<const MemberDeclarator>>(
                         {
                             SyntaxFactory::CreateMemberDeclarator(
@@ -374,7 +374,7 @@ namespace Soup::Syntax::UnitTests
                                         SyntaxTokenType::Identifier,
                                         "i",
                                         {
-                                            SyntaxFactory::CreateTrivia(" ", TextSpan()),
+                                            SyntaxFactory::CreateTrivia(" "),
                                         },
                                         {})),
                                 nullptr),

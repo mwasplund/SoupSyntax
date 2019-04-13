@@ -56,7 +56,7 @@ antlrcpp::Any ASTCppParserVisitor::visitTranslationUnit(CppParser::TranslationUn
     }
 
     return SyntaxFactory::CreateTranslationUnit(
-        std::make_shared<const SyntaxList<Declaration>>(
+        SyntaxFactory::CreateSyntaxList<Declaration>(
             std::move(declarationSequence)),
         CreateToken(SyntaxTokenType::EndOfFile, context->EOF()));
 }
@@ -349,7 +349,7 @@ antlrcpp::Any ASTCppParserVisitor::visitPostfixExpression(CppParser::PostfixExpr
                     .as<const SeparatorListResult<Expression>>();
             }
 
-            auto parameters = std::make_shared<const SyntaxSeparatorList<Expression>>(
+            auto parameters = SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
                 std::move(expressionList.Items),
                 std::move(expressionList.Separators));
 
@@ -1455,7 +1455,7 @@ antlrcpp::Any ASTCppParserVisitor::visitSimpleDeclaration(CppParser::SimpleDecla
         SyntaxFactory::CreateSimpleDeclaration(
             std::move(declarationSpecifier),
             SyntaxFactory::CreateInitializerDeclaratorList(
-                std::make_shared<const SyntaxSeparatorList<InitializerDeclarator>>(
+                SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
                     std::move(initializerDeclaratorList.Items),
                     std::move(initializerDeclaratorList.Separators))),
             CreateToken(SyntaxTokenType::Semicolon, context->Semicolon())));
@@ -1828,7 +1828,7 @@ antlrcpp::Any ASTCppParserVisitor::visitEnumSpecifier(CppParser::EnumSpecifierCo
             std::move(classToken),
             std::move(identifierToken),
             CreateToken(SyntaxTokenType::OpenBrace, context->OpenBrace()),
-            std::make_shared<const SyntaxSeparatorList<EnumeratorDefinition>>(
+            SyntaxFactory::CreateSyntaxSeparatorList<EnumeratorDefinition>(
                 std::move(enumeratorList.Items),
                 std::move(enumeratorList.Separators)),
             CreateToken(SyntaxTokenType::CloseBrace, context->CloseBrace())));
@@ -1918,7 +1918,7 @@ antlrcpp::Any ASTCppParserVisitor::visitNamedNamespaceDefinition(CppParser::Name
     return std::static_pointer_cast<const SyntaxNode>(
         SyntaxFactory::CreateNamespaceDefinition(
             CreateToken(SyntaxTokenType::Namespace, context->Namespace()),
-            std::make_shared<const SyntaxSeparatorList<SyntaxToken>>(
+            SyntaxFactory::CreateSyntaxSeparatorList<SyntaxToken>(
                 std::vector<std::shared_ptr<const SyntaxToken>>({
                     CreateToken(SyntaxTokenType::Identifier, context->Identifier()),
                 }),
@@ -1940,7 +1940,7 @@ antlrcpp::Any ASTCppParserVisitor::visitUnnamedNamespaceDefinition(CppParser::Un
     return std::static_pointer_cast<const SyntaxNode>(
         SyntaxFactory::CreateNamespaceDefinition(
             CreateToken(SyntaxTokenType::Namespace, context->Namespace()),
-            std::make_shared<const SyntaxSeparatorList<SyntaxToken>>(
+            SyntaxFactory::CreateSyntaxSeparatorList<SyntaxToken>(
                 std::vector<std::shared_ptr<const SyntaxToken>>(),
                 std::vector<std::shared_ptr<const SyntaxToken>>()),
             CreateToken(SyntaxTokenType::OpenBrace, context->OpenBrace()),
@@ -1969,7 +1969,7 @@ antlrcpp::Any ASTCppParserVisitor::visitNestedNamespaceDefinition(CppParser::Nes
     return std::static_pointer_cast<const SyntaxNode>(
         SyntaxFactory::CreateNamespaceDefinition(
             CreateToken(SyntaxTokenType::Namespace, context->Namespace()),
-            std::make_shared<const SyntaxSeparatorList<SyntaxToken>>(
+            SyntaxFactory::CreateSyntaxSeparatorList<SyntaxToken>(
                 std::move(enclosingNamespaceSpecifier.Items),
                 std::move(enclosingNamespaceSpecifier.Separators)),
             CreateToken(SyntaxTokenType::OpenBrace, context->OpenBrace()),
@@ -2010,7 +2010,7 @@ antlrcpp::Any ASTCppParserVisitor::visitNamespaceBody(CppParser::NamespaceBodyCo
             .as<std::vector<std::shared_ptr<const Declaration>>>();
     }
 
-    return std::make_shared<const SyntaxList<Declaration>>(
+    return SyntaxFactory::CreateSyntaxList<Declaration>(
             std::move(declarationSequence));
 }
 
@@ -2098,7 +2098,7 @@ antlrcpp::Any ASTCppParserVisitor::visitAttributeSpecifier(CppParser::AttributeS
         return SyntaxFactory::CreateAttributeSpecifier(
             CreateToken(SyntaxTokenType::OpenBracket, context->OpenBracket().at(0)),
             CreateToken(SyntaxTokenType::OpenBracket, context->OpenBracket().at(1)),
-            std::make_shared<const SyntaxSeparatorList<Attribute>>(
+            SyntaxFactory::CreateSyntaxSeparatorList<Attribute>(
                 std::move(attributeList.Items),
                 std::move(attributeList.Separators)),
             CreateToken(SyntaxTokenType::CloseBracket, context->CloseBracket().at(0)),
@@ -2382,13 +2382,13 @@ antlrcpp::Any ASTCppParserVisitor::visitParameterDeclarationClause(CppParser::Pa
     {
         auto parameterListResult = visit(context->parameterDeclarationList())
             .as<SeparatorListResult<Parameter>>();
-        return std::make_shared<const SyntaxSeparatorList<Parameter>>(
+        return SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
             std::move(parameterListResult.Items),
             std::move(parameterListResult.Separators));
     }
     else
     {
-        return std::make_shared<const SyntaxSeparatorList<Parameter>>(
+        return SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
             std::vector<std::shared_ptr<const Parameter>>(),
             std::vector<std::shared_ptr<const SyntaxToken>>());
     }
@@ -2531,7 +2531,7 @@ antlrcpp::Any ASTCppParserVisitor::visitRegularFunctionBody(CppParser::RegularFu
         visit(context->compoundStatement())
             .as<std::shared_ptr<const SyntaxNode>>());
     return std::static_pointer_cast<const SyntaxNode>(
-        std::make_shared<const RegularFunctionBody>(
+        SyntaxFactory::CreateRegularFunctionBody(
             std::move(compoundStatment)));
 }
 
@@ -2628,7 +2628,7 @@ antlrcpp::Any ASTCppParserVisitor::visitBracedInitializerList(CppParser::BracedI
         }
     }
 
-    auto values = std::make_shared<const SyntaxSeparatorList<Expression>>(
+    auto values = SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
         std::move(result.Items),
         std::move(result.Separators));
 
@@ -2688,7 +2688,7 @@ antlrcpp::Any ASTCppParserVisitor::visitClassSpecifier(CppParser::ClassSpecifier
         std::reverse(memberSpecifiers.begin(), memberSpecifiers.end());
     }
 
-    auto memberSpecifiersList = std::make_shared<const SyntaxList<Declaration>>(
+    auto memberSpecifiersList = SyntaxFactory::CreateSyntaxList<Declaration>(
                 std::move(memberSpecifiers));
 
     return std::static_pointer_cast<const SyntaxNode>(
@@ -2776,7 +2776,7 @@ antlrcpp::Any ASTCppParserVisitor::visitMemberDeclaration(CppParser::MemberDecla
             SyntaxFactory::CreateMemberDeclaration(
                 std::move(declarationSpecifier),
                 SyntaxFactory::CreateMemberDeclaratorList(
-                    std::make_shared<const SyntaxSeparatorList<MemberDeclarator>>(
+                    SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
                         std::move(memberDeclaratorList.Items),
                         std::move(memberDeclaratorList.Separators))),
                 CreateToken(SyntaxTokenType::Semicolon, context->Semicolon())));
@@ -2930,7 +2930,7 @@ antlrcpp::Any ASTCppParserVisitor::visitConstructorInitializer(CppParser::Constr
 
     return SyntaxFactory::CreateConstructorInitializer(
         CreateToken(SyntaxTokenType::Colon, context->Colon()),
-        std::make_shared<const SyntaxSeparatorList<MemberInitializer>>(
+        SyntaxFactory::CreateSyntaxSeparatorList<MemberInitializer>(
             std::move(initializerList.Items),
             std::move(initializerList.Separators)));
 }
@@ -2973,7 +2973,7 @@ antlrcpp::Any ASTCppParserVisitor::visitMemberInitializer(CppParser::MemberIniti
                 .as<const SeparatorListResult<Expression>>();
         }
 
-        auto values = std::make_shared<const SyntaxSeparatorList<Expression>>(
+        auto values = SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
             std::move(result.Items),
             std::move(result.Separators));
 
@@ -3068,7 +3068,7 @@ antlrcpp::Any ASTCppParserVisitor::visitSimpleTemplateIdentifier(CppParser::Simp
         SyntaxFactory::CreateSimpleTemplateIdentifierExpression(
             CreateToken(SyntaxTokenType::Identifier, context->templateName()->Identifier()),
             CreateToken(SyntaxTokenType::LessThan, context->LessThan()),
-            std::make_shared<const SyntaxSeparatorList<Expression>>(
+            SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
                 std::move(argumentList.Items),
                 std::move(argumentList.Separators)),
             CreateToken(SyntaxTokenType::GreaterThan, context->GreaterThan())));

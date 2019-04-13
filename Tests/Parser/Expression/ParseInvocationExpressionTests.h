@@ -18,7 +18,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                std::make_shared<const SyntaxSeparatorList<Expression>>(
+                SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
                     std::vector<std::shared_ptr<const Expression>>(),
                     std::vector<std::shared_ptr<const SyntaxToken>>()),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis));
@@ -37,7 +37,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                std::make_shared<const SyntaxSeparatorList<Expression>>(
+                SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
                     std::vector<std::shared_ptr<const Expression>>(
                     {
                         SyntaxFactory::CreateSimpleIdentifierExpression(
@@ -47,7 +47,7 @@ namespace Soup::Syntax::UnitTests
                                 SyntaxTokenType::Identifier,
                                 "c",
                                 {
-                                    SyntaxFactory::CreateTrivia(" ", TextSpan()),
+                                    SyntaxFactory::CreateTrivia(" "),
                                 },
                                 {}))
                     }),

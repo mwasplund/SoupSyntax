@@ -15,11 +15,11 @@ namespace Soup::Syntax::UnitTests
 
             auto expected = SyntaxFactory::CreateNamespaceDefinition(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Namespace),
-                std::make_shared<const SyntaxSeparatorList<SyntaxToken>>(
+                SyntaxFactory::CreateSyntaxSeparatorList<SyntaxToken>(
                     std::vector<std::shared_ptr<const SyntaxToken>>(),
                     std::vector<std::shared_ptr<const SyntaxToken>>()),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                std::make_shared<const SyntaxList<Declaration>>(
+                SyntaxFactory::CreateSyntaxList<Declaration>(
                     std::vector<std::shared_ptr<const Declaration>>(
                     {})),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
@@ -38,7 +38,7 @@ namespace Soup::Syntax::UnitTests
 
             auto expected = SyntaxFactory::CreateNamespaceDefinition(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Namespace),
-                std::make_shared<const SyntaxSeparatorList<SyntaxToken>>(
+                SyntaxFactory::CreateSyntaxSeparatorList<SyntaxToken>(
                     std::vector<std::shared_ptr<const SyntaxToken>>({
                         SyntaxFactory::CreateUniqueToken(
                             SyntaxTokenType::Identifier,
@@ -50,7 +50,7 @@ namespace Soup::Syntax::UnitTests
                     }),
                     std::vector<std::shared_ptr<const SyntaxToken>>()),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                std::make_shared<const SyntaxList<Declaration>>(
+                SyntaxFactory::CreateSyntaxList<Declaration>(
                     std::vector<std::shared_ptr<const Declaration>>(
                     {})),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
@@ -69,7 +69,7 @@ namespace Soup::Syntax::UnitTests
 
             auto expected = SyntaxFactory::CreateNamespaceDefinition(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Namespace),
-                std::make_shared<const SyntaxSeparatorList<SyntaxToken>>(
+                SyntaxFactory::CreateSyntaxSeparatorList<SyntaxToken>(
                     std::vector<std::shared_ptr<const SyntaxToken>>({
                         SyntaxFactory::CreateUniqueToken(
                             SyntaxTokenType::Identifier,
@@ -84,7 +84,7 @@ namespace Soup::Syntax::UnitTests
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
                     })),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                std::make_shared<const SyntaxList<Declaration>>(
+                SyntaxFactory::CreateSyntaxList<Declaration>(
                     std::vector<std::shared_ptr<const Declaration>>(
                     {})),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
@@ -103,7 +103,7 @@ namespace Soup::Syntax::UnitTests
 
             auto expected = SyntaxFactory::CreateNamespaceDefinition(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Namespace),
-                std::make_shared<const SyntaxSeparatorList<SyntaxToken>>(
+                SyntaxFactory::CreateSyntaxSeparatorList<SyntaxToken>(
                     std::vector<std::shared_ptr<const SyntaxToken>>({
                         SyntaxFactory::CreateUniqueToken(
                             SyntaxTokenType::Identifier,
@@ -120,7 +120,7 @@ namespace Soup::Syntax::UnitTests
                         SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
                     },
                     {}),
-                std::make_shared<const SyntaxList<Declaration>>(
+                SyntaxFactory::CreateSyntaxList<Declaration>(
                     std::vector<std::shared_ptr<const Declaration>>(
                     {
                         SyntaxFactory::CreateEmptyDeclaration(

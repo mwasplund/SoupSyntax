@@ -17,7 +17,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
                 nullptr,
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                std::make_shared<const SyntaxList<Declaration>>(
+                SyntaxFactory::CreateSyntaxList<Declaration>(
                     std::vector<std::shared_ptr<const Declaration>>(
                     {})),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
@@ -49,7 +49,7 @@ namespace Soup::Syntax::UnitTests
                         SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
                     },
                     {}),
-                std::make_shared<const SyntaxList<Declaration>>(
+                SyntaxFactory::CreateSyntaxList<Declaration>(
                     std::vector<std::shared_ptr<const Declaration>>(
                     {
                         SyntaxFactory::CreateEmptyDeclaration(
@@ -94,7 +94,7 @@ namespace Soup::Syntax::UnitTests
                         SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
                     },
                     {}),
-                std::make_shared<const SyntaxList<Declaration>>(
+                SyntaxFactory::CreateSyntaxList<Declaration>(
                     std::vector<std::shared_ptr<const Declaration>>(
                     {
                         SyntaxFactory::CreateAccessorSpecifier(

@@ -18,7 +18,7 @@ namespace Soup::Syntax::UnitTests
                 nullptr,
                 nullptr,
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                std::make_shared<const SyntaxSeparatorList<EnumeratorDefinition>>(
+                SyntaxFactory::CreateSyntaxSeparatorList<EnumeratorDefinition>(
                     std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                     {}),
                     std::vector<std::shared_ptr<const SyntaxToken>>(
@@ -58,7 +58,7 @@ namespace Soup::Syntax::UnitTests
                         SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
                     },
                     {}),
-                std::make_shared<const SyntaxSeparatorList<EnumeratorDefinition>>(
+                SyntaxFactory::CreateSyntaxSeparatorList<EnumeratorDefinition>(
                     std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                     {
                         SyntaxFactory::CreateEnumeratorDefinition(

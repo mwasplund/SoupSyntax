@@ -1,7 +1,7 @@
 #pragma once
 #include "SoupAssert.h"
 
-namespace Soup::Syntax::UnitTests
+namespace Soup::Syntax
 {
 
 struct CppParserContainer
@@ -64,7 +64,7 @@ class TestUtils
         std::shared_ptr<const InnerTree::Declaration> declaration)
     {
         return SyntaxFactory::CreateTranslationUnit(
-            std::make_shared<const InnerTree::SyntaxList<InnerTree::Declaration>>(
+            SyntaxFactory::CreateSyntaxList<InnerTree::Declaration>(
                 std::vector<std::shared_ptr<const InnerTree::Declaration>>{
                     std::move(declaration)}),
             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile));

@@ -47,7 +47,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateSimpleTemplateIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Name"),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LessThan),
-                    std::make_shared<const SyntaxSeparatorList<Expression>>(
+                    SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
                         std::vector<std::shared_ptr<const Expression>>({
                             SyntaxFactory::CreateSimpleIdentifierExpression(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value1")),
@@ -56,7 +56,7 @@ namespace Soup::Syntax::UnitTests
                                     SyntaxTokenType::Identifier,
                                     "Value2",
                                     {
-                                        SyntaxFactory::CreateTrivia(" ", TextSpan()),
+                                        SyntaxFactory::CreateTrivia(" "),
                                     },
                                     {})),
                         }),

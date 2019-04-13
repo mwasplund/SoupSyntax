@@ -8,9 +8,10 @@ namespace Soup::Syntax::InnerTree
     export template<class TNode>
     class SyntaxList final
     {
+        friend class ::Soup::Syntax::SyntaxFactory;
         static_assert(std::is_base_of<SyntaxNode, TNode>::value, "TNode must be derived from SyntaxNode.");
 
-    public:
+    private:
         /// <summary>
         /// Initialize
         /// </summary>
@@ -28,6 +29,7 @@ namespace Soup::Syntax::InnerTree
             }
         }
 
+    public:
         /// <summary>
         /// Gets the list of items
         /// </summary>

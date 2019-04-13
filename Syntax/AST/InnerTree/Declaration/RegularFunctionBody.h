@@ -7,13 +7,16 @@ namespace Soup::Syntax::InnerTree
     /// </summary>
     export class RegularFunctionBody final : public SyntaxNode
     {
-    public:
+        friend class ::Soup::Syntax::SyntaxFactory;
+
+    private:
         RegularFunctionBody(std::shared_ptr<const CompoundStatement> statements) :
             SyntaxNode(SyntaxNodeType::RegularFunctionBody),
             m_statements(std::move(statements))
         {
         }
 
+    public:
         /// <summary>
         /// Gets the statements
         /// </summary>
