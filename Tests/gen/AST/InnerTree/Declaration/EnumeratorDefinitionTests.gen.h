@@ -1,10 +1,10 @@
 #pragma once
-#include "EnumeratorDefinitionTests.h"
-#include "../RunTest.h"
+#include "AST/InnerTree/Declaration/EnumeratorDefinitionTests.h"
+#include "RunTest.h"
 
-TestState RunEnumeratorDefinitionTests()
+TestState RunInnerTreeEnumeratorDefinitionTests()
 {
-    std::string className = "EnumeratorDefinitionTests";
+    std::string className = "InnerTree::EnumeratorDefinitionTests";
     auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::EnumeratorDefinitionTests>();
     TestState state = { 0, 0 };
 

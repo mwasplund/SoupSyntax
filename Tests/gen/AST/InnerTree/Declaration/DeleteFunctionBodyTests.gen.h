@@ -1,10 +1,10 @@
 #pragma once
-#include "DeleteFunctionBodyTests.h"
-#include "../RunTest.h"
+#include "AST/InnerTree/Declaration/DeleteFunctionBodyTests.h"
+#include "RunTest.h"
 
-TestState RunDeleteFunctionBodyTests()
+TestState RunInnerTreeDeleteFunctionBodyTests()
 {
-    std::string className = "DeleteFunctionBodyTests";
+    std::string className = "InnerTree::DeleteFunctionBodyTests";
     auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::DeleteFunctionBodyTests>();
     TestState state = { 0, 0 };
 

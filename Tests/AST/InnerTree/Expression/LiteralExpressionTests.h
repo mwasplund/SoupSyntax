@@ -1,9 +1,9 @@
 #pragma once
-#include "../SoupAssert.h"
+#include "SoupAssert.h"
 
 namespace Soup::Syntax::InnerTree::UnitTests
 {
-    class LiteralExressionTests
+    class LiteralExpressionTests
     {
     public:
         // [[Fact]]

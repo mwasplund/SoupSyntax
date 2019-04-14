@@ -1,10 +1,10 @@
 #pragma once
-#include "CompoundStatementTests.h"
-#include "../RunTest.h"
+#include "AST/InnerTree/Statement/CompoundStatementTests.h"
+#include "RunTest.h"
 
-TestState RunCompoundStatementTests()
+TestState RunInnerTreeCompoundStatementTests()
 {
-    std::string className = "CompoundStatementTests";
+    std::string className = "InnerTree::CompoundStatementTests";
     auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::CompoundStatementTests>();
     TestState state = { 0, 0 };
 

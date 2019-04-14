@@ -1,10 +1,10 @@
 #pragma once
-#include "DestructorIdentifierExpressionTests.h"
-#include "../RunTest.h"
+#include "AST/InnerTree/Expression/DestructorIdentifierExpressionTests.h"
+#include "RunTest.h"
 
-TestState RunDestructorIdentifierExpressionTests()
+TestState RunInnerTreeDestructorIdentifierExpressionTests()
 {
-    std::string className = "DestructorIdentifierExpressionTests";
+    std::string className = "InnerTree::DestructorIdentifierExpressionTests";
     auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::DestructorIdentifierExpressionTests>();
     TestState state = { 0, 0 };
 

@@ -1,10 +1,10 @@
 #pragma once
-#include "IfStatementTests.h"
-#include "../RunTest.h"
+#include "AST/InnerTree/Statement/IfStatementTests.h"
+#include "RunTest.h"
 
-TestState RunIfStatementTests()
+TestState RunInnerTreeIfStatementTests()
 {
-    std::string className = "IfStatementTests";
+    std::string className = "InnerTree::IfStatementTests";
     auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::IfStatementTests>();
     TestState state = { 0, 0 };
 

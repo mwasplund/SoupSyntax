@@ -1,10 +1,10 @@
 #pragma once
-#include "UnaryExpressionTests.h"
-#include "../RunTest.h"
+#include "AST/InnerTree/Expression/UnaryExpressionTests.h"
+#include "RunTest.h"
 
-TestState RunUnaryExpressionTests()
+TestState RunInnerTreeUnaryExpressionTests()
 {
-    std::string className = "UnaryExpressionTests";
+    std::string className = "InnerTree::UnaryExpressionTests";
     auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::UnaryExpressionTests>();
     TestState state = { 0, 0 };
 

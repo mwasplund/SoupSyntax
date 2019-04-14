@@ -1,10 +1,10 @@
 #pragma once
-#include "ValueEqualInitializerTests.h"
-#include "../RunTest.h"
+#include "AST/InnerTree/Declaration/ValueEqualInitializerTests.h"
+#include "RunTest.h"
 
-TestState RunValueEqualInitializerTests()
+TestState RunInnerTreeValueEqualInitializerTests()
 {
-    std::string className = "ValueEqualInitializerTests";
+    std::string className = "InnerTree::ValueEqualInitializerTests";
     auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::ValueEqualInitializerTests>();
     TestState state = { 0, 0 };
 

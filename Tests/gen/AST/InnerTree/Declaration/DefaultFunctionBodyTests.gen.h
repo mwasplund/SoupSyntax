@@ -1,10 +1,10 @@
 #pragma once
-#include "DefaultFunctionBodyTests.h"
-#include "../RunTest.h"
+#include "AST/InnerTree/Declaration/DefaultFunctionBodyTests.h"
+#include "RunTest.h"
 
-TestState RunDefaultFunctionBodyTests()
+TestState RunInnerTreeDefaultFunctionBodyTests()
 {
-    std::string className = "DefaultFunctionBodyTests";
+    std::string className = "InnerTree::DefaultFunctionBodyTests";
     auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::DefaultFunctionBodyTests>();
     TestState state = { 0, 0 };
 

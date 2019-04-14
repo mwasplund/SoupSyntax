@@ -1,11 +1,11 @@
 #pragma once
-#include "LiteralExpressionTests.h"
-#include "../RunTest.h"
+#include "AST/InnerTree/Expression/LiteralExpressionTests.h"
+#include "RunTest.h"
 
-TestState RunLiteralExpressionTests()
+TestState RunInnerTreeLiteralExpressionTests()
 {
-    std::string className = "LiteralExressionTests";
-    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::LiteralExressionTests>();
+    std::string className = "InnerTree::LiteralExpressionTests";
+    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::LiteralExpressionTests>();
     TestState state = { 0, 0 };
 
     state += RunTest(

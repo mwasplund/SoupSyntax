@@ -71,23 +71,6 @@ class TestUtils
     }
 
     static void AreEqual(
-        const std::vector<std::shared_ptr<const InnerTree::SyntaxToken>>& expected,
-        const std::vector<std::shared_ptr<const InnerTree::SyntaxToken>>& actual,
-        const std::string& message)
-    {
-        bool areEqual = std::equal(
-            begin(expected),
-            end(expected),
-            begin(actual),
-            end(actual),
-            [](const std::shared_ptr<const InnerTree::SyntaxToken>& lhs, const std::shared_ptr<const InnerTree::SyntaxToken>& rhs)
-            {
-                return *lhs == *rhs;
-            });
-        Assert::IsTrue(areEqual, message);
-    }
-
-    static void AreEqual(
         const std::shared_ptr<const InnerTree::SyntaxNode>& expected,
         const std::shared_ptr<const InnerTree::SyntaxNode>& actual,
         const std::string& message)
@@ -137,6 +120,61 @@ class TestUtils
             //expected->Accept(writer);
             errorMessage << "Actual:\n";
             //actual->Accept(writer);
+
+            Assert::Fail(errorMessage.str());
+        }
+    }
+
+    static void AreEqual(
+        const std::shared_ptr<const OuterTree::SyntaxNode>& expected,
+        const std::shared_ptr<const OuterTree::SyntaxNode>& actual,
+        const std::string& message)
+    {
+        if (actual == nullptr)
+        {
+            Assert::Fail("Actual was null.");
+        }
+        else if (expected == nullptr)
+        {
+            Assert::Fail("Expected was null.");
+        }
+
+        AreEqual(*expected, *actual, message);
+    }
+
+    static void AreEqual(
+        const OuterTree::SyntaxNode& expected,
+        const OuterTree::SyntaxNode& actual,
+        const std::string& message)
+    {
+        if (expected != actual)
+        {
+            std::stringstream errorMessage;
+            SyntaxTreeWriter writer(errorMessage);
+            errorMessage << message << "\n";
+            errorMessage << "Expected:\n";
+            expected.Accept(writer);
+            errorMessage << "Actual:\n";
+            actual.Accept(writer);
+
+            Assert::Fail(errorMessage.str());
+        }
+    }
+
+    static void AreNotEqual(
+        const std::shared_ptr<const OuterTree::SyntaxNode>& expected,
+        const std::shared_ptr<const OuterTree::SyntaxNode>& actual,
+        const std::string& message)
+    {
+        if (*expected == *actual)
+        {
+            std::stringstream errorMessage;
+            SyntaxTreeWriter writer(errorMessage);
+            errorMessage << message << "\n";
+            errorMessage << "Expected:\n";
+            expected->Accept(writer);
+            errorMessage << "Actual:\n";
+            actual->Accept(writer);
 
             Assert::Fail(errorMessage.str());
         }

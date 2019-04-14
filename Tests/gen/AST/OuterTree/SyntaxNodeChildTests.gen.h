@@ -1,11 +1,11 @@
 #pragma once
-#include "SyntaxNodeChildTests.h"
-#include "../RunTest.h"
+#include "AST/OuterTree/SyntaxNodeChildTests.h"
+#include "RunTest.h"
 
-TestState RunSyntaxNodeChildTests()
+TestState RunOuterTreeSyntaxNodeChildTests()
 {
-    std::string className = "SyntaxNodeChildTests";
-    auto testClass = std::make_unique<Soup::Syntax::UnitTests::SyntaxNodeChildTests>();
+    std::string className = "OuterTree::SyntaxNodeChildTests";
+    auto testClass = std::make_unique<Soup::Syntax::OuterTree::UnitTests::SyntaxNodeChildTests>();
     TestState state = { 0, 0 };
 
     state += RunTest(

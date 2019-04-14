@@ -1,10 +1,10 @@
 #pragma once
-#include "SimpleDeclarationTests.h"
-#include "../RunTest.h"
+#include "AST/InnerTree/Declaration/SimpleDeclarationTests.h"
+#include "RunTest.h"
 
-TestState RunSimpleDeclarationTests()
+TestState RunInnerTreeSimpleDeclarationTests()
 {
-    std::string className = "SimpleDeclarationTests";
+    std::string className = "InnerTree::SimpleDeclarationTests";
     auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::SimpleDeclarationTests>();
     TestState state = { 0, 0 };
 

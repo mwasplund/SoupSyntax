@@ -1,10 +1,10 @@
 #pragma once
-#include "ThisExpressionTests.h"
-#include "../RunTest.h"
+#include "AST/InnerTree/Expression/ThisExpressionTests.h"
+#include "RunTest.h"
 
-TestState RunThisExpressionTests()
+TestState RunInnerTreeThisExpressionTests()
 {
-    std::string className = "ThisExpressionTests";
+    std::string className = "InnerTree::ThisExpressionTests";
     auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::ThisExpressionTests>();
     TestState state = { 0, 0 };
 

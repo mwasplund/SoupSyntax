@@ -1,10 +1,10 @@
 #pragma once
-#include "PrimitiveDataTypeDeclarationTests.h"
-#include "../RunTest.h"
+#include "AST/InnerTree/Declaration/PrimitiveDataTypeDeclarationTests.h"
+#include "RunTest.h"
 
-TestState RunPrimitiveDataTypeDeclarationTests()
+TestState RunInnerTreePrimitiveDataTypeDeclarationTests()
 {
-    std::string className = "PrimitiveDataTypeDeclarationTests";
+    std::string className = "InnerTree::PrimitiveDataTypeDeclarationTests";
     auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::PrimitiveDataTypeDeclarationTests>();
     TestState state = { 0, 0 };
 

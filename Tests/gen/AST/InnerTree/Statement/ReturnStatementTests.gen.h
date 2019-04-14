@@ -1,10 +1,10 @@
 #pragma once
-#include "ReturnStatementTests.h"
-#include "../RunTest.h"
+#include "AST/InnerTree/Statement/ReturnStatementTests.h"
+#include "RunTest.h"
 
-TestState RunReturnStatementTests()
+TestState RunInnerTreeReturnStatementTests()
 {
-    std::string className = "ReturnStatementTests";
+    std::string className = "InnerTree::ReturnStatementTests";
     auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::ReturnStatementTests>();
     TestState state = { 0, 0 };
 

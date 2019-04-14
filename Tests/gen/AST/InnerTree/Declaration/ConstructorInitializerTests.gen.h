@@ -1,10 +1,10 @@
 #pragma once
-#include "ConstructorInitializerTests.h"
-#include "../RunTest.h"
+#include "AST/InnerTree/Declaration/ConstructorInitializerTests.h"
+#include "RunTest.h"
 
-TestState RunConstructorInitializerTests()
+TestState RunInnerTreeConstructorInitializerTests()
 {
-    std::string className = "ConstructorInitializerTests";
+    std::string className = "InnerTree::ConstructorInitializerTests";
     auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::ConstructorInitializerTests>();
     TestState state = { 0, 0 };
 

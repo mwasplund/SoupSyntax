@@ -1,10 +1,10 @@
 #pragma once
-#include "AccessorSpecifierTests.h"
-#include "../RunTest.h"
+#include "AST/InnerTree/Declaration/AccessorSpecifierTests.h"
+#include "RunTest.h"
 
-TestState RunAccessorSpecifierTests()
+TestState RunInnerTreeAccessorSpecifierTests()
 {
-    std::string className = "AccessorSpecifierTests";
+    std::string className = "InnerTree::AccessorSpecifierTests";
     auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::AccessorSpecifierTests>();
     TestState state = { 0, 0 };
 

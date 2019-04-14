@@ -1,7 +1,7 @@
 #pragma once
-#include "../SoupAssert.h"
+#include "SoupAssert.h"
 
-namespace Soup::Syntax::UnitTests
+namespace Soup::Syntax::OuterTree::UnitTests
 {
     class SyntaxNodeChildTests
     {

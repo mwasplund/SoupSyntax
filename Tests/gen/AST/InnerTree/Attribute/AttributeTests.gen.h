@@ -1,10 +1,10 @@
 #pragma once
-#include "AttributeTests.h"
-#include "../RunTest.h"
+#include "AST/InnerTree/Attribute/AttributeTests.h"
+#include "RunTest.h"
 
-TestState RunAttributeTests()
+TestState RunInnerTreeAttributeTests()
 {
-    std::string className = "AttributeTests";
+    std::string className = "InnerTree::AttributeTests";
     auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::AttributeTests>();
     TestState state = { 0, 0 };
 

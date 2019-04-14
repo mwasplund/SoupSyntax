@@ -1,17 +1,21 @@
 #pragma once
-#include "SyntaxTokenTests.h"
-#include "../RunTest.h"
+#include "AST/OuterTree/Expression/LiteralExressionTests.h"
+#include "RunTest.h"
 
-TestState RunSyntaxTokenTests()
+TestState RunOuterTreeLiteralExpressionTests()
 {
-    std::string className = "SyntaxTokenTests";
-    auto testClass = std::make_unique<Soup::Syntax::UnitTests::SyntaxTokenTests>();
+    std::string className = "OuterTree::LiteralExressionTests";
+    auto testClass = std::make_unique<Soup::Syntax::OuterTree::UnitTests::LiteralExressionTests>();
     TestState state = { 0, 0 };
 
     state += RunTest(
         className,
         "InitializeSimple",
         [&testClass]() { testClass->InitializeSimple(); });
+    state += RunTest(
+        className,
+        "GetChildren",
+        [&testClass]() { testClass->GetChildren(); });
     state += RunTest(
         className,
         "OperatorEqual",
@@ -22,8 +26,8 @@ TestState RunSyntaxTokenTests()
         [&testClass]() { testClass->OperatorNotEqualType(); });
     state += RunTest(
         className,
-        "OperatorNotEqualValue",
-        [&testClass]() { testClass->OperatorNotEqualValue(); });
+        "OperatorNotEqualToken",
+        [&testClass]() { testClass->OperatorNotEqualToken(); });
 
     return state;
 }

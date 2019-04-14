@@ -1,10 +1,10 @@
 #pragma once
-#include "ElseClauseTests.h"
-#include "../RunTest.h"
+#include "AST/InnerTree/Statement/ElseClauseTests.h"
+#include "RunTest.h"
 
-TestState RunElseClauseTests()
+TestState RunInnerTreeElseClauseTests()
 {
-    std::string className = "ElseClauseTests";
+    std::string className = "InnerTree::ElseClauseTests";
     auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::ElseClauseTests>();
     TestState state = { 0, 0 };
 

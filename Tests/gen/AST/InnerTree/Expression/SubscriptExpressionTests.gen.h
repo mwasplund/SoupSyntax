@@ -1,10 +1,10 @@
 #pragma once
-#include "SubscriptExpressionTests.h"
-#include "../RunTest.h"
+#include "AST/InnerTree/Expression/SubscriptExpressionTests.h"
+#include "RunTest.h"
 
-TestState RunSubscriptExpressionTests()
+TestState RunInnerTreeSubscriptExpressionTests()
 {
-    std::string className = "SubscriptExpressionTests";
+    std::string className = "InnerTree::SubscriptExpressionTests";
     auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::SubscriptExpressionTests>();
     TestState state = { 0, 0 };
 

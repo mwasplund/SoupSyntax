@@ -1,10 +1,10 @@
 #pragma once
-#include "SimpleTemplateIdentifierExpressionTests.h"
-#include "../RunTest.h"
+#include "AST/InnerTree/Expression/SimpleTemplateIdentifierExpressionTests.h"
+#include "RunTest.h"
 
-TestState RunSimpleTemplateIdentifierExpressionTests()
+TestState RunInnerTreeSimpleTemplateIdentifierExpressionTests()
 {
-    std::string className = "SimpleTemplateIdentifierExpressionTests";
+    std::string className = "InnerTree::SimpleTemplateIdentifierExpressionTests";
     auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::SimpleTemplateIdentifierExpressionTests>();
     TestState state = { 0, 0 };
 

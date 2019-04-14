@@ -1,10 +1,10 @@
 #pragma once
-#include "NamespaceDefinitionTests.h"
-#include "../RunTest.h"
+#include "AST/InnerTree/Declaration/NamespaceDefinitionTests.h"
+#include "RunTest.h"
 
-TestState RunNamespaceDefinitionTests()
+TestState RunInnerTreeNamespaceDefinitionTests()
 {
-    std::string className = "NamespaceDefinitionTests";
+    std::string className = "InnerTree::NamespaceDefinitionTests";
     auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::NamespaceDefinitionTests>();
     TestState state = { 0, 0 };
 

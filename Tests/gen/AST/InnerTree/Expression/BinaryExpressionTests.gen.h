@@ -1,10 +1,10 @@
 #pragma once
-#include "BinaryExpressionTests.h"
-#include "../RunTest.h"
+#include "AST/InnerTree/Expression/BinaryExpressionTests.h"
+#include "RunTest.h"
 
-TestState RunBinaryExpressionTests()
+TestState RunInnerTreeBinaryExpressionTests()
 {
-    std::string className = "BinaryExpressionTests";
+    std::string className = "InnerTree::BinaryExpressionTests";
     auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::BinaryExpressionTests>();
     TestState state = { 0, 0 };
 

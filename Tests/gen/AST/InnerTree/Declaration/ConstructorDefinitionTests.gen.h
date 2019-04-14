@@ -1,10 +1,10 @@
 #pragma once
-#include "ConstructorDefinitionTests.h"
-#include "../RunTest.h"
+#include "AST/InnerTree/Declaration/ConstructorDefinitionTests.h"
+#include "RunTest.h"
 
-TestState RunConstructorDefinitionTests()
+TestState RunInnerTreeConstructorDefinitionTests()
 {
-    std::string className = "ConstructorDefinitionTests";
+    std::string className = "InnerTree::ConstructorDefinitionTests";
     auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::ConstructorDefinitionTests>();
     TestState state = { 0, 0 };
 
