@@ -101,13 +101,13 @@ namespace Soup::Syntax::InnerTree
         /// <summary>
         /// Set the weak reference to myself
         /// </summary>
-        void SetSelf(std::shared_ptr<const SyntaxSeparatorList<TNode>> self) const
+        void SetSelf(const std::shared_ptr<const SyntaxSeparatorList<TNode>>& self) const
         {
             m_self = self;
         }
 
     private:
-        std::weak_ptr<const SyntaxSeparatorList<TNode>> m_self;
+        mutable std::weak_ptr<const SyntaxSeparatorList<TNode>> m_self;
         std::vector<std::shared_ptr<const TNode>> m_items;
         std::vector<std::shared_ptr<const SyntaxToken>> m_separators;
     };

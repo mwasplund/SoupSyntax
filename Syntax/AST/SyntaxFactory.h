@@ -19,9 +19,11 @@ namespace Soup::Syntax
             if (identifierToken == nullptr)
                 throw std::runtime_error("ArgumentNull - identifierToken");
 
-            return std::shared_ptr<const InnerTree::Attribute>(
+            auto result = std::shared_ptr<const InnerTree::Attribute>(
                 new InnerTree::Attribute(
                     std::move(identifierToken)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -45,13 +47,15 @@ namespace Soup::Syntax
             if (outerCloseBracketToken == nullptr)
                 throw std::runtime_error("ArgumentNull - outerCloseBracketToken");
 
-            return std::shared_ptr<const InnerTree::AttributeSpecifier>(
+            auto result = std::shared_ptr<const InnerTree::AttributeSpecifier>(
                 new InnerTree::AttributeSpecifier(
                     std::move(outerOpenBracketToken),
                     std::move(innerOpenBracketToken),
                     std::move(attributes),
                     std::move(innerCloseBracketToken),
                     std::move(outerCloseBracketToken)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -66,10 +70,12 @@ namespace Soup::Syntax
             if (colonToken == nullptr)
                 throw std::runtime_error("ArgumentNull - colonToken");
 
-            return std::shared_ptr<const InnerTree::AccessorSpecifier>(
+            auto result = std::shared_ptr<const InnerTree::AccessorSpecifier>(
                 new InnerTree::AccessorSpecifier(
                     std::move(accessorToken),
                     std::move(colonToken)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -88,12 +94,14 @@ namespace Soup::Syntax
             if (rightOperand == nullptr)
                 throw std::runtime_error("ArgumentNull - rightOperand");
 
-            return std::shared_ptr<const InnerTree::BinaryExpression>(
+            auto result = std::shared_ptr<const InnerTree::BinaryExpression>(
                 new InnerTree::BinaryExpression(
                     binaryOperator,
                     std::move(leftOperand),
                     std::move(operatorToken),
                     std::move(rightOperand)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -116,13 +124,15 @@ namespace Soup::Syntax
             if (closeBraceToken == nullptr)
                 throw std::runtime_error("ArgumentNull - closeBraceToken");
 
-            return std::shared_ptr<const InnerTree::ClassDeclaration>(
+            auto result = std::shared_ptr<const InnerTree::ClassDeclaration>(
                 new InnerTree::ClassDeclaration(
                     std::move(classToken),
                     std::move(identifierToken),
                     std::move(openBraceToken),
                     std::move(memberDeclarations),
                     std::move(closeBraceToken)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -140,11 +150,13 @@ namespace Soup::Syntax
             if (closeBraceToken == nullptr)
                 throw std::runtime_error("ArgumentNull - closeBraceToken");
 
-            return std::shared_ptr<const InnerTree::CompoundStatement>(
+            auto result = std::shared_ptr<const InnerTree::CompoundStatement>(
                 new InnerTree::CompoundStatement(
                     std::move(openBraceToken),
                     std::move(statements),
                     std::move(closeBraceToken)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -164,12 +176,14 @@ namespace Soup::Syntax
             if (body == nullptr)
                 throw std::runtime_error("ArgumentNull - body");
 
-            return std::shared_ptr<const InnerTree::ConstructorDefinition>(
+            auto result = std::shared_ptr<const InnerTree::ConstructorDefinition>(
                 new InnerTree::ConstructorDefinition(
                     std::move(identifier),
                     std::move(parameterList),
                     std::move(constructorInitializer),
                     std::move(body)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -184,10 +198,12 @@ namespace Soup::Syntax
             if (initializers == nullptr)
                 throw std::runtime_error("ArgumentNull - initializers");
 
-            return std::shared_ptr<const InnerTree::ConstructorInitializer>(
+            auto result = std::shared_ptr<const InnerTree::ConstructorInitializer>(
                 new InnerTree::ConstructorInitializer(
                     std::move(colonToken),
                     std::move(initializers)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -218,11 +234,13 @@ namespace Soup::Syntax
             if (trailingModifiers == nullptr)
                 throw std::runtime_error("ArgumentNull - trailingModifiers");
 
-            return std::shared_ptr<const InnerTree::DeclarationSpecifier>(
+            auto result = std::shared_ptr<const InnerTree::DeclarationSpecifier>(
                 new InnerTree::DeclarationSpecifier(
                     std::move(leadingModifiers),
                     std::move(typeSpecifier),
                     std::move(trailingModifiers)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -234,9 +252,11 @@ namespace Soup::Syntax
             if (declaration == nullptr)
                 throw std::runtime_error("ArgumentNull - declaration");
 
-            return std::shared_ptr<const InnerTree::DeclarationStatement>(
+            auto result = std::shared_ptr<const InnerTree::DeclarationStatement>(
                 new InnerTree::DeclarationStatement(
                     std::move(declaration)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -254,11 +274,13 @@ namespace Soup::Syntax
             if (semicolonToken == nullptr)
                 throw std::runtime_error("ArgumentNull - semicolonToken");
 
-            return std::shared_ptr<const InnerTree::DefaultFunctionBody>(
+            auto result = std::shared_ptr<const InnerTree::DefaultFunctionBody>(
                 new InnerTree::DefaultFunctionBody(
                     std::move(equalToken),
                     std::move(defaultToken),
                     std::move(semicolonToken)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -276,11 +298,13 @@ namespace Soup::Syntax
             if (semicolonToken == nullptr)
                 throw std::runtime_error("ArgumentNull - semicolonToken");
 
-            return std::shared_ptr<const InnerTree::DeleteFunctionBody>(
+            auto result = std::shared_ptr<const InnerTree::DeleteFunctionBody>(
                 new InnerTree::DeleteFunctionBody(
                     std::move(equalToken),
                     std::move(deleteToken),
                     std::move(semicolonToken)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -295,10 +319,12 @@ namespace Soup::Syntax
             if (identifierToken == nullptr)
                 throw std::runtime_error("ArgumentNull - identifierToken");
 
-            return std::shared_ptr<const InnerTree::DestructorIdentifierExpression>(
+            auto result = std::shared_ptr<const InnerTree::DestructorIdentifierExpression>(
                 new InnerTree::DestructorIdentifierExpression(
                     std::move(tildeToken),
                     std::move(identifierToken)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -313,10 +339,12 @@ namespace Soup::Syntax
             if (statement == nullptr)
                 throw std::runtime_error("ArgumentNull - statement");
 
-            return std::shared_ptr<const InnerTree::ElseClause>(
+            auto result = std::shared_ptr<const InnerTree::ElseClause>(
                 new InnerTree::ElseClause(
                     std::move(elseToken),
                     std::move(statement)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -328,9 +356,11 @@ namespace Soup::Syntax
             if (semicolonToken == nullptr)
                 throw std::runtime_error("ArgumentNull - semicolonToken");
 
-            return std::shared_ptr<const InnerTree::EmptyDeclaration>(
+            auto result = std::shared_ptr<const InnerTree::EmptyDeclaration>(
                 new InnerTree::EmptyDeclaration(
                     std::move(semicolonToken)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -342,9 +372,11 @@ namespace Soup::Syntax
             if (semicolonToken == nullptr)
                 throw std::runtime_error("ArgumentNull - semicolonToken");
 
-            return std::shared_ptr<const InnerTree::EmptyStatement>(
+            auto result = std::shared_ptr<const InnerTree::EmptyStatement>(
                 new InnerTree::EmptyStatement(
                     std::move(semicolonToken)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -368,7 +400,7 @@ namespace Soup::Syntax
             if (closeBraceToken == nullptr)
                 throw std::runtime_error("ArgumentNull - closeBraceToken");
 
-            return std::shared_ptr<const InnerTree::EnumDeclaration>(
+            auto result = std::shared_ptr<const InnerTree::EnumDeclaration>(
                 new InnerTree::EnumDeclaration(
                     std::move(enumToken),
                     std::move(classToken),
@@ -376,6 +408,8 @@ namespace Soup::Syntax
                     std::move(openBraceToken),
                     std::move(enumeratorList),
                     std::move(closeBraceToken)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -387,9 +421,11 @@ namespace Soup::Syntax
             if (identifierToken == nullptr)
                 throw std::runtime_error("ArgumentNull - identifierToken");
 
-            return std::shared_ptr<const InnerTree::EnumeratorDefinition>(
+            auto result = std::shared_ptr<const InnerTree::EnumeratorDefinition>(
                 new InnerTree::EnumeratorDefinition(
                     std::move(identifierToken)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -404,10 +440,12 @@ namespace Soup::Syntax
             if (semicolonToken == nullptr)
                 throw std::runtime_error("ArgumentNull - semicolonToken");
 
-            return std::shared_ptr<const InnerTree::ExpressionStatement>(
+            auto result = std::shared_ptr<const InnerTree::ExpressionStatement>(
                 new InnerTree::ExpressionStatement(
                     std::move(expression),
                     std::move(semicolonToken)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -431,13 +469,15 @@ namespace Soup::Syntax
             if (body == nullptr)
                 throw std::runtime_error("ArgumentNull - body");
 
-            return std::shared_ptr<const InnerTree::FunctionDefinition>(
+            auto result = std::shared_ptr<const InnerTree::FunctionDefinition>(
                 new InnerTree::FunctionDefinition(
                     std::move(attributeSpecifierSequence),
                     std::move(returnType),
                     std::move(identifier),
                     std::move(parameterList),
                     std::move(body)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -481,7 +521,7 @@ namespace Soup::Syntax
             if (statement == nullptr)
                 throw std::runtime_error("ArgumentNull - statement");
 
-            return std::shared_ptr<const InnerTree::IfStatement>(
+            auto result = std::shared_ptr<const InnerTree::IfStatement>(
                 new InnerTree::IfStatement(
                     std::move(ifToken),
                     std::move(openParenthesisToken),
@@ -489,6 +529,8 @@ namespace Soup::Syntax
                     std::move(closeParenthesisToken),
                     std::move(statement),
                     std::move(elseClause)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -502,10 +544,12 @@ namespace Soup::Syntax
             if (declarator == nullptr)
                 throw std::runtime_error("ArgumentNull - declarator");
 
-            return std::shared_ptr<const InnerTree::InitializerDeclarator>(
+            auto result = std::shared_ptr<const InnerTree::InitializerDeclarator>(
                 new InnerTree::InitializerDeclarator(
                     std::move(declarator),
                     std::move(initializer)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -517,9 +561,11 @@ namespace Soup::Syntax
             if (items == nullptr)
                 throw std::runtime_error("ArgumentNull - items");
 
-            return std::shared_ptr<const InnerTree::InitializerDeclaratorList>(
+            auto result = std::shared_ptr<const InnerTree::InitializerDeclaratorList>(
                 new InnerTree::InitializerDeclaratorList(
                     std::move(items)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -537,11 +583,13 @@ namespace Soup::Syntax
             if (closeToken == nullptr)
                 throw std::runtime_error("ArgumentNull - closeToken");
 
-            return std::shared_ptr<const InnerTree::InitializerList>(
+            auto result = std::shared_ptr<const InnerTree::InitializerList>(
                 new InnerTree::InitializerList(
                     std::move(openToken),
                     std::move(values),
                     std::move(closeToken)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -562,12 +610,14 @@ namespace Soup::Syntax
             if (closeParenthesisToken == nullptr)
                 throw std::runtime_error("ArgumentNull - closeParenthesisToken");
 
-            return std::shared_ptr<const InnerTree::InvocationExpression>(
+            auto result = std::shared_ptr<const InnerTree::InvocationExpression>(
                 new InnerTree::InvocationExpression(
                     std::move(leftExpression),
                     std::move(openParenthesisToken),
                     std::move(parameters),
                     std::move(closeParenthesisToken)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -974,12 +1024,14 @@ namespace Soup::Syntax
                     throw std::logic_error("Unknown syntax token type.");
             }
 
-            return std::shared_ptr<const InnerTree::SyntaxToken>(
+            auto result = std::shared_ptr<const InnerTree::SyntaxToken>(
                 new InnerTree::SyntaxToken(
                     type,
                     std::move(value),
                     std::move(leadingTrivia),
                     std::move(trailingTrivia)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -1000,10 +1052,12 @@ namespace Soup::Syntax
             if (token == nullptr)
                 throw std::runtime_error("ArgumentNull - token");
 
-            return std::shared_ptr<const InnerTree::LiteralExpression>(
+            auto result = std::shared_ptr<const InnerTree::LiteralExpression>(
                 new InnerTree::LiteralExpression(
                     type,
                     std::move(token)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -1021,11 +1075,13 @@ namespace Soup::Syntax
             if (semicolonToken == nullptr)
                 throw std::runtime_error("ArgumentNull - semicolonToken");
 
-            return std::shared_ptr<const InnerTree::MemberDeclaration>(
+            auto result = std::shared_ptr<const InnerTree::MemberDeclaration>(
                 new InnerTree::MemberDeclaration(
                     std::move(declarationSpecifier),
                     std::move(memberDeclaratorList),
                     std::move(semicolonToken)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -1039,10 +1095,12 @@ namespace Soup::Syntax
             if (declarator == nullptr)
                 throw std::runtime_error("ArgumentNull - declarator");
 
-            return std::shared_ptr<const InnerTree::MemberDeclarator>(
+            auto result = std::shared_ptr<const InnerTree::MemberDeclarator>(
                 new InnerTree::MemberDeclarator(
                     std::move(declarator),
                     std::move(initializer)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -1054,9 +1112,11 @@ namespace Soup::Syntax
             if (items == nullptr)
                 throw std::runtime_error("ArgumentNull - items");
 
-            return std::shared_ptr<const InnerTree::MemberDeclaratorList>(
+            auto result = std::shared_ptr<const InnerTree::MemberDeclaratorList>(
                 new InnerTree::MemberDeclaratorList(
                     std::move(items)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -1071,10 +1131,12 @@ namespace Soup::Syntax
             if (initializer == nullptr)
                 throw std::runtime_error("ArgumentNull - initializer");
 
-            return std::shared_ptr<const InnerTree::MemberInitializer>(
+            auto result = std::shared_ptr<const InnerTree::MemberInitializer>(
                 new InnerTree::MemberInitializer(
                     std::move(identifierToken),
                     std::move(initializer)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -1098,13 +1160,15 @@ namespace Soup::Syntax
             if (closeBraceToken == nullptr)
                 throw std::runtime_error("ArgumentNull - closeBraceToken");
 
-            return std::shared_ptr<const InnerTree::NamespaceDefinition>(
+            auto result = std::shared_ptr<const InnerTree::NamespaceDefinition>(
                 new InnerTree::NamespaceDefinition(
                     std::move(namespaceToken),
                     std::move(identifierNameList),
                     std::move(openBraceToken),
                     std::move(memberDeclarations),
                     std::move(closeBraceToken)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -1119,10 +1183,12 @@ namespace Soup::Syntax
             if (declarator == nullptr)
                 throw std::runtime_error("ArgumentNull - declarator");
 
-            return std::shared_ptr<const InnerTree::Parameter>(
+            auto result = std::shared_ptr<const InnerTree::Parameter>(
                 new InnerTree::Parameter(
                     std::move(declarationSpecifier),
                     std::move(declarator)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -1140,11 +1206,13 @@ namespace Soup::Syntax
             if (closeParenthesisToken == nullptr)
                 throw std::runtime_error("ArgumentNull - closeParenthesisToken");
 
-            return std::shared_ptr<const InnerTree::ParameterList>(
+            auto result = std::shared_ptr<const InnerTree::ParameterList>(
                 new InnerTree::ParameterList(
                     std::move(openParenthesisToken),
                     std::move(parameters),
                     std::move(closeParenthesisToken)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -1157,10 +1225,12 @@ namespace Soup::Syntax
             if (token == nullptr)
                 throw std::runtime_error("ArgumentNull - token");
 
-            return std::shared_ptr<const InnerTree::PrimitiveDataTypeDeclaration>(
+            auto result = std::shared_ptr<const InnerTree::PrimitiveDataTypeDeclaration>(
                 new InnerTree::PrimitiveDataTypeDeclaration(
                     type,
                     std::move(token)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -1177,11 +1247,13 @@ namespace Soup::Syntax
             // TODO: if (right == nullptr)
             //     throw std::runtime_error("ArgumentNull - right");
 
-            return std::shared_ptr<const InnerTree::QualifiedIdentifierExpression>(
+            auto result = std::shared_ptr<const InnerTree::QualifiedIdentifierExpression>(
                 new InnerTree::QualifiedIdentifierExpression(
                     std::move(left),
                     std::move(scopeResolutionToken),
                     std::move(right)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -1194,9 +1266,11 @@ namespace Soup::Syntax
             if (statements == nullptr)
                 throw std::runtime_error("ArgumentNull - statements");
 
-            return std::shared_ptr<const InnerTree::RegularFunctionBody>(
+            auto result = std::shared_ptr<const InnerTree::RegularFunctionBody>(
                 new InnerTree::RegularFunctionBody(
                     std::move(statements)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -1213,11 +1287,13 @@ namespace Soup::Syntax
             if (semicolonToken == nullptr)
                 throw std::runtime_error("ArgumentNull - semicolonToken");
 
-            return std::shared_ptr<const InnerTree::ReturnStatement>(
+            auto result = std::shared_ptr<const InnerTree::ReturnStatement>(
                 new InnerTree::ReturnStatement(
                     std::move(returnToken),
                     std::move(expression),
                     std::move(semicolonToken)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -1235,11 +1311,13 @@ namespace Soup::Syntax
             if (semicolonToken == nullptr)
                 throw std::runtime_error("ArgumentNull - semicolonToken");
 
-            return std::shared_ptr<const InnerTree::SimpleDeclaration>(
+            auto result = std::shared_ptr<const InnerTree::SimpleDeclaration>(
                 new InnerTree::SimpleDeclaration(
                     std::move(declarationSpecifier),
                     std::move(initializerDeclaratorList),
                     std::move(semicolonToken)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -1251,9 +1329,11 @@ namespace Soup::Syntax
             if (identifierToken == nullptr)
                 throw std::runtime_error("ArgumentNull - identifierToken");
 
-            return std::shared_ptr<const InnerTree::SimpleIdentifierExpression>(
+            auto result = std::shared_ptr<const InnerTree::SimpleIdentifierExpression>(
                 new InnerTree::SimpleIdentifierExpression(
                     std::move(identifierToken)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -1274,12 +1354,14 @@ namespace Soup::Syntax
             if (greaterThanToken == nullptr)
                 throw std::runtime_error("ArgumentNull - greaterThanToken");
 
-            return std::shared_ptr<const InnerTree::SimpleTemplateIdentifierExpression>(
+            auto result = std::shared_ptr<const InnerTree::SimpleTemplateIdentifierExpression>(
                 new InnerTree::SimpleTemplateIdentifierExpression(
                     std::move(identifierToken),
                     std::move(lessThanToken),
                     std::move(templateArgumentList),
                     std::move(greaterThanToken)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -1300,12 +1382,14 @@ namespace Soup::Syntax
             if (closeBracket == nullptr)
                 throw std::runtime_error("ArgumentNull - closeBracket");
 
-            return std::shared_ptr<const InnerTree::SubscriptExpression>(
+            auto result = std::shared_ptr<const InnerTree::SubscriptExpression>(
                 new InnerTree::SubscriptExpression(
                     std::move(leftExpression),
                     std::move(openBracket),
                     std::move(rightExpression),
                     std::move(closeBracket)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -1315,9 +1399,11 @@ namespace Soup::Syntax
         static std::shared_ptr<const InnerTree::SyntaxList<T>> CreateSyntaxList(
             std::vector<std::shared_ptr<const T>> items)
         {
-            return std::shared_ptr<const InnerTree::SyntaxList<T>>(
+            auto result = std::shared_ptr<const InnerTree::SyntaxList<T>>(
                 new InnerTree::SyntaxList<T>(
                     std::move(items)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -1328,10 +1414,12 @@ namespace Soup::Syntax
             std::vector<std::shared_ptr<const T>> items,
             std::vector<std::shared_ptr<const InnerTree::SyntaxToken>> separators)
         {
-            return std::shared_ptr<const InnerTree::SyntaxSeparatorList<T>>(
+            auto result = std::shared_ptr<const InnerTree::SyntaxSeparatorList<T>>(
                 new  InnerTree::SyntaxSeparatorList<T>(
                     std::move(items),
                     std::move(separators)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -1343,9 +1431,11 @@ namespace Soup::Syntax
             if (token == nullptr)
                 throw std::runtime_error("ArgumentNull - token");
 
-            return std::shared_ptr<const InnerTree::ThisExpression>(
+            auto result = std::shared_ptr<const InnerTree::ThisExpression>(
                 new InnerTree::ThisExpression(
                     std::move(token)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -1360,10 +1450,12 @@ namespace Soup::Syntax
             if (endOfFileToken == nullptr)
                 throw std::runtime_error("ArgumentNull - endOfFileToken");
 
-            return std::shared_ptr<const InnerTree::TranslationUnit>(
+            auto result = std::shared_ptr<const InnerTree::TranslationUnit>(
                 new InnerTree::TranslationUnit(
                     std::move(declarations),
                     std::move(endOfFileToken)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -1383,11 +1475,13 @@ namespace Soup::Syntax
             if (catchClauses->GetItems().empty())
                 throw std::runtime_error("CatchClauses must not be empty.");
 
-            return std::shared_ptr<const InnerTree::TryStatement>(
+            auto result = std::shared_ptr<const InnerTree::TryStatement>(
                 new InnerTree::TryStatement(
                     std::move(tryToken),
                     std::move(compoundStatement),
                     std::move(catchClauses)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -1411,11 +1505,13 @@ namespace Soup::Syntax
             if (operand == nullptr)
                 throw std::runtime_error("ArgumentNull - operand");
 
-            return std::shared_ptr<const InnerTree::UnaryExpression>(
+            auto result = std::shared_ptr<const InnerTree::UnaryExpression>(
                 new InnerTree::UnaryExpression(
                     unaryOperator,
                     std::move(operatorToken),
                     std::move(operand)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -1443,12 +1539,14 @@ namespace Soup::Syntax
                     throw std::logic_error("Unexpected token type for user value token.");
             }
 
-            return std::shared_ptr<const InnerTree::SyntaxToken>(
+            auto result = std::shared_ptr<const InnerTree::SyntaxToken>(
                 new InnerTree::SyntaxToken(
                     type,
                     std::move(value),
                     std::move(leadingTrivia),
                     std::move(trailingTrivia)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>
@@ -1477,10 +1575,12 @@ namespace Soup::Syntax
             if (expression == nullptr)
                 throw std::runtime_error("ArgumentNull - expression");
 
-            return std::shared_ptr<const InnerTree::ValueEqualInitializer>(
+            auto result = std::shared_ptr<const InnerTree::ValueEqualInitializer>(
                 new InnerTree::ValueEqualInitializer(
                     std::move(equalToken),
                     std::move(expression)));
+            result->SetSelf(result);
+            return result;
         }
     };
 }

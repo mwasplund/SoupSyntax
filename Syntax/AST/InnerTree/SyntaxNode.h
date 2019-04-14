@@ -88,14 +88,13 @@ namespace Soup::Syntax::InnerTree
         /// <summary>
         /// Set the weak reference to myself
         /// </summary>
-        template<typename T>
-        void SetSelf(std::shared_ptr<const SyntaxNode> self) const
+        void SetSelf(const std::shared_ptr<const SyntaxNode>& self) const
         {
             m_self = self;
         }
 
     private:
         SyntaxNodeType m_type;
-        std::weak_ptr<const SyntaxNode> m_self;
+        mutable std::weak_ptr<const SyntaxNode> m_self;
     };
 }

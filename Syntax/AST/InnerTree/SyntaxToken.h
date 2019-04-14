@@ -102,14 +102,13 @@ namespace Soup::Syntax::InnerTree
         /// <summary>
         /// Set the weak reference to myself
         /// </summary>
-        template<typename T>
-        void SetSelf(std::shared_ptr<SyntaxToken> self) const
+        void SetSelf(const std::shared_ptr<const SyntaxToken>& self) const
         {
             m_self = self;
         }
 
     private:
-        std::weak_ptr<const SyntaxToken> m_self;
+        mutable std::weak_ptr<const SyntaxToken> m_self;
         SyntaxTokenType m_type;
         std::string m_value;
         std::vector<SyntaxTrivia> m_leadingTrivia;
