@@ -17,7 +17,7 @@ namespace Soup::Syntax::InnerTree
         /// </summary>
         CompoundStatement(
             std::shared_ptr<const SyntaxToken> openBraceToken,
-            std::vector<std::shared_ptr<const Statement>> statements,
+            std::shared_ptr<const SyntaxList<Statement>> statements,
             std::shared_ptr<const SyntaxToken> closeBraceToken) :
             SyntaxNode(SyntaxNodeType::CompoundStatement),
             m_openBraceToken(std::move(openBraceToken)),
@@ -27,6 +27,27 @@ namespace Soup::Syntax::InnerTree
         }
 
     public:
+        /// <summary>
+        /// Create an outer node with this node and the provided parent
+        /// </summary>
+        std::shared_ptr<const OuterTree::CompoundStatement> CreateOuter(
+            const OuterTree::SyntaxNode* parentNode) const
+        {
+            return OuterTree::SyntaxWrapper::CreateOuter(
+                GetSelf<CompoundStatement>(),
+                parentNode);
+        }
+
+        /// <summary>
+        /// Create an outer node with this node and the provided parent
+        /// </summary>
+        virtual std::shared_ptr<const OuterTree::SyntaxNode> CreateOuterAny(
+            const OuterTree::SyntaxNode* parentNode) const override final
+        {
+            return std::static_pointer_cast<const OuterTree::SyntaxNode>(
+                CreateOuter(parentNode));
+        }
+
         /// <summary>
         /// Gets the SyntaxToken for the left brace.
         /// </summary>
@@ -38,9 +59,9 @@ namespace Soup::Syntax::InnerTree
         /// <summary>
         /// Gets the list of statements
         /// </summary>
-        const std::vector<std::shared_ptr<const Statement>>& GetStatements() const
+        const SyntaxList<Statement>& GetStatements() const
         {
-            return m_statements;
+            return *m_statements;
         }
 
         /// <summary>
@@ -57,16 +78,8 @@ namespace Soup::Syntax::InnerTree
         bool operator ==(const CompoundStatement& rhs) const
         {
             return *m_openBraceToken == *rhs.m_openBraceToken &&
-                *m_closeBraceToken == *rhs.m_closeBraceToken &&
-                std::equal(
-                    begin(m_statements),
-                    end(m_statements),
-                    begin(rhs.m_statements),
-                    end(rhs.m_statements),
-                    [](const std::shared_ptr<const Statement>& lhs, const std::shared_ptr<const Statement>& rhs)
-                    {
-                        return *lhs == *rhs;
-                    });
+                *m_statements == *rhs.m_statements &&
+                *m_closeBraceToken == *rhs.m_closeBraceToken;
         }
 
         bool operator !=(const CompoundStatement& rhs) const
@@ -85,7 +98,7 @@ namespace Soup::Syntax::InnerTree
 
     private:
         std::shared_ptr<const SyntaxToken> m_openBraceToken;
-        std::vector<std::shared_ptr<const Statement>> m_statements;
+        std::shared_ptr<const SyntaxList<Statement>> m_statements;
         std::shared_ptr<const SyntaxToken> m_closeBraceToken;
     };
 }

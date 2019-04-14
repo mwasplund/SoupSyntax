@@ -1252,7 +1252,7 @@ antlrcpp::Any ASTCppParserVisitor::visitCompoundStatement(CppParser::CompoundSta
     return std::static_pointer_cast<const SyntaxNode>(
         SyntaxFactory::CreateCompoundStatement(
             CreateToken(SyntaxTokenType::OpenBrace, context->OpenBrace()),
-            std::move(statements),
+            SyntaxFactory::CreateSyntaxList<Statement>(std::move(statements)),
             CreateToken(SyntaxTokenType::CloseBrace, context->CloseBrace())));
 }
 
@@ -1541,9 +1541,9 @@ antlrcpp::Any ASTCppParserVisitor::visitDeclarationSpecifierSequence(CppParser::
     }
 
     return SyntaxFactory::CreateDeclarationSpecifier(
-        std::move(leadingModifiers),
+        SyntaxFactory::CreateSyntaxList<SyntaxToken>(std::move(leadingModifiers)),
         std::move(typeSpecifier),
-        std::move(trailingModifiers));;
+        SyntaxFactory::CreateSyntaxList<SyntaxToken>(std::move(trailingModifiers)));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitLeadingDeclarationModifierSequence(CppParser::LeadingDeclarationModifierSequenceContext *context)

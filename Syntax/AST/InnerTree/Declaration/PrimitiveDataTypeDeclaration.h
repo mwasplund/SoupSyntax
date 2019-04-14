@@ -15,21 +15,42 @@ namespace Soup::Syntax::InnerTree
         /// Initialize
         /// </summary>
         PrimitiveDataTypeDeclaration(
-            PrimitiveDataType type,
+            PrimitiveDataType primitiveType,
             std::shared_ptr<const SyntaxToken> token) :
             SyntaxNode(SyntaxNodeType::PrimitiveDataTypeDeclaration),
-            m_type(type),
+            m_primitiveType(primitiveType),
             m_token(std::move(token))
         {
         }
 
     public:
         /// <summary>
+        /// Create an outer node with this node and the provided parent
+        /// </summary>
+        std::shared_ptr<const OuterTree::PrimitiveDataTypeDeclaration> CreateOuter(
+            const OuterTree::SyntaxNode* parentNode) const
+        {
+            return OuterTree::SyntaxWrapper::CreateOuter(
+                GetSelf<PrimitiveDataTypeDeclaration>(),
+                parentNode);
+        }
+
+        /// <summary>
+        /// Create an outer node with this node and the provided parent
+        /// </summary>
+        virtual std::shared_ptr<const OuterTree::SyntaxNode> CreateOuterAny(
+            const OuterTree::SyntaxNode* parentNode) const override final
+        {
+            return std::static_pointer_cast<const OuterTree::SyntaxNode>(
+                CreateOuter(parentNode));
+        }
+
+        /// <summary>
         /// Gets the type
         /// </summary>
         PrimitiveDataType GetPrimitiveType() const
         {
-            return m_type;
+            return m_primitiveType;
         }
 
         /// <summary>
@@ -45,7 +66,7 @@ namespace Soup::Syntax::InnerTree
         /// </summary>
         bool operator ==(const PrimitiveDataTypeDeclaration& rhs) const
         {
-            return m_type == rhs.m_type &&
+            return m_primitiveType == rhs.m_primitiveType &&
                 *m_token == *rhs.m_token;
         }
 
@@ -64,7 +85,7 @@ namespace Soup::Syntax::InnerTree
         }
 
     private:
-        PrimitiveDataType m_type;
+        PrimitiveDataType m_primitiveType;
         std::shared_ptr<const SyntaxToken> m_token;
     };
 }

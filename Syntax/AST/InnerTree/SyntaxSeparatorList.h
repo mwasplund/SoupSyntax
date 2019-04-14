@@ -44,6 +44,18 @@ namespace Soup::Syntax::InnerTree
 
     public:
         /// <summary>
+        /// Create an outer node with this node and the provided parent
+        /// </summary>
+        template<class TOuter>
+        std::shared_ptr<const OuterTree::SyntaxSeparatorList<TOuter>> CreateOuter(
+            OuterTree::SyntaxNode* parentNode) const
+        {
+            return OuterTree::SyntaxWrapper::CreateOuter(
+                GetSelf(),
+                parentNode);
+        }
+
+        /// <summary>
         /// Gets the list of items
         /// </summary>
         const std::vector<std::shared_ptr<const TNode>>& GetItems() const
@@ -54,29 +66,9 @@ namespace Soup::Syntax::InnerTree
         /// <summary>
         /// Gets the list of separators
         /// </summary>
-        const std::vector<std::shared_ptr<const TNode>>& GetSeparators() const
+        const std::vector<std::shared_ptr<const SyntaxToken>>& GetSeparators() const
         {
             return m_separators;
-        }
-
-        /// <summary>
-        /// Get the collection of children nodes and tokens
-        /// </summary>
-        std::vector<SyntaxNodeChild> GetChildren() const
-        {
-            std::vector<SyntaxNodeChild> children;
-
-            for (size_t i = 0; i < m_items.size(); i++)
-            {
-                if (i > 0)
-                {
-                    children.push_back(SyntaxNodeChild(m_separators.at(i - 1)));
-                }
-
-                children.push_back(SyntaxNodeChild(m_items.at(i)));
-            }
-
-            return children;
         }
 
         /// <summary>
@@ -84,25 +76,8 @@ namespace Soup::Syntax::InnerTree
         /// </summary>
         bool operator ==(const SyntaxSeparatorList<TNode>& rhs) const
         {
-            return 
-                std::equal(
-                    begin(m_items),
-                    end(m_items),
-                    begin(rhs.m_items),
-                    end(rhs.m_items),
-                    [](const std::shared_ptr<const TNode>& lhs, const std::shared_ptr<const TNode>& rhs)
-                    {
-                        return *lhs == *rhs;
-                    }) &&
-                std::equal(
-                    begin(m_separators),
-                    end(m_separators),
-                    begin(rhs.m_separators),
-                    end(rhs.m_separators),
-                    [](const std::shared_ptr<const SyntaxToken>& lhs, const std::shared_ptr<const SyntaxToken>& rhs)
-                    {
-                        return *lhs == *rhs;
-                    });
+            return SyntaxUtils::AreListsEqual(m_items, rhs.m_items) &&
+                SyntaxUtils::AreListsEqual(m_separators, rhs.m_separators);
         }
 
         bool operator !=(const SyntaxSeparatorList<TNode>& rhs) const
@@ -111,6 +86,28 @@ namespace Soup::Syntax::InnerTree
         }
 
     private:
+        /// <summary>
+        /// Get the shared pointer to myself
+        /// </summary>
+        std::shared_ptr<const SyntaxSeparatorList<TNode>> GetSelf() const
+        {
+            auto sharedSelf = m_self.lock();
+            if (sharedSelf == nullptr)
+                throw std::runtime_error("Failed to get self pointer for list.");
+
+            return sharedSelf;
+        }
+
+        /// <summary>
+        /// Set the weak reference to myself
+        /// </summary>
+        void SetSelf(std::shared_ptr<const SyntaxSeparatorList<TNode>> self) const
+        {
+            m_self = self;
+        }
+
+    private:
+        std::weak_ptr<const SyntaxSeparatorList<TNode>> m_self;
         std::vector<std::shared_ptr<const TNode>> m_items;
         std::vector<std::shared_ptr<const SyntaxToken>> m_separators;
     };

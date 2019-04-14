@@ -19,6 +19,27 @@ namespace Soup::Syntax::InnerTree
 
     public:
         /// <summary>
+        /// Create an outer node with this node and the provided parent
+        /// </summary>
+        virtual std::shared_ptr<const OuterTree::SyntaxNode> CreateOuterAny(
+            const OuterTree::SyntaxNode* parentNode) const = 0;
+
+        /// <summary>
+        /// Helper method to return a typed outer syntax node
+        /// </summary>
+        template<typename T>
+        std::shared_ptr<const T> CreateOuter(
+            const OuterTree::SyntaxNode* parentNode) const
+        {
+            auto typedOuter = std::dynamic_pointer_cast<const T>(
+                CreateOuterAny(parentNode));
+            if (typedOuter == nullptr)
+                throw std::runtime_error("Failed to cast outer node to requested type.");
+
+            return typedOuter;
+        }
+
+        /// <summary>
         /// Get the node type
         /// </summary>
         SyntaxNodeType GetType() const
@@ -51,13 +72,13 @@ namespace Soup::Syntax::InnerTree
         /// Get the shared pointer to myself
         /// </summary>
         template<typename T>
-        std::shared_ptr<T> GetSelf() const
+        std::shared_ptr<const T> GetSelf() const
         {
-            auto sharedSelf = m_self;
+            auto sharedSelf = m_self.lock();
             if (sharedSelf == nullptr)
                 throw std::runtime_error("Failed to get self pointer.");
 
-            auto typedSelf = std::dynamic_pointer_cast<T>();
+            auto typedSelf = std::dynamic_pointer_cast<const T>(sharedSelf);
             if (typedSelf == nullptr)
                 throw std::runtime_error("Failed to get cast self pointer.");
 
@@ -68,13 +89,13 @@ namespace Soup::Syntax::InnerTree
         /// Set the weak reference to myself
         /// </summary>
         template<typename T>
-        void SetSelf(std::shared_ptr<SyntaxNode> self) const
+        void SetSelf(std::shared_ptr<const SyntaxNode> self) const
         {
             m_self = self;
         }
 
     private:
         SyntaxNodeType m_type;
-        std::weak_ptr<SyntaxNode> m_self;
+        std::weak_ptr<const SyntaxNode> m_self;
     };
 }

@@ -9,253 +9,248 @@ namespace Soup::Syntax
     export class DefaultSyntaxVisitor : public ISyntaxVisitor
     {
     public:
-        virtual void Visit(const Attribute& node) override
+        virtual void Visit(const OuterTree::Attribute& node) override
         {
             DefaultVisit(node);
         }
 
-        virtual void Visit(const AttributeSpecifier& node) override
+        virtual void Visit(const OuterTree::AttributeSpecifier& node) override
         {
             DefaultVisit(node);
         }
 
-        virtual void Visit(const AccessorSpecifier& node) override
+        virtual void Visit(const OuterTree::AccessorSpecifier& node) override
         {
             DefaultVisit(node);
         }
 
-        virtual void Visit(const BinaryExpression& node) override
+        virtual void Visit(const OuterTree::BinaryExpression& node) override
         {
             DefaultVisit(node);
         }
 
-        virtual void Visit(const CatchClause& node) override
+        virtual void Visit(const OuterTree::CatchClause& node) override
         {
             DefaultVisit(node);
         }
 
-        virtual void Visit(const ClassDeclaration& node) override
+        virtual void Visit(const OuterTree::ClassDeclaration& node) override
         {
             DefaultVisit(node);
         }
 
-        virtual void Visit(const CompoundStatement& node) override
+        virtual void Visit(const OuterTree::CompoundStatement& node) override
         {
             DefaultVisit(node);
         }
 
-        virtual void Visit(const ConstructorDefinition& node) override
+        virtual void Visit(const OuterTree::ConstructorDefinition& node) override
         {
             DefaultVisit(node);
         }
 
-        virtual void Visit(const ConstructorInitializer& node) override
+        virtual void Visit(const OuterTree::ConstructorInitializer& node) override
         {
             DefaultVisit(node);
         }
 
-        virtual void Visit(const DeclarationSpecifier& node) override
+        virtual void Visit(const OuterTree::DeclarationSpecifier& node) override
         {
             DefaultVisit(node);
         }
 
-        virtual void Visit(const DeclarationStatement& node) override
+        virtual void Visit(const OuterTree::DeclarationStatement& node) override
         {
             DefaultVisit(node);
         }
 
-        virtual void Visit(const DefaultFunctionBody& node) override
+        virtual void Visit(const OuterTree::DefaultFunctionBody& node) override
         {
             DefaultVisit(node);
         }
 
-        virtual void Visit(const DeleteFunctionBody& node) override
+        virtual void Visit(const OuterTree::DeleteFunctionBody& node) override
         {
             DefaultVisit(node);
         }
 
-        virtual void Visit(const DestructorIdentifierExpression& node) override
+        virtual void Visit(const OuterTree::DestructorIdentifierExpression& node) override
         {
             DefaultVisit(node);
         }
 
-        virtual void Visit(const ElseClause& node) override
+        virtual void Visit(const OuterTree::ElseClause& node) override
         {
             DefaultVisit(node);
         }
 
-        virtual void Visit(const EmptyDeclaration& node) override
+        virtual void Visit(const OuterTree::EmptyDeclaration& node) override
         {
             DefaultVisit(node);
         }
 
-        virtual void Visit(const EmptyStatement& node) override
+        virtual void Visit(const OuterTree::EmptyStatement& node) override
         {
             DefaultVisit(node);
         }
 
-        virtual void Visit(const EnumDeclaration& node) override
+        virtual void Visit(const OuterTree::EnumDeclaration& node) override
         {
             DefaultVisit(node);
         }
 
-        virtual void Visit(const EnumeratorDefinition& node) override
+        virtual void Visit(const OuterTree::EnumeratorDefinition& node) override
         {
             DefaultVisit(node);
         }
 
-        virtual void Visit(const ExpressionStatement& node) override
+        virtual void Visit(const OuterTree::ExpressionStatement& node) override
         {
             DefaultVisit(node);
         }
 
-        virtual void Visit(const FunctionDeclaration& node) override
+        virtual void Visit(const OuterTree::FunctionDefinition& node) override
         {
             DefaultVisit(node);
         }
 
-        virtual void Visit(const FunctionDefinition& node) override
+        virtual void Visit(const OuterTree::IfStatement& node) override
         {
             DefaultVisit(node);
         }
 
-        virtual void Visit(const IfStatement& node) override
+        virtual void Visit(const OuterTree::InitializerDeclarator& node) override
         {
             DefaultVisit(node);
         }
 
-        virtual void Visit(const InitializerDeclarator& node) override
+        virtual void Visit(const OuterTree::InitializerDeclaratorList& node) override
         {
             DefaultVisit(node);
         }
 
-        virtual void Visit(const InitializerDeclaratorList& node) override
+        virtual void Visit(const OuterTree::InitializerList& node) override
         {
             DefaultVisit(node);
         }
 
-        virtual void Visit(const InitializerList& node) override
+        virtual void Visit(const OuterTree::InvocationExpression& node) override
         {
             DefaultVisit(node);
         }
 
-        virtual void Visit(const InvocationExpression& node) override
+        virtual void Visit(const OuterTree::LiteralExpression& node) override
         {
             DefaultVisit(node);
         }
 
-        virtual void Visit(const LiteralExpression& node) override
+        virtual void Visit(const OuterTree::MemberDeclaration& node) override
         {
             DefaultVisit(node);
         }
 
-        virtual void Visit(const MemberDeclaration& node) override
+        virtual void Visit(const OuterTree::MemberDeclarator& node) override
         {
             DefaultVisit(node);
         }
 
-        virtual void Visit(const MemberDeclarator& node) override
+        virtual void Visit(const OuterTree::MemberDeclaratorList& node) override
         {
             DefaultVisit(node);
         }
 
-        virtual void Visit(const MemberDeclaratorList& node) override
+        virtual void Visit(const OuterTree::MemberInitializer& node) override
         {
             DefaultVisit(node);
         }
 
-        virtual void Visit(const MemberInitializer& node) override
+        virtual void Visit(const OuterTree::NamespaceDefinition& node) override
         {
             DefaultVisit(node);
         }
 
-        virtual void Visit(const NamespaceDefinition& node) override
+        virtual void Visit(const OuterTree::Parameter& node) override
         {
             DefaultVisit(node);
         }
 
-        virtual void Visit(const Parameter& node) override
+        virtual void Visit(const OuterTree::ParameterList& node) override
         {
             DefaultVisit(node);
         }
 
-        virtual void Visit(const ParameterList& node) override
+        virtual void Visit(const OuterTree::PrimitiveDataTypeDeclaration& node) override
         {
             DefaultVisit(node);
         }
 
-        virtual void Visit(const PrimitiveDataTypeDeclaration& node) override
+        virtual void Visit(const OuterTree::QualifiedIdentifierExpression& node) override
         {
             DefaultVisit(node);
         }
 
-        virtual void Visit(const QualifiedIdentifierExpression& node) override
+        virtual void Visit(const OuterTree::RegularFunctionBody& node) override
         {
             DefaultVisit(node);
         }
 
-        virtual void Visit(const RegularFunctionBody& node) override
+        virtual void Visit(const OuterTree::ReturnStatement& node) override
         {
             DefaultVisit(node);
         }
 
-        virtual void Visit(const ReturnStatement& node) override
+        virtual void Visit(const OuterTree::SimpleDeclaration& node) override
         {
             DefaultVisit(node);
         }
 
-        virtual void Visit(const SimpleDeclaration& node) override
+        virtual void Visit(const OuterTree::SimpleIdentifierExpression& node) override
         {
             DefaultVisit(node);
         }
 
-        virtual void Visit(const SimpleIdentifierExpression& node) override
+        virtual void Visit(const OuterTree::SimpleTemplateIdentifierExpression& node) override
         {
             DefaultVisit(node);
         }
 
-        virtual void Visit(const SimpleTemplateIdentifierExpression& node) override
+        virtual void Visit(const OuterTree::SubscriptExpression& node) override
         {
             DefaultVisit(node);
         }
 
-        virtual void Visit(const SubscriptExpression& node) override
+        virtual void Visit(const OuterTree::ThisExpression& node) override
         {
             DefaultVisit(node);
         }
 
-        virtual void Visit(const ThisExpression& node) override
+        virtual void Visit(const OuterTree::TranslationUnit& node) override
         {
             DefaultVisit(node);
         }
 
-        virtual void Visit(const TranslationUnit& node) override
+        virtual void Visit(const OuterTree::TryFunctionBody& node) override
         {
             DefaultVisit(node);
         }
 
-        virtual void Visit(const TryFunctionBody& node) override
+        virtual void Visit(const OuterTree::TryStatement& node) override
         {
             DefaultVisit(node);
         }
 
-        virtual void Visit(const TryStatement& node) override
+        virtual void Visit(const OuterTree::UnaryExpression& node) override
         {
             DefaultVisit(node);
         }
 
-        virtual void Visit(const UnaryExpression& node) override
-        {
-            DefaultVisit(node);
-        }
-
-        virtual void Visit(const ValueEqualInitializer& node) override
+        virtual void Visit(const OuterTree::ValueEqualInitializer& node) override
         {
             DefaultVisit(node);
         }
 
     protected:
-        virtual void DefaultVisit(const SyntaxNode& node)
+        virtual void DefaultVisit(const OuterTree::SyntaxNode& node)
         {
         }
     };

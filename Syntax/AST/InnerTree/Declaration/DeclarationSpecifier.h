@@ -14,9 +14,9 @@ namespace Soup::Syntax::InnerTree
         /// Initialize
         /// </summary>
         DeclarationSpecifier(
-            std::vector<std::shared_ptr<const SyntaxToken>> leadingModifiers,
+            std::shared_ptr<const SyntaxList<SyntaxToken>> leadingModifiers,
             std::shared_ptr<const SyntaxNode> typeSpecifier,
-            std::vector<std::shared_ptr<const SyntaxToken>> trailingModifiers) :
+            std::shared_ptr<const SyntaxList<SyntaxToken>> trailingModifiers) :
             SyntaxNode(SyntaxNodeType::DeclarationSpecifier),
             m_leadingModifiers(std::move(leadingModifiers)),
             m_typeSpecifier(std::move(typeSpecifier)),
@@ -26,11 +26,32 @@ namespace Soup::Syntax::InnerTree
 
     public:
         /// <summary>
+        /// Create an outer node with this node and the provided parent
+        /// </summary>
+        std::shared_ptr<const OuterTree::DeclarationSpecifier> CreateOuter(
+            const OuterTree::SyntaxNode* parentNode) const
+        {
+            return OuterTree::SyntaxWrapper::CreateOuter(
+                GetSelf<DeclarationSpecifier>(),
+                parentNode);
+        }
+
+        /// <summary>
+        /// Create an outer node with this node and the provided parent
+        /// </summary>
+        virtual std::shared_ptr<const OuterTree::SyntaxNode> CreateOuterAny(
+            const OuterTree::SyntaxNode* parentNode) const override final
+        {
+            return std::static_pointer_cast<const OuterTree::SyntaxNode>(
+                CreateOuter(parentNode));
+        }
+
+        /// <summary>
         /// Gets the collection of leading modifier specifiers before the type
         /// </summary>
-        const std::vector<std::shared_ptr<const SyntaxToken>>& GetLeadingModifiers() const
+        const SyntaxList<SyntaxToken>& GetLeadingModifiers() const
         {
-            return m_leadingModifiers;
+            return *m_leadingModifiers;
         }
 
         /// <summary>
@@ -44,9 +65,9 @@ namespace Soup::Syntax::InnerTree
         /// <summary>
         /// Gets the collection of trailing modifier specifiers after the type
         /// </summary>
-        const std::vector<std::shared_ptr<const SyntaxToken>>& GetTrailingModifiers() const
+        const SyntaxList<SyntaxToken>& GetTrailingModifiers() const
         {
-            return m_trailingModifiers;
+            return *m_trailingModifiers;
         }
 
         /// <summary>
@@ -54,37 +75,9 @@ namespace Soup::Syntax::InnerTree
         /// </summary>
         bool operator ==(const DeclarationSpecifier& rhs) const
         {
-            bool leadingModifiersEqual = 
-                std::equal(
-                    begin(m_leadingModifiers),
-                    end(m_leadingModifiers),
-                    begin(rhs.m_leadingModifiers),
-                    end(rhs.m_leadingModifiers),
-                    [](const std::shared_ptr<const SyntaxToken>& lhs, const std::shared_ptr<const SyntaxToken>& rhs)
-                    {
-                        return *lhs == *rhs;
-                    });
-            if (!leadingModifiersEqual)
-            {
-                return false;
-            }
-
-            bool trailingModifiersEqual = 
-                std::equal(
-                    begin(m_trailingModifiers),
-                    end(m_trailingModifiers),
-                    begin(rhs.m_trailingModifiers),
-                    end(rhs.m_trailingModifiers),
-                    [](const std::shared_ptr<const SyntaxToken>& lhs, const std::shared_ptr<const SyntaxToken>& rhs)
-                    {
-                        return *lhs == *rhs;
-                    });
-            if (!trailingModifiersEqual)
-            {
-                return false;
-            }
-    
-            return *m_typeSpecifier == *rhs.m_typeSpecifier;
+            return *m_leadingModifiers == *rhs.m_leadingModifiers &&
+                *m_typeSpecifier == *rhs.m_typeSpecifier &&
+                *m_trailingModifiers == *rhs.m_trailingModifiers;
         }
 
         bool operator !=(const DeclarationSpecifier& rhs) const
@@ -102,8 +95,8 @@ namespace Soup::Syntax::InnerTree
         }
 
     private:
-        std::vector<std::shared_ptr<const SyntaxToken>> m_leadingModifiers;
+        std::shared_ptr<const SyntaxList<SyntaxToken>> m_leadingModifiers;
         std::shared_ptr<const SyntaxNode> m_typeSpecifier;
-        std::vector<std::shared_ptr<const SyntaxToken>> m_trailingModifiers;
+        std::shared_ptr<const SyntaxList<SyntaxToken>> m_trailingModifiers;
     };
 }

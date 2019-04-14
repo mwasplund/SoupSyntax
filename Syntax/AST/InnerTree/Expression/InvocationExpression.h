@@ -17,18 +17,39 @@ namespace Soup::Syntax::InnerTree
         /// </summary>
         InvocationExpression(
             std::shared_ptr<const Expression> leftExpression,
-            std::shared_ptr<const SyntaxToken> openParenthesis, 
+            std::shared_ptr<const SyntaxToken> openParenthesisToken, 
             std::shared_ptr<const SyntaxSeparatorList<Expression>> parameters,
-            std::shared_ptr<const SyntaxToken> closeParenthesis) :
+            std::shared_ptr<const SyntaxToken> closeParenthesisToken) :
             Expression(SyntaxNodeType::InvocationExpression),
             m_leftExpression(std::move(leftExpression)),
-            m_openParenthesis(std::move(openParenthesis)),
+            m_openParenthesisToken(std::move(openParenthesisToken)),
             m_parameters(std::move(parameters)),
-            m_closeParenthesis(std::move(closeParenthesis))
+            m_closeParenthesisToken(std::move(closeParenthesisToken))
         {
         }
 
     public:
+        /// <summary>
+        /// Create an outer node with this node and the provided parent
+        /// </summary>
+        std::shared_ptr<const OuterTree::InvocationExpression> CreateOuter(
+            const OuterTree::SyntaxNode* parentNode) const
+        {
+            return OuterTree::SyntaxWrapper::CreateOuter(
+                GetSelf<InvocationExpression>(),
+                parentNode);
+        }
+
+        /// <summary>
+        /// Create an outer node with this node and the provided parent
+        /// </summary>
+        virtual std::shared_ptr<const OuterTree::SyntaxNode> CreateOuterAny(
+            const OuterTree::SyntaxNode* parentNode) const override final
+        {
+            return std::static_pointer_cast<const OuterTree::SyntaxNode>(
+                CreateOuter(parentNode));
+        }
+
         /// <summary>
         /// The left expression
         /// </summary>
@@ -42,7 +63,7 @@ namespace Soup::Syntax::InnerTree
         /// </summary>
         const SyntaxToken& GetOpenParenthesisToken() const
         {
-            return *m_openParenthesis;
+            return *m_openParenthesisToken;
         }
 
         /// <summary>
@@ -58,7 +79,7 @@ namespace Soup::Syntax::InnerTree
         /// </summary>
         const SyntaxToken& GetCloseParenthesisToken() const
         {
-            return *m_closeParenthesis;
+            return *m_closeParenthesisToken;
         }
 
         /// <summary>
@@ -67,9 +88,9 @@ namespace Soup::Syntax::InnerTree
         bool operator ==(const InvocationExpression& rhs) const
         {
             return *m_leftExpression == *rhs.m_leftExpression &&
-                *m_openParenthesis == *rhs.m_openParenthesis &&
+                *m_openParenthesisToken == *rhs.m_openParenthesisToken &&
                 *m_parameters == *rhs.m_parameters &&
-                *m_closeParenthesis == *rhs.m_closeParenthesis;
+                *m_closeParenthesisToken == *rhs.m_closeParenthesisToken;
         }
 
         bool operator !=(const InvocationExpression& rhs) const
@@ -88,8 +109,8 @@ namespace Soup::Syntax::InnerTree
 
     private:
         std::shared_ptr<const Expression> m_leftExpression;
-        std::shared_ptr<const SyntaxToken> m_openParenthesis;
+        std::shared_ptr<const SyntaxToken> m_openParenthesisToken;
         std::shared_ptr<const SyntaxSeparatorList<Expression>> m_parameters;
-        std::shared_ptr<const SyntaxToken> m_closeParenthesis;
+        std::shared_ptr<const SyntaxToken> m_closeParenthesisToken;
     };
 }

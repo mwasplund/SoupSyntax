@@ -20,8 +20,9 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxNodeType::DeclarationSpecifier,
                 uut->GetType(),
                 "Verify has correct type.");
-            Assert::IsTrue(
-                uut->GetLeadingModifiers().empty(),
+            Assert::AreEqual(
+                *SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>({}),
+                uut->GetLeadingModifiers(),
                 "Verify leading modifier tokens match.");
             TestUtils::AreEqual(
                 *SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
@@ -29,8 +30,9 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
                 uut->GetTypeSpecifier(),
                 "Verify type specifier matches.");
-            Assert::IsTrue(
-                uut->GetTrailingModifiers().empty(),
+            Assert::AreEqual(
+                *SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>({}),
+                uut->GetTrailingModifiers(),
                 "Verify trailing modifier tokens match.");
         }
 
@@ -39,24 +41,27 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             // static thread_local int friend mutable
             auto uut = SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
                 {
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Static),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::ThreadLocal),
-                },
+                }),
                 SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                     PrimitiveDataType::Int,
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
+                SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
                 {
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Friend),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Mutable),
-                });
+                }));
 
             Assert::AreEqual(
                 SyntaxNodeType::DeclarationSpecifier,
                 uut->GetType(),
                 "Verify has correct type.");
-            TestUtils::AreEqual(
-                std::vector<std::shared_ptr<const SyntaxToken>>({
+            Assert::AreEqual(
+                *SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
+                {
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Static),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::ThreadLocal),
                 }),
@@ -68,8 +73,9 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
                 uut->GetTypeSpecifier(),
                 "Verify type specifier matches.");
-            TestUtils::AreEqual(
-                std::vector<std::shared_ptr<const SyntaxToken>>({
+            Assert::AreEqual(
+                *SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
+                {
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Friend),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Mutable),
                 }),
@@ -100,31 +106,35 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             // static thread_local int friend mutable
             auto uut = SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
                 {
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Static),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::ThreadLocal),
-                },
+                }),
                 SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                     PrimitiveDataType::Int,
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
+                SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
                 {
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Friend),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Mutable),
-                });
+                }));
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateDeclarationSpecifier(
+                    SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
                     {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Static),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::ThreadLocal),
-                    },
+                    }),
                     SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
+                    SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
                     {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Friend),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Mutable),
-                    }),
+                    })),
                 uut,
                 "Verify matches.");
         }
@@ -134,28 +144,31 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             // static thread_local int friend mutable
             auto uut = SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
                 {
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Static),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::ThreadLocal),
-                },
+                }),
                 SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                     PrimitiveDataType::Int,
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
+                SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
                 {
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Friend),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Mutable),
-                });
+                }));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateDeclarationSpecifier(
-                    {},
+                    SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>({}),
                     SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
+                    SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
                     {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Friend),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Mutable),
-                    }),
+                    })),
                 uut,
                 "Verify does not match.");
         }
@@ -165,31 +178,35 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             // static thread_local int friend mutable
             auto uut = SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
                 {
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Static),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::ThreadLocal),
-                },
+                }),
                 SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                     PrimitiveDataType::Int,
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
+                SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
                 {
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Friend),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Mutable),
-                });
+                }));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateDeclarationSpecifier(
+                    SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
                     {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Inline),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::ThreadLocal),
-                    },
+                    }),
                     SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
+                    SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
                     {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Friend),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Mutable),
-                    }),
+                    })),
                 uut,
                 "Verify does not match.");
         }
@@ -199,31 +216,35 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             // static thread_local int friend mutable
             auto uut = SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
                 {
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Static),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::ThreadLocal),
-                },
+                }),
                 SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                     PrimitiveDataType::Int,
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
+                SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
                 {
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Friend),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Mutable),
-                });
+                }));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateDeclarationSpecifier(
+                    SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
                     {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Static),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::ThreadLocal),
-                    },
+                    }),
                     SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Long,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Long)),
+                    SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
                     {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Friend),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Mutable),
-                    }),
+                    })),
                 uut,
                 "Verify does not match.");
         }
@@ -233,28 +254,31 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             // static thread_local int friend mutable
             auto uut = SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
                 {
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Static),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::ThreadLocal),
-                },
+                }),
                 SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                     PrimitiveDataType::Int,
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
+                SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
                 {
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Friend),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Mutable),
-                });
+                }));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateDeclarationSpecifier(
+                    SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
                     {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Static),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::ThreadLocal),
-                    },
+                    }),
                     SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
-                    {}),
+                    SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>({})),
                 uut,
                 "Verify does not match.");
         }
@@ -264,31 +288,35 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             // static thread_local int friend mutable
             auto uut = SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
                 {
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Static),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::ThreadLocal),
-                },
+                }),
                 SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                     PrimitiveDataType::Int,
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
+                SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
                 {
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Friend),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Mutable),
-                });
+                }));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateDeclarationSpecifier(
+                    SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
                     {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Static),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::ThreadLocal),
-                    },
+                    }),
                     SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
+                    SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
                     {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Inline),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Mutable),
-                    }),
+                    })),
                 uut,
                 "Verify does not match.");
         }

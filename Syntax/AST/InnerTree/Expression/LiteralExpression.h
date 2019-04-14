@@ -14,21 +14,42 @@ namespace Soup::Syntax::InnerTree
         /// Initialize
         /// </summary>
         LiteralExpression(
-            LiteralType type,
+            LiteralType literalType,
             std::shared_ptr<const SyntaxToken> token) :
             Expression(SyntaxNodeType::LiteralExpression),
-            m_type(type),
+            m_literalType(literalType),
             m_token(std::move(token))
         {
         }
 
     public:
         /// <summary>
+        /// Create an outer node with this node and the provided parent
+        /// </summary>
+        std::shared_ptr<const OuterTree::LiteralExpression> CreateOuter(
+            const OuterTree::SyntaxNode* parentNode) const
+        {
+            return OuterTree::SyntaxWrapper::CreateOuter(
+                GetSelf<LiteralExpression>(),
+                parentNode);
+        }
+
+        /// <summary>
+        /// Create an outer node with this node and the provided parent
+        /// </summary>
+        virtual std::shared_ptr<const OuterTree::SyntaxNode> CreateOuterAny(
+            const OuterTree::SyntaxNode* parentNode) const override final
+        {
+            return std::static_pointer_cast<const OuterTree::SyntaxNode>(
+                CreateOuter(parentNode));
+        }
+
+        /// <summary>
         /// Gets the type
         /// </summary>
         LiteralType GetLiteralType() const
         {
-            return m_type;
+            return m_literalType;
         }
 
         /// <summary>
@@ -44,7 +65,7 @@ namespace Soup::Syntax::InnerTree
         /// </summary>
         bool operator ==(const LiteralExpression& rhs) const
         {
-            return m_type == rhs.m_type &&
+            return m_literalType == rhs.m_literalType &&
                 *m_token == *rhs.m_token;
         }
 
@@ -63,7 +84,7 @@ namespace Soup::Syntax::InnerTree
         }
 
     private:
-        LiteralType m_type;
+        LiteralType m_literalType;
         std::shared_ptr<const SyntaxToken> m_token;
     };
 }

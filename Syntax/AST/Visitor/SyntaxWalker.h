@@ -15,7 +15,7 @@ namespace Soup::Syntax
         {
         }
 
-        virtual void DefaultVisit(const SyntaxNode& node) override
+        virtual void DefaultVisit(const OuterTree::SyntaxNode& node) override
         {
             m_depth++;
             for (auto& child : node.GetChildren())
@@ -37,7 +37,7 @@ namespace Soup::Syntax
             m_depth--;
         }
 
-        virtual void VisitToken(const SyntaxToken& token)
+        virtual void VisitToken(const OuterTree::SyntaxToken& token)
         {
         }
 

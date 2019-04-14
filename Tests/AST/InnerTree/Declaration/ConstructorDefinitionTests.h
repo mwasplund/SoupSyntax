@@ -22,7 +22,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 nullptr,
                 SyntaxFactory::CreateCompoundStatement(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                    {},
+                    SyntaxFactory::CreateSyntaxList<Statement>({}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)));
 
             Assert::AreEqual(
@@ -49,7 +49,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreEqual(
                 *SyntaxFactory::CreateCompoundStatement(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                    {},
+                    SyntaxFactory::CreateSyntaxList<Statement>({}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 uut->GetBody(),
                 "Verify body matches.");
@@ -91,7 +91,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         std::vector<std::shared_ptr<const SyntaxToken>>())),
                 SyntaxFactory::CreateCompoundStatement(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                    {},
+                    SyntaxFactory::CreateSyntaxList<Statement>({}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)));
 
             Assert::AreEqual(
@@ -142,7 +142,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreEqual(
                 *SyntaxFactory::CreateCompoundStatement(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                    {},
+                    SyntaxFactory::CreateSyntaxList<Statement>({}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 uut->GetBody(),
                 "Verify body matches.");

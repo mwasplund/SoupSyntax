@@ -16,7 +16,7 @@ namespace Soup::Syntax::InnerTree
         TryStatement(
             std::shared_ptr<const SyntaxToken> tryToken,
             std::shared_ptr<const CompoundStatement> compoundStatement,
-            std::vector<std::shared_ptr<const CatchClause>> catchClauses) :
+            std::shared_ptr<const SyntaxList<CatchClause>> catchClauses) :
             Statement(SyntaxNodeType::TryStatement),
             m_tryToken(std::move(tryToken)),
             m_compoundStatement(std::move(compoundStatement)),
@@ -25,6 +25,27 @@ namespace Soup::Syntax::InnerTree
         }
 
     public:
+        /// <summary>
+        /// Create an outer node with this node and the provided parent
+        /// </summary>
+        std::shared_ptr<const OuterTree::TryStatement> CreateOuter(
+            const OuterTree::SyntaxNode* parentNode) const
+        {
+            return OuterTree::SyntaxWrapper::CreateOuter(
+                GetSelf<TryStatement>(),
+                parentNode);
+        }
+
+        /// <summary>
+        /// Create an outer node with this node and the provided parent
+        /// </summary>
+        virtual std::shared_ptr<const OuterTree::SyntaxNode> CreateOuterAny(
+            const OuterTree::SyntaxNode* parentNode) const override final
+        {
+            return std::static_pointer_cast<const OuterTree::SyntaxNode>(
+                CreateOuter(parentNode));
+        }
+
         /// <summary>
         /// Gets the SyntaxToken for the try keyword.
         /// </summary>
@@ -44,9 +65,9 @@ namespace Soup::Syntax::InnerTree
         /// <summary>
         /// Gets the list of catch clauses
         /// </summary>
-        const std::vector<std::shared_ptr<const CatchClause>>& GetCatchClauses() const
+        const SyntaxList<CatchClause>& GetCatchClauses() const
         {
-            return m_catchClauses;
+            return *m_catchClauses;
         }
 
         /// <summary>
@@ -56,15 +77,7 @@ namespace Soup::Syntax::InnerTree
         {
             return *m_tryToken == *rhs.m_tryToken &&
                 *m_compoundStatement == *rhs.m_compoundStatement &&
-                std::equal(
-                    begin(m_catchClauses),
-                    end(m_catchClauses),
-                    begin(rhs.m_catchClauses),
-                    end(rhs.m_catchClauses),
-                    [](const std::shared_ptr<const CatchClause>& lhs, const std::shared_ptr<const CatchClause>& rhs)
-                    {
-                        return *lhs == *rhs;
-                    });
+                *m_catchClauses == *rhs.m_catchClauses;
         }
 
         bool operator !=(const TryStatement& rhs) const
@@ -84,6 +97,6 @@ namespace Soup::Syntax::InnerTree
     private:
         std::shared_ptr<const SyntaxToken> m_tryToken;
         std::shared_ptr<const CompoundStatement> m_compoundStatement;
-        std::vector<std::shared_ptr<const CatchClause>> m_catchClauses;
+        std::shared_ptr<const SyntaxList<CatchClause>> m_catchClauses;
     };
 }

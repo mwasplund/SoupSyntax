@@ -1,7 +1,7 @@
 ﻿
 #pragma once
 
-namespace Soup::Syntax
+namespace Soup::Syntax::OuterTree
 {
     /// <summary>
     /// The node child that can either be another node or a terminal token

@@ -15,7 +15,7 @@ namespace Soup::Syntax
         }
 
     protected:
-        virtual void DefaultVisit(const SyntaxNode& node) override
+        virtual void DefaultVisit(const OuterTree::SyntaxNode& node) override
         {
             for (auto i = 0u; i < GetDepth(); i++)
             {
@@ -34,7 +34,7 @@ namespace Soup::Syntax
             SyntaxWalker::DefaultVisit(node);
         }
 
-        virtual void VisitToken(const SyntaxToken& token) override
+        virtual void VisitToken(const OuterTree::SyntaxToken& token) override
         {
             // Write the leading trivia
             for (auto& trivia : token.GetLeadingTrivia())
@@ -71,10 +71,10 @@ namespace Soup::Syntax
             }
 
             m_stream << location << "Trivia: \"";
-            m_stream << EscapeText(trivia.GetValue());
-            m_stream << "\" [";
-            m_stream << trivia.GetSpan().GetStart() << ", ";
-            m_stream << trivia.GetSpan().GetEnd() << ")\n";
+            m_stream << EscapeText(trivia.GetValue()) << "\n";
+            //m_stream << "\" [";
+            //m_stream << trivia.GetSpan().GetStart() << ", ";
+            //m_stream << trivia.GetSpan().GetEnd() << ")\n";
         }
 
     private:

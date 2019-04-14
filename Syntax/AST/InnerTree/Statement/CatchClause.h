@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include "CompoundStatement.h"
 
 namespace Soup::Syntax::InnerTree
 {
@@ -29,6 +30,27 @@ namespace Soup::Syntax::InnerTree
         }
 
     public:
+        /// <summary>
+        /// Create an outer node with this node and the provided parent
+        /// </summary>
+        std::shared_ptr<const OuterTree::CatchClause> CreateOuter(
+            const OuterTree::SyntaxNode* parentNode) const
+        {
+            return OuterTree::SyntaxWrapper::CreateOuter(
+                GetSelf<CatchClause>(),
+                parentNode);
+        }
+
+        /// <summary>
+        /// Create an outer node with this node and the provided parent
+        /// </summary>
+        virtual std::shared_ptr<const OuterTree::SyntaxNode> CreateOuterAny(
+            const OuterTree::SyntaxNode* parentNode) const override final
+        {
+            return std::static_pointer_cast<const OuterTree::SyntaxNode>(
+                CreateOuter(parentNode));
+        }
+
         /// <summary>
         /// Gets the SyntaxToken for the catch keyword.
         /// </summary>

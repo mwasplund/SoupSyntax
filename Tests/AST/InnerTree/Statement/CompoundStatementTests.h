@@ -12,7 +12,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             auto uut = SyntaxFactory::CreateCompoundStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                {},
+                SyntaxFactory::CreateSyntaxList<Statement>({}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             Assert::AreEqual(
@@ -23,10 +23,10 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 uut->GetOpenBraceToken(),
                 "Verify left brace token matches.");
-            Assert::AreEqual<int>(
-                0,
-                uut->GetStatements().size(),
-                "Verify condition expression matches.");
+            Assert::AreEqual(
+                *SyntaxFactory::CreateSyntaxList<Statement>({}),
+                uut->GetStatements(),
+                "Verify statements matches.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace),
                 uut->GetCloseBraceToken(),
@@ -38,12 +38,13 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             auto uut = SyntaxFactory::CreateCompoundStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
+                SyntaxFactory::CreateSyntaxList<Statement>(
                 {
                     SyntaxFactory::CreateReturnStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
                         nullptr,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
-                },
+                }),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             Assert::AreEqual(
@@ -54,17 +55,16 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 uut->GetOpenBraceToken(),
                 "Verify left brace token matches.");
-            Assert::AreEqual<int>(
-                1,
-                uut->GetStatements().size(),
-                "Verify condition expression matches.");
-            TestUtils::AreEqual(
-                SyntaxFactory::CreateReturnStatement(
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
-                    nullptr,
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
-                uut->GetStatements().at(0),
-                "Verify condition expression matches.");
+            Assert::AreEqual(
+                *SyntaxFactory::CreateSyntaxList<Statement>(
+                {
+                    SyntaxFactory::CreateReturnStatement(
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
+                        nullptr,
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
+                }),
+                uut->GetStatements(),
+                "Verify statements matches.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace),
                 uut->GetCloseBraceToken(),
@@ -76,13 +76,13 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             auto uut = SyntaxFactory::CreateCompoundStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                {},
+                SyntaxFactory::CreateSyntaxList<Statement>({}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateCompoundStatement(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                    {},
+                    SyntaxFactory::CreateSyntaxList<Statement>({}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 uut,
                 "Verify matches.");
@@ -93,23 +93,25 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             auto uut = SyntaxFactory::CreateCompoundStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
+                SyntaxFactory::CreateSyntaxList<Statement>(
                 {
                     SyntaxFactory::CreateReturnStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
                         nullptr,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
-                },
+                }),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateCompoundStatement(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
+                    SyntaxFactory::CreateSyntaxList<Statement>(
                     {
                         SyntaxFactory::CreateReturnStatement(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
                             nullptr,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
-                    },
+                    }),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 uut,
                 "Verify matches.");
@@ -120,7 +122,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             auto uut = SyntaxFactory::CreateCompoundStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                {},
+                SyntaxFactory::CreateSyntaxList<Statement>({}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             TestUtils::AreNotEqual(
@@ -131,7 +133,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreateTrivia(" "),
                         },
                         {}),
-                    {},
+                    SyntaxFactory::CreateSyntaxList<Statement>({}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 uut,
                 "Verify do not match.");
@@ -142,18 +144,19 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             auto uut = SyntaxFactory::CreateCompoundStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                {},
+                SyntaxFactory::CreateSyntaxList<Statement>({}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateCompoundStatement(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
+                    SyntaxFactory::CreateSyntaxList<Statement>(
                     {
                         SyntaxFactory::CreateReturnStatement(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
                             nullptr,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
-                    },
+                    }),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 uut,
                 "Verify do not match.");
@@ -164,17 +167,19 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             auto uut = SyntaxFactory::CreateCompoundStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
+                SyntaxFactory::CreateSyntaxList<Statement>(
                 {
                     SyntaxFactory::CreateReturnStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
                         nullptr,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
-                },
+                }),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateCompoundStatement(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
+                    SyntaxFactory::CreateSyntaxList<Statement>(
                     {
                         SyntaxFactory::CreateReturnStatement(
                             SyntaxFactory::CreateKeywordToken(
@@ -185,7 +190,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                 {}),
                             nullptr,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
-                    },
+                    }),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 uut,
                 "Verify do not match.");
@@ -196,13 +201,13 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             auto uut = SyntaxFactory::CreateCompoundStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                {},
+                SyntaxFactory::CreateSyntaxList<Statement>({}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateCompoundStatement(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                    {},
+                    SyntaxFactory::CreateSyntaxList<Statement>({}),
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::CloseBrace,
                         {

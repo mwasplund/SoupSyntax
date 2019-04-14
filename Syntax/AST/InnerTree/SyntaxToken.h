@@ -1,7 +1,7 @@
 ﻿
 #pragma once
 
-namespace Soup::Syntax
+namespace Soup::Syntax::InnerTree
 {
     /// <summary>
     /// The leaf elements of the syntax tree
@@ -27,6 +27,17 @@ namespace Soup::Syntax
         }
 
     public:
+        /// <summary>
+        /// Create an outer token with this token and the provided parent
+        /// </summary>
+        std::shared_ptr<const OuterTree::SyntaxToken> CreateOuter(
+            const OuterTree::SyntaxNode* parentNode) const
+        {
+            return OuterTree::SyntaxWrapper::CreateOuter(
+                GetSelf(),
+                parentNode);
+        }
+
         /// <summary>
         /// Get the token type
         /// </summary>
@@ -75,28 +86,30 @@ namespace Soup::Syntax
             return !(*this == rhs);
         }
 
+    private:
         /// <summary>
-        /// Write the contents of the token to the provided stream
+        /// Get the shared pointer to myself
         /// </summary>
-        void Write(std::ostream& stream) const
+        std::shared_ptr<const SyntaxToken> GetSelf() const
         {
-            // Write the leading trivia
-            for (auto& trivia : m_leadingTrivia)
-            {
-                trivia.Write(stream);
-            }
+            auto sharedSelf = m_self.lock();
+            if (sharedSelf == nullptr)
+                throw std::runtime_error("Failed to get self pointer for token.");
 
-            // Write the raw token value
-            stream << m_value;
+            return sharedSelf;
+        }
 
-            // Write the trailing trivia
-            for (auto& trivia : m_trailingTrivia)
-            {
-                trivia.Write(stream);
-            }
+        /// <summary>
+        /// Set the weak reference to myself
+        /// </summary>
+        template<typename T>
+        void SetSelf(std::shared_ptr<SyntaxToken> self) const
+        {
+            m_self = self;
         }
 
     private:
+        std::weak_ptr<const SyntaxToken> m_self;
         SyntaxTokenType m_type;
         std::string m_value;
         std::vector<SyntaxTrivia> m_leadingTrivia;

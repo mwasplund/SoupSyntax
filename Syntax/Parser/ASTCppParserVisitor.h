@@ -235,7 +235,7 @@ namespace Soup::Syntax
         size_t GetFirstNewlinePosition(const std::vector<antlr4::Token*>& tokens);
         std::vector<SyntaxTrivia> GetLeadingTrivia(size_t index);
         std::vector<SyntaxTrivia> GetTrailingTrivia(size_t index);
-        std::shared_ptr<const SyntaxToken> CreateToken(
+        std::shared_ptr<const InnerTree::SyntaxToken> CreateToken(
             SyntaxTokenType type,
             antlr4::tree::TerminalNode* terminalNode);
         std::shared_ptr<const InnerTree::SimpleIdentifierExpression> GetNextSimpleName(

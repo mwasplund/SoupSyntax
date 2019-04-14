@@ -25,7 +25,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreEqual(
                 *SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
-                uut->GetLeft(),
+                uut->GetLeftExpression(),
                 "Verify left expression matches.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
@@ -35,7 +35,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 *SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer, 
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "2")),
-                uut->GetRight(),
+                uut->GetRightExpression(),
                 "Verify right expression matches.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket),

@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include "Attribute.h"
 
 namespace Soup::Syntax::InnerTree
 {
@@ -14,27 +15,48 @@ namespace Soup::Syntax::InnerTree
         /// Initialize
         /// </summary>
         AttributeSpecifier(
-            std::shared_ptr<const SyntaxToken> outerOpenBracketTokens,
-            std::shared_ptr<const SyntaxToken> innerOpenBracketTokens,
+            std::shared_ptr<const SyntaxToken> outerOpenBracketToken,
+            std::shared_ptr<const SyntaxToken> innerOpenBracketToken,
             std::shared_ptr<const SyntaxSeparatorList<Attribute>> attributes,
-            std::shared_ptr<const SyntaxToken> innerCloseBracketTokens,
-            std::shared_ptr<const SyntaxToken> outerCloseBracketTokens) :
+            std::shared_ptr<const SyntaxToken> innerCloseBracketToken,
+            std::shared_ptr<const SyntaxToken> outerCloseBracketToken) :
             SyntaxNode(SyntaxNodeType::AttributeSpecifier),
-            m_outerOpenBracketTokens(std::move(outerOpenBracketTokens)),
-            m_innerOpenBracketTokens(std::move(innerOpenBracketTokens)),
+            m_outerOpenBracketToken(std::move(outerOpenBracketToken)),
+            m_innerOpenBracketToken(std::move(innerOpenBracketToken)),
             m_attributes(std::move(attributes)),
-            m_innerCloseBracketTokens(std::move(innerCloseBracketTokens)),
-            m_outerCloseBracketTokens(std::move(outerCloseBracketTokens))
+            m_innerCloseBracketToken(std::move(innerCloseBracketToken)),
+            m_outerCloseBracketToken(std::move(outerCloseBracketToken))
         {
         }
 
     public:
         /// <summary>
+        /// Create an outer node with this node and the provided parent
+        /// </summary>
+        std::shared_ptr<const OuterTree::AttributeSpecifier> CreateOuter(
+            const OuterTree::SyntaxNode* parentNode) const
+        {
+            return OuterTree::SyntaxWrapper::CreateOuter(
+                GetSelf<AttributeSpecifier>(),
+                parentNode);
+        }
+
+        /// <summary>
+        /// Create an outer node with this node and the provided parent
+        /// </summary>
+        virtual std::shared_ptr<const OuterTree::SyntaxNode> CreateOuterAny(
+            const OuterTree::SyntaxNode* parentNode) const override final
+        {
+            return std::static_pointer_cast<const OuterTree::SyntaxNode>(
+                CreateOuter(parentNode));
+        }
+
+        /// <summary>
         /// Gets the outer open bracket token
         /// </summary>
         const SyntaxToken& GetOuterOpenBracketToken() const
         {
-            return *m_outerOpenBracketTokens;
+            return *m_outerOpenBracketToken;
         }
 
         /// <summary>
@@ -42,7 +64,7 @@ namespace Soup::Syntax::InnerTree
         /// </summary>
         const SyntaxToken& GetInnerOpenBracketToken() const
         {
-            return *m_innerOpenBracketTokens;
+            return *m_innerOpenBracketToken;
         }
 
         /// <summary>
@@ -58,7 +80,7 @@ namespace Soup::Syntax::InnerTree
         /// </summary>
         const SyntaxToken& GetInnerCloseBracketToken() const
         {
-            return *m_innerCloseBracketTokens;
+            return *m_innerCloseBracketToken;
         }
 
         /// <summary>
@@ -66,7 +88,7 @@ namespace Soup::Syntax::InnerTree
         /// </summary>
         const SyntaxToken& GetOuterCloseBracketToken() const
         {
-            return *m_outerCloseBracketTokens;
+            return *m_outerCloseBracketToken;
         }
 
         /// <summary>
@@ -74,11 +96,11 @@ namespace Soup::Syntax::InnerTree
         /// </summary>
         bool operator ==(const AttributeSpecifier& rhs) const
         {
-            return *m_outerOpenBracketTokens == *rhs.m_outerOpenBracketTokens &&
-                *m_innerOpenBracketTokens == *rhs.m_innerOpenBracketTokens &&
+            return *m_outerOpenBracketToken == *rhs.m_outerOpenBracketToken &&
+                *m_innerOpenBracketToken == *rhs.m_innerOpenBracketToken &&
                 *m_attributes == *rhs.m_attributes &&
-                *m_innerCloseBracketTokens == *rhs.m_innerCloseBracketTokens &&
-                *m_outerCloseBracketTokens == *rhs.m_outerCloseBracketTokens;
+                *m_innerCloseBracketToken == *rhs.m_innerCloseBracketToken &&
+                *m_outerCloseBracketToken == *rhs.m_outerCloseBracketToken;
         }
 
         bool operator !=(const AttributeSpecifier& rhs) const
@@ -96,10 +118,10 @@ namespace Soup::Syntax::InnerTree
         }
 
     private:
-        std::shared_ptr<const SyntaxToken> m_outerOpenBracketTokens;
-        std::shared_ptr<const SyntaxToken> m_innerOpenBracketTokens;
+        std::shared_ptr<const SyntaxToken> m_outerOpenBracketToken;
+        std::shared_ptr<const SyntaxToken> m_innerOpenBracketToken;
         std::shared_ptr<const SyntaxSeparatorList<Attribute>> m_attributes;
-        std::shared_ptr<const SyntaxToken> m_innerCloseBracketTokens;
-        std::shared_ptr<const SyntaxToken> m_outerCloseBracketTokens;
+        std::shared_ptr<const SyntaxToken> m_innerCloseBracketToken;
+        std::shared_ptr<const SyntaxToken> m_outerCloseBracketToken;
     };
 }

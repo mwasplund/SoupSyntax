@@ -28,9 +28,30 @@ namespace Soup::Syntax::InnerTree
 
     public:
         /// <summary>
+        /// Create an outer node with this node and the provided parent
+        /// </summary>
+        std::shared_ptr<const OuterTree::SubscriptExpression> CreateOuter(
+            const OuterTree::SyntaxNode* parentNode) const
+        {
+            return OuterTree::SyntaxWrapper::CreateOuter(
+                GetSelf<SubscriptExpression>(),
+                parentNode);
+        }
+
+        /// <summary>
+        /// Create an outer node with this node and the provided parent
+        /// </summary>
+        virtual std::shared_ptr<const OuterTree::SyntaxNode> CreateOuterAny(
+            const OuterTree::SyntaxNode* parentNode) const override final
+        {
+            return std::static_pointer_cast<const OuterTree::SyntaxNode>(
+                CreateOuter(parentNode));
+        }
+
+        /// <summary>
         /// The left expression
         /// </summary>
-        const Expression& GetLeft() const
+        const Expression& GetLeftExpression() const
         {
             return *m_leftExpression;
         }
@@ -46,7 +67,7 @@ namespace Soup::Syntax::InnerTree
         /// <summary>
         /// The right expression
         /// </summary>
-        const Expression& GetRight() const
+        const Expression& GetRightExpression() const
         {
             return *m_rightExpression;
         }

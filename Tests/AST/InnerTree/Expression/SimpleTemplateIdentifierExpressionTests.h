@@ -33,7 +33,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 *SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
                     std::vector<std::shared_ptr<const Expression>>({}),
                     std::vector<std::shared_ptr<const SyntaxToken>>({})),
-                uut->GetTemplateArguments(),
+                uut->GetTemplateArgumentList(),
                 "Verify template arguments matches.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan),
@@ -82,7 +82,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     std::vector<std::shared_ptr<const SyntaxToken>>({
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma)
                     })),
-                uut->GetTemplateArguments(),
+                uut->GetTemplateArgumentList(),
                 "Verify template arguments matches.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan),

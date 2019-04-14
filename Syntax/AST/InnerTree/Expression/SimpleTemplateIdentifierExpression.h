@@ -28,6 +28,27 @@ namespace Soup::Syntax::InnerTree
 
     public:
         /// <summary>
+        /// Create an outer node with this node and the provided parent
+        /// </summary>
+        std::shared_ptr<const OuterTree::SimpleTemplateIdentifierExpression> CreateOuter(
+            const OuterTree::SyntaxNode* parentNode) const
+        {
+            return OuterTree::SyntaxWrapper::CreateOuter(
+                GetSelf<SimpleTemplateIdentifierExpression>(),
+                parentNode);
+        }
+
+        /// <summary>
+        /// Create an outer node with this node and the provided parent
+        /// </summary>
+        virtual std::shared_ptr<const OuterTree::SyntaxNode> CreateOuterAny(
+            const OuterTree::SyntaxNode* parentNode) const override final
+        {
+            return std::static_pointer_cast<const OuterTree::SyntaxNode>(
+                CreateOuter(parentNode));
+        }
+
+        /// <summary>
         /// Gets the identifier token
         /// </summary>
         const SyntaxToken& GetIdentifierToken() const
@@ -46,7 +67,7 @@ namespace Soup::Syntax::InnerTree
         /// <summary>
         /// Gets the template argument list
         /// </summary>
-        const SyntaxSeparatorList<Expression>& GetTemplateArguments() const
+        const SyntaxSeparatorList<Expression>& GetTemplateArgumentList() const
         {
             return *m_templateArgumentList;
         }

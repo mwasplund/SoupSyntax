@@ -71,8 +71,8 @@ class TestUtils
     }
 
     static void AreEqual(
-        const std::vector<std::shared_ptr<const SyntaxToken>>& expected,
-        const std::vector<std::shared_ptr<const SyntaxToken>>& actual,
+        const std::vector<std::shared_ptr<const InnerTree::SyntaxToken>>& expected,
+        const std::vector<std::shared_ptr<const InnerTree::SyntaxToken>>& actual,
         const std::string& message)
     {
         bool areEqual = std::equal(
@@ -80,7 +80,7 @@ class TestUtils
             end(expected),
             begin(actual),
             end(actual),
-            [](const std::shared_ptr<const SyntaxToken>& lhs, const std::shared_ptr<const SyntaxToken>& rhs)
+            [](const std::shared_ptr<const InnerTree::SyntaxToken>& lhs, const std::shared_ptr<const InnerTree::SyntaxToken>& rhs)
             {
                 return *lhs == *rhs;
             });
