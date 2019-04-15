@@ -2,9 +2,9 @@
 #include "TestUtils.h"
 #include "SoupAssert.h"
 
-namespace Soup::Syntax::OuterTree::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
-    class DeclarationStatementTests
+    class OuterTreeDeclarationStatementTests
     {
     public:
         // [[Fact]]
@@ -26,7 +26,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                                     nullptr),
                             }),
                             std::vector<std::shared_ptr<const SyntaxToken>>())),
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)));
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)))->CreateOuter(nullptr);
 
             Assert::AreEqual(
                 SyntaxNodeType::DeclarationStatement,
@@ -72,11 +72,11 @@ namespace Soup::Syntax::OuterTree::UnitTests
                                     nullptr),
                             }),
                             std::vector<std::shared_ptr<const SyntaxToken>>())),
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)));
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)))->CreateOuter(nullptr);
 
             Assert::AreEqual(
-                std::vector<SyntaxNodeChild>({
-                    SyntaxNodeChild(
+                std::vector<OuterTree::SyntaxNodeChild>({
+                    TestUtils::CreateChild(
                         SyntaxFactory::CreateSimpleDeclaration(
                             SyntaxFactory::CreateDeclarationSpecifier(
                                 SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
@@ -117,7 +117,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                                     nullptr),
                             }),
                             std::vector<std::shared_ptr<const SyntaxToken>>())),
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)));
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)))->CreateOuter(nullptr);
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateDeclarationStatement(
@@ -160,7 +160,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                                     nullptr),
                             }),
                             std::vector<std::shared_ptr<const SyntaxToken>>())),
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)));
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateDeclarationStatement(

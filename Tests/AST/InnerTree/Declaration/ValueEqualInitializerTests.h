@@ -4,7 +4,7 @@
 
 namespace Soup::Syntax::InnerTree::UnitTests
 {
-    class ValueEqualInitializerTests
+    class InnerTreeValueEqualInitializerTests
     {
     public:
         // [[Fact]]

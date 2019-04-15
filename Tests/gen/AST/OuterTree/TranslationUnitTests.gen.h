@@ -1,11 +1,11 @@
 #pragma once
-#include "TranslationUnitTests.h"
-#include "../RunTest.h"
+#include "AST/OuterTree/TranslationUnitTests.h"
+#include "RunTest.h"
 
-TestState RunTranslationUnitTests()
+TestState RunOuterTreeTranslationUnitTests()
 {
-    std::string className = "TranslationUnitTests";
-    auto testClass = std::make_unique<Soup::Syntax::OuterTree::UnitTests::TranslationUnitTests>();
+    std::string className = "OuterTree::TranslationUnitTests";
+    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::OuterTreeTranslationUnitTests>();
     TestState state = { 0, 0 };
 
     state += RunTest(

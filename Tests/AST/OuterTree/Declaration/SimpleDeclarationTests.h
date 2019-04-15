@@ -2,9 +2,9 @@
 #include "TestUtils.h"
 #include "SoupAssert.h"
 
-namespace Soup::Syntax::OuterTree::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
-    class SimpleDeclarationTests
+    class OuterTreeSimpleDeclarationTests
     {
     public:
         // [[Fact]]
@@ -26,20 +26,20 @@ namespace Soup::Syntax::OuterTree::UnitTests
                                 nullptr),
                         }),
                         std::vector<std::shared_ptr<const SyntaxToken>>())),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))->CreateOuter(nullptr);
 
             Assert::AreEqual(
                 SyntaxNodeType::SimpleDeclaration,
                 uut->GetType(),
                 "Verify has correct type.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateDeclarationSpecifier(
                     SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                 uut->GetDeclarationSpecifier(),
                 "Verify declaration specifier matches.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateInitializerDeclaratorList(
                     SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
                         std::vector<std::shared_ptr<const InitializerDeclarator>>(
@@ -52,7 +52,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                         std::vector<std::shared_ptr<const SyntaxToken>>())),
                 uut->GetInitializerDeclaratorList(),
                 "Verify initializer declarator list matches.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon),
                 uut->GetSemicolonToken(),
                 "Verify semicolon token matches.");
@@ -77,17 +77,17 @@ namespace Soup::Syntax::OuterTree::UnitTests
                                 nullptr),
                         }),
                         std::vector<std::shared_ptr<const SyntaxToken>>())),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))->CreateOuter(nullptr);
 
             Assert::AreEqual(
-                std::vector<SyntaxNodeChild>(
+                std::vector<OuterTree::SyntaxNodeChild>(
                 {
-                    SyntaxNodeChild(
+                    TestUtils::CreateChild(
                         SyntaxFactory::CreateDeclarationSpecifier(
                             SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                                 PrimitiveDataType::Int,
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)))),
-                    SyntaxNodeChild(
+                    TestUtils::CreateChild(
                         SyntaxFactory::CreateInitializerDeclaratorList(
                             SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
                                 std::vector<std::shared_ptr<const InitializerDeclarator>>(
@@ -98,7 +98,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                                         nullptr),
                                 }),
                                 std::vector<std::shared_ptr<const SyntaxToken>>()))),
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 }),
                 uut->GetChildren(),
                 "Verify children match.");
@@ -123,7 +123,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                                 nullptr),
                         }),
                         std::vector<std::shared_ptr<const SyntaxToken>>())),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))->CreateOuter(nullptr);
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateSimpleDeclaration(
@@ -165,7 +165,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                                 nullptr),
                         }),
                         std::vector<std::shared_ptr<const SyntaxToken>>())),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateSimpleDeclaration(
@@ -207,7 +207,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                                 nullptr),
                         }),
                         std::vector<std::shared_ptr<const SyntaxToken>>())),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateSimpleDeclaration(
@@ -249,7 +249,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                                 nullptr),
                         }),
                         std::vector<std::shared_ptr<const SyntaxToken>>())),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateSimpleDeclaration(

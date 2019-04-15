@@ -5,7 +5,7 @@
 TestState RunInnerTreeParameterListTests()
 {
     std::string className = "InnerTree::ParameterListTests";
-    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::ParameterListTests>();
+    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::InnerTreeParameterListTests>();
     TestState state = { 0, 0 };
 
     state += RunTest(

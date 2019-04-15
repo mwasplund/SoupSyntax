@@ -5,7 +5,7 @@
 TestState RunOuterTreeValueEqualInitializerTests()
 {
     std::string className = "OuterTree::ValueEqualInitializerTests";
-    auto testClass = std::make_unique<Soup::Syntax::OuterTree::UnitTests::ValueEqualInitializerTests>();
+    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::OuterTreeValueEqualInitializerTests>();
     TestState state = { 0, 0 };
 
     state += RunTest(

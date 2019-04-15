@@ -5,7 +5,7 @@
 TestState RunInnerTreeInitializerDeclaratorListTests()
 {
     std::string className = "InnerTree::InitializerDeclaratorListTests";
-    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::InitializerDeclaratorListTests>();
+    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::InnerTreeInitializerDeclaratorListTests>();
     TestState state = { 0, 0 };
 
     state += RunTest(

@@ -5,7 +5,7 @@
 TestState RunOuterTreeSimpleTemplateIdentifierExpressionTests()
 {
     std::string className = "OuterTree::SimpleTemplateIdentifierExpressionTests";
-    auto testClass = std::make_unique<Soup::Syntax::OuterTree::UnitTests::SimpleTemplateIdentifierExpressionTests>();
+    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::OuterTreeSimpleTemplateIdentifierExpressionTests>();
     TestState state = { 0, 0 };
 
     state += RunTest(

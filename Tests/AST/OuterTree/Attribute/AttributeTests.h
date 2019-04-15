@@ -1,25 +1,24 @@
 #pragma once
 #include "SoupAssert.h"
-#include "../TestUtils.h"
+#include "TestUtils.h"
 
-namespace Soup::Syntax::OuterTree::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
-    class AttributeTests
+    class OuterTreeAttributeTests
     {
     public:
         // [[Fact]]
         void Initialize()
         {
-            auto innerNode = SyntaxFactory::CreateAttribute(
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name"));
-            auto uut = innerNode->CreateOuter(nullptr);
+            auto uut = SyntaxFactory::CreateAttribute(
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name"))->CreateOuter(nullptr);
 
             Assert::AreEqual(
                 SyntaxNodeType::Attribute,
                 uut->GetType(),
                 "Verify has correct type.");
-            Assert::AreEqual(
-                *SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name")->CreateOuter(nullptr),
+            TestUtils::AreEqual(
+                *SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name"),
                 uut->GetIdentifierToken(),
                 "Verify identifier matches.");
         }
@@ -27,13 +26,12 @@ namespace Soup::Syntax::OuterTree::UnitTests
         // [[Fact]]
         void GetChildren()
         {
-            auto innerNode = SyntaxFactory::CreateAttribute(
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name"));
-            auto uut = innerNode->CreateOuter(nullptr);
+            auto uut = SyntaxFactory::CreateAttribute(
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name"))->CreateOuter(nullptr);
 
             Assert::AreEqual(
-                std::vector<SyntaxNodeChild>({
-                    SyntaxNodeChild(SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name")->CreateOuter(nullptr)),
+                std::vector<OuterTree::SyntaxNodeChild>({
+                    TestUtils::CreateChild(SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name")),
                 }),
                 uut->GetChildren(),
                 "Verify children match.");
@@ -42,13 +40,12 @@ namespace Soup::Syntax::OuterTree::UnitTests
         // [[Fact]]
         void OperatorEqual()
         {
-            auto innerNode = SyntaxFactory::CreateAttribute(
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name"));
-            auto uut = innerNode->CreateOuter(nullptr);
+            auto uut = SyntaxFactory::CreateAttribute(
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name"))->CreateOuter(nullptr);
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateAttribute(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name"))->CreateOuter(nullptr),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name")),
                 uut,
                 "Verify matches.");
         }
@@ -56,13 +53,12 @@ namespace Soup::Syntax::OuterTree::UnitTests
         // [[Fact]]
         void OperatorNotEqualIdentifier()
         {
-            auto innerNode = SyntaxFactory::CreateAttribute(
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name"));
-            auto uut = innerNode->CreateOuter(nullptr);
+            auto uut = SyntaxFactory::CreateAttribute(
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name"))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateAttribute(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name2"))->CreateOuter(nullptr),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name2")),
                 uut,
                 "Verify do not match.");
         }

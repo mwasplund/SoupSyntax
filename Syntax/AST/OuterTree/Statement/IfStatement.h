@@ -22,7 +22,10 @@ namespace Soup::Syntax::OuterTree
             m_conditionExpression(innerNode->GetConditionExpression().CreateOuter<Expression>(this)),
             m_closeParenthesisToken(innerNode->GetCloseParenthesisToken().CreateOuter(this)),
             m_statement(innerNode->GetStatement().CreateOuter<Statement>(this)),
-            m_elseClause(innerNode->GetElseClause().CreateOuter(this))
+            m_elseClause(
+                innerNode->HasElseClause() ?
+                    innerNode->GetElseClause().CreateOuter(this) :
+                    nullptr)
         {
         }
 

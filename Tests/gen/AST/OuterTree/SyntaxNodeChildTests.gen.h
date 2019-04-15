@@ -5,7 +5,7 @@
 TestState RunOuterTreeSyntaxNodeChildTests()
 {
     std::string className = "OuterTree::SyntaxNodeChildTests";
-    auto testClass = std::make_unique<Soup::Syntax::OuterTree::UnitTests::SyntaxNodeChildTests>();
+    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::OuterTreeSyntaxNodeChildTests>();
     TestState state = { 0, 0 };
 
     state += RunTest(

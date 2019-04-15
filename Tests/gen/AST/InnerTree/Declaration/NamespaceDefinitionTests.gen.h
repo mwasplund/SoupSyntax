@@ -5,7 +5,7 @@
 TestState RunInnerTreeNamespaceDefinitionTests()
 {
     std::string className = "InnerTree::NamespaceDefinitionTests";
-    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::NamespaceDefinitionTests>();
+    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::InnerTreeNamespaceDefinitionTests>();
     TestState state = { 0, 0 };
 
     state += RunTest(

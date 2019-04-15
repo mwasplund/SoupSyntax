@@ -5,7 +5,7 @@
 TestState RunOuterTreeElseClauseTests()
 {
     std::string className = "OuterTree::ElseClauseTests";
-    auto testClass = std::make_unique<Soup::Syntax::OuterTree::UnitTests::ElseClauseTests>();
+    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::OuterTreeElseClauseTests>();
     TestState state = { 0, 0 };
 
     state += RunTest(

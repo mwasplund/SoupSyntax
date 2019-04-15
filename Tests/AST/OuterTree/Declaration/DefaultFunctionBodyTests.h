@@ -2,9 +2,9 @@
 #include "TestUtils.h"
 #include "SoupAssert.h"
 
-namespace Soup::Syntax::OuterTree::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
-    class DefaultFunctionBodyTests
+    class OuterTreeDefaultFunctionBodyTests
     {
     public:
         // [[Fact]]
@@ -13,21 +13,21 @@ namespace Soup::Syntax::OuterTree::UnitTests
             auto uut = SyntaxFactory::CreateDefaultFunctionBody(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Default),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))->CreateOuter(nullptr);
 
             Assert::AreEqual(
                 SyntaxNodeType::DefaultFunctionBody,
                 uut->GetType(),
                 "Verify has correct type.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                 uut->GetEqualToken(),
                 "Verify equal token matches.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Default),
                 uut->GetDefaultToken(),
                 "Verify default token matches.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon),
                 uut->GetSemicolonToken(),
                 "Verify semicolon token matches.");
@@ -39,13 +39,13 @@ namespace Soup::Syntax::OuterTree::UnitTests
             auto uut = SyntaxFactory::CreateDefaultFunctionBody(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Default),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))->CreateOuter(nullptr);
 
             Assert::AreEqual(
-                std::vector<SyntaxNodeChild>({
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal)),
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Default)),
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
+                std::vector<OuterTree::SyntaxNodeChild>({
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal)),
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Default)),
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 }),
                 uut->GetChildren(),
                 "Verify children match.");
@@ -57,7 +57,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
             auto uut = SyntaxFactory::CreateDefaultFunctionBody(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Default),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))->CreateOuter(nullptr);
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateDefaultFunctionBody(
@@ -74,7 +74,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
             auto uut = SyntaxFactory::CreateDefaultFunctionBody(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Default),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateDefaultFunctionBody(
@@ -97,7 +97,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
             auto uut = SyntaxFactory::CreateDefaultFunctionBody(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Default),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateDefaultFunctionBody(
@@ -120,7 +120,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
             auto uut = SyntaxFactory::CreateDefaultFunctionBody(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Default),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateDefaultFunctionBody(

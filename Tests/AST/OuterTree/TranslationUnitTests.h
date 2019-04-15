@@ -2,9 +2,9 @@
 #include "TestUtils.h"
 #include "SoupAssert.h"
 
-namespace Soup::Syntax::OuterTree::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
-    class TranslationUnitTests
+    class OuterTreeTranslationUnitTests
     {
     public:
         // [[Fact]]
@@ -13,18 +13,18 @@ namespace Soup::Syntax::OuterTree::UnitTests
             auto uut = SyntaxFactory::CreateTranslationUnit(
                 SyntaxFactory::CreateSyntaxList<Declaration>(
                     std::vector<std::shared_ptr<const Declaration>>()),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile))->CreateOuter(nullptr);
 
             Assert::AreEqual(
                 SyntaxNodeType::TranslationUnit,
                 uut->GetType(),
                 "Verify has correct type.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateSyntaxList<Declaration>(
                     std::vector<std::shared_ptr<const Declaration>>()),
                 uut->GetDeclarations(),
                 "Verify declarations matches.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile),
                 uut->GetEndOfFileToken(),
                 "Verify end of tile token matches.");
@@ -55,13 +55,13 @@ namespace Soup::Syntax::OuterTree::UnitTests
                                     std::vector<std::shared_ptr<const SyntaxToken>>())),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                     })),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile))->CreateOuter(nullptr);
 
             Assert::AreEqual(
                 SyntaxNodeType::TranslationUnit,
                 uut->GetType(),
                 "Verify has correct type.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateSyntaxList<Declaration>(
                     std::vector<std::shared_ptr<const Declaration>>({
                         SyntaxFactory::CreateEmptyDeclaration(
@@ -85,7 +85,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     })),
                 uut->GetDeclarations(),
                 "Verify declarations matches.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile),
                 uut->GetEndOfFileToken(),
                 "Verify end of tile token matches.");
@@ -97,12 +97,12 @@ namespace Soup::Syntax::OuterTree::UnitTests
             auto uut = SyntaxFactory::CreateTranslationUnit(
                 SyntaxFactory::CreateSyntaxList<Declaration>(
                     std::vector<std::shared_ptr<const Declaration>>()),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile))->CreateOuter(nullptr);
 
             Assert::AreEqual(
-                std::vector<SyntaxNodeChild>(
+                std::vector<OuterTree::SyntaxNodeChild>(
                 {
-                    SyntaxNodeChild(
+                    TestUtils::CreateChild(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile)),
                 }),
                 uut->GetChildren(),
@@ -134,15 +134,15 @@ namespace Soup::Syntax::OuterTree::UnitTests
                                     std::vector<std::shared_ptr<const SyntaxToken>>())),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                     })),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile))->CreateOuter(nullptr);
 
             Assert::AreEqual(
-                std::vector<SyntaxNodeChild>(
+                std::vector<OuterTree::SyntaxNodeChild>(
                 {
-                    SyntaxNodeChild(
+                    TestUtils::CreateChild(
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))),
-                    SyntaxNodeChild(
+                    TestUtils::CreateChild(
                         SyntaxFactory::CreateSimpleDeclaration(
                             SyntaxFactory::CreateDeclarationSpecifier(
                                 SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
@@ -159,7 +159,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                                     }),
                                     std::vector<std::shared_ptr<const SyntaxToken>>())),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))),
-                    SyntaxNodeChild(
+                    TestUtils::CreateChild(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile)),
                 }),
                 uut->GetChildren(),
@@ -175,7 +175,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                     })),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile))->CreateOuter(nullptr);
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateTranslationUnit(
@@ -198,7 +198,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                     })),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateTranslationUnit(
@@ -218,7 +218,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                     })),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateTranslationUnit(
@@ -246,7 +246,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                     })),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateTranslationUnit(

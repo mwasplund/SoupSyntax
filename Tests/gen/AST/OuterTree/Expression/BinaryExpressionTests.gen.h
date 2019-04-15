@@ -5,7 +5,7 @@
 TestState RunOuterTreeBinaryExpressionTests()
 {
     std::string className = "OuterTree::BinaryExpressionTests";
-    auto testClass = std::make_unique<Soup::Syntax::OuterTree::UnitTests::BinaryExpressionTests>();
+    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::OuterTreeBinaryExpressionTests>();
     TestState state = { 0, 0 };
 
     state += RunTest(

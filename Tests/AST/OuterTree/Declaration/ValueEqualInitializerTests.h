@@ -2,9 +2,9 @@
 #include "TestUtils.h"
 #include "SoupAssert.h"
 
-namespace Soup::Syntax::OuterTree::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
-    class ValueEqualInitializerTests
+    class OuterTreeValueEqualInitializerTests
     {
     public:
         // [[Fact]]
@@ -15,13 +15,13 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1")))->CreateOuter(nullptr);
 
             Assert::AreEqual(
                 SyntaxNodeType::ValueEqualInitializer,
                 uut->GetType(),
                 "Verify has correct type.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                 uut->GetEqualToken(),
                 "Verify equal token matches.");
@@ -41,12 +41,12 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1")))->CreateOuter(nullptr);
 
             Assert::AreEqual(
-                std::vector<SyntaxNodeChild>({
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal)),
-                    SyntaxNodeChild(
+                std::vector<OuterTree::SyntaxNodeChild>({
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal)),
+                    TestUtils::CreateChild(
                         SyntaxFactory::CreateLiteralExpression(
                             LiteralType::Integer,
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1"))),
@@ -63,7 +63,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1")))->CreateOuter(nullptr);
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateValueEqualInitializer(
@@ -83,7 +83,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1")))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateValueEqualInitializer(
@@ -108,7 +108,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1")))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateValueEqualInitializer(

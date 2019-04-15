@@ -2,22 +2,22 @@
 #include "TestUtils.h"
 #include "SoupAssert.h"
 
-namespace Soup::Syntax::OuterTree::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
-    class EnumeratorDefinitionTests
+    class OuterTreeEnumeratorDefinitionTests
     {
     public:
         // [[Fact]]
         void Initialize()
         {
             auto uut = SyntaxFactory::CreateEnumeratorDefinition(
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "EnumValue"));
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "EnumValue"))->CreateOuter(nullptr);
 
             Assert::AreEqual(
                 SyntaxNodeType::EnumeratorDefinition,
                 uut->GetType(),
                 "Verify has correct type.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "EnumValue"),
                 uut->GetIdentifierToken(),
                 "Verify enum token matches.");
@@ -27,12 +27,12 @@ namespace Soup::Syntax::OuterTree::UnitTests
         void GetChildren()
         {
             auto uut = SyntaxFactory::CreateEnumeratorDefinition(
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "EnumValue"));
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "EnumValue"))->CreateOuter(nullptr);
 
             Assert::AreEqual(
-                std::vector<SyntaxNodeChild>(
+                std::vector<OuterTree::SyntaxNodeChild>(
                 {
-                    SyntaxNodeChild(
+                    TestUtils::CreateChild(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "EnumValue")),
                 }),
                 uut->GetChildren(),
@@ -43,7 +43,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
         void OperatorEqual()
         {
             auto uut = SyntaxFactory::CreateEnumeratorDefinition(
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "EnumValue"));
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "EnumValue"))->CreateOuter(nullptr);
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateEnumeratorDefinition(
@@ -56,7 +56,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
         void OperatorNotEqualIdentifierToken()
         {
             auto uut = SyntaxFactory::CreateEnumeratorDefinition(
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "EnumValue"));
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "EnumValue"))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateEnumeratorDefinition(

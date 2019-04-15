@@ -5,7 +5,7 @@
 TestState RunInnerTreeEmptyDeclarationTests()
 {
     std::string className = "InnerTree::EmptyDeclarationTests";
-    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::EmptyDeclarationTests>();
+    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::InnerTreeEmptyDeclarationTests>();
     TestState state = { 0, 0 };
 
     state += RunTest(

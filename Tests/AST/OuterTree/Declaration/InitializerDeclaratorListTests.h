@@ -2,9 +2,9 @@
 #include "TestUtils.h"
 #include "SoupAssert.h"
 
-namespace Soup::Syntax::OuterTree::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
-    class InitializerDeclaratorListTests
+    class OuterTreeInitializerDeclaratorListTests
     {
     public:
         // [[Fact]]
@@ -24,13 +24,13 @@ namespace Soup::Syntax::OuterTree::UnitTests
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                             nullptr),
                     }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>()));
+                    std::vector<std::shared_ptr<const SyntaxToken>>()))->CreateOuter(nullptr);
 
             Assert::AreEqual(
                 SyntaxNodeType::InitializerDeclaratorList,
                 uut->GetType(),
                 "Verify has correct type.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
                     std::vector<std::shared_ptr<const InitializerDeclarator>>(
                     {
@@ -67,17 +67,17 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     }),
                     std::vector<std::shared_ptr<const SyntaxToken>>({
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma),
-                    })));
+                    })))->CreateOuter(nullptr);
 
             Assert::AreEqual(
-                std::vector<SyntaxNodeChild>({
-                    SyntaxNodeChild(
+                std::vector<OuterTree::SyntaxNodeChild>({
+                    TestUtils::CreateChild(
                         SyntaxFactory::CreateInitializerDeclarator(
                             SyntaxFactory::CreateSimpleIdentifierExpression(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                             nullptr)),
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma)),
-                    SyntaxNodeChild(
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma)),
+                    TestUtils::CreateChild(
                         SyntaxFactory::CreateInitializerDeclarator(
                             SyntaxFactory::CreateSimpleIdentifierExpression(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
@@ -104,7 +104,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                             nullptr),
                     }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>()));
+                    std::vector<std::shared_ptr<const SyntaxToken>>()))->CreateOuter(nullptr);
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateInitializerDeclaratorList(
@@ -142,7 +142,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                             nullptr),
                     }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>()));
+                    std::vector<std::shared_ptr<const SyntaxToken>>()))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateInitializerDeclaratorList(
@@ -176,7 +176,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                             nullptr),
                     }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>()));
+                    std::vector<std::shared_ptr<const SyntaxToken>>()))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateInitializerDeclaratorList(

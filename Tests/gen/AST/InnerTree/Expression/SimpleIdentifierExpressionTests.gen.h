@@ -5,7 +5,7 @@
 TestState RunInnerTreeSimpleIdentifierExpressionTests()
 {
     std::string className = "InnerTree::SimpleIdentifierExpressionTests";
-    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::SimpleIdentifierExpressionTests>();
+    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::InnerTreeSimpleIdentifierExpressionTests>();
     TestState state = { 0, 0 };
 
     state += RunTest(

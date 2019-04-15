@@ -1,9 +1,9 @@
 #pragma once
 #include "SoupAssert.h"
 
-namespace Soup::Syntax::OuterTree::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
-    class BinaryExpressionTests
+    class OuterTreeBinaryExpressionTests
     {
     public:
         // [[Fact]]
@@ -17,14 +17,14 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Plus),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "2")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "2")))->CreateOuter(nullptr);
 
             Assert::AreEqual(
                 SyntaxNodeType::BinaryExpression,
                 uut->GetType(),
                 "Verify has correct type.");
             Assert::AreEqual(BinaryOperator::Addition, uut->GetOperator(), "Verify operator matches.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Plus),
                 uut->GetOperatorToken(),
                 "Verify operator token matches.");
@@ -53,16 +53,16 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Plus),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "2")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "2")))->CreateOuter(nullptr);
 
             Assert::AreEqual(
-                std::vector<SyntaxNodeChild>({
-                    SyntaxNodeChild(
+                std::vector<OuterTree::SyntaxNodeChild>({
+                    TestUtils::CreateChild(
                         SyntaxFactory::CreateLiteralExpression(
                             LiteralType::Integer,
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1"))),
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Plus)),
-                    SyntaxNodeChild(
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Plus)),
+                    TestUtils::CreateChild(
                         SyntaxFactory::CreateLiteralExpression(
                             LiteralType::Integer,
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "2"))),
@@ -82,7 +82,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Plus),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "2")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "2")))->CreateOuter(nullptr);
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateBinaryExpression(
@@ -109,7 +109,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Plus),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "2")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "2")))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateBinaryExpression(
@@ -136,7 +136,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Plus),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "2")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "2")))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateBinaryExpression(
@@ -163,7 +163,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Minus),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "2")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "2")))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateBinaryExpression(
@@ -190,7 +190,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Plus),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "2")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "2")))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateBinaryExpression(

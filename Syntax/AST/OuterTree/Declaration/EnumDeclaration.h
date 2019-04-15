@@ -18,8 +18,14 @@ namespace Soup::Syntax::OuterTree
             const SyntaxNode* parentNode) :
             Declaration(innerNode, parentNode),
             m_enumToken(innerNode->GetEnumToken().CreateOuter(this)),
-            m_classToken(innerNode->GetClassToken().CreateOuter(this)),
-            m_identifierToken(innerNode->GetIdentifierToken().CreateOuter(this)),
+            m_classToken(
+                innerNode->HasClassToken() ?
+                    innerNode->GetClassToken().CreateOuter(this) :
+                    nullptr),
+            m_identifierToken(
+                innerNode->HasIdentifierToken() ?
+                    innerNode->GetIdentifierToken().CreateOuter(this) :
+                    nullptr),
             m_openBraceToken(innerNode->GetOpenBraceToken().CreateOuter(this)),
             m_enumeratorList(innerNode->GetEnumeratorList().CreateOuter<EnumeratorDefinition>(this)),
             m_closeBraceToken(innerNode->GetCloseBraceToken().CreateOuter(this))

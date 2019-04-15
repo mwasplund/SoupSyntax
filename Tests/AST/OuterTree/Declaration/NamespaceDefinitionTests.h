@@ -2,9 +2,9 @@
 #include "TestUtils.h"
 #include "SoupAssert.h"
 
-namespace Soup::Syntax::OuterTree::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
-    class NamespaceDefinitionTests
+    class OuterTreeNamespaceDefinitionTests
     {
     public:
         // [[Fact]]
@@ -18,32 +18,32 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 SyntaxFactory::CreateSyntaxList<Declaration>(
                     std::vector<std::shared_ptr<const Declaration>>()),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace))->CreateOuter(nullptr);
 
             Assert::AreEqual(
                 SyntaxNodeType::NamespaceDefinition,
                 uut->GetType(),
                 "Verify has correct type.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Namespace),
                 uut->GetNamespaceToken(),
                 "Verify namespace token matches.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateSyntaxSeparatorList<SyntaxToken>(
                     std::vector<std::shared_ptr<const SyntaxToken>>(),
                     std::vector<std::shared_ptr<const SyntaxToken>>()),
                 uut->GetNameIdentifierList(),
                 "Verify name identifier list matches.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 uut->GetOpenBraceToken(),
                 "Verify left brace token matches.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateSyntaxList<Declaration>(
                     std::vector<std::shared_ptr<const Declaration>>()),
                 uut->GetBody(),
                 "Verify the body matches.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace),
                 uut->GetCloseBraceToken(),
                 "Verify right brace token matches.");
@@ -69,17 +69,17 @@ namespace Soup::Syntax::OuterTree::UnitTests
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                     })),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace))->CreateOuter(nullptr);
 
             Assert::AreEqual(
                 SyntaxNodeType::NamespaceDefinition,
                 uut->GetType(),
                 "Verify has correct type.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Namespace),
                 uut->GetNamespaceToken(),
                 "Verify namespace token matches.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateSyntaxSeparatorList<SyntaxToken>(
                     std::vector<std::shared_ptr<const SyntaxToken>>({
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "BaseNamespace"),
@@ -90,11 +90,11 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     })),
                 uut->GetNameIdentifierList(),
                 "Verify name identifier list matches.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 uut->GetOpenBraceToken(),
                 "Verify left brace token matches.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateSyntaxList<Declaration>(
                     std::vector<std::shared_ptr<const Declaration>>(
                     {
@@ -103,7 +103,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     })),
                 uut->GetBody(),
                 "Verify the body matches.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace),
                 uut->GetCloseBraceToken(),
                 "Verify right brace token matches.");
@@ -120,14 +120,14 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 SyntaxFactory::CreateSyntaxList<Declaration>(
                     std::vector<std::shared_ptr<const Declaration>>({})),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace))->CreateOuter(nullptr);
 
             Assert::AreEqual(
-                std::vector<SyntaxNodeChild>(
+                std::vector<OuterTree::SyntaxNodeChild>(
                 {
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Namespace)),
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace)),
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Namespace)),
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace)),
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 }),
                 uut->GetChildren(),
                 "Verify children match.");
@@ -153,20 +153,20 @@ namespace Soup::Syntax::OuterTree::UnitTests
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                     })),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace))->CreateOuter(nullptr);
 
             Assert::AreEqual(
-                std::vector<SyntaxNodeChild>(
+                std::vector<OuterTree::SyntaxNodeChild>(
                 {
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Namespace)),
-                    SyntaxNodeChild(SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "BaseNamespace")),
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon)),
-                    SyntaxNodeChild(SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "SubNamespace")),
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace)),
-                    SyntaxNodeChild(
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Namespace)),
+                    TestUtils::CreateChild(SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "BaseNamespace")),
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon)),
+                    TestUtils::CreateChild(SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "SubNamespace")),
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace)),
+                    TestUtils::CreateChild(
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))),
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 }),
                 uut->GetChildren(),
                 "Verify children match.");
@@ -187,7 +187,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                     })),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace))->CreateOuter(nullptr);
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateNamespaceDefinition(
@@ -227,7 +227,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                     })),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace))->CreateOuter(nullptr);
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateNamespaceDefinition(
@@ -272,7 +272,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                     })),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateNamespaceDefinition(
@@ -322,7 +322,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                     })),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateNamespaceDefinition(
@@ -362,7 +362,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                     })),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateNamespaceDefinition(
@@ -407,7 +407,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                     })),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateNamespaceDefinition(
@@ -457,7 +457,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                     })),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateNamespaceDefinition(
@@ -498,7 +498,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                     })),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateNamespaceDefinition(

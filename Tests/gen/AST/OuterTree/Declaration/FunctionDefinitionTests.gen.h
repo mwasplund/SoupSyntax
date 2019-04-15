@@ -5,7 +5,7 @@
 TestState RunOuterTreeFunctionDefinitionTests()
 {
     std::string className = "OuterTree::FunctionDefinitionTests";
-    auto testClass = std::make_unique<Soup::Syntax::OuterTree::UnitTests::FunctionDefinitionTests>();
+    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::OuterTreeFunctionDefinitionTests>();
     TestState state = { 0, 0 };
 
     state += RunTest(

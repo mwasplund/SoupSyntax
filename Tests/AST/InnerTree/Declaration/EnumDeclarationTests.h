@@ -4,7 +4,7 @@
 
 namespace Soup::Syntax::InnerTree::UnitTests
 {
-    class EnumDeclarationTests
+    class InnerTreeEnumDeclarationTests
     {
     public:
         // [[Fact]]

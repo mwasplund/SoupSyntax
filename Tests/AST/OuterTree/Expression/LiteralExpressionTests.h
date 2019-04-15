@@ -1,9 +1,9 @@
 #pragma once
 #include "SoupAssert.h"
 
-namespace Soup::Syntax::OuterTree::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
-    class LiteralExpressionTests
+    class OuterTreeLiteralExpressionTests
     {
     public:
         // [[Fact]]
@@ -11,14 +11,14 @@ namespace Soup::Syntax::OuterTree::UnitTests
         {
             auto uut = SyntaxFactory::CreateLiteralExpression(
                 LiteralType::Integer,
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1"));
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1"))->CreateOuter(nullptr);
 
             Assert::AreEqual(
                 SyntaxNodeType::LiteralExpression,
                 uut->GetType(),
                 "Verify has correct type.");
             Assert::AreEqual(LiteralType::Integer, uut->GetLiteralType(), "Verify type matches.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1"),
                 uut->GetToken(),
                 "Verify value matches.");
@@ -29,11 +29,11 @@ namespace Soup::Syntax::OuterTree::UnitTests
         {
             auto uut = SyntaxFactory::CreateLiteralExpression(
                 LiteralType::Integer,
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1"));
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1"))->CreateOuter(nullptr);
 
             Assert::AreEqual(
-                std::vector<SyntaxNodeChild>({
-                    SyntaxNodeChild(SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1")),
+                std::vector<OuterTree::SyntaxNodeChild>({
+                    TestUtils::CreateChild(SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1")),
                 }),
                 uut->GetChildren(),
                 "Verify children match.");
@@ -44,7 +44,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
         {
             auto uut = SyntaxFactory::CreateLiteralExpression(
                 LiteralType::Integer,
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1"));
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1"))->CreateOuter(nullptr);
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateLiteralExpression(
@@ -59,7 +59,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
         {
             auto uut = SyntaxFactory::CreateLiteralExpression(
                 LiteralType::Integer,
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1"));
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1"))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateLiteralExpression(
@@ -74,7 +74,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
         {
             auto uut = SyntaxFactory::CreateLiteralExpression(
                 LiteralType::Integer,
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1"));
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1"))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateLiteralExpression(

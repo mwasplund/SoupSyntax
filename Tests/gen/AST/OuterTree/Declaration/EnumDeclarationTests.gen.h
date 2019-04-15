@@ -5,7 +5,7 @@
 TestState RunOuterTreeEnumDeclarationTests()
 {
     std::string className = "OuterTree::EnumDeclarationTests";
-    auto testClass = std::make_unique<Soup::Syntax::OuterTree::UnitTests::EnumDeclarationTests>();
+    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::OuterTreeEnumDeclarationTests>();
     TestState state = { 0, 0 };
 
     state += RunTest(

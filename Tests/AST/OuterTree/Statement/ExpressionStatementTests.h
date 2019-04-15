@@ -2,9 +2,9 @@
 #include "TestUtils.h"
 #include "SoupAssert.h"
 
-namespace Soup::Syntax::OuterTree::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
-    class ExpressionStatementTests
+    class OuterTreeExpressionStatementTests
     {
     public:
         // [[Fact]]
@@ -13,7 +13,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
             auto uut = SyntaxFactory::CreateExpressionStatement(
                 SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))->CreateOuter(nullptr);
 
             Assert::AreEqual(
                 SyntaxNodeType::ExpressionStatement,
@@ -24,7 +24,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 uut->GetExpression(),
                 "Verify expression matches.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon),
                 uut->GetSemicolonToken(),
                 "Verify semicolon token matches.");
@@ -36,13 +36,13 @@ namespace Soup::Syntax::OuterTree::UnitTests
             auto uut = SyntaxFactory::CreateExpressionStatement(
                 SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))->CreateOuter(nullptr);
 
             Assert::AreEqual(
-                std::vector<SyntaxNodeChild>({
-                    SyntaxNodeChild(SyntaxFactory::CreateSimpleIdentifierExpression(
+                std::vector<OuterTree::SyntaxNodeChild>({
+                    TestUtils::CreateChild(SyntaxFactory::CreateSimpleIdentifierExpression(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 }),
                 uut->GetChildren(),
                 "Verify children match.");
@@ -54,7 +54,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
             auto uut = SyntaxFactory::CreateExpressionStatement(
                 SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))->CreateOuter(nullptr);
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateExpressionStatement(
@@ -71,7 +71,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
             auto uut = SyntaxFactory::CreateExpressionStatement(
                 SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateExpressionStatement(
@@ -88,7 +88,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
             auto uut = SyntaxFactory::CreateExpressionStatement(
                 SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateExpressionStatement(

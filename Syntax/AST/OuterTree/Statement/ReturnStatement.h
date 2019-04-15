@@ -18,7 +18,10 @@ namespace Soup::Syntax::OuterTree
             const SyntaxNode* parentNode) :
             Statement(innerNode, parentNode),
             m_returnToken(innerNode->GetReturnToken().CreateOuter(this)),
-            m_expression(innerNode->GetExpression().CreateOuter<Expression>(this)),
+            m_expression(
+                innerNode->HasExpression() ?
+                    innerNode->GetExpression().CreateOuter<Expression>(this) :
+                    nullptr),
             m_semicolonToken(innerNode->GetSemicolonToken().CreateOuter(this))
         {
         }

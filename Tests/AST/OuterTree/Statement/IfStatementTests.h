@@ -2,9 +2,9 @@
 #include "TestUtils.h"
 #include "SoupAssert.h"
 
-namespace Soup::Syntax::OuterTree::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
-    class IfStatementTests
+    class OuterTreeIfStatementTests
     {
     public:
         // [[Fact]]
@@ -18,17 +18,17 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
-                nullptr);
+                nullptr)->CreateOuter(nullptr);
 
             Assert::AreEqual(
                 SyntaxNodeType::IfStatement,
                 uut->GetType(),
                 "Verify has correct type.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
                 uut->GetIfToken(),
                 "Verify if token matches.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 uut->GetOpenParenthesisToken(),
                 "Verify left parenthesis token matches.");
@@ -37,7 +37,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
                 uut->GetConditionExpression(),
                 "Verify condition expression matches.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 uut->GetCloseParenthesisToken(),
                 "Verify right parenthesis token matches.");
@@ -65,17 +65,17 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 SyntaxFactory::CreateElseClause(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Else),
                     SyntaxFactory::CreateEmptyStatement(
-                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))));
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))))->CreateOuter(nullptr);
 
             Assert::AreEqual(
                 SyntaxNodeType::IfStatement,
                 uut->GetType(),
                 "Verify has correct type.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
                 uut->GetIfToken(),
                 "Verify if token matches.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 uut->GetOpenParenthesisToken(),
                 "Verify left parenthesis token matches.");
@@ -84,7 +84,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
                 uut->GetConditionExpression(),
                 "Verify condition expression matches.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 uut->GetCloseParenthesisToken(),
                 "Verify right parenthesis token matches.");
@@ -116,17 +116,17 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
-                nullptr);
+                nullptr)->CreateOuter(nullptr);
 
             Assert::AreEqual(
-                std::vector<SyntaxNodeChild>(
+                std::vector<OuterTree::SyntaxNodeChild>(
                 {
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If)),
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis)),
-                    SyntaxNodeChild(SyntaxFactory::CreateSimpleIdentifierExpression(
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If)),
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis)),
+                    TestUtils::CreateChild(SyntaxFactory::CreateSimpleIdentifierExpression(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value"))),
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
-                    SyntaxNodeChild(SyntaxFactory::CreateEmptyStatement(
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
+                    TestUtils::CreateChild(SyntaxFactory::CreateEmptyStatement(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))),
                 }),
                 uut->GetChildren(),
@@ -147,19 +147,19 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 SyntaxFactory::CreateElseClause(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Else),
                     SyntaxFactory::CreateEmptyStatement(
-                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))));
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))))->CreateOuter(nullptr);
 
             Assert::AreEqual(
-                std::vector<SyntaxNodeChild>(
+                std::vector<OuterTree::SyntaxNodeChild>(
                 {
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If)),
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis)),
-                    SyntaxNodeChild(SyntaxFactory::CreateSimpleIdentifierExpression(
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If)),
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis)),
+                    TestUtils::CreateChild(SyntaxFactory::CreateSimpleIdentifierExpression(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value"))),
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
-                    SyntaxNodeChild(SyntaxFactory::CreateEmptyStatement(
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
+                    TestUtils::CreateChild(SyntaxFactory::CreateEmptyStatement(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))),
-                    SyntaxNodeChild(SyntaxFactory::CreateElseClause(
+                    TestUtils::CreateChild(SyntaxFactory::CreateElseClause(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Else),
                         SyntaxFactory::CreateEmptyStatement(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)))),
@@ -179,7 +179,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
-                nullptr);
+                nullptr)->CreateOuter(nullptr);
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateIfStatement(
@@ -209,7 +209,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 SyntaxFactory::CreateElseClause(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Else),
                     SyntaxFactory::CreateEmptyStatement(
-                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))));
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))))->CreateOuter(nullptr);
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateIfStatement(
@@ -239,7 +239,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
-                nullptr);
+                nullptr)->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateIfStatement(
@@ -272,7 +272,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
-                nullptr);
+                nullptr)->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateIfStatement(
@@ -305,7 +305,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
-                nullptr);
+                nullptr)->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateIfStatement(
@@ -332,7 +332,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
-                nullptr);
+                nullptr)->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateIfStatement(
@@ -365,7 +365,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
-                nullptr);
+                nullptr)->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateIfStatement(
@@ -398,7 +398,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
-                nullptr);
+                nullptr)->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateIfStatement(
@@ -431,7 +431,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 SyntaxFactory::CreateElseClause(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Else),
                     SyntaxFactory::CreateEmptyStatement(
-                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))));
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateIfStatement(

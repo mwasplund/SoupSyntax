@@ -1,9 +1,9 @@
 #pragma once
 #include "SoupAssert.h"
 
-namespace Soup::Syntax::OuterTree::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
-    class SubscriptExpressionTests
+    class OuterTreeSubscriptExpressionTests
     {
     public:
         // [[Fact]]
@@ -16,7 +16,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "2")),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket))->CreateOuter(nullptr);
 
             Assert::AreEqual(
                 SyntaxNodeType::SubscriptExpression,
@@ -27,7 +27,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 uut->GetLeft(),
                 "Verify left expression matches.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
                 uut->GetOpenBracket(),
                 "Verify left bracket token matches.");
@@ -37,7 +37,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "2")),
                 uut->GetRight(),
                 "Verify right expression matches.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket),
                 uut->GetCloseBracket(),
                 "Verify right bracket token matches.");
@@ -53,19 +53,19 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "2")),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket))->CreateOuter(nullptr);
 
             Assert::AreEqual(
-                std::vector<SyntaxNodeChild>({
-                    SyntaxNodeChild(
+                std::vector<OuterTree::SyntaxNodeChild>({
+                    TestUtils::CreateChild(
                         SyntaxFactory::CreateSimpleIdentifierExpression(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket)),
-                    SyntaxNodeChild(
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket)),
+                    TestUtils::CreateChild(
                         SyntaxFactory::CreateLiteralExpression(
                             LiteralType::Integer,
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "2"))),
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket)),
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket)),
                 }),
                 uut->GetChildren(),
                 "Verify children match.");
@@ -81,9 +81,9 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "2")),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket))->CreateOuter(nullptr);
 
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 SyntaxFactory::CreateSubscriptExpression(
                     SyntaxFactory::CreateSimpleIdentifierExpression(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
@@ -106,7 +106,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "2")),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateSubscriptExpression(
@@ -131,7 +131,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "2")),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateSubscriptExpression(
@@ -161,7 +161,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "2")),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateSubscriptExpression(
@@ -186,7 +186,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "2")),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateSubscriptExpression(

@@ -2,9 +2,9 @@
 #include "TestUtils.h"
 #include "SoupAssert.h"
 
-namespace Soup::Syntax::OuterTree::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
-    class PrimitiveDataTypeDeclarationTests
+    class OuterTreePrimitiveDataTypeDeclarationTests
     {
     public:
         // [[Fact]]
@@ -12,7 +12,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
         {
             auto uut = SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                 PrimitiveDataType::Int,
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))->CreateOuter(nullptr);
 
             Assert::AreEqual(
                 SyntaxNodeType::PrimitiveDataTypeDeclaration,
@@ -22,7 +22,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 PrimitiveDataType::Int,
                 uut->GetPrimitiveType(),
                 "Verify primitive type matches.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int),
                 uut->GetToken(),
                 "Verify token matches.");
@@ -33,11 +33,11 @@ namespace Soup::Syntax::OuterTree::UnitTests
         {
             auto uut = SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                 PrimitiveDataType::Int,
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))->CreateOuter(nullptr);
 
             Assert::AreEqual(
-                std::vector<SyntaxNodeChild>({
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
+                std::vector<OuterTree::SyntaxNodeChild>({
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
                 }),
                 uut->GetChildren(),
                 "Verify children match.");
@@ -48,7 +48,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
         {
             auto uut = SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                 PrimitiveDataType::Int,
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))->CreateOuter(nullptr);
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
@@ -63,7 +63,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
         {
             auto uut = SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                 PrimitiveDataType::Int,
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
@@ -78,7 +78,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
         {
             auto uut = SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                 PrimitiveDataType::Int,
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreatePrimitiveDataTypeDeclaration(

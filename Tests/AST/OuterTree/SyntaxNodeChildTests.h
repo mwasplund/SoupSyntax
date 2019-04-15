@@ -1,20 +1,20 @@
 #pragma once
 #include "SoupAssert.h"
 
-namespace Soup::Syntax::OuterTree::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
-    class SyntaxNodeChildTests
+    class OuterTreeSyntaxNodeChildTests
     {
     public:
         // [[Fact]]
         void TokenInitialize()
         {
-            auto uut = SyntaxNodeChild(
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void));
+            auto uut = OuterTree::SyntaxNodeChild(
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void)->CreateOuter(nullptr));
 
             Assert::IsFalse(uut.IsNode(), "Verify is not a node.");
             Assert::IsTrue(uut.IsToken(), "Verify is a token.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void),
                 uut.AsToken(),
                 "Verify value matches.");
@@ -23,11 +23,11 @@ namespace Soup::Syntax::OuterTree::UnitTests
         // [[Fact]]
         void TokenOperatorEqual()
         {
-            auto uut = SyntaxNodeChild(
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void));
+            auto uut = OuterTree::SyntaxNodeChild(
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void)->CreateOuter(nullptr));
 
             Assert::AreEqual(
-                SyntaxNodeChild(
+                TestUtils::CreateChild(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void)),
                 uut,
                 "Verify matches.");
@@ -36,11 +36,11 @@ namespace Soup::Syntax::OuterTree::UnitTests
         // [[Fact]]
         void TokenOperatorNotEqualToken()
         {
-            auto uut = SyntaxNodeChild(
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void));
+            auto uut = OuterTree::SyntaxNodeChild(
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void)->CreateOuter(nullptr));
 
             Assert::AreNotEqual(
-                SyntaxNodeChild(
+                TestUtils::CreateChild(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
                 uut,
                 "Verify do not match.");
@@ -49,11 +49,11 @@ namespace Soup::Syntax::OuterTree::UnitTests
         // [[Fact]]
         void TokenOperatorNotEqualNode()
         {
-            auto uut = SyntaxNodeChild(
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void));
+            auto uut = OuterTree::SyntaxNodeChild(
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void)->CreateOuter(nullptr));
 
             Assert::AreNotEqual(
-                SyntaxNodeChild(
+                TestUtils::CreateChild(
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1"))),
@@ -64,10 +64,10 @@ namespace Soup::Syntax::OuterTree::UnitTests
         // [[Fact]]
         void NodeInitialize()
         {
-            auto uut = SyntaxNodeChild(
+            auto uut = OuterTree::SyntaxNodeChild(
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1"))->CreateOuter(nullptr));
 
             Assert::IsTrue(uut.IsNode(), "Verify is a node.");
             Assert::IsFalse(uut.IsToken(), "Verify is not a token.");
@@ -82,13 +82,13 @@ namespace Soup::Syntax::OuterTree::UnitTests
         // [[Fact]]
         void NodeOperatorEqual()
         {
-            auto uut = SyntaxNodeChild(
+            auto uut = OuterTree::SyntaxNodeChild(
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1"))->CreateOuter(nullptr));
 
             Assert::AreEqual(
-                SyntaxNodeChild(
+                TestUtils::CreateChild(
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1"))),
@@ -99,13 +99,13 @@ namespace Soup::Syntax::OuterTree::UnitTests
         // [[Fact]]
         void NodeOperatorNotEqualToken()
         {
-            auto uut = SyntaxNodeChild(
+            auto uut = OuterTree::SyntaxNodeChild(
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1"))->CreateOuter(nullptr));
 
             Assert::AreNotEqual(
-                SyntaxNodeChild(
+                TestUtils::CreateChild(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void)),
                 uut,
                 "Verify do not match.");
@@ -114,13 +114,13 @@ namespace Soup::Syntax::OuterTree::UnitTests
         // [[Fact]]
         void NodeOperatorNotEqualNode()
         {
-            auto uut = SyntaxNodeChild(
+            auto uut = OuterTree::SyntaxNodeChild(
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1"))->CreateOuter(nullptr));
 
             Assert::AreNotEqual(
-                SyntaxNodeChild(
+                TestUtils::CreateChild(
                     SyntaxFactory::CreateLiteralExpression(
                         LiteralType::Integer,
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "2"))),

@@ -5,7 +5,7 @@
 TestState RunInnerTreeAccessorSpecifierTests()
 {
     std::string className = "InnerTree::AccessorSpecifierTests";
-    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::AccessorSpecifierTests>();
+    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::InnerTreeAccessorSpecifierTests>();
     TestState state = { 0, 0 };
 
     state += RunTest(

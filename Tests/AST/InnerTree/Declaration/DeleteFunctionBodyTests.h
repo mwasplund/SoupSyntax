@@ -3,7 +3,7 @@
 
 namespace Soup::Syntax::InnerTree::UnitTests
 {
-    class DeleteFunctionBodyTests
+    class InnerTreeDeleteFunctionBodyTests
     {
     public:
         // [[Fact]]

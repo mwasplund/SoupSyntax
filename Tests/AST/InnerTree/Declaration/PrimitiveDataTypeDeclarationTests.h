@@ -4,7 +4,7 @@
 
 namespace Soup::Syntax::InnerTree::UnitTests
 {
-    class PrimitiveDataTypeDeclarationTests
+    class InnerTreePrimitiveDataTypeDeclarationTests
     {
     public:
         // [[Fact]]

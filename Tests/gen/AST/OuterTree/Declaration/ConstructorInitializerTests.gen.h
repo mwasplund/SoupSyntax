@@ -5,7 +5,7 @@
 TestState RunOuterTreeConstructorInitializerTests()
 {
     std::string className = "OuterTree::ConstructorInitializerTests";
-    auto testClass = std::make_unique<Soup::Syntax::OuterTree::UnitTests::ConstructorInitializerTests>();
+    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::OuterTreeConstructorInitializerTests>();
     TestState state = { 0, 0 };
 
     state += RunTest(

@@ -2,9 +2,9 @@
 #include "TestUtils.h"
 #include "SoupAssert.h"
 
-namespace Soup::Syntax::OuterTree::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
-    class AccessorSpecifierTests
+    class OuterTreeAccessorSpecifierTests
     {
     public:
         // [[Fact]]
@@ -12,17 +12,17 @@ namespace Soup::Syntax::OuterTree::UnitTests
         {
             auto uut = SyntaxFactory::CreateAccessorSpecifier(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Public),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Colon));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Colon))->CreateOuter(nullptr);
 
             Assert::AreEqual(
                 SyntaxNodeType::AccessorSpecifier,
                 uut->GetType(),
                 "Verify has correct type.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Public),
                 uut->GetAccessorToken(),
                 "Verify accessor token matches.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Colon),
                 uut->GetColonToken(),
                 "Verify colon token matches.");
@@ -33,13 +33,13 @@ namespace Soup::Syntax::OuterTree::UnitTests
         {
             auto uut = SyntaxFactory::CreateAccessorSpecifier(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Public),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Colon));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Colon))->CreateOuter(nullptr);
 
             Assert::AreEqual(
-                std::vector<SyntaxNodeChild>(
+                std::vector<OuterTree::SyntaxNodeChild>(
                 {
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Public)),
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Colon)),
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Public)),
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Colon)),
                 }),
                 uut->GetChildren(),
                 "Verify children match.");
@@ -50,7 +50,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
         {
             auto uut = SyntaxFactory::CreateAccessorSpecifier(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Public),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Colon));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Colon))->CreateOuter(nullptr);
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateAccessorSpecifier(
@@ -65,7 +65,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
         {
             auto uut = SyntaxFactory::CreateAccessorSpecifier(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Public),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Colon));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Colon))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateAccessorSpecifier(
@@ -85,7 +85,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
         {
             auto uut = SyntaxFactory::CreateAccessorSpecifier(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Public),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Colon));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Colon))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateAccessorSpecifier(

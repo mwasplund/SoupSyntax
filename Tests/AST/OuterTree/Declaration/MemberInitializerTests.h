@@ -2,9 +2,9 @@
 #include "TestUtils.h"
 #include "SoupAssert.h"
 
-namespace Soup::Syntax::OuterTree::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
-    class MemberInitializerTests
+    class OuterTreeMemberInitializerTests
     {
     public:
         // [[Fact]]
@@ -18,13 +18,13 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
                         std::vector<std::shared_ptr<const Expression>>(),
                         std::vector<std::shared_ptr<const SyntaxToken>>()),
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)));
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)))->CreateOuter(nullptr);
 
             Assert::AreEqual(
                 SyntaxNodeType::MemberInitializer,
                 uut->GetType(),
                 "Verify has correct type.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"),
                 uut->GetIdentifierToken(),
                 "Verify identifier token matches.");
@@ -50,12 +50,12 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
                         std::vector<std::shared_ptr<const Expression>>(),
                         std::vector<std::shared_ptr<const SyntaxToken>>()),
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)));
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)))->CreateOuter(nullptr);
 
             Assert::AreEqual(
-                std::vector<SyntaxNodeChild>({
-                    SyntaxNodeChild(SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
-                    SyntaxNodeChild(
+                std::vector<OuterTree::SyntaxNodeChild>({
+                    TestUtils::CreateChild(SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
+                    TestUtils::CreateChild(
                         SyntaxFactory::CreateInitializerList(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                             SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
@@ -78,7 +78,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
                         std::vector<std::shared_ptr<const Expression>>(),
                         std::vector<std::shared_ptr<const SyntaxToken>>()),
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)));
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)))->CreateOuter(nullptr);
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateMemberInitializer(
@@ -104,7 +104,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
                         std::vector<std::shared_ptr<const Expression>>(),
                         std::vector<std::shared_ptr<const SyntaxToken>>()),
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)));
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateMemberInitializer(
@@ -130,7 +130,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
                         std::vector<std::shared_ptr<const Expression>>(),
                         std::vector<std::shared_ptr<const SyntaxToken>>()),
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)));
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateMemberInitializer(

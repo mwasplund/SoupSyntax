@@ -2,22 +2,22 @@
 #include "TestUtils.h"
 #include "SoupAssert.h"
 
-namespace Soup::Syntax::OuterTree::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
-    class EmptyDeclarationTests
+    class OuterTreeEmptyDeclarationTests
     {
     public:
         // [[Fact]]
         void InitializeSimple()
         {
             auto uut = SyntaxFactory::CreateEmptyDeclaration(
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))->CreateOuter(nullptr);
 
             Assert::AreEqual(
                 SyntaxNodeType::EmptyDeclaration,
                 uut->GetType(),
                 "Verify has correct type.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon),
                 uut->GetSemicolonToken(),
                 "Verify semicolon token matches.");
@@ -27,11 +27,11 @@ namespace Soup::Syntax::OuterTree::UnitTests
         void GetChildren()
         {
             auto uut = SyntaxFactory::CreateEmptyDeclaration(
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))->CreateOuter(nullptr);
 
             Assert::AreEqual(
-                std::vector<SyntaxNodeChild>({
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
+                std::vector<OuterTree::SyntaxNodeChild>({
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 }),
                 uut->GetChildren(),
                 "Verify children match.");
@@ -41,7 +41,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
         void OperatorEqual()
         {
             auto uut = SyntaxFactory::CreateEmptyDeclaration(
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))->CreateOuter(nullptr);
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateEmptyDeclaration(
@@ -54,7 +54,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
         void OperatorNotEqualSemicolonToken()
         {
             auto uut = SyntaxFactory::CreateEmptyDeclaration(
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateEmptyDeclaration(

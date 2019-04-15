@@ -1,23 +1,23 @@
 #pragma once
 #include "SoupAssert.h"
 
-namespace Soup::Syntax::OuterTree::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
-    class ThisExpressionTests
+    class OuterTreeThisExpressionTests
     {
     public:
         // [[Fact]]
         void InitializeSimple()
         {
             auto uut = SyntaxFactory::CreateThisExpression(
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::This));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::This))->CreateOuter(nullptr);
 
             Assert::AreEqual(
                 SyntaxNodeType::ThisExpression,
                 uut->GetType(),
                 "Verify has correct type.");
             Assert::AreEqual(SyntaxNodeType::ThisExpression, uut->GetType(), "Verify type matches.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::This),
                 uut->GetToken(),
                 "Verify token matches.");
@@ -27,11 +27,11 @@ namespace Soup::Syntax::OuterTree::UnitTests
         void GetChildren()
         {
             auto uut = SyntaxFactory::CreateThisExpression(
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::This));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::This))->CreateOuter(nullptr);
 
             Assert::AreEqual(
-                std::vector<SyntaxNodeChild>({
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::This)),
+                std::vector<OuterTree::SyntaxNodeChild>({
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::This)),
                 }),
                 uut->GetChildren(),
                 "Verify children match.");
@@ -41,7 +41,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
         void OperatorEqual()
         {
             auto uut = SyntaxFactory::CreateThisExpression(
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::This));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::This))->CreateOuter(nullptr);
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateThisExpression(
@@ -54,7 +54,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
         void OperatorNotEqualToken()
         {
             auto uut = SyntaxFactory::CreateThisExpression(
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::This));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::This))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateThisExpression(

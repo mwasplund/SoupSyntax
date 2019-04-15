@@ -5,7 +5,7 @@
 TestState RunInnerTreeSyntaxTokenTests()
 {
     std::string className = "InnerTree::SyntaxTokenTests";
-    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::SyntaxTokenTests>();
+    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::InnerTreeSyntaxTokenTests>();
     TestState state = { 0, 0 };
 
     state += RunTest(

@@ -1,9 +1,9 @@
 #pragma once
 #include "SoupAssert.h"
 
-namespace Soup::Syntax::OuterTree::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
-    class SimpleTemplateIdentifierExpressionTests
+    class OuterTreeSimpleTemplateIdentifierExpressionTests
     {
     public:
         // [[Fact]]
@@ -15,27 +15,27 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
                     std::vector<std::shared_ptr<const Expression>>({}),
                     std::vector<std::shared_ptr<const SyntaxToken>>({})),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan))->CreateOuter(nullptr);
 
             Assert::AreEqual(
                 SyntaxNodeType::SimpleTemplateIdentifierExpression,
                 uut->GetType(),
                 "Verify has correct type.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name"),
                 uut->GetIdentifierToken(),
                 "Verify identifier matches.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LessThan),
                 uut->GetLessThanToken(),
                 "Verify less than matches.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
                     std::vector<std::shared_ptr<const Expression>>({}),
                     std::vector<std::shared_ptr<const SyntaxToken>>({})),
-                uut->GetTemplateArguments(),
+                uut->GetTemplateArgumentList(),
                 "Verify template arguments matches.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan),
                 uut->GetGreaterThanToken(),
                 "Verify greater than matches.");
@@ -57,21 +57,21 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     std::vector<std::shared_ptr<const SyntaxToken>>({
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma)
                     })),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan))->CreateOuter(nullptr);
 
             Assert::AreEqual(
                 SyntaxNodeType::SimpleTemplateIdentifierExpression,
                 uut->GetType(),
                 "Verify has correct type.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name"),
                 uut->GetIdentifierToken(),
                 "Verify identifier matches.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LessThan),
                 uut->GetLessThanToken(),
                 "Verify less than matches.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
                     std::vector<std::shared_ptr<const Expression>>({
                         SyntaxFactory::CreateSimpleIdentifierExpression(
@@ -82,9 +82,9 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     std::vector<std::shared_ptr<const SyntaxToken>>({
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma)
                     })),
-                uut->GetTemplateArguments(),
+                uut->GetTemplateArgumentList(),
                 "Verify template arguments matches.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan),
                 uut->GetGreaterThanToken(),
                 "Verify greater than matches.");
@@ -99,13 +99,13 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
                     std::vector<std::shared_ptr<const Expression>>({}),
                     std::vector<std::shared_ptr<const SyntaxToken>>({})),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan))->CreateOuter(nullptr);
 
             Assert::AreEqual(
-                std::vector<SyntaxNodeChild>({
-                    SyntaxNodeChild(SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name")),
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LessThan)),
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan)),
+                std::vector<OuterTree::SyntaxNodeChild>({
+                    TestUtils::CreateChild(SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name")),
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LessThan)),
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan)),
                 }),
                 uut->GetChildren(),
                 "Verify children match.");
@@ -127,18 +127,18 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     std::vector<std::shared_ptr<const SyntaxToken>>({
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma)
                     })),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan))->CreateOuter(nullptr);
 
             Assert::AreEqual(
-                std::vector<SyntaxNodeChild>({
-                    SyntaxNodeChild(SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name")),
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LessThan)),
-                    SyntaxNodeChild(SyntaxFactory::CreateSimpleIdentifierExpression(
+                std::vector<OuterTree::SyntaxNodeChild>({
+                    TestUtils::CreateChild(SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name")),
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LessThan)),
+                    TestUtils::CreateChild(SyntaxFactory::CreateSimpleIdentifierExpression(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value1"))),
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma)),
-                    SyntaxNodeChild(SyntaxFactory::CreateSimpleIdentifierExpression(
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma)),
+                    TestUtils::CreateChild(SyntaxFactory::CreateSimpleIdentifierExpression(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value2"))),
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan)),
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan)),
                 }),
                 uut->GetChildren(),
                 "Verify children match.");
@@ -153,7 +153,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
                     std::vector<std::shared_ptr<const Expression>>({}),
                     std::vector<std::shared_ptr<const SyntaxToken>>({})),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan))->CreateOuter(nullptr);
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateSimpleTemplateIdentifierExpression(
@@ -183,7 +183,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     std::vector<std::shared_ptr<const SyntaxToken>>({
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma)
                     })),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan))->CreateOuter(nullptr);
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateSimpleTemplateIdentifierExpression(
@@ -220,7 +220,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     std::vector<std::shared_ptr<const SyntaxToken>>({
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma)
                     })),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateSimpleTemplateIdentifierExpression(
@@ -257,7 +257,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     std::vector<std::shared_ptr<const SyntaxToken>>({
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma)
                     })),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateSimpleTemplateIdentifierExpression(
@@ -299,7 +299,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     std::vector<std::shared_ptr<const SyntaxToken>>({
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma)
                     })),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateSimpleTemplateIdentifierExpression(
@@ -329,7 +329,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     std::vector<std::shared_ptr<const SyntaxToken>>({
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma)
                     })),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateSimpleTemplateIdentifierExpression(
@@ -366,7 +366,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     std::vector<std::shared_ptr<const SyntaxToken>>({
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma)
                     })),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateSimpleTemplateIdentifierExpression(

@@ -1,9 +1,9 @@
 #pragma once
 #include "SoupAssert.h"
 
-namespace Soup::Syntax::OuterTree::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
-    class FunctionDefinitionTests
+    class OuterTreeFunctionDefinitionTests
     {
     public:
         // [[Fact]]
@@ -34,7 +34,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 SyntaxFactory::CreateDeleteFunctionBody(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Delete),
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)));
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)))->CreateOuter(nullptr);
 
             Assert::AreEqual(
                 SyntaxNodeType::FunctionDefinition,
@@ -106,19 +106,19 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 SyntaxFactory::CreateDeleteFunctionBody(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Delete),
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)));
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)))->CreateOuter(nullptr);
 
             Assert::AreEqual(
-                std::vector<SyntaxNodeChild>({
-                    SyntaxNodeChild(
+                std::vector<OuterTree::SyntaxNodeChild>({
+                    TestUtils::CreateChild(
                         SyntaxFactory::CreateDeclarationSpecifier(
                             SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                                 PrimitiveDataType::Void,
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void)))),
-                    SyntaxNodeChild(
+                    TestUtils::CreateChild(
                         SyntaxFactory::CreateSimpleIdentifierExpression(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function"))),
-                    SyntaxNodeChild(
+                    TestUtils::CreateChild(
                         SyntaxFactory::CreateParameterList(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                             SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
@@ -133,7 +133,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                                 }),
                                 std::vector<std::shared_ptr<const SyntaxToken>>()),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))),
-                    SyntaxNodeChild(
+                    TestUtils::CreateChild(
                         SyntaxFactory::CreateDeleteFunctionBody(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Delete),
@@ -171,7 +171,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 SyntaxFactory::CreateDeleteFunctionBody(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Delete),
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)));
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)))->CreateOuter(nullptr);
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateFunctionDefinition(
@@ -231,7 +231,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 SyntaxFactory::CreateDeleteFunctionBody(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Delete),
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)));
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateFunctionDefinition(
@@ -301,7 +301,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 SyntaxFactory::CreateDeleteFunctionBody(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Delete),
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)));
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateFunctionDefinition(
@@ -361,7 +361,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 SyntaxFactory::CreateDeleteFunctionBody(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Delete),
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)));
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateFunctionDefinition(
@@ -421,7 +421,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 SyntaxFactory::CreateDeleteFunctionBody(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Delete),
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)));
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateFunctionDefinition(
@@ -473,7 +473,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 SyntaxFactory::CreateDeleteFunctionBody(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Delete),
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)));
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateFunctionDefinition(

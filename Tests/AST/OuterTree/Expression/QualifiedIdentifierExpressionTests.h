@@ -1,9 +1,9 @@
 #pragma once
 #include "SoupAssert.h"
 
-namespace Soup::Syntax::OuterTree::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
-    class QualifiedIdentifierExpressionTests
+    class OuterTreeQualifiedIdentifierExpressionTests
     {
     public:
         // [[Fact]]
@@ -13,14 +13,14 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 nullptr,
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
                 SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Right")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Right")))->CreateOuter(nullptr);
 
             Assert::AreEqual(
                 SyntaxNodeType::QualifiedIdentifierExpression,
                 uut->GetType(),
                 "Verify has correct type.");
             Assert::IsFalse(uut->HasLeft(), "Verify no left identifier.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
                 uut->GetScopeResolutionToken(),
                 "Verify double colon token matches.");
@@ -39,7 +39,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Left")),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
                 SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Right")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Right")))->CreateOuter(nullptr);
 
             Assert::AreEqual(
                 SyntaxNodeType::QualifiedIdentifierExpression,
@@ -51,7 +51,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Left")),
                 uut->GetLeft(),
                 "Verify left matches.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
                 uut->GetScopeResolutionToken(),
                 "Verify double colon token matches.");
@@ -73,7 +73,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Left"))),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
                 SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Right")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Right")))->CreateOuter(nullptr);
 
             Assert::IsTrue(uut->HasLeft(), "Verify has left identifier.");
             TestUtils::AreEqual(
@@ -84,7 +84,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Left"))),
                 uut->GetLeft(),
                 "Verify left matches.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
                 uut->GetScopeResolutionToken(),
                 "Verify double colon token matches.");
@@ -102,12 +102,12 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 nullptr,
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
                 SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Right")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Right")))->CreateOuter(nullptr);
 
             Assert::AreEqual(
-                std::vector<SyntaxNodeChild>({
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon)),
-                    SyntaxNodeChild(
+                std::vector<OuterTree::SyntaxNodeChild>({
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon)),
+                    TestUtils::CreateChild(
                         SyntaxFactory::CreateSimpleIdentifierExpression(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Right"))),
                 }),
@@ -122,7 +122,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 nullptr,
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
                 SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Right")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Right")))->CreateOuter(nullptr);
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateQualifiedIdentifierExpression(
@@ -141,7 +141,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 nullptr,
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
                 SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Right")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Right")))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateQualifiedIdentifierExpression(
@@ -161,7 +161,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 nullptr,
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
                 SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Right")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Right")))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateQualifiedIdentifierExpression(
@@ -185,7 +185,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                 nullptr,
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
                 SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Right")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Right")))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateQualifiedIdentifierExpression(
@@ -205,15 +205,15 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Left")),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
                 SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Right")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Right")))->CreateOuter(nullptr);
 
             Assert::AreEqual(
-                std::vector<SyntaxNodeChild>({
-                    SyntaxNodeChild(
+                std::vector<OuterTree::SyntaxNodeChild>({
+                    TestUtils::CreateChild(
                         SyntaxFactory::CreateSimpleIdentifierExpression(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Left"))),
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon)),
-                    SyntaxNodeChild(
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon)),
+                    TestUtils::CreateChild(
                         SyntaxFactory::CreateSimpleIdentifierExpression(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Right"))),
                 }),
@@ -229,7 +229,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Left")),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
                 SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Right")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Right")))->CreateOuter(nullptr);
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateQualifiedIdentifierExpression(
@@ -250,7 +250,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Left")),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
                 SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Right")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Right")))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateQualifiedIdentifierExpression(
@@ -271,7 +271,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Left")),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
                 SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Right")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Right")))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateQualifiedIdentifierExpression(
@@ -291,7 +291,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Left")),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
                 SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Right")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Right")))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateQualifiedIdentifierExpression(
@@ -317,7 +317,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Left")),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
                 SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Right")));
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Right")))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateQualifiedIdentifierExpression(

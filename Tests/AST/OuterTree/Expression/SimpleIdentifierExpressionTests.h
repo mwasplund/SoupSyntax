@@ -1,22 +1,22 @@
 #pragma once
 #include "SoupAssert.h"
 
-namespace Soup::Syntax::OuterTree::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
-    class SimpleIdentifierExpressionTests
+    class OuterTreeSimpleIdentifierExpressionTests
     {
     public:
         // [[Fact]]
         void Initialize()
         {
             auto uut = SyntaxFactory::CreateSimpleIdentifierExpression(
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name"));
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name"))->CreateOuter(nullptr);
 
             Assert::AreEqual(
                 SyntaxNodeType::SimpleIdentifierExpression,
                 uut->GetType(),
                 "Verify has correct type.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name"),
                 uut->GetIdentifierToken(),
                 "Verify identifier matches.");
@@ -26,11 +26,11 @@ namespace Soup::Syntax::OuterTree::UnitTests
         void GetChildren()
         {
             auto uut = SyntaxFactory::CreateSimpleIdentifierExpression(
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name"));
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name"))->CreateOuter(nullptr);
 
             Assert::AreEqual(
-                std::vector<SyntaxNodeChild>({
-                    SyntaxNodeChild(SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name")),
+                std::vector<OuterTree::SyntaxNodeChild>({
+                    TestUtils::CreateChild(SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name")),
                 }),
                 uut->GetChildren(),
                 "Verify children match.");
@@ -40,7 +40,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
         void OperatorEqual()
         {
             auto uut = SyntaxFactory::CreateSimpleIdentifierExpression(
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name"));
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name"))->CreateOuter(nullptr);
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateSimpleIdentifierExpression(

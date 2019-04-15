@@ -5,7 +5,7 @@
 TestState RunInnerTreeCompoundStatementTests()
 {
     std::string className = "InnerTree::CompoundStatementTests";
-    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::CompoundStatementTests>();
+    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::InnerTreeCompoundStatementTests>();
     TestState state = { 0, 0 };
 
     state += RunTest(

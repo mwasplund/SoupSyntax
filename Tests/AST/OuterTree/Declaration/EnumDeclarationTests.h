@@ -2,9 +2,9 @@
 #include "TestUtils.h"
 #include "SoupAssert.h"
 
-namespace Soup::Syntax::OuterTree::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
-    class EnumDeclarationTests
+    class OuterTreeEnumDeclarationTests
     {
     public:
         // [[Fact]]
@@ -20,13 +20,13 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     {}),
                     std::vector<std::shared_ptr<const SyntaxToken>>(
                     {})),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace))->CreateOuter(nullptr);
 
             Assert::AreEqual(
                 SyntaxNodeType::EnumDeclaration,
                 uut->GetType(),
                 "Verify has correct type.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Enum),
                 uut->GetEnumToken(),
                 "Verify enum token matches.");
@@ -36,11 +36,11 @@ namespace Soup::Syntax::OuterTree::UnitTests
             Assert::IsFalse(
                 uut->HasIdentifierToken(),
                 "Verify has no identifier token.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 uut->GetOpenBraceToken(),
                 "Verify left brace token matches.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateSyntaxSeparatorList<EnumeratorDefinition>(
                     std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                     {}),
@@ -48,7 +48,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     {})),
                 uut->GetEnumeratorList(),
                 "Verify enumerator list matches.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace),
                 uut->GetCloseBraceToken(),
                 "Verify right brace token matches.");
@@ -74,35 +74,35 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma),
                     })),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace))->CreateOuter(nullptr);
 
             Assert::AreEqual(
                 SyntaxNodeType::EnumDeclaration,
                 uut->GetType(),
                 "Verify has correct type.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Enum),
                 uut->GetEnumToken(),
                 "Verify enum token matches.");
             Assert::IsTrue(
                 uut->HasClassToken(),
                 "Verify has class token.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
                 uut->GetClassToken(),
                 "Verify class token matches.");
             Assert::IsTrue(
                 uut->HasIdentifierToken(),
                 "Verify has identifier token.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyEnum"),
                 uut->GetIdentifierToken(),
                 "Verify identifier token matches.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 uut->GetOpenBraceToken(),
                 "Verify left brace token matches.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateSyntaxSeparatorList<EnumeratorDefinition>(
                     std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                     {
@@ -117,7 +117,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     })),
                 uut->GetEnumeratorList(),
                 "Verify enumerator list matches.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace),
                 uut->GetCloseBraceToken(),
                 "Verify right brace token matches.");
@@ -136,14 +136,14 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     {}),
                     std::vector<std::shared_ptr<const SyntaxToken>>(
                     {})),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace))->CreateOuter(nullptr);
 
             Assert::AreEqual(
-                std::vector<SyntaxNodeChild>(
+                std::vector<OuterTree::SyntaxNodeChild>(
                 {
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Enum)),
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace)),
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Enum)),
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace)),
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 }),
                 uut->GetChildren(),
                 "Verify children match.");
@@ -169,23 +169,23 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma),
                     })),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace))->CreateOuter(nullptr);
 
             Assert::AreEqual(
-                std::vector<SyntaxNodeChild>(
+                std::vector<OuterTree::SyntaxNodeChild>(
                 {
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Enum)),
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class)),
-                    SyntaxNodeChild(SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyEnum")),
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace)),
-                    SyntaxNodeChild(
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Enum)),
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class)),
+                    TestUtils::CreateChild(SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyEnum")),
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace)),
+                    TestUtils::CreateChild(
                         SyntaxFactory::CreateEnumeratorDefinition(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value1"))),
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma)),
-                    SyntaxNodeChild(
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma)),
+                    TestUtils::CreateChild(
                         SyntaxFactory::CreateEnumeratorDefinition(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value2"))),
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 }),
                 uut->GetChildren(),
                 "Verify children match.");
@@ -204,7 +204,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     {}),
                     std::vector<std::shared_ptr<const SyntaxToken>>(
                     {})),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace))->CreateOuter(nullptr);
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateEnumDeclaration(
@@ -242,7 +242,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma),
                     })),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace))->CreateOuter(nullptr);
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateEnumDeclaration(
@@ -287,7 +287,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma),
                     })),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateEnumDeclaration(
@@ -337,7 +337,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma),
                     })),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateEnumDeclaration(
@@ -382,7 +382,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma),
                     })),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateEnumDeclaration(
@@ -432,7 +432,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma),
                     })),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateEnumDeclaration(
@@ -477,7 +477,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma),
                     })),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateEnumDeclaration(
@@ -522,7 +522,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma),
                     })),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateEnumDeclaration(
@@ -572,7 +572,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma),
                     })),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateEnumDeclaration(
@@ -618,7 +618,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma),
                     })),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateEnumDeclaration(

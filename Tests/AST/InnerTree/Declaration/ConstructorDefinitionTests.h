@@ -3,7 +3,7 @@
 
 namespace Soup::Syntax::InnerTree::UnitTests
 {
-    class ConstructorDefinitionTests
+    class InnerTreeConstructorDefinitionTests
     {
     public:
         // [[Fact]]

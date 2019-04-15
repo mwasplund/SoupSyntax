@@ -15,7 +15,10 @@ namespace Soup::Syntax::OuterTree
             const SyntaxNode* parentNode) :
             SyntaxNode(innerNode, parentNode),
             m_declarator(innerNode->GetDeclarator().CreateOuterAny(this)),
-            m_initializer(innerNode->GetInitializer().CreateOuterAny(this))
+            m_initializer(
+                innerNode->HasInitializer() ? 
+                    innerNode->GetInitializer().CreateOuterAny(this) :
+                    nullptr)
         {
         }
 

@@ -19,7 +19,10 @@ namespace Soup::Syntax::OuterTree
             Declaration(innerNode, parentNode),
             m_identifier(innerNode->GetIdentifier().CreateOuter<IdentifierExpression>(this)),
             m_parameterList(innerNode->GetParameterList().CreateOuter(this)),
-            m_constructorInitializer(innerNode->GetConstructorInitializer().CreateOuter(this)),
+            m_constructorInitializer(
+                innerNode->HasConstructorInitializer() ?
+                    innerNode->GetConstructorInitializer().CreateOuter(this) :
+                    nullptr),
             m_body(innerNode->GetBody().CreateOuterAny(this))
         {
         }

@@ -22,7 +22,10 @@ namespace Soup::Syntax::OuterTree
             std::shared_ptr<const InnerTree::QualifiedIdentifierExpression> innerNode,
             const SyntaxNode* parentNode) :
             IdentifierExpression(innerNode, parentNode),
-            m_left(innerNode->GetLeft().CreateOuter<IdentifierExpression>(this)),
+            m_left(
+                innerNode->HasLeft() ?
+                    innerNode->GetLeft().CreateOuter<IdentifierExpression>(this) :
+                    nullptr),
             m_scopeResolutionToken(innerNode->GetScopeResolutionToken().CreateOuter(this)),
             m_right(innerNode->GetRight().CreateOuter<UnqualifiedIdentifierExpression>(this))
         {

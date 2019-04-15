@@ -70,6 +70,18 @@ class TestUtils
             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile));
     }
 
+    static OuterTree::SyntaxNodeChild CreateChild(const std::shared_ptr<const InnerTree::SyntaxNode>& innerNode)
+    {
+        auto outerNode = innerNode->CreateOuterAny(nullptr);
+        return OuterTree::SyntaxNodeChild(outerNode);
+    }
+
+    static OuterTree::SyntaxNodeChild CreateChild(const std::shared_ptr<const InnerTree::SyntaxToken>& innerToken)
+    {
+        auto outerNode = innerToken->CreateOuter(nullptr);
+        return OuterTree::SyntaxNodeChild(outerNode);
+    }
+
     static void AreEqual(
         const std::shared_ptr<const InnerTree::SyntaxNode>& expected,
         const std::shared_ptr<const InnerTree::SyntaxNode>& actual,
@@ -111,7 +123,24 @@ class TestUtils
         const std::shared_ptr<const InnerTree::SyntaxNode>& actual,
         const std::string& message)
     {
-        if (*expected == *actual)
+        if (actual == nullptr)
+        {
+            Assert::Fail("Actual was null.");
+        }
+        else if (expected == nullptr)
+        {
+            Assert::Fail("Expected was null.");
+        }
+
+        AreNotEqual(*expected, *actual, message);
+    }
+
+    static void AreNotEqual(
+        const InnerTree::SyntaxNode& expected,
+        const InnerTree::SyntaxNode& actual,
+        const std::string& message)
+    {
+        if (expected == actual)
         {
             std::stringstream errorMessage;
             // TODO: SyntaxTreeWriter writer(errorMessage);
@@ -126,7 +155,7 @@ class TestUtils
     }
 
     static void AreEqual(
-        const std::shared_ptr<const OuterTree::SyntaxNode>& expected,
+        const std::shared_ptr<const InnerTree::SyntaxNode>& expected,
         const std::shared_ptr<const OuterTree::SyntaxNode>& actual,
         const std::string& message)
     {
@@ -143,17 +172,18 @@ class TestUtils
     }
 
     static void AreEqual(
-        const OuterTree::SyntaxNode& expected,
+        const InnerTree::SyntaxNode& expected,
         const OuterTree::SyntaxNode& actual,
         const std::string& message)
     {
-        if (expected != actual)
+        auto expectedOuter = expected.CreateOuterAny(nullptr);
+        if (*expectedOuter != actual)
         {
             std::stringstream errorMessage;
             SyntaxTreeWriter writer(errorMessage);
             errorMessage << message << "\n";
             errorMessage << "Expected:\n";
-            expected.Accept(writer);
+            expectedOuter->Accept(writer);
             errorMessage << "Actual:\n";
             actual.Accept(writer);
 
@@ -162,20 +192,136 @@ class TestUtils
     }
 
     static void AreNotEqual(
-        const std::shared_ptr<const OuterTree::SyntaxNode>& expected,
+        const std::shared_ptr<const InnerTree::SyntaxNode>& expected,
         const std::shared_ptr<const OuterTree::SyntaxNode>& actual,
         const std::string& message)
     {
-        if (*expected == *actual)
+        if (actual == nullptr)
+        {
+            Assert::Fail("Actual was null.");
+        }
+        else if (expected == nullptr)
+        {
+            Assert::Fail("Expected was null.");
+        }
+
+        AreNotEqual(*expected, *actual, message);
+    }
+
+    static void AreNotEqual(
+        const InnerTree::SyntaxNode& expected,
+        const OuterTree::SyntaxNode& actual,
+        const std::string& message)
+    {
+        auto expectedOuter = expected.CreateOuterAny(nullptr);
+        if (*expectedOuter == actual)
         {
             std::stringstream errorMessage;
             SyntaxTreeWriter writer(errorMessage);
             errorMessage << message << "\n";
             errorMessage << "Expected:\n";
-            expected->Accept(writer);
+            expectedOuter->Accept(writer);
             errorMessage << "Actual:\n";
-            actual->Accept(writer);
+            actual.Accept(writer);
 
+            Assert::Fail(errorMessage.str());
+        }
+    }
+
+    static void AreNotEqual(
+        const std::shared_ptr<const InnerTree::SyntaxToken>& expected,
+        const std::shared_ptr<const OuterTree::SyntaxToken>& actual,
+        const std::string& message)
+    {
+        if (actual == nullptr)
+        {
+            Assert::Fail("Actual was null.");
+        }
+        else if (expected == nullptr)
+        {
+            Assert::Fail("Expected was null.");
+        }
+
+        AreNotEqual(*expected, *actual, message);
+    }
+
+    static void AreNotEqual(
+        const InnerTree::SyntaxToken& expected,
+        const OuterTree::SyntaxToken& actual,
+        const std::string& message)
+    {
+        auto expectedOuter = expected.CreateOuter(nullptr);
+        if (*expectedOuter == actual)
+        {
+            std::stringstream errorMessage;
+            SyntaxTreeWriter writer(errorMessage);
+            errorMessage << message << "\n";
+            Assert::Fail(errorMessage.str());
+        }
+    }
+
+    static void AreEqual(
+        const std::shared_ptr<const InnerTree::SyntaxToken>& expected,
+        const std::shared_ptr<const OuterTree::SyntaxToken>& actual,
+        const std::string& message)
+    {
+        if (actual == nullptr)
+        {
+            Assert::Fail("Actual was null.");
+        }
+        else if (expected == nullptr)
+        {
+            Assert::Fail("Expected was null.");
+        }
+
+        AreEqual(*expected, *actual, message);
+    }
+
+    static void AreEqual(
+        const InnerTree::SyntaxToken& expected,
+        const OuterTree::SyntaxToken& actual,
+        const std::string& message)
+    {
+        auto expectedOuter = expected.CreateOuter(nullptr);
+        if (*expectedOuter != actual)
+        {
+            std::stringstream errorMessage;
+            SyntaxTreeWriter writer(errorMessage);
+            errorMessage << message << "\n";
+            Assert::Fail(errorMessage.str());
+        }
+    }
+
+    template<typename TOuter, typename TInner>
+    static void AreEqual(
+        const InnerTree::SyntaxList<TInner>& expected,
+        const OuterTree::SyntaxList<TOuter>& actual,
+        const std::string& message)
+    {
+        std::shared_ptr<const OuterTree::SyntaxList<TOuter>> expectedOuter =
+            expected.template CreateOuter<TOuter>(nullptr);
+        if (*expectedOuter != actual)
+        {
+            std::stringstream errorMessage;
+            SyntaxTreeWriter writer(errorMessage);
+            errorMessage << message << "\n";
+            Assert::Fail(errorMessage.str());
+        }
+    }
+
+    template<typename TOuter, typename TInner>
+    static void AreEqual(
+        const InnerTree::SyntaxSeparatorList<TInner>& expected,
+        const OuterTree::SyntaxSeparatorList<TOuter>& actual,
+        const std::string& message)
+    {
+        std::shared_ptr<const OuterTree::SyntaxSeparatorList<TOuter>> expectedOuter =
+            expected.template CreateOuter<TOuter>(nullptr);
+        if (*expectedOuter != actual)
+        {
+            std::stringstream errorMessage;
+            SyntaxTreeWriter writer(errorMessage);
+            errorMessage << message << "\n";
             Assert::Fail(errorMessage.str());
         }
     }

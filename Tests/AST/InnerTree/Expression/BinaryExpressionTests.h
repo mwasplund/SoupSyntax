@@ -3,7 +3,7 @@
 
 namespace Soup::Syntax::InnerTree::UnitTests
 {
-    class BinaryExpressionTests
+    class InnerTreeBinaryExpressionTests
     {
     public:
         // [[Fact]]

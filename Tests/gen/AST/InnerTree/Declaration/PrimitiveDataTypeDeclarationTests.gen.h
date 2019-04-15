@@ -5,7 +5,7 @@
 TestState RunInnerTreePrimitiveDataTypeDeclarationTests()
 {
     std::string className = "InnerTree::PrimitiveDataTypeDeclarationTests";
-    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::PrimitiveDataTypeDeclarationTests>();
+    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::InnerTreePrimitiveDataTypeDeclarationTests>();
     TestState state = { 0, 0 };
 
     state += RunTest(

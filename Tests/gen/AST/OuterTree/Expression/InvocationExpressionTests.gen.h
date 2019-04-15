@@ -5,7 +5,7 @@
 TestState RunOuterTreeInvocationExpressionTests()
 {
     std::string className = "OuterTree::InvocationExpressionTests";
-    auto testClass = std::make_unique<Soup::Syntax::OuterTree::UnitTests::InvocationExpressionTests>();
+    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::OuterTreeInvocationExpressionTests>();
     TestState state = { 0, 0 };
 
     state += RunTest(

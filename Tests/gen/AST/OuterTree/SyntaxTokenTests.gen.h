@@ -1,11 +1,11 @@
 #pragma once
-#include "AST/OuterTree/Statement/SyntaxTokenTests.h"
+#include "AST/OuterTree/SyntaxTokenTests.h"
 #include "RunTest.h"
 
 TestState RunOuterTreeSyntaxTokenTests()
 {
     std::string className = "OuterTree::SyntaxTokenTests";
-    auto testClass = std::make_unique<Soup::Syntax::OuterTree::UnitTests::SyntaxTokenTests>();
+    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::OuterTreeSyntaxTokenTests>();
     TestState state = { 0, 0 };
 
     state += RunTest(

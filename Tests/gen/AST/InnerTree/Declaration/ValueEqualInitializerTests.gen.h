@@ -5,7 +5,7 @@
 TestState RunInnerTreeValueEqualInitializerTests()
 {
     std::string className = "InnerTree::ValueEqualInitializerTests";
-    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::ValueEqualInitializerTests>();
+    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::InnerTreeValueEqualInitializerTests>();
     TestState state = { 0, 0 };
 
     state += RunTest(

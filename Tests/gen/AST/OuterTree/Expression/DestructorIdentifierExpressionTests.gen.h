@@ -5,7 +5,7 @@
 TestState RunOuterTreeDestructorIdentifierExpressionTests()
 {
     std::string className = "OuterTree::DestructorIdentifierExpressionTests";
-    auto testClass = std::make_unique<Soup::Syntax::OuterTree::UnitTests::DestructorIdentifierExpressionTests>();
+    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::OuterTreeDestructorIdentifierExpressionTests>();
     TestState state = { 0, 0 };
 
     state += RunTest(

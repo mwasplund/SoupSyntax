@@ -5,7 +5,7 @@
 TestState RunInnerTreeThisExpressionTests()
 {
     std::string className = "InnerTree::ThisExpressionTests";
-    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::ThisExpressionTests>();
+    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::InnerTreeThisExpressionTests>();
     TestState state = { 0, 0 };
 
     state += RunTest(

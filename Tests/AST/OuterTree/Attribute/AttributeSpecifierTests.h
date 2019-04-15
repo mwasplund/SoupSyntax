@@ -2,9 +2,9 @@
 #include "TestUtils.h"
 #include "SoupAssert.h"
 
-namespace Soup::Syntax::OuterTree::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
-    class AttributeSpecifierTests
+    class OuterTreeAttributeSpecifierTests
     {
     public:
         // [[Fact]]
@@ -28,17 +28,17 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     {
                         SyntaxFactory::CreateTrivia(" "),
                     },
-                    {}));
+                    {}))->CreateOuter(nullptr);
 
             Assert::AreEqual(
                 SyntaxNodeType::AttributeSpecifier,
                 uut->GetType(),
                 "Verify has correct type.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
                 uut->GetOuterOpenBracketToken(),
                 "Verify outer open bracket token matches.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::OpenBracket,
                     {
@@ -47,17 +47,17 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     {}),
                 uut->GetInnerOpenBracketToken(),
                 "Verify inner open bracket token matches.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateSyntaxSeparatorList<Attribute>(
                     std::vector<std::shared_ptr<const Attribute>>(),
                     std::vector<std::shared_ptr<const SyntaxToken>>()),
                 uut->GetAttributes(),
                 "Verify attributes match.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket),
                 uut->GetInnerCloseBracketToken(),
                 "Verify inner close bracket token matches.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::CloseBracket,
                     {
@@ -96,17 +96,17 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     {
                         SyntaxFactory::CreateTrivia(" "),
                     },
-                    {}));
+                    {}))->CreateOuter(nullptr);
 
             Assert::AreEqual(
                 SyntaxNodeType::AttributeSpecifier,
                 uut->GetType(),
                 "Verify has correct type.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
                 uut->GetOuterOpenBracketToken(),
                 "Verify outer open bracket token matches.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::OpenBracket,
                     {
@@ -115,7 +115,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     {}),
                 uut->GetInnerOpenBracketToken(),
                 "Verify inner open bracket token matches.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateSyntaxSeparatorList<Attribute>(
                     std::vector<std::shared_ptr<const Attribute>>({
                         SyntaxFactory::CreateAttribute(
@@ -128,11 +128,11 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     })),
                 uut->GetAttributes(),
                 "Verify attributes match.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket),
                 uut->GetInnerCloseBracketToken(),
                 "Verify inner close bracket token matches.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::CloseBracket,
                     {
@@ -164,20 +164,20 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     {
                         SyntaxFactory::CreateTrivia(" "),
                     },
-                    {}));
+                    {}))->CreateOuter(nullptr);
 
             Assert::AreEqual(
-                std::vector<SyntaxNodeChild>({
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket)),
-                    SyntaxNodeChild(
+                std::vector<OuterTree::SyntaxNodeChild>({
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket)),
+                    TestUtils::CreateChild(
                         SyntaxFactory::CreateKeywordToken(
                             SyntaxTokenType::OpenBracket,
                             {
                                 SyntaxFactory::CreateTrivia(" "),
                             },
                             {})),
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket)),
-                    SyntaxNodeChild(
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket)),
+                    TestUtils::CreateChild(
                         SyntaxFactory::CreateKeywordToken(
                             SyntaxTokenType::CloseBracket,
                             {
@@ -217,27 +217,27 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     {
                         SyntaxFactory::CreateTrivia(" "),
                     },
-                    {}));
+                    {}))->CreateOuter(nullptr);
 
             Assert::AreEqual(
-                std::vector<SyntaxNodeChild>({
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket)),
-                    SyntaxNodeChild(
+                std::vector<OuterTree::SyntaxNodeChild>({
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket)),
+                    TestUtils::CreateChild(
                         SyntaxFactory::CreateKeywordToken(
                             SyntaxTokenType::OpenBracket,
                             {
                                 SyntaxFactory::CreateTrivia(" "),
                             },
                             {})),
-                    SyntaxNodeChild(
+                    TestUtils::CreateChild(
                         SyntaxFactory::CreateAttribute(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma)),
-                    SyntaxNodeChild(
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma)),
+                    TestUtils::CreateChild(
                         SyntaxFactory::CreateAttribute(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b"))),
-                    SyntaxNodeChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket)),
-                    SyntaxNodeChild(
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket)),
+                    TestUtils::CreateChild(
                         SyntaxFactory::CreateKeywordToken(
                             SyntaxTokenType::CloseBracket,
                             {
@@ -277,7 +277,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     {
                         SyntaxFactory::CreateTrivia(" "),
                     },
-                    {}));
+                    {}))->CreateOuter(nullptr);
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateAttributeSpecifier(
@@ -323,7 +323,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     }),
                     std::vector<std::shared_ptr<const SyntaxToken>>()),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateAttributeSpecifier(
@@ -360,7 +360,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     }),
                     std::vector<std::shared_ptr<const SyntaxToken>>()),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateAttributeSpecifier(
@@ -397,7 +397,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     }),
                     std::vector<std::shared_ptr<const SyntaxToken>>()),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateAttributeSpecifier(
@@ -429,7 +429,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     }),
                     std::vector<std::shared_ptr<const SyntaxToken>>()),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateAttributeSpecifier(
@@ -466,7 +466,7 @@ namespace Soup::Syntax::OuterTree::UnitTests
                     }),
                     std::vector<std::shared_ptr<const SyntaxToken>>()),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket),
-                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket));
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateAttributeSpecifier(

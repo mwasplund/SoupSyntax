@@ -5,7 +5,7 @@
 TestState RunOuterTreeMemberDeclaratorListTests()
 {
     std::string className = "OuterTree::MemberDeclaratorListTests";
-    auto testClass = std::make_unique<Soup::Syntax::OuterTree::UnitTests::MemberDeclaratorListTests>();
+    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::OuterTreeMemberDeclaratorListTests>();
     TestState state = { 0, 0 };
 
     state += RunTest(

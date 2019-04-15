@@ -3,7 +3,7 @@
 
 namespace Soup::Syntax::InnerTree::UnitTests
 {
-    class DestructorIdentifierExpressionTests
+    class InnerTreeDestructorIdentifierExpressionTests
     {
     public:
         // [[Fact]]

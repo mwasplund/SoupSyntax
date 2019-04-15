@@ -5,7 +5,7 @@
 TestState RunOuterTreeQualifiedIdentifierExpressionTests()
 {
     std::string className = "OuterTree::QualifiedIdentifierExpressionTests";
-    auto testClass = std::make_unique<Soup::Syntax::OuterTree::UnitTests::QualifiedIdentifierExpressionTests>();
+    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::OuterTreeQualifiedIdentifierExpressionTests>();
     TestState state = { 0, 0 };
 
     state += RunTest(

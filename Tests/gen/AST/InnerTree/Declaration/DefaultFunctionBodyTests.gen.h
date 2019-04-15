@@ -5,7 +5,7 @@
 TestState RunInnerTreeDefaultFunctionBodyTests()
 {
     std::string className = "InnerTree::DefaultFunctionBodyTests";
-    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::DefaultFunctionBodyTests>();
+    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::InnerTreeDefaultFunctionBodyTests>();
     TestState state = { 0, 0 };
 
     state += RunTest(

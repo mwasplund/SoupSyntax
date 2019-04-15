@@ -3,7 +3,7 @@
 
 namespace Soup::Syntax::InnerTree::UnitTests
 {
-    class SubscriptExpressionTests
+    class InnerTreeSubscriptExpressionTests
     {
     public:
         // [[Fact]]

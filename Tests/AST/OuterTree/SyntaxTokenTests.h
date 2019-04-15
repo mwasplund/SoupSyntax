@@ -1,15 +1,15 @@
 #pragma once
 #include "SoupAssert.h"
 
-namespace Soup::Syntax::OuterTree::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
-    class SyntaxTokenTests
+    class OuterTreeSyntaxTokenTests
     {
     public:
         [[Fact]]
         void InitializeSimple()
         {
-            auto uut = SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Nullptr);
+            auto uut = SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Nullptr)->CreateOuter(nullptr);
 
             Assert::AreEqual(SyntaxTokenType::Nullptr, uut->GetType(), "Verify type matches.");
             Assert::AreEqual(std::string("nullptr"), uut->GetValue(), "Verify value matches.");
@@ -17,12 +17,12 @@ namespace Soup::Syntax::OuterTree::UnitTests
             Assert::IsTrue(uut->GetTrailingTrivia().empty(), "Verify no trailing trivia.");
         }
 
-        [ [Fact]]
+        [[Fact]]
         void OperatorEqual()
         {
-            auto uut = SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Nullptr);
+            auto uut = SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Nullptr)->CreateOuter(nullptr);
 
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Nullptr),
                 uut,
                 "Verify matches.");
@@ -31,9 +31,9 @@ namespace Soup::Syntax::OuterTree::UnitTests
         [[Fact]]
         void OperatorNotEqualType()
         {
-            auto uut = SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Nullptr);
+            auto uut = SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Nullptr)->CreateOuter(nullptr);
 
-            Assert::AreNotEqual(
+            TestUtils::AreNotEqual(
                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "nullptr"),
                 uut,
                 "Verify do not match.");
@@ -44,9 +44,9 @@ namespace Soup::Syntax::OuterTree::UnitTests
         {
             auto uut = SyntaxFactory::CreateUniqueToken(
                 SyntaxTokenType::Identifier,
-                "a");
+                "a")->CreateOuter(nullptr);
 
-            Assert::AreNotEqual(
+            TestUtils::AreNotEqual(
                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b"),
                 uut,
                 "Verify do not match.");
