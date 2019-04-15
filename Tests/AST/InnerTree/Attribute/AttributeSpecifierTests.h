@@ -21,7 +21,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     {}),
                 SyntaxFactory::CreateSyntaxSeparatorList<Attribute>(
                     std::vector<std::shared_ptr<const Attribute>>(),
-                    std::vector<std::shared_ptr<const SyntaxToken>>()),
+                    {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket),
                 SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::CloseBracket,
@@ -50,7 +50,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             Assert::AreEqual(
                 *SyntaxFactory::CreateSyntaxSeparatorList<Attribute>(
                     std::vector<std::shared_ptr<const Attribute>>(),
-                    std::vector<std::shared_ptr<const SyntaxToken>>()),
+                    {}),
                 uut->GetAttributes(),
                 "Verify attributes match.");
             Assert::AreEqual(
@@ -215,7 +215,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         SyntaxFactory::CreateAttribute(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                     }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>()),
+                    {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket));
 
@@ -233,7 +233,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreateAttribute(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                         }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>()),
+                        {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket)),
                 uut,
@@ -252,7 +252,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         SyntaxFactory::CreateAttribute(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                     }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>()),
+                    {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket));
 
@@ -270,7 +270,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreateAttribute(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                         }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>()),
+                        {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket)),
                 uut,
@@ -289,7 +289,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         SyntaxFactory::CreateAttribute(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                     }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>()),
+                    {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket));
 
@@ -302,7 +302,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreateAttribute(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                         }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>()),
+                        {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket)),
                 uut,
@@ -321,7 +321,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         SyntaxFactory::CreateAttribute(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                     }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>()),
+                    {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket));
 
@@ -334,7 +334,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreateAttribute(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                         }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>()),
+                        {}),
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::CloseBracket,
                         {
@@ -358,7 +358,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         SyntaxFactory::CreateAttribute(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                     }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>()),
+                    {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket));
 
@@ -371,7 +371,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreateAttribute(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                         }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>()),
+                        {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket),
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::CloseBracket,

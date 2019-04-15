@@ -24,7 +24,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                             nullptr),
                     }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>()));
+                    {}));
 
             Assert::AreEqual(
                 SyntaxNodeType::MemberDeclaratorList,
@@ -43,7 +43,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                             nullptr),
                     }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>()),
+                    {}),
                 uut->GetItems(),
                 "Verify items match.");
         }
@@ -65,7 +65,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                             nullptr),
                     }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>()));
+                    {}));
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateMemberDeclaratorList(
@@ -81,7 +81,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                                 nullptr),
                         }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>())),
+                        {})),
                 uut,
                 "Verify matches.");
         }
@@ -103,7 +103,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                             nullptr),
                     }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>()));
+                    {}));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateMemberDeclaratorList(
@@ -115,7 +115,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "c")),
                                 nullptr),
                         }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>())),
+                        {})),
                 uut,
                 "Verify does not match.");
         }
@@ -137,7 +137,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                             nullptr),
                     }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>()));
+                    {}));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateMemberDeclaratorList(
@@ -153,7 +153,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                                 nullptr),
                         }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>())),
+                        {})),
                 uut,
                 "Verify does not match.");
         }

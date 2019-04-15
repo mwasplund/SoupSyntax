@@ -25,7 +25,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                     nullptr),
                             }),
-                            std::vector<std::shared_ptr<const SyntaxToken>>())),
+                            {})),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)))->CreateOuter(nullptr);
 
             Assert::AreEqual(
@@ -47,7 +47,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                     nullptr),
                             }),
-                            std::vector<std::shared_ptr<const SyntaxToken>>())),
+                            {})),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 uut->GetDeclaration(),
                 "Verify declaration matches.");
@@ -71,7 +71,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                     nullptr),
                             }),
-                            std::vector<std::shared_ptr<const SyntaxToken>>())),
+                            {})),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)))->CreateOuter(nullptr);
 
             Assert::AreEqual(
@@ -91,7 +91,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                             nullptr),
                                     }),
-                                    std::vector<std::shared_ptr<const SyntaxToken>>())),
+                                    {})),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))),
                 }),
                 uut->GetChildren(),
@@ -116,7 +116,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                     nullptr),
                             }),
-                            std::vector<std::shared_ptr<const SyntaxToken>>())),
+                            {})),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)))->CreateOuter(nullptr);
 
             TestUtils::AreEqual(
@@ -135,7 +135,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                         nullptr),
                                 }),
-                                std::vector<std::shared_ptr<const SyntaxToken>>())),
+                                {})),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))),
                 uut,
                 "Verify matches.");
@@ -159,7 +159,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                     nullptr),
                             }),
-                            std::vector<std::shared_ptr<const SyntaxToken>>())),
+                            {})),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
@@ -178,7 +178,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i2")),
                                         nullptr),
                                 }),
-                                std::vector<std::shared_ptr<const SyntaxToken>>())),
+                                {})),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))),
                 uut,
                 "Verify do not match.");

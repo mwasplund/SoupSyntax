@@ -2,7 +2,7 @@
 #include "TestUtils.h"
 #include "SoupAssert.h"
 
-namespace Soup::Syntax::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
     class ParseTranslationUnitTests
     {
@@ -126,7 +126,7 @@ namespace Soup::Syntax::UnitTests
                                                     {})),
                                             nullptr),
                                     }),
-                                    std::vector<std::shared_ptr<const SyntaxToken>>())),
+                                    {})),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                     })),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile));

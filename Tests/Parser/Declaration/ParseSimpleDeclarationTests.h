@@ -2,7 +2,7 @@
 #include "TestUtils.h"
 #include "SoupAssert.h"
 
-namespace Soup::Syntax::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
     class ParseSimpleDeclarationTests
     {
@@ -33,7 +33,7 @@ namespace Soup::Syntax::UnitTests
                                         {})),
                                 nullptr),
                         }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>())),
+                        {})),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
@@ -64,7 +64,7 @@ namespace Soup::Syntax::UnitTests
                                         {})),
                                 nullptr),
                         }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>())),
+                        {})),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
@@ -107,7 +107,7 @@ namespace Soup::Syntax::UnitTests
                                         {})),
                                 nullptr),
                         }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>())),
+                        {})),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
@@ -154,7 +154,7 @@ namespace Soup::Syntax::UnitTests
                                             },
                                             {})))),
                         }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>())),
+                        {})),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
@@ -345,9 +345,10 @@ namespace Soup::Syntax::UnitTests
 
             auto expected = SyntaxFactory::CreateSimpleDeclaration(
                 SyntaxFactory::CreateDeclarationSpecifier(
+                    SyntaxFactory::CreateSyntaxList<SyntaxToken>(
                     {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Static),
-                    },
+                    }),
                     SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(
@@ -356,6 +357,7 @@ namespace Soup::Syntax::UnitTests
                                 SyntaxFactory::CreateTrivia(" "),
                             },
                             {})),
+                    SyntaxFactory::CreateSyntaxList<SyntaxToken>(
                     {
                         SyntaxFactory::CreateKeywordToken(
                             SyntaxTokenType::ConstExpr,
@@ -363,10 +365,9 @@ namespace Soup::Syntax::UnitTests
                                 SyntaxFactory::CreateTrivia(" "),
                             },
                             {}),
-                    }),
+                    })),
                 SyntaxFactory::CreateInitializerDeclaratorList(
                     SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
-                        std::vector<std::shared_ptr<const InitializerDeclarator>>(
                         {
                             SyntaxFactory::CreateInitializerDeclarator(
                                 SyntaxFactory::CreateSimpleIdentifierExpression(
@@ -378,8 +379,8 @@ namespace Soup::Syntax::UnitTests
                                         },
                                         {})),
                                 nullptr),
-                        }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>())),
+                        },
+                        {})),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");

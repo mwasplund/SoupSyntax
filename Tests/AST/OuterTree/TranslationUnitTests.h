@@ -52,7 +52,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                             nullptr),
                                     }),
-                                    std::vector<std::shared_ptr<const SyntaxToken>>())),
+                                    {})),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                     })),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile))->CreateOuter(nullptr);
@@ -80,7 +80,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                             nullptr),
                                     }),
-                                    std::vector<std::shared_ptr<const SyntaxToken>>())),
+                                    {})),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                     })),
                 uut->GetDeclarations(),
@@ -131,7 +131,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                             nullptr),
                                     }),
-                                    std::vector<std::shared_ptr<const SyntaxToken>>())),
+                                    {})),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                     })),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile))->CreateOuter(nullptr);
@@ -157,7 +157,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                             nullptr),
                                     }),
-                                    std::vector<std::shared_ptr<const SyntaxToken>>())),
+                                    {})),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))),
                     TestUtils::CreateChild(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile)),

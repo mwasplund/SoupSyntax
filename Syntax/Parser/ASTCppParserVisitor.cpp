@@ -1922,7 +1922,7 @@ antlrcpp::Any ASTCppParserVisitor::visitNamedNamespaceDefinition(CppParser::Name
                 std::vector<std::shared_ptr<const SyntaxToken>>({
                     CreateToken(SyntaxTokenType::Identifier, context->Identifier()),
                 }),
-                std::vector<std::shared_ptr<const SyntaxToken>>()),
+                {}),
             CreateToken(SyntaxTokenType::OpenBrace, context->OpenBrace()),
             std::move(namespaceBody),
             CreateToken(SyntaxTokenType::CloseBrace, context->CloseBrace())));
@@ -1941,8 +1941,8 @@ antlrcpp::Any ASTCppParserVisitor::visitUnnamedNamespaceDefinition(CppParser::Un
         SyntaxFactory::CreateNamespaceDefinition(
             CreateToken(SyntaxTokenType::Namespace, context->Namespace()),
             SyntaxFactory::CreateSyntaxSeparatorList<SyntaxToken>(
-                std::vector<std::shared_ptr<const SyntaxToken>>(),
-                std::vector<std::shared_ptr<const SyntaxToken>>()),
+                {},
+                {}),
             CreateToken(SyntaxTokenType::OpenBrace, context->OpenBrace()),
             std::move(namespaceBody),
             CreateToken(SyntaxTokenType::CloseBrace, context->CloseBrace())));
@@ -2390,7 +2390,7 @@ antlrcpp::Any ASTCppParserVisitor::visitParameterDeclarationClause(CppParser::Pa
     {
         return SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
             std::vector<std::shared_ptr<const Parameter>>(),
-            std::vector<std::shared_ptr<const SyntaxToken>>());
+            {});
     }
 }
 

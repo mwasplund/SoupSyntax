@@ -8,15 +8,15 @@ namespace Soup::Syntax
         /// <summary>
         /// Initialize
         /// </summary>
-        SyntaxTree(std::shared_ptr<const InnerTree::TranslationUnit> translationUnit) :
-            m_translationUnit(std::move(translationUnit))
+        SyntaxTree(const std::shared_ptr<const InnerTree::TranslationUnit>& translationUnit) :
+            m_translationUnit(translationUnit->CreateOuter(nullptr))
         {
         }
 
         /// <summary>
         /// Gets the root translation unit
         /// </summary>
-        const InnerTree::TranslationUnit& GetTranslationUnit() const
+        const OuterTree::TranslationUnit& GetTranslationUnit() const
         {
             return *m_translationUnit;
         }
@@ -27,8 +27,8 @@ namespace Soup::Syntax
         void Write(std::ostream& stream) const
         {
             // Visit the entire tree writing all of the raw tokens
-            // TODO: SyntaxSourceWriter writer(stream);
-            // TODO: m_translationUnit->Accept(writer);
+            SyntaxSourceWriter writer(stream);
+            m_translationUnit->Accept(writer);
         }
 
         /// <summary>
@@ -45,6 +45,6 @@ namespace Soup::Syntax
         }
 
     private:
-        std::shared_ptr<const InnerTree::TranslationUnit> m_translationUnit;
+        std::shared_ptr<const OuterTree::TranslationUnit> m_translationUnit;
     };
 }

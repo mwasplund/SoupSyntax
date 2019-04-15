@@ -4,7 +4,7 @@
 
 TestState RunSyntaxNamespaceTests()
 {
-    auto testClass = std::make_unique<Soup::Syntax::UnitTests::SyntaxNamespaceTests>();
+    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::SyntaxNamespaceTests>();
     TestState state = { 0, 0 };
 
     // std::cout << "Running SyntaxNamespaceTests:" << std::endl;

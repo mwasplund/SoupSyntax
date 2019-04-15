@@ -17,7 +17,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
                     std::vector<std::shared_ptr<const Expression>>(),
-                    std::vector<std::shared_ptr<const SyntaxToken>>()),
+                    {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))->CreateOuter(nullptr);
 
             Assert::AreEqual(
@@ -36,7 +36,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreEqual(
                 *SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
                     std::vector<std::shared_ptr<const Expression>>(),
-                    std::vector<std::shared_ptr<const SyntaxToken>>()),
+                    {}),
                 uut->GetParameters(),
                 "Verify parameters match.");
             TestUtils::AreEqual(
@@ -109,7 +109,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
                     std::vector<std::shared_ptr<const Expression>>(),
-                    std::vector<std::shared_ptr<const SyntaxToken>>()),
+                    {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))->CreateOuter(nullptr);
 
             Assert::AreEqual(

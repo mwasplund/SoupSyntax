@@ -2,7 +2,7 @@
 #include "TestUtils.h"
 #include "SoupAssert.h"
 
-namespace Soup::Syntax::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
     class ParseClassDeclarationTests
     {
@@ -40,13 +40,13 @@ namespace Soup::Syntax::UnitTests
                     SyntaxTokenType::Identifier,
                     "MyClass",
                     {
-                        SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                        SyntaxFactory::CreateTrivia(" ")
                     },
                     {}),
                 SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::OpenBrace,
                     {
-                        SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                        SyntaxFactory::CreateTrivia(" ")
                     },
                     {}),
                 SyntaxFactory::CreateSyntaxList<Declaration>(
@@ -56,14 +56,14 @@ namespace Soup::Syntax::UnitTests
                             SyntaxFactory::CreateKeywordToken(
                                 SyntaxTokenType::Semicolon,
                                 {
-                                    SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                                    SyntaxFactory::CreateTrivia(" ")
                                 },
                                 {})),
                     })),
                 SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::CloseBrace,
                     {
-                        SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                        SyntaxFactory::CreateTrivia(" ")
                     },
                     {}));
 
@@ -85,13 +85,13 @@ namespace Soup::Syntax::UnitTests
                     SyntaxTokenType::Identifier,
                     "MyClass",
                     {
-                        SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                        SyntaxFactory::CreateTrivia(" ")
                     },
                     {}),
                 SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::OpenBrace,
                     {
-                        SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                        SyntaxFactory::CreateTrivia(" ")
                     },
                     {}),
                 SyntaxFactory::CreateSyntaxList<Declaration>(
@@ -101,7 +101,7 @@ namespace Soup::Syntax::UnitTests
                             SyntaxFactory::CreateKeywordToken(
                                 SyntaxTokenType::Public,
                                 {
-                                    SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                                    SyntaxFactory::CreateTrivia(" ")
                                 },
                                 {}),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Colon)),
@@ -109,14 +109,14 @@ namespace Soup::Syntax::UnitTests
                             SyntaxFactory::CreateKeywordToken(
                                 SyntaxTokenType::Semicolon,
                                 {
-                                    SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                                    SyntaxFactory::CreateTrivia(" ")
                                 },
                                 {})),
                     })),
                 SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::CloseBrace,
                     {
-                        SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                        SyntaxFactory::CreateTrivia(" ")
                     },
                     {}));
 

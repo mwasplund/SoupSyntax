@@ -2,7 +2,7 @@
 #include "TestUtils.h"
 #include "SoupAssert.h"
 
-namespace Soup::Syntax::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
     class ParseNamespaceDefinitionTests
     {
@@ -16,8 +16,8 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateNamespaceDefinition(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Namespace),
                 SyntaxFactory::CreateSyntaxSeparatorList<SyntaxToken>(
-                    std::vector<std::shared_ptr<const SyntaxToken>>(),
-                    std::vector<std::shared_ptr<const SyntaxToken>>()),
+                    {},
+                    {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 SyntaxFactory::CreateSyntaxList<Declaration>(
                     std::vector<std::shared_ptr<const Declaration>>(
@@ -44,11 +44,11 @@ namespace Soup::Syntax::UnitTests
                             SyntaxTokenType::Identifier,
                             "Namespace",
                             {
-                                SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                                SyntaxFactory::CreateTrivia(" ")
                             },
                             {}),
                     }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>()),
+                    {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 SyntaxFactory::CreateSyntaxList<Declaration>(
                     std::vector<std::shared_ptr<const Declaration>>(
@@ -75,7 +75,7 @@ namespace Soup::Syntax::UnitTests
                             SyntaxTokenType::Identifier,
                             "RootNamespace",
                             {
-                                SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                                SyntaxFactory::CreateTrivia(" ")
                             },
                             {}),
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "SubNamespace"),
@@ -109,15 +109,15 @@ namespace Soup::Syntax::UnitTests
                             SyntaxTokenType::Identifier,
                             "MyNamespace",
                             {
-                                SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                                SyntaxFactory::CreateTrivia(" ")
                             },
                             {}),
                     }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>()),
+                    {}),
                 SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::OpenBrace,
                     {
-                        SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                        SyntaxFactory::CreateTrivia(" ")
                     },
                     {}),
                 SyntaxFactory::CreateSyntaxList<Declaration>(
@@ -127,14 +127,14 @@ namespace Soup::Syntax::UnitTests
                             SyntaxFactory::CreateKeywordToken(
                                 SyntaxTokenType::Semicolon,
                                 {
-                                    SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                                    SyntaxFactory::CreateTrivia(" ")
                                 },
                                 {})),
                     })),
                 SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::CloseBrace,
                     {
-                        SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                        SyntaxFactory::CreateTrivia(" ")
                     },
                     {}));
 

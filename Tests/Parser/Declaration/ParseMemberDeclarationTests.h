@@ -2,7 +2,7 @@
 #include "TestUtils.h"
 #include "SoupAssert.h"
 
-namespace Soup::Syntax::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
     class ParseMemberDeclarationTests
     {
@@ -33,7 +33,7 @@ namespace Soup::Syntax::UnitTests
                                         {})),
                                 nullptr),
                         }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>())),
+                        {})),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
@@ -64,7 +64,7 @@ namespace Soup::Syntax::UnitTests
                                         {})),
                                 nullptr),
                         }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>())),
+                        {})),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
@@ -107,7 +107,7 @@ namespace Soup::Syntax::UnitTests
                                         {})),
                                 nullptr),
                         }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>())),
+                        {})),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
@@ -154,7 +154,7 @@ namespace Soup::Syntax::UnitTests
                                             },
                                             {})))),
                         }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>())),
+                        {})),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
@@ -345,9 +345,10 @@ namespace Soup::Syntax::UnitTests
 
             auto expected = SyntaxFactory::CreateMemberDeclaration(
                 SyntaxFactory::CreateDeclarationSpecifier(
+                    SyntaxFactory::CreateSyntaxList<SyntaxToken>(
                     {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Static),
-                    },
+                    }),
                     SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(
@@ -356,6 +357,7 @@ namespace Soup::Syntax::UnitTests
                                 SyntaxFactory::CreateTrivia(" "),
                             },
                             {})),
+                    SyntaxFactory::CreateSyntaxList<SyntaxToken>(
                     {
                         SyntaxFactory::CreateKeywordToken(
                             SyntaxTokenType::ConstExpr,
@@ -363,10 +365,9 @@ namespace Soup::Syntax::UnitTests
                                 SyntaxFactory::CreateTrivia(" "),
                             },
                             {}),
-                    }),
+                    })),
                 SyntaxFactory::CreateMemberDeclaratorList(
                     SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
-                        std::vector<std::shared_ptr<const MemberDeclarator>>(
                         {
                             SyntaxFactory::CreateMemberDeclarator(
                                 SyntaxFactory::CreateSimpleIdentifierExpression(
@@ -378,15 +379,15 @@ namespace Soup::Syntax::UnitTests
                                         },
                                         {})),
                                 nullptr),
-                        }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>())),
+                        },
+                        {})),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
     private:
-        std::shared_ptr<const SyntaxNode> ParseMemberDeclaration(std::string& sourceCode)
+        std::shared_ptr<const SyntaxNode> ParseMemberDeclaration(const std::string& sourceCode)
         {
             auto uut = TestUtils::BuildParser(sourceCode);
             auto context = uut.Parser->memberDeclaration();

@@ -13,8 +13,8 @@ namespace Soup::Syntax::InnerTree::UnitTests
             auto uut = SyntaxFactory::CreateNamespaceDefinition(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Namespace),
                 SyntaxFactory::CreateSyntaxSeparatorList<SyntaxToken>(
-                    std::vector<std::shared_ptr<const SyntaxToken>>(),
-                    std::vector<std::shared_ptr<const SyntaxToken>>()),
+                    {},
+                    {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 SyntaxFactory::CreateSyntaxList<Declaration>(
                     std::vector<std::shared_ptr<const Declaration>>()),
@@ -30,8 +30,8 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify namespace token matches.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateSyntaxSeparatorList<SyntaxToken>(
-                    std::vector<std::shared_ptr<const SyntaxToken>>(),
-                    std::vector<std::shared_ptr<const SyntaxToken>>()),
+                    {},
+                    {}),
                 uut->GetNameIdentifierList(),
                 "Verify name identifier list matches.");
             Assert::AreEqual(
@@ -115,8 +115,8 @@ namespace Soup::Syntax::InnerTree::UnitTests
             auto uut = SyntaxFactory::CreateNamespaceDefinition(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Namespace),
                 SyntaxFactory::CreateSyntaxSeparatorList<SyntaxToken>(
-                    std::vector<std::shared_ptr<const SyntaxToken>>(),
-                    std::vector<std::shared_ptr<const SyntaxToken>>()),
+                    {},
+                    {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 SyntaxFactory::CreateSyntaxList<Declaration>(
                     std::vector<std::shared_ptr<const Declaration>>(
@@ -130,8 +130,8 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateNamespaceDefinition(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Namespace),
                     SyntaxFactory::CreateSyntaxSeparatorList<SyntaxToken>(
-                        std::vector<std::shared_ptr<const SyntaxToken>>(),
-                        std::vector<std::shared_ptr<const SyntaxToken>>()),
+                        {},
+                        {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                     SyntaxFactory::CreateSyntaxList<Declaration>(
                         std::vector<std::shared_ptr<const Declaration>>(
@@ -265,8 +265,8 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateNamespaceDefinition(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Namespace),
                     SyntaxFactory::CreateSyntaxSeparatorList<SyntaxToken>(
-                        std::vector<std::shared_ptr<const SyntaxToken>>(),
-                        std::vector<std::shared_ptr<const SyntaxToken>>()),
+                        {},
+                        {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                     SyntaxFactory::CreateSyntaxList<Declaration>(
                         std::vector<std::shared_ptr<const Declaration>>(

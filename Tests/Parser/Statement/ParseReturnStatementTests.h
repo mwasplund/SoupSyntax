@@ -2,7 +2,7 @@
 #include "TestUtils.h"
 #include "SoupAssert.h"
 
-namespace Soup::Syntax::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
     class ParseReturnStatementTests
     {
@@ -35,7 +35,7 @@ namespace Soup::Syntax::UnitTests
                         SyntaxTokenType::IntegerLiteral,
                         "1",
                         {
-                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                            SyntaxFactory::CreateTrivia(" ")
                         },
                         {})),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
@@ -56,7 +56,7 @@ namespace Soup::Syntax::UnitTests
                         SyntaxTokenType::Identifier,
                         "a",
                         {
-                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                            SyntaxFactory::CreateTrivia(" ")
                         },
                         {})),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));

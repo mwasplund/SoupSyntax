@@ -2,7 +2,7 @@
 #include "TestUtils.h"
 #include "SoupAssert.h"
 
-namespace Soup::Syntax::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
     class ParseAttributeSpecifierTests
     {
@@ -19,7 +19,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
                 SyntaxFactory::CreateSyntaxSeparatorList<Attribute>(
                     std::vector<std::shared_ptr<const Attribute>>(),
-                    std::vector<std::shared_ptr<const SyntaxToken>>()),
+                    {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket));
 
@@ -43,7 +43,7 @@ namespace Soup::Syntax::UnitTests
                     {}),
                 SyntaxFactory::CreateSyntaxSeparatorList<Attribute>(
                     std::vector<std::shared_ptr<const Attribute>>(),
-                    std::vector<std::shared_ptr<const SyntaxToken>>()),
+                    {}),
                 SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::CloseBracket,
                     {
@@ -75,7 +75,7 @@ namespace Soup::Syntax::UnitTests
                         SyntaxFactory::CreateAttribute(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                     }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>()),
+                    {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket));
 

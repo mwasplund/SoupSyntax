@@ -25,7 +25,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                 nullptr),
                         }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>())),
+                        {})),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             Assert::AreEqual(
@@ -49,7 +49,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                 nullptr),
                         }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>())),
+                        {})),
                 uut->GetMemberDeclaratorList(),
                 "Verify initializer declarator list matches.");
             Assert::AreEqual(
@@ -76,7 +76,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                 nullptr),
                         }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>())),
+                        {})),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreEqual(
@@ -94,7 +94,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                     nullptr),
                             }),
-                            std::vector<std::shared_ptr<const SyntaxToken>>())),
+                            {})),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 uut,
                 "Verify matches.");
@@ -118,7 +118,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                 nullptr),
                         }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>())),
+                        {})),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreNotEqual(
@@ -136,7 +136,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                     nullptr),
                             }),
-                            std::vector<std::shared_ptr<const SyntaxToken>>())),
+                            {})),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 uut,
                 "Verify do not match.");
@@ -160,7 +160,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                 nullptr),
                         }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>())),
+                        {})),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreNotEqual(
@@ -178,7 +178,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i2")),
                                     nullptr),
                             }),
-                            std::vector<std::shared_ptr<const SyntaxToken>>())),
+                            {})),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 uut,
                 "Verify do not match.");
@@ -202,7 +202,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                 nullptr),
                         }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>())),
+                        {})),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreNotEqual(
@@ -220,7 +220,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                     nullptr),
                             }),
-                            std::vector<std::shared_ptr<const SyntaxToken>>())),
+                            {})),
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::Semicolon,
                         {

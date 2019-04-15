@@ -5,7 +5,7 @@
 TestState RunParseBinaryExpressionTests()
 {
     std::string className = "ParseBinaryExpressionTests";
-    auto testClass = std::make_unique<Soup::Syntax::UnitTests::ParseBinaryExpressionTests>();
+    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::ParseBinaryExpressionTests>();
     TestState state = { 0, 0 };
 
     state += RunTest(

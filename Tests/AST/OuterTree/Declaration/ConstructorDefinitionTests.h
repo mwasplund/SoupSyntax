@@ -17,7 +17,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
                         std::vector<std::shared_ptr<const Parameter>>(),
-                        std::vector<std::shared_ptr<const SyntaxToken>>()),
+                        {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
                 nullptr,
                 SyntaxFactory::CreateCompoundStatement(
@@ -39,7 +39,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
                         std::vector<std::shared_ptr<const Parameter>>(),
-                        std::vector<std::shared_ptr<const SyntaxToken>>()),
+                        {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
                 uut->GetParameterList(),
                 "Verify parameter list matches.");
@@ -73,7 +73,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                 SyntaxFactory::CreateSimpleIdentifierExpression(
                                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value"))),
                         }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>()),
+                        {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
                 SyntaxFactory::CreateConstructorInitializer(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Colon),
@@ -85,10 +85,10 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                                     SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
                                         std::vector<std::shared_ptr<const Expression>>(),
-                                        std::vector<std::shared_ptr<const SyntaxToken>>()),
+                                        {}),
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))),
                         }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>())),
+                        {})),
                 SyntaxFactory::CreateCompoundStatement(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                     SyntaxFactory::CreateSyntaxList<Statement>({}),
@@ -115,7 +115,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                 SyntaxFactory::CreateSimpleIdentifierExpression(
                                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value"))),
                         }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>()),
+                        {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
                 uut->GetParameterList(),
                 "Verify parameter list matches.");
@@ -133,10 +133,10 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                                     SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
                                         std::vector<std::shared_ptr<const Expression>>(),
-                                        std::vector<std::shared_ptr<const SyntaxToken>>()),
+                                        {}),
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))),
                         }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>())),
+                        {})),
                 uut->GetConstructorInitializer(),
                 "Verify constructor initializer matches.");
             TestUtils::AreEqual(
@@ -159,7 +159,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
                         std::vector<std::shared_ptr<const Parameter>>(),
-                        std::vector<std::shared_ptr<const SyntaxToken>>()),
+                        {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
                 nullptr,
                 SyntaxFactory::CreateCompoundStatement(
@@ -177,7 +177,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                             SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
                                 std::vector<std::shared_ptr<const Parameter>>(),
-                                std::vector<std::shared_ptr<const SyntaxToken>>()),
+                                {}),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))),
                     TestUtils::CreateChild(
                         SyntaxFactory::CreateCompoundStatement(
@@ -213,7 +213,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                 SyntaxFactory::CreateSimpleIdentifierExpression(
                                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "max"))),
                         }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>()),
+                        {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
                 SyntaxFactory::CreateConstructorInitializer(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Colon),
@@ -225,10 +225,10 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                                     SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
                                         std::vector<std::shared_ptr<const Expression>>(),
-                                        std::vector<std::shared_ptr<const SyntaxToken>>()),
+                                        {}),
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))),
                         }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>())),
+                        {})),
                 SyntaxFactory::CreateCompoundStatement(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                     SyntaxFactory::CreateSyntaxList<Statement>({}),
@@ -257,7 +257,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                         SyntaxFactory::CreateSimpleIdentifierExpression(
                                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "max"))),
                                 }),
-                                std::vector<std::shared_ptr<const SyntaxToken>>()),
+                                {}),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))),
                     TestUtils::CreateChild(
                         SyntaxFactory::CreateConstructorInitializer(
@@ -270,10 +270,10 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                                             SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
                                                 std::vector<std::shared_ptr<const Expression>>(),
-                                                std::vector<std::shared_ptr<const SyntaxToken>>()),
+                                                {}),
                                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))),
                                 }),
-                                std::vector<std::shared_ptr<const SyntaxToken>>()))),
+                                {}))),
                     TestUtils::CreateChild(
                         SyntaxFactory::CreateCompoundStatement(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
@@ -308,7 +308,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                     PrimitiveDataType::Int,
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                         }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>()),
+                        {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
                 SyntaxFactory::CreateDeleteFunctionBody(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
@@ -336,7 +336,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                         PrimitiveDataType::Int,
                                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                             }),
-                            std::vector<std::shared_ptr<const SyntaxToken>>()),
+                            {}),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
                     SyntaxFactory::CreateDeleteFunctionBody(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
@@ -370,7 +370,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                     PrimitiveDataType::Int,
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                         }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>()),
+                        {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
                 SyntaxFactory::CreateDeleteFunctionBody(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
@@ -398,7 +398,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                         PrimitiveDataType::Int,
                                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                             }),
-                            std::vector<std::shared_ptr<const SyntaxToken>>()),
+                            {}),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
                     SyntaxFactory::CreateDeleteFunctionBody(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
@@ -432,7 +432,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                         PrimitiveDataType::Int,
                                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                             }),
-                            std::vector<std::shared_ptr<const SyntaxToken>>()),
+                            {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
                 SyntaxFactory::CreateDeleteFunctionBody(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
@@ -460,7 +460,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                         PrimitiveDataType::Int,
                                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                             }),
-                            std::vector<std::shared_ptr<const SyntaxToken>>()),
+                            {}),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
                     SyntaxFactory::CreateDeleteFunctionBody(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
@@ -494,7 +494,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                     PrimitiveDataType::Int,
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                         }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>()),
+                        {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
                 SyntaxFactory::CreateDeleteFunctionBody(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
@@ -513,7 +513,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                         SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
                             std::vector<std::shared_ptr<const Parameter>>(),
-                            std::vector<std::shared_ptr<const SyntaxToken>>()),
+                            {}),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
                     SyntaxFactory::CreateDeleteFunctionBody(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
@@ -547,7 +547,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                     PrimitiveDataType::Int,
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                         }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>()),
+                        {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
                 SyntaxFactory::CreateDeleteFunctionBody(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
@@ -575,7 +575,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                         PrimitiveDataType::Int,
                                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                             }),
-                            std::vector<std::shared_ptr<const SyntaxToken>>()),
+                            {}),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
                     SyntaxFactory::CreateDefaultFunctionBody(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),

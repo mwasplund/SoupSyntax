@@ -300,15 +300,15 @@ namespace Soup::Syntax::OuterTree
 
 #include "AST/OuterTree/TranslationUnit.h"
 
-// SyntaxTree
-#include "AST/SyntaxFactory.h"
-#include "AST/SyntaxTree.h"
-
 // Visitor
 #include "AST/Visitor/DefaultSyntaxVisitor.h"
 #include "AST/Visitor/SyntaxWalker.h"
 #include "AST/Visitor/SyntaxSourceWriter.h"
 #include "AST/Visitor/SyntaxTreeWriter.h"
+
+// SyntaxTree
+#include "AST/SyntaxFactory.h"
+#include "AST/SyntaxTree.h"
 
 // Parser
 #include "Parser/Grammar/CppLexer.h"

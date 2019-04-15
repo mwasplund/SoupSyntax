@@ -5,7 +5,7 @@
 TestState RunLexerTests()
 {
     std::string className = "LexerTests";
-    auto testClass = std::make_unique<Soup::Syntax::UnitTests::LexerTests>();
+    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::LexerTests>();
     TestState state = { 0, 0 };
 
     // std::cout << "SingleToken_Keyword" << std::endl;

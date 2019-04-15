@@ -58,11 +58,13 @@ namespace Soup::Syntax::InnerTree
             std::shared_ptr<const UnqualifiedIdentifierExpression> right) const
         {
             // TODO : Use syntax factory
-            return std::shared_ptr<const QualifiedIdentifierExpression>(
+            auto result = std::shared_ptr<const QualifiedIdentifierExpression>(
                 new QualifiedIdentifierExpression(
                     m_left,
                     m_scopeResolutionToken,
                     std::move(right)));
+            result->SetSelf(result);
+            return result;
         }
 
     public:

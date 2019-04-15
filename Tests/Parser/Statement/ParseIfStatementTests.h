@@ -2,7 +2,7 @@
 #include "TestUtils.h"
 #include "SoupAssert.h"
 
-namespace Soup::Syntax::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
     class ParseIfStatementTests
     {
@@ -59,7 +59,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::OpenParenthesis,
                     {
-                        SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                        SyntaxFactory::CreateTrivia(" ")
                     },
                     {}),
                 SyntaxFactory::CreateSimpleIdentifierExpression(
@@ -67,23 +67,23 @@ namespace Soup::Syntax::UnitTests
                         SyntaxTokenType::Identifier,
                         "a",
                         {
-                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                            SyntaxFactory::CreateTrivia(" ")
                         },
                         {})),
                 SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::CloseParenthesis,
                     {
-                        SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                        SyntaxFactory::CreateTrivia(" ")
                     },
                     {
-                        SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                        SyntaxFactory::CreateTrivia(" ")
                     }),
                 SyntaxFactory::CreateReturnStatement(
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::Return,
                         {
-                            SyntaxFactory::CreateTrivia("\r\n", TextSpan(0, 0)),
-                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
+                            SyntaxFactory::CreateTrivia("\r\n"),
+                            SyntaxFactory::CreateTrivia(" "),
                         },
                         {}),
                     SyntaxFactory::CreateLiteralExpression(
@@ -92,33 +92,33 @@ namespace Soup::Syntax::UnitTests
                             SyntaxTokenType::IntegerLiteral,
                             "1",
                             {
-                                SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                                SyntaxFactory::CreateTrivia(" ")
                             },
                             {})),
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::Semicolon,
                         {
-                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                            SyntaxFactory::CreateTrivia(" ")
                         },
                         {
-                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                            SyntaxFactory::CreateTrivia(" ")
                         })),
                 SyntaxFactory::CreateElseClause(
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::Else,
                         {
-                            SyntaxFactory::CreateTrivia("\r\n", TextSpan(0, 0)),
-                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
+                            SyntaxFactory::CreateTrivia("\r\n"),
+                            SyntaxFactory::CreateTrivia(" "),
                         },
                         {
-                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                            SyntaxFactory::CreateTrivia(" ")
                         }),
                     SyntaxFactory::CreateReturnStatement(
                         SyntaxFactory::CreateKeywordToken(
                             SyntaxTokenType::Return,
                             {
-                                SyntaxFactory::CreateTrivia("\r\n", TextSpan(0, 0)),
-                                SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
+                                SyntaxFactory::CreateTrivia("\r\n"),
+                                SyntaxFactory::CreateTrivia(" "),
                             },
                             {}),
                         SyntaxFactory::CreateLiteralExpression(
@@ -127,13 +127,13 @@ namespace Soup::Syntax::UnitTests
                                 SyntaxTokenType::IntegerLiteral,
                                 "2",
                                 {
-                                    SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                                    SyntaxFactory::CreateTrivia(" ")
                                 },
                                 {})),
                         SyntaxFactory::CreateKeywordToken(
                             SyntaxTokenType::Semicolon,
                             {
-                                SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                                SyntaxFactory::CreateTrivia(" ")
                             },
                             {}))));
 

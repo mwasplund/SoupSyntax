@@ -2,7 +2,7 @@
 #include "TestUtils.h"
 #include "SoupAssert.h"
 
-namespace Soup::Syntax::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
     class ParseCompoundStatementTests
     {
@@ -15,7 +15,7 @@ namespace Soup::Syntax::UnitTests
 
             auto expected = SyntaxFactory::CreateCompoundStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                {},
+                SyntaxFactory::CreateSyntaxList<Statement>({}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
@@ -29,13 +29,14 @@ namespace Soup::Syntax::UnitTests
 
             auto expected = SyntaxFactory::CreateCompoundStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
+                SyntaxFactory::CreateSyntaxList<Statement>(
                 {
                     SyntaxFactory::CreateReturnStatement(
                         SyntaxFactory::CreateKeywordToken(
                             SyntaxTokenType::Return,
                             {
-                                SyntaxFactory::CreateTrivia("\n", TextSpan(0, 0)),
-                                SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
+                                SyntaxFactory::CreateTrivia("\n"),
+                                SyntaxFactory::CreateTrivia(" "),
                             },
                             {}),
                         SyntaxFactory::CreateLiteralExpression(
@@ -44,15 +45,15 @@ namespace Soup::Syntax::UnitTests
                                 SyntaxTokenType::IntegerLiteral,
                                 "1",
                                 {
-                                    SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                                    SyntaxFactory::CreateTrivia(" ")
                                 },
                                 {})),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
-                },
+                }),
                 SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::CloseBrace,
                     {
-                        SyntaxFactory::CreateTrivia("\n", TextSpan(0, 0)),
+                        SyntaxFactory::CreateTrivia("\n"),
                     },
                     {}));
 

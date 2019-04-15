@@ -2,7 +2,7 @@
 #include "TestUtils.h"
 #include "SoupAssert.h"
 
-namespace Soup::Syntax::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
     class ParseEnumDeclarationTests
     {
@@ -42,20 +42,20 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::Class,
                     {
-                        SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                        SyntaxFactory::CreateTrivia(" ")
                     },
                     {}),
                 SyntaxFactory::CreateUniqueToken(
                     SyntaxTokenType::Identifier,
                     "MyEnum",
                     {
-                        SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                        SyntaxFactory::CreateTrivia(" ")
                     },
                     {}),
                 SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::OpenBrace,
                     {
-                        SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                        SyntaxFactory::CreateTrivia(" ")
                     },
                     {}),
                 SyntaxFactory::CreateSyntaxSeparatorList<EnumeratorDefinition>(
@@ -66,7 +66,7 @@ namespace Soup::Syntax::UnitTests
                                 SyntaxTokenType::Identifier,
                                 "Value1",
                                 {
-                                    SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                                    SyntaxFactory::CreateTrivia(" ")
                                 },
                                 {})),
                         SyntaxFactory::CreateEnumeratorDefinition(
@@ -74,7 +74,7 @@ namespace Soup::Syntax::UnitTests
                                 SyntaxTokenType::Identifier,
                                 "Value2",
                                 {
-                                    SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                                    SyntaxFactory::CreateTrivia(" ")
                                 },
                                 {})),
                     }),
@@ -85,7 +85,7 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::CloseBrace,
                     {
-                        SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                        SyntaxFactory::CreateTrivia(" ")
                     },
                     {}));
 

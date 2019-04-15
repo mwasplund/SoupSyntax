@@ -5,7 +5,7 @@
 TestState RunParseClassDeclarationTests()
 {
     std::string className = "ParseClassDeclarationTests";
-    auto testClass = std::make_unique<Soup::Syntax::UnitTests::ParseClassDeclarationTests>();
+    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::ParseClassDeclarationTests>();
     TestState state = { 0, 0 };
 
     state += RunTest(

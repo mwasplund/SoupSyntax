@@ -5,7 +5,7 @@
 TestState RunParseEnumDeclarationTests()
 {
     std::string className = "ParseEnumDeclarationTests";
-    auto testClass = std::make_unique<Soup::Syntax::UnitTests::ParseEnumDeclarationTests>();
+    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::ParseEnumDeclarationTests>();
     TestState state = { 0, 0 };
 
     state += RunTest(

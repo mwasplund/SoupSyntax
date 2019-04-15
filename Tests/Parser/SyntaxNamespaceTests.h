@@ -1,7 +1,7 @@
 #pragma once
 #include "SoupAssert.h"
 
-namespace Soup::Syntax::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
     class SyntaxNamespaceTests
     {
@@ -21,10 +21,10 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateSimpleIdentifierExpression(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
                     nullptr,
-                    std::make_shared<RegularFunctionBody>(
+                    SyntaxFactory::CreateRegularFunctionBody(
                         SyntaxFactory::CreateCompoundStatement(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                            {},
+                            SyntaxFactory::CreateSyntaxList<Statement>({}),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)))));
 
             auto actual = TestUtils::GenerateAST(source);
@@ -47,10 +47,10 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateSimpleIdentifierExpression(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
                     nullptr,
-                    std::make_shared<RegularFunctionBody>(
+                    SyntaxFactory::CreateRegularFunctionBody(
                         SyntaxFactory::CreateCompoundStatement(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                            {},
+                            SyntaxFactory::CreateSyntaxList<Statement>({}),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)))));
 
             auto actual = TestUtils::GenerateAST(source);
@@ -73,10 +73,10 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateSimpleIdentifierExpression(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
                     nullptr,
-                    std::make_shared<RegularFunctionBody>(
+                    SyntaxFactory::CreateRegularFunctionBody(
                         SyntaxFactory::CreateCompoundStatement(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                            {},
+                            SyntaxFactory::CreateSyntaxList<Statement>({}),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)))));
 
             auto actual = TestUtils::GenerateAST(source);

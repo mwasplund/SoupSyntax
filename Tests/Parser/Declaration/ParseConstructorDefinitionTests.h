@@ -2,7 +2,7 @@
 #include "TestUtils.h"
 #include "SoupAssert.h"
 
-namespace Soup::Syntax::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
     class ParseConstructorDefinitionTests
     {
@@ -18,30 +18,28 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass")),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                    std::make_shared<SyntaxSeparatorList<Parameter>>(
-                        std::vector<std::shared_ptr<const Parameter>>(),
-                        std::vector<std::shared_ptr<const SyntaxToken>>()),
+                    SyntaxFactory::CreateSyntaxSeparatorList<Parameter>({}, {}),
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::CloseParenthesis,
                         {},
                         {
-                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
+                            SyntaxFactory::CreateTrivia(" "),
                         })),
                 nullptr,
-                std::make_shared<RegularFunctionBody>(
+                SyntaxFactory::CreateRegularFunctionBody(
                     SyntaxFactory::CreateCompoundStatement(
                         SyntaxFactory::CreateKeywordToken(
                             SyntaxTokenType::OpenBrace,
                             {
-                                SyntaxFactory::CreateTrivia("\n", TextSpan(0, 0)),
-                                SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
+                                SyntaxFactory::CreateTrivia("\n"),
+                                SyntaxFactory::CreateTrivia(" "),
                             },
                             {}),
-                        {},
+                        SyntaxFactory::CreateSyntaxList<Statement>({}),
                         SyntaxFactory::CreateKeywordToken(
                             SyntaxTokenType::CloseBrace,
                             {
-                                SyntaxFactory::CreateTrivia("\n", TextSpan(0, 0)),
+                                SyntaxFactory::CreateTrivia("\n"),
                             },
                             {}))));
 
@@ -61,22 +59,20 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass")),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                    std::make_shared<SyntaxSeparatorList<Parameter>>(
-                        std::vector<std::shared_ptr<const Parameter>>(),
-                        std::vector<std::shared_ptr<const SyntaxToken>>()),
+                    SyntaxFactory::CreateSyntaxSeparatorList<Parameter>({}, {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
                 nullptr,
                 SyntaxFactory::CreateDefaultFunctionBody(
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::Equal,
                         {
-                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
+                            SyntaxFactory::CreateTrivia(" "),
                         },
                         {}),
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::Default,
                         {
-                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
+                            SyntaxFactory::CreateTrivia(" "),
                         },
                         {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)));
@@ -97,22 +93,20 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass")),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                    std::make_shared<SyntaxSeparatorList<Parameter>>(
-                        std::vector<std::shared_ptr<const Parameter>>(),
-                        std::vector<std::shared_ptr<const SyntaxToken>>()),
+                    SyntaxFactory::CreateSyntaxSeparatorList<Parameter>({}, {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
                 nullptr,
                 SyntaxFactory::CreateDeleteFunctionBody(
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::Equal,
                         {
-                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
+                            SyntaxFactory::CreateTrivia(" "),
                         },
                         {}),
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::Delete,
                         {
-                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
+                            SyntaxFactory::CreateTrivia(" "),
                         },
                         {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)));
@@ -133,8 +127,8 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass")),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                    std::make_shared<SyntaxSeparatorList<Parameter>>(
-                        std::vector<std::shared_ptr<const Parameter>>({
+                    SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
+                        {
                             SyntaxFactory::CreateParameter(
                                 SyntaxFactory::CreateDeclarationSpecifier(
                                     SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
@@ -145,17 +139,17 @@ namespace Soup::Syntax::UnitTests
                                         SyntaxTokenType::Identifier,
                                         "parameter",
                                         {
-                                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
+                                            SyntaxFactory::CreateTrivia(" "),
                                         },
                                         {}))),
-                        }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>()),
+                        },
+                        {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
                 SyntaxFactory::CreateConstructorInitializer(
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::Colon,
                         {
-                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
+                            SyntaxFactory::CreateTrivia(" "),
                         },
                         {}),
                     SyntaxFactory::CreateSyntaxSeparatorList<MemberInitializer>(
@@ -165,7 +159,7 @@ namespace Soup::Syntax::UnitTests
                                     SyntaxTokenType::Identifier,
                                     "m_value",
                                     {
-                                        SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
+                                        SyntaxFactory::CreateTrivia(" "),
                                     },
                                     {}),
                                 SyntaxFactory::CreateInitializerList(
@@ -175,19 +169,19 @@ namespace Soup::Syntax::UnitTests
                                             SyntaxFactory::CreateSimpleIdentifierExpression(
                                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "parameter")),
                                         }),
-                                        std::vector<std::shared_ptr<const SyntaxToken>>()),
+                                        {}),
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))), 
                         }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>())),
-                std::make_shared<RegularFunctionBody>(
+                        {})),
+                SyntaxFactory::CreateRegularFunctionBody(
                     SyntaxFactory::CreateCompoundStatement(
                         SyntaxFactory::CreateKeywordToken(
                             SyntaxTokenType::OpenBrace,
                             {
-                                SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
+                                SyntaxFactory::CreateTrivia(" "),
                             },
                             {}),
-                        {},
+                        SyntaxFactory::CreateSyntaxList<Statement>({}),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace))));
 
             auto actual = ParseConstructorDefinition(source);

@@ -24,7 +24,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                 PrimitiveDataType::Int,
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                     }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>()),
+                    {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))->CreateOuter(nullptr);
 
             Assert::AreEqual(
@@ -47,7 +47,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                 PrimitiveDataType::Int,
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                     }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>()),
+                    {}),
                 uut->GetParameters(),
                 "Verify parameters match.");
             TestUtils::AreEqual(
@@ -73,7 +73,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                 PrimitiveDataType::Int,
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                     }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>()),
+                    {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))->CreateOuter(nullptr);
 
             Assert::AreEqual(
@@ -110,7 +110,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                 PrimitiveDataType::Int,
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                     }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>()),
+                    {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))->CreateOuter(nullptr);
 
             TestUtils::AreEqual(
@@ -127,7 +127,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                     PrimitiveDataType::Int,
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                         }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>()),
+                        {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
                 uut,
                 "Verify matches.");
@@ -150,7 +150,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                 PrimitiveDataType::Int,
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                     }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>()),
+                    {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
@@ -172,7 +172,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                     PrimitiveDataType::Int,
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                         }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>()),
+                        {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
                 uut,
                 "Verify does not match.");
@@ -195,7 +195,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                 PrimitiveDataType::Int,
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                     }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>()),
+                    {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
@@ -205,7 +205,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         std::vector<std::shared_ptr<const Parameter>>(
                         {
                         }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>()),
+                        {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
                 uut,
                 "Verify does not match.");
@@ -228,7 +228,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                 PrimitiveDataType::Int,
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                     }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>()),
+                    {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
@@ -245,7 +245,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                     PrimitiveDataType::Int,
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                         }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>()),
+                        {}),
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::CloseParenthesis,
                         {
