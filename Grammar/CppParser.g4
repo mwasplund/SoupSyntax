@@ -10,6 +10,14 @@ options { tokenVocab = CppLexer; }
 import CppParserLiterals;
 
 /****************************************/
+/* Lexer Fragments
+/****************************************/
+// Fill in the missing DoubleGreaterThan in the parser
+// since it is ambiguous with two templates ending
+doubleGreaterThan:
+	GreaterThan GreaterThan;
+
+/****************************************/
 /* Keywords
 /****************************************/
 namespaceName:
@@ -124,7 +132,7 @@ foldOperator:
 	Ampersand |
 	VerticalBar |
 	DoubleLessThan |
-	DoubleGreaterThan |
+	doubleGreaterThan |
 	PlusEqual |
 	MinusEqual |
 	AsteriskEqual |
@@ -269,7 +277,7 @@ additiveExpression:
 shiftExpression:
 	additiveExpression |
 	shiftExpression DoubleLessThan additiveExpression |
-	shiftExpression DoubleGreaterThan additiveExpression;
+	shiftExpression doubleGreaterThan additiveExpression;
 
 relationalExpression:
 	shiftExpression |
@@ -489,8 +497,8 @@ typeSpecifier:
 	constVolatileQualifier;
 
 typeSpecifierSequence:
-	typeSpecifier attributeSpecifierSequence? |
-	typeSpecifier typeSpecifierSequence;
+	typeSpecifier attributeSpecifierSequence?; //|
+	// TODO typeSpecifier typeSpecifierSequence;
 
 definingTypeSpecifier:
 	typeSpecifier |
@@ -947,7 +955,7 @@ anyOperator:
 	AmpersandEqual |
 	VerticalBarEqual |
 	DoubleLessThan |
-	DoubleGreaterThan |
+	doubleGreaterThan |
 	DoubleGreaterThanEqual |
 	DoubleLessThanEqual |
 	DoubleEqual |
@@ -1006,8 +1014,8 @@ templateArgumentList:
 
 templateArgument:
 	// TODO constantExpression |
-	// TODO typeIdentifier |
-	identifierExpression;
+	typeIdentifier;// |
+	// identifierExpression;
 
 typenameSpecifier:
 	TypeName nestedNameSpecifier Identifier |

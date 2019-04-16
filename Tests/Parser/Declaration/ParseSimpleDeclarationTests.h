@@ -386,6 +386,62 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
+        // [Fact]
+        void SingleTemplateOfTemplateVariable()
+        {
+            auto sourceCode = std::string("std::vector<std::shared_ptr<Attribute>> values;");
+            auto actual = ParseSimpleDeclaration(sourceCode);
+
+            auto expected = SyntaxFactory::CreateSimpleDeclaration(
+                SyntaxFactory::CreateDeclarationSpecifier(
+                    SyntaxFactory::CreateQualifiedIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifierExpression(
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "std")),
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
+                        SyntaxFactory::CreateSimpleTemplateIdentifierExpression(
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "vector"),
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LessThan),
+                            SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
+                                std::vector<std::shared_ptr<const Expression>>(
+                                {
+                                    SyntaxFactory::CreateQualifiedIdentifierExpression(
+                                        SyntaxFactory::CreateSimpleIdentifierExpression(
+                                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "std")),
+                                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
+                                        SyntaxFactory::CreateSimpleTemplateIdentifierExpression(
+                                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "shared_ptr"),
+                                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LessThan),
+                                            SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
+                                                std::vector<std::shared_ptr<const Expression>>({
+                                                    SyntaxFactory::CreateSimpleIdentifierExpression(
+                                                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Attribute")),
+                                                }),
+                                                std::vector<std::shared_ptr<const SyntaxToken>>({})),
+                                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan))),
+                                }),
+                                std::vector<std::shared_ptr<const SyntaxToken>>({})),
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan)))),
+                SyntaxFactory::CreateInitializerDeclaratorList(
+                    SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
+                        std::vector<std::shared_ptr<const InitializerDeclarator>>(
+                        {
+                            SyntaxFactory::CreateInitializerDeclarator(
+                                SyntaxFactory::CreateSimpleIdentifierExpression(
+                                    SyntaxFactory::CreateUniqueToken(
+                                        SyntaxTokenType::Identifier,
+                                        "values",
+                                        {
+                                            SyntaxFactory::CreateTrivia(" "),
+                                        },
+                                        {})),
+                                nullptr),
+                        }),
+                        {})),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
+
+            TestUtils::AreEqual(expected, actual, "Verify matches expected.");
+        }
+
     private:
         std::shared_ptr<const SimpleDeclaration> ParseSimpleDeclaration(std::string& sourceCode)
         {

@@ -40,6 +40,10 @@ TestState RunParseSimpleDeclarationTests()
         className,
         "SingleIntLeadingAndTrailingModifierVariable",
         [&testClass]() { testClass->SingleIntLeadingAndTrailingModifierVariable(); });
+    state += RunTest(
+        className,
+        "SingleTemplateOfTemplateVariable",
+        [&testClass]() { testClass->SingleTemplateOfTemplateVariable(); });
 
     return state;
 }

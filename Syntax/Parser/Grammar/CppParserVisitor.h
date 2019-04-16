@@ -19,6 +19,8 @@ public:
   /**
    * Visit parse trees produced by CppParser.
    */
+    virtual antlrcpp::Any visitDoubleGreaterThan(CppParser::DoubleGreaterThanContext *context) = 0;
+
     virtual antlrcpp::Any visitNamespaceName(CppParser::NamespaceNameContext *context) = 0;
 
     virtual antlrcpp::Any visitNamespaceAlias(CppParser::NamespaceAliasContext *context) = 0;

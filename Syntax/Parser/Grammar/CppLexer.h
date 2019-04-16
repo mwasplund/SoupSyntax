@@ -1,6 +1,9 @@
 
 // Generated from Grammar\CppLexer.g4 by ANTLR 4.7.1
 
+
+// Generated from Grammar\CppLexer.g4 by ANTLR 4.7.1
+
 #pragma once
 
 
@@ -34,14 +37,13 @@ public:
     Equal = 103, LessThan = 104, GreaterThan = 105, PlusEqual = 106, MinusEqual = 107, 
     AsteriskEqual = 108, ForwardSlashEqual = 109, PercentEqual = 110, CaretEqual = 111, 
     AmpersandEqual = 112, VerticalBarEqual = 113, DoubleLessThan = 114, 
-    DoubleGreaterThan = 115, DoubleLessThanEqual = 116, DoubleGreaterThanEqual = 117, 
-    DoubleEqual = 118, ExclamationMarkEqual = 119, LessThanEqual = 120, 
-    GreaterThanEqual = 121, DoubleAmpersand = 122, DoubleVerticalBar = 123, 
-    DoublePlus = 124, DoubleMinus = 125, Comma = 126, ArrowAsterisk = 127, 
-    Arrow = 128, Zero = 129, IntegerLiteral = 130, FloatingPointLiteral = 131, 
-    CharacterLiteral = 132, StringLiteral = 133, UserDefinedIntegerLiteral = 134, 
-    UserDefinedFloatingPointLiteral = 135, UserDefinedCharacterLiteral = 136, 
-    UserDefinedStringLiteral = 137, Identifier = 138
+    DoubleLessThanEqual = 115, DoubleGreaterThanEqual = 116, DoubleEqual = 117, 
+    ExclamationMarkEqual = 118, LessThanEqual = 119, GreaterThanEqual = 120, 
+    DoubleAmpersand = 121, DoubleVerticalBar = 122, DoublePlus = 123, DoubleMinus = 124, 
+    Comma = 125, ArrowAsterisk = 126, Arrow = 127, Zero = 128, IntegerLiteral = 129, 
+    FloatingPointLiteral = 130, CharacterLiteral = 131, StringLiteral = 132, 
+    UserDefinedIntegerLiteral = 133, UserDefinedFloatingPointLiteral = 134, 
+    UserDefinedCharacterLiteral = 135, UserDefinedStringLiteral = 136, Identifier = 137
   };
 
   enum {

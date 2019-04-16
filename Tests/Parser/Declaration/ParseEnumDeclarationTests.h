@@ -18,11 +18,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 nullptr,
                 nullptr,
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                SyntaxFactory::CreateSyntaxSeparatorList<EnumeratorDefinition>(
-                    std::vector<std::shared_ptr<const EnumeratorDefinition>>(
-                    {}),
-                    std::vector<std::shared_ptr<const SyntaxToken>>(
-                    {})),
+                SyntaxFactory::CreateSyntaxSeparatorList<EnumeratorDefinition>({}, {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             TestUtils::AreEqual(

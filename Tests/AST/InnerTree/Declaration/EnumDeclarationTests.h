@@ -15,11 +15,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 nullptr,
                 nullptr,
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                SyntaxFactory::CreateSyntaxSeparatorList<EnumeratorDefinition>(
-                    std::vector<std::shared_ptr<const EnumeratorDefinition>>(
-                    {}),
-                    std::vector<std::shared_ptr<const SyntaxToken>>(
-                    {})),
+                SyntaxFactory::CreateSyntaxSeparatorList<EnumeratorDefinition>({}, {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             Assert::AreEqual(
@@ -41,11 +37,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 uut->GetOpenBraceToken(),
                 "Verify left brace token matches.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateSyntaxSeparatorList<EnumeratorDefinition>(
-                    std::vector<std::shared_ptr<const EnumeratorDefinition>>(
-                    {}),
-                    std::vector<std::shared_ptr<const SyntaxToken>>(
-                    {})),
+                *SyntaxFactory::CreateSyntaxSeparatorList<EnumeratorDefinition>({}, {}),
                 uut->GetEnumeratorList(),
                 "Verify enumerator list matches.");
             Assert::AreEqual(
@@ -131,11 +123,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 nullptr,
                 nullptr,
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                SyntaxFactory::CreateSyntaxSeparatorList<EnumeratorDefinition>(
-                    std::vector<std::shared_ptr<const EnumeratorDefinition>>(
-                    {}),
-                    std::vector<std::shared_ptr<const SyntaxToken>>(
-                    {})),
+                SyntaxFactory::CreateSyntaxSeparatorList<EnumeratorDefinition>({}, {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             TestUtils::AreEqual(

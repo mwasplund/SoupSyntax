@@ -19,6 +19,34 @@ ASTCppParserVisitor::ASTCppParserVisitor(antlr4::BufferedTokenStream* tokenStrea
 {
 }
 
+antlrcpp::Any ASTCppParserVisitor::visitDoubleGreaterThan(CppParser::DoubleGreaterThanContext *context)
+{
+    Trace("VisitDoubleGreaterThan");
+
+    // Custom Create Token implementation that combines the two GreaterThan tokens into one
+
+    // Load the leading trivia from the first token
+    auto firstToken = context->GreaterThan().at(0)->getSymbol();
+    auto firstTokenIndex = firstToken->getTokenIndex();
+    auto leadingTrivia = GetLeadingTrivia(firstTokenIndex);
+    if (!GetTrailingTrivia(firstTokenIndex).empty())
+        throw std::runtime_error("Cannot have trivia after first GreaterThan token.");
+
+    // Load the trailing trivia from the first token
+    auto secondToken = context->GreaterThan().at(1)->getSymbol();
+    auto secondTokenIndex = secondToken->getTokenIndex();
+    auto trailingTrivia = GetTrailingTrivia(secondTokenIndex);
+    if (!GetLeadingTrivia(secondTokenIndex).empty())
+        throw std::runtime_error("Cannot have trivia before second GreaterThan token.");
+
+    // If a keyword then create the shared token
+    // Otherwise create a unique token
+    return SyntaxFactory::CreateKeywordToken(
+        SyntaxTokenType::DoubleGreaterThan,
+        std::move(leadingTrivia),
+        std::move(trailingTrivia));
+}
+
 antlrcpp::Any ASTCppParserVisitor::visitNamespaceName(CppParser::NamespaceNameContext* context)
 {
     Trace("VisitNamespaceName");
@@ -780,7 +808,7 @@ antlrcpp::Any ASTCppParserVisitor::visitShiftExpression(CppParser::ShiftExpressi
                     visit(context->additiveExpression())
                         .as<std::shared_ptr<const SyntaxNode>>())));
     }
-    else if (context->DoubleGreaterThan() != nullptr)
+    else if (context->doubleGreaterThan() != nullptr)
     {
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreateBinaryExpression(
@@ -788,7 +816,8 @@ antlrcpp::Any ASTCppParserVisitor::visitShiftExpression(CppParser::ShiftExpressi
                 std::dynamic_pointer_cast<const Expression>(
                     visit(context->shiftExpression())
                         .as<std::shared_ptr<const SyntaxNode>>()),
-                CreateToken(SyntaxTokenType::DoubleGreaterThan, context->DoubleGreaterThan()),
+                visit(context->doubleGreaterThan())
+                    .as<std::shared_ptr<const SyntaxToken>>(),
                 std::dynamic_pointer_cast<const Expression>(
                     visit(context->additiveExpression())
                         .as<std::shared_ptr<const SyntaxNode>>())));
@@ -1618,7 +1647,9 @@ antlrcpp::Any ASTCppParserVisitor::visitTypeSpecifier(CppParser::TypeSpecifierCo
 antlrcpp::Any ASTCppParserVisitor::visitTypeSpecifierSequence(CppParser::TypeSpecifierSequenceContext* context)
 {
     Trace("VisitTypeSpecifierSequence");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+
+    // TODO: Sequence?
+    return visit(context->typeSpecifier());
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitDefiningTypeSpecifier(CppParser::DefiningTypeSpecifierContext *context)
@@ -2334,7 +2365,14 @@ antlrcpp::Any ASTCppParserVisitor::visitReferenceQualifier(CppParser::ReferenceQ
 antlrcpp::Any ASTCppParserVisitor::visitTypeIdentifier(CppParser::TypeIdentifierContext* context)
 {
     Trace("VisitTypeIdentifier");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+
+    // Check for optional thingy
+    if (context->abstractDeclarator() != nullptr)
+    {
+        throw std::logic_error(std::string(__func__) + " NotImplemented");
+    }
+
+    return visit(context->typeSpecifierSequence());
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitDefiningTypeIdentifier(CppParser::DefiningTypeIdentifierContext* context)

@@ -16,6 +16,9 @@
 class  CppParserBaseListener : public CppParserListener {
 public:
 
+  virtual void enterDoubleGreaterThan(CppParser::DoubleGreaterThanContext * /*ctx*/) override { }
+  virtual void exitDoubleGreaterThan(CppParser::DoubleGreaterThanContext * /*ctx*/) override { }
+
   virtual void enterNamespaceName(CppParser::NamespaceNameContext * /*ctx*/) override { }
   virtual void exitNamespaceName(CppParser::NamespaceNameContext * /*ctx*/) override { }
 

@@ -8,135 +8,504 @@ TestState RunLexerTests()
     auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::LexerTests>();
     TestState state = { 0, 0 };
 
-    // std::cout << "SingleToken_Keyword" << std::endl;
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("alignas", CppLexer::AlignAs); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("asm", CppLexer::Asm); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("auto", CppLexer::Auto); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("bool", CppLexer::Bool); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("break", CppLexer::Break); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("case", CppLexer::Case); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("catch", CppLexer::Catch); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("char", CppLexer::Char); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("char16_t", CppLexer::Char16); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("char32_t", CppLexer::Char32); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("class", CppLexer::Class); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("const", CppLexer::Const); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("constexpr", CppLexer::ConstExpr); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("const_cast", CppLexer::ConstCast); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("continue", CppLexer::Continue); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("decltype", CppLexer::DeclType); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("default", CppLexer::Default); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("delete", CppLexer::Delete); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("do", CppLexer::Do); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("double", CppLexer::Double); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("dynamic_cast", CppLexer::DynamicCast); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("else", CppLexer::Else); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("enum", CppLexer::Enum); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("explicit", CppLexer::Explicit); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("export", CppLexer::Export); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("extern", CppLexer::Extern); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("false", CppLexer::False); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("float", CppLexer::Float); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("for", CppLexer::For); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("friend", CppLexer::Friend); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("goto", CppLexer::GoTo); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("if", CppLexer::If); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("inline", CppLexer::Inline); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("int", CppLexer::Int); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("long", CppLexer::Long); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("mutable", CppLexer::Mutable); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("namespace", CppLexer::Namespace); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("new", CppLexer::New); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("noexcept", CppLexer::NoExcept); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("nullptr", CppLexer::Nullptr); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("operator", CppLexer::Operator); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("private", CppLexer::Private); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("protected", CppLexer::Protected); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("public", CppLexer::Public); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("register", CppLexer::Register); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("reinterpret_cast", CppLexer::ReinterpretCast); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("return", CppLexer::Return); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("short", CppLexer::Short); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("signed", CppLexer::Signed); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("sizeof", CppLexer::SizeOf); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("static", CppLexer::Static); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("static_assert", CppLexer::StaticAssert); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("static_cast", CppLexer::StaticCast); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("struct", CppLexer::Struct); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("switch", CppLexer::Switch); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("template", CppLexer::Template); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("this", CppLexer::This); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("thread_local", CppLexer::ThreadLocal); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("throw", CppLexer::Throw); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("true", CppLexer::True); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("try", CppLexer::Try); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("typedef", CppLexer::TypeDef); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("typeid", CppLexer::TypeId); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("typename", CppLexer::TypeName); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("union", CppLexer::Union); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("unsigned", CppLexer::Unsigned); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("using", CppLexer::Using); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("virtual", CppLexer::Virtual); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("void", CppLexer::Void); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("volatile", CppLexer::Volatile); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("wchar_t", CppLexer::WChar); });
-    state += RunTest([&testClass]() { testClass->SingleToken_Keyword("while", CppLexer::While); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[alignas]",
+        [&testClass]() { testClass->SingleToken_Keyword("alignas", CppLexer::AlignAs); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("asm", CppLexer::Asm); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("auto", CppLexer::Auto); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("bool", CppLexer::Bool); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("break", CppLexer::Break); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("case", CppLexer::Case); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("catch", CppLexer::Catch); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("char", CppLexer::Char); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("char16_t", CppLexer::Char16); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("char32_t", CppLexer::Char32); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("class", CppLexer::Class); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("const", CppLexer::Const); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("constexpr", CppLexer::ConstExpr); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("const_cast", CppLexer::ConstCast); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("continue", CppLexer::Continue); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("decltype", CppLexer::DeclType); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("default", CppLexer::Default); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("delete", CppLexer::Delete); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("do", CppLexer::Do); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("double", CppLexer::Double); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("dynamic_cast", CppLexer::DynamicCast); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("else", CppLexer::Else); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("enum", CppLexer::Enum); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("explicit", CppLexer::Explicit); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("export", CppLexer::Export); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("extern", CppLexer::Extern); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("false", CppLexer::False); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("float", CppLexer::Float); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("for", CppLexer::For); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("friend", CppLexer::Friend); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("goto", CppLexer::GoTo); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("if", CppLexer::If); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("inline", CppLexer::Inline); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("int", CppLexer::Int); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("long", CppLexer::Long); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("mutable", CppLexer::Mutable); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("namespace", CppLexer::Namespace); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("new", CppLexer::New); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("noexcept", CppLexer::NoExcept); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("nullptr", CppLexer::Nullptr); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("operator", CppLexer::Operator); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("private", CppLexer::Private); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("protected", CppLexer::Protected); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("public", CppLexer::Public); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("register", CppLexer::Register); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("reinterpret_cast", CppLexer::ReinterpretCast); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("return", CppLexer::Return); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("short", CppLexer::Short); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("signed", CppLexer::Signed); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("sizeof", CppLexer::SizeOf); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("static", CppLexer::Static); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("static_assert", CppLexer::StaticAssert); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("static_cast", CppLexer::StaticCast); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("struct", CppLexer::Struct); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("switch", CppLexer::Switch); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("template", CppLexer::Template); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("this", CppLexer::This); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("thread_local", CppLexer::ThreadLocal); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("throw", CppLexer::Throw); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("true", CppLexer::True); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("try", CppLexer::Try); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("typedef", CppLexer::TypeDef); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("typeid", CppLexer::TypeId); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("typename", CppLexer::TypeName); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("union", CppLexer::Union); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("unsigned", CppLexer::Unsigned); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("using", CppLexer::Using); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("virtual", CppLexer::Virtual); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("void", CppLexer::Void); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("volatile", CppLexer::Volatile); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("wchar_t", CppLexer::WChar); });
+    state += RunTest(
+        className,
+        "SingleToken_Keyword[]",
+        [&testClass]() { testClass->SingleToken_Keyword("while", CppLexer::While); });
 
-    // std::cout << "SingleToken_OperatorsAndPunctuation" << std::endl;
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("{", CppLexer::OpenBrace); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("}", CppLexer::CloseBrace); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("[", CppLexer::OpenBracket); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("]", CppLexer::CloseBracket); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("(", CppLexer::OpenParenthesis); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation(")", CppLexer::CloseParenthesis); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation(";", CppLexer::Semicolon); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation(":", CppLexer::Colon); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("...", CppLexer::Ellipsis); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("new", CppLexer::New); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("delete", CppLexer::Delete); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("?", CppLexer::QuestionMark); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("::", CppLexer::DoubleColon); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation(".", CppLexer::Period); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation(".*", CppLexer::PeriodAsterisk); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("+", CppLexer::Plus); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("-", CppLexer::Minus); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("*", CppLexer::Asterisk); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("/", CppLexer::ForwardSlash); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("%", CppLexer::Percent); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("^", CppLexer::Caret); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("&", CppLexer::Ampersand); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("|", CppLexer::VerticalBar); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("~", CppLexer::Tilde); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("!", CppLexer::ExclamationMark); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("=", CppLexer::Equal); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("<", CppLexer::LessThan); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation(">", CppLexer::GreaterThan); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("+=", CppLexer::PlusEqual); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("-=", CppLexer::MinusEqual); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("*=", CppLexer::AsteriskEqual); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("/=", CppLexer::ForwardSlashEqual); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("%=", CppLexer::PercentEqual); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("^=", CppLexer::CaretEqual); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("&=", CppLexer::AmpersandEqual); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("|=", CppLexer::VerticalBarEqual); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("<<", CppLexer::DoubleLessThan); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation(">>", CppLexer::DoubleGreaterThan); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("<<=", CppLexer::DoubleLessThanEqual); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation(">>=", CppLexer::DoubleGreaterThanEqual); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("==", CppLexer::DoubleEqual); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("!=", CppLexer::ExclamationMarkEqual); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("<=", CppLexer::LessThanEqual); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation(">=", CppLexer::GreaterThanEqual); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("&&", CppLexer::DoubleAmpersand); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("||", CppLexer::DoubleVerticalBar); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("++", CppLexer::DoublePlus); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("--", CppLexer::DoubleMinus); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation(",", CppLexer::Comma); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("->*", CppLexer::ArrowAsterisk); });
-    state += RunTest([&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("->", CppLexer::Arrow); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("{", CppLexer::OpenBrace); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("}", CppLexer::CloseBrace); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("[", CppLexer::OpenBracket); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("]", CppLexer::CloseBracket); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("(", CppLexer::OpenParenthesis); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation(")", CppLexer::CloseParenthesis); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation(";", CppLexer::Semicolon); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation(":", CppLexer::Colon); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("...", CppLexer::Ellipsis); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("new", CppLexer::New); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("delete", CppLexer::Delete); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("?", CppLexer::QuestionMark); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("::", CppLexer::DoubleColon); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation(".", CppLexer::Period); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation(".*", CppLexer::PeriodAsterisk); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("+", CppLexer::Plus); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("-", CppLexer::Minus); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("*", CppLexer::Asterisk); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("/", CppLexer::ForwardSlash); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("%", CppLexer::Percent); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("^", CppLexer::Caret); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("&", CppLexer::Ampersand); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("|", CppLexer::VerticalBar); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("~", CppLexer::Tilde); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("!", CppLexer::ExclamationMark); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("=", CppLexer::Equal); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("<", CppLexer::LessThan); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation(">", CppLexer::GreaterThan); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("+=", CppLexer::PlusEqual); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("-=", CppLexer::MinusEqual); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("*=", CppLexer::AsteriskEqual); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("/=", CppLexer::ForwardSlashEqual); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("%=", CppLexer::PercentEqual); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("^=", CppLexer::CaretEqual); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("&=", CppLexer::AmpersandEqual); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("|=", CppLexer::VerticalBarEqual); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("<<", CppLexer::DoubleLessThan); });
+    // state += RunTest(
+    //     className,
+    //     "SingleToken_OperatorsAndPunctuation[]",
+    //     [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation(">>", CppLexer::DoubleGreaterThan); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("<<=", CppLexer::DoubleLessThanEqual); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation(">>=", CppLexer::DoubleGreaterThanEqual); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("==", CppLexer::DoubleEqual); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("!=", CppLexer::ExclamationMarkEqual); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("<=", CppLexer::LessThanEqual); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation(">=", CppLexer::GreaterThanEqual); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("&&", CppLexer::DoubleAmpersand); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("||", CppLexer::DoubleVerticalBar); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("++", CppLexer::DoublePlus); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("--", CppLexer::DoubleMinus); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation(",", CppLexer::Comma); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("->*", CppLexer::ArrowAsterisk); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[]",
+        [&testClass]() { testClass->SingleToken_OperatorsAndPunctuation("->", CppLexer::Arrow); });
 
-    // std::cout << "SingleToken_OperatorsAndPunctuation" << std::endl;
-    state += RunTest([&testClass]() { testClass->SingleToken_Zero("0"); });
+    state += RunTest(
+        className,
+        "SingleToken_OperatorsAndPunctuation[0]",
+        [&testClass]() { testClass->SingleToken_Zero("0"); });
 
     // std::cout << "SingleToken_IntegerLiteral" << std::endl;
     state += RunTest([&testClass]() { testClass->SingleToken_IntegerLiteral("1"); });

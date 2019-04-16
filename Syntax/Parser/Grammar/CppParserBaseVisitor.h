@@ -1,6 +1,9 @@
 
 // Generated from Grammar\CppParser.g4 by ANTLR 4.7.1
 
+
+// Generated from Grammar\CppParser.g4 by ANTLR 4.7.1
+
 #pragma once
 
 
@@ -14,6 +17,10 @@
  */
 export class  CppParserBaseVisitor : public CppParserVisitor {
 public:
+
+  virtual antlrcpp::Any visitDoubleGreaterThan(CppParser::DoubleGreaterThanContext *ctx) override {
+    return visitChildren(ctx);
+  }
 
   virtual antlrcpp::Any visitNamespaceName(CppParser::NamespaceNameContext *ctx) override {
     return visitChildren(ctx);

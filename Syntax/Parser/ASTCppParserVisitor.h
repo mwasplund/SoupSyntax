@@ -11,6 +11,7 @@ namespace Soup::Syntax
     public:
         ASTCppParserVisitor(antlr4::BufferedTokenStream* tokenStream);
 
+        virtual antlrcpp::Any visitDoubleGreaterThan(CppParser::DoubleGreaterThanContext *ctx) override final;
         virtual antlrcpp::Any visitNamespaceName(CppParser::NamespaceNameContext *context) override final;
         virtual antlrcpp::Any visitNamespaceAlias(CppParser::NamespaceAliasContext *context) override final;
         virtual antlrcpp::Any visitClassName(CppParser::ClassNameContext *context) override final;

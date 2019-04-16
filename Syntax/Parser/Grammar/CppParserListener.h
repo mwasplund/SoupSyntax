@@ -14,6 +14,9 @@
 export class  CppParserListener : public antlr4::tree::ParseTreeListener {
 public:
 
+  virtual void enterDoubleGreaterThan(CppParser::DoubleGreaterThanContext *ctx) = 0;
+  virtual void exitDoubleGreaterThan(CppParser::DoubleGreaterThanContext *ctx) = 0;
+
   virtual void enterNamespaceName(CppParser::NamespaceNameContext *ctx) = 0;
   virtual void exitNamespaceName(CppParser::NamespaceNameContext *ctx) = 0;
 

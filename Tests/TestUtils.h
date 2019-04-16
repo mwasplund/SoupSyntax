@@ -107,12 +107,12 @@ class TestUtils
         if (expected != actual)
         {
             std::stringstream errorMessage;
-            // TODO SyntaxTreeWriter writer(errorMessage);
+            SyntaxTreeWriter writer(errorMessage);
             errorMessage << message << "\n";
             errorMessage << "Expected:\n";
-            //expected.Accept(writer);
+            expected.CreateOuterAny(nullptr)->Accept(writer);
             errorMessage << "Actual:\n";
-            //actual.Accept(writer);
+            actual.CreateOuterAny(nullptr)->Accept(writer);
 
             Assert::Fail(errorMessage.str());
         }
@@ -143,12 +143,12 @@ class TestUtils
         if (expected == actual)
         {
             std::stringstream errorMessage;
-            // TODO: SyntaxTreeWriter writer(errorMessage);
+            SyntaxTreeWriter writer(errorMessage);
             errorMessage << message << "\n";
             errorMessage << "Expected:\n";
-            //expected->Accept(writer);
+            expected.CreateOuterAny(nullptr)->Accept(writer);
             errorMessage << "Actual:\n";
-            //actual->Accept(writer);
+            actual.CreateOuterAny(nullptr)->Accept(writer);
 
             Assert::Fail(errorMessage.str());
         }
