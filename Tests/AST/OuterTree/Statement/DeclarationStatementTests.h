@@ -18,13 +18,12 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                     SyntaxFactory::CreateInitializerDeclaratorList(
                         SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
-                            std::vector<std::shared_ptr<const InitializerDeclarator>>(
                             {
                                 SyntaxFactory::CreateInitializerDeclarator(
                                     SyntaxFactory::CreateSimpleIdentifierExpression(
                                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                     nullptr),
-                            }),
+                            },
                             {})),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)))->CreateOuter(nullptr);
 
@@ -64,13 +63,12 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                     SyntaxFactory::CreateInitializerDeclaratorList(
                         SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
-                            std::vector<std::shared_ptr<const InitializerDeclarator>>(
                             {
                                 SyntaxFactory::CreateInitializerDeclarator(
                                     SyntaxFactory::CreateSimpleIdentifierExpression(
                                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                     nullptr),
-                            }),
+                            },
                             {})),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)))->CreateOuter(nullptr);
 
@@ -109,13 +107,12 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                     SyntaxFactory::CreateInitializerDeclaratorList(
                         SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
-                            std::vector<std::shared_ptr<const InitializerDeclarator>>(
                             {
                                 SyntaxFactory::CreateInitializerDeclarator(
                                     SyntaxFactory::CreateSimpleIdentifierExpression(
                                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                     nullptr),
-                            }),
+                            },
                             {})),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)))->CreateOuter(nullptr);
 

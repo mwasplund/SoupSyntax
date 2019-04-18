@@ -15,13 +15,9 @@ namespace Soup::Syntax::InnerTree::UnitTests
 
             auto expected = SyntaxFactory::CreateNamespaceDefinition(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Namespace),
-                SyntaxFactory::CreateSyntaxSeparatorList<SyntaxToken>(
-                    {},
-                    {}),
+                SyntaxFactory::CreateSyntaxSeparatorList<SyntaxToken>({}, {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                SyntaxFactory::CreateSyntaxList<Declaration>(
-                    std::vector<std::shared_ptr<const Declaration>>(
-                    {})),
+                SyntaxFactory::CreateSyntaxList<Declaration>({}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             TestUtils::AreEqual(
@@ -39,7 +35,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             auto expected = SyntaxFactory::CreateNamespaceDefinition(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Namespace),
                 SyntaxFactory::CreateSyntaxSeparatorList<SyntaxToken>(
-                    std::vector<std::shared_ptr<const SyntaxToken>>({
+                    {
                         SyntaxFactory::CreateUniqueToken(
                             SyntaxTokenType::Identifier,
                             "Namespace",
@@ -47,12 +43,10 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                 SyntaxFactory::CreateTrivia(" ")
                             },
                             {}),
-                    }),
+                    },
                     {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                SyntaxFactory::CreateSyntaxList<Declaration>(
-                    std::vector<std::shared_ptr<const Declaration>>(
-                    {})),
+                SyntaxFactory::CreateSyntaxList<Declaration>({}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             TestUtils::AreEqual(
@@ -70,7 +64,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             auto expected = SyntaxFactory::CreateNamespaceDefinition(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Namespace),
                 SyntaxFactory::CreateSyntaxSeparatorList<SyntaxToken>(
-                    std::vector<std::shared_ptr<const SyntaxToken>>({
+                    {
                         SyntaxFactory::CreateUniqueToken(
                             SyntaxTokenType::Identifier,
                             "RootNamespace",
@@ -79,14 +73,12 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             },
                             {}),
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "SubNamespace"),
-                    }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>({
+                    },
+                    {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
-                    })),
+                    }),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                SyntaxFactory::CreateSyntaxList<Declaration>(
-                    std::vector<std::shared_ptr<const Declaration>>(
-                    {})),
+                SyntaxFactory::CreateSyntaxList<Declaration>({}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             TestUtils::AreEqual(
@@ -104,7 +96,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             auto expected = SyntaxFactory::CreateNamespaceDefinition(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Namespace),
                 SyntaxFactory::CreateSyntaxSeparatorList<SyntaxToken>(
-                    std::vector<std::shared_ptr<const SyntaxToken>>({
+                    {
                         SyntaxFactory::CreateUniqueToken(
                             SyntaxTokenType::Identifier,
                             "MyNamespace",
@@ -112,7 +104,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                 SyntaxFactory::CreateTrivia(" ")
                             },
                             {}),
-                    }),
+                    },
                     {}),
                 SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::OpenBrace,
@@ -121,7 +113,6 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     },
                     {}),
                 SyntaxFactory::CreateSyntaxList<Declaration>(
-                    std::vector<std::shared_ptr<const Declaration>>(
                     {
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(
@@ -130,7 +121,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                     SyntaxFactory::CreateTrivia(" ")
                                 },
                                 {})),
-                    })),
+                    }),
                 SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::CloseBrace,
                     {

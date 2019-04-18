@@ -13,7 +13,6 @@ namespace Soup::Syntax::InnerTree::UnitTests
             // a, b
             auto uut = SyntaxFactory::CreateInitializerDeclaratorList(
                 SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
-                    std::vector<std::shared_ptr<const InitializerDeclarator>>(
                     {
                         SyntaxFactory::CreateInitializerDeclarator(
                             SyntaxFactory::CreateSimpleIdentifierExpression(
@@ -23,7 +22,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreateSimpleIdentifierExpression(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                             nullptr),
-                    }),
+                    },
                     {}));
 
             Assert::AreEqual(
@@ -32,7 +31,6 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify has correct type.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
-                    std::vector<std::shared_ptr<const InitializerDeclarator>>(
                     {
                         SyntaxFactory::CreateInitializerDeclarator(
                             SyntaxFactory::CreateSimpleIdentifierExpression(
@@ -42,7 +40,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreateSimpleIdentifierExpression(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                             nullptr),
-                    }),
+                    },
                     {}),
                 uut->GetItems(),
                 "Verify items match.");
@@ -54,7 +52,6 @@ namespace Soup::Syntax::InnerTree::UnitTests
             // a, b
             auto uut = SyntaxFactory::CreateInitializerDeclaratorList(
                 SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
-                    std::vector<std::shared_ptr<const InitializerDeclarator>>(
                     {
                         SyntaxFactory::CreateInitializerDeclarator(
                             SyntaxFactory::CreateSimpleIdentifierExpression(
@@ -64,13 +61,12 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreateSimpleIdentifierExpression(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                             nullptr),
-                    }),
+                    },
                     {}));
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateInitializerDeclaratorList(
                     SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
-                        std::vector<std::shared_ptr<const InitializerDeclarator>>(
                         {
                             SyntaxFactory::CreateInitializerDeclarator(
                                 SyntaxFactory::CreateSimpleIdentifierExpression(
@@ -80,7 +76,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                 SyntaxFactory::CreateSimpleIdentifierExpression(
                                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                                 nullptr),
-                        }),
+                        },
                         {})),
                 uut,
                 "Verify matches.");
@@ -92,7 +88,6 @@ namespace Soup::Syntax::InnerTree::UnitTests
             // a, b
             auto uut = SyntaxFactory::CreateInitializerDeclaratorList(
                 SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
-                    std::vector<std::shared_ptr<const InitializerDeclarator>>(
                     {
                         SyntaxFactory::CreateInitializerDeclarator(
                             SyntaxFactory::CreateSimpleIdentifierExpression(
@@ -102,19 +97,18 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreateSimpleIdentifierExpression(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                             nullptr),
-                    }),
+                    },
                     {}));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateInitializerDeclaratorList(
                     SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
-                        std::vector<std::shared_ptr<const InitializerDeclarator>>(
                         {
                             SyntaxFactory::CreateInitializerDeclarator(
                                 SyntaxFactory::CreateSimpleIdentifierExpression(
                                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "c")),
                                 nullptr),
-                        }),
+                        },
                         {})),
                 uut,
                 "Verify does not match.");
@@ -126,7 +120,6 @@ namespace Soup::Syntax::InnerTree::UnitTests
             // a, b
             auto uut = SyntaxFactory::CreateInitializerDeclaratorList(
                 SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
-                    std::vector<std::shared_ptr<const InitializerDeclarator>>(
                     {
                         SyntaxFactory::CreateInitializerDeclarator(
                             SyntaxFactory::CreateSimpleIdentifierExpression(
@@ -136,13 +129,12 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreateSimpleIdentifierExpression(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                             nullptr),
-                    }),
+                    },
                     {}));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateInitializerDeclaratorList(
                     SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
-                        std::vector<std::shared_ptr<const InitializerDeclarator>>(
                         {
                             SyntaxFactory::CreateInitializerDeclarator(
                                 SyntaxFactory::CreateSimpleIdentifierExpression(
@@ -152,7 +144,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                 SyntaxFactory::CreateSimpleIdentifierExpression(
                                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                                 nullptr),
-                        }),
+                        },
                         {})),
                 uut,
                 "Verify does not match.");

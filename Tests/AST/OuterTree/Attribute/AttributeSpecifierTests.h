@@ -19,9 +19,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         SyntaxFactory::CreateTrivia(" "),
                     },
                     {}),
-                SyntaxFactory::CreateSyntaxSeparatorList<Attribute>(
-                    std::vector<std::shared_ptr<const Attribute>>(),
-                    {}),
+                SyntaxFactory::CreateSyntaxSeparatorList<Attribute>({}, {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket),
                 SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::CloseBracket,
@@ -48,9 +46,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 uut->GetInnerOpenBracketToken(),
                 "Verify inner open bracket token matches.");
             TestUtils::AreEqual(
-                *SyntaxFactory::CreateSyntaxSeparatorList<Attribute>(
-                    std::vector<std::shared_ptr<const Attribute>>(),
-                    {}),
+                *SyntaxFactory::CreateSyntaxSeparatorList<Attribute>({}, {}),
                 uut->GetAttributes(),
                 "Verify attributes match.");
             TestUtils::AreEqual(
@@ -155,9 +151,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         SyntaxFactory::CreateTrivia(" "),
                     },
                     {}),
-                SyntaxFactory::CreateSyntaxSeparatorList<Attribute>(
-                    std::vector<std::shared_ptr<const Attribute>>(),
-                    {}),
+                SyntaxFactory::CreateSyntaxSeparatorList<Attribute>({}, {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket),
                 SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::CloseBracket,

@@ -213,9 +213,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     SyntaxFactory::CreateAttributeSpecifier(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
-                        SyntaxFactory::CreateSyntaxSeparatorList<Attribute>(
-                            std::vector<std::shared_ptr<const Attribute>>(),
-                            {}),
+                        SyntaxFactory::CreateSyntaxSeparatorList<Attribute>({}, {}),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket)),
                 }),

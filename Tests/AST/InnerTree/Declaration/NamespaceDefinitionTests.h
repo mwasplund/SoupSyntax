@@ -16,8 +16,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     {},
                     {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                SyntaxFactory::CreateSyntaxList<Declaration>(
-                    std::vector<std::shared_ptr<const Declaration>>()),
+                SyntaxFactory::CreateSyntaxList<Declaration>({}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             Assert::AreEqual(
@@ -39,8 +38,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 uut->GetOpenBraceToken(),
                 "Verify left brace token matches.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateSyntaxList<Declaration>(
-                    std::vector<std::shared_ptr<const Declaration>>()),
+                *SyntaxFactory::CreateSyntaxList<Declaration>({}),
                 uut->GetBody(),
                 "Verify the body matches.");
             Assert::AreEqual(
@@ -55,13 +53,13 @@ namespace Soup::Syntax::InnerTree::UnitTests
             auto uut = SyntaxFactory::CreateNamespaceDefinition(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Namespace),
                 SyntaxFactory::CreateSyntaxSeparatorList<SyntaxToken>(
-                    std::vector<std::shared_ptr<const SyntaxToken>>({
+                    {
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "BaseNamespace"),
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "SubNamespace"),
-                    }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>({
+                    },
+                    {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
-                    })),
+                    }),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 SyntaxFactory::CreateSyntaxList<Declaration>(
                     std::vector<std::shared_ptr<const Declaration>>(

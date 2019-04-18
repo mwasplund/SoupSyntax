@@ -55,7 +55,6 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     },
                     {}),
                 SyntaxFactory::CreateSyntaxSeparatorList<EnumeratorDefinition>(
-                    std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                     {
                         SyntaxFactory::CreateEnumeratorDefinition(
                             SyntaxFactory::CreateUniqueToken(
@@ -73,11 +72,10 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                     SyntaxFactory::CreateTrivia(" ")
                                 },
                                 {})),
-                    }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>(
+                    },
                     {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma),
-                    })),
+                    }),
                 SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::CloseBrace,
                     {

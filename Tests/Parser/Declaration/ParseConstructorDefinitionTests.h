@@ -153,7 +153,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         },
                         {}),
                     SyntaxFactory::CreateSyntaxSeparatorList<MemberInitializer>(
-                        std::vector<std::shared_ptr<const MemberInitializer>>({
+                        {
                             SyntaxFactory::CreateMemberInitializer(
                                 SyntaxFactory::CreateUniqueToken(
                                     SyntaxTokenType::Identifier,
@@ -171,7 +171,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                         },
                                         {}),
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))), 
-                        }),
+                        },
                         {})),
                 SyntaxFactory::CreateRegularFunctionBody(
                     SyntaxFactory::CreateCompoundStatement(

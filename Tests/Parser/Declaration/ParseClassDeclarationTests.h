@@ -17,9 +17,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
                 nullptr,
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                SyntaxFactory::CreateSyntaxList<Declaration>(
-                    std::vector<std::shared_ptr<const Declaration>>(
-                    {})),
+                SyntaxFactory::CreateSyntaxList<Declaration>({}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             TestUtils::AreEqual(
@@ -50,7 +48,6 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     },
                     {}),
                 SyntaxFactory::CreateSyntaxList<Declaration>(
-                    std::vector<std::shared_ptr<const Declaration>>(
                     {
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(
@@ -59,7 +56,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                     SyntaxFactory::CreateTrivia(" ")
                                 },
                                 {})),
-                    })),
+                    }),
                 SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::CloseBrace,
                     {
@@ -95,7 +92,6 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     },
                     {}),
                 SyntaxFactory::CreateSyntaxList<Declaration>(
-                    std::vector<std::shared_ptr<const Declaration>>(
                     {
                         SyntaxFactory::CreateAccessorSpecifier(
                             SyntaxFactory::CreateKeywordToken(
@@ -112,7 +108,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                     SyntaxFactory::CreateTrivia(" ")
                                 },
                                 {})),
-                    })),
+                    }),
                 SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::CloseBrace,
                     {

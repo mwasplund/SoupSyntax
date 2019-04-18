@@ -65,8 +65,9 @@ class TestUtils
     {
         return SyntaxFactory::CreateTranslationUnit(
             SyntaxFactory::CreateSyntaxList<InnerTree::Declaration>(
-                std::vector<std::shared_ptr<const InnerTree::Declaration>>{
-                    std::move(declaration)}),
+                {
+                    std::move(declaration),
+                }),
             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile));
     }
 

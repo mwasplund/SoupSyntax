@@ -14,9 +14,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
                 nullptr,
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                SyntaxFactory::CreateSyntaxList<Declaration>(
-                    std::vector<std::shared_ptr<const Declaration>>(
-                    {})),
+                SyntaxFactory::CreateSyntaxList<Declaration>({}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             Assert::AreEqual(
@@ -35,9 +33,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 uut->GetOpenBraceToken(),
                 "Verify left brace token matches.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateSyntaxList<Declaration>(
-                    std::vector<std::shared_ptr<const Declaration>>(
-                    {})),
+                *SyntaxFactory::CreateSyntaxList<Declaration>({}),
                 uut->GetMemberDeclarations(),
                 "Verify member declarations list matches.");
             Assert::AreEqual(
@@ -54,14 +50,13 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 SyntaxFactory::CreateSyntaxList<Declaration>(
-                    std::vector<std::shared_ptr<const Declaration>>(
                     {
                         SyntaxFactory::CreateAccessorSpecifier(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Public),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Colon)),
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
-                    })),
+                    }),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             Assert::AreEqual(
@@ -108,9 +103,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
                 nullptr,
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                SyntaxFactory::CreateSyntaxList<Declaration>(
-                    std::vector<std::shared_ptr<const Declaration>>(
-                    {})),
+                SyntaxFactory::CreateSyntaxList<Declaration>({}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             TestUtils::AreEqual(

@@ -14,8 +14,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             auto actual = ParseTranslationUnit(sourceCode);
 
             auto expected = SyntaxFactory::CreateTranslationUnit(
-                SyntaxFactory::CreateSyntaxList<Declaration>(
-                    std::vector<std::shared_ptr<const Declaration>>()),
+                SyntaxFactory::CreateSyntaxList<Declaration>({}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile));
 
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
@@ -28,8 +27,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             auto actual = ParseTranslationUnit(sourceCode);
 
             auto expected = SyntaxFactory::CreateTranslationUnit(
-                SyntaxFactory::CreateSyntaxList<Declaration>(
-                    std::vector<std::shared_ptr<const Declaration>>()),
+                SyntaxFactory::CreateSyntaxList<Declaration>({}),
                 SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::EndOfFile,
                     {
@@ -47,8 +45,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             auto actual = ParseTranslationUnit(sourceCode);
 
             auto expected = SyntaxFactory::CreateTranslationUnit(
-                SyntaxFactory::CreateSyntaxList<Declaration>(
-                    std::vector<std::shared_ptr<const Declaration>>()),
+                SyntaxFactory::CreateSyntaxList<Declaration>({}),
                 SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::EndOfFile,
                     {
@@ -69,7 +66,6 @@ namespace Soup::Syntax::InnerTree::UnitTests
 
             auto expected = SyntaxFactory::CreateTranslationUnit(
                 SyntaxFactory::CreateSyntaxList<Declaration>(
-                    std::vector<std::shared_ptr<const Declaration>>(
                     {
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(
@@ -78,7 +74,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                     SyntaxFactory::CreateTrivia(" "),
                                 },
                                 {})),
-                    })),
+                    }),
                 SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::EndOfFile,
                     {
@@ -97,7 +93,6 @@ namespace Soup::Syntax::InnerTree::UnitTests
 
             auto expected = SyntaxFactory::CreateTranslationUnit(
                 SyntaxFactory::CreateSyntaxList<Declaration>(
-                    std::vector<std::shared_ptr<const Declaration>>(
                     {
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
@@ -113,7 +108,6 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                         {}))),
                             SyntaxFactory::CreateInitializerDeclaratorList(
                                 SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
-                                    std::vector<std::shared_ptr<const InitializerDeclarator>>(
                                     {
                                         SyntaxFactory::CreateInitializerDeclarator(
                                             SyntaxFactory::CreateSimpleIdentifierExpression(
@@ -125,10 +119,10 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                                     },
                                                     {})),
                                             nullptr),
-                                    }),
+                                    },
                                     {})),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
-                    })),
+                    }),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile));
 
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");

@@ -152,15 +152,15 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     },
                     {}),
                 SyntaxFactory::CreateSyntaxSeparatorList<Attribute>(
-                    std::vector<std::shared_ptr<const Attribute>>({
+                    {
                         SyntaxFactory::CreateAttribute(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                         SyntaxFactory::CreateAttribute(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
-                    }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>({
+                    },
+                    {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma),
-                    })),
+                    }),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket),
                 SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::CloseBracket,
@@ -207,10 +207,10 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
                 SyntaxFactory::CreateSyntaxSeparatorList<Attribute>(
-                    std::vector<std::shared_ptr<const Attribute>>({
+                    {
                         SyntaxFactory::CreateAttribute(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
-                    }),
+                    },
                     {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket));
@@ -225,10 +225,10 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
                     SyntaxFactory::CreateSyntaxSeparatorList<Attribute>(
-                        std::vector<std::shared_ptr<const Attribute>>({
+                        {
                             SyntaxFactory::CreateAttribute(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
-                        }),
+                        },
                         {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket)),

@@ -16,8 +16,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     {},
                     {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                SyntaxFactory::CreateSyntaxList<Declaration>(
-                    std::vector<std::shared_ptr<const Declaration>>()),
+                SyntaxFactory::CreateSyntaxList<Declaration>({}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace))->CreateOuter(nullptr);
 
             Assert::AreEqual(
@@ -39,8 +38,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 uut->GetOpenBraceToken(),
                 "Verify left brace token matches.");
             TestUtils::AreEqual(
-                *SyntaxFactory::CreateSyntaxList<Declaration>(
-                    std::vector<std::shared_ptr<const Declaration>>()),
+                *SyntaxFactory::CreateSyntaxList<Declaration>({}),
                 uut->GetBody(),
                 "Verify the body matches.");
             TestUtils::AreEqual(

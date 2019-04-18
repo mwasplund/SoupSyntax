@@ -11,8 +11,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         void InitializeSimple()
         {
             auto uut = SyntaxFactory::CreateTranslationUnit(
-                SyntaxFactory::CreateSyntaxList<Declaration>(
-                    std::vector<std::shared_ptr<const Declaration>>()),
+                SyntaxFactory::CreateSyntaxList<Declaration>({}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile));
 
             Assert::AreEqual(
@@ -20,8 +19,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 uut->GetType(),
                 "Verify has correct type.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateSyntaxList<Declaration>(
-                    std::vector<std::shared_ptr<const Declaration>>()),
+                *SyntaxFactory::CreateSyntaxList<Declaration>({}),
                 uut->GetDeclarations(),
                 "Verify declarations matches.");
             Assert::AreEqual(

@@ -17,9 +17,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             auto expected = SyntaxFactory::CreateAttributeSpecifier(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
-                SyntaxFactory::CreateSyntaxSeparatorList<Attribute>(
-                    std::vector<std::shared_ptr<const Attribute>>(),
-                    {}),
+                SyntaxFactory::CreateSyntaxSeparatorList<Attribute>({}, {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket));
 
@@ -41,9 +39,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         SyntaxFactory::CreateTrivia(" "),
                     },
                     {}),
-                SyntaxFactory::CreateSyntaxSeparatorList<Attribute>(
-                    std::vector<std::shared_ptr<const Attribute>>(),
-                    {}),
+                SyntaxFactory::CreateSyntaxSeparatorList<Attribute>({}, {}),
                 SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::CloseBracket,
                     {
@@ -71,10 +67,10 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
                 SyntaxFactory::CreateSyntaxSeparatorList<Attribute>(
-                    std::vector<std::shared_ptr<const Attribute>>({
+                    {
                         SyntaxFactory::CreateAttribute(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
-                    }),
+                    },
                     {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket));
