@@ -2621,9 +2621,8 @@ antlrcpp::Any ASTCppParserVisitor::visitBraceOrEqualInitializer(CppParser::Brace
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreateValueEqualInitializer(
                 CreateToken(SyntaxTokenType::Equal, context->Equal()),
-                SafeDynamicCast<const Expression>(
-                    visit(context->initializerClause())
-                        .as<std::shared_ptr<const SyntaxNode>>(), __LINE__)));
+                visit(context->initializerClause())
+                    .as<std::shared_ptr<const SyntaxNode>>()));
     }
     else
     {
@@ -3109,18 +3108,18 @@ antlrcpp::Any ASTCppParserVisitor::visitSimpleTemplateIdentifier(CppParser::Simp
     Trace("VisitSimpleTemplateIdentifier");
 
     // Check for the optional template argument list
-    SeparatorListResult<Expression> argumentList = {};
+    SeparatorListResult<SyntaxNode> argumentList = {};
     if (context->templateArgumentList() != nullptr)
     {
         argumentList = visit(context->templateArgumentList())
-            .as<SeparatorListResult<Expression>>();
+            .as<SeparatorListResult<SyntaxNode>>();
     }
 
     return std::static_pointer_cast<const SyntaxNode>(
         SyntaxFactory::CreateSimpleTemplateIdentifierExpression(
             CreateToken(SyntaxTokenType::Identifier, context->templateName()->Identifier()),
             CreateToken(SyntaxTokenType::LessThan, context->LessThan()),
-            SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
+            SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
                 std::move(argumentList.Items),
                 std::move(argumentList.Separators)),
             CreateToken(SyntaxTokenType::GreaterThan, context->GreaterThan())));
@@ -3144,19 +3143,18 @@ antlrcpp::Any ASTCppParserVisitor::visitTemplateArgumentList(CppParser::Template
     Trace("VisitTemplateArgumentList");
 
     // Handle the recursive rule
-    SeparatorListResult<Expression> templateArgumentList = {};
+    SeparatorListResult<SyntaxNode> templateArgumentList = {};
     if (context->templateArgumentList() != nullptr)
     {
         templateArgumentList = visit(context->templateArgumentList())
-            .as<SeparatorListResult<Expression>>();
+            .as<SeparatorListResult<SyntaxNode>>();
         templateArgumentList.Separators.push_back(
             CreateToken(SyntaxTokenType::Comma, context->Comma()));
     }
 
     // Handle the next item
-    auto templateArgument = SafeDynamicCast<const Expression>(
-        visit(context->templateArgument())
-            .as<std::shared_ptr<const SyntaxNode>>(), __LINE__);
+    auto templateArgument = visit(context->templateArgument())
+        .as<std::shared_ptr<const SyntaxNode>>();
     templateArgumentList.Items.push_back(std::move(templateArgument));
 
     return templateArgumentList;

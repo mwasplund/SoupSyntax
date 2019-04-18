@@ -47,8 +47,8 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateSimpleTemplateIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Name"),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LessThan),
-                    SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
-                        std::vector<std::shared_ptr<const Expression>>({
+                    SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
+                        {
                             SyntaxFactory::CreateSimpleIdentifierExpression(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value1")),
                             SyntaxFactory::CreateSimpleIdentifierExpression(
@@ -59,10 +59,10 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                         SyntaxFactory::CreateTrivia(" "),
                                     },
                                     {})),
-                        }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>({
+                        },
+                        {
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma)
-                        })),
+                        }),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan)),
                 expression,
                 "Verify matches expected.");

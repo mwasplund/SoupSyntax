@@ -19,7 +19,7 @@ namespace Soup::Syntax::OuterTree
             UnqualifiedIdentifierExpression(innerNode, parentNode),
             m_identifierToken(innerNode->GetIdentifierToken().CreateOuter(this)),
             m_lessThanToken(innerNode->GetLessThanToken().CreateOuter(this)),
-            m_templateArgumentList(innerNode->GetTemplateArgumentList().CreateOuter<Expression>(this)),
+            m_templateArgumentList(innerNode->GetTemplateArgumentList().CreateOuter<SyntaxNode>(this)),
             m_greaterThanToken(innerNode->GetGreaterThanToken().CreateOuter(this))
         {
         }
@@ -44,7 +44,7 @@ namespace Soup::Syntax::OuterTree
         /// <summary>
         /// Gets the template argument list
         /// </summary>
-        const SyntaxSeparatorList<Expression>& GetTemplateArgumentList() const
+        const SyntaxSeparatorList<SyntaxNode>& GetTemplateArgumentList() const
         {
             return *m_templateArgumentList;
         }
@@ -86,7 +86,7 @@ namespace Soup::Syntax::OuterTree
     private:
         std::shared_ptr<const SyntaxToken> m_identifierToken;
         std::shared_ptr<const SyntaxToken> m_lessThanToken;
-        std::shared_ptr<const SyntaxSeparatorList<Expression>> m_templateArgumentList;
+        std::shared_ptr<const SyntaxSeparatorList<SyntaxNode>> m_templateArgumentList;
         std::shared_ptr<const SyntaxToken> m_greaterThanToken;
     };
 }

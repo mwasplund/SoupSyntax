@@ -20,7 +20,6 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                 SyntaxFactory::CreateInitializerDeclaratorList(
                     SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
-                        std::vector<std::shared_ptr<const InitializerDeclarator>>(
                         {
                             SyntaxFactory::CreateInitializerDeclarator(
                                 SyntaxFactory::CreateSimpleIdentifierExpression(
@@ -32,7 +31,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                         },
                                         {})),
                                 nullptr),
-                        }),
+                        },
                         {})),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
@@ -51,7 +50,6 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"))),
                 SyntaxFactory::CreateInitializerDeclaratorList(
                     SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
-                        std::vector<std::shared_ptr<const InitializerDeclarator>>(
                         {
                             SyntaxFactory::CreateInitializerDeclarator(
                                 SyntaxFactory::CreateSimpleIdentifierExpression(
@@ -63,7 +61,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                         },
                                         {})),
                                 nullptr),
-                        }),
+                        },
                         {})),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
@@ -85,16 +83,15 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         SyntaxFactory::CreateSimpleTemplateIdentifierExpression(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "vector"),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LessThan),
-                            SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
-                                std::vector<std::shared_ptr<const Expression>>({
+                            SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
+                                {
                                     SyntaxFactory::CreateSimpleIdentifierExpression(
                                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "ClassA")),
-                                }),
-                                std::vector<std::shared_ptr<const SyntaxToken>>({})),
+                                },
+                                {}),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan)))),
                 SyntaxFactory::CreateInitializerDeclaratorList(
                     SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
-                        std::vector<std::shared_ptr<const InitializerDeclarator>>(
                         {
                             SyntaxFactory::CreateInitializerDeclarator(
                                 SyntaxFactory::CreateSimpleIdentifierExpression(
@@ -106,7 +103,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                         },
                                         {})),
                                 nullptr),
-                        }),
+                        },
                         {})),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
@@ -126,7 +123,6 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                 SyntaxFactory::CreateInitializerDeclaratorList(
                     SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
-                        std::vector<std::shared_ptr<const InitializerDeclarator>>(
                         {
                             SyntaxFactory::CreateInitializerDeclarator(
                                 SyntaxFactory::CreateSimpleIdentifierExpression(
@@ -153,7 +149,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                                 SyntaxFactory::CreateTrivia(" "),
                                             },
                                             {})))),
-                        }),
+                        },
                         {})),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
@@ -173,7 +169,6 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                 SyntaxFactory::CreateInitializerDeclaratorList(
                     SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
-                        std::vector<std::shared_ptr<const InitializerDeclarator>>(
                         {
                             SyntaxFactory::CreateInitializerDeclarator(
                                 SyntaxFactory::CreateSimpleIdentifierExpression(
@@ -195,10 +190,10 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                         },
                                         {})),
                                 nullptr),
-                        }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>({
+                        },
+                        {
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma),
-                        }))),
+                        })),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
@@ -217,7 +212,6 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                 SyntaxFactory::CreateInitializerDeclaratorList(
                     SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
-                        std::vector<std::shared_ptr<const InitializerDeclarator>>(
                         {
                             SyntaxFactory::CreateInitializerDeclarator(
                                 SyntaxFactory::CreateSimpleIdentifierExpression(
@@ -254,10 +248,10 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                         },
                                         {})),
                                 nullptr),
-                        }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>({
+                        },
+                        {
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma),
-                        }))),
+                        })),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
@@ -276,7 +270,6 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                 SyntaxFactory::CreateInitializerDeclaratorList(
                     SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
-                        std::vector<std::shared_ptr<const InitializerDeclarator>>(
                         {
                             SyntaxFactory::CreateInitializerDeclarator(
                                 SyntaxFactory::CreateSimpleIdentifierExpression(
@@ -328,10 +321,10 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                                 SyntaxFactory::CreateTrivia(" "),
                                             },
                                             {})))),
-                        }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>({
+                        },
+                        {
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma),
-                        }))),
+                        })),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
@@ -401,8 +394,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         SyntaxFactory::CreateSimpleTemplateIdentifierExpression(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "vector"),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LessThan),
-                            SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
-                                std::vector<std::shared_ptr<const Expression>>(
+                            SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
                                 {
                                     SyntaxFactory::CreateQualifiedIdentifierExpression(
                                         SyntaxFactory::CreateSimpleIdentifierExpression(
@@ -411,19 +403,18 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                         SyntaxFactory::CreateSimpleTemplateIdentifierExpression(
                                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "shared_ptr"),
                                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LessThan),
-                                            SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
-                                                std::vector<std::shared_ptr<const Expression>>({
+                                            SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
+                                                {
                                                     SyntaxFactory::CreateSimpleIdentifierExpression(
                                                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Attribute")),
-                                                }),
-                                                std::vector<std::shared_ptr<const SyntaxToken>>({})),
+                                                },
+                                                {}),
                                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan))),
-                                }),
-                                std::vector<std::shared_ptr<const SyntaxToken>>({})),
+                                },
+                                {}),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan)))),
                 SyntaxFactory::CreateInitializerDeclaratorList(
                     SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
-                        std::vector<std::shared_ptr<const InitializerDeclarator>>(
                         {
                             SyntaxFactory::CreateInitializerDeclarator(
                                 SyntaxFactory::CreateSimpleIdentifierExpression(
@@ -435,7 +426,77 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                         },
                                         {})),
                                 nullptr),
-                        }),
+                        },
+                        {})),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
+
+            TestUtils::AreEqual(expected, actual, "Verify matches expected.");
+        }
+
+        // [Fact]
+        void SingleTemplateWithInitializerList()
+        {
+            auto sourceCode = std::string("std::vector<int> values = {1,2,};");
+            auto actual = ParseSimpleDeclaration(sourceCode);
+
+            auto expected = SyntaxFactory::CreateSimpleDeclaration(
+                SyntaxFactory::CreateDeclarationSpecifier(
+                    SyntaxFactory::CreateQualifiedIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifierExpression(
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "std")),
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
+                        SyntaxFactory::CreateSimpleTemplateIdentifierExpression(
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "vector"),
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LessThan),
+                            SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
+                                {
+                                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                        PrimitiveDataType::Int,
+                                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
+                                },
+                                {}),
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan)))),
+                SyntaxFactory::CreateInitializerDeclaratorList(
+                    SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
+                        {
+                            SyntaxFactory::CreateInitializerDeclarator(
+                                SyntaxFactory::CreateSimpleIdentifierExpression(
+                                    SyntaxFactory::CreateUniqueToken(
+                                        SyntaxTokenType::Identifier,
+                                        "values",
+                                        {
+                                            SyntaxFactory::CreateTrivia(" "),
+                                        },
+                                        {})),
+                                SyntaxFactory::CreateValueEqualInitializer(
+                                    SyntaxFactory::CreateKeywordToken(
+                                        SyntaxTokenType::Equal,
+                                        {
+                                            SyntaxFactory::CreateTrivia(" "),
+                                        },
+                                        {}),
+                                    SyntaxFactory::CreateInitializerList(
+                                        SyntaxFactory::CreateKeywordToken(
+                                            SyntaxTokenType::OpenBrace,
+                                            {
+                                                SyntaxFactory::CreateTrivia(" "),
+                                            },
+                                            {}),
+                                        SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
+                                            {
+                                                SyntaxFactory::CreateLiteralExpression(
+                                                    LiteralType::Integer,
+                                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1")),
+                                                SyntaxFactory::CreateLiteralExpression(
+                                                    LiteralType::Integer,
+                                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "2")),
+                                            },
+                                            {
+                                                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma),
+                                                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma),
+                                            }),
+                                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)))),
+                        },
                         {})),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 

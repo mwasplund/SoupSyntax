@@ -12,7 +12,7 @@ namespace Soup::Syntax::InnerTree
     private:
         ValueEqualInitializer(
             std::shared_ptr<const SyntaxToken> equalToken,
-            std::shared_ptr<const Expression> expression) :
+            std::shared_ptr<const SyntaxNode> expression) :
             SyntaxNode(SyntaxNodeType::ValueEqualInitializer),
             m_equalToken(std::move(equalToken)),
             m_expression(std::move(expression))
@@ -51,6 +51,7 @@ namespace Soup::Syntax::InnerTree
 
         /// <summary>
         /// Gets the expression
+        /// TODO: Can be expression if we break out braced initializer
         /// </summary>
         const SyntaxNode& GetExpression() const
         {
@@ -82,6 +83,6 @@ namespace Soup::Syntax::InnerTree
 
     private:
         std::shared_ptr<const SyntaxToken> m_equalToken;
-        std::shared_ptr<const Expression> m_expression;
+        std::shared_ptr<const SyntaxNode> m_expression;
     };
 }

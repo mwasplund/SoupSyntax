@@ -85,12 +85,12 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         SyntaxFactory::CreateSimpleTemplateIdentifierExpression(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "vector"),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LessThan),
-                            SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
-                                std::vector<std::shared_ptr<const Expression>>({
+                            SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
+                                {
                                     SyntaxFactory::CreateSimpleIdentifierExpression(
                                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "ClassA")),
-                                }),
-                                std::vector<std::shared_ptr<const SyntaxToken>>({})),
+                                },
+                                {}),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan)))),
                 SyntaxFactory::CreateMemberDeclaratorList(
                     SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(

@@ -44,6 +44,10 @@ TestState RunParseSimpleDeclarationTests()
         className,
         "SingleTemplateOfTemplateVariable",
         [&testClass]() { testClass->SingleTemplateOfTemplateVariable(); });
+    state += RunTest(
+        className,
+        "SingleTemplateWithInitializerList",
+        [&testClass]() { testClass->SingleTemplateWithInitializerList(); });
 
     return state;
 }

@@ -1342,7 +1342,7 @@ namespace Soup::Syntax
         static std::shared_ptr<const InnerTree::SimpleTemplateIdentifierExpression> CreateSimpleTemplateIdentifierExpression(
             std::shared_ptr<const InnerTree::SyntaxToken> identifierToken,
             std::shared_ptr<const InnerTree::SyntaxToken> lessThanToken,
-            std::shared_ptr<const InnerTree::SyntaxSeparatorList<InnerTree::Expression>> templateArgumentList,
+            std::shared_ptr<const InnerTree::SyntaxSeparatorList<InnerTree::SyntaxNode>> templateArgumentList,
             std::shared_ptr<const InnerTree::SyntaxToken> greaterThanToken)
         {
             if (identifierToken == nullptr)
@@ -1568,7 +1568,7 @@ namespace Soup::Syntax
         /// </summary>
         static std::shared_ptr<const InnerTree::ValueEqualInitializer> CreateValueEqualInitializer(
             std::shared_ptr<const InnerTree::SyntaxToken> equalToken,
-            std::shared_ptr<const InnerTree::Expression> expression)
+            std::shared_ptr<const InnerTree::SyntaxNode> expression)
         {
             if (equalToken == nullptr)
                 throw std::runtime_error("ArgumentNull - equalToken");

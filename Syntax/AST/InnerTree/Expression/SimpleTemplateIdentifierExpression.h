@@ -16,7 +16,7 @@ namespace Soup::Syntax::InnerTree
         SimpleTemplateIdentifierExpression(
             std::shared_ptr<const SyntaxToken> identifierToken,
             std::shared_ptr<const SyntaxToken> lessThanToken,
-            std::shared_ptr<const SyntaxSeparatorList<Expression>> templateArgumentList,
+            std::shared_ptr<const SyntaxSeparatorList<SyntaxNode>> templateArgumentList,
             std::shared_ptr<const SyntaxToken> greaterThanToken) :
             UnqualifiedIdentifierExpression(SyntaxNodeType::SimpleTemplateIdentifierExpression),
             m_identifierToken(std::move(identifierToken)),
@@ -67,7 +67,7 @@ namespace Soup::Syntax::InnerTree
         /// <summary>
         /// Gets the template argument list
         /// </summary>
-        const SyntaxSeparatorList<Expression>& GetTemplateArgumentList() const
+        const SyntaxSeparatorList<SyntaxNode>& GetTemplateArgumentList() const
         {
             return *m_templateArgumentList;
         }
@@ -108,7 +108,7 @@ namespace Soup::Syntax::InnerTree
     private:
         std::shared_ptr<const SyntaxToken> m_identifierToken;
         std::shared_ptr<const SyntaxToken> m_lessThanToken;
-        std::shared_ptr<const SyntaxSeparatorList<Expression>> m_templateArgumentList;
+        std::shared_ptr<const SyntaxSeparatorList<SyntaxNode>> m_templateArgumentList;
         std::shared_ptr<const SyntaxToken> m_greaterThanToken;
     };
 }

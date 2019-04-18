@@ -15,7 +15,7 @@ namespace Soup::Syntax::OuterTree
             const SyntaxNode* parentNode) :
             SyntaxNode(innerNode, parentNode),
             m_equalToken(innerNode->GetEqualToken().CreateOuter(this)),
-            m_expression(innerNode->GetExpression().CreateOuter<Expression>(this))
+            m_expression(innerNode->GetExpression().CreateOuter<SyntaxNode>(this))
         {
         }
 
@@ -59,6 +59,6 @@ namespace Soup::Syntax::OuterTree
 
     private:
         std::shared_ptr<const SyntaxToken> m_equalToken;
-        std::shared_ptr<const Expression> m_expression;
+        std::shared_ptr<const SyntaxNode> m_expression;
     };
 }
