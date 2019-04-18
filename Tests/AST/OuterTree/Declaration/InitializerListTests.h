@@ -55,7 +55,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         // [[Fact]]
         void GetChildren()
         {
-            // (a, b)
+            // (a, b,)
             auto uut = SyntaxFactory::CreateInitializerList(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
@@ -66,6 +66,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                     },
                     {
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma),
                     }),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))->CreateOuter(nullptr);
@@ -80,6 +81,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     TestUtils::CreateChild(
                         SyntaxFactory::CreateSimpleIdentifierExpression(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b"))),
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma)),
                     TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
                 }),
                 uut->GetChildren(),

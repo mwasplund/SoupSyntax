@@ -64,14 +64,16 @@ namespace Soup::Syntax::OuterTree
         {
             std::vector<SyntaxNodeChild> children;
 
-            for (size_t i = 0; i < m_items.size(); i++)
+            size_t i = 0;
+            for (i = 0; i < m_items.size(); i++)
             {
-                if (i > 0)
-                {
-                    children.push_back(SyntaxNodeChild(m_separators.at(i - 1)));
-                }
-
                 children.push_back(SyntaxNodeChild(m_items.at(i)));
+
+                // Check if there is a separator after the item
+                if (i < m_separators.size())
+                {
+                    children.push_back(SyntaxNodeChild(m_separators.at(i)));
+                }
             }
 
             return children;

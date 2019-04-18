@@ -59,7 +59,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         // [Fact]
         void BracedInitializerParameter()
         {
-            auto sourceCode = std::string("a({})");
+            auto sourceCode = std::string("a({1,})");
 
             auto actual = ParseInvocationExpression(sourceCode);
 
@@ -71,7 +71,15 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     {
                         SyntaxFactory::CreateInitializerList(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                            SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>({}, {}),
+                            SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
+                                {
+                                    SyntaxFactory::CreateLiteralExpression(
+                                        LiteralType::Integer,
+                                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::IntegerLiteral, "1")),
+                                },
+                                {
+                                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma),
+                                }),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                     },
                     {}),
