@@ -16,7 +16,7 @@ namespace Soup::Syntax::InnerTree
         /// </summary>
         InitializerList(
             std::shared_ptr<const SyntaxToken> openToken,
-            std::shared_ptr<const SyntaxSeparatorList<Expression>> values,
+            std::shared_ptr<const SyntaxSeparatorList<SyntaxNode>> values,
             std::shared_ptr<const SyntaxToken> closeToken) :
             SyntaxNode(SyntaxNodeType::InitializerList),
             m_openToken(std::move(openToken)),
@@ -57,8 +57,9 @@ namespace Soup::Syntax::InnerTree
 
         /// <summary>
         /// Gets the list of values
+        /// TODO: Could be an expression or a braced initializer...
         /// </summary>
-        const SyntaxSeparatorList<Expression>& GetValues() const
+        const SyntaxSeparatorList<SyntaxNode>& GetValues() const
         {
             return *m_values;
         }
@@ -97,7 +98,7 @@ namespace Soup::Syntax::InnerTree
 
     private:
         std::shared_ptr<const SyntaxToken> m_openToken;
-        std::shared_ptr<const SyntaxSeparatorList<Expression>> m_values;
+        std::shared_ptr<const SyntaxSeparatorList<SyntaxNode>> m_values;
         std::shared_ptr<const SyntaxToken> m_closeToken;
     };
 }

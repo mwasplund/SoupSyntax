@@ -21,7 +21,7 @@ namespace Soup::Syntax::OuterTree
             Expression(innerNode, parentNode),
             m_leftExpression(innerNode->GetLeftExpression().CreateOuter<Expression>(this)),
             m_openParenthesisToken(innerNode->GetOpenParenthesisToken().CreateOuter(this)),
-            m_parameters(innerNode->GetParameters().CreateOuter<Expression>(this)),
+            m_parameters(innerNode->GetParameters().CreateOuter<SyntaxNode>(this)),
             m_closeParenthesisToken(innerNode->GetCloseParenthesisToken().CreateOuter(this))
         {
         }
@@ -46,7 +46,7 @@ namespace Soup::Syntax::OuterTree
         /// <summary>
         /// Gets the list of parameters
         /// </summary>
-        const SyntaxSeparatorList<Expression>& GetParameters() const
+        const SyntaxSeparatorList<SyntaxNode>& GetParameters() const
         {
             return *m_parameters;
         }
@@ -88,7 +88,7 @@ namespace Soup::Syntax::OuterTree
     private:
         std::shared_ptr<const Expression> m_leftExpression;
         std::shared_ptr<const SyntaxToken> m_openParenthesisToken;
-        std::shared_ptr<const SyntaxSeparatorList<Expression>> m_parameters;
+        std::shared_ptr<const SyntaxSeparatorList<SyntaxNode>> m_parameters;
         std::shared_ptr<const SyntaxToken> m_closeParenthesisToken;
     };
 }

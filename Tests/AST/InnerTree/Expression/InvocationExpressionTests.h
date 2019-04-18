@@ -15,9 +15,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
-                    std::vector<std::shared_ptr<const Expression>>(),
-                    {}),
+                SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>({}, {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis));
 
             Assert::AreEqual(
@@ -34,9 +32,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 uut->GetOpenParenthesisToken(),
                 "Verify open parenthesis token matches.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
-                    std::vector<std::shared_ptr<const Expression>>(),
-                    {}),
+                *SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>({}, {}),
                 uut->GetParameters(),
                 "Verify parameters match.");
             Assert::AreEqual(
@@ -53,17 +49,16 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
-                    std::vector<std::shared_ptr<const Expression>>(
+                SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
                     {
                         SyntaxFactory::CreateSimpleIdentifierExpression(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                         SyntaxFactory::CreateSimpleIdentifierExpression(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "c"))
-                    }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>({
+                    },
+                    {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma)
-                    })),
+                    }),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis));
 
             Assert::AreEqual(
@@ -80,17 +75,16 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 uut->GetOpenParenthesisToken(),
                 "Verify open parenthesis token matches.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
-                    std::vector<std::shared_ptr<const Expression>>(
+                *SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
                     {
                         SyntaxFactory::CreateSimpleIdentifierExpression(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                         SyntaxFactory::CreateSimpleIdentifierExpression(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "c"))
-                    }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>({
+                    },
+                    {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma)
-                    })),
+                    }),
                 uut->GetParameters(),
                 "Verify parameters match.");
             Assert::AreEqual(
@@ -107,17 +101,16 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
-                    std::vector<std::shared_ptr<const Expression>>(
+                SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
                     {
                         SyntaxFactory::CreateSimpleIdentifierExpression(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                         SyntaxFactory::CreateSimpleIdentifierExpression(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "c"))
-                    }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>({
+                    },
+                    {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma)
-                    })),
+                    }),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis));
 
             TestUtils::AreEqual(
@@ -125,17 +118,16 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     SyntaxFactory::CreateSimpleIdentifierExpression(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                    SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
-                        std::vector<std::shared_ptr<const Expression>>(
+                    SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
                         {
                             SyntaxFactory::CreateSimpleIdentifierExpression(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                             SyntaxFactory::CreateSimpleIdentifierExpression(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "c"))
-                        }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>({
+                        },
+                        {
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma)
-                        })),
+                        }),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
                 uut,
                 "Verify matches.");
@@ -149,17 +141,16 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
-                    std::vector<std::shared_ptr<const Expression>>(
+                SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
                     {
                         SyntaxFactory::CreateSimpleIdentifierExpression(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                         SyntaxFactory::CreateSimpleIdentifierExpression(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "c"))
-                    }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>({
+                    },
+                    {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma)
-                    })),
+                    }),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis));
 
             TestUtils::AreNotEqual(
@@ -167,17 +158,16 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     SyntaxFactory::CreateSimpleIdentifierExpression(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a2")),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                    SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
-                        std::vector<std::shared_ptr<const Expression>>(
+                    SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
                         {
                             SyntaxFactory::CreateSimpleIdentifierExpression(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                             SyntaxFactory::CreateSimpleIdentifierExpression(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "c"))
-                        }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>({
+                        },
+                        {
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma)
-                        })),
+                        }),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
                 uut,
                 "Verify does not match.");
@@ -191,17 +181,16 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
-                    std::vector<std::shared_ptr<const Expression>>(
+                SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
                     {
                         SyntaxFactory::CreateSimpleIdentifierExpression(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                         SyntaxFactory::CreateSimpleIdentifierExpression(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "c"))
-                    }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>({
+                    },
+                    {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma)
-                    })),
+                    }),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis));
 
             TestUtils::AreNotEqual(
@@ -214,17 +203,16 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreateTrivia(" "),
                         },
                         {}),
-                    SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
-                        std::vector<std::shared_ptr<const Expression>>(
+                    SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
                         {
                             SyntaxFactory::CreateSimpleIdentifierExpression(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                             SyntaxFactory::CreateSimpleIdentifierExpression(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "c"))
-                        }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>({
+                        },
+                        {
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma)
-                        })),
+                        }),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
                 uut,
                 "Verify does not match.");
@@ -238,17 +226,16 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
-                    std::vector<std::shared_ptr<const Expression>>(
+                SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
                     {
                         SyntaxFactory::CreateSimpleIdentifierExpression(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                         SyntaxFactory::CreateSimpleIdentifierExpression(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "c"))
-                    }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>({
+                    },
+                    {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma)
-                    })),
+                    }),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis));
 
             TestUtils::AreNotEqual(
@@ -256,17 +243,16 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     SyntaxFactory::CreateSimpleIdentifierExpression(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                    SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
-                        std::vector<std::shared_ptr<const Expression>>(
+                    SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
                         {
                             SyntaxFactory::CreateSimpleIdentifierExpression(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b2")),
                             SyntaxFactory::CreateSimpleIdentifierExpression(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "c"))
-                        }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>({
+                        },
+                        {
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma)
-                        })),
+                        }),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
                 uut,
                 "Verify does not match.");
@@ -280,17 +266,16 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
-                    std::vector<std::shared_ptr<const Expression>>(
+                SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
                     {
                         SyntaxFactory::CreateSimpleIdentifierExpression(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                         SyntaxFactory::CreateSimpleIdentifierExpression(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "c"))
-                    }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>({
+                    },
+                    {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma)
-                    })),
+                    }),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis));
 
             TestUtils::AreNotEqual(
@@ -298,17 +283,16 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     SyntaxFactory::CreateSimpleIdentifierExpression(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                    SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
-                        std::vector<std::shared_ptr<const Expression>>(
+                    SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
                         {
                             SyntaxFactory::CreateSimpleIdentifierExpression(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                             SyntaxFactory::CreateSimpleIdentifierExpression(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "c"))
-                        }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>({
+                        },
+                        {
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma)
-                        })),
+                        }),
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::CloseParenthesis,
                         {

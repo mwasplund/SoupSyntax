@@ -18,9 +18,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
-                    std::vector<std::shared_ptr<const Expression>>(),
-                    {}),
+                SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>({}, {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis));
 
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
@@ -37,8 +35,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateSimpleIdentifierExpression(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
-                    std::vector<std::shared_ptr<const Expression>>(
+                SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
                     {
                         SyntaxFactory::CreateSimpleIdentifierExpression(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
@@ -50,10 +47,34 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                     SyntaxFactory::CreateTrivia(" "),
                                 },
                                 {}))
-                    }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>({
+                    },
+                    {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma)
-                    })),
+                    }),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis));
+
+            TestUtils::AreEqual(expected, actual, "Verify matches expected.");
+        }
+
+        // [Fact]
+        void BracedInitializerParameter()
+        {
+            auto sourceCode = std::string("a({})");
+
+            auto actual = ParseInvocationExpression(sourceCode);
+
+            auto expected = SyntaxFactory::CreateInvocationExpression(
+                SyntaxFactory::CreateSimpleIdentifierExpression(
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
+                SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
+                    {
+                        SyntaxFactory::CreateInitializerList(
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
+                            SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>({}, {}),
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
+                    },
+                    {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis));
 
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");

@@ -16,6 +16,10 @@ TestState RunParseInvocationExpressionTests()
         className,
         "ComplexInvocation",
         [&testClass]() { testClass->ComplexInvocation(); });
+    state += RunTest(
+        className,
+        "BracedInitializerParameter",
+        [&testClass]() { testClass->BracedInitializerParameter(); });
 
     return state;
 }

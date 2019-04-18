@@ -573,7 +573,7 @@ namespace Soup::Syntax
         /// </summary>
         static std::shared_ptr<const InnerTree::InitializerList> CreateInitializerList(
             std::shared_ptr<const InnerTree::SyntaxToken> openToken,
-            std::shared_ptr<const InnerTree::SyntaxSeparatorList<InnerTree::Expression>> values,
+            std::shared_ptr<const InnerTree::SyntaxSeparatorList<InnerTree::SyntaxNode>> values,
             std::shared_ptr<const InnerTree::SyntaxToken> closeToken)
         {
             if (openToken == nullptr)
@@ -598,7 +598,7 @@ namespace Soup::Syntax
         static std::shared_ptr<const InnerTree::InvocationExpression> CreateInvocationExpression(
             std::shared_ptr<const InnerTree::Expression> leftExpression,
             std::shared_ptr<const InnerTree::SyntaxToken> openParenthesisToken,
-            std::shared_ptr<const InnerTree::SyntaxSeparatorList<InnerTree::Expression>> parameters,
+            std::shared_ptr<const InnerTree::SyntaxSeparatorList<InnerTree::SyntaxNode>> parameters,
             std::shared_ptr<const InnerTree::SyntaxToken> closeParenthesisToken)
         {
             if (leftExpression == nullptr)

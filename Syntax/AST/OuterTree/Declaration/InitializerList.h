@@ -19,7 +19,7 @@ namespace Soup::Syntax::OuterTree
             const SyntaxNode* parentNode) :
             SyntaxNode(innerNode, parentNode),
             m_openToken(innerNode->GetOpenToken().CreateOuter(this)),
-            m_values(innerNode->GetValues().CreateOuter<Expression>(this)),
+            m_values(innerNode->GetValues().CreateOuter<SyntaxNode>(this)),
             m_closeToken(innerNode->GetCloseToken().CreateOuter(this))
         {
         }
@@ -36,7 +36,7 @@ namespace Soup::Syntax::OuterTree
         /// <summary>
         /// Gets the list of values
         /// </summary>
-        const SyntaxSeparatorList<Expression>& GetValues() const
+        const SyntaxSeparatorList<SyntaxNode>& GetValues() const
         {
             return *m_values;
         }
@@ -76,7 +76,7 @@ namespace Soup::Syntax::OuterTree
 
     private:
         std::shared_ptr<const SyntaxToken> m_openToken;
-        std::shared_ptr<const SyntaxSeparatorList<Expression>> m_values;
+        std::shared_ptr<const SyntaxSeparatorList<SyntaxNode>> m_values;
         std::shared_ptr<const SyntaxToken> m_closeToken;
     };
 }

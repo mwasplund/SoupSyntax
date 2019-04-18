@@ -341,6 +341,9 @@ namespace Soup::Syntax::OuterTree
         static std::shared_ptr<const SyntaxSeparatorList<Parameter>> CreateOuter(
             std::shared_ptr<const InnerTree::SyntaxSeparatorList<InnerTree::Parameter>> innerNode,
             const SyntaxNode* parentNode);
+        static std::shared_ptr<const SyntaxSeparatorList<SyntaxNode>> CreateOuter(
+            std::shared_ptr<const InnerTree::SyntaxSeparatorList<InnerTree::SyntaxNode>> innerNode,
+            const SyntaxNode* parentNode);
         static std::shared_ptr<const SyntaxSeparatorList<SyntaxToken>> CreateOuter(
             std::shared_ptr<const InnerTree::SyntaxSeparatorList<InnerTree::SyntaxToken>> innerNode,
             const SyntaxNode* parentNode);

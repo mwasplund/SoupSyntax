@@ -14,6 +14,15 @@ void Trace(const char* message)
     // std::cout << message << std::endl;
 }
 
+template<class TOut, class TIn>
+std::shared_ptr<TOut> SafeDynamicCast(const std::shared_ptr<TIn>& value, int line)
+{
+    auto result = std::dynamic_pointer_cast<TOut>(value);
+    if (result == nullptr)
+        throw std::runtime_error("Failed dynamic cast: " + std::to_string(line));
+    return result;
+}
+
 ASTCppParserVisitor::ASTCppParserVisitor(antlr4::BufferedTokenStream* tokenStream) :
     m_tokenStream(tokenStream)
 {
@@ -145,12 +154,12 @@ antlrcpp::Any ASTCppParserVisitor::visitQualifiedIdentifier(
     CppParser::QualifiedIdentifierContext* context)
 {
     Trace("VisitQualifiedIdentifier");
-    auto qualifiedName = std::dynamic_pointer_cast<const QualifiedIdentifierExpression>(
+    auto qualifiedName = SafeDynamicCast<const QualifiedIdentifierExpression>(
         visit(context->nestedNameSpecifier())
-            .as<std::shared_ptr<const SyntaxNode>>());
-    auto simpleName = std::dynamic_pointer_cast<const UnqualifiedIdentifierExpression>(
+            .as<std::shared_ptr<const SyntaxNode>>(), __LINE__);
+    auto simpleName = SafeDynamicCast<const UnqualifiedIdentifierExpression>(
         visit(context->unqualifiedIdentifier())
-            .as<std::shared_ptr<const SyntaxNode>>());
+            .as<std::shared_ptr<const SyntaxNode>>(), __LINE__);
 
     if (context->Template() != nullptr)
     {
@@ -338,9 +347,9 @@ antlrcpp::Any ASTCppParserVisitor::visitPostfixExpression(CppParser::PostfixExpr
     else if(context->postfixExpression() != nullptr)
     {
         // Handle all recursive expressions
-        auto recursiveExpression = std::dynamic_pointer_cast<const Expression>(
+        auto recursiveExpression = SafeDynamicCast<const Expression>(
             visit(context->postfixExpression())
-                .as<std::shared_ptr<const SyntaxNode>>());
+                .as<std::shared_ptr<const SyntaxNode>>(), __LINE__);
 
         if (context->OpenBracket() != nullptr)
         {
@@ -349,9 +358,11 @@ antlrcpp::Any ASTCppParserVisitor::visitPostfixExpression(CppParser::PostfixExpr
             auto openBracketToken = CreateToken(
                 SyntaxTokenType::OpenBracket,
                 context->OpenBracket());
-            auto initializerList = std::dynamic_pointer_cast<const Expression>(
+            auto initializerList = SafeDynamicCast<const Expression>(
                 visit(context->expressionOrBracedInitializerList())
-                    .as<std::shared_ptr<const SyntaxNode>>());
+                    .as<std::shared_ptr<const SyntaxNode>>(), __LINE__);
+            if (initializerList == nullptr)
+                throw std::runtime_error("TODO: Braced initializer postfix?");
             auto closeBracketToken = CreateToken(
                 SyntaxTokenType::CloseBracket,
                 context->CloseBracket());
@@ -370,14 +381,14 @@ antlrcpp::Any ASTCppParserVisitor::visitPostfixExpression(CppParser::PostfixExpr
                 context->OpenParenthesis());
 
             // Check for the optional expression list
-            SeparatorListResult<Expression> expressionList = {};
+            SeparatorListResult<SyntaxNode> expressionList = {};
             if (context->expressionList() != nullptr)
             {
                 expressionList = visit(context->expressionList())
-                    .as<const SeparatorListResult<Expression>>();
+                    .as<const SeparatorListResult<SyntaxNode>>();
             }
 
-            auto parameters = SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
+            auto parameters = SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
                 std::move(expressionList.Items),
                 std::move(expressionList.Separators));
 
@@ -399,9 +410,9 @@ antlrcpp::Any ASTCppParserVisitor::visitPostfixExpression(CppParser::PostfixExpr
             std::shared_ptr<const Expression> rightExpression = nullptr;
             if (context->identifierExpression() != nullptr)
             {
-                rightExpression = std::dynamic_pointer_cast<const Expression>(
+                rightExpression = SafeDynamicCast<const Expression>(
                     visit(context->identifierExpression())
-                        .as<std::shared_ptr<const SyntaxNode>>());
+                        .as<std::shared_ptr<const SyntaxNode>>(), __LINE__);
             }
             else
             {
@@ -520,9 +531,9 @@ antlrcpp::Any ASTCppParserVisitor::visitUnaryExpression(CppParser::UnaryExpressi
     else if (context->castExpression() != nullptr)
     {
         // Parse the prefix unary operator
-        auto subExpression = std::dynamic_pointer_cast<const Expression>(
+        auto subExpression = SafeDynamicCast<const Expression>(
             visit(context->castExpression())
-                .as<std::shared_ptr<const SyntaxNode>>());
+                .as<std::shared_ptr<const SyntaxNode>>(), __LINE__);
 
         UnaryOperator unaryOperator;
         std::shared_ptr<const SyntaxToken> operatorToken;
@@ -682,26 +693,26 @@ antlrcpp::Any ASTCppParserVisitor::visitPointerManipulationExpression(CppParser:
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::PointerToMemberOfObject,
-                std::dynamic_pointer_cast<const Expression>(
+                SafeDynamicCast<const Expression>(
                     visit(context->pointerManipulationExpression())
-                        .as<std::shared_ptr<const SyntaxNode>>()),
+                        .as<std::shared_ptr<const SyntaxNode>>(), __LINE__),
                 CreateToken(SyntaxTokenType::PeriodAsterisk, context->PeriodAsterisk()),
-                std::dynamic_pointer_cast<const Expression>(
+                SafeDynamicCast<const Expression>(
                     visit(context->castExpression())
-                        .as<std::shared_ptr<const SyntaxNode>>())));
+                        .as<std::shared_ptr<const SyntaxNode>>(), __LINE__)));
     }
     else if (context->ArrowAsterisk() != nullptr)
     {
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::PointerToMemberOfPointer,
-                std::dynamic_pointer_cast<const Expression>(
+                SafeDynamicCast<const Expression>(
                     visit(context->pointerManipulationExpression())
-                        .as<std::shared_ptr<const SyntaxNode>>()),
+                        .as<std::shared_ptr<const SyntaxNode>>(), __LINE__),
                 CreateToken(SyntaxTokenType::ArrowAsterisk, context->ArrowAsterisk()),
-                std::dynamic_pointer_cast<const Expression>(
+                SafeDynamicCast<const Expression>(
                     visit(context->castExpression())
-                        .as<std::shared_ptr<const SyntaxNode>>())));
+                        .as<std::shared_ptr<const SyntaxNode>>(), __LINE__)));
     }
     else
     {
@@ -717,39 +728,39 @@ antlrcpp::Any ASTCppParserVisitor::visitMultiplicativeExpression(CppParser::Mult
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::Multiplication,
-                std::dynamic_pointer_cast<const Expression>(
+                SafeDynamicCast<const Expression>(
                     visit(context->multiplicativeExpression())
-                        .as<std::shared_ptr<const SyntaxNode>>()),
+                        .as<std::shared_ptr<const SyntaxNode>>(), __LINE__),
                 CreateToken(SyntaxTokenType::Asterisk, context->Asterisk()),
-                std::dynamic_pointer_cast<const Expression>(
+                SafeDynamicCast<const Expression>(
                     visit(context->pointerManipulationExpression())
-                        .as<std::shared_ptr<const SyntaxNode>>())));
+                        .as<std::shared_ptr<const SyntaxNode>>(), __LINE__)));
     }
     else if (context->ForwardSlash() != nullptr)
     {
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::Division,
-                std::dynamic_pointer_cast<const Expression>(
+                SafeDynamicCast<const Expression>(
                     visit(context->multiplicativeExpression())
-                        .as<std::shared_ptr<const SyntaxNode>>()),
+                        .as<std::shared_ptr<const SyntaxNode>>(), __LINE__),
                 CreateToken(SyntaxTokenType::ForwardSlash, context->ForwardSlash()),
-                std::dynamic_pointer_cast<const Expression>(
+                SafeDynamicCast<const Expression>(
                     visit(context->pointerManipulationExpression())
-                        .as<std::shared_ptr<const SyntaxNode>>())));
+                        .as<std::shared_ptr<const SyntaxNode>>(), __LINE__)));
     }
     else if (context->Percent() != nullptr)
     {
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::Modulo,
-                std::dynamic_pointer_cast<const Expression>(
+                SafeDynamicCast<const Expression>(
                     visit(context->multiplicativeExpression())
-                        .as<std::shared_ptr<const SyntaxNode>>()),
+                        .as<std::shared_ptr<const SyntaxNode>>(), __LINE__),
                 CreateToken(SyntaxTokenType::Percent, context->Percent()),
-                std::dynamic_pointer_cast<const Expression>(
+                SafeDynamicCast<const Expression>(
                     visit(context->pointerManipulationExpression())
-                        .as<std::shared_ptr<const SyntaxNode>>())));
+                        .as<std::shared_ptr<const SyntaxNode>>(), __LINE__)));
     }
     else
     {
@@ -765,26 +776,26 @@ antlrcpp::Any ASTCppParserVisitor::visitAdditiveExpression(CppParser::AdditiveEx
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::Addition,
-                std::dynamic_pointer_cast<const Expression>(
+                SafeDynamicCast<const Expression>(
                     visit(context->additiveExpression())
-                        .as<std::shared_ptr<const SyntaxNode>>()),
+                        .as<std::shared_ptr<const SyntaxNode>>(), __LINE__),
                 CreateToken(SyntaxTokenType::Plus, context->Plus()),
-                std::dynamic_pointer_cast<const Expression>(
+                SafeDynamicCast<const Expression>(
                     visit(context->multiplicativeExpression())
-                        .as<std::shared_ptr<const SyntaxNode>>())));
+                        .as<std::shared_ptr<const SyntaxNode>>(), __LINE__)));
     }
     else if (context->Minus() != nullptr)
     {
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::Subtraction,
-                std::dynamic_pointer_cast<const Expression>(
+                SafeDynamicCast<const Expression>(
                     visit(context->additiveExpression())
-                        .as<std::shared_ptr<const SyntaxNode>>()),
+                        .as<std::shared_ptr<const SyntaxNode>>(), __LINE__),
                 CreateToken(SyntaxTokenType::Minus, context->Minus()),
-                std::dynamic_pointer_cast<const Expression>(
+                SafeDynamicCast<const Expression>(
                     visit(context->multiplicativeExpression())
-                        .as<std::shared_ptr<const SyntaxNode>>())));
+                        .as<std::shared_ptr<const SyntaxNode>>(), __LINE__)));
     }
     else
     {
@@ -800,27 +811,27 @@ antlrcpp::Any ASTCppParserVisitor::visitShiftExpression(CppParser::ShiftExpressi
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::BitwiseLeftShift,
-                std::dynamic_pointer_cast<const Expression>(
+                SafeDynamicCast<const Expression>(
                     visit(context->shiftExpression())
-                        .as<std::shared_ptr<const SyntaxNode>>()),
+                        .as<std::shared_ptr<const SyntaxNode>>(), __LINE__),
                 CreateToken(SyntaxTokenType::DoubleLessThan, context->DoubleLessThan()),
-                std::dynamic_pointer_cast<const Expression>(
+                SafeDynamicCast<const Expression>(
                     visit(context->additiveExpression())
-                        .as<std::shared_ptr<const SyntaxNode>>())));
+                        .as<std::shared_ptr<const SyntaxNode>>(), __LINE__)));
     }
     else if (context->doubleGreaterThan() != nullptr)
     {
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::BitwiseRightShift,
-                std::dynamic_pointer_cast<const Expression>(
+                SafeDynamicCast<const Expression>(
                     visit(context->shiftExpression())
-                        .as<std::shared_ptr<const SyntaxNode>>()),
+                        .as<std::shared_ptr<const SyntaxNode>>(), __LINE__),
                 visit(context->doubleGreaterThan())
                     .as<std::shared_ptr<const SyntaxToken>>(),
-                std::dynamic_pointer_cast<const Expression>(
+                SafeDynamicCast<const Expression>(
                     visit(context->additiveExpression())
-                        .as<std::shared_ptr<const SyntaxNode>>())));
+                        .as<std::shared_ptr<const SyntaxNode>>(), __LINE__)));
     }
     else
     {
@@ -837,13 +848,13 @@ antlrcpp::Any ASTCppParserVisitor::visitRelationalExpression(CppParser::Relation
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::LessThan,
-                std::dynamic_pointer_cast<const Expression>(
+                SafeDynamicCast<const Expression>(
                     visit(context->relationalExpression())
-                        .as<std::shared_ptr<const SyntaxNode>>()),
+                        .as<std::shared_ptr<const SyntaxNode>>(), __LINE__),
                 CreateToken(SyntaxTokenType::LessThan, context->LessThan()),
-                std::dynamic_pointer_cast<const Expression>(
+                SafeDynamicCast<const Expression>(
                     visit(context->shiftExpression())
-                        .as<std::shared_ptr<const SyntaxNode>>())));
+                        .as<std::shared_ptr<const SyntaxNode>>(), __LINE__)));
     }
     else if (context->GreaterThan() != nullptr)
     {
@@ -851,39 +862,39 @@ antlrcpp::Any ASTCppParserVisitor::visitRelationalExpression(CppParser::Relation
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::GreaterThan,
-                std::dynamic_pointer_cast<const Expression>(
+                SafeDynamicCast<const Expression>(
                     visit(context->relationalExpression())
-                        .as<std::shared_ptr<const SyntaxNode>>()),
+                        .as<std::shared_ptr<const SyntaxNode>>(), __LINE__),
                 CreateToken(SyntaxTokenType::GreaterThan, context->GreaterThan()),
-                std::dynamic_pointer_cast<const Expression>(
+                SafeDynamicCast<const Expression>(
                     visit(context->shiftExpression())
-                        .as<std::shared_ptr<const SyntaxNode>>())));
+                        .as<std::shared_ptr<const SyntaxNode>>(), __LINE__)));
     }
     else if (context->LessThanEqual() != nullptr)
     {
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::LessThanOrEqual,
-                std::dynamic_pointer_cast<const Expression>(
+                SafeDynamicCast<const Expression>(
                     visit(context->relationalExpression())
-                        .as<std::shared_ptr<const SyntaxNode>>()),
+                        .as<std::shared_ptr<const SyntaxNode>>(), __LINE__),
                 CreateToken(SyntaxTokenType::LessThanEqual, context->LessThanEqual()),
-                std::dynamic_pointer_cast<const Expression>(
+                SafeDynamicCast<const Expression>(
                     visit(context->shiftExpression())
-                        .as<std::shared_ptr<const SyntaxNode>>())));
+                        .as<std::shared_ptr<const SyntaxNode>>(), __LINE__)));
     }
     else if (context->GreaterThanEqual() != nullptr)
     {
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::GreaterThanOrEqual,
-                std::dynamic_pointer_cast<const Expression>(
+                SafeDynamicCast<const Expression>(
                     visit(context->relationalExpression())
-                        .as<std::shared_ptr<const SyntaxNode>>()),
+                        .as<std::shared_ptr<const SyntaxNode>>(), __LINE__),
                 CreateToken(SyntaxTokenType::GreaterThanEqual, context->GreaterThanEqual()),
-                std::dynamic_pointer_cast<const Expression>(
+                SafeDynamicCast<const Expression>(
                     visit(context->shiftExpression())
-                        .as<std::shared_ptr<const SyntaxNode>>())));
+                        .as<std::shared_ptr<const SyntaxNode>>(), __LINE__)));
     }
     else
     {
@@ -899,26 +910,26 @@ antlrcpp::Any ASTCppParserVisitor::visitEqualityExpression(CppParser::EqualityEx
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::Equals,
-                std::dynamic_pointer_cast<const Expression>(
+                SafeDynamicCast<const Expression>(
                     visit(context->equalityExpression())
-                        .as<std::shared_ptr<const SyntaxNode>>()),
+                        .as<std::shared_ptr<const SyntaxNode>>(), __LINE__),
                 CreateToken(SyntaxTokenType::DoubleEqual, context->DoubleEqual()),
-                std::dynamic_pointer_cast<const Expression>(
+                SafeDynamicCast<const Expression>(
                     visit(context->relationalExpression())
-                        .as<std::shared_ptr<const SyntaxNode>>())));
+                        .as<std::shared_ptr<const SyntaxNode>>(), __LINE__)));
     }
     else if (context->ExclamationMarkEqual() != nullptr)
     {
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::NotEquals,
-                std::dynamic_pointer_cast<const Expression>(
+                SafeDynamicCast<const Expression>(
                     visit(context->equalityExpression())
-                        .as<std::shared_ptr<const SyntaxNode>>()),
+                        .as<std::shared_ptr<const SyntaxNode>>(), __LINE__),
                 CreateToken(SyntaxTokenType::ExclamationMarkEqual, context->ExclamationMarkEqual()),
-                std::dynamic_pointer_cast<const Expression>(
+                SafeDynamicCast<const Expression>(
                     visit(context->relationalExpression())
-                        .as<std::shared_ptr<const SyntaxNode>>())));
+                        .as<std::shared_ptr<const SyntaxNode>>(), __LINE__)));
     }
     else
     {
@@ -934,13 +945,13 @@ antlrcpp::Any ASTCppParserVisitor::visitAndExpression(CppParser::AndExpressionCo
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::BitwiseAnd,
-                std::dynamic_pointer_cast<const Expression>(
+                SafeDynamicCast<const Expression>(
                     visit(context->andExpression())
-                        .as<std::shared_ptr<const SyntaxNode>>()),
+                        .as<std::shared_ptr<const SyntaxNode>>(), __LINE__),
                 CreateToken(SyntaxTokenType::Ampersand, context->Ampersand()),
-                std::dynamic_pointer_cast<const Expression>(
+                SafeDynamicCast<const Expression>(
                     visit(context->equalityExpression())
-                        .as<std::shared_ptr<const SyntaxNode>>())));
+                        .as<std::shared_ptr<const SyntaxNode>>(), __LINE__)));
     }
     else
     {
@@ -956,13 +967,13 @@ antlrcpp::Any ASTCppParserVisitor::visitExclusiveOrExpression(CppParser::Exclusi
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::BitwiseExclusiveOr,
-                std::dynamic_pointer_cast<const Expression>(
+                SafeDynamicCast<const Expression>(
                     visit(context->exclusiveOrExpression())
-                        .as<std::shared_ptr<const SyntaxNode>>()),
+                        .as<std::shared_ptr<const SyntaxNode>>(), __LINE__),
                 CreateToken(SyntaxTokenType::Caret, context->Caret()),
-                std::dynamic_pointer_cast<const Expression>(
+                SafeDynamicCast<const Expression>(
                     visit(context->andExpression())
-                        .as<std::shared_ptr<const SyntaxNode>>())));
+                        .as<std::shared_ptr<const SyntaxNode>>(), __LINE__)));
     }
     else
     {
@@ -978,13 +989,13 @@ antlrcpp::Any ASTCppParserVisitor::visitInclusiveOrExpression(CppParser::Inclusi
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::BitwiseOr,
-                std::dynamic_pointer_cast<const Expression>(
+                SafeDynamicCast<const Expression>(
                     visit(context->inclusiveOrExpression())
-                        .as<std::shared_ptr<const SyntaxNode>>()),
+                        .as<std::shared_ptr<const SyntaxNode>>(), __LINE__),
                 CreateToken(SyntaxTokenType::VerticalBar, context->VerticalBar()),
-                std::dynamic_pointer_cast<const Expression>(
+                SafeDynamicCast<const Expression>(
                     visit(context->exclusiveOrExpression())
-                        .as<std::shared_ptr<const SyntaxNode>>())));
+                        .as<std::shared_ptr<const SyntaxNode>>(), __LINE__)));
     }
     else
     {
@@ -1000,13 +1011,13 @@ antlrcpp::Any ASTCppParserVisitor::visitLogicalAndExpression(CppParser::LogicalA
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::LogicalAnd,
-                std::dynamic_pointer_cast<const Expression>(
+                SafeDynamicCast<const Expression>(
                     visit(context->logicalAndExpression())
-                        .as<std::shared_ptr<const SyntaxNode>>()),
+                        .as<std::shared_ptr<const SyntaxNode>>(), __LINE__),
                 CreateToken(SyntaxTokenType::DoubleAmpersand, context->DoubleAmpersand()),
-                std::dynamic_pointer_cast<const Expression>(
+                SafeDynamicCast<const Expression>(
                     visit(context->inclusiveOrExpression())
-                        .as<std::shared_ptr<const SyntaxNode>>())));
+                        .as<std::shared_ptr<const SyntaxNode>>(), __LINE__)));
     }
     else
     {
@@ -1022,13 +1033,13 @@ antlrcpp::Any ASTCppParserVisitor::visitLogicalOrExpression(CppParser::LogicalOr
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreateBinaryExpression(
                 BinaryOperator::LogicalOr,
-                std::dynamic_pointer_cast<const Expression>(
+                SafeDynamicCast<const Expression>(
                     visit(context->logicalOrExpression())
-                        .as<std::shared_ptr<const SyntaxNode>>()),
+                        .as<std::shared_ptr<const SyntaxNode>>(), __LINE__),
                 CreateToken(SyntaxTokenType::DoubleVerticalBar, context->DoubleVerticalBar()),
-                std::dynamic_pointer_cast<const Expression>(
+                SafeDynamicCast<const Expression>(
                     visit(context->logicalAndExpression())
-                        .as<std::shared_ptr<const SyntaxNode>>())));
+                        .as<std::shared_ptr<const SyntaxNode>>(), __LINE__)));
     }
     else
     {
@@ -1064,12 +1075,12 @@ antlrcpp::Any ASTCppParserVisitor::visitAssignmentExpression(CppParser::Assignme
     }
     else if (context->assignmentOperator() != nullptr)
     {
-        auto leftExpression = std::dynamic_pointer_cast<const Expression>(
+        auto leftExpression = SafeDynamicCast<const Expression>(
                     visit(context->logicalOrExpression())
-                        .as<std::shared_ptr<const SyntaxNode>>());
-        auto rightExpression = std::dynamic_pointer_cast<const Expression>(
+                        .as<std::shared_ptr<const SyntaxNode>>(), __LINE__);
+        auto rightExpression = SafeDynamicCast<const Expression>(
                     visit(context->initializerClause())
-                        .as<std::shared_ptr<const SyntaxNode>>());
+                        .as<std::shared_ptr<const SyntaxNode>>(), __LINE__);
 
         auto operatorContext = context->assignmentOperator();
         if (operatorContext->Equal() != nullptr)
@@ -1247,9 +1258,9 @@ antlrcpp::Any ASTCppParserVisitor::visitExpressionStatement(CppParser::Expressio
     Trace("VisitExpressionStatement");
     if (context->expression() != nullptr)
     {
-        auto expression = std::dynamic_pointer_cast<const Expression>(
+        auto expression = SafeDynamicCast<const Expression>(
             visit(context->expression())
-                .as<std::shared_ptr<const SyntaxNode>>());
+                .as<std::shared_ptr<const SyntaxNode>>(), __LINE__);
 
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreateExpressionStatement(
@@ -1298,9 +1309,9 @@ antlrcpp::Any ASTCppParserVisitor::visitStatementSequence(CppParser::StatementSe
     }
 
     // Handle the next statement
-    auto statement = std::dynamic_pointer_cast<const Statement>(
+    auto statement = SafeDynamicCast<const Statement>(
         visit(context->statement())
-            .as<std::shared_ptr<const SyntaxNode>>());
+            .as<std::shared_ptr<const SyntaxNode>>(), __LINE__);
     statements.push_back(std::move(statement));
 
     return statements;
@@ -1312,23 +1323,23 @@ antlrcpp::Any ASTCppParserVisitor::visitSelectionStatement(CppParser::SelectionS
     if (context->If() != nullptr)
     {
         // Visit the condition expression
-        auto condition = std::dynamic_pointer_cast<const Expression>(
+        auto condition = SafeDynamicCast<const Expression>(
             visit(context->condition())
-                .as<std::shared_ptr<const SyntaxNode>>());
+                .as<std::shared_ptr<const SyntaxNode>>(), __LINE__);
 
         // Visit the true statement
-        auto trueStatement = std::dynamic_pointer_cast<const Statement>(
+        auto trueStatement = SafeDynamicCast<const Statement>(
             visit(context->statement().at(0))
-                .as<std::shared_ptr<const SyntaxNode>>());
+                .as<std::shared_ptr<const SyntaxNode>>(), __LINE__);
 
         // Check for optional else clause
         std::shared_ptr<const ElseClause> elseClause = nullptr;
         if (context->Else() != nullptr)
         {
             // Visit the false statement
-            auto falseStatement = std::dynamic_pointer_cast<const Statement>(
+            auto falseStatement = SafeDynamicCast<const Statement>(
                 visit(context->statement().at(1))
-                    .as<std::shared_ptr<const SyntaxNode>>());
+                    .as<std::shared_ptr<const SyntaxNode>>(), __LINE__);
 
             elseClause = SyntaxFactory::CreateElseClause(
                 CreateToken(SyntaxTokenType::Else, context->Else()),
@@ -1383,9 +1394,11 @@ antlrcpp::Any ASTCppParserVisitor::visitJumpStatement(CppParser::JumpStatementCo
         std::shared_ptr<const Expression> expression = nullptr;
         if (context->expressionOrBracedInitializerList() != nullptr)
         {
-            expression = std::dynamic_pointer_cast<const Expression>(
+            expression = SafeDynamicCast<const Expression>(
                 visit(context->expressionOrBracedInitializerList())
-                    .as<std::shared_ptr<const SyntaxNode>>());
+                    .as<std::shared_ptr<const SyntaxNode>>(), __LINE__);
+            if (expression == nullptr)
+                throw std::runtime_error("TODO: Braced initializer jump?");
         }
 
         return std::static_pointer_cast<const SyntaxNode>(
@@ -1404,9 +1417,9 @@ antlrcpp::Any ASTCppParserVisitor::visitDeclarationStatement(CppParser::Declarat
 {
     Trace("VisitDeclarationStatement");
 
-    auto declaration = std::dynamic_pointer_cast<const Declaration>(
+    auto declaration = SafeDynamicCast<const Declaration>(
         visit(context->blockDeclaration())
-            .as<std::shared_ptr<const SyntaxNode>>());
+            .as<std::shared_ptr<const SyntaxNode>>(), __LINE__);
     
     // Create the wrapper statement for the declaration
     return std::static_pointer_cast<const SyntaxNode>(
@@ -1427,9 +1440,9 @@ antlrcpp::Any ASTCppParserVisitor::visitDeclarationSequence(CppParser::Declarati
     }
 
     // Handle the new item
-    auto declaration = std::dynamic_pointer_cast<const Declaration>(
+    auto declaration = SafeDynamicCast<const Declaration>(
         visit(context->declaration())
-            .as<std::shared_ptr<const SyntaxNode>>());
+            .as<std::shared_ptr<const SyntaxNode>>(), __LINE__);
     if (declaration == nullptr)
     {
         throw std::runtime_error("Syntax node was not a declaration.");
@@ -1672,13 +1685,13 @@ antlrcpp::Any ASTCppParserVisitor::visitSimpleTypeSpecifier(CppParser::SimpleTyp
         // Check for the optional nested name specifier
         if (context->nestedNameSpecifier() != nullptr)
         {
-            auto qualifiedName = std::dynamic_pointer_cast<const QualifiedIdentifierExpression>(
+            auto qualifiedName = SafeDynamicCast<const QualifiedIdentifierExpression>(
                 visit(context->nestedNameSpecifier())
-                    .as<std::shared_ptr<const SyntaxNode>>());
+                    .as<std::shared_ptr<const SyntaxNode>>(), __LINE__);
 
-            auto simpleName = std::dynamic_pointer_cast<const UnqualifiedIdentifierExpression>(
+            auto simpleName = SafeDynamicCast<const UnqualifiedIdentifierExpression>(
                 visit(context->typeName())
-                    .as<std::shared_ptr<const SyntaxNode>>());
+                    .as<std::shared_ptr<const SyntaxNode>>(), __LINE__);
 
             // Replace the right name with the current unqlaified name
             return std::static_pointer_cast<const SyntaxNode>(
@@ -2494,12 +2507,12 @@ antlrcpp::Any ASTCppParserVisitor::visitFunctionDefinition(CppParser::FunctionDe
 
     // Analyze the declarator
     auto declaratorContext = context->functionDeclarator();
-    auto identifier = std::dynamic_pointer_cast<const IdentifierExpression>(
+    auto identifier = SafeDynamicCast<const IdentifierExpression>(
         visit(declaratorContext->identifierExpression())
-            .as<std::shared_ptr<const SyntaxNode>>());
-    auto parameterList = std::dynamic_pointer_cast<const ParameterList>(
+            .as<std::shared_ptr<const SyntaxNode>>(), __LINE__);
+    auto parameterList = SafeDynamicCast<const ParameterList>(
         visit(declaratorContext->functionParameters())
-            .as<std::shared_ptr<const SyntaxNode>>());
+            .as<std::shared_ptr<const SyntaxNode>>(), __LINE__);
     // TODO Qualifiers
     // TODO Trailiing return type
 
@@ -2565,9 +2578,9 @@ antlrcpp::Any ASTCppParserVisitor::visitFunctionBody(CppParser::FunctionBodyCont
 antlrcpp::Any ASTCppParserVisitor::visitRegularFunctionBody(CppParser::RegularFunctionBodyContext* context)
 {
     Trace("VisitRegularFunctionBody");
-    auto compoundStatment = std::dynamic_pointer_cast<const CompoundStatement>(
+    auto compoundStatment = SafeDynamicCast<const CompoundStatement>(
         visit(context->compoundStatement())
-            .as<std::shared_ptr<const SyntaxNode>>());
+            .as<std::shared_ptr<const SyntaxNode>>(), __LINE__);
     return std::static_pointer_cast<const SyntaxNode>(
         SyntaxFactory::CreateRegularFunctionBody(
             std::move(compoundStatment)));
@@ -2608,9 +2621,9 @@ antlrcpp::Any ASTCppParserVisitor::visitBraceOrEqualInitializer(CppParser::Brace
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreateValueEqualInitializer(
                 CreateToken(SyntaxTokenType::Equal, context->Equal()),
-                std::dynamic_pointer_cast<const Expression>(
+                SafeDynamicCast<const Expression>(
                     visit(context->initializerClause())
-                        .as<std::shared_ptr<const SyntaxNode>>())));
+                        .as<std::shared_ptr<const SyntaxNode>>(), __LINE__)));
     }
     else
     {
@@ -2629,19 +2642,18 @@ antlrcpp::Any ASTCppParserVisitor::visitInitializerList(CppParser::InitializerLi
     Trace("VisitInitializerList");
 
     // Handle the recursive rule
-    SeparatorListResult<Expression> initializerList = {};
+    SeparatorListResult<SyntaxNode> initializerList = {};
     if (context->initializerList() != nullptr)
     {
         initializerList = visit(context->initializerList())
-            .as<SeparatorListResult<Expression>>();
+            .as<SeparatorListResult<SyntaxNode>>();
         initializerList.Separators.push_back(
             CreateToken(SyntaxTokenType::Comma, context->Comma()));
     }
 
     // Handle the next item
-    auto initializer = std::dynamic_pointer_cast<const Expression>(
-        visit(context->initializerClause())
-            .as<std::shared_ptr<const SyntaxNode>>());
+    auto initializer = visit(context->initializerClause())
+        .as<std::shared_ptr<const SyntaxNode>>();
     initializerList.Items.push_back(std::move(initializer));
 
     return initializerList;
@@ -2652,11 +2664,11 @@ antlrcpp::Any ASTCppParserVisitor::visitBracedInitializerList(CppParser::BracedI
     Trace("VisitBracedInitializerList");
 
     // Check for the optional expressions
-    SeparatorListResult<Expression> result = {};
+    SeparatorListResult<SyntaxNode> result = {};
     if (context->initializerList() != nullptr)
     {
         result = visit(context->initializerList())
-            .as<const SeparatorListResult<Expression>>();
+            .as<const SeparatorListResult<SyntaxNode>>();
 
         // Check for the optional trailing comma
         if (context->Comma() != nullptr)
@@ -2666,14 +2678,15 @@ antlrcpp::Any ASTCppParserVisitor::visitBracedInitializerList(CppParser::BracedI
         }
     }
 
-    auto values = SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
+    auto values = SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
         std::move(result.Items),
         std::move(result.Separators));
 
-    return SyntaxFactory::CreateInitializerList(
-        CreateToken(SyntaxTokenType::OpenBrace, context->OpenBrace()),
-        std::move(values),
-        CreateToken(SyntaxTokenType::CloseBrace, context->CloseBrace()));
+    return std::static_pointer_cast<const SyntaxNode>(
+        SyntaxFactory::CreateInitializerList(
+            CreateToken(SyntaxTokenType::OpenBrace, context->OpenBrace()),
+            std::move(values),
+            CreateToken(SyntaxTokenType::CloseBrace, context->CloseBrace())));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitExpressionOrBracedInitializerList(CppParser::ExpressionOrBracedInitializerListContext* context)
@@ -2786,9 +2799,9 @@ antlrcpp::Any ASTCppParserVisitor::visitMemberSpecification(CppParser::MemberSpe
     }
     else if (context->memberDeclaration() != nullptr)
     {
-        auto member = std::dynamic_pointer_cast<const Declaration>(
+        auto member = SafeDynamicCast<const Declaration>(
             visit(context->memberDeclaration())
-                .as<std::shared_ptr<const SyntaxNode>>());
+                .as<std::shared_ptr<const SyntaxNode>>(), __LINE__);
         memberSpecifiers.push_back(std::move(member));
     }
     else
@@ -3004,14 +3017,14 @@ antlrcpp::Any ASTCppParserVisitor::visitMemberInitializer(CppParser::MemberIniti
     if (context->OpenParenthesis() != nullptr)
     {
         // Check for the optional expressions
-        SeparatorListResult<Expression> result = {};
+        SeparatorListResult<SyntaxNode> result = {};
         if (context->expressionList() != nullptr)
         {
             result = visit(context->expressionList())
-                .as<const SeparatorListResult<Expression>>();
+                .as<const SeparatorListResult<SyntaxNode>>();
         }
 
-        auto values = SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
+        auto values = SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
             std::move(result.Items),
             std::move(result.Separators));
 
@@ -3022,8 +3035,9 @@ antlrcpp::Any ASTCppParserVisitor::visitMemberInitializer(CppParser::MemberIniti
     }
     else if (context->bracedInitializerList() != nullptr)
     {
-        initializerList = visit(context->bracedInitializerList())
-            .as<std::shared_ptr<const InitializerList>>();
+        initializerList = SafeDynamicCast<const InitializerList>(
+            visit(context->bracedInitializerList())
+                .as<std::shared_ptr<const SyntaxNode>>(), __LINE__);
     }
     else
     {
@@ -3140,9 +3154,9 @@ antlrcpp::Any ASTCppParserVisitor::visitTemplateArgumentList(CppParser::Template
     }
 
     // Handle the next item
-    auto templateArgument = std::dynamic_pointer_cast<const Expression>(
+    auto templateArgument = SafeDynamicCast<const Expression>(
         visit(context->templateArgument())
-            .as<std::shared_ptr<const SyntaxNode>>());
+            .as<std::shared_ptr<const SyntaxNode>>(), __LINE__);
     templateArgumentList.Items.push_back(std::move(templateArgument));
 
     return templateArgumentList;
@@ -3222,7 +3236,7 @@ antlrcpp::Any ASTCppParserVisitor::visitIdentifierList(CppParser::IdentifierList
 
 antlrcpp::Any ASTCppParserVisitor::visitLiteral(CppParser::LiteralContext* context)
 {
-    Trace("VisitLitera");
+    Trace("VisitLiteral");
     if (context->FloatingPointLiteral() != nullptr)
     {
         auto literal = CreateToken(
@@ -3261,7 +3275,7 @@ antlrcpp::Any ASTCppParserVisitor::visitLiteral(CppParser::LiteralContext* conte
 
 antlrcpp::Any ASTCppParserVisitor::visitIntegerLiteral(CppParser::IntegerLiteralContext* context)
 {
-    Trace("VisitIntegerLitera");
+    Trace("VisitIntegerLiteral");
     std::shared_ptr<const SyntaxToken> literal = nullptr;
     if (context->Zero())
     {
@@ -3328,7 +3342,7 @@ antlrcpp::Any ASTCppParserVisitor::visitPointerLiteral(CppParser::PointerLiteral
 
 antlrcpp::Any ASTCppParserVisitor::visitUserDefinedLiteral(CppParser::UserDefinedLiteralContext* context)
 {
-    Trace("VisitUserDefinedLitera");
+    Trace("VisitUserDefinedLiteral");
     std::shared_ptr<const SyntaxToken> literal = nullptr;
     if (context->UserDefinedIntegerLiteral() != nullptr)
     {

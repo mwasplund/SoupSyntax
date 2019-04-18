@@ -18,7 +18,7 @@ namespace Soup::Syntax::InnerTree
         InvocationExpression(
             std::shared_ptr<const Expression> leftExpression,
             std::shared_ptr<const SyntaxToken> openParenthesisToken, 
-            std::shared_ptr<const SyntaxSeparatorList<Expression>> parameters,
+            std::shared_ptr<const SyntaxSeparatorList<SyntaxNode>> parameters,
             std::shared_ptr<const SyntaxToken> closeParenthesisToken) :
             Expression(SyntaxNodeType::InvocationExpression),
             m_leftExpression(std::move(leftExpression)),
@@ -68,8 +68,9 @@ namespace Soup::Syntax::InnerTree
 
         /// <summary>
         /// Gets the list of parameters
+        /// TODO: Can be expression or braced initializer...
         /// </summary>
-        const SyntaxSeparatorList<Expression>& GetParameters() const
+        const SyntaxSeparatorList<SyntaxNode>& GetParameters() const
         {
             return *m_parameters;
         }
@@ -110,7 +111,7 @@ namespace Soup::Syntax::InnerTree
     private:
         std::shared_ptr<const Expression> m_leftExpression;
         std::shared_ptr<const SyntaxToken> m_openParenthesisToken;
-        std::shared_ptr<const SyntaxSeparatorList<Expression>> m_parameters;
+        std::shared_ptr<const SyntaxSeparatorList<SyntaxNode>> m_parameters;
         std::shared_ptr<const SyntaxToken> m_closeParenthesisToken;
     };
 }

@@ -483,6 +483,16 @@ std::vector<std::shared_ptr<const SyntaxToken>> CreateOuterList(
             CreateOuterList<SyntaxToken>(innerNode->GetSeparators(), parentNode)));
 }
 
+/*static*/ std::shared_ptr<const SyntaxSeparatorList<SyntaxNode>> SyntaxWrapper::CreateOuter(
+    std::shared_ptr<const InnerTree::SyntaxSeparatorList<InnerTree::SyntaxNode>> innerNode,
+    const SyntaxNode* parentNode)
+{
+    return std::shared_ptr<const SyntaxSeparatorList<SyntaxNode>>(
+        new SyntaxSeparatorList<SyntaxNode>(
+            CreateOuterList<SyntaxNode>(innerNode->GetItems(), parentNode),
+            CreateOuterList<SyntaxToken>(innerNode->GetSeparators(), parentNode)));
+}
+
 /*static*/ std::shared_ptr<const SyntaxSeparatorList<SyntaxToken>> SyntaxWrapper::CreateOuter(
     std::shared_ptr<const InnerTree::SyntaxSeparatorList<InnerTree::SyntaxToken>> innerNode,
     const SyntaxNode* parentNode)

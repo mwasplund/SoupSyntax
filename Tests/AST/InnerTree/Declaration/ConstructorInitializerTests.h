@@ -18,9 +18,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"),
                             SyntaxFactory::CreateInitializerList(
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                                SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
-                                    std::vector<std::shared_ptr<const Expression>>(),
-                                    {}),
+                                SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>({}, {}),
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))), 
                     }),
                     {}));
@@ -40,9 +38,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"),
                             SyntaxFactory::CreateInitializerList(
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                                SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
-                                    std::vector<std::shared_ptr<const Expression>>(),
-                                    {}),
+                                SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>({}, {}),
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))), 
                     }),
                     {}),
@@ -62,17 +58,13 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"),
                             SyntaxFactory::CreateInitializerList(
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                                SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
-                                    std::vector<std::shared_ptr<const Expression>>(),
-                                    {}),
+                                SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>({}, {}),
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))),
                         SyntaxFactory::CreateMemberInitializer(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b"),
                             SyntaxFactory::CreateInitializerList(
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                                SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
-                                    std::vector<std::shared_ptr<const Expression>>(),
-                                    {}),
+                                SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>({}, {}),
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))), 
                     }),
                     std::vector<std::shared_ptr<const SyntaxToken>>({
@@ -94,17 +86,13 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"),
                             SyntaxFactory::CreateInitializerList(
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                                SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
-                                    std::vector<std::shared_ptr<const Expression>>(),
-                                    {}),
+                                SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>({}, {}),
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))),
                         SyntaxFactory::CreateMemberInitializer(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b"),
                             SyntaxFactory::CreateInitializerList(
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                                SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
-                                    std::vector<std::shared_ptr<const Expression>>(),
-                                    {}),
+                                SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>({}, {}),
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))), 
                     }),
                     std::vector<std::shared_ptr<const SyntaxToken>>({
@@ -126,17 +114,13 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"),
                             SyntaxFactory::CreateInitializerList(
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                                SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
-                                    std::vector<std::shared_ptr<const Expression>>(),
-                                    {}),
+                                SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>({}, {}),
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))),
                         SyntaxFactory::CreateMemberInitializer(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b"),
                             SyntaxFactory::CreateInitializerList(
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                                SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
-                                    std::vector<std::shared_ptr<const Expression>>(),
-                                    {}),
+                                SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>({}, {}),
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))), 
                     }),
                     std::vector<std::shared_ptr<const SyntaxToken>>({
@@ -152,17 +136,13 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"),
                                 SyntaxFactory::CreateInitializerList(
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                                    SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
-                                        std::vector<std::shared_ptr<const Expression>>(),
-                                        {}),
+                                    SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>({}, {}),
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))),
                             SyntaxFactory::CreateMemberInitializer(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b"),
                                 SyntaxFactory::CreateInitializerList(
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                                    SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
-                                        std::vector<std::shared_ptr<const Expression>>(),
-                                        {}),
+                                    SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>({}, {}),
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))), 
                         }),
                         std::vector<std::shared_ptr<const SyntaxToken>>({
@@ -184,17 +164,13 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"),
                             SyntaxFactory::CreateInitializerList(
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                                SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
-                                    std::vector<std::shared_ptr<const Expression>>(),
-                                    {}),
+                                SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>({}, {}),
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))),
                         SyntaxFactory::CreateMemberInitializer(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b"),
                             SyntaxFactory::CreateInitializerList(
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                                SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
-                                    std::vector<std::shared_ptr<const Expression>>(),
-                                    {}),
+                                SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>({}, {}),
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))), 
                     }),
                     std::vector<std::shared_ptr<const SyntaxToken>>({
@@ -215,17 +191,13 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"),
                                 SyntaxFactory::CreateInitializerList(
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                                    SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
-                                        std::vector<std::shared_ptr<const Expression>>(),
-                                        {}),
+                                    SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>({}, {}),
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))),
                             SyntaxFactory::CreateMemberInitializer(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b"),
                                 SyntaxFactory::CreateInitializerList(
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                                    SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
-                                        std::vector<std::shared_ptr<const Expression>>(),
-                                        {}),
+                                    SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>({}, {}),
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))), 
                         }),
                         std::vector<std::shared_ptr<const SyntaxToken>>({
@@ -247,17 +219,13 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"),
                             SyntaxFactory::CreateInitializerList(
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                                SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
-                                    std::vector<std::shared_ptr<const Expression>>(),
-                                    {}),
+                                SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>({}, {}),
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))),
                         SyntaxFactory::CreateMemberInitializer(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b"),
                             SyntaxFactory::CreateInitializerList(
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                                SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
-                                    std::vector<std::shared_ptr<const Expression>>(),
-                                    {}),
+                                SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>({}, {}),
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))), 
                     }),
                     std::vector<std::shared_ptr<const SyntaxToken>>({
@@ -273,17 +241,13 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "c"),
                                 SyntaxFactory::CreateInitializerList(
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                                    SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
-                                        std::vector<std::shared_ptr<const Expression>>(),
-                                        {}),
+                                    SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>({}, {}),
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))),
                             SyntaxFactory::CreateMemberInitializer(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b"),
                                 SyntaxFactory::CreateInitializerList(
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                                    SyntaxFactory::CreateSyntaxSeparatorList<Expression>(
-                                        std::vector<std::shared_ptr<const Expression>>(),
-                                        {}),
+                                    SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>({}, {}),
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))), 
                         }),
                         std::vector<std::shared_ptr<const SyntaxToken>>({
