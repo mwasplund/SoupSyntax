@@ -14,7 +14,6 @@ namespace Soup::Syntax::InnerTree::UnitTests
             auto uut = SyntaxFactory::CreateParameterList(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
-                    std::vector<std::shared_ptr<const Parameter>>(
                     {
                         SyntaxFactory::CreateParameter(
                             SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
@@ -23,7 +22,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                                 PrimitiveDataType::Int,
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
-                    }),
+                    },
                     {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis));
 
@@ -37,7 +36,6 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify left parenthesis token matches.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
-                    std::vector<std::shared_ptr<const Parameter>>(
                     {
                         SyntaxFactory::CreateParameter(
                             SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
@@ -46,7 +44,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                                 PrimitiveDataType::Int,
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
-                    }),
+                    },
                     {}),
                 uut->GetParameters(),
                 "Verify parameters match.");
@@ -63,7 +61,6 @@ namespace Soup::Syntax::InnerTree::UnitTests
             auto uut = SyntaxFactory::CreateParameterList(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
-                    std::vector<std::shared_ptr<const Parameter>>(
                     {
                         SyntaxFactory::CreateParameter(
                             SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
@@ -72,7 +69,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                                 PrimitiveDataType::Int,
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
-                    }),
+                    },
                     {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis));
 
@@ -80,7 +77,6 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
-                        std::vector<std::shared_ptr<const Parameter>>(
                         {
                             SyntaxFactory::CreateParameter(
                                 SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
@@ -89,7 +85,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                 SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                                     PrimitiveDataType::Int,
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
-                        }),
+                        },
                         {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
                 uut,
@@ -103,7 +99,6 @@ namespace Soup::Syntax::InnerTree::UnitTests
             auto uut = SyntaxFactory::CreateParameterList(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
-                    std::vector<std::shared_ptr<const Parameter>>(
                     {
                         SyntaxFactory::CreateParameter(
                             SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
@@ -112,7 +107,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                                 PrimitiveDataType::Int,
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
-                    }),
+                    },
                     {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis));
 
@@ -125,7 +120,6 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         },
                         {}),
                     SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
-                        std::vector<std::shared_ptr<const Parameter>>(
                         {
                             SyntaxFactory::CreateParameter(
                                 SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
@@ -134,7 +128,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                 SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                                     PrimitiveDataType::Int,
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
-                        }),
+                        },
                         {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
                 uut,
@@ -148,7 +142,6 @@ namespace Soup::Syntax::InnerTree::UnitTests
             auto uut = SyntaxFactory::CreateParameterList(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
-                    std::vector<std::shared_ptr<const Parameter>>(
                     {
                         SyntaxFactory::CreateParameter(
                             SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
@@ -157,18 +150,14 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                                 PrimitiveDataType::Int,
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
-                    }),
+                    },
                     {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                    SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
-                        std::vector<std::shared_ptr<const Parameter>>(
-                        {
-                        }),
-                        {}),
+                    SyntaxFactory::CreateSyntaxSeparatorList<Parameter>({}, {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
                 uut,
                 "Verify does not match.");
@@ -181,7 +170,6 @@ namespace Soup::Syntax::InnerTree::UnitTests
             auto uut = SyntaxFactory::CreateParameterList(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
-                    std::vector<std::shared_ptr<const Parameter>>(
                     {
                         SyntaxFactory::CreateParameter(
                             SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
@@ -190,7 +178,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                                 PrimitiveDataType::Int,
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
-                    }),
+                    },
                     {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis));
 
@@ -198,7 +186,6 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
-                        std::vector<std::shared_ptr<const Parameter>>(
                         {
                             SyntaxFactory::CreateParameter(
                                 SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
@@ -207,7 +194,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                 SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
                                     PrimitiveDataType::Int,
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
-                        }),
+                        },
                         {}),
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::CloseParenthesis,

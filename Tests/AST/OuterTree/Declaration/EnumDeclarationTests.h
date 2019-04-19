@@ -55,17 +55,15 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyEnum"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 SyntaxFactory::CreateSyntaxSeparatorList<EnumeratorDefinition>(
-                    std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                     {
                         SyntaxFactory::CreateEnumeratorDefinition(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value1")),
                         SyntaxFactory::CreateEnumeratorDefinition(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value2")),
-                    }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>(
+                    },
                     {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma),
-                    })),
+                    }),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace))->CreateOuter(nullptr);
 
             Assert::AreEqual(
@@ -96,17 +94,15 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify left brace token matches.");
             TestUtils::AreEqual(
                 *SyntaxFactory::CreateSyntaxSeparatorList<EnumeratorDefinition>(
-                    std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                     {
                         SyntaxFactory::CreateEnumeratorDefinition(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value1")),
                         SyntaxFactory::CreateEnumeratorDefinition(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value2")),
-                    }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>(
+                    },
                     {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma),
-                    })),
+                    }),
                 uut->GetEnumeratorList(),
                 "Verify enumerator list matches.");
             TestUtils::AreEqual(
@@ -146,17 +142,15 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyEnum"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 SyntaxFactory::CreateSyntaxSeparatorList<EnumeratorDefinition>(
-                    std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                     {
                         SyntaxFactory::CreateEnumeratorDefinition(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value1")),
                         SyntaxFactory::CreateEnumeratorDefinition(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value2")),
-                    }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>(
+                    },
                     {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma),
-                    })),
+                    }),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace))->CreateOuter(nullptr);
 
             Assert::AreEqual(
@@ -196,11 +190,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     nullptr,
                     nullptr,
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                    SyntaxFactory::CreateSyntaxSeparatorList<EnumeratorDefinition>(
-                        std::vector<std::shared_ptr<const EnumeratorDefinition>>(
-                        {}),
-                        std::vector<std::shared_ptr<const SyntaxToken>>(
-                        {})),
+                    SyntaxFactory::CreateSyntaxSeparatorList<EnumeratorDefinition>({}, {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 uut,
                 "Verify matches.");
@@ -215,17 +205,15 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyEnum"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 SyntaxFactory::CreateSyntaxSeparatorList<EnumeratorDefinition>(
-                    std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                     {
                         SyntaxFactory::CreateEnumeratorDefinition(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value1")),
                         SyntaxFactory::CreateEnumeratorDefinition(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value2")),
-                    }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>(
+                    },
                     {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma),
-                    })),
+                    }),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace))->CreateOuter(nullptr);
 
             TestUtils::AreEqual(
@@ -235,17 +223,15 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyEnum"),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                     SyntaxFactory::CreateSyntaxSeparatorList<EnumeratorDefinition>(
-                        std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                         {
                             SyntaxFactory::CreateEnumeratorDefinition(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value1")),
                             SyntaxFactory::CreateEnumeratorDefinition(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value2")),
-                        }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>(
+                        },
                         {
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma),
-                        })),
+                        }),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 uut,
                 "Verify matches.");
@@ -260,17 +246,15 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyEnum"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 SyntaxFactory::CreateSyntaxSeparatorList<EnumeratorDefinition>(
-                    std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                     {
                         SyntaxFactory::CreateEnumeratorDefinition(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value1")),
                         SyntaxFactory::CreateEnumeratorDefinition(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value2")),
-                    }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>(
+                    },
                     {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma),
-                    })),
+                    }),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
@@ -285,17 +269,15 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyEnum"),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                     SyntaxFactory::CreateSyntaxSeparatorList<EnumeratorDefinition>(
-                        std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                         {
                             SyntaxFactory::CreateEnumeratorDefinition(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value1")),
                             SyntaxFactory::CreateEnumeratorDefinition(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value2")),
-                        }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>(
+                        },
                         {
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma),
-                        })),
+                        }),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 uut,
                 "Verify do not match.");
@@ -310,17 +292,15 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyEnum"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 SyntaxFactory::CreateSyntaxSeparatorList<EnumeratorDefinition>(
-                    std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                     {
                         SyntaxFactory::CreateEnumeratorDefinition(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value1")),
                         SyntaxFactory::CreateEnumeratorDefinition(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value2")),
-                    }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>(
+                    },
                     {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma),
-                    })),
+                    }),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
@@ -330,17 +310,15 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyEnum"),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                     SyntaxFactory::CreateSyntaxSeparatorList<EnumeratorDefinition>(
-                        std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                         {
                             SyntaxFactory::CreateEnumeratorDefinition(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value1")),
                             SyntaxFactory::CreateEnumeratorDefinition(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value2")),
-                        }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>(
+                        },
                         {
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma),
-                        })),
+                        }),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 uut,
                 "Verify do not match.");
@@ -355,17 +333,15 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyEnum"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 SyntaxFactory::CreateSyntaxSeparatorList<EnumeratorDefinition>(
-                    std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                     {
                         SyntaxFactory::CreateEnumeratorDefinition(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value1")),
                         SyntaxFactory::CreateEnumeratorDefinition(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value2")),
-                    }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>(
+                    },
                     {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma),
-                    })),
+                    }),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
@@ -380,17 +356,15 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyEnum"),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                     SyntaxFactory::CreateSyntaxSeparatorList<EnumeratorDefinition>(
-                        std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                         {
                             SyntaxFactory::CreateEnumeratorDefinition(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value1")),
                             SyntaxFactory::CreateEnumeratorDefinition(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value2")),
-                        }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>(
+                        },
                         {
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma),
-                        })),
+                        }),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 uut,
                 "Verify do not match.");
@@ -405,17 +379,15 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyEnum"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 SyntaxFactory::CreateSyntaxSeparatorList<EnumeratorDefinition>(
-                    std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                     {
                         SyntaxFactory::CreateEnumeratorDefinition(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value1")),
                         SyntaxFactory::CreateEnumeratorDefinition(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value2")),
-                    }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>(
+                    },
                     {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma),
-                    })),
+                    }),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
@@ -425,17 +397,15 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     nullptr,
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                     SyntaxFactory::CreateSyntaxSeparatorList<EnumeratorDefinition>(
-                        std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                         {
                             SyntaxFactory::CreateEnumeratorDefinition(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value1")),
                             SyntaxFactory::CreateEnumeratorDefinition(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value2")),
-                        }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>(
+                        },
                         {
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma),
-                        })),
+                        }),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 uut,
                 "Verify do not match.");
@@ -450,17 +420,15 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyEnum"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 SyntaxFactory::CreateSyntaxSeparatorList<EnumeratorDefinition>(
-                    std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                     {
                         SyntaxFactory::CreateEnumeratorDefinition(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value1")),
                         SyntaxFactory::CreateEnumeratorDefinition(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value2")),
-                    }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>(
+                    },
                     {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma),
-                    })),
+                    }),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
@@ -470,17 +438,15 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyEnum2"),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                     SyntaxFactory::CreateSyntaxSeparatorList<EnumeratorDefinition>(
-                        std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                         {
                             SyntaxFactory::CreateEnumeratorDefinition(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value1")),
                             SyntaxFactory::CreateEnumeratorDefinition(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value2")),
-                        }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>(
+                        },
                         {
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma),
-                        })),
+                        }),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 uut,
                 "Verify do not match.");
@@ -495,17 +461,15 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyEnum"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 SyntaxFactory::CreateSyntaxSeparatorList<EnumeratorDefinition>(
-                    std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                     {
                         SyntaxFactory::CreateEnumeratorDefinition(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value1")),
                         SyntaxFactory::CreateEnumeratorDefinition(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value2")),
-                    }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>(
+                    },
                     {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma),
-                    })),
+                    }),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
@@ -520,17 +484,15 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         },
                         {}),
                     SyntaxFactory::CreateSyntaxSeparatorList<EnumeratorDefinition>(
-                        std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                         {
                             SyntaxFactory::CreateEnumeratorDefinition(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value1")),
                             SyntaxFactory::CreateEnumeratorDefinition(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value2")),
-                        }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>(
+                        },
                         {
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma),
-                        })),
+                        }),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 uut,
                 "Verify do not match.");
@@ -545,17 +507,15 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyEnum"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 SyntaxFactory::CreateSyntaxSeparatorList<EnumeratorDefinition>(
-                    std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                     {
                         SyntaxFactory::CreateEnumeratorDefinition(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value1")),
                         SyntaxFactory::CreateEnumeratorDefinition(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value2")),
-                    }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>(
+                    },
                     {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma),
-                    })),
+                    }),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
@@ -570,13 +530,11 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         },
                         {}),
                     SyntaxFactory::CreateSyntaxSeparatorList<EnumeratorDefinition>(
-                        std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                         {
                             SyntaxFactory::CreateEnumeratorDefinition(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value1"))
-                        }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>(
-                        {})),
+                        },
+                        {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 uut,
                 "Verify do not match.");
@@ -591,17 +549,15 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyEnum"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 SyntaxFactory::CreateSyntaxSeparatorList<EnumeratorDefinition>(
-                    std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                     {
                         SyntaxFactory::CreateEnumeratorDefinition(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value1")),
                         SyntaxFactory::CreateEnumeratorDefinition(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value2")),
-                    }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>(
+                    },
                     {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma),
-                    })),
+                    }),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
@@ -611,17 +567,15 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyEnum"),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                     SyntaxFactory::CreateSyntaxSeparatorList<EnumeratorDefinition>(
-                        std::vector<std::shared_ptr<const EnumeratorDefinition>>(
                         {
                             SyntaxFactory::CreateEnumeratorDefinition(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value1")),
                             SyntaxFactory::CreateEnumeratorDefinition(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value2")),
-                        }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>(
+                        },
                         {
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma),
-                        })),
+                        }),
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::CloseBrace,
                         {

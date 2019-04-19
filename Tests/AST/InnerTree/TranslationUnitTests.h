@@ -33,7 +33,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             auto uut = SyntaxFactory::CreateTranslationUnit(
                 SyntaxFactory::CreateSyntaxList<Declaration>(
-                    std::vector<std::shared_ptr<const Declaration>>({
+                    {
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                         SyntaxFactory::CreateSimpleDeclaration(
@@ -43,16 +43,15 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                             SyntaxFactory::CreateInitializerDeclaratorList(
                                 SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
-                                    std::vector<std::shared_ptr<const InitializerDeclarator>>(
                                     {
                                         SyntaxFactory::CreateInitializerDeclarator(
                                             SyntaxFactory::CreateSimpleIdentifierExpression(
                                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                             nullptr),
-                                    }),
+                                    },
                                     {})),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
-                    })),
+                    }),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile));
 
             Assert::AreEqual(
@@ -61,7 +60,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify has correct type.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateSyntaxList<Declaration>(
-                    std::vector<std::shared_ptr<const Declaration>>({
+                    {
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                         SyntaxFactory::CreateSimpleDeclaration(
@@ -71,16 +70,15 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                             SyntaxFactory::CreateInitializerDeclaratorList(
                                 SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
-                                    std::vector<std::shared_ptr<const InitializerDeclarator>>(
                                     {
                                         SyntaxFactory::CreateInitializerDeclarator(
                                             SyntaxFactory::CreateSimpleIdentifierExpression(
                                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                             nullptr),
-                                    }),
+                                    },
                                     {})),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
-                    })),
+                    }),
                 uut->GetDeclarations(),
                 "Verify declarations matches.");
             Assert::AreEqual(
@@ -94,19 +92,19 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             auto uut = SyntaxFactory::CreateTranslationUnit(
                 SyntaxFactory::CreateSyntaxList<Declaration>(
-                    std::vector<std::shared_ptr<const Declaration>>({
+                    {
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
-                    })),
+                    }),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile));
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateTranslationUnit(
                     SyntaxFactory::CreateSyntaxList<Declaration>(
-                        std::vector<std::shared_ptr<const Declaration>>({
+                        {
                             SyntaxFactory::CreateEmptyDeclaration(
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
-                        })),
+                        }),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile)),
                 uut,
                 "Verify matches.");
@@ -117,16 +115,15 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             auto uut = SyntaxFactory::CreateTranslationUnit(
                 SyntaxFactory::CreateSyntaxList<Declaration>(
-                    std::vector<std::shared_ptr<const Declaration>>({
+                    {
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
-                    })),
+                    }),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateTranslationUnit(
-                    SyntaxFactory::CreateSyntaxList<Declaration>(
-                        std::vector<std::shared_ptr<const Declaration>>()),
+                    SyntaxFactory::CreateSyntaxList<Declaration>({}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile)),
                 uut,
                 "Verify do not match.");
@@ -137,16 +134,16 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             auto uut = SyntaxFactory::CreateTranslationUnit(
                 SyntaxFactory::CreateSyntaxList<Declaration>(
-                    std::vector<std::shared_ptr<const Declaration>>({
+                    {
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
-                    })),
+                    }),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateTranslationUnit(
                     SyntaxFactory::CreateSyntaxList<Declaration>(
-                        std::vector<std::shared_ptr<const Declaration>>({
+                        {
                             SyntaxFactory::CreateEmptyDeclaration(
                                 SyntaxFactory::CreateKeywordToken(
                                     SyntaxTokenType::Semicolon,
@@ -154,7 +151,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                         SyntaxFactory::CreateTrivia(" "),
                                     },
                                     {})),
-                        })),
+                        }),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile)),
                 uut,
                 "Verify do not match.");
@@ -165,19 +162,19 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             auto uut = SyntaxFactory::CreateTranslationUnit(
                 SyntaxFactory::CreateSyntaxList<Declaration>(
-                    std::vector<std::shared_ptr<const Declaration>>({
+                    {
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
-                    })),
+                    }),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateTranslationUnit(
                     SyntaxFactory::CreateSyntaxList<Declaration>(
-                        std::vector<std::shared_ptr<const Declaration>>({
+                        {
                             SyntaxFactory::CreateEmptyDeclaration(
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
-                        })),
+                        }),
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::EndOfFile,
                         {

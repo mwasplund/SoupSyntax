@@ -18,13 +18,12 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                 SyntaxFactory::CreateMemberDeclaratorList(
                     SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
-                        std::vector<std::shared_ptr<const MemberDeclarator>>(
                         {
                             SyntaxFactory::CreateMemberDeclarator(
                                 SyntaxFactory::CreateSimpleIdentifierExpression(
                                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                 nullptr),
-                        }),
+                        },
                         {})),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))->CreateOuter(nullptr);
 
@@ -42,13 +41,12 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreEqual(
                 *SyntaxFactory::CreateMemberDeclaratorList(
                     SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
-                        std::vector<std::shared_ptr<const MemberDeclarator>>(
                         {
                             SyntaxFactory::CreateMemberDeclarator(
                                 SyntaxFactory::CreateSimpleIdentifierExpression(
                                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                 nullptr),
-                        }),
+                        },
                         {})),
                 uut->GetMemberDeclaratorList(),
                 "Verify initializer declarator list matches.");
@@ -69,13 +67,12 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                 SyntaxFactory::CreateMemberDeclaratorList(
                     SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
-                        std::vector<std::shared_ptr<const MemberDeclarator>>(
                         {
                             SyntaxFactory::CreateMemberDeclarator(
                                 SyntaxFactory::CreateSimpleIdentifierExpression(
                                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                 nullptr),
-                        }),
+                        },
                         {})),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))->CreateOuter(nullptr);
 
@@ -90,13 +87,12 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     TestUtils::CreateChild(
                         SyntaxFactory::CreateMemberDeclaratorList(
                             SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
-                                std::vector<std::shared_ptr<const MemberDeclarator>>(
                                 {
                                     SyntaxFactory::CreateMemberDeclarator(
                                         SyntaxFactory::CreateSimpleIdentifierExpression(
                                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                         nullptr),
-                                }),
+                                },
                                 {}))),
                     TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 }),
@@ -115,13 +111,12 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                 SyntaxFactory::CreateMemberDeclaratorList(
                     SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
-                        std::vector<std::shared_ptr<const MemberDeclarator>>(
                         {
                             SyntaxFactory::CreateMemberDeclarator(
                                 SyntaxFactory::CreateSimpleIdentifierExpression(
                                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                 nullptr),
-                        }),
+                        },
                         {})),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))->CreateOuter(nullptr);
 
@@ -133,13 +128,12 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                     SyntaxFactory::CreateMemberDeclaratorList(
                         SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
-                            std::vector<std::shared_ptr<const MemberDeclarator>>(
                             {
                                 SyntaxFactory::CreateMemberDeclarator(
                                     SyntaxFactory::CreateSimpleIdentifierExpression(
                                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                     nullptr),
-                            }),
+                            },
                             {})),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 uut,
@@ -157,13 +151,12 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                 SyntaxFactory::CreateMemberDeclaratorList(
                     SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
-                        std::vector<std::shared_ptr<const MemberDeclarator>>(
                         {
                             SyntaxFactory::CreateMemberDeclarator(
                                 SyntaxFactory::CreateSimpleIdentifierExpression(
                                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                 nullptr),
-                        }),
+                        },
                         {})),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))->CreateOuter(nullptr);
 
@@ -175,13 +168,12 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Long))),
                     SyntaxFactory::CreateMemberDeclaratorList(
                         SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
-                            std::vector<std::shared_ptr<const MemberDeclarator>>(
                             {
                                 SyntaxFactory::CreateMemberDeclarator(
                                     SyntaxFactory::CreateSimpleIdentifierExpression(
                                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                     nullptr),
-                            }),
+                            },
                             {})),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 uut,
@@ -199,13 +191,12 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                 SyntaxFactory::CreateMemberDeclaratorList(
                     SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
-                        std::vector<std::shared_ptr<const MemberDeclarator>>(
                         {
                             SyntaxFactory::CreateMemberDeclarator(
                                 SyntaxFactory::CreateSimpleIdentifierExpression(
                                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                 nullptr),
-                        }),
+                        },
                         {})),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))->CreateOuter(nullptr);
 
@@ -217,13 +208,12 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                     SyntaxFactory::CreateMemberDeclaratorList(
                         SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
-                            std::vector<std::shared_ptr<const MemberDeclarator>>(
                             {
                                 SyntaxFactory::CreateMemberDeclarator(
                                     SyntaxFactory::CreateSimpleIdentifierExpression(
                                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i2")),
                                     nullptr),
-                            }),
+                            },
                             {})),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 uut,
@@ -241,13 +231,12 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                 SyntaxFactory::CreateMemberDeclaratorList(
                     SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
-                        std::vector<std::shared_ptr<const MemberDeclarator>>(
                         {
                             SyntaxFactory::CreateMemberDeclarator(
                                 SyntaxFactory::CreateSimpleIdentifierExpression(
                                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                 nullptr),
-                        }),
+                        },
                         {})),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))->CreateOuter(nullptr);
 
@@ -259,13 +248,12 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                     SyntaxFactory::CreateMemberDeclaratorList(
                         SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
-                            std::vector<std::shared_ptr<const MemberDeclarator>>(
                             {
                                 SyntaxFactory::CreateMemberDeclarator(
                                     SyntaxFactory::CreateSimpleIdentifierExpression(
                                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                     nullptr),
-                            }),
+                            },
                             {})),
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::Semicolon,

@@ -18,13 +18,12 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                     SyntaxFactory::CreateInitializerDeclaratorList(
                         SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
-                            std::vector<std::shared_ptr<const InitializerDeclarator>>(
                             {
                                 SyntaxFactory::CreateInitializerDeclarator(
                                     SyntaxFactory::CreateSimpleIdentifierExpression(
                                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                     nullptr),
-                            }),
+                            },
                             {})),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)));
 
@@ -40,13 +39,12 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                     SyntaxFactory::CreateInitializerDeclaratorList(
                         SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
-                            std::vector<std::shared_ptr<const InitializerDeclarator>>(
                             {
                                 SyntaxFactory::CreateInitializerDeclarator(
                                     SyntaxFactory::CreateSimpleIdentifierExpression(
                                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                     nullptr),
-                            }),
+                            },
                             {})),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 uut->GetDeclaration(),
@@ -64,13 +62,12 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                     SyntaxFactory::CreateInitializerDeclaratorList(
                         SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
-                            std::vector<std::shared_ptr<const InitializerDeclarator>>(
                             {
                                 SyntaxFactory::CreateInitializerDeclarator(
                                     SyntaxFactory::CreateSimpleIdentifierExpression(
                                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                     nullptr),
-                            }),
+                            },
                             {})),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)));
 
@@ -83,13 +80,12 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                         SyntaxFactory::CreateInitializerDeclaratorList(
                             SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
-                                std::vector<std::shared_ptr<const InitializerDeclarator>>(
                                 {
                                     SyntaxFactory::CreateInitializerDeclarator(
                                         SyntaxFactory::CreateSimpleIdentifierExpression(
                                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                         nullptr),
-                                }),
+                                },
                                 {})),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))),
                 uut,
@@ -107,13 +103,12 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                     SyntaxFactory::CreateInitializerDeclaratorList(
                         SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
-                            std::vector<std::shared_ptr<const InitializerDeclarator>>(
                             {
                                 SyntaxFactory::CreateInitializerDeclarator(
                                     SyntaxFactory::CreateSimpleIdentifierExpression(
                                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                     nullptr),
-                            }),
+                            },
                             {})),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)));
 
@@ -126,13 +121,12 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                         SyntaxFactory::CreateInitializerDeclaratorList(
                             SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
-                                std::vector<std::shared_ptr<const InitializerDeclarator>>(
                                 {
                                     SyntaxFactory::CreateInitializerDeclarator(
                                         SyntaxFactory::CreateSimpleIdentifierExpression(
                                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i2")),
                                         nullptr),
-                                }),
+                                },
                                 {})),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))),
                 uut,

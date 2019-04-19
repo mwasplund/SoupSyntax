@@ -80,14 +80,13 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify left brace token matches.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateSyntaxList<Declaration>(
-                    std::vector<std::shared_ptr<const Declaration>>(
                     {
                         SyntaxFactory::CreateAccessorSpecifier(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Public),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Colon)),
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
-                    })),
+                    }),
                 uut->GetMemberDeclarations(),
                 "Verify member declarations list matches.");
             Assert::AreEqual(
@@ -111,9 +110,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
                     nullptr,
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                    SyntaxFactory::CreateSyntaxList<Declaration>(
-                        std::vector<std::shared_ptr<const Declaration>>(
-                        {})),
+                    SyntaxFactory::CreateSyntaxList<Declaration>({}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 uut,
                 "Verify matches.");
@@ -127,14 +124,13 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 SyntaxFactory::CreateSyntaxList<Declaration>(
-                    std::vector<std::shared_ptr<const Declaration>>(
                     {
                         SyntaxFactory::CreateAccessorSpecifier(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Public),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Colon)),
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
-                    })),
+                    }),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             TestUtils::AreEqual(
@@ -143,14 +139,13 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                     SyntaxFactory::CreateSyntaxList<Declaration>(
-                        std::vector<std::shared_ptr<const Declaration>>(
                         {
                             SyntaxFactory::CreateAccessorSpecifier(
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Public),
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Colon)),
                             SyntaxFactory::CreateEmptyDeclaration(
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
-                        })),
+                        }),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 uut,
                 "Verify matches.");
@@ -164,14 +159,13 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 SyntaxFactory::CreateSyntaxList<Declaration>(
-                    std::vector<std::shared_ptr<const Declaration>>(
                     {
                         SyntaxFactory::CreateAccessorSpecifier(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Public),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Colon)),
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
-                    })),
+                    }),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             TestUtils::AreNotEqual(
@@ -180,14 +174,13 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 SyntaxFactory::CreateSyntaxList<Declaration>(
-                    std::vector<std::shared_ptr<const Declaration>>(
                     {
                         SyntaxFactory::CreateAccessorSpecifier(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Public),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Colon)),
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
-                    })),
+                    }),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 uut,
                 "Verify do not match.");
@@ -201,11 +194,10 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 SyntaxFactory::CreateSyntaxList<Declaration>(
-                    std::vector<std::shared_ptr<const Declaration>>(
                     {
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
-                    })),
+                    }),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             TestUtils::AreNotEqual(
@@ -214,11 +206,10 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     nullptr,
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                     SyntaxFactory::CreateSyntaxList<Declaration>(
-                        std::vector<std::shared_ptr<const Declaration>>(
                         {
                             SyntaxFactory::CreateEmptyDeclaration(
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
-                        })),
+                        }),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 uut,
                 "Verify do not match.");
@@ -232,11 +223,10 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 SyntaxFactory::CreateSyntaxList<Declaration>(
-                    std::vector<std::shared_ptr<const Declaration>>(
                     {
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
-                    })),
+                    }),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             TestUtils::AreNotEqual(
@@ -245,11 +235,10 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass2"),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                     SyntaxFactory::CreateSyntaxList<Declaration>(
-                        std::vector<std::shared_ptr<const Declaration>>(
                         {
                             SyntaxFactory::CreateEmptyDeclaration(
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
-                        })),
+                        }),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 uut,
                 "Verify do not match.");
@@ -263,11 +252,10 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 SyntaxFactory::CreateSyntaxList<Declaration>(
-                    std::vector<std::shared_ptr<const Declaration>>(
                     {
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
-                    })),
+                    }),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             TestUtils::AreNotEqual(
@@ -281,11 +269,10 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         },
                         {}),
                     SyntaxFactory::CreateSyntaxList<Declaration>(
-                        std::vector<std::shared_ptr<const Declaration>>(
                         {
                             SyntaxFactory::CreateEmptyDeclaration(
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
-                        })),
+                        }),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 uut,
                 "Verify do not match.");
@@ -299,11 +286,10 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 SyntaxFactory::CreateSyntaxList<Declaration>(
-                    std::vector<std::shared_ptr<const Declaration>>(
                     {
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
-                    })),
+                    }),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             TestUtils::AreNotEqual(
@@ -311,9 +297,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                    SyntaxFactory::CreateSyntaxList<Declaration>(
-                        std::vector<std::shared_ptr<const Declaration>>(
-                        {})),
+                    SyntaxFactory::CreateSyntaxList<Declaration>({}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)),
                 uut,
                 "Verify do not match.");
@@ -327,11 +311,10 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                 SyntaxFactory::CreateSyntaxList<Declaration>(
-                    std::vector<std::shared_ptr<const Declaration>>(
                     {
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
-                    })),
+                    }),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             TestUtils::AreNotEqual(
@@ -340,11 +323,10 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
                     SyntaxFactory::CreateSyntaxList<Declaration>(
-                        std::vector<std::shared_ptr<const Declaration>>(
                         {
                             SyntaxFactory::CreateEmptyDeclaration(
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
-                        })),
+                        }),
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::CloseBrace,
                         {
