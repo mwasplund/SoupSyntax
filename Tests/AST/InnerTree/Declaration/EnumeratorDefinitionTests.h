@@ -7,7 +7,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
     class InnerTreeEnumeratorDefinitionTests
     {
     public:
-        // [[Fact]]
+        [[Fact]]
         void Initialize()
         {
             auto uut = SyntaxFactory::CreateEnumeratorDefinition(
@@ -23,7 +23,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify enum token matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorEqual()
         {
             auto uut = SyntaxFactory::CreateEnumeratorDefinition(
@@ -36,7 +36,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualIdentifierToken()
         {
             auto uut = SyntaxFactory::CreateEnumeratorDefinition(

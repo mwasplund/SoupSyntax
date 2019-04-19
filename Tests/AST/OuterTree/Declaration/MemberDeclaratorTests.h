@@ -7,7 +7,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
     class OuterTreeMemberDeclaratorTests
     {
     public:
-        // [[Fact]]
+        [[Fact]]
         void InitializeSimpleNoInitializer()
         {
             // a
@@ -30,7 +30,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify has no initializer.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void InitializeSimpleWithInitializer()
         {
             // a = 2
@@ -65,7 +65,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify initializer matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void GetChildrenNoInitializer()
         {
             // a
@@ -84,7 +84,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify children match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void GetChildrenWithInitializer()
         {
             // a = 2
@@ -112,7 +112,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify children match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorEqualNoInitializer()
         {
             // a
@@ -130,7 +130,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorEqualWithInitializer()
         {
             // a = 2
@@ -156,7 +156,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualDeclarator()
         {
             // a = 2
@@ -182,7 +182,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify does not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualNoInitializer()
         {
             // a = 2
@@ -204,7 +204,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify does not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualWithInitializer()
         {
             // a = 2

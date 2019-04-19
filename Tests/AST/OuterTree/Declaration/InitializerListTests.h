@@ -7,7 +7,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
     class OuterTreeInitializerListTests
     {
     public:
-        // [[Fact]]
+        [[Fact]]
         void InitializeSimple()
         {
             // (a, b)
@@ -52,7 +52,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify right token matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void GetChildren()
         {
             // (a, b,)
@@ -88,7 +88,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify children match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorEqual()
         {
             // (a, b)
@@ -124,7 +124,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualOpenParenthesisToken()
         {
             // (a, b)
@@ -165,7 +165,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify does not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualValues()
         {
             // (a, b)
@@ -201,7 +201,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify does not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualCloseParenthesisToken()
         {
             // (a, b)

@@ -7,7 +7,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
     class OuterTreeIfStatementTests
     {
     public:
-        // [[Fact]]
+        [[Fact]]
         void InitializeNoElseClause()
         {
             auto uut = SyntaxFactory::CreateIfStatement(
@@ -51,7 +51,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify has no else clause.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void InitializeWithElseClause()
         {
             auto uut = SyntaxFactory::CreateIfStatement(
@@ -105,7 +105,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify else clause matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void GetChildrenNoElseClause()
         {
             auto uut = SyntaxFactory::CreateIfStatement(
@@ -133,7 +133,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify children match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void GetChildrenWithElseClause()
         {
             auto uut = SyntaxFactory::CreateIfStatement(
@@ -168,7 +168,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify children match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorEqualNoElseClause()
         {
             auto uut = SyntaxFactory::CreateIfStatement(
@@ -195,7 +195,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorEqualWithElseClause()
         {
             auto uut = SyntaxFactory::CreateIfStatement(
@@ -228,7 +228,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualIfToken()
         {
             auto uut = SyntaxFactory::CreateIfStatement(
@@ -261,7 +261,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify do not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualOpenParenthesisToken()
         {
             auto uut = SyntaxFactory::CreateIfStatement(
@@ -294,7 +294,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify do not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualConditionExpression()
         {
             auto uut = SyntaxFactory::CreateIfStatement(
@@ -321,7 +321,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify do not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualCloseParenthesisToken()
         {
             auto uut = SyntaxFactory::CreateIfStatement(
@@ -354,7 +354,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify do not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualStatement()
         {
             auto uut = SyntaxFactory::CreateIfStatement(
@@ -387,7 +387,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify do not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualNoElseClause()
         {
             auto uut = SyntaxFactory::CreateIfStatement(
@@ -417,7 +417,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify do not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualWithElseClause()
         {
             auto uut = SyntaxFactory::CreateIfStatement(

@@ -7,7 +7,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
     class InnerTreeReturnStatementTests
     {
     public:
-        // [[Fact]]
+        [[Fact]]
         void InitializeNoExpression()
         {
             auto uut = SyntaxFactory::CreateReturnStatement(
@@ -32,7 +32,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify semicolon token matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void InitializeWithExpression()
         {
             auto uut = SyntaxFactory::CreateReturnStatement(
@@ -63,7 +63,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify semicolon token matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorEqualNoExpression()
         {
             auto uut = SyntaxFactory::CreateReturnStatement(
@@ -80,7 +80,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorEqualWithExpression()
         {
             auto uut = SyntaxFactory::CreateReturnStatement(
@@ -99,7 +99,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualReturnToken()
         {
             auto uut = SyntaxFactory::CreateReturnStatement(
@@ -121,7 +121,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify do not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualNoExpression()
         {
             auto uut = SyntaxFactory::CreateReturnStatement(
@@ -139,7 +139,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify do not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualWithExpression()
         {
             auto uut = SyntaxFactory::CreateReturnStatement(
@@ -158,7 +158,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify do not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualSemicolonToken()
         {
             auto uut = SyntaxFactory::CreateReturnStatement(

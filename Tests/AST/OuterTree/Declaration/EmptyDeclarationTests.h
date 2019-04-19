@@ -7,7 +7,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
     class OuterTreeEmptyDeclarationTests
     {
     public:
-        // [[Fact]]
+        [[Fact]]
         void InitializeSimple()
         {
             auto uut = SyntaxFactory::CreateEmptyDeclaration(
@@ -23,7 +23,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify semicolon token matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void GetChildren()
         {
             auto uut = SyntaxFactory::CreateEmptyDeclaration(
@@ -37,7 +37,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify children match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorEqual()
         {
             auto uut = SyntaxFactory::CreateEmptyDeclaration(
@@ -50,7 +50,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualSemicolonToken()
         {
             auto uut = SyntaxFactory::CreateEmptyDeclaration(

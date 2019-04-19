@@ -7,7 +7,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
     class InnerTreeAttributeTests
     {
     public:
-        // [[Fact]]
+        [[Fact]]
         void Initialize()
         {
             auto uut = SyntaxFactory::CreateAttribute(
@@ -23,7 +23,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify identifier matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorEqual()
         {
             auto uut = SyntaxFactory::CreateAttribute(
@@ -36,7 +36,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualIdentifier()
         {
             auto uut = SyntaxFactory::CreateAttribute(

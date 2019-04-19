@@ -6,7 +6,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
     class OuterTreeDestructorIdentifierExpressionTests
     {
     public:
-        // [[Fact]]
+        [[Fact]]
         void Initialize()
         {
             auto uut = SyntaxFactory::CreateDestructorIdentifierExpression(
@@ -27,7 +27,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify identifier matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void GetChildren()
         {
             auto uut = SyntaxFactory::CreateDestructorIdentifierExpression(
@@ -43,7 +43,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify children match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorEqual()
         {
             auto uut = SyntaxFactory::CreateDestructorIdentifierExpression(
@@ -58,7 +58,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualTildeToken()
         {
             auto uut = SyntaxFactory::CreateDestructorIdentifierExpression(
@@ -78,7 +78,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify do not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualIdentifier()
         {
             auto uut = SyntaxFactory::CreateDestructorIdentifierExpression(

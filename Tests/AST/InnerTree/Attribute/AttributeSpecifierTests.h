@@ -7,7 +7,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
     class InnerTreeAttributeSpecifierTests
     {
     public:
-        // [[Fact]]
+        [[Fact]]
         void InitializeSimple()
         {
             // [ [] ]
@@ -64,7 +64,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify outer close bracket token matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void InitializeComplex()
         {
             // [ [a,b] ]
@@ -139,7 +139,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify outer close bracket token matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorEqual()
         {
             // [ [a,b] ]
@@ -199,7 +199,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualOuterOpenBracketToken()
         {
             // [[a]]
@@ -236,7 +236,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify does not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualInnerOpenBracketToken()
         {
             // [[a]]
@@ -273,7 +273,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify does not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualAttributes()
         {
             // [[a]]
@@ -305,7 +305,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify does not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualInnerCloseBracketToken()
         {
             // [[a]]
@@ -342,7 +342,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify does not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualOuterCloseBracketToken()
         {
             // [[a]]

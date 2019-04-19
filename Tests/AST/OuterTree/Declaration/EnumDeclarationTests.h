@@ -7,7 +7,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
     class OuterTreeEnumDeclarationTests
     {
     public:
-        // [[Fact]]
+        [[Fact]]
         void InitializeNoClassOrIdentifier()
         {
             auto uut = SyntaxFactory::CreateEnumDeclaration(
@@ -46,7 +46,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify right brace token matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void InitializeWithClassAndIdentifier()
         {
             auto uut = SyntaxFactory::CreateEnumDeclaration(
@@ -115,7 +115,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify right brace token matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void GetChildrenNoClassOrIdentifier()
         {
             auto uut = SyntaxFactory::CreateEnumDeclaration(
@@ -137,7 +137,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify children match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void GetChildrenWithClassAndIdentifier()
         {
             auto uut = SyntaxFactory::CreateEnumDeclaration(
@@ -179,7 +179,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify children match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorEqualNoClassOrIdentifier()
         {
             auto uut = SyntaxFactory::CreateEnumDeclaration(
@@ -206,7 +206,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorEqualWithClassAndIdentifier()
         {
             auto uut = SyntaxFactory::CreateEnumDeclaration(
@@ -251,7 +251,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualEnumToken()
         {
             auto uut = SyntaxFactory::CreateEnumDeclaration(
@@ -301,7 +301,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify do not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualNoClass()
         {
             auto uut = SyntaxFactory::CreateEnumDeclaration(
@@ -346,7 +346,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify do not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualWithClass()
         {
             auto uut = SyntaxFactory::CreateEnumDeclaration(
@@ -396,7 +396,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify do not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualNoIdentifier()
         {
             auto uut = SyntaxFactory::CreateEnumDeclaration(
@@ -441,7 +441,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify do not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualWithIdentifier()
         {
             auto uut = SyntaxFactory::CreateEnumDeclaration(
@@ -486,7 +486,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify do not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualOpenBraceToken()
         {
             auto uut = SyntaxFactory::CreateEnumDeclaration(
@@ -536,7 +536,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify do not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualEnumeratorList()
         {
             auto uut = SyntaxFactory::CreateEnumDeclaration(
@@ -582,7 +582,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify do not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualCloseBraceToken()
         {
             auto uut = SyntaxFactory::CreateEnumDeclaration(

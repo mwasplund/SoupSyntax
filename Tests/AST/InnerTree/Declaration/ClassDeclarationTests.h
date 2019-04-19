@@ -7,7 +7,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
     class InnerTreeClassDeclarationTests
     {
     public:
-        // [[Fact]]
+        [[Fact]]
         void InitializeNoIdentifier()
         {
             auto uut = SyntaxFactory::CreateClassDeclaration(
@@ -42,7 +42,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify right brace token matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void InitializeWithIdentifier()
         {
             auto uut = SyntaxFactory::CreateClassDeclaration(
@@ -96,7 +96,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify right brace token matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorEqualNoIdentifier()
         {
             auto uut = SyntaxFactory::CreateClassDeclaration(
@@ -119,7 +119,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorEqualWithIdentifier()
         {
             auto uut = SyntaxFactory::CreateClassDeclaration(
@@ -156,7 +156,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualClassToken()
         {
             auto uut = SyntaxFactory::CreateClassDeclaration(
@@ -193,7 +193,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify do not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualNoIdentifier()
         {
             auto uut = SyntaxFactory::CreateClassDeclaration(
@@ -224,7 +224,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify do not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualWithIdentifier()
         {
             auto uut = SyntaxFactory::CreateClassDeclaration(
@@ -255,7 +255,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify do not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualOpenBraceToken()
         {
             auto uut = SyntaxFactory::CreateClassDeclaration(
@@ -291,7 +291,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify do not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualMemberDeclarations()
         {
             auto uut = SyntaxFactory::CreateClassDeclaration(
@@ -319,7 +319,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify do not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualCloseBraceToken()
         {
             auto uut = SyntaxFactory::CreateClassDeclaration(

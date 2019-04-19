@@ -6,7 +6,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
     class OuterTreeSyntaxNodeChildTests
     {
     public:
-        // [[Fact]]
+        [[Fact]]
         void TokenInitialize()
         {
             auto uut = OuterTree::SyntaxNodeChild(
@@ -20,7 +20,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify value matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void TokenOperatorEqual()
         {
             auto uut = OuterTree::SyntaxNodeChild(
@@ -33,7 +33,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void TokenOperatorNotEqualToken()
         {
             auto uut = OuterTree::SyntaxNodeChild(
@@ -46,7 +46,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify do not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void TokenOperatorNotEqualNode()
         {
             auto uut = OuterTree::SyntaxNodeChild(
@@ -61,7 +61,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify do not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void NodeInitialize()
         {
             auto uut = OuterTree::SyntaxNodeChild(
@@ -79,7 +79,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify value matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void NodeOperatorEqual()
         {
             auto uut = OuterTree::SyntaxNodeChild(
@@ -96,7 +96,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void NodeOperatorNotEqualToken()
         {
             auto uut = OuterTree::SyntaxNodeChild(
@@ -111,7 +111,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify do not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void NodeOperatorNotEqualNode()
         {
             auto uut = OuterTree::SyntaxNodeChild(

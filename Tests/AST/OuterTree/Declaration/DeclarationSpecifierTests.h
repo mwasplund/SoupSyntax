@@ -7,7 +7,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
     class OuterTreeDeclarationSpecifierTests
     {
     public:
-        // [[Fact]]
+        [[Fact]]
         void InitializeSimpleNoModifiers()
         {
             // int
@@ -36,7 +36,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify trailing modifier tokens match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void InitializeSimpleWithModifiers()
         {
             // static thread_local int friend mutable
@@ -81,7 +81,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify trailing modifier tokens match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void GetChildrenNoModifiers()
         {
             // int
@@ -101,7 +101,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify children match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void GetChildrenWithModifiers()
         {
             // static thread_local int friend mutable
@@ -135,7 +135,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify children match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorEqualNoModifiers()
         {
             // int
@@ -153,7 +153,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorEqualWithModifiers()
         {
             // static thread_local int friend mutable
@@ -191,7 +191,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualNoLeadingModifiers()
         {
             // static thread_local int friend mutable
@@ -225,7 +225,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify does not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualLeadingModifiers()
         {
             // static thread_local int friend mutable
@@ -263,7 +263,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify does not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualTypeSpecifier()
         {
             // static thread_local int friend mutable
@@ -301,7 +301,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify does not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualNoTrailingModifiers()
         {
             // static thread_local int friend mutable
@@ -335,7 +335,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify does not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualTrailingModifiers()
         {
             // static thread_local int friend mutable

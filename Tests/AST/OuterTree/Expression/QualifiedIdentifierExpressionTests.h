@@ -6,7 +6,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
     class OuterTreeQualifiedIdentifierExpressionTests
     {
     public:
-        // [[Fact]]
+        [[Fact]]
         void InitializeGlobalQualifiedIdentifierExpression()
         {
             auto uut = SyntaxFactory::CreateQualifiedIdentifierExpression(
@@ -31,7 +31,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify right matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void InitializeSingleQualifiedIdentifierExpression()
         {
             auto uut = SyntaxFactory::CreateQualifiedIdentifierExpression(
@@ -62,7 +62,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify right matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void InitializeGlobalDoubleQualifiedIdentifierExpression()
         {
             auto uut = SyntaxFactory::CreateQualifiedIdentifierExpression(
@@ -95,7 +95,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify right matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void GlobalQualifiedIdentifierExpressionGetChildren()
         {
             auto uut = SyntaxFactory::CreateQualifiedIdentifierExpression(
@@ -115,7 +115,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify children match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void GlobalQualifiedIdentifierExpressionEqual()
         {
             auto uut = SyntaxFactory::CreateQualifiedIdentifierExpression(
@@ -134,7 +134,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void GlobalQualifiedIdentifierExpressionNotEqualLeft()
         {
             auto uut = SyntaxFactory::CreateQualifiedIdentifierExpression(
@@ -154,7 +154,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify do not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void GlobalQualifiedIdentifierExpressionNotEqualDoubleColonToken()
         {
             auto uut = SyntaxFactory::CreateQualifiedIdentifierExpression(
@@ -178,7 +178,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify do not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void GlobalQualifiedIdentifierExpressionNotEqualRight()
         {
             auto uut = SyntaxFactory::CreateQualifiedIdentifierExpression(
@@ -197,7 +197,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify do not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void SingleQualifiedIdentifierExpressionGetChildren()
         {
             auto uut = SyntaxFactory::CreateQualifiedIdentifierExpression(
@@ -221,7 +221,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify children match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void SingleQualifiedIdentifierExpressionEqual()
         {
             auto uut = SyntaxFactory::CreateQualifiedIdentifierExpression(
@@ -242,7 +242,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void SingleQualifiedIdentifierExpressionNotEqualLeft()
         {
             auto uut = SyntaxFactory::CreateQualifiedIdentifierExpression(
@@ -263,7 +263,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify do not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void SingleQualifiedIdentifierExpressionNotEqualLeftGlobal()
         {
             auto uut = SyntaxFactory::CreateQualifiedIdentifierExpression(
@@ -283,7 +283,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify do not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void SingleQualifiedIdentifierExpressionNotEqualDoubleColonToken()
         {
             auto uut = SyntaxFactory::CreateQualifiedIdentifierExpression(
@@ -309,7 +309,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify do not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void SingleQualifiedIdentifierExpressionNotEqualRight()
         {
             auto uut = SyntaxFactory::CreateQualifiedIdentifierExpression(

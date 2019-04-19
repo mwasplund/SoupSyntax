@@ -7,7 +7,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
     class OuterTreeExpressionStatementTests
     {
     public:
-        // [[Fact]]
+        [[Fact]]
         void InitializeSimple()
         {
             auto uut = SyntaxFactory::CreateExpressionStatement(
@@ -30,7 +30,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify semicolon token matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void GetChildren()
         {
             auto uut = SyntaxFactory::CreateExpressionStatement(
@@ -48,7 +48,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify children match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorEqual()
         {
             auto uut = SyntaxFactory::CreateExpressionStatement(
@@ -65,7 +65,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualExpression()
         {
             auto uut = SyntaxFactory::CreateExpressionStatement(
@@ -82,7 +82,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify do not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualSemicolonToken()
         {
             auto uut = SyntaxFactory::CreateExpressionStatement(

@@ -6,7 +6,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
     class OuterTreeUnaryExpressionTests
     {
     public:
-        // [[Fact]]
+        [[Fact]]
         void InitializeSimple()
         {
             auto uut = SyntaxFactory::CreateUnaryExpression(
@@ -31,7 +31,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify left expression matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void PostfixOperatorGetChildren()
         {
             auto uut = SyntaxFactory::CreateUnaryExpression(
@@ -53,7 +53,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify children match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void PrefixOperatorGetChildren()
         {
             auto uut = SyntaxFactory::CreateUnaryExpression(
@@ -75,7 +75,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify children match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorEqual()
         {
             auto uut = SyntaxFactory::CreateUnaryExpression(
@@ -96,7 +96,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualOperator()
         {
             auto uut = SyntaxFactory::CreateUnaryExpression(
@@ -117,7 +117,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify do not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualOperand()
         {
             auto uut = SyntaxFactory::CreateUnaryExpression(
@@ -138,7 +138,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify do not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualOperatorToken()
         {
             auto uut = SyntaxFactory::CreateUnaryExpression(

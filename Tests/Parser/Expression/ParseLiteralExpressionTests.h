@@ -23,7 +23,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         }
 
         // [Theory]
-        // [[InlineData("0.0f")]]
+        [[InlineData("0.0f")]]
         void SingleFloatingLiteralType(std::string sourceCode)
         {
             auto expression = ParseLiteralExpression(sourceCode);
@@ -37,7 +37,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         }
 
         // [Theory]
-        // [[InlineData("'1'")]]
+        [[InlineData("'1'")]]
         void SingleCharacterLiteralType(std::string sourceCode)
         {
             auto expression = ParseLiteralExpression(sourceCode);
@@ -51,7 +51,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         }
 
         // [Theory]
-        // [[InlineData("nullptr")]]
+        [[InlineData("nullptr")]]
         void SinglePointerLiteralType(std::string sourceCode)
         {
             auto expression = ParseLiteralExpression(sourceCode);
@@ -65,7 +65,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         }
 
         // [Theory]
-        // [[InlineData("\" \"")]]
+        [[InlineData("\" \"")]]
         void SingleStringLiteralType(std::string sourceCode)
         {
             auto expression = ParseLiteralExpression(sourceCode);
@@ -79,8 +79,8 @@ namespace Soup::Syntax::InnerTree::UnitTests
         }
 
         // [Theory]
-        // [[InlineData("true", SyntaxTokenType::True)]]
-        // [[InlineData("false", SyntaxTokenType::False)]]
+        [[InlineData("true", SyntaxTokenType::True)]]
+        [[InlineData("false", SyntaxTokenType::False)]]
         void SingleBooleanLiteralType(std::string sourceCode, SyntaxTokenType type)
         {
             auto expression = ParseLiteralExpression(sourceCode);
@@ -94,7 +94,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         }
 
         // [Theory]
-        // [[InlineData("2h")]]
+        [[InlineData("2h")]]
         void SingleUserDefinedLiteralType(std::string sourceCode)
         {
             auto expression = ParseLiteralExpression(sourceCode);

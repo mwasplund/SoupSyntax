@@ -6,7 +6,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
     class InnerTreeSubscriptExpressionTests
     {
     public:
-        // [[Fact]]
+        [[Fact]]
         void InitializeSimple()
         {
             auto uut = SyntaxFactory::CreateSubscriptExpression(
@@ -43,7 +43,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify right bracket token matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorEqual()
         {
             auto uut = SyntaxFactory::CreateSubscriptExpression(
@@ -68,7 +68,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualLeft()
         {
             auto uut = SyntaxFactory::CreateSubscriptExpression(
@@ -93,7 +93,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify do not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualOpenBracket()
         {
             auto uut = SyntaxFactory::CreateSubscriptExpression(
@@ -123,7 +123,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify do not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualRight()
         {
             auto uut = SyntaxFactory::CreateSubscriptExpression(
@@ -148,7 +148,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify do not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualCloseBracket()
         {
             auto uut = SyntaxFactory::CreateSubscriptExpression(

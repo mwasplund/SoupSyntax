@@ -7,7 +7,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
     class InnerTreeElseClauseTests
     {
     public:
-        // [[Fact]]
+        [[Fact]]
         void InitializeSimple()
         {
             auto uut = SyntaxFactory::CreateElseClause(
@@ -30,7 +30,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify statement matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorEqual()
         {
             auto uut = SyntaxFactory::CreateElseClause(
@@ -47,7 +47,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualElseToken()
         {
             auto uut = SyntaxFactory::CreateElseClause(
@@ -70,7 +70,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify do not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualStatement()
         {
             auto uut = SyntaxFactory::CreateElseClause(

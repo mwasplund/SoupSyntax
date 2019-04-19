@@ -7,7 +7,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
     class InnerTreeAccessorSpecifierTests
     {
     public:
-        // [[Fact]]
+        [[Fact]]
         void Initialize()
         {
             auto uut = SyntaxFactory::CreateAccessorSpecifier(
@@ -28,7 +28,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify colon token matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorEqual()
         {
             auto uut = SyntaxFactory::CreateAccessorSpecifier(
@@ -43,7 +43,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify matches.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualAccessorToken()
         {
             auto uut = SyntaxFactory::CreateAccessorSpecifier(
@@ -63,7 +63,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify do not match.");
         }
 
-        // [[Fact]]
+        [[Fact]]
         void OperatorNotEqualColonToken()
         {
             auto uut = SyntaxFactory::CreateAccessorSpecifier(
