@@ -17,6 +17,7 @@ namespace Soup::Syntax
         Case,
         Catch,
         Char,
+        Char8,
         Char16,
         Char32,
         Class,

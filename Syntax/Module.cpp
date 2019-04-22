@@ -24,19 +24,22 @@ namespace Soup::Syntax::InnerTree
     class SyntaxToken;
     class TranslationUnit;
 
+    // Shared
+    class DestructorIdentifier;
+    class NestedNameSpecifier;
+    class SimpleIdentifier;
+    class SimpleTemplateIdentifier;
+
     // Attribute
     class Attribute;
     class AttributeSpecifier;
 
     // Expressions
     class BinaryExpression;
-    class DestructorIdentifierExpression;
     class Expression;
+    class IdentifierExpression;
     class InvocationExpression;
     class LiteralExpression;
-    class QualifiedIdentifierExpression;
-    class SimpleIdentifierExpression;
-    class SimpleTemplateIdentifierExpression;
     class SubscriptExpression;
     class ThisExpression;
     class UnaryExpression;
@@ -54,6 +57,7 @@ namespace Soup::Syntax::InnerTree
     class EnumDeclaration;
     class EnumeratorDefinition;
     class FunctionDefinition;
+    class IdentifierType;
     class InitializerDeclarator;
     class InitializerDeclaratorList;
     class InitializerList;
@@ -64,7 +68,7 @@ namespace Soup::Syntax::InnerTree
     class NamespaceDefinition;
     class Parameter;
     class ParameterList;
-    class PrimitiveDataTypeDeclaration;
+    class PrimitiveDataTypeSpecifier;
     class RegularFunctionBody;
     class TryFunctionBody;
     class SimpleDeclaration;
@@ -95,19 +99,22 @@ namespace Soup::Syntax::OuterTree
     class SyntaxToken;
     class TranslationUnit;
 
+    // Shared
+    class DestructorIdentifier;
+    class NestedNameSpecifier;
+    class SimpleIdentifier;
+    class SimpleTemplateIdentifier;
+
     // Attribute
     class Attribute;
     class AttributeSpecifier;
 
     // Expressions
     class BinaryExpression;
-    class DestructorIdentifierExpression;
     class Expression;
+    class IdentifierExpression;
     class InvocationExpression;
     class LiteralExpression;
-    class QualifiedIdentifierExpression;
-    class SimpleIdentifierExpression;
-    class SimpleTemplateIdentifierExpression;
     class SubscriptExpression;
     class ThisExpression;
     class UnaryExpression;
@@ -125,6 +132,7 @@ namespace Soup::Syntax::OuterTree
     class EnumDeclaration;
     class EnumeratorDefinition;
     class FunctionDefinition;
+    class IdentifierType;
     class InitializerDeclarator;
     class InitializerDeclaratorList;
     class InitializerList;
@@ -135,7 +143,7 @@ namespace Soup::Syntax::OuterTree
     class NamespaceDefinition;
     class Parameter;
     class ParameterList;
-    class PrimitiveDataTypeDeclaration;
+    class PrimitiveDataTypeSpecifier;
     class RegularFunctionBody;
     class TryFunctionBody;
     class SimpleDeclaration;
@@ -171,27 +179,29 @@ namespace Soup::Syntax::OuterTree
 // Inner Tree
 #include "AST/InnerTree/SyntaxNode.h"
 #include "AST/InnerTree/SyntaxToken.h"
+#include "AST/InnerTree/Shared/UnqualifiedIdentifier.h"
 #include "AST/InnerTree/Expression/Expression.h"
-#include "AST/InnerTree/Expression/IdentifierExpression.h"
-#include "AST/InnerTree/Expression/UnqualifiedIdentifierExpression.h"
 #include "AST/InnerTree/Statement/Statement.h"
 #include "AST/InnerTree/Declaration/Declaration.h"
+#include "AST/InnerTree/Declaration/TypeSpecifier.h"
 #include "AST/InnerTree/SyntaxList.h"
 #include "AST/InnerTree/SyntaxSeparatorList.h"
+
+#include "AST/InnerTree/Shared/DestructorIdentifier.h"
+#include "AST/InnerTree/Shared/NestedNameSpecifier.h"
+#include "AST/InnerTree/Shared/SimpleIdentifier.h"
+#include "AST/InnerTree/Shared/SimpleTemplateIdentifier.h"
 
 #include "AST/InnerTree/Attribute/Attribute.h"
 #include "AST/InnerTree/Attribute/AttributeSpecifier.h"
 
 #include "AST/InnerTree/Expression/BinaryExpression.h"
-#include "AST/InnerTree/Expression/DestructorIdentifierExpression.h"
+#include "AST/InnerTree/Expression/IdentifierExpression.h"
 #include "AST/InnerTree/Expression/InvocationExpression.h"
 #include "AST/InnerTree/Expression/LiteralExpression.h"
-#include "AST/InnerTree/Expression/SimpleIdentifierExpression.h"
-#include "AST/InnerTree/Expression/SimpleTemplateIdentifierExpression.h"
 #include "AST/InnerTree/Expression/SubscriptExpression.h"
 #include "AST/InnerTree/Expression/ThisExpression.h"
 #include "AST/InnerTree/Expression/UnaryExpression.h"
-#include "AST/InnerTree/Expression/QualifiedIdentifierExpression.h"
 
 #include "AST/InnerTree/Statement/CatchClause.h"
 #include "AST/InnerTree/Statement/CompoundStatement.h"
@@ -206,6 +216,7 @@ namespace Soup::Syntax::OuterTree
 #include "AST/InnerTree/Declaration/AccessorSpecifier.h"
 #include "AST/InnerTree/Declaration/DeclarationSpecifier.h"
 #include "AST/InnerTree/Declaration/ClassDeclaration.h"
+#include "AST/InnerTree/Declaration/IdentifierType.h"
 #include "AST/InnerTree/Declaration/InitializerDeclarator.h"
 #include "AST/InnerTree/Declaration/InitializerDeclaratorList.h"
 #include "AST/InnerTree/Declaration/InitializerList.h"
@@ -224,7 +235,7 @@ namespace Soup::Syntax::OuterTree
 #include "AST/InnerTree/Declaration/NamespaceDefinition.h"
 #include "AST/InnerTree/Declaration/Parameter.h"
 #include "AST/InnerTree/Declaration/ParameterList.h"
-#include "AST/InnerTree/Declaration/PrimitiveDataTypeDeclaration.h"
+#include "AST/InnerTree/Declaration/PrimitiveDataTypeSpecifier.h"
 #include "AST/InnerTree/Declaration/RegularFunctionBody.h"
 #include "AST/InnerTree/Declaration/SimpleDeclaration.h"
 #include "AST/InnerTree/Declaration/TryFunctionBody.h"
@@ -239,27 +250,29 @@ namespace Soup::Syntax::OuterTree
 #include "AST/OuterTree/SyntaxNode.h"
 #include "AST/OuterTree/SyntaxToken.h"
 #include "AST/OuterTree/SyntaxNodeChild.h"
+#include "AST/OuterTree/Shared/UnqualifiedIdentifier.h"
 #include "AST/OuterTree/Expression/Expression.h"
-#include "AST/OuterTree/Expression/IdentifierExpression.h"
-#include "AST/OuterTree/Expression/UnqualifiedIdentifierExpression.h"
 #include "AST/OuterTree/Statement/Statement.h"
 #include "AST/OuterTree/Declaration/Declaration.h"
+#include "AST/OuterTree/Declaration/TypeSpecifier.h"
 #include "AST/OuterTree/SyntaxList.h"
 #include "AST/OuterTree/SyntaxSeparatorList.h"
+
+#include "AST/OuterTree/Shared/DestructorIdentifier.h"
+#include "AST/OuterTree/Shared/NestedNameSpecifier.h"
+#include "AST/OuterTree/Shared/SimpleIdentifier.h"
+#include "AST/OuterTree/Shared/SimpleTemplateIdentifier.h"
 
 #include "AST/OuterTree/Attribute/Attribute.h"
 #include "AST/OuterTree/Attribute/AttributeSpecifier.h"
 
 #include "AST/OuterTree/Expression/BinaryExpression.h"
-#include "AST/OuterTree/Expression/DestructorIdentifierExpression.h"
+#include "AST/OuterTree/Expression/IdentifierExpression.h"
 #include "AST/OuterTree/Expression/InvocationExpression.h"
 #include "AST/OuterTree/Expression/LiteralExpression.h"
-#include "AST/OuterTree/Expression/SimpleIdentifierExpression.h"
-#include "AST/OuterTree/Expression/SimpleTemplateIdentifierExpression.h"
 #include "AST/OuterTree/Expression/SubscriptExpression.h"
 #include "AST/OuterTree/Expression/ThisExpression.h"
 #include "AST/OuterTree/Expression/UnaryExpression.h"
-#include "AST/OuterTree/Expression/QualifiedIdentifierExpression.h"
 
 #include "AST/OuterTree/Statement/CatchClause.h"
 #include "AST/OuterTree/Statement/CompoundStatement.h"
@@ -274,6 +287,7 @@ namespace Soup::Syntax::OuterTree
 #include "AST/OuterTree/Declaration/AccessorSpecifier.h"
 #include "AST/OuterTree/Declaration/DeclarationSpecifier.h"
 #include "AST/OuterTree/Declaration/ClassDeclaration.h"
+#include "AST/OuterTree/Declaration/IdentifierType.h"
 #include "AST/OuterTree/Declaration/InitializerDeclarator.h"
 #include "AST/OuterTree/Declaration/InitializerDeclaratorList.h"
 #include "AST/OuterTree/Declaration/InitializerList.h"
@@ -292,7 +306,7 @@ namespace Soup::Syntax::OuterTree
 #include "AST/OuterTree/Declaration/NamespaceDefinition.h"
 #include "AST/OuterTree/Declaration/Parameter.h"
 #include "AST/OuterTree/Declaration/ParameterList.h"
-#include "AST/OuterTree/Declaration/PrimitiveDataTypeDeclaration.h"
+#include "AST/OuterTree/Declaration/PrimitiveDataTypeSpecifier.h"
 #include "AST/OuterTree/Declaration/RegularFunctionBody.h"
 #include "AST/OuterTree/Declaration/SimpleDeclaration.h"
 #include "AST/OuterTree/Declaration/TryFunctionBody.h"

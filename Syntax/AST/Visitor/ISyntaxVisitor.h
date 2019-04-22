@@ -22,7 +22,7 @@ namespace Soup::Syntax
         virtual void Visit(const OuterTree::DeclarationStatement& node) = 0;
         virtual void Visit(const OuterTree::DefaultFunctionBody& node) = 0;
         virtual void Visit(const OuterTree::DeleteFunctionBody& node) = 0;
-        virtual void Visit(const OuterTree::DestructorIdentifierExpression& node) = 0;
+        virtual void Visit(const OuterTree::DestructorIdentifier& node) = 0;
         virtual void Visit(const OuterTree::ElseClause& node) = 0;
         virtual void Visit(const OuterTree::EmptyDeclaration& node) = 0;
         virtual void Visit(const OuterTree::EmptyStatement& node) = 0;
@@ -30,6 +30,8 @@ namespace Soup::Syntax
         virtual void Visit(const OuterTree::EnumeratorDefinition& node) = 0;
         virtual void Visit(const OuterTree::ExpressionStatement& node) = 0;
         virtual void Visit(const OuterTree::FunctionDefinition& node) = 0;
+        virtual void Visit(const OuterTree::IdentifierExpression& node) = 0;
+        virtual void Visit(const OuterTree::IdentifierType& node) = 0;
         virtual void Visit(const OuterTree::IfStatement& node) = 0;
         virtual void Visit(const OuterTree::InitializerDeclarator& node) = 0;
         virtual void Visit(const OuterTree::InitializerDeclaratorList& node) = 0;
@@ -41,15 +43,15 @@ namespace Soup::Syntax
         virtual void Visit(const OuterTree::MemberDeclaratorList& node) = 0;
         virtual void Visit(const OuterTree::MemberInitializer& node) = 0;
         virtual void Visit(const OuterTree::NamespaceDefinition& node) = 0;
+        virtual void Visit(const OuterTree::NestedNameSpecifier& node) = 0;
         virtual void Visit(const OuterTree::Parameter& node) = 0;
         virtual void Visit(const OuterTree::ParameterList& node) = 0;
-        virtual void Visit(const OuterTree::PrimitiveDataTypeDeclaration& node) = 0;
-        virtual void Visit(const OuterTree::QualifiedIdentifierExpression& node) = 0;
+        virtual void Visit(const OuterTree::PrimitiveDataTypeSpecifier& node) = 0;
         virtual void Visit(const OuterTree::RegularFunctionBody& node) = 0;
         virtual void Visit(const OuterTree::ReturnStatement& node) = 0;
         virtual void Visit(const OuterTree::SimpleDeclaration& node) = 0;
-        virtual void Visit(const OuterTree::SimpleIdentifierExpression& node) = 0;
-        virtual void Visit(const OuterTree::SimpleTemplateIdentifierExpression& node) = 0;
+        virtual void Visit(const OuterTree::SimpleIdentifier& node) = 0;
+        virtual void Visit(const OuterTree::SimpleTemplateIdentifier& node) = 0;
         virtual void Visit(const OuterTree::SubscriptExpression& node) = 0;
         virtual void Visit(const OuterTree::ThisExpression& node) = 0;
         virtual void Visit(const OuterTree::TranslationUnit& node) = 0;

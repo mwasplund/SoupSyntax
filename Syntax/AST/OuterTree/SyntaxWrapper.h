@@ -103,10 +103,10 @@ namespace Soup::Syntax::OuterTree
             const SyntaxNode* parentNode);
 
         /// <summary>
-        /// Create a DestructorIdentifierExpression
+        /// Create a DestructorIdentifier
         /// </summary>
-        static std::shared_ptr<const DestructorIdentifierExpression> CreateOuter(
-            std::shared_ptr<const InnerTree::DestructorIdentifierExpression> innerNode,
+        static std::shared_ptr<const DestructorIdentifier> CreateOuter(
+            std::shared_ptr<const InnerTree::DestructorIdentifier> innerNode,
             const SyntaxNode* parentNode);
 
         /// <summary>
@@ -156,6 +156,20 @@ namespace Soup::Syntax::OuterTree
         /// </summary>
         static std::shared_ptr<const FunctionDefinition> CreateOuter(
             std::shared_ptr<const InnerTree::FunctionDefinition> innerNode,
+            const SyntaxNode* parentNode);
+
+        /// <summary>
+        /// Create a IdentifierExpression
+        /// </summary>
+        static std::shared_ptr<const IdentifierExpression> CreateOuter(
+            std::shared_ptr<const InnerTree::IdentifierExpression> innerNode,
+            const SyntaxNode* parentNode);
+
+        /// <summary>
+        /// Create a IdentifierType
+        /// </summary>
+        static std::shared_ptr<const IdentifierType> CreateOuter(
+            std::shared_ptr<const InnerTree::IdentifierType> innerNode,
             const SyntaxNode* parentNode);
 
         /// <summary>
@@ -236,6 +250,13 @@ namespace Soup::Syntax::OuterTree
             const SyntaxNode* parentNode);
 
         /// <summary>
+        /// Create a NestedNameSpecifier
+        /// </summary>
+        static std::shared_ptr<const NestedNameSpecifier> CreateOuter(
+            std::shared_ptr<const InnerTree::NestedNameSpecifier> innerNode,
+            const SyntaxNode* parentNode);
+
+        /// <summary>
         /// Create a Parameter
         /// </summary>
         static std::shared_ptr<const Parameter> CreateOuter(
@@ -250,17 +271,10 @@ namespace Soup::Syntax::OuterTree
             const SyntaxNode* parentNode);
 
         /// <summary>
-        /// Create a PrimitiveDataTypeDeclaration
+        /// Create a PrimitiveDataTypeSpecifier
         /// </summary>
-        static std::shared_ptr<const PrimitiveDataTypeDeclaration> CreateOuter(
-            std::shared_ptr<const InnerTree::PrimitiveDataTypeDeclaration> innerNode,
-            const SyntaxNode* parentNode);
-
-        /// <summary>
-        /// Create a QualifiedIdentifierExpression
-        /// </summary>
-        static std::shared_ptr<const QualifiedIdentifierExpression> CreateOuter(
-            std::shared_ptr<const InnerTree::QualifiedIdentifierExpression> innerNode,
+        static std::shared_ptr<const PrimitiveDataTypeSpecifier> CreateOuter(
+            std::shared_ptr<const InnerTree::PrimitiveDataTypeSpecifier> innerNode,
             const SyntaxNode* parentNode);
 
         /// <summary>
@@ -285,17 +299,17 @@ namespace Soup::Syntax::OuterTree
             const SyntaxNode* parentNode);
 
         /// <summary>
-        /// Create a SimpleIdentifierExpression
+        /// Create a SimpleIdentifier
         /// </summary>
-        static std::shared_ptr<const SimpleIdentifierExpression> CreateOuter(
-            std::shared_ptr<const InnerTree::SimpleIdentifierExpression> innerNode,
+        static std::shared_ptr<const SimpleIdentifier> CreateOuter(
+            std::shared_ptr<const InnerTree::SimpleIdentifier> innerNode,
             const SyntaxNode* parentNode);
 
         /// <summary>
-        /// Create a SimpleTemplateIdentifierExpression
+        /// Create a SimpleTemplateIdentifier
         /// </summary>
-        static std::shared_ptr<const SimpleTemplateIdentifierExpression> CreateOuter(
-            std::shared_ptr<const InnerTree::SimpleTemplateIdentifierExpression> innerNode,
+        static std::shared_ptr<const SimpleTemplateIdentifier> CreateOuter(
+            std::shared_ptr<const InnerTree::SimpleTemplateIdentifier> innerNode,
             const SyntaxNode* parentNode);
 
         /// <summary>

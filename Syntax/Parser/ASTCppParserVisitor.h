@@ -239,11 +239,6 @@ namespace Soup::Syntax
         std::shared_ptr<const InnerTree::SyntaxToken> CreateToken(
             SyntaxTokenType type,
             antlr4::tree::TerminalNode* terminalNode);
-        std::shared_ptr<const InnerTree::SimpleIdentifierExpression> GetNextSimpleName(
-            CppParser::NestedNameSpecifierSequenceContext* context);
-        std::shared_ptr<const InnerTree::QualifiedIdentifierExpression> visitNextRightQualifiedNestedNames(
-            std::shared_ptr<const InnerTree::QualifiedIdentifierExpression> leftQualifiedName,
-            CppParser::NestedNameSpecifierSequenceContext* context);
 
     private:
         antlr4::BufferedTokenStream* m_tokenStream;

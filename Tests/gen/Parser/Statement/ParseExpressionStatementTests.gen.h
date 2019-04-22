@@ -10,8 +10,8 @@ TestState RunParseExpressionStatementTests()
 
     state += RunTest(
         className,
-        "SimpleIdentifierExpression",
-        [&testClass]() { testClass->SimpleIdentifierExpression(); });
+        "SimpleIdentifier",
+        [&testClass]() { testClass->SimpleIdentifier(); });
 
     return state;
 }

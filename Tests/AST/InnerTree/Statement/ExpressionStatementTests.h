@@ -10,9 +10,11 @@ namespace Soup::Syntax::InnerTree::UnitTests
         [[Fact]]
         void InitializeSimple()
         {
+            // a;
             auto uut = SyntaxFactory::CreateExpressionStatement(
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             Assert::AreEqual(
@@ -20,8 +22,9 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 uut->GetType(),
                 "Verify has correct type.");
             TestUtils::AreEqual(
-                *SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
+                *SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
                 uut->GetExpression(),
                 "Verify expression matches.");
             Assert::AreEqual(
@@ -33,15 +36,18 @@ namespace Soup::Syntax::InnerTree::UnitTests
         [[Fact]]
         void OperatorEqual()
         {
+            // a;
             auto uut = SyntaxFactory::CreateExpressionStatement(
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateExpressionStatement(
-                    SyntaxFactory::CreateSimpleIdentifierExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
+                    SyntaxFactory::CreateIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 uut,
                 "Verify matches.");
@@ -50,15 +56,18 @@ namespace Soup::Syntax::InnerTree::UnitTests
         [[Fact]]
         void OperatorNotEqualExpression()
         {
+            // a;
             auto uut = SyntaxFactory::CreateExpressionStatement(
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateExpressionStatement(
-                    SyntaxFactory::CreateSimpleIdentifierExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
+                    SyntaxFactory::CreateIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b"))),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 uut,
                 "Verify do not match.");
@@ -67,15 +76,18 @@ namespace Soup::Syntax::InnerTree::UnitTests
         [[Fact]]
         void OperatorNotEqualSemicolonToken()
         {
+            // a;
             auto uut = SyntaxFactory::CreateExpressionStatement(
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateExpressionStatement(
-                    SyntaxFactory::CreateSimpleIdentifierExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
+                    SyntaxFactory::CreateIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::Semicolon,
                         {

@@ -7,77 +7,86 @@ namespace Soup::Syntax::InnerTree::UnitTests
     class ParseIdentifierExpressionTests
     {
     public:
-        // [Fact]
-        void SingleSimpleIdentifierExpression()
+        [[Fact]]
+        void SingleSimpleIdentifier()
         {
             auto sourceCode = std::string("Name");
             auto expression = ParseIdentifierExpression(sourceCode);
 
             TestUtils::AreEqual(
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, sourceCode)),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, sourceCode))),
                 expression,
                 "Verify matches expected.");
         }
 
-        // [Fact]
-        void SingleQualifiedIdentifierExpression()
+        [[Fact]]
+        void SingleQualifiedIdentifier()
         {
             auto sourceCode = std::string("NameLeft::NameRight");
             auto expression = ParseIdentifierExpression(sourceCode);
 
             TestUtils::AreEqual(
-                SyntaxFactory::CreateQualifiedIdentifierExpression(
-                    SyntaxFactory::CreateSimpleIdentifierExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "NameLeft")),
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
-                    SyntaxFactory::CreateSimpleIdentifierExpression(
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateNestedNameSpecifier(
+                        SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
+                            {
+                                SyntaxFactory::CreateSimpleIdentifier(
+                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "NameLeft")),
+                            },
+                            {
+                                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
+                            })),
+                    SyntaxFactory::CreateSimpleIdentifier(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "NameRight"))),
                 expression,
                 "Verify matches expected.");
         }
 
-        // [Fact]
-        void SingleTemplateIdentifierExpression()
+        [[Fact]]
+        void SingleTemplateIdentifier()
         {
             auto sourceCode = std::string("Name<Value1, Value2>");
             auto expression = ParseIdentifierExpression(sourceCode);
 
             TestUtils::AreEqual(
-                SyntaxFactory::CreateSimpleTemplateIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Name"),
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LessThan),
-                    SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
-                        {
-                            SyntaxFactory::CreateSimpleIdentifierExpression(
-                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value1")),
-                            SyntaxFactory::CreateSimpleIdentifierExpression(
-                                SyntaxFactory::CreateUniqueToken(
-                                    SyntaxTokenType::Identifier,
-                                    "Value2",
-                                    {
-                                        SyntaxFactory::CreateTrivia(" "),
-                                    },
-                                    {})),
-                        },
-                        {
-                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma)
-                        }),
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan)),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleTemplateIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Name"),
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LessThan),
+                        SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
+                            {
+                                SyntaxFactory::CreateSimpleIdentifier(
+                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value1")),
+                                SyntaxFactory::CreateSimpleIdentifier(
+                                    SyntaxFactory::CreateUniqueToken(
+                                        SyntaxTokenType::Identifier,
+                                        "Value2",
+                                        {
+                                            SyntaxFactory::CreateTrivia(" "),
+                                        },
+                                        {})),
+                            },
+                            {
+                                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma)
+                            }),
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan))),
                 expression,
                 "Verify matches expected.");
         }
 
-        // [Fact]
-        void SingleDestructorIdentifierExpression()
+        [[Fact]]
+        void SingleDestructorIdentifier()
         {
             auto sourceCode = std::string("~MyClass");
             auto expression = ParseIdentifierExpression(sourceCode);
 
             TestUtils::AreEqual(
-                SyntaxFactory::CreateDestructorIdentifierExpression(
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Tilde),
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateDestructorIdentifier(
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Tilde),
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"))),
                 expression,
                 "Verify matches expected.");
         }

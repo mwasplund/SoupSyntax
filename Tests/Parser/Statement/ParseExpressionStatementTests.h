@@ -7,15 +7,16 @@ namespace Soup::Syntax::InnerTree::UnitTests
     class ParseExpressionStatementTests
     {
     public:
-        // [Fact]
-        void SimpleIdentifierExpression()
+        [[Fact]]
+        void SimpleIdentifier()
         {
             auto sourceCode = std::string("a;");
             auto actual = ParseExpressionStatement(sourceCode);
 
             auto expected = SyntaxFactory::CreateExpressionStatement(
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");

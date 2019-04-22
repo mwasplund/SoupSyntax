@@ -16,7 +16,7 @@ namespace Soup::Syntax::OuterTree
             Declaration(innerNode, parentNode),
             m_attributeSpecifierSequence(innerNode->GetAttributeSpecifierSequence().CreateOuter<AttributeSpecifier>(this)),
             m_returnType(innerNode->GetReturnType().CreateOuter(this)),
-            m_identifier(innerNode->GetIdentifier().CreateOuter<IdentifierExpression>(this)),
+            m_identifier(innerNode->GetIdentifier().CreateOuter(this)),
             m_parameterList(innerNode->GetParameterList().CreateOuter(this)),
             m_body(innerNode->GetBody().CreateOuterAny(this))
         {

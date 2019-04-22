@@ -106,12 +106,12 @@ using namespace Soup::Syntax::OuterTree;
         new DeleteFunctionBody(std::move(innerNode), parentNode));
 }
 
-/*static*/ std::shared_ptr<const DestructorIdentifierExpression> SyntaxWrapper::CreateOuter(
-    std::shared_ptr<const InnerTree::DestructorIdentifierExpression> innerNode,
+/*static*/ std::shared_ptr<const DestructorIdentifier> SyntaxWrapper::CreateOuter(
+    std::shared_ptr<const InnerTree::DestructorIdentifier> innerNode,
     const SyntaxNode* parentNode)
 {
-    return std::shared_ptr<const DestructorIdentifierExpression>(
-        new DestructorIdentifierExpression(std::move(innerNode), parentNode));
+    return std::shared_ptr<const DestructorIdentifier>(
+        new DestructorIdentifier(std::move(innerNode), parentNode));
 }
 
 /*static*/ std::shared_ptr<const ElseClause> SyntaxWrapper::CreateOuter(
@@ -168,6 +168,22 @@ using namespace Soup::Syntax::OuterTree;
 {
     return std::shared_ptr<const FunctionDefinition>(
         new FunctionDefinition(std::move(innerNode), parentNode));
+}
+
+/*static*/ std::shared_ptr<const IdentifierExpression> SyntaxWrapper::CreateOuter(
+    std::shared_ptr<const InnerTree::IdentifierExpression> innerNode,
+    const SyntaxNode* parentNode)
+{
+    return std::shared_ptr<const IdentifierExpression>(
+        new IdentifierExpression(std::move(innerNode), parentNode));
+}
+
+/*static*/ std::shared_ptr<const IdentifierType> SyntaxWrapper::CreateOuter(
+    std::shared_ptr<const InnerTree::IdentifierType> innerNode,
+    const SyntaxNode* parentNode)
+{
+    return std::shared_ptr<const IdentifierType>(
+        new IdentifierType(std::move(innerNode), parentNode));
 }
 
 /*static*/ std::shared_ptr<const IfStatement> SyntaxWrapper::CreateOuter(
@@ -258,6 +274,14 @@ using namespace Soup::Syntax::OuterTree;
         new NamespaceDefinition(std::move(innerNode), parentNode));
 }
 
+/*static*/ std::shared_ptr<const NestedNameSpecifier> SyntaxWrapper::CreateOuter(
+    std::shared_ptr<const InnerTree::NestedNameSpecifier> innerNode,
+    const SyntaxNode* parentNode)
+{
+    return std::shared_ptr<const NestedNameSpecifier>(
+        new NestedNameSpecifier(std::move(innerNode), parentNode));
+}
+
 /*static*/ std::shared_ptr<const Parameter> SyntaxWrapper::CreateOuter(
     std::shared_ptr<const InnerTree::Parameter> innerNode,
     const SyntaxNode* parentNode)
@@ -274,20 +298,12 @@ using namespace Soup::Syntax::OuterTree;
         new ParameterList(std::move(innerNode), parentNode));
 }
 
-/*static*/ std::shared_ptr<const PrimitiveDataTypeDeclaration> SyntaxWrapper::CreateOuter(
-    std::shared_ptr<const InnerTree::PrimitiveDataTypeDeclaration> innerNode,
+/*static*/ std::shared_ptr<const PrimitiveDataTypeSpecifier> SyntaxWrapper::CreateOuter(
+    std::shared_ptr<const InnerTree::PrimitiveDataTypeSpecifier> innerNode,
     const SyntaxNode* parentNode)
 {
-    return std::shared_ptr<const PrimitiveDataTypeDeclaration>(
-        new PrimitiveDataTypeDeclaration(std::move(innerNode), parentNode));
-}
-
-/*static*/ std::shared_ptr<const QualifiedIdentifierExpression> SyntaxWrapper::CreateOuter(
-    std::shared_ptr<const InnerTree::QualifiedIdentifierExpression> innerNode,
-    const SyntaxNode* parentNode)
-{
-    return std::shared_ptr<const QualifiedIdentifierExpression>(
-        new QualifiedIdentifierExpression(std::move(innerNode), parentNode));
+    return std::shared_ptr<const PrimitiveDataTypeSpecifier>(
+        new PrimitiveDataTypeSpecifier(std::move(innerNode), parentNode));
 }
 
 /*static*/ std::shared_ptr<const RegularFunctionBody> SyntaxWrapper::CreateOuter(
@@ -314,20 +330,20 @@ using namespace Soup::Syntax::OuterTree;
         new SimpleDeclaration(std::move(innerNode), parentNode));
 }
 
-/*static*/ std::shared_ptr<const SimpleIdentifierExpression> SyntaxWrapper::CreateOuter(
-    std::shared_ptr<const InnerTree::SimpleIdentifierExpression> innerNode,
+/*static*/ std::shared_ptr<const SimpleIdentifier> SyntaxWrapper::CreateOuter(
+    std::shared_ptr<const InnerTree::SimpleIdentifier> innerNode,
     const SyntaxNode* parentNode)
 {
-    return std::shared_ptr<const SimpleIdentifierExpression>(
-        new SimpleIdentifierExpression(std::move(innerNode), parentNode));
+    return std::shared_ptr<const SimpleIdentifier>(
+        new SimpleIdentifier(std::move(innerNode), parentNode));
 }
 
-/*static*/ std::shared_ptr<const SimpleTemplateIdentifierExpression> SyntaxWrapper::CreateOuter(
-    std::shared_ptr<const InnerTree::SimpleTemplateIdentifierExpression> innerNode,
+/*static*/ std::shared_ptr<const SimpleTemplateIdentifier> SyntaxWrapper::CreateOuter(
+    std::shared_ptr<const InnerTree::SimpleTemplateIdentifier> innerNode,
     const SyntaxNode* parentNode)
 {
-    return std::shared_ptr<const SimpleTemplateIdentifierExpression>(
-        new SimpleTemplateIdentifierExpression(std::move(innerNode), parentNode));
+    return std::shared_ptr<const SimpleTemplateIdentifier>(
+        new SimpleTemplateIdentifier(std::move(innerNode), parentNode));
 }
 
 template<typename TOuter, typename TInner>

@@ -12,8 +12,9 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             // a()
             auto uut = SyntaxFactory::CreateInvocationExpression(
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>({}, {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))->CreateOuter(nullptr);
@@ -23,8 +24,9 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 uut->GetType(),
                 "Verify has correct type.");
             TestUtils::AreEqual(
-                *SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
+                *SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
                 uut->GetLeftExpression(),
                 "Verify left expression matches.");
             TestUtils::AreEqual(
@@ -46,14 +48,15 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             // a(b, c)
             auto uut = SyntaxFactory::CreateInvocationExpression(
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
                     {
-                        SyntaxFactory::CreateSimpleIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
-                        SyntaxFactory::CreateSimpleIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "c"))
                     },
                     {
@@ -66,8 +69,9 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 uut->GetType(),
                 "Verify has correct type.");
             TestUtils::AreEqual(
-                *SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
+                *SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
                 uut->GetLeftExpression(),
                 "Verify left expression matches.");
             TestUtils::AreEqual(
@@ -77,9 +81,9 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreEqual(
                 *SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
                     {
-                        SyntaxFactory::CreateSimpleIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
-                        SyntaxFactory::CreateSimpleIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "c"))
                     },
                     {
@@ -98,8 +102,9 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             // a()
             auto uut = SyntaxFactory::CreateInvocationExpression(
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>({}, {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))->CreateOuter(nullptr);
@@ -107,8 +112,9 @@ namespace Soup::Syntax::InnerTree::UnitTests
             Assert::AreEqual(
                 std::vector<OuterTree::SyntaxNodeChild>({
                     TestUtils::CreateChild(
-                        SyntaxFactory::CreateSimpleIdentifierExpression(
-                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
+                        SyntaxFactory::CreateIdentifierExpression(
+                            SyntaxFactory::CreateSimpleIdentifier(
+                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")))),
                     TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis)),
                     TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
                 }),
@@ -121,14 +127,15 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             // a(b, c)
             auto uut = SyntaxFactory::CreateInvocationExpression(
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
                     {
-                        SyntaxFactory::CreateSimpleIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
-                        SyntaxFactory::CreateSimpleIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "c"))
                     },
                     {
@@ -139,15 +146,16 @@ namespace Soup::Syntax::InnerTree::UnitTests
             Assert::AreEqual(
                 std::vector<OuterTree::SyntaxNodeChild>({
                     TestUtils::CreateChild(
-                        SyntaxFactory::CreateSimpleIdentifierExpression(
-                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
+                        SyntaxFactory::CreateIdentifierExpression(
+                            SyntaxFactory::CreateSimpleIdentifier(
+                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")))),
                     TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis)),
                     TestUtils::CreateChild(
-                        SyntaxFactory::CreateSimpleIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b"))),
                     TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma)),
                     TestUtils::CreateChild(
-                        SyntaxFactory::CreateSimpleIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "c"))),
                     TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
                 }),
@@ -160,14 +168,15 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             // a(b, c)
             auto uut = SyntaxFactory::CreateInvocationExpression(
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
                     {
-                        SyntaxFactory::CreateSimpleIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
-                        SyntaxFactory::CreateSimpleIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "c"))
                     },
                     {
@@ -177,14 +186,15 @@ namespace Soup::Syntax::InnerTree::UnitTests
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateInvocationExpression(
-                    SyntaxFactory::CreateSimpleIdentifierExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
+                    SyntaxFactory::CreateIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
                         {
-                            SyntaxFactory::CreateSimpleIdentifierExpression(
+                            SyntaxFactory::CreateSimpleIdentifier(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
-                            SyntaxFactory::CreateSimpleIdentifierExpression(
+                            SyntaxFactory::CreateSimpleIdentifier(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "c"))
                         },
                         {
@@ -200,14 +210,15 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             // a(b, c)
             auto uut = SyntaxFactory::CreateInvocationExpression(
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
                     {
-                        SyntaxFactory::CreateSimpleIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
-                        SyntaxFactory::CreateSimpleIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "c"))
                     },
                     {
@@ -217,14 +228,15 @@ namespace Soup::Syntax::InnerTree::UnitTests
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateInvocationExpression(
-                    SyntaxFactory::CreateSimpleIdentifierExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a2")),
+                    SyntaxFactory::CreateIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a2"))),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
                         {
-                            SyntaxFactory::CreateSimpleIdentifierExpression(
+                            SyntaxFactory::CreateSimpleIdentifier(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
-                            SyntaxFactory::CreateSimpleIdentifierExpression(
+                            SyntaxFactory::CreateSimpleIdentifier(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "c"))
                         },
                         {
@@ -240,14 +252,15 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             // a(b, c)
             auto uut = SyntaxFactory::CreateInvocationExpression(
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
                     {
-                        SyntaxFactory::CreateSimpleIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
-                        SyntaxFactory::CreateSimpleIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "c"))
                     },
                     {
@@ -257,8 +270,9 @@ namespace Soup::Syntax::InnerTree::UnitTests
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateInvocationExpression(
-                    SyntaxFactory::CreateSimpleIdentifierExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
+                    SyntaxFactory::CreateIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::OpenParenthesis,
                         {
@@ -267,9 +281,9 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         {}),
                     SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
                         {
-                            SyntaxFactory::CreateSimpleIdentifierExpression(
+                            SyntaxFactory::CreateSimpleIdentifier(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
-                            SyntaxFactory::CreateSimpleIdentifierExpression(
+                            SyntaxFactory::CreateSimpleIdentifier(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "c"))
                         },
                         {
@@ -285,14 +299,15 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             // a(b, c)
             auto uut = SyntaxFactory::CreateInvocationExpression(
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
                     {
-                        SyntaxFactory::CreateSimpleIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
-                        SyntaxFactory::CreateSimpleIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "c"))
                     },
                     {
@@ -302,14 +317,15 @@ namespace Soup::Syntax::InnerTree::UnitTests
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateInvocationExpression(
-                    SyntaxFactory::CreateSimpleIdentifierExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
+                    SyntaxFactory::CreateIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
                         {
-                            SyntaxFactory::CreateSimpleIdentifierExpression(
+                            SyntaxFactory::CreateSimpleIdentifier(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b2")),
-                            SyntaxFactory::CreateSimpleIdentifierExpression(
+                            SyntaxFactory::CreateSimpleIdentifier(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "c"))
                         },
                         {
@@ -325,14 +341,15 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             // a(b, c)
             auto uut = SyntaxFactory::CreateInvocationExpression(
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
                     {
-                        SyntaxFactory::CreateSimpleIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
-                        SyntaxFactory::CreateSimpleIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "c"))
                     },
                     {
@@ -342,14 +359,15 @@ namespace Soup::Syntax::InnerTree::UnitTests
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateInvocationExpression(
-                    SyntaxFactory::CreateSimpleIdentifierExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
+                    SyntaxFactory::CreateIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
                         {
-                            SyntaxFactory::CreateSimpleIdentifierExpression(
+                            SyntaxFactory::CreateSimpleIdentifier(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
-                            SyntaxFactory::CreateSimpleIdentifierExpression(
+                            SyntaxFactory::CreateSimpleIdentifier(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "c"))
                         },
                         {

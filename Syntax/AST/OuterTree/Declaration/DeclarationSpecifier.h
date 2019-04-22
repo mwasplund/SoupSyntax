@@ -3,7 +3,11 @@
 namespace Soup::Syntax::OuterTree
 {
     /// <summary>
-    /// Declaration specifier sequence
+    /// Declaration specifier sequence made up of a sequence of specifiers in any order
+    /// "typedef unsigned const long long"
+    /// TODO: Possibly break out typedef since if cannot have an initializer list
+    /// TODO: Possibly verify const types have an initializer
+    /// TODO: Add helpers to check if IsConst etc
     /// </summary>
     export class DeclarationSpecifier final : public SyntaxNode
     {
@@ -18,7 +22,7 @@ namespace Soup::Syntax::OuterTree
             const SyntaxNode* parentNode) :
             SyntaxNode(innerNode, parentNode),
             m_leadingModifiers(innerNode->GetLeadingModifiers().CreateOuter<SyntaxToken>(this)),
-            m_typeSpecifier(innerNode->GetTypeSpecifier().CreateOuterAny(this)),
+            m_typeSpecifier(innerNode->GetTypeSpecifier().CreateOuter<TypeSpecifier>(this)),
             m_trailingModifiers(innerNode->GetTrailingModifiers().CreateOuter<SyntaxToken>(this))
         {
         }
@@ -35,7 +39,7 @@ namespace Soup::Syntax::OuterTree
         /// <summary>
         /// Gets the type specifier
         /// </summary>
-        const SyntaxNode& GetTypeSpecifier() const
+        const TypeSpecifier& GetTypeSpecifier() const
         {
             return *m_typeSpecifier;
         }
@@ -76,7 +80,7 @@ namespace Soup::Syntax::OuterTree
 
     private:
         std::shared_ptr<const SyntaxList<SyntaxToken>> m_leadingModifiers;
-        std::shared_ptr<const SyntaxNode> m_typeSpecifier;
+        std::shared_ptr<const TypeSpecifier> m_typeSpecifier;
         std::shared_ptr<const SyntaxList<SyntaxToken>> m_trailingModifiers;
     };
 }

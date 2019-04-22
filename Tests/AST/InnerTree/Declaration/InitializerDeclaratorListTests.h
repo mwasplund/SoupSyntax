@@ -15,12 +15,14 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
                     {
                         SyntaxFactory::CreateInitializerDeclarator(
-                            SyntaxFactory::CreateSimpleIdentifierExpression(
-                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
+                            SyntaxFactory::CreateIdentifierExpression(
+                                SyntaxFactory::CreateSimpleIdentifier(
+                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
                             nullptr),
                         SyntaxFactory::CreateInitializerDeclarator(
-                            SyntaxFactory::CreateSimpleIdentifierExpression(
-                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
+                            SyntaxFactory::CreateIdentifierExpression(
+                                SyntaxFactory::CreateSimpleIdentifier(
+                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b"))),
                             nullptr),
                     },
                     {}));
@@ -33,12 +35,14 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 *SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
                     {
                         SyntaxFactory::CreateInitializerDeclarator(
-                            SyntaxFactory::CreateSimpleIdentifierExpression(
-                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
+                            SyntaxFactory::CreateIdentifierExpression(
+                                SyntaxFactory::CreateSimpleIdentifier(
+                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
                             nullptr),
                         SyntaxFactory::CreateInitializerDeclarator(
-                            SyntaxFactory::CreateSimpleIdentifierExpression(
-                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
+                            SyntaxFactory::CreateIdentifierExpression(
+                                SyntaxFactory::CreateSimpleIdentifier(
+                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b"))),
                             nullptr),
                     },
                     {}),
@@ -54,12 +58,14 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
                     {
                         SyntaxFactory::CreateInitializerDeclarator(
-                            SyntaxFactory::CreateSimpleIdentifierExpression(
-                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
+                            SyntaxFactory::CreateIdentifierExpression(
+                                SyntaxFactory::CreateSimpleIdentifier(
+                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
                             nullptr),
                         SyntaxFactory::CreateInitializerDeclarator(
-                            SyntaxFactory::CreateSimpleIdentifierExpression(
-                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
+                            SyntaxFactory::CreateIdentifierExpression(
+                                SyntaxFactory::CreateSimpleIdentifier(
+                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b"))),
                             nullptr),
                     },
                     {}));
@@ -69,12 +75,14 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
                         {
                             SyntaxFactory::CreateInitializerDeclarator(
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
-                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
+                                SyntaxFactory::CreateIdentifierExpression(
+                                    SyntaxFactory::CreateSimpleIdentifier(
+                                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
                                 nullptr),
                             SyntaxFactory::CreateInitializerDeclarator(
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
-                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
+                                SyntaxFactory::CreateIdentifierExpression(
+                                    SyntaxFactory::CreateSimpleIdentifier(
+                                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b"))),
                                 nullptr),
                         },
                         {})),
@@ -90,12 +98,14 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
                     {
                         SyntaxFactory::CreateInitializerDeclarator(
-                            SyntaxFactory::CreateSimpleIdentifierExpression(
-                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
+                            SyntaxFactory::CreateIdentifierExpression(
+                                SyntaxFactory::CreateSimpleIdentifier(
+                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
                             nullptr),
                         SyntaxFactory::CreateInitializerDeclarator(
-                            SyntaxFactory::CreateSimpleIdentifierExpression(
-                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
+                            SyntaxFactory::CreateIdentifierExpression(
+                                SyntaxFactory::CreateSimpleIdentifier(
+                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b"))),
                             nullptr),
                     },
                     {}));
@@ -105,8 +115,9 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
                         {
                             SyntaxFactory::CreateInitializerDeclarator(
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
-                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "c")),
+                                SyntaxFactory::CreateIdentifierExpression(
+                                    SyntaxFactory::CreateSimpleIdentifier(
+                                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "c"))),
                                 nullptr),
                         },
                         {})),
@@ -122,12 +133,14 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
                     {
                         SyntaxFactory::CreateInitializerDeclarator(
-                            SyntaxFactory::CreateSimpleIdentifierExpression(
-                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
+                            SyntaxFactory::CreateIdentifierExpression(
+                                SyntaxFactory::CreateSimpleIdentifier(
+                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
                             nullptr),
                         SyntaxFactory::CreateInitializerDeclarator(
-                            SyntaxFactory::CreateSimpleIdentifierExpression(
-                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
+                            SyntaxFactory::CreateIdentifierExpression(
+                                SyntaxFactory::CreateSimpleIdentifier(
+                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b"))),
                             nullptr),
                     },
                     {}));
@@ -137,12 +150,14 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
                         {
                             SyntaxFactory::CreateInitializerDeclarator(
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
-                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "c")),
+                                SyntaxFactory::CreateIdentifierExpression(
+                                    SyntaxFactory::CreateSimpleIdentifier(
+                                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "c"))),
                                 nullptr),
                             SyntaxFactory::CreateInitializerDeclarator(
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
-                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
+                                SyntaxFactory::CreateIdentifierExpression(
+                                    SyntaxFactory::CreateSimpleIdentifier(
+                                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b"))),
                                 nullptr),
                         },
                         {})),

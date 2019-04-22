@@ -12,7 +12,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             // a
             auto uut = SyntaxFactory::CreateMemberDeclarator(
-                SyntaxFactory::CreateSimpleIdentifierExpression(
+                SyntaxFactory::CreateSimpleIdentifier(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 nullptr)->CreateOuter(nullptr);
 
@@ -21,7 +21,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 uut->GetType(),
                 "Verify has correct type.");
             TestUtils::AreEqual(
-                *SyntaxFactory::CreateSimpleIdentifierExpression(
+                *SyntaxFactory::CreateSimpleIdentifier(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 uut->GetDeclarator(),
                 "Verify declarator matches.");
@@ -35,7 +35,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             // a = 2
             auto uut = SyntaxFactory::CreateMemberDeclarator(
-                SyntaxFactory::CreateSimpleIdentifierExpression(
+                SyntaxFactory::CreateSimpleIdentifier(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 SyntaxFactory::CreateValueEqualInitializer(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
@@ -48,7 +48,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 uut->GetType(),
                 "Verify has correct type.");
             TestUtils::AreEqual(
-                *SyntaxFactory::CreateSimpleIdentifierExpression(
+                *SyntaxFactory::CreateSimpleIdentifier(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 uut->GetDeclarator(),
                 "Verify declarator matches.");
@@ -70,14 +70,14 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             // a
             auto uut = SyntaxFactory::CreateMemberDeclarator(
-                SyntaxFactory::CreateSimpleIdentifierExpression(
+                SyntaxFactory::CreateSimpleIdentifier(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 nullptr)->CreateOuter(nullptr);
 
             Assert::AreEqual(
                 std::vector<OuterTree::SyntaxNodeChild>({
                     TestUtils::CreateChild(
-                        SyntaxFactory::CreateSimpleIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
                 }),
                 uut->GetChildren(),
@@ -89,7 +89,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             // a = 2
             auto uut = SyntaxFactory::CreateMemberDeclarator(
-                SyntaxFactory::CreateSimpleIdentifierExpression(
+                SyntaxFactory::CreateSimpleIdentifier(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 SyntaxFactory::CreateValueEqualInitializer(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
@@ -100,7 +100,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             Assert::AreEqual(
                 std::vector<OuterTree::SyntaxNodeChild>({
                     TestUtils::CreateChild(
-                        SyntaxFactory::CreateSimpleIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
                     TestUtils::CreateChild(SyntaxFactory::CreateValueEqualInitializer(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
@@ -117,13 +117,13 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             // a
             auto uut = SyntaxFactory::CreateMemberDeclarator(
-                SyntaxFactory::CreateSimpleIdentifierExpression(
+                SyntaxFactory::CreateSimpleIdentifier(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 nullptr)->CreateOuter(nullptr);
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateMemberDeclarator(
-                    SyntaxFactory::CreateSimpleIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                     nullptr),
                 uut,
@@ -135,7 +135,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             // a = 2
             auto uut = SyntaxFactory::CreateMemberDeclarator(
-                SyntaxFactory::CreateSimpleIdentifierExpression(
+                SyntaxFactory::CreateSimpleIdentifier(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 SyntaxFactory::CreateValueEqualInitializer(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
@@ -145,7 +145,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateMemberDeclarator(
-                    SyntaxFactory::CreateSimpleIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                     SyntaxFactory::CreateValueEqualInitializer(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
@@ -161,7 +161,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             // a = 2
             auto uut = SyntaxFactory::CreateMemberDeclarator(
-                SyntaxFactory::CreateSimpleIdentifierExpression(
+                SyntaxFactory::CreateSimpleIdentifier(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 SyntaxFactory::CreateValueEqualInitializer(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
@@ -171,7 +171,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateMemberDeclarator(
-                    SyntaxFactory::CreateSimpleIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                     SyntaxFactory::CreateValueEqualInitializer(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
@@ -187,7 +187,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             // a = 2
             auto uut = SyntaxFactory::CreateMemberDeclarator(
-                SyntaxFactory::CreateSimpleIdentifierExpression(
+                SyntaxFactory::CreateSimpleIdentifier(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 SyntaxFactory::CreateValueEqualInitializer(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
@@ -197,7 +197,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateMemberDeclarator(
-                    SyntaxFactory::CreateSimpleIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                     nullptr),
                 uut,
@@ -209,7 +209,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             // a = 2
             auto uut = SyntaxFactory::CreateMemberDeclarator(
-                SyntaxFactory::CreateSimpleIdentifierExpression(
+                SyntaxFactory::CreateSimpleIdentifier(
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                 SyntaxFactory::CreateValueEqualInitializer(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
@@ -219,7 +219,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateMemberDeclarator(
-                    SyntaxFactory::CreateSimpleIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                     SyntaxFactory::CreateValueEqualInitializer(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),

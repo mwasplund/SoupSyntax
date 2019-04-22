@@ -12,20 +12,21 @@ namespace Soup::Syntax::InnerTree::UnitTests
             // void Function(int parameter) = delete;
             auto uut = SyntaxFactory::CreateFunctionDefinition(
                 SyntaxFactory::CreateDeclarationSpecifier(
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function"))),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
                         {
                             SyntaxFactory::CreateParameter(
-                                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                     PrimitiveDataType::Int,
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
+                                SyntaxFactory::CreateSimpleIdentifier(
                                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "parameter"))),
                         },
                         {}),
@@ -41,14 +42,15 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify has correct type.");
             TestUtils::AreEqual(
                 *SyntaxFactory::CreateDeclarationSpecifier(
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
                 uut->GetReturnType(),
                 "Verify return type matches.");
             TestUtils::AreEqual(
-                *SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
+                *SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function"))),
                 uut->GetIdentifier(),
                 "Verify identifier matches.");
             TestUtils::AreEqual(
@@ -57,10 +59,10 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
                         {
                             SyntaxFactory::CreateParameter(
-                                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                     PrimitiveDataType::Int,
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
+                                SyntaxFactory::CreateSimpleIdentifier(
                                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "parameter"))),
                         },
                         {}),
@@ -82,20 +84,21 @@ namespace Soup::Syntax::InnerTree::UnitTests
             // void Function(int parameter) = delete;
             auto uut = SyntaxFactory::CreateFunctionDefinition(
                 SyntaxFactory::CreateDeclarationSpecifier(
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function"))),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
                         {
                             SyntaxFactory::CreateParameter(
-                                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                     PrimitiveDataType::Int,
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
+                                SyntaxFactory::CreateSimpleIdentifier(
                                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "parameter"))),
                         },
                         {}),
@@ -109,22 +112,23 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 std::vector<OuterTree::SyntaxNodeChild>({
                     TestUtils::CreateChild(
                         SyntaxFactory::CreateDeclarationSpecifier(
-                            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                            SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                 PrimitiveDataType::Void,
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void)))),
                     TestUtils::CreateChild(
-                        SyntaxFactory::CreateSimpleIdentifierExpression(
-                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function"))),
+                        SyntaxFactory::CreateIdentifierExpression(
+                            SyntaxFactory::CreateSimpleIdentifier(
+                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")))),
                     TestUtils::CreateChild(
                         SyntaxFactory::CreateParameterList(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                             SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
                                 {
                                     SyntaxFactory::CreateParameter(
-                                        SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                        SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                             PrimitiveDataType::Int,
                                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
-                                        SyntaxFactory::CreateSimpleIdentifierExpression(
+                                        SyntaxFactory::CreateSimpleIdentifier(
                                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "parameter"))),
                                 },
                                 {}),
@@ -145,20 +149,21 @@ namespace Soup::Syntax::InnerTree::UnitTests
             // void Function(int parameter) = delete;
             auto uut = SyntaxFactory::CreateFunctionDefinition(
                 SyntaxFactory::CreateDeclarationSpecifier(
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function"))),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
                         {
                             SyntaxFactory::CreateParameter(
-                                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                     PrimitiveDataType::Int,
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
+                                SyntaxFactory::CreateSimpleIdentifier(
                                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "parameter"))),
                         },
                         {}),
@@ -171,20 +176,21 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreEqual(
                 SyntaxFactory::CreateFunctionDefinition(
                     SyntaxFactory::CreateDeclarationSpecifier(
-                        SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                        SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                             PrimitiveDataType::Void,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                    SyntaxFactory::CreateSimpleIdentifierExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
+                    SyntaxFactory::CreateIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function"))),
                     SyntaxFactory::CreateParameterList(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                         SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
                             {
                                 SyntaxFactory::CreateParameter(
-                                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                         PrimitiveDataType::Int,
                                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
-                                    SyntaxFactory::CreateSimpleIdentifierExpression(
+                                    SyntaxFactory::CreateSimpleIdentifier(
                                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "parameter"))),
                             },
                             {}),
@@ -203,20 +209,21 @@ namespace Soup::Syntax::InnerTree::UnitTests
             // void Function(int parameter) = delete;
             auto uut = SyntaxFactory::CreateFunctionDefinition(
                 SyntaxFactory::CreateDeclarationSpecifier(
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function"))),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
                         {
                             SyntaxFactory::CreateParameter(
-                                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                     PrimitiveDataType::Int,
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
+                                SyntaxFactory::CreateSimpleIdentifier(
                                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "parameter"))),
                         },
                         {}),
@@ -237,20 +244,21 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket)),
                     }),
                     SyntaxFactory::CreateDeclarationSpecifier(
-                        SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                        SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                             PrimitiveDataType::Void,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                    SyntaxFactory::CreateSimpleIdentifierExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
+                    SyntaxFactory::CreateIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function"))),
                     SyntaxFactory::CreateParameterList(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                         SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
                             {
                                 SyntaxFactory::CreateParameter(
-                                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                         PrimitiveDataType::Int,
                                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
-                                    SyntaxFactory::CreateSimpleIdentifierExpression(
+                                    SyntaxFactory::CreateSimpleIdentifier(
                                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "parameter"))),
                             },
                             {}),
@@ -269,20 +277,21 @@ namespace Soup::Syntax::InnerTree::UnitTests
             // void Function(int parameter) = delete;
             auto uut = SyntaxFactory::CreateFunctionDefinition(
                 SyntaxFactory::CreateDeclarationSpecifier(
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function"))),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
                         {
                             SyntaxFactory::CreateParameter(
-                                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                     PrimitiveDataType::Int,
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
+                                SyntaxFactory::CreateSimpleIdentifier(
                                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "parameter"))),
                         },
                         {}),
@@ -295,20 +304,21 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateFunctionDefinition(
                     SyntaxFactory::CreateDeclarationSpecifier(
-                        SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                        SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                             PrimitiveDataType::Int,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
-                    SyntaxFactory::CreateSimpleIdentifierExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
+                    SyntaxFactory::CreateIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function"))),
                     SyntaxFactory::CreateParameterList(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                         SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
                             {
                                 SyntaxFactory::CreateParameter(
-                                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                         PrimitiveDataType::Int,
                                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
-                                    SyntaxFactory::CreateSimpleIdentifierExpression(
+                                    SyntaxFactory::CreateSimpleIdentifier(
                                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "parameter"))),
                             },
                             {}),
@@ -327,23 +337,24 @@ namespace Soup::Syntax::InnerTree::UnitTests
             // void Function(int parameter) = delete;
             auto uut = SyntaxFactory::CreateFunctionDefinition(
                 SyntaxFactory::CreateDeclarationSpecifier(
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
-                    SyntaxFactory::CreateParameterList(
-                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                        SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
-                            {
-                                SyntaxFactory::CreateParameter(
-                                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
-                                        PrimitiveDataType::Int,
-                                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
-                                    SyntaxFactory::CreateSimpleIdentifierExpression(
-                                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "parameter"))),
-                            },
-                            {}),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function"))),
+                SyntaxFactory::CreateParameterList(
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
+                    SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
+                        {
+                            SyntaxFactory::CreateParameter(
+                                SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
+                                    PrimitiveDataType::Int,
+                                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
+                                SyntaxFactory::CreateSimpleIdentifier(
+                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "parameter"))),
+                        },
+                        {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
                 SyntaxFactory::CreateDeleteFunctionBody(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
@@ -353,20 +364,21 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateFunctionDefinition(
                     SyntaxFactory::CreateDeclarationSpecifier(
-                        SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                        SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                             PrimitiveDataType::Void,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                    SyntaxFactory::CreateSimpleIdentifierExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "OtherFunction")),
+                    SyntaxFactory::CreateIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "OtherFunction"))),
                     SyntaxFactory::CreateParameterList(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                         SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
                             {
                                 SyntaxFactory::CreateParameter(
-                                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                         PrimitiveDataType::Int,
                                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
-                                    SyntaxFactory::CreateSimpleIdentifierExpression(
+                                    SyntaxFactory::CreateSimpleIdentifier(
                                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "parameter"))),
                             },
                             {}),
@@ -385,20 +397,21 @@ namespace Soup::Syntax::InnerTree::UnitTests
             // void Function(int parameter) = delete;
             auto uut = SyntaxFactory::CreateFunctionDefinition(
                 SyntaxFactory::CreateDeclarationSpecifier(
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function"))),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
                         {
                             SyntaxFactory::CreateParameter(
-                                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                     PrimitiveDataType::Int,
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
+                                SyntaxFactory::CreateSimpleIdentifier(
                                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "parameter"))),
                         },
                         {}),
@@ -411,11 +424,12 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateFunctionDefinition(
                     SyntaxFactory::CreateDeclarationSpecifier(
-                        SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                        SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                             PrimitiveDataType::Void,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                    SyntaxFactory::CreateSimpleIdentifierExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
+                    SyntaxFactory::CreateIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function"))),
                     SyntaxFactory::CreateParameterList(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                         SyntaxFactory::CreateSyntaxSeparatorList<Parameter>({}, {}),
@@ -434,20 +448,21 @@ namespace Soup::Syntax::InnerTree::UnitTests
             // void Function(int parameter) = delete;
             auto uut = SyntaxFactory::CreateFunctionDefinition(
                 SyntaxFactory::CreateDeclarationSpecifier(
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function"))),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
                         {
                             SyntaxFactory::CreateParameter(
-                                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                     PrimitiveDataType::Int,
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
+                                SyntaxFactory::CreateSimpleIdentifier(
                                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "parameter"))),
                         },
                         {}),
@@ -460,20 +475,21 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateFunctionDefinition(
                     SyntaxFactory::CreateDeclarationSpecifier(
-                        SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                        SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                             PrimitiveDataType::Void,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                    SyntaxFactory::CreateSimpleIdentifierExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
+                    SyntaxFactory::CreateIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function"))),
                     SyntaxFactory::CreateParameterList(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                         SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
                             {
                                 SyntaxFactory::CreateParameter(
-                                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                         PrimitiveDataType::Int,
                                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
-                                    SyntaxFactory::CreateSimpleIdentifierExpression(
+                                    SyntaxFactory::CreateSimpleIdentifier(
                                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "parameter"))),
                             },
                             {}),

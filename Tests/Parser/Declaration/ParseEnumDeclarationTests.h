@@ -7,7 +7,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
     class ParseEnumDeclarationTests
     {
     public:
-        // [Fact]
+        [[Fact]]
         void SingleSimpleEnumDeclaration()
         {
             auto sourceCode = std::string("enum{}");
@@ -27,7 +27,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify identifier matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void SingleEnumClassDeclaration()
         {
             auto sourceCode = std::string("enum class MyEnum { Value1, Value2 }");

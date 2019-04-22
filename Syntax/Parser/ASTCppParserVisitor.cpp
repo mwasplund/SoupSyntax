@@ -119,7 +119,23 @@ antlrcpp::Any ASTCppParserVisitor::visitPrimaryExpression(CppParser::PrimaryExpr
 antlrcpp::Any ASTCppParserVisitor::visitIdentifierExpression(CppParser::IdentifierExpressionContext *context)
 {
     Trace("VisitIdentifierExpression");
-    return visitChildren(context);
+
+    // Check if direct child is unqualified
+    if (context->unqualifiedIdentifier() != nullptr)
+    {
+        // Wrap the identifier in an expression
+        auto identifier = SafeDynamicCast<const UnqualifiedIdentifier>(
+            visit(context->unqualifiedIdentifier())
+                .as<std::shared_ptr<const SyntaxNode>>(), __LINE__);
+        return std::static_pointer_cast<const SyntaxNode>(
+            SyntaxFactory::CreateIdentifierExpression(
+                nullptr,
+                std::move(identifier)));
+    }
+    else
+    {
+        return visitChildren(context);
+    }
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitUnqualifiedIdentifier(CppParser::UnqualifiedIdentifierContext* context)
@@ -131,12 +147,12 @@ antlrcpp::Any ASTCppParserVisitor::visitUnqualifiedIdentifier(CppParser::Unquali
             SyntaxTokenType::Identifier,
             context->Identifier());
         return std::static_pointer_cast<const SyntaxNode>(
-            SyntaxFactory::CreateSimpleIdentifierExpression(std::move(identifier)));
+            SyntaxFactory::CreateSimpleIdentifier(std::move(identifier)));
     }
     else if (context->className() != nullptr)
     {
         return std::static_pointer_cast<const SyntaxNode>(
-            SyntaxFactory::CreateDestructorIdentifierExpression(
+            SyntaxFactory::CreateDestructorIdentifier(
                 CreateToken(SyntaxTokenType::Tilde, context->Tilde()),
                 CreateToken(SyntaxTokenType::Identifier, context->className()->Identifier())));
     }
@@ -154,10 +170,9 @@ antlrcpp::Any ASTCppParserVisitor::visitQualifiedIdentifier(
     CppParser::QualifiedIdentifierContext* context)
 {
     Trace("VisitQualifiedIdentifier");
-    auto qualifiedName = SafeDynamicCast<const QualifiedIdentifierExpression>(
-        visit(context->nestedNameSpecifier())
-            .as<std::shared_ptr<const SyntaxNode>>(), __LINE__);
-    auto simpleName = SafeDynamicCast<const UnqualifiedIdentifierExpression>(
+    auto qualifier = visit(context->nestedNameSpecifier())
+        .as<std::shared_ptr<const NestedNameSpecifier>>();
+    auto identifier = SafeDynamicCast<const UnqualifiedIdentifier>(
         visit(context->unqualifiedIdentifier())
             .as<std::shared_ptr<const SyntaxNode>>(), __LINE__);
 
@@ -168,64 +183,52 @@ antlrcpp::Any ASTCppParserVisitor::visitQualifiedIdentifier(
 
     // Replace the right name with the current unqlaified name
     return std::static_pointer_cast<const SyntaxNode>(
-        qualifiedName->WithRight(std::move(simpleName)));
+        SyntaxFactory::CreateIdentifierExpression(
+            std::move(qualifier),
+            std::move(identifier)));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitNestedNameSpecifier(CppParser::NestedNameSpecifierContext* context)
 {
     Trace("VisitNestedNameSpecifier");
 
-    auto doubleColonToken = CreateToken(
-                SyntaxTokenType::DoubleColon,
-                context->DoubleColon());
-
-    // Jump through hoops to convert antlr right recursion into the tree left recursion
-    std::shared_ptr<const SimpleIdentifierExpression> rightName = nullptr;
+    // Check for the optional specifier sequence
+    SeparatorListResult<SyntaxNode> specifierList = {};
     if (context->nestedNameSpecifierSequence() != nullptr)
     {
-        rightName = GetNextSimpleName(context->nestedNameSpecifierSequence());
+        specifierList = visit(context->nestedNameSpecifierSequence())
+            .as<SeparatorListResult<SyntaxNode>>();
     }
 
-    // Build the actual qualified expression
-    std::shared_ptr<const QualifiedIdentifierExpression> qualifiedName = nullptr;
+    // Add the final colon separator to front of list
+    auto doubleColonToken = CreateToken(
+        SyntaxTokenType::DoubleColon,
+        context->DoubleColon());
+    specifierList.Separators.insert(
+        specifierList.Separators.begin(),
+        std::move(doubleColonToken));
+
+    // Check for final root qualifiers
     if (context->Identifier() != nullptr)
     {
-        // Simple name qualified expression
-        auto leftName = SyntaxFactory::CreateSimpleIdentifierExpression(
+        // Simple name qualified
+        auto rootQualifier = SyntaxFactory::CreateSimpleIdentifier(
             CreateToken(
                 SyntaxTokenType::Identifier,
                 context->Identifier()));
-        qualifiedName = SyntaxFactory::CreateQualifiedIdentifierExpression(
-            std::move(leftName),
-            std::move(doubleColonToken),
-            std::move(rightName));
+        specifierList.Items.insert(
+            specifierList.Items.begin(),
+            std::move(rootQualifier));
     }
     else if (context->declarationTypeSpecifier() != nullptr)
     {
         throw std::logic_error(std::string(__func__) + " NotImplemented");
     }
-    else
-    {
-        // Global qualified expression
-        qualifiedName = SyntaxFactory::CreateQualifiedIdentifierExpression(
-            nullptr,
-            std::move(doubleColonToken),
-            std::move(rightName));
-    }
 
-    // If the recursive right element exists then this must be parented to it
-    // More oddity from right recursion mixing with left recursion
-    if (context->nestedNameSpecifierSequence() != nullptr)
-    {
-        return visitNextRightQualifiedNestedNames(
-            std::move(qualifiedName),
-            context->nestedNameSpecifierSequence());
-    }
-    else
-    {
-        // Otherwise just return this element
-        return std::static_pointer_cast<const SyntaxNode>(qualifiedName);
-    }
+    return SyntaxFactory::CreateNestedNameSpecifier(
+        SyntaxFactory::CreateSyntaxSeparatorList(
+            std::move(specifierList.Items),
+            std::move(specifierList.Separators)));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitNestedNameSpecifierSequence(CppParser::NestedNameSpecifierSequenceContext *context)
@@ -1571,8 +1574,9 @@ antlrcpp::Any ASTCppParserVisitor::visitDeclarationSpecifierSequence(CppParser::
             .as<std::vector<std::shared_ptr<const SyntaxToken>>>();
     }
 
-    auto typeSpecifier = visit(context->definingTypeSpecifier())
-        .as<std::shared_ptr<const SyntaxNode>>();
+    auto typeSpecifier = SafeDynamicCast<const TypeSpecifier>(
+        visit(context->definingTypeSpecifier())
+            .as<std::shared_ptr<const SyntaxNode>>(), __LINE__);
 
     // Check for the optional trailing modifiers
     std::vector<std::shared_ptr<const SyntaxToken>> trailingModifiers;
@@ -1685,17 +1689,18 @@ antlrcpp::Any ASTCppParserVisitor::visitSimpleTypeSpecifier(CppParser::SimpleTyp
         // Check for the optional nested name specifier
         if (context->nestedNameSpecifier() != nullptr)
         {
-            auto qualifiedName = SafeDynamicCast<const QualifiedIdentifierExpression>(
-                visit(context->nestedNameSpecifier())
-                    .as<std::shared_ptr<const SyntaxNode>>(), __LINE__);
+            auto qualifier = visit(context->nestedNameSpecifier())
+                .as<std::shared_ptr<const NestedNameSpecifier>>();
 
-            auto simpleName = SafeDynamicCast<const UnqualifiedIdentifierExpression>(
+            auto identifier = SafeDynamicCast<const UnqualifiedIdentifier>(
                 visit(context->typeName())
                     .as<std::shared_ptr<const SyntaxNode>>(), __LINE__);
 
             // Replace the right name with the current unqlaified name
             return std::static_pointer_cast<const SyntaxNode>(
-                qualifiedName->WithRight(std::move(simpleName)));
+                SyntaxFactory::CreateIdentifierType(
+                    std::move(qualifier),
+                    std::move(identifier)));
         }
         else
         {
@@ -1705,98 +1710,98 @@ antlrcpp::Any ASTCppParserVisitor::visitSimpleTypeSpecifier(CppParser::SimpleTyp
     else if (context->Char() != nullptr)
     {
         return std::static_pointer_cast<const SyntaxNode>(
-            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+            SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                 PrimitiveDataType::Char,
                 CreateToken(SyntaxTokenType::Char, context->Char())));
     }
     else if (context->Char16() != nullptr)
     {
         return std::static_pointer_cast<const SyntaxNode>(
-            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+            SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                 PrimitiveDataType::Char16,
                 CreateToken(SyntaxTokenType::Char16, context->Char16())));
     }
     else if (context->Char32() != nullptr)
     {
         return std::static_pointer_cast<const SyntaxNode>(
-            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+            SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                 PrimitiveDataType::Char32,
                 CreateToken(SyntaxTokenType::Char32, context->Char32())));
     }
     else if (context->WChar() != nullptr)
     {
         return std::static_pointer_cast<const SyntaxNode>(
-            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+            SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                 PrimitiveDataType::WChar,
                 CreateToken(SyntaxTokenType::WChar, context->WChar())));
     }
     else if (context->Bool() != nullptr)
     {
         return std::static_pointer_cast<const SyntaxNode>(
-            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+            SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                 PrimitiveDataType::Bool,
                 CreateToken(SyntaxTokenType::Bool, context->Bool())));
     }
     else if (context->Short() != nullptr)
     {
         return std::static_pointer_cast<const SyntaxNode>(
-            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+            SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                 PrimitiveDataType::Short,
                 CreateToken(SyntaxTokenType::Short, context->Short())));
     }
     else if (context->Int() != nullptr)
     {
         return std::static_pointer_cast<const SyntaxNode>(
-            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+            SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                 PrimitiveDataType::Int,
                 CreateToken(SyntaxTokenType::Int, context->Int())));
     }
     else if (context->Long() != nullptr)
     {
         return std::static_pointer_cast<const SyntaxNode>(
-            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+            SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                 PrimitiveDataType::Long,
                 CreateToken(SyntaxTokenType::Long, context->Long())));
     }
     else if (context->Signed() != nullptr)
     {
         return std::static_pointer_cast<const SyntaxNode>(
-            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+            SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                 PrimitiveDataType::Signed,
                 CreateToken(SyntaxTokenType::Signed, context->Signed())));
     }
     else if (context->Unsigned() != nullptr)
     {
         return std::static_pointer_cast<const SyntaxNode>(
-            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+            SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                 PrimitiveDataType::Unsigned,
                 CreateToken(SyntaxTokenType::Unsigned, context->Unsigned())));
     }
     else if (context->Float() != nullptr)
     {
         return std::static_pointer_cast<const SyntaxNode>(
-            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+            SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                 PrimitiveDataType::Float,
                 CreateToken(SyntaxTokenType::Float, context->Float())));
     }
     else if (context->Double() != nullptr)
     {
         return std::static_pointer_cast<const SyntaxNode>(
-            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+            SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                 PrimitiveDataType::Double,
                 CreateToken(SyntaxTokenType::Double, context->Double())));
     }
     else if (context->Void() != nullptr)
     {
         return std::static_pointer_cast<const SyntaxNode>(
-            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+            SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                 PrimitiveDataType::Void,
                 CreateToken(SyntaxTokenType::Void, context->Void())));
     }
     else if (context->Auto() != nullptr)
     {
         return std::static_pointer_cast<const SyntaxNode>(
-            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+            SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                 PrimitiveDataType::Auto,
                 CreateToken(SyntaxTokenType::Auto, context->Auto())));
     }
@@ -1810,7 +1815,7 @@ antlrcpp::Any ASTCppParserVisitor::visitTypeName(CppParser::TypeNameContext* con
     if (context->Identifier() != nullptr)
     {
         return std::static_pointer_cast<const SyntaxNode>(
-            SyntaxFactory::CreateSimpleIdentifierExpression(
+            SyntaxFactory::CreateSimpleIdentifier(
                 CreateToken(SyntaxTokenType::Identifier, context->Identifier())));
     }
     else
@@ -3116,7 +3121,7 @@ antlrcpp::Any ASTCppParserVisitor::visitSimpleTemplateIdentifier(CppParser::Simp
     }
 
     return std::static_pointer_cast<const SyntaxNode>(
-        SyntaxFactory::CreateSimpleTemplateIdentifierExpression(
+        SyntaxFactory::CreateSimpleTemplateIdentifier(
             CreateToken(SyntaxTokenType::Identifier, context->templateName()->Identifier()),
             CreateToken(SyntaxTokenType::LessThan, context->LessThan()),
             SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
@@ -3490,64 +3495,5 @@ std::shared_ptr<const SyntaxToken> ASTCppParserVisitor::CreateToken(
                 type,
                 std::move(leadingTrivia),
                 std::move(trailingTrivia));
-    }
-}
-
-std::shared_ptr<const SimpleIdentifierExpression> ASTCppParserVisitor::GetNextSimpleName(
-    CppParser::NestedNameSpecifierSequenceContext* context)
-{
-    Trace("GetNextSimpleName");
-
-    if (context->Identifier() != nullptr)
-    {
-        // Simple name qualified expression
-        return SyntaxFactory::CreateSimpleIdentifierExpression(
-            CreateToken(SyntaxTokenType::Identifier, context->Identifier()));
-    }
-    else if (context->simpleTemplateIdentifier() != nullptr)
-    {
-        throw std::logic_error(std::string(__func__) + " NotImplemented");
-    }
-    else
-    {
-        throw std::logic_error(std::string(__func__) + " Unknown type.");
-    }
-}
-
-std::shared_ptr<const QualifiedIdentifierExpression> ASTCppParserVisitor::visitNextRightQualifiedNestedNames(
-    std::shared_ptr<const QualifiedIdentifierExpression> leftQualifiedName,
-    CppParser::NestedNameSpecifierSequenceContext* context)
-{
-    Trace("VisitNextRightQualifiedNestedNames");
-
-    // Jump through hoops to convert antlr right recursion into the tree left recursion
-    std::shared_ptr<const SimpleIdentifierExpression> rightName = nullptr;
-    if (context->nestedNameSpecifierSequence() != nullptr)
-    {
-        rightName = GetNextSimpleName(context->nestedNameSpecifierSequence());
-    }
-
-    // Build the actual qualified expression
-    auto doubleColonToken = CreateToken(
-                SyntaxTokenType::DoubleColon,
-                context->DoubleColon());
-    auto qualifiedName = 
-        SyntaxFactory::CreateQualifiedIdentifierExpression(
-            std::move(leftQualifiedName),
-            std::move(doubleColonToken),
-            std::move(rightName));
-
-    // If the recursive right element exists then this must be parented to it
-    // More oddity from right recursion mixing with left recursion
-    if (context->nestedNameSpecifierSequence() != nullptr)
-    {
-        return visitNextRightQualifiedNestedNames(
-            std::move(qualifiedName),
-            context->nestedNameSpecifierSequence());
-    }
-    else
-    {
-        // Otherwise just return this element
-        return qualifiedName;
     }
 }

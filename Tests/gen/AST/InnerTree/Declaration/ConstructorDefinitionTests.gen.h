@@ -18,12 +18,12 @@ TestState RunInnerTreeConstructorDefinitionTests()
         [&testClass]() { testClass->InitializeComplex(); });
     state += RunTest(
         className,
-        "OperatorEqual",
-        [&testClass]() { testClass->OperatorEqual(); });
+        "OperatorEqualSimple",
+        [&testClass]() { testClass->OperatorEqualSimple(); });
     state += RunTest(
         className,
-        "OperatorNotEqualReturnType",
-        [&testClass]() { testClass->OperatorNotEqualReturnType(); });
+        "OperatorEqualComplex",
+        [&testClass]() { testClass->OperatorEqualComplex(); });
     state += RunTest(
         className,
         "OperatorNotEqualIdentifier",
@@ -32,6 +32,14 @@ TestState RunInnerTreeConstructorDefinitionTests()
         className,
         "OperatorNotEqualParameterList",
         [&testClass]() { testClass->OperatorNotEqualParameterList(); });
+    state += RunTest(
+        className,
+        "OperatorNotEqualNoConstructorInitializer",
+        [&testClass]() { testClass->OperatorNotEqualNoConstructorInitializer(); });
+    state += RunTest(
+        className,
+        "OperatorNotEqualConstructorInitializer",
+        [&testClass]() { testClass->OperatorNotEqualConstructorInitializer(); });
     state += RunTest(
         className,
         "OperatorNotEqualBody",

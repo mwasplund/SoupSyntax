@@ -15,11 +15,11 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
                     {
                         SyntaxFactory::CreateMemberDeclarator(
-                            SyntaxFactory::CreateSimpleIdentifierExpression(
+                            SyntaxFactory::CreateSimpleIdentifier(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                             nullptr),
                         SyntaxFactory::CreateMemberDeclarator(
-                            SyntaxFactory::CreateSimpleIdentifierExpression(
+                            SyntaxFactory::CreateSimpleIdentifier(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                             nullptr),
                     },
@@ -33,11 +33,11 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 *SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
                     {
                         SyntaxFactory::CreateMemberDeclarator(
-                            SyntaxFactory::CreateSimpleIdentifierExpression(
+                            SyntaxFactory::CreateSimpleIdentifier(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                             nullptr),
                         SyntaxFactory::CreateMemberDeclarator(
-                            SyntaxFactory::CreateSimpleIdentifierExpression(
+                            SyntaxFactory::CreateSimpleIdentifier(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                             nullptr),
                     },
@@ -54,11 +54,11 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
                     {
                         SyntaxFactory::CreateMemberDeclarator(
-                            SyntaxFactory::CreateSimpleIdentifierExpression(
+                            SyntaxFactory::CreateSimpleIdentifier(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                             nullptr),
                         SyntaxFactory::CreateMemberDeclarator(
-                            SyntaxFactory::CreateSimpleIdentifierExpression(
+                            SyntaxFactory::CreateSimpleIdentifier(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                             nullptr),
                     },
@@ -69,11 +69,11 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
                         {
                             SyntaxFactory::CreateMemberDeclarator(
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
+                                SyntaxFactory::CreateSimpleIdentifier(
                                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                                 nullptr),
                             SyntaxFactory::CreateMemberDeclarator(
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
+                                SyntaxFactory::CreateSimpleIdentifier(
                                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                                 nullptr),
                         },
@@ -90,11 +90,11 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
                     {
                         SyntaxFactory::CreateMemberDeclarator(
-                            SyntaxFactory::CreateSimpleIdentifierExpression(
+                            SyntaxFactory::CreateSimpleIdentifier(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                             nullptr),
                         SyntaxFactory::CreateMemberDeclarator(
-                            SyntaxFactory::CreateSimpleIdentifierExpression(
+                            SyntaxFactory::CreateSimpleIdentifier(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                             nullptr),
                     },
@@ -105,7 +105,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
                         {
                             SyntaxFactory::CreateMemberDeclarator(
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
+                                SyntaxFactory::CreateSimpleIdentifier(
                                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "c")),
                                 nullptr),
                         },
@@ -122,11 +122,11 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
                     {
                         SyntaxFactory::CreateMemberDeclarator(
-                            SyntaxFactory::CreateSimpleIdentifierExpression(
+                            SyntaxFactory::CreateSimpleIdentifier(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
                             nullptr),
                         SyntaxFactory::CreateMemberDeclarator(
-                            SyntaxFactory::CreateSimpleIdentifierExpression(
+                            SyntaxFactory::CreateSimpleIdentifier(
                                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                             nullptr),
                     },
@@ -137,11 +137,11 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
                         {
                             SyntaxFactory::CreateMemberDeclarator(
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
+                                SyntaxFactory::CreateSimpleIdentifier(
                                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "c")),
                                 nullptr),
                             SyntaxFactory::CreateMemberDeclarator(
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
+                                SyntaxFactory::CreateSimpleIdentifier(
                                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                                 nullptr),
                         },

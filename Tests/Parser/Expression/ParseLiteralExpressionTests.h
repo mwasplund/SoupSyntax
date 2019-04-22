@@ -7,9 +7,9 @@ namespace Soup::Syntax::InnerTree::UnitTests
     class ParseLiteralExpressionTests
     {
     public:
-        // [Theory]
-        // [InlineData("0")]
-        // [InlineData("1")]
+        [[Theory]]
+        [[InlineData("0")]]
+        [[InlineData("1")]]
         void SingleIntegerLiteralType(std::string sourceCode)
         {
             auto expression = ParseLiteralExpression(sourceCode);
@@ -22,7 +22,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify value matches entire source.");
         }
 
-        // [Theory]
+        [[Theory]]
         [[InlineData("0.0f")]]
         void SingleFloatingLiteralType(std::string sourceCode)
         {
@@ -36,7 +36,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify value matches entire source.");
         }
 
-        // [Theory]
+        [[Theory]]
         [[InlineData("'1'")]]
         void SingleCharacterLiteralType(std::string sourceCode)
         {
@@ -50,7 +50,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify value matches entire source.");
         }
 
-        // [Theory]
+        [[Theory]]
         [[InlineData("nullptr")]]
         void SinglePointerLiteralType(std::string sourceCode)
         {
@@ -64,7 +64,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify value matches entire source.");
         }
 
-        // [Theory]
+        [[Theory]]
         [[InlineData("\" \"")]]
         void SingleStringLiteralType(std::string sourceCode)
         {
@@ -78,7 +78,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify value matches entire source.");
         }
 
-        // [Theory]
+        [[Theory]]
         [[InlineData("true", SyntaxTokenType::True)]]
         [[InlineData("false", SyntaxTokenType::False)]]
         void SingleBooleanLiteralType(std::string sourceCode, SyntaxTokenType type)
@@ -93,7 +93,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify value matches entire source.");
         }
 
-        // [Theory]
+        [[Theory]]
         [[InlineData("2h")]]
         void SingleUserDefinedLiteralType(std::string sourceCode)
         {

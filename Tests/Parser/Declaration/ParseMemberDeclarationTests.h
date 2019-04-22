@@ -7,7 +7,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
     class ParseMemberDeclarationTests
     {
     public:
-        // [Fact]
+        [[Fact]]
         void SingleIntVariable()
         {
             auto sourceCode = std::string("int i;");
@@ -15,21 +15,22 @@ namespace Soup::Syntax::InnerTree::UnitTests
 
             auto expected = SyntaxFactory::CreateMemberDeclaration(
                 SyntaxFactory::CreateDeclarationSpecifier(
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
               SyntaxFactory::CreateMemberDeclaratorList(
                     SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
                         {
                             SyntaxFactory::CreateMemberDeclarator(
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
-                                    SyntaxFactory::CreateUniqueToken(
-                                        SyntaxTokenType::Identifier,
-                                        "i",
-                                        {
-                                            SyntaxFactory::CreateTrivia(" "),
-                                        },
-                                        {})),
+                                SyntaxFactory::CreateIdentifierExpression(
+                                    SyntaxFactory::CreateSimpleIdentifier(
+                                        SyntaxFactory::CreateUniqueToken(
+                                            SyntaxTokenType::Identifier,
+                                            "i",
+                                            {
+                                                SyntaxFactory::CreateTrivia(" "),
+                                            },
+                                            {}))),
                                 nullptr),
                         },
                         {})),
@@ -38,7 +39,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void SingleClassVariable()
         {
             auto sourceCode = std::string("MyClass i;");
@@ -46,20 +47,22 @@ namespace Soup::Syntax::InnerTree::UnitTests
 
             auto expected = SyntaxFactory::CreateMemberDeclaration(
                 SyntaxFactory::CreateDeclarationSpecifier(
-                    SyntaxFactory::CreateSimpleIdentifierExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"))),
+                    SyntaxFactory::CreateIdentifierType(
+                        SyntaxFactory::CreateSimpleIdentifier(
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass")))),
                 SyntaxFactory::CreateMemberDeclaratorList(
                     SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
                         {
                             SyntaxFactory::CreateMemberDeclarator(
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
-                                    SyntaxFactory::CreateUniqueToken(
-                                        SyntaxTokenType::Identifier,
-                                        "i",
-                                        {
-                                            SyntaxFactory::CreateTrivia(" "),
-                                        },
-                                        {})),
+                                SyntaxFactory::CreateIdentifierExpression(
+                                    SyntaxFactory::CreateSimpleIdentifier(
+                                        SyntaxFactory::CreateUniqueToken(
+                                            SyntaxTokenType::Identifier,
+                                            "i",
+                                            {
+                                                SyntaxFactory::CreateTrivia(" "),
+                                            },
+                                            {}))),
                                 nullptr),
                         },
                         {})),
@@ -68,7 +71,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void SingleTemplateClassVariable()
         {
             auto sourceCode = std::string("std::vector<ClassA> value1;");
@@ -76,16 +79,23 @@ namespace Soup::Syntax::InnerTree::UnitTests
 
             auto expected = SyntaxFactory::CreateMemberDeclaration(
                 SyntaxFactory::CreateDeclarationSpecifier(
-                    SyntaxFactory::CreateQualifiedIdentifierExpression(
-                        SyntaxFactory::CreateSimpleIdentifierExpression(
-                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "std")),
-                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
-                        SyntaxFactory::CreateSimpleTemplateIdentifierExpression(
+                    SyntaxFactory::CreateIdentifierType(
+                    SyntaxFactory::CreateNestedNameSpecifier(
+                        SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
+                            {
+                                SyntaxFactory::CreateSimpleIdentifier(
+                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "std")),
+                            },
+                            {
+                                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
+                            }
+                        )),
+                        SyntaxFactory::CreateSimpleTemplateIdentifier(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "vector"),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LessThan),
                             SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
                                 {
-                                    SyntaxFactory::CreateSimpleIdentifierExpression(
+                                    SyntaxFactory::CreateSimpleIdentifier(
                                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "ClassA")),
                                 },
                                 {}),
@@ -94,14 +104,15 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
                         {
                             SyntaxFactory::CreateMemberDeclarator(
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
-                                    SyntaxFactory::CreateUniqueToken(
-                                        SyntaxTokenType::Identifier,
-                                        "value1",
-                                        {
-                                            SyntaxFactory::CreateTrivia(" "),
-                                        },
-                                        {})),
+                                SyntaxFactory::CreateIdentifierExpression(
+                                    SyntaxFactory::CreateSimpleIdentifier(
+                                        SyntaxFactory::CreateUniqueToken(
+                                            SyntaxTokenType::Identifier,
+                                            "value1",
+                                            {
+                                                SyntaxFactory::CreateTrivia(" "),
+                                            },
+                                            {}))),
                                 nullptr),
                         },
                         {})),
@@ -110,7 +121,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void SingleIntVariableWithInitializer()
         {
             auto sourceCode = std::string("int i = 0;");
@@ -118,21 +129,22 @@ namespace Soup::Syntax::InnerTree::UnitTests
 
             auto expected = SyntaxFactory::CreateMemberDeclaration(
                 SyntaxFactory::CreateDeclarationSpecifier(
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                 SyntaxFactory::CreateMemberDeclaratorList(
                     SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
                         {
                             SyntaxFactory::CreateMemberDeclarator(
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
-                                    SyntaxFactory::CreateUniqueToken(
-                                        SyntaxTokenType::Identifier,
-                                        "i",
-                                        {
-                                            SyntaxFactory::CreateTrivia(" "),
-                                        },
-                                        {})),
+                                SyntaxFactory::CreateIdentifierExpression(
+                                    SyntaxFactory::CreateSimpleIdentifier(
+                                        SyntaxFactory::CreateUniqueToken(
+                                            SyntaxTokenType::Identifier,
+                                            "i",
+                                            {
+                                                SyntaxFactory::CreateTrivia(" "),
+                                            },
+                                            {}))),
                                 SyntaxFactory::CreateValueEqualInitializer(
                                     SyntaxFactory::CreateKeywordToken(
                                         SyntaxTokenType::Equal,
@@ -156,7 +168,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void DoubleIntVariable()
         {
             auto sourceCode = std::string("int i, j;");
@@ -164,31 +176,33 @@ namespace Soup::Syntax::InnerTree::UnitTests
 
             auto expected = SyntaxFactory::CreateMemberDeclaration(
                 SyntaxFactory::CreateDeclarationSpecifier(
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                 SyntaxFactory::CreateMemberDeclaratorList(
                     SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
                         {
                             SyntaxFactory::CreateMemberDeclarator(
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
-                                    SyntaxFactory::CreateUniqueToken(
-                                        SyntaxTokenType::Identifier,
-                                        "i",
-                                        {
-                                            SyntaxFactory::CreateTrivia(" "),
-                                        },
-                                        {})),
+                                SyntaxFactory::CreateIdentifierExpression(
+                                    SyntaxFactory::CreateSimpleIdentifier(
+                                        SyntaxFactory::CreateUniqueToken(
+                                            SyntaxTokenType::Identifier,
+                                            "i",
+                                            {
+                                                SyntaxFactory::CreateTrivia(" "),
+                                            },
+                                            {}))),
                                 nullptr),
                             SyntaxFactory::CreateMemberDeclarator(
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
-                                    SyntaxFactory::CreateUniqueToken(
-                                        SyntaxTokenType::Identifier,
-                                        "j",
-                                        {
-                                            SyntaxFactory::CreateTrivia(" "),
-                                        },
-                                        {})),
+                                SyntaxFactory::CreateIdentifierExpression(
+                                    SyntaxFactory::CreateSimpleIdentifier(
+                                        SyntaxFactory::CreateUniqueToken(
+                                            SyntaxTokenType::Identifier,
+                                            "j",
+                                            {
+                                                SyntaxFactory::CreateTrivia(" "),
+                                            },
+                                            {}))),
                                 nullptr),
                         },
                         {
@@ -199,7 +213,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void DoubleIntVariableSingleWithInitializer()
         {
             auto sourceCode = std::string("int i = 0, j;");
@@ -207,21 +221,22 @@ namespace Soup::Syntax::InnerTree::UnitTests
 
             auto expected = SyntaxFactory::CreateMemberDeclaration(
                 SyntaxFactory::CreateDeclarationSpecifier(
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                 SyntaxFactory::CreateMemberDeclaratorList(
                     SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
                         {
                             SyntaxFactory::CreateMemberDeclarator(
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
-                                    SyntaxFactory::CreateUniqueToken(
-                                        SyntaxTokenType::Identifier,
-                                        "i",
-                                        {
-                                            SyntaxFactory::CreateTrivia(" "),
-                                        },
-                                        {})),
+                                SyntaxFactory::CreateIdentifierExpression(
+                                    SyntaxFactory::CreateSimpleIdentifier(
+                                        SyntaxFactory::CreateUniqueToken(
+                                            SyntaxTokenType::Identifier,
+                                            "i",
+                                            {
+                                                SyntaxFactory::CreateTrivia(" "),
+                                            },
+                                            {}))),
                                 SyntaxFactory::CreateValueEqualInitializer(
                                     SyntaxFactory::CreateKeywordToken(
                                         SyntaxTokenType::Equal,
@@ -239,14 +254,15 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                             },
                                             {})))),
                             SyntaxFactory::CreateMemberDeclarator(
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
-                                    SyntaxFactory::CreateUniqueToken(
-                                        SyntaxTokenType::Identifier,
-                                        "j",
-                                        {
-                                            SyntaxFactory::CreateTrivia(" "),
-                                        },
-                                        {})),
+                                SyntaxFactory::CreateIdentifierExpression(
+                                    SyntaxFactory::CreateSimpleIdentifier(
+                                        SyntaxFactory::CreateUniqueToken(
+                                            SyntaxTokenType::Identifier,
+                                            "j",
+                                            {
+                                                SyntaxFactory::CreateTrivia(" "),
+                                            },
+                                            {}))),
                                 nullptr),
                         },
                         {
@@ -257,7 +273,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void DoubleIntVariableBothWithInitializer()
         {
             auto sourceCode = std::string("int i = 0, j = 1;");
@@ -265,21 +281,22 @@ namespace Soup::Syntax::InnerTree::UnitTests
 
             auto expected = SyntaxFactory::CreateMemberDeclaration(
                 SyntaxFactory::CreateDeclarationSpecifier(
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                 SyntaxFactory::CreateMemberDeclaratorList(
                     SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
                         {
                             SyntaxFactory::CreateMemberDeclarator(
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
-                                    SyntaxFactory::CreateUniqueToken(
-                                        SyntaxTokenType::Identifier,
-                                        "i",
-                                        {
-                                            SyntaxFactory::CreateTrivia(" "),
-                                        },
-                                        {})),
+                                SyntaxFactory::CreateIdentifierExpression(
+                                    SyntaxFactory::CreateSimpleIdentifier(
+                                        SyntaxFactory::CreateUniqueToken(
+                                            SyntaxTokenType::Identifier,
+                                            "i",
+                                            {
+                                                SyntaxFactory::CreateTrivia(" "),
+                                            },
+                                            {}))),
                                 SyntaxFactory::CreateValueEqualInitializer(
                                     SyntaxFactory::CreateKeywordToken(
                                         SyntaxTokenType::Equal,
@@ -297,14 +314,15 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                             },
                                             {})))),
                             SyntaxFactory::CreateMemberDeclarator(
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
-                                    SyntaxFactory::CreateUniqueToken(
-                                        SyntaxTokenType::Identifier,
-                                        "j",
-                                        {
-                                            SyntaxFactory::CreateTrivia(" "),
-                                        },
-                                        {})),
+                                SyntaxFactory::CreateIdentifierExpression(
+                                    SyntaxFactory::CreateSimpleIdentifier(
+                                        SyntaxFactory::CreateUniqueToken(
+                                            SyntaxTokenType::Identifier,
+                                            "j",
+                                            {
+                                                SyntaxFactory::CreateTrivia(" "),
+                                            },
+                                            {}))),
                                 SyntaxFactory::CreateValueEqualInitializer(
                                     SyntaxFactory::CreateKeywordToken(
                                         SyntaxTokenType::Equal,
@@ -330,7 +348,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void SingleIntLeadingAndTrailingModifierVariable()
         {
             auto sourceCode = std::string("static int constexpr i;");
@@ -342,7 +360,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Static),
                     }),
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(
                             SyntaxTokenType::Int,
@@ -363,14 +381,15 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
                         {
                             SyntaxFactory::CreateMemberDeclarator(
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
-                                    SyntaxFactory::CreateUniqueToken(
-                                        SyntaxTokenType::Identifier,
-                                        "i",
-                                        {
-                                            SyntaxFactory::CreateTrivia(" "),
-                                        },
-                                        {})),
+                                SyntaxFactory::CreateIdentifierExpression(
+                                    SyntaxFactory::CreateSimpleIdentifier(
+                                        SyntaxFactory::CreateUniqueToken(
+                                            SyntaxTokenType::Identifier,
+                                            "i",
+                                            {
+                                                SyntaxFactory::CreateTrivia(" "),
+                                            },
+                                            {}))),
                                 nullptr),
                         },
                         {})),

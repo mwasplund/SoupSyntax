@@ -15,7 +15,7 @@ namespace Soup::Syntax::InnerTree
         /// </summary>
         DeclarationSpecifier(
             std::shared_ptr<const SyntaxList<SyntaxToken>> leadingModifiers,
-            std::shared_ptr<const SyntaxNode> typeSpecifier,
+            std::shared_ptr<const TypeSpecifier> typeSpecifier,
             std::shared_ptr<const SyntaxList<SyntaxToken>> trailingModifiers) :
             SyntaxNode(SyntaxNodeType::DeclarationSpecifier),
             m_leadingModifiers(std::move(leadingModifiers)),
@@ -57,7 +57,7 @@ namespace Soup::Syntax::InnerTree
         /// <summary>
         /// Gets the type specifier
         /// </summary>
-        const SyntaxNode& GetTypeSpecifier() const
+        const TypeSpecifier& GetTypeSpecifier() const
         {
             return *m_typeSpecifier;
         }
@@ -96,7 +96,7 @@ namespace Soup::Syntax::InnerTree
 
     private:
         std::shared_ptr<const SyntaxList<SyntaxToken>> m_leadingModifiers;
-        std::shared_ptr<const SyntaxNode> m_typeSpecifier;
+        std::shared_ptr<const TypeSpecifier> m_typeSpecifier;
         std::shared_ptr<const SyntaxList<SyntaxToken>> m_trailingModifiers;
     };
 }

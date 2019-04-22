@@ -106,8 +106,8 @@ namespace Soup::Syntax
                     return "DefaultFunctionBody";
                 case SyntaxNodeType::DeleteFunctionBody:
                     return "DeleteFunctionBody";
-                case SyntaxNodeType::DestructorIdentifierExpression:
-                    return "DestructorIdentifierExpression";
+                case SyntaxNodeType::DestructorIdentifier:
+                    return "DestructorIdentifier";
                 case SyntaxNodeType::ElseClause:
                     return "ElseClause";
                 case SyntaxNodeType::EmptyDeclaration:
@@ -122,6 +122,10 @@ namespace Soup::Syntax
                     return "ExpressionStatement";
                 case SyntaxNodeType::FunctionDefinition:
                     return "FunctionDefinition";
+                case SyntaxNodeType::IdentifierExpression:
+                    return "IdentifierExpression";
+                case SyntaxNodeType::IdentifierType:
+                    return "IdentifierType";
                 case SyntaxNodeType::IfStatement:
                     return "IfStatement";
                 case SyntaxNodeType::InitializerDeclarator:
@@ -144,24 +148,24 @@ namespace Soup::Syntax
                     return "MemberInitializer";
                 case SyntaxNodeType::NamespaceDefinition:
                     return "NamespaceDefinition";
+                case SyntaxNodeType::NestedNameSpecifier:
+                    return "NestedNameSpecifier";
                 case SyntaxNodeType::Parameter:
                     return "Parameter";
                 case SyntaxNodeType::ParameterList:
                     return "ParameterList";
-                case SyntaxNodeType::PrimitiveDataTypeDeclaration:
-                    return "PrimitiveDataTypeDeclaration";
-                case SyntaxNodeType::QualifiedIdentifierExpression:
-                    return "QualifiedIdentifierExpression";
+                case SyntaxNodeType::PrimitiveDataTypeSpecifier:
+                    return "PrimitiveDataTypeSpecifier";
                 case SyntaxNodeType::RegularFunctionBody:
                     return "RegularFunctionBody";
                 case SyntaxNodeType::ReturnStatement:
                     return "ReturnStatement";
                 case SyntaxNodeType::SimpleDeclaration:
                     return "SimpleDeclaration";
-                case SyntaxNodeType::SimpleIdentifierExpression:
-                    return "SimpleIdentifierExpression";
-                case SyntaxNodeType::SimpleTemplateIdentifierExpression:
-                    return "SimpleTemplateIdentifierExpression";
+                case SyntaxNodeType::SimpleIdentifier:
+                    return "SimpleIdentifier";
+                case SyntaxNodeType::SimpleTemplateIdentifier:
+                    return "SimpleTemplateIdentifier";
                 case SyntaxNodeType::SubscriptExpression:
                     return "SubscriptExpression";
                 case SyntaxNodeType::ThisExpression:

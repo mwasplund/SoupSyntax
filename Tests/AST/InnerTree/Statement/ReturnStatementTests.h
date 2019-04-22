@@ -10,6 +10,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         [[Fact]]
         void InitializeNoExpression()
         {
+            // return;
             auto uut = SyntaxFactory::CreateReturnStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
                 nullptr,
@@ -35,10 +36,12 @@ namespace Soup::Syntax::InnerTree::UnitTests
         [[Fact]]
         void InitializeWithExpression()
         {
+            // return value;
             auto uut = SyntaxFactory::CreateReturnStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value"))),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             Assert::AreEqual(
@@ -53,8 +56,9 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 uut->HasExpression(),
                 "Verify has expression.");
             TestUtils::AreEqual(
-                *SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
+                *SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value"))),
                 uut->GetExpression(),
                 "Verify expression matches.");
             Assert::AreEqual(
@@ -66,6 +70,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         [[Fact]]
         void OperatorEqualNoExpression()
         {
+            // return;
             auto uut = SyntaxFactory::CreateReturnStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
                 nullptr,
@@ -83,17 +88,20 @@ namespace Soup::Syntax::InnerTree::UnitTests
         [[Fact]]
         void OperatorEqualWithExpression()
         {
+            // return value;
             auto uut = SyntaxFactory::CreateReturnStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value"))),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateReturnStatement(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
-                    SyntaxFactory::CreateSimpleIdentifierExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
+                    SyntaxFactory::CreateIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value"))),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 uut,
                 "Verify matches.");
@@ -102,6 +110,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         [[Fact]]
         void OperatorNotEqualReturnToken()
         {
+            // return;
             auto uut = SyntaxFactory::CreateReturnStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
                 nullptr,
@@ -124,6 +133,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         [[Fact]]
         void OperatorNotEqualNoExpression()
         {
+            // return;
             auto uut = SyntaxFactory::CreateReturnStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
                 nullptr,
@@ -132,8 +142,9 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateReturnStatement(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
-                    SyntaxFactory::CreateSimpleIdentifierExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
+                    SyntaxFactory::CreateIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value"))),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 uut,
                 "Verify do not match.");
@@ -142,17 +153,20 @@ namespace Soup::Syntax::InnerTree::UnitTests
         [[Fact]]
         void OperatorNotEqualWithExpression()
         {
+            // return value;
             auto uut = SyntaxFactory::CreateReturnStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value"))),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateReturnStatement(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
-                    SyntaxFactory::CreateSimpleIdentifierExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value2")),
+                    SyntaxFactory::CreateIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value2"))),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                 uut,
                 "Verify do not match.");
@@ -161,6 +175,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         [[Fact]]
         void OperatorNotEqualSemicolonToken()
         {
+            // return;
             auto uut = SyntaxFactory::CreateReturnStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
                 nullptr,

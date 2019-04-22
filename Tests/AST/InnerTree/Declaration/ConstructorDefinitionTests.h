@@ -11,8 +11,9 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             // MyClass() {};
             auto uut = SyntaxFactory::CreateConstructorDefinition(
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"))),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     SyntaxFactory::CreateSyntaxSeparatorList<Parameter>({}, {}),
@@ -28,8 +29,9 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 uut->GetType(),
                 "Verify has correct type.");
             TestUtils::AreEqual(
-                *SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass")),
+                *SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"))),
                 uut->GetIdentifier(),
                 "Verify identifier matches.");
             TestUtils::AreEqual(
@@ -56,17 +58,18 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             // MyClass(int value) : m_value() {};
             auto uut = SyntaxFactory::CreateConstructorDefinition(
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"))),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
                         {
                             SyntaxFactory::CreateParameter(
-                                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                     PrimitiveDataType::Int,
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
+                                SyntaxFactory::CreateSimpleIdentifier(
                                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value"))),
                         },
                         {}),
@@ -93,8 +96,9 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 uut->GetType(),
                 "Verify has correct type.");
             TestUtils::AreEqual(
-                *SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass")),
+                *SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"))),
                 uut->GetIdentifier(),
                 "Verify identifier matches.");
             TestUtils::AreEqual(
@@ -103,10 +107,10 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
                         {
                             SyntaxFactory::CreateParameter(
-                                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                     PrimitiveDataType::Int,
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
+                                SyntaxFactory::CreateSimpleIdentifier(
                                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value"))),
                         },
                         {}),
@@ -141,57 +145,53 @@ namespace Soup::Syntax::InnerTree::UnitTests
         }
 
         [[Fact]]
-        void OperatorEqual()
+        void OperatorEqualSimple()
         {
-            // void Function(int parameter) = delete;
-            auto uut = SyntaxFactory::CreateFunctionDefinition(
-                SyntaxFactory::CreateDeclarationSpecifier(
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
-                        PrimitiveDataType::Void,
-                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
+            // MyClass(int parameter) = delete;
+            auto uut = SyntaxFactory::CreateConstructorDefinition(
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"))),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
                         {
                             SyntaxFactory::CreateParameter(
-                                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                     PrimitiveDataType::Int,
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
-                                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                     PrimitiveDataType::Int,
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                         },
                         {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
+                nullptr,
                 SyntaxFactory::CreateDeleteFunctionBody(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Delete),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)));
 
             TestUtils::AreEqual(
-                SyntaxFactory::CreateFunctionDefinition(
-                    SyntaxFactory::CreateDeclarationSpecifier(
-                        SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
-                            PrimitiveDataType::Void,
-                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                    SyntaxFactory::CreateSimpleIdentifierExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
+                SyntaxFactory::CreateConstructorDefinition(
+                    SyntaxFactory::CreateIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"))),
                     SyntaxFactory::CreateParameterList(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                         SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
                             {
                                 SyntaxFactory::CreateParameter(
-                                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                         PrimitiveDataType::Int,
                                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
-                                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                         PrimitiveDataType::Int,
                                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                             },
                             {}),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
+                    nullptr,
                     SyntaxFactory::CreateDeleteFunctionBody(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Delete),
@@ -201,117 +201,129 @@ namespace Soup::Syntax::InnerTree::UnitTests
         }
 
         [[Fact]]
-        void OperatorNotEqualReturnType()
+        void OperatorEqualComplex()
         {
-            // void Function(int parameter) = delete;
-            auto uut = SyntaxFactory::CreateFunctionDefinition(
-                SyntaxFactory::CreateDeclarationSpecifier(
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
-                        PrimitiveDataType::Void,
-                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
+            // MyClass(int value) : m_value() {};
+            auto uut = SyntaxFactory::CreateConstructorDefinition(
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"))),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
                         {
                             SyntaxFactory::CreateParameter(
-                                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                     PrimitiveDataType::Int,
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
-                                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
-                                    PrimitiveDataType::Int,
-                                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
+                                SyntaxFactory::CreateSimpleIdentifier(
+                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value"))),
                         },
                         {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
-                SyntaxFactory::CreateDeleteFunctionBody(
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Delete),
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)));
+                SyntaxFactory::CreateConstructorInitializer(
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Colon),
+                    SyntaxFactory::CreateSyntaxSeparatorList<MemberInitializer>(
+                        {
+                            SyntaxFactory::CreateMemberInitializer(
+                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "m_value"),
+                                SyntaxFactory::CreateInitializerList(
+                                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
+                                    SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>({}, {}),
+                                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))),
+                        },
+                        {})),
+                SyntaxFactory::CreateCompoundStatement(
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
+                    SyntaxFactory::CreateSyntaxList<Statement>({}),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)));
 
-            TestUtils::AreNotEqual(
-                SyntaxFactory::CreateFunctionDefinition(
-                    SyntaxFactory::CreateDeclarationSpecifier(
-                        SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
-                            PrimitiveDataType::Int,
-                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
-                    SyntaxFactory::CreateSimpleIdentifierExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
+            TestUtils::AreEqual(
+                SyntaxFactory::CreateConstructorDefinition(
+                    SyntaxFactory::CreateIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"))),
                     SyntaxFactory::CreateParameterList(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                         SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
                             {
                                 SyntaxFactory::CreateParameter(
-                                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                         PrimitiveDataType::Int,
                                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
-                                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
-                                        PrimitiveDataType::Int,
-                                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
+                                    SyntaxFactory::CreateSimpleIdentifier(
+                                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value"))),
                             },
                             {}),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
-                    SyntaxFactory::CreateDeleteFunctionBody(
-                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
-                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Delete),
-                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))),
+                    SyntaxFactory::CreateConstructorInitializer(
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Colon),
+                        SyntaxFactory::CreateSyntaxSeparatorList<MemberInitializer>(
+                            {
+                                SyntaxFactory::CreateMemberInitializer(
+                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "m_value"),
+                                    SyntaxFactory::CreateInitializerList(
+                                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
+                                        SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>({}, {}),
+                                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))),
+                            },
+                            {})),
+                    SyntaxFactory::CreateCompoundStatement(
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
+                        SyntaxFactory::CreateSyntaxList<Statement>({}),
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace))),
                 uut,
-                "Verify does not match.");
+                "Verify matches.");
         }
 
         [[Fact]]
         void OperatorNotEqualIdentifier()
         {
-            // void Function(int parameter) = delete;
-            auto uut = SyntaxFactory::CreateFunctionDefinition(
-                SyntaxFactory::CreateDeclarationSpecifier(
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
-                        PrimitiveDataType::Void,
-                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
-                    SyntaxFactory::CreateParameterList(
-                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                        SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
-                            {
-                                SyntaxFactory::CreateParameter(
-                                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
-                                        PrimitiveDataType::Int,
-                                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
-                                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
-                                        PrimitiveDataType::Int,
-                                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
-                            },
-                            {}),
+            // MyClass(int parameter) = delete;
+            auto uut = SyntaxFactory::CreateConstructorDefinition(
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"))),
+                SyntaxFactory::CreateParameterList(
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
+                    SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
+                        {
+                            SyntaxFactory::CreateParameter(
+                                SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
+                                    PrimitiveDataType::Int,
+                                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
+                                SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
+                                    PrimitiveDataType::Int,
+                                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
+                        },
+                        {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
+                nullptr,
                 SyntaxFactory::CreateDeleteFunctionBody(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Delete),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)));
 
             TestUtils::AreNotEqual(
-                SyntaxFactory::CreateFunctionDefinition(
-                    SyntaxFactory::CreateDeclarationSpecifier(
-                        SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
-                            PrimitiveDataType::Void,
-                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                    SyntaxFactory::CreateSimpleIdentifierExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "OtherFunction")),
+                SyntaxFactory::CreateConstructorDefinition(
+                    SyntaxFactory::CreateIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "OtherClass"))),
                     SyntaxFactory::CreateParameterList(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                         SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
                             {
                                 SyntaxFactory::CreateParameter(
-                                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                         PrimitiveDataType::Int,
                                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
-                                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                         PrimitiveDataType::Int,
                                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                             },
                             {}),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
+                    nullptr,
                     SyntaxFactory::CreateDeleteFunctionBody(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Delete),
@@ -323,45 +335,41 @@ namespace Soup::Syntax::InnerTree::UnitTests
         [[Fact]]
         void OperatorNotEqualParameterList()
         {
-            // void Function(int parameter) = delete;
-            auto uut = SyntaxFactory::CreateFunctionDefinition(
-                SyntaxFactory::CreateDeclarationSpecifier(
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
-                        PrimitiveDataType::Void,
-                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
+            // MyClass(int parameter) = delete;
+            auto uut = SyntaxFactory::CreateConstructorDefinition(
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"))),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
                         {
                             SyntaxFactory::CreateParameter(
-                                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                     PrimitiveDataType::Int,
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
-                                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                     PrimitiveDataType::Int,
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                         },
                         {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
+                nullptr,
                 SyntaxFactory::CreateDeleteFunctionBody(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Delete),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)));
 
             TestUtils::AreNotEqual(
-                SyntaxFactory::CreateFunctionDefinition(
-                    SyntaxFactory::CreateDeclarationSpecifier(
-                        SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
-                            PrimitiveDataType::Void,
-                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                    SyntaxFactory::CreateSimpleIdentifierExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
+                SyntaxFactory::CreateConstructorDefinition(
+                    SyntaxFactory::CreateIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"))),
                     SyntaxFactory::CreateParameterList(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                         SyntaxFactory::CreateSyntaxSeparatorList<Parameter>({}, {}),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
+                    nullptr,
                     SyntaxFactory::CreateDeleteFunctionBody(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Delete),
@@ -371,57 +379,158 @@ namespace Soup::Syntax::InnerTree::UnitTests
         }
 
         [[Fact]]
+        void OperatorNotEqualNoConstructorInitializer()
+        {
+            // MyClass() : m_value() {};
+            auto uut = SyntaxFactory::CreateConstructorDefinition(
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"))),
+                SyntaxFactory::CreateParameterList(
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
+                    SyntaxFactory::CreateSyntaxSeparatorList<Parameter>({}, {}),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
+                SyntaxFactory::CreateConstructorInitializer(
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Colon),
+                    SyntaxFactory::CreateSyntaxSeparatorList<MemberInitializer>(
+                        {
+                            SyntaxFactory::CreateMemberInitializer(
+                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "m_value"),
+                                SyntaxFactory::CreateInitializerList(
+                                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
+                                    SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>({}, {}),
+                                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))),
+                        },
+                        {})),
+                SyntaxFactory::CreateCompoundStatement(
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
+                    SyntaxFactory::CreateSyntaxList<Statement>({}),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)));
+
+            TestUtils::AreNotEqual(
+                SyntaxFactory::CreateConstructorDefinition(
+                    SyntaxFactory::CreateIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"))),
+                    SyntaxFactory::CreateParameterList(
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
+                        SyntaxFactory::CreateSyntaxSeparatorList<Parameter>({}, {}),
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
+                    nullptr,
+                    SyntaxFactory::CreateCompoundStatement(
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
+                        SyntaxFactory::CreateSyntaxList<Statement>({}),
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace))),
+                uut,
+                "Verify does not match.");
+        }
+
+        [[Fact]]
+        void OperatorNotEqualConstructorInitializer()
+        {
+            // MyClass() : m_value() {};
+            auto uut = SyntaxFactory::CreateConstructorDefinition(
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"))),
+                SyntaxFactory::CreateParameterList(
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
+                    SyntaxFactory::CreateSyntaxSeparatorList<Parameter>({}, {}),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
+                SyntaxFactory::CreateConstructorInitializer(
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Colon),
+                    SyntaxFactory::CreateSyntaxSeparatorList<MemberInitializer>(
+                        {
+                            SyntaxFactory::CreateMemberInitializer(
+                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "m_value"),
+                                SyntaxFactory::CreateInitializerList(
+                                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
+                                    SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>({}, {}),
+                                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))),
+                        },
+                        {})),
+                SyntaxFactory::CreateCompoundStatement(
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
+                    SyntaxFactory::CreateSyntaxList<Statement>({}),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)));
+
+            TestUtils::AreNotEqual(
+                SyntaxFactory::CreateConstructorDefinition(
+                    SyntaxFactory::CreateIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"))),
+                    SyntaxFactory::CreateParameterList(
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
+                        SyntaxFactory::CreateSyntaxSeparatorList<Parameter>({}, {}),
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
+                    SyntaxFactory::CreateConstructorInitializer(
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Colon),
+                        SyntaxFactory::CreateSyntaxSeparatorList<MemberInitializer>(
+                            {
+                                SyntaxFactory::CreateMemberInitializer(
+                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "m_value2"),
+                                    SyntaxFactory::CreateInitializerList(
+                                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
+                                        SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>({}, {}),
+                                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))),
+                            },
+                            {})),
+                    SyntaxFactory::CreateCompoundStatement(
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
+                        SyntaxFactory::CreateSyntaxList<Statement>({}),
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace))),
+                uut,
+                "Verify does not match.");
+        }
+
+        [[Fact]]
         void OperatorNotEqualBody()
         {
-            // void Function(int parameter) = delete;
-            auto uut = SyntaxFactory::CreateFunctionDefinition(
-                SyntaxFactory::CreateDeclarationSpecifier(
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
-                        PrimitiveDataType::Void,
-                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
+            // MyClass(int parameter) = delete;
+            auto uut = SyntaxFactory::CreateConstructorDefinition(
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"))),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
                         {
                             SyntaxFactory::CreateParameter(
-                                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                     PrimitiveDataType::Int,
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
-                                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                     PrimitiveDataType::Int,
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                         },
                         {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
+                nullptr,
                 SyntaxFactory::CreateDeleteFunctionBody(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Delete),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)));
 
             TestUtils::AreNotEqual(
-                SyntaxFactory::CreateFunctionDefinition(
-                    SyntaxFactory::CreateDeclarationSpecifier(
-                        SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
-                            PrimitiveDataType::Void,
-                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                    SyntaxFactory::CreateSimpleIdentifierExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
+                SyntaxFactory::CreateConstructorDefinition(
+                    SyntaxFactory::CreateIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"))),
                     SyntaxFactory::CreateParameterList(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                         SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
                             {
                                 SyntaxFactory::CreateParameter(
-                                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                         PrimitiveDataType::Int,
                                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
-                                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                         PrimitiveDataType::Int,
                                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                             },
                             {}),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
+                    nullptr,
                     SyntaxFactory::CreateDefaultFunctionBody(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Equal),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Default),

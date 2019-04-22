@@ -13,14 +13,14 @@ namespace Soup::Syntax::InnerTree::UnitTests
             // int i;
             auto uut = SyntaxFactory::CreateMemberDeclaration(
                 SyntaxFactory::CreateDeclarationSpecifier(
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                 SyntaxFactory::CreateMemberDeclaratorList(
                     SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
                         {
                             SyntaxFactory::CreateMemberDeclarator(
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
+                                SyntaxFactory::CreateSimpleIdentifier(
                                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                 nullptr),
                         },
@@ -33,7 +33,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify has correct type.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateDeclarationSpecifier(
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                 uut->GetDeclarationSpecifier(),
@@ -43,7 +43,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
                         {
                             SyntaxFactory::CreateMemberDeclarator(
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
+                                SyntaxFactory::CreateSimpleIdentifier(
                                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                 nullptr),
                         },
@@ -62,14 +62,14 @@ namespace Soup::Syntax::InnerTree::UnitTests
             // int i;
             auto uut = SyntaxFactory::CreateMemberDeclaration(
                 SyntaxFactory::CreateDeclarationSpecifier(
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                 SyntaxFactory::CreateMemberDeclaratorList(
                     SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
                         {
                             SyntaxFactory::CreateMemberDeclarator(
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
+                                SyntaxFactory::CreateSimpleIdentifier(
                                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                 nullptr),
                         },
@@ -79,14 +79,14 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreEqual(
                 SyntaxFactory::CreateMemberDeclaration(
                     SyntaxFactory::CreateDeclarationSpecifier(
-                        SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                        SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                             PrimitiveDataType::Int,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                     SyntaxFactory::CreateMemberDeclaratorList(
                         SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
                             {
                                 SyntaxFactory::CreateMemberDeclarator(
-                                    SyntaxFactory::CreateSimpleIdentifierExpression(
+                                    SyntaxFactory::CreateSimpleIdentifier(
                                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                     nullptr),
                             },
@@ -102,14 +102,14 @@ namespace Soup::Syntax::InnerTree::UnitTests
             // int i;
             auto uut = SyntaxFactory::CreateMemberDeclaration(
                 SyntaxFactory::CreateDeclarationSpecifier(
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                 SyntaxFactory::CreateMemberDeclaratorList(
                     SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
                         {
                             SyntaxFactory::CreateMemberDeclarator(
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
+                                SyntaxFactory::CreateSimpleIdentifier(
                                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                 nullptr),
                         },
@@ -119,14 +119,14 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateMemberDeclaration(
                     SyntaxFactory::CreateDeclarationSpecifier(
-                        SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                        SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                             PrimitiveDataType::Long,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Long))),
                     SyntaxFactory::CreateMemberDeclaratorList(
                         SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
                             {
                                 SyntaxFactory::CreateMemberDeclarator(
-                                    SyntaxFactory::CreateSimpleIdentifierExpression(
+                                    SyntaxFactory::CreateSimpleIdentifier(
                                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                     nullptr),
                             },
@@ -142,14 +142,14 @@ namespace Soup::Syntax::InnerTree::UnitTests
             // int i;
             auto uut = SyntaxFactory::CreateMemberDeclaration(
                 SyntaxFactory::CreateDeclarationSpecifier(
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                 SyntaxFactory::CreateMemberDeclaratorList(
                     SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
                         {
                             SyntaxFactory::CreateMemberDeclarator(
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
+                                SyntaxFactory::CreateSimpleIdentifier(
                                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                 nullptr),
                         },
@@ -159,14 +159,14 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateMemberDeclaration(
                     SyntaxFactory::CreateDeclarationSpecifier(
-                        SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                        SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                             PrimitiveDataType::Int,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                     SyntaxFactory::CreateMemberDeclaratorList(
                         SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
                             {
                                 SyntaxFactory::CreateMemberDeclarator(
-                                    SyntaxFactory::CreateSimpleIdentifierExpression(
+                                    SyntaxFactory::CreateSimpleIdentifier(
                                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i2")),
                                     nullptr),
                             },
@@ -182,14 +182,14 @@ namespace Soup::Syntax::InnerTree::UnitTests
             // int i;
             auto uut = SyntaxFactory::CreateMemberDeclaration(
                 SyntaxFactory::CreateDeclarationSpecifier(
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                 SyntaxFactory::CreateMemberDeclaratorList(
                     SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
                         {
                             SyntaxFactory::CreateMemberDeclarator(
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
+                                SyntaxFactory::CreateSimpleIdentifier(
                                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                 nullptr),
                         },
@@ -199,14 +199,14 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateMemberDeclaration(
                     SyntaxFactory::CreateDeclarationSpecifier(
-                        SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                        SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                             PrimitiveDataType::Int,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                     SyntaxFactory::CreateMemberDeclaratorList(
                         SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
                             {
                                 SyntaxFactory::CreateMemberDeclarator(
-                                    SyntaxFactory::CreateSimpleIdentifierExpression(
+                                    SyntaxFactory::CreateSimpleIdentifier(
                                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
                                     nullptr),
                             },

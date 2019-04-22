@@ -10,20 +10,20 @@ TestState RunParseIdentifierExpressionTests()
 
     state += RunTest(
         className,
-        "SingleSimpleIdentifierExpression",
-        [&testClass]() { testClass->SingleSimpleIdentifierExpression(); });
+        "SingleSimpleIdentifier",
+        [&testClass]() { testClass->SingleSimpleIdentifier(); });
     state += RunTest(
         className,
-        "SingleQualifiedIdentifierExpression",
-        [&testClass]() { testClass->SingleQualifiedIdentifierExpression(); });
+        "SingleQualifiedIdentifier",
+        [&testClass]() { testClass->SingleQualifiedIdentifier(); });
     state += RunTest(
         className,
-        "SingleTemplateIdentifierExpression",
-        [&testClass]() { testClass->SingleTemplateIdentifierExpression(); });
+        "SingleTemplateIdentifier",
+        [&testClass]() { testClass->SingleTemplateIdentifier(); });
     state += RunTest(
         className,
-        "SingleDestructorIdentifierExpression",
-        [&testClass]() { testClass->SingleDestructorIdentifierExpression(); });
+        "SingleDestructorIdentifier",
+        [&testClass]() { testClass->SingleDestructorIdentifier(); });
 
     return state;
 }

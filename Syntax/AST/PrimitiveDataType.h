@@ -13,6 +13,11 @@ namespace Soup::Syntax
         Char,
 
         /// <summary>
+        /// Character 8
+        /// </summary>
+        Char8,
+
+        /// <summary>
         /// Character 16
         /// </summary>
         Char16,

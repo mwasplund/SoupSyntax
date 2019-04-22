@@ -7,15 +7,16 @@ namespace Soup::Syntax::InnerTree::UnitTests
     class ParseConstructorDefinitionTests
     {
     public:
-        // [Fact]
+        [[Fact]]
         void SimpleRegular()
         {
             auto source = std::string(
                 "MyClass() \n {\n}");
 
             auto expected = SyntaxFactory::CreateConstructorDefinition(
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"))),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     SyntaxFactory::CreateSyntaxSeparatorList<Parameter>({}, {}),
@@ -48,15 +49,16 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void SimpleDefault()
         {
             auto source = std::string(
                 "MyClass() = default;");
 
             auto expected = SyntaxFactory::CreateConstructorDefinition(
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"))),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     SyntaxFactory::CreateSyntaxSeparatorList<Parameter>({}, {}),
@@ -82,15 +84,16 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void SimpleDelete()
         {
             auto source = std::string(
                 "MyClass() = delete;");
 
             auto expected = SyntaxFactory::CreateConstructorDefinition(
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"))),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     SyntaxFactory::CreateSyntaxSeparatorList<Parameter>({}, {}),
@@ -116,32 +119,34 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void ComplexParameterAndInitializer()
         {
             auto source = std::string(
                 "MyClass(int parameter) : m_value(parameter) {}");
 
             auto expected = SyntaxFactory::CreateConstructorDefinition(
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"))),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
                         {
                             SyntaxFactory::CreateParameter(
                                 SyntaxFactory::CreateDeclarationSpecifier(
-                                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                         PrimitiveDataType::Int,
                                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
-                                    SyntaxFactory::CreateUniqueToken(
-                                        SyntaxTokenType::Identifier,
-                                        "parameter",
-                                        {
-                                            SyntaxFactory::CreateTrivia(" "),
-                                        },
-                                        {}))),
+                                SyntaxFactory::CreateIdentifierExpression(
+                                    SyntaxFactory::CreateSimpleIdentifier(
+                                        SyntaxFactory::CreateUniqueToken(
+                                            SyntaxTokenType::Identifier,
+                                            "parameter",
+                                            {
+                                                SyntaxFactory::CreateTrivia(" "),
+                                            },
+                                            {})))),
                         },
                         {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
@@ -166,8 +171,9 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                                     SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
                                         {
-                                            SyntaxFactory::CreateSimpleIdentifierExpression(
-                                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "parameter")),
+                                            SyntaxFactory::CreateIdentifierExpression(
+                                                SyntaxFactory::CreateSimpleIdentifier(
+                                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "parameter"))),
                                         },
                                         {}),
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))), 

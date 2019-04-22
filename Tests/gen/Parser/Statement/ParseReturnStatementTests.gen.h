@@ -18,8 +18,8 @@ TestState RunParseReturnStatementTests()
         [&testClass]() { testClass->ReturnLiteralExpression(); });
     state += RunTest(
         className,
-        "ReturnSimpleIdentifierExpression",
-        [&testClass]() { testClass->ReturnSimpleIdentifierExpression(); });
+        "ReturnIdentifierExpression",
+        [&testClass]() { testClass->ReturnIdentifierExpression(); });
 
     return state;
 }

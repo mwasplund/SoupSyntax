@@ -10,11 +10,13 @@ namespace Soup::Syntax::InnerTree::UnitTests
         [[Fact]]
         void InitializeNoElseClause()
         {
+            // if(value);
             auto uut = SyntaxFactory::CreateIfStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value"))),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
@@ -33,8 +35,9 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 uut->GetOpenParenthesisToken(),
                 "Verify left parenthesis token matches.");
             TestUtils::AreEqual(
-                *SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
+                *SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value"))),
                 uut->GetConditionExpression(),
                 "Verify condition expression matches.");
             Assert::AreEqual(
@@ -54,11 +57,13 @@ namespace Soup::Syntax::InnerTree::UnitTests
         [[Fact]]
         void InitializeWithElseClause()
         {
+            // if(value);else;
             auto uut = SyntaxFactory::CreateIfStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value"))),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
@@ -80,8 +85,9 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 uut->GetOpenParenthesisToken(),
                 "Verify left parenthesis token matches.");
             TestUtils::AreEqual(
-                *SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
+                *SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value"))),
                 uut->GetConditionExpression(),
                 "Verify condition expression matches.");
             Assert::AreEqual(
@@ -108,11 +114,13 @@ namespace Soup::Syntax::InnerTree::UnitTests
         [[Fact]]
         void OperatorEqualNoElseClause()
         {
+            // if(value);
             auto uut = SyntaxFactory::CreateIfStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value"))),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
@@ -122,8 +130,9 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateIfStatement(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                    SyntaxFactory::CreateSimpleIdentifierExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
+                    SyntaxFactory::CreateIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value"))),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                     SyntaxFactory::CreateEmptyStatement(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
@@ -135,11 +144,13 @@ namespace Soup::Syntax::InnerTree::UnitTests
         [[Fact]]
         void OperatorEqualWithElseClause()
         {
+            // if(value);else;
             auto uut = SyntaxFactory::CreateIfStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value"))),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
@@ -152,8 +163,9 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateIfStatement(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                    SyntaxFactory::CreateSimpleIdentifierExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
+                    SyntaxFactory::CreateIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value"))),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                     SyntaxFactory::CreateEmptyStatement(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
@@ -168,11 +180,13 @@ namespace Soup::Syntax::InnerTree::UnitTests
         [[Fact]]
         void OperatorNotEqualIfToken()
         {
+            // if(value);
             auto uut = SyntaxFactory::CreateIfStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value"))),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
@@ -188,8 +202,9 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         {
                         }),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                    SyntaxFactory::CreateSimpleIdentifierExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
+                    SyntaxFactory::CreateIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value"))),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                     SyntaxFactory::CreateEmptyStatement(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
@@ -201,11 +216,13 @@ namespace Soup::Syntax::InnerTree::UnitTests
         [[Fact]]
         void OperatorNotEqualOpenParenthesisToken()
         {
+            // if(value);
             auto uut = SyntaxFactory::CreateIfStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value"))),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
@@ -221,8 +238,9 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         },
                         {
                         }),
-                    SyntaxFactory::CreateSimpleIdentifierExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
+                    SyntaxFactory::CreateIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value"))),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                     SyntaxFactory::CreateEmptyStatement(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
@@ -234,11 +252,13 @@ namespace Soup::Syntax::InnerTree::UnitTests
         [[Fact]]
         void OperatorNotEqualConditionExpression()
         {
+            // if(value);
             auto uut = SyntaxFactory::CreateIfStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value"))),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
@@ -248,8 +268,9 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateIfStatement(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                    SyntaxFactory::CreateSimpleIdentifierExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value2")),
+                    SyntaxFactory::CreateIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value2"))),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                     SyntaxFactory::CreateEmptyStatement(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
@@ -261,11 +282,13 @@ namespace Soup::Syntax::InnerTree::UnitTests
         [[Fact]]
         void OperatorNotEqualCloseParenthesisToken()
         {
+            // if(value);
             auto uut = SyntaxFactory::CreateIfStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value"))),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
@@ -275,8 +298,9 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateIfStatement(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                    SyntaxFactory::CreateSimpleIdentifierExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
+                    SyntaxFactory::CreateIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value"))),
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::CloseParenthesis,
                         {
@@ -294,11 +318,13 @@ namespace Soup::Syntax::InnerTree::UnitTests
         [[Fact]]
         void OperatorNotEqualStatement()
         {
+            // if(value);
             auto uut = SyntaxFactory::CreateIfStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value"))),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
@@ -308,8 +334,9 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateIfStatement(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                    SyntaxFactory::CreateSimpleIdentifierExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
+                    SyntaxFactory::CreateIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value"))),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                     SyntaxFactory::CreateEmptyStatement(
                             SyntaxFactory::CreateKeywordToken(
@@ -327,11 +354,13 @@ namespace Soup::Syntax::InnerTree::UnitTests
         [[Fact]]
         void OperatorNotEqualNoElseClause()
         {
+            // if(value);
             auto uut = SyntaxFactory::CreateIfStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value"))),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
@@ -341,8 +370,9 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateIfStatement(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                    SyntaxFactory::CreateSimpleIdentifierExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
+                    SyntaxFactory::CreateIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value"))),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                     SyntaxFactory::CreateEmptyStatement(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
@@ -357,11 +387,13 @@ namespace Soup::Syntax::InnerTree::UnitTests
         [[Fact]]
         void OperatorNotEqualWithElseClause()
         {
+            // if(value);
             auto uut = SyntaxFactory::CreateIfStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value"))),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
@@ -374,8 +406,9 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateIfStatement(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                    SyntaxFactory::CreateSimpleIdentifierExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
+                    SyntaxFactory::CreateIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value"))),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                     SyntaxFactory::CreateEmptyStatement(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),

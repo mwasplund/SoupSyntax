@@ -16,10 +16,10 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
                     {
                         SyntaxFactory::CreateParameter(
-                            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                            SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                 PrimitiveDataType::Int,
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
-                            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                            SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                 PrimitiveDataType::Int,
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                     },
@@ -38,10 +38,10 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 *SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
                     {
                         SyntaxFactory::CreateParameter(
-                            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                            SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                 PrimitiveDataType::Int,
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
-                            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                            SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                 PrimitiveDataType::Int,
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                     },
@@ -63,10 +63,10 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
                     {
                         SyntaxFactory::CreateParameter(
-                            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                            SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                 PrimitiveDataType::Int,
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
-                            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                            SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                 PrimitiveDataType::Int,
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                     },
@@ -78,10 +78,10 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis)),
                     TestUtils::CreateChild(
                         SyntaxFactory::CreateParameter(
-                            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                            SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                 PrimitiveDataType::Int,
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
-                            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                            SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                 PrimitiveDataType::Int,
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)))),
                     TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
@@ -99,10 +99,10 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
                     {
                         SyntaxFactory::CreateParameter(
-                            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                            SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                 PrimitiveDataType::Int,
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
-                            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                            SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                 PrimitiveDataType::Int,
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                     },
@@ -115,10 +115,10 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
                         {
                             SyntaxFactory::CreateParameter(
-                                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                     PrimitiveDataType::Int,
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
-                                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                     PrimitiveDataType::Int,
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                         },
@@ -137,10 +137,10 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
                     {
                         SyntaxFactory::CreateParameter(
-                            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                            SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                 PrimitiveDataType::Int,
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
-                            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                            SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                 PrimitiveDataType::Int,
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                     },
@@ -158,10 +158,10 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
                         {
                             SyntaxFactory::CreateParameter(
-                                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                     PrimitiveDataType::Int,
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
-                                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                     PrimitiveDataType::Int,
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                         },
@@ -180,10 +180,10 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
                     {
                         SyntaxFactory::CreateParameter(
-                            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                            SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                 PrimitiveDataType::Int,
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
-                            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                            SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                 PrimitiveDataType::Int,
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                     },
@@ -208,10 +208,10 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
                     {
                         SyntaxFactory::CreateParameter(
-                            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                            SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                 PrimitiveDataType::Int,
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
-                            SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                            SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                 PrimitiveDataType::Int,
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                     },
@@ -224,10 +224,10 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
                         {
                             SyntaxFactory::CreateParameter(
-                                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                     PrimitiveDataType::Int,
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
-                                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                     PrimitiveDataType::Int,
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                         },

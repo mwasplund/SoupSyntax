@@ -6,7 +6,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
     class SyntaxNamespaceTests
     {
     public:
-        // [Fact]
+        [[Fact]]
         void SimpleNamedNamespace()
         {
             auto source = std::string(
@@ -15,11 +15,12 @@ namespace Soup::Syntax::InnerTree::UnitTests
             auto expected = TestUtils::CreateSingleDeclaration(
                 SyntaxFactory::CreateFunctionDefinition(
                     SyntaxFactory::CreateDeclarationSpecifier(
-                        SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                        SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                             PrimitiveDataType::Void,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                    SyntaxFactory::CreateSimpleIdentifierExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
+                    SyntaxFactory::CreateIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function"))),
                     nullptr,
                     SyntaxFactory::CreateRegularFunctionBody(
                         SyntaxFactory::CreateCompoundStatement(
@@ -32,7 +33,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void SimpleUnnamedNamespace()
         {
             auto source = std::string(
@@ -41,11 +42,12 @@ namespace Soup::Syntax::InnerTree::UnitTests
             auto expected = TestUtils::CreateSingleDeclaration(
                 SyntaxFactory::CreateFunctionDefinition(
                     SyntaxFactory::CreateDeclarationSpecifier(
-                        SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                        SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                             PrimitiveDataType::Void,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                    SyntaxFactory::CreateSimpleIdentifierExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
+                    SyntaxFactory::CreateIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function"))),
                     nullptr,
                     SyntaxFactory::CreateRegularFunctionBody(
                         SyntaxFactory::CreateCompoundStatement(
@@ -58,7 +60,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void SimpleNestedNamespace()
         {
             auto source = std::string(
@@ -67,11 +69,12 @@ namespace Soup::Syntax::InnerTree::UnitTests
             auto expected = TestUtils::CreateSingleDeclaration(
                 SyntaxFactory::CreateFunctionDefinition(
                     SyntaxFactory::CreateDeclarationSpecifier(
-                        SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                        SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                             PrimitiveDataType::Void,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                    SyntaxFactory::CreateSimpleIdentifierExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function")),
+                    SyntaxFactory::CreateIdentifierExpression(
+                        SyntaxFactory::CreateSimpleIdentifier(
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Function"))),
                     nullptr,
                     SyntaxFactory::CreateRegularFunctionBody(
                         SyntaxFactory::CreateCompoundStatement(

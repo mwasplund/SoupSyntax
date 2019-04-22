@@ -7,7 +7,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
     class ParseAttributeSpecifierTests
     {
     public:
-        // [Fact]
+        [[Fact]]
         void Empty()
         {
             auto sourceCode = std::string("[[]]");
@@ -24,7 +24,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void EmptySpacing()
         {
             auto sourceCode = std::string("[ [  ]   ]");
@@ -56,7 +56,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void Simple()
         {
             auto sourceCode = std::string("[[a]]");

@@ -7,7 +7,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
     class ParseReturnStatementTests
     {
     public:
-        // [Fact]
+        [[Fact]]
         void ReturnNoExpression()
         {
             auto sourceCode = std::string("return;");
@@ -21,7 +21,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void ReturnLiteralExpression()
         {
             auto sourceCode = std::string("return 1;");
@@ -43,22 +43,23 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
-        void ReturnSimpleIdentifierExpression()
+        [[Fact]]
+        void ReturnIdentifierExpression()
         {
             auto sourceCode = std::string("return a;");
             auto actual = ParseReturnStatement(sourceCode);
 
             auto expected = SyntaxFactory::CreateReturnStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(
-                        SyntaxTokenType::Identifier,
-                        "a",
-                        {
-                            SyntaxFactory::CreateTrivia(" ")
-                        },
-                        {})),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(
+                            SyntaxTokenType::Identifier,
+                            "a",
+                            {
+                                SyntaxFactory::CreateTrivia(" ")
+                            },
+                            {}))),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");

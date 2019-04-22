@@ -211,7 +211,7 @@ namespace Soup::Syntax
         /// Overload that excludes optional leading and trailing modifiers
         /// </summary>
         static std::shared_ptr<const InnerTree::DeclarationSpecifier> CreateDeclarationSpecifier(
-            std::shared_ptr<const InnerTree::SyntaxNode> typeSpecifier)
+            std::shared_ptr<const InnerTree::TypeSpecifier> typeSpecifier)
         {
             return CreateDeclarationSpecifier(
                 CreateSyntaxList<InnerTree::SyntaxToken>({}),
@@ -224,7 +224,7 @@ namespace Soup::Syntax
         /// </summary>
         static std::shared_ptr<const InnerTree::DeclarationSpecifier> CreateDeclarationSpecifier(
             std::shared_ptr<const InnerTree::SyntaxList<InnerTree::SyntaxToken>> leadingModifiers,
-            std::shared_ptr<const InnerTree::SyntaxNode> typeSpecifier,
+            std::shared_ptr<const InnerTree::TypeSpecifier> typeSpecifier,
             std::shared_ptr<const InnerTree::SyntaxList<InnerTree::SyntaxToken>> trailingModifiers)
         {
             if (leadingModifiers == nullptr)
@@ -308,9 +308,9 @@ namespace Soup::Syntax
         }
 
         /// <summary>
-        /// Create a DestructorIdentifierExpression
+        /// Create a DestructorIdentifier
         /// </summary>
-        static std::shared_ptr<const InnerTree::DestructorIdentifierExpression> CreateDestructorIdentifierExpression(
+        static std::shared_ptr<const InnerTree::DestructorIdentifier> CreateDestructorIdentifier(
             std::shared_ptr<const InnerTree::SyntaxToken> tildeToken,
             std::shared_ptr<const InnerTree::SyntaxToken> identifierToken)
         {
@@ -319,8 +319,8 @@ namespace Soup::Syntax
             if (identifierToken == nullptr)
                 throw std::runtime_error("ArgumentNull - identifierToken");
 
-            auto result = std::shared_ptr<const InnerTree::DestructorIdentifierExpression>(
-                new InnerTree::DestructorIdentifierExpression(
+            auto result = std::shared_ptr<const InnerTree::DestructorIdentifier>(
+                new InnerTree::DestructorIdentifier(
                     std::move(tildeToken),
                     std::move(identifierToken)));
             result->SetSelf(result);
@@ -496,6 +496,68 @@ namespace Soup::Syntax
                 std::move(identifier),
                 std::move(parameterList),
                 std::move(body));
+        }
+
+        /// <summary>
+        /// Create a IdentifierExpression
+        /// </summary>
+        static std::shared_ptr<const InnerTree::IdentifierExpression> CreateIdentifierExpression(
+            std::shared_ptr<const InnerTree::NestedNameSpecifier> qualifier,
+            std::shared_ptr<const InnerTree::UnqualifiedIdentifier> unqualifiedIdentifier)
+        {
+            // The qualifier is optional
+            if (unqualifiedIdentifier == nullptr)
+                throw std::runtime_error("ArgumentNull - unqualifiedIdentifier");
+
+            auto result = std::shared_ptr<const InnerTree::IdentifierExpression>(
+                new InnerTree::IdentifierExpression(
+                    std::move(qualifier),
+                    std::move(unqualifiedIdentifier)));
+            result->SetSelf(result);
+            return result;
+        }
+
+        /// <summary>
+        /// Create a IdentifierExpression
+        /// Overload that removes optional qualifier
+        /// </summary>
+        static std::shared_ptr<const InnerTree::IdentifierExpression> CreateIdentifierExpression(
+            std::shared_ptr<const InnerTree::UnqualifiedIdentifier> unqualifiedIdentifier)
+        {
+            return CreateIdentifierExpression(
+                nullptr,
+                std::move(unqualifiedIdentifier));
+        }
+
+        /// <summary>
+        /// Create a IdentifierType
+        /// </summary>
+        static std::shared_ptr<const InnerTree::IdentifierType> CreateIdentifierType(
+            std::shared_ptr<const InnerTree::NestedNameSpecifier> qualifier,
+            std::shared_ptr<const InnerTree::UnqualifiedIdentifier> unqualifiedIdentifier)
+        {
+            // The qualifier is optional
+            if (unqualifiedIdentifier == nullptr)
+                throw std::runtime_error("ArgumentNull - unqualifiedIdentifier");
+
+            auto result = std::shared_ptr<const InnerTree::IdentifierType>(
+                new InnerTree::IdentifierType(
+                    std::move(qualifier),
+                    std::move(unqualifiedIdentifier)));
+            result->SetSelf(result);
+            return result;
+        }
+
+        /// <summary>
+        /// Create a IdentifierType
+        /// Overload that removes optional qualifier
+        /// </summary>
+        static std::shared_ptr<const InnerTree::IdentifierType> CreateIdentifierType(
+            std::shared_ptr<const InnerTree::UnqualifiedIdentifier> unqualifiedIdentifier)
+        {
+            return CreateIdentifierType(
+                nullptr,
+                std::move(unqualifiedIdentifier));
         }
 
         /// <summary>
@@ -1172,6 +1234,22 @@ namespace Soup::Syntax
         }
 
         /// <summary>
+        /// Create a NestedNameSpecifier
+        /// </summary>
+        static std::shared_ptr<const InnerTree::NestedNameSpecifier> CreateNestedNameSpecifier(
+            std::shared_ptr<const InnerTree::SyntaxSeparatorList<InnerTree::SyntaxNode>> specifierSequence)
+        {
+            if (specifierSequence == nullptr)
+                throw std::runtime_error("ArgumentNull - specifierSequence");
+
+            auto result = std::shared_ptr<const InnerTree::NestedNameSpecifier>(
+                new InnerTree::NestedNameSpecifier(
+                    std::move(specifierSequence)));
+            result->SetSelf(result);
+            return result;
+        }
+
+        /// <summary>
         /// Create a Parameter
         /// </summary>
         static std::shared_ptr<const InnerTree::Parameter> CreateParameter(
@@ -1216,42 +1294,19 @@ namespace Soup::Syntax
         }
 
         /// <summary>
-        /// Create a PrimitiveDataTypeDeclaration
+        /// Create a PrimitiveDataTypeSpecifier
         /// </summary>
-        static std::shared_ptr<const InnerTree::PrimitiveDataTypeDeclaration> CreatePrimitiveDataTypeDeclaration(
+        static std::shared_ptr<const InnerTree::PrimitiveDataTypeSpecifier> CreatePrimitiveDataTypeSpecifier(
             PrimitiveDataType type,
             std::shared_ptr<const InnerTree::SyntaxToken> token)
         {
             if (token == nullptr)
                 throw std::runtime_error("ArgumentNull - token");
 
-            auto result = std::shared_ptr<const InnerTree::PrimitiveDataTypeDeclaration>(
-                new InnerTree::PrimitiveDataTypeDeclaration(
+            auto result = std::shared_ptr<const InnerTree::PrimitiveDataTypeSpecifier>(
+                new InnerTree::PrimitiveDataTypeSpecifier(
                     type,
                     std::move(token)));
-            result->SetSelf(result);
-            return result;
-        }
-
-        /// <summary>
-        /// Create a QualifiedIdentifierExpression
-        /// </summary>
-        static std::shared_ptr<const InnerTree::QualifiedIdentifierExpression> CreateQualifiedIdentifierExpression(
-            std::shared_ptr<const InnerTree::IdentifierExpression> left,
-            std::shared_ptr<const InnerTree::SyntaxToken> scopeResolutionToken,
-            std::shared_ptr<const InnerTree::UnqualifiedIdentifierExpression> right)
-        {
-            // A null left identifier indicates a global scope
-            if (scopeResolutionToken == nullptr)
-                throw std::runtime_error("ArgumentNull - scopeResolutionToken");
-            // TODO: if (right == nullptr)
-            //     throw std::runtime_error("ArgumentNull - right");
-
-            auto result = std::shared_ptr<const InnerTree::QualifiedIdentifierExpression>(
-                new InnerTree::QualifiedIdentifierExpression(
-                    std::move(left),
-                    std::move(scopeResolutionToken),
-                    std::move(right)));
             result->SetSelf(result);
             return result;
         }
@@ -1321,25 +1376,25 @@ namespace Soup::Syntax
         }
 
         /// <summary>
-        /// Create a SimpleIdentifierExpression
+        /// Create a SimpleIdentifier
         /// </summary>
-        static std::shared_ptr<const InnerTree::SimpleIdentifierExpression> CreateSimpleIdentifierExpression(
+        static std::shared_ptr<const InnerTree::SimpleIdentifier> CreateSimpleIdentifier(
             std::shared_ptr<const InnerTree::SyntaxToken> identifierToken)
         {
             if (identifierToken == nullptr)
                 throw std::runtime_error("ArgumentNull - identifierToken");
 
-            auto result = std::shared_ptr<const InnerTree::SimpleIdentifierExpression>(
-                new InnerTree::SimpleIdentifierExpression(
+            auto result = std::shared_ptr<const InnerTree::SimpleIdentifier>(
+                new InnerTree::SimpleIdentifier(
                     std::move(identifierToken)));
             result->SetSelf(result);
             return result;
         }
 
         /// <summary>
-        /// Create a SimpleTemplateIdentifierExpression
+        /// Create a SimpleTemplateIdentifier
         /// </summary>
-        static std::shared_ptr<const InnerTree::SimpleTemplateIdentifierExpression> CreateSimpleTemplateIdentifierExpression(
+        static std::shared_ptr<const InnerTree::SimpleTemplateIdentifier> CreateSimpleTemplateIdentifier(
             std::shared_ptr<const InnerTree::SyntaxToken> identifierToken,
             std::shared_ptr<const InnerTree::SyntaxToken> lessThanToken,
             std::shared_ptr<const InnerTree::SyntaxSeparatorList<InnerTree::SyntaxNode>> templateArgumentList,
@@ -1354,8 +1409,8 @@ namespace Soup::Syntax
             if (greaterThanToken == nullptr)
                 throw std::runtime_error("ArgumentNull - greaterThanToken");
 
-            auto result = std::shared_ptr<const InnerTree::SimpleTemplateIdentifierExpression>(
-                new InnerTree::SimpleTemplateIdentifierExpression(
+            auto result = std::shared_ptr<const InnerTree::SimpleTemplateIdentifier>(
+                new InnerTree::SimpleTemplateIdentifier(
                     std::move(identifierToken),
                     std::move(lessThanToken),
                     std::move(templateArgumentList),

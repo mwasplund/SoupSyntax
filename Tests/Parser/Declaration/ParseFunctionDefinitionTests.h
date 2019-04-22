@@ -7,7 +7,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
     class ParseFunctionDefinitionTests
     {
     public:
-        // [Fact]
+        [[Fact]]
         void SimpleFunctionRegular()
         {
             auto source = std::string(
@@ -15,17 +15,18 @@ namespace Soup::Syntax::InnerTree::UnitTests
 
             auto expected = SyntaxFactory::CreateFunctionDefinition(
                 SyntaxFactory::CreateDeclarationSpecifier(
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(
-                        SyntaxTokenType::Identifier,
-                        "Function",
-                        {
-                            SyntaxFactory::CreateTrivia(" "),
-                        },
-                        {})),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(
+                            SyntaxTokenType::Identifier,
+                            "Function",
+                            {
+                                SyntaxFactory::CreateTrivia(" "),
+                            },
+                            {}))),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     SyntaxFactory::CreateSyntaxSeparatorList<Parameter>({}, {}),
@@ -57,7 +58,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void SimpleFunctionDefault()
         {
             auto source = std::string(
@@ -65,17 +66,18 @@ namespace Soup::Syntax::InnerTree::UnitTests
 
             auto expected = SyntaxFactory::CreateFunctionDefinition(
                 SyntaxFactory::CreateDeclarationSpecifier(
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(
-                        SyntaxTokenType::Identifier,
-                        "Function",
-                        {
-                            SyntaxFactory::CreateTrivia(" "),
-                        },
-                        {})),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(
+                            SyntaxTokenType::Identifier,
+                            "Function",
+                            {
+                                SyntaxFactory::CreateTrivia(" "),
+                            },
+                            {}))),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     SyntaxFactory::CreateSyntaxSeparatorList<Parameter>({}, {}),
@@ -100,7 +102,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void SimpleFunctionDelete()
         {
             auto source = std::string(
@@ -108,17 +110,18 @@ namespace Soup::Syntax::InnerTree::UnitTests
 
             auto expected = SyntaxFactory::CreateFunctionDefinition(
                 SyntaxFactory::CreateDeclarationSpecifier(
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(
-                        SyntaxTokenType::Identifier,
-                        "Function",
-                        {
-                            SyntaxFactory::CreateTrivia(" "),
-                        },
-                        {})),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(
+                            SyntaxTokenType::Identifier,
+                            "Function",
+                            {
+                                SyntaxFactory::CreateTrivia(" "),
+                            },
+                            {}))),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     SyntaxFactory::CreateSyntaxSeparatorList<Parameter>({}, {}),
@@ -143,7 +146,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void SimpleFunctionParameter()
         {
             auto source = std::string(
@@ -151,34 +154,36 @@ namespace Soup::Syntax::InnerTree::UnitTests
 
             auto expected = SyntaxFactory::CreateFunctionDefinition(
                 SyntaxFactory::CreateDeclarationSpecifier(
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(
-                        SyntaxTokenType::Identifier,
-                        "Function",
-                        {
-                            SyntaxFactory::CreateTrivia(" "),
-                        },
-                        {})),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(
+                            SyntaxTokenType::Identifier,
+                            "Function",
+                            {
+                                SyntaxFactory::CreateTrivia(" "),
+                            },
+                            {}))),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
                         {
                             SyntaxFactory::CreateParameter(
                                 SyntaxFactory::CreateDeclarationSpecifier(
-                                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                         PrimitiveDataType::Int,
                                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
-                                    SyntaxFactory::CreateUniqueToken(
-                                        SyntaxTokenType::Identifier,
-                                        "parameter",
-                                        {
-                                            SyntaxFactory::CreateTrivia(" "),
-                                        },
-                                        {}))),
+                                SyntaxFactory::CreateIdentifierExpression(
+                                    SyntaxFactory::CreateSimpleIdentifier(
+                                        SyntaxFactory::CreateUniqueToken(
+                                            SyntaxTokenType::Identifier,
+                                            "parameter",
+                                            {
+                                                SyntaxFactory::CreateTrivia(" "),
+                                            },
+                                            {})))),
                         },
                         {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
@@ -202,7 +207,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void SimpleFunctionAttribute()
         {
             auto source = std::string(
@@ -218,7 +223,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket)),
                 }),
                 SyntaxFactory::CreateDeclarationSpecifier(
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(
                             SyntaxTokenType::Void,
@@ -226,14 +231,15 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                 SyntaxFactory::CreateTrivia(" "),
                             },
                             {}))),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(
-                        SyntaxTokenType::Identifier,
-                        "Function",
-                        {
-                            SyntaxFactory::CreateTrivia(" "),
-                        },
-                        {})),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(
+                            SyntaxTokenType::Identifier,
+                            "Function",
+                            {
+                                SyntaxFactory::CreateTrivia(" "),
+                            },
+                            {}))),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                     SyntaxFactory::CreateSyntaxSeparatorList<Parameter>({}, {}),

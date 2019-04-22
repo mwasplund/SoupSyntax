@@ -7,7 +7,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
     class ParseIfStatementTests
     {
     public:
-        // [Fact]
+        [[Fact]]
         void IfEmptyStatement()
         {
             auto sourceCode = std::string("if(a);");
@@ -16,8 +16,9 @@ namespace Soup::Syntax::InnerTree::UnitTests
             auto expected = SyntaxFactory::CreateIfStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
@@ -26,7 +27,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void IfEmptyStatementWithElseClause()
         {
             auto sourceCode = std::string("if(a);else;");
@@ -35,8 +36,9 @@ namespace Soup::Syntax::InnerTree::UnitTests
             auto expected = SyntaxFactory::CreateIfStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
@@ -48,7 +50,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void IfStatementReturnWithElseClause()
         {
             auto sourceCode = std::string("if ( a ) \r\n return 1 ; \r\n else \r\n return 2 ; ");
@@ -62,14 +64,15 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         SyntaxFactory::CreateTrivia(" ")
                     },
                     {}),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(
-                        SyntaxTokenType::Identifier,
-                        "a",
-                        {
-                            SyntaxFactory::CreateTrivia(" ")
-                        },
-                        {})),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(
+                            SyntaxTokenType::Identifier,
+                            "a",
+                            {
+                                SyntaxFactory::CreateTrivia(" ")
+                            },
+                            {}))),
                 SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::CloseParenthesis,
                     {

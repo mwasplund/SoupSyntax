@@ -7,7 +7,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
     class ParseAccessorSpecifierTests
     {
     public:
-        // [Fact]
+        [[Fact]]
         void SimplePublic()
         {
             auto sourceCode = std::string("public:");
@@ -23,7 +23,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void SimplePrivate()
         {
             auto sourceCode = std::string("private:");
@@ -39,7 +39,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void SimpleProtected()
         {
             auto sourceCode = std::string("protected:");

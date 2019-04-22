@@ -121,7 +121,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                         SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
                             {
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
+                                SyntaxFactory::CreateSimpleIdentifier(
                                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
                             },
                             {}),

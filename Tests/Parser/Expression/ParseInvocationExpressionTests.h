@@ -7,7 +7,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
     class ParseInvocationExpressionTests
     {
     public:
-        // [Fact]
+        [[Fact]]
         void SimpleInvocation()
         {
             auto sourceCode = std::string("a()");
@@ -15,8 +15,9 @@ namespace Soup::Syntax::InnerTree::UnitTests
             auto actual = ParseInvocationExpression(sourceCode);
 
             auto expected = SyntaxFactory::CreateInvocationExpression(
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>({}, {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis));
@@ -24,7 +25,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void ComplexInvocation()
         {
             auto sourceCode = std::string("a(b, c)");
@@ -32,21 +33,24 @@ namespace Soup::Syntax::InnerTree::UnitTests
             auto actual = ParseInvocationExpression(sourceCode);
 
             auto expected = SyntaxFactory::CreateInvocationExpression(
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
                     {
-                        SyntaxFactory::CreateSimpleIdentifierExpression(
-                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b")),
-                        SyntaxFactory::CreateSimpleIdentifierExpression(
-                            SyntaxFactory::CreateUniqueToken(
-                                SyntaxTokenType::Identifier,
-                                "c",
-                                {
-                                    SyntaxFactory::CreateTrivia(" "),
-                                },
-                                {}))
+                        SyntaxFactory::CreateIdentifierExpression(
+                            SyntaxFactory::CreateSimpleIdentifier(
+                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "b"))),
+                        SyntaxFactory::CreateIdentifierExpression(
+                            SyntaxFactory::CreateSimpleIdentifier(
+                                SyntaxFactory::CreateUniqueToken(
+                                    SyntaxTokenType::Identifier,
+                                    "c",
+                                    {
+                                        SyntaxFactory::CreateTrivia(" "),
+                                    },
+                                    {})))
                     },
                     {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma)
@@ -56,7 +60,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void BracedInitializerParameter()
         {
             auto sourceCode = std::string("a({1,})");
@@ -64,8 +68,9 @@ namespace Soup::Syntax::InnerTree::UnitTests
             auto actual = ParseInvocationExpression(sourceCode);
 
             auto expected = SyntaxFactory::CreateInvocationExpression(
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))) ,
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
                 SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
                     {

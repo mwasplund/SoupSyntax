@@ -7,7 +7,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
     class ParseThisExpressionTests
     {
     public:
-        // [Fact]
+        [[Fact]]
         void SingleThisExpression()
         {
             auto sourceCode = std::string("this");

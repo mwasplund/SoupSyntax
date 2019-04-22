@@ -7,7 +7,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
     class ParseSubscriptExpressionTests
     {
     public:
-        // [Fact]
+        [[Fact]]
         void SingleSubscriptExpression()
         {
             auto sourceCode = std::string("a[1]");
@@ -15,8 +15,9 @@ namespace Soup::Syntax::InnerTree::UnitTests
             auto actual = ParseSubscriptExpression(sourceCode);
 
             auto expected = SyntaxFactory::CreateSubscriptExpression(
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
                 SyntaxFactory::CreateLiteralExpression(
                     LiteralType::Integer,

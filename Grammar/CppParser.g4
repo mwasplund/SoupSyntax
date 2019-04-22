@@ -468,6 +468,14 @@ declarationModifier:
 	ConstExpr |
 	Inline;
 
+// A declaration specifier sequence can have any number of specifiers in any order.
+// However because an identifier can be inside the type the simple declaration "A a;" will consume
+// both identifiers as types and won't find a trailing declarator. Because of this I am breaking
+// the sequence into Leading/Trailing modifiers and the single type to resolve this ambiguity. This
+// also allows the single type node to be a generic SyntaxNode istead of a raw token.
+// Note: The C++ specification calls for ->
+// declarationSpecifier attributeSpecifierSequence? |
+// declarationSpecifier declarationSpecifierSequence;
 declarationSpecifierSequence:
 	leadingDeclarationModifierSequence? definingTypeSpecifier trailingDeclarationModifierSequence? attributeSpecifierSequence?;
 
@@ -493,12 +501,10 @@ functionSpecifier:
 typeSpecifier:
 	simpleTypeSpecifier |
 	elaboratedTypeSpecifier |
-	typenameSpecifier |
-	constVolatileQualifier;
+	typenameSpecifier;
 
 typeSpecifierSequence:
-	typeSpecifier attributeSpecifierSequence?; //|
-	// TODO typeSpecifier typeSpecifierSequence;
+	constVolatileQualifier? typeSpecifier attributeSpecifierSequence?;
 
 definingTypeSpecifier:
 	typeSpecifier |

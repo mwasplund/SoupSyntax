@@ -38,15 +38,16 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                         SyntaxFactory::CreateSimpleDeclaration(
                             SyntaxFactory::CreateDeclarationSpecifier(
-                                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                     PrimitiveDataType::Int,
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                             SyntaxFactory::CreateInitializerDeclaratorList(
                                 SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
                                     {
                                         SyntaxFactory::CreateInitializerDeclarator(
-                                            SyntaxFactory::CreateSimpleIdentifierExpression(
-                                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
+                                            SyntaxFactory::CreateIdentifierExpression(
+                                                SyntaxFactory::CreateSimpleIdentifier(
+                                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i"))),
                                             nullptr),
                                     },
                                     {})),
@@ -65,15 +66,16 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                         SyntaxFactory::CreateSimpleDeclaration(
                             SyntaxFactory::CreateDeclarationSpecifier(
-                                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                     PrimitiveDataType::Int,
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                             SyntaxFactory::CreateInitializerDeclaratorList(
                                 SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
                                     {
                                         SyntaxFactory::CreateInitializerDeclarator(
-                                            SyntaxFactory::CreateSimpleIdentifierExpression(
-                                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i")),
+                                            SyntaxFactory::CreateIdentifierExpression(
+                                                SyntaxFactory::CreateSimpleIdentifier(
+                                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "i"))),
                                             nullptr),
                                     },
                                     {})),

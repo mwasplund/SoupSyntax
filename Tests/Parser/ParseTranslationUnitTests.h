@@ -7,7 +7,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
     class ParseTranslationUnitTests
     {
     public:
-        // [Fact]
+        [[Fact]]
         void EmptyFile()
         {
             auto sourceCode = std::string("\0");
@@ -20,7 +20,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void OnlyTrivia()
         {
             auto sourceCode = std::string(" \0");
@@ -38,7 +38,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void OnlyComments()
         {
             auto sourceCode = std::string("//COMMENT\n//OTHER\0");
@@ -58,7 +58,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void SingleEmptyDeclaration()
         {
             auto sourceCode = std::string(" ; \0");
@@ -85,7 +85,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void MultipleDeclarations()
         {
             auto sourceCode = std::string(";\nint i;\0");
@@ -98,7 +98,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                         SyntaxFactory::CreateSimpleDeclaration(
                             SyntaxFactory::CreateDeclarationSpecifier(
-                                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                     PrimitiveDataType::Int,
                                     SyntaxFactory::CreateKeywordToken(
                                         SyntaxTokenType::Int,
@@ -110,14 +110,15 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                 SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
                                     {
                                         SyntaxFactory::CreateInitializerDeclarator(
-                                            SyntaxFactory::CreateSimpleIdentifierExpression(
-                                                SyntaxFactory::CreateUniqueToken(
-                                                    SyntaxTokenType::Identifier,
-                                                    "i",
-                                                    {
-                                                        SyntaxFactory::CreateTrivia(" "),
-                                                    },
-                                                    {})),
+                                            SyntaxFactory::CreateIdentifierExpression(
+                                                SyntaxFactory::CreateSimpleIdentifier(
+                                                    SyntaxFactory::CreateUniqueToken(
+                                                        SyntaxTokenType::Identifier,
+                                                        "i",
+                                                        {
+                                                            SyntaxFactory::CreateTrivia(" "),
+                                                        },
+                                                        {}))),
                                             nullptr),
                                     },
                                     {})),

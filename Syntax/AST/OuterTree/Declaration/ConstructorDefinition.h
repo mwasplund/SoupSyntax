@@ -17,7 +17,7 @@ namespace Soup::Syntax::OuterTree
             std::shared_ptr<const InnerTree::ConstructorDefinition> innerNode,
             const SyntaxNode* parentNode) :
             Declaration(innerNode, parentNode),
-            m_identifier(innerNode->GetIdentifier().CreateOuter<IdentifierExpression>(this)),
+            m_identifier(innerNode->GetIdentifier().CreateOuter(this)),
             m_parameterList(innerNode->GetParameterList().CreateOuter(this)),
             m_constructorInitializer(
                 innerNode->HasConstructorInitializer() ?

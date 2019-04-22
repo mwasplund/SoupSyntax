@@ -2057,7 +2057,6 @@ public:
     SimpleTypeSpecifierContext *simpleTypeSpecifier();
     ElaboratedTypeSpecifierContext *elaboratedTypeSpecifier();
     TypenameSpecifierContext *typenameSpecifier();
-    ConstVolatileQualifierContext *constVolatileQualifier();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -2073,6 +2072,7 @@ public:
     TypeSpecifierSequenceContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     TypeSpecifierContext *typeSpecifier();
+    ConstVolatileQualifierContext *constVolatileQualifier();
     AttributeSpecifierSequenceContext *attributeSpecifierSequence();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;

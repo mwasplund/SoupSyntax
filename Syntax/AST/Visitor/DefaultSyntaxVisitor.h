@@ -74,7 +74,7 @@ namespace Soup::Syntax
             DefaultVisit(node);
         }
 
-        virtual void Visit(const OuterTree::DestructorIdentifierExpression& node) override
+        virtual void Visit(const OuterTree::DestructorIdentifier& node) override
         {
             DefaultVisit(node);
         }
@@ -110,6 +110,16 @@ namespace Soup::Syntax
         }
 
         virtual void Visit(const OuterTree::FunctionDefinition& node) override
+        {
+            DefaultVisit(node);
+        }
+
+        virtual void Visit(const OuterTree::IdentifierExpression& node) override
+        {
+            DefaultVisit(node);
+        }
+
+        virtual void Visit(const OuterTree::IdentifierType& node) override
         {
             DefaultVisit(node);
         }
@@ -169,6 +179,11 @@ namespace Soup::Syntax
             DefaultVisit(node);
         }
 
+        virtual void Visit(const OuterTree::NestedNameSpecifier& node) override
+        {
+            DefaultVisit(node);
+        }
+
         virtual void Visit(const OuterTree::Parameter& node) override
         {
             DefaultVisit(node);
@@ -179,12 +194,7 @@ namespace Soup::Syntax
             DefaultVisit(node);
         }
 
-        virtual void Visit(const OuterTree::PrimitiveDataTypeDeclaration& node) override
-        {
-            DefaultVisit(node);
-        }
-
-        virtual void Visit(const OuterTree::QualifiedIdentifierExpression& node) override
+        virtual void Visit(const OuterTree::PrimitiveDataTypeSpecifier& node) override
         {
             DefaultVisit(node);
         }
@@ -204,12 +214,12 @@ namespace Soup::Syntax
             DefaultVisit(node);
         }
 
-        virtual void Visit(const OuterTree::SimpleIdentifierExpression& node) override
+        virtual void Visit(const OuterTree::SimpleIdentifier& node) override
         {
             DefaultVisit(node);
         }
 
-        virtual void Visit(const OuterTree::SimpleTemplateIdentifierExpression& node) override
+        virtual void Visit(const OuterTree::SimpleTemplateIdentifier& node) override
         {
             DefaultVisit(node);
         }

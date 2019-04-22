@@ -12,7 +12,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             // int
             auto uut = SyntaxFactory::CreateDeclarationSpecifier(
-                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                     PrimitiveDataType::Int,
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)));
 
@@ -25,7 +25,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 uut->GetLeadingModifiers(),
                 "Verify leading modifier tokens match.");
             TestUtils::AreEqual(
-                *SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                *SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                     PrimitiveDataType::Int,
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
                 uut->GetTypeSpecifier(),
@@ -46,7 +46,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Static),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::ThreadLocal),
                 }),
-                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                     PrimitiveDataType::Int,
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
                 SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
@@ -68,7 +68,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 uut->GetLeadingModifiers(),
                 "Verify leading modifier tokens match.");
             TestUtils::AreEqual(
-                *SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                *SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                     PrimitiveDataType::Int,
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
                 uut->GetTypeSpecifier(),
@@ -88,13 +88,13 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             // int
             auto uut = SyntaxFactory::CreateDeclarationSpecifier(
-                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                     PrimitiveDataType::Int,
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)));
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateDeclarationSpecifier(
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                 uut,
@@ -111,7 +111,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Static),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::ThreadLocal),
                 }),
-                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                     PrimitiveDataType::Int,
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
                 SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
@@ -127,7 +127,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Static),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::ThreadLocal),
                     }),
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
                     SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
@@ -149,7 +149,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Static),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::ThreadLocal),
                 }),
-                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                     PrimitiveDataType::Int,
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
                 SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
@@ -161,7 +161,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateDeclarationSpecifier(
                     SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>({}),
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
                     SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
@@ -183,7 +183,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Static),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::ThreadLocal),
                 }),
-                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                     PrimitiveDataType::Int,
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
                 SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
@@ -199,7 +199,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Inline),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::ThreadLocal),
                     }),
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
                     SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
@@ -221,7 +221,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Static),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::ThreadLocal),
                 }),
-                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                     PrimitiveDataType::Int,
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
                 SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
@@ -237,7 +237,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Static),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::ThreadLocal),
                     }),
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Long,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Long)),
                     SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
@@ -259,7 +259,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Static),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::ThreadLocal),
                 }),
-                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                     PrimitiveDataType::Int,
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
                 SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
@@ -275,7 +275,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Static),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::ThreadLocal),
                     }),
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
                     SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>({})),
@@ -293,7 +293,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Static),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::ThreadLocal),
                 }),
-                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                     PrimitiveDataType::Int,
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
                 SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
@@ -309,7 +309,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Static),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::ThreadLocal),
                     }),
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
                     SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(

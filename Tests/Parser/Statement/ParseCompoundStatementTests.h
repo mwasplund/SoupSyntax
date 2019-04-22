@@ -7,7 +7,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
     class ParseCompoundStatementTests
     {
     public:
-        // [Fact]
+        [[Fact]]
         void EmptyCompoundStatement()
         {
             auto sourceCode = std::string("{}");
@@ -21,7 +21,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void CompoundStatementWithSingleStatment()
         {
             auto sourceCode = std::string("{\n return 1;\n}");
