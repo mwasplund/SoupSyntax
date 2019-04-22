@@ -54,7 +54,7 @@ namespace Soup::Syntax::InnerTree
     class DefaultFunctionBody;
     class DeleteFunctionBody;
     class EmptyDeclaration;
-    class EnumDeclaration;
+    class EnumSpecifier;
     class EnumeratorDefinition;
     class FunctionDefinition;
     class IdentifierType;
@@ -129,7 +129,7 @@ namespace Soup::Syntax::OuterTree
     class DefaultFunctionBody;
     class DeleteFunctionBody;
     class EmptyDeclaration;
-    class EnumDeclaration;
+    class EnumSpecifier;
     class EnumeratorDefinition;
     class FunctionDefinition;
     class IdentifierType;
@@ -226,7 +226,7 @@ namespace Soup::Syntax::OuterTree
 #include "AST/InnerTree/Declaration/DeleteFunctionBody.h"
 #include "AST/InnerTree/Declaration/EmptyDeclaration.h"
 #include "AST/InnerTree/Declaration/EnumeratorDefinition.h"
-#include "AST/InnerTree/Declaration/EnumDeclaration.h"
+#include "AST/InnerTree/Declaration/EnumSpecifier.h"
 #include "AST/InnerTree/Declaration/FunctionDefinition.h"
 #include "AST/InnerTree/Declaration/MemberDeclarator.h"
 #include "AST/InnerTree/Declaration/MemberDeclaratorList.h"
@@ -297,7 +297,7 @@ namespace Soup::Syntax::OuterTree
 #include "AST/OuterTree/Declaration/DeleteFunctionBody.h"
 #include "AST/OuterTree/Declaration/EmptyDeclaration.h"
 #include "AST/OuterTree/Declaration/EnumeratorDefinition.h"
-#include "AST/OuterTree/Declaration/EnumDeclaration.h"
+#include "AST/OuterTree/Declaration/EnumSpecifier.h"
 #include "AST/OuterTree/Declaration/FunctionDefinition.h"
 #include "AST/OuterTree/Declaration/MemberDeclarator.h"
 #include "AST/OuterTree/Declaration/MemberDeclaratorList.h"

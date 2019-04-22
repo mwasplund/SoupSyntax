@@ -1,57 +1,38 @@
 ﻿#pragma once
 
-namespace Soup::Syntax::InnerTree
+namespace Soup::Syntax::OuterTree
 {
     /// <summary>
     /// Enum declaration
     /// </summary>
-    export class EnumDeclaration final : public Declaration
+    export class EnumSpecifier final : public TypeSpecifier
     {
-        friend class ::Soup::Syntax::SyntaxFactory;
+        friend class ::Soup::Syntax::OuterTree::SyntaxWrapper;
 
     private:
         /// <summary>
         /// Initialize
         /// </summary>
-        EnumDeclaration(
-            std::shared_ptr<const SyntaxToken> enumToken,
-            std::shared_ptr<const SyntaxToken> classToken,
-            std::shared_ptr<const SyntaxToken> identifierToken,
-            std::shared_ptr<const SyntaxToken> openBraceToken,
-            std::shared_ptr<const SyntaxSeparatorList<EnumeratorDefinition>> enumeratorList,
-            std::shared_ptr<const SyntaxToken> closeBraceToken) :
-            Declaration(SyntaxNodeType::EnumDeclaration),
-            m_enumToken(std::move(enumToken)),
-            m_classToken(std::move(classToken)),
-            m_identifierToken(std::move(identifierToken)),
-            m_openBraceToken(std::move(openBraceToken)),
-            m_enumeratorList(std::move(enumeratorList)),
-            m_closeBraceToken(std::move(closeBraceToken))
+        EnumSpecifier(
+            std::shared_ptr<const InnerTree::EnumSpecifier> innerNode,
+            const SyntaxNode* parentNode) :
+            TypeSpecifier(innerNode, parentNode),
+            m_enumToken(innerNode->GetEnumToken().CreateOuter(this)),
+            m_classToken(
+                innerNode->HasClassToken() ?
+                    innerNode->GetClassToken().CreateOuter(this) :
+                    nullptr),
+            m_identifierToken(
+                innerNode->HasIdentifierToken() ?
+                    innerNode->GetIdentifierToken().CreateOuter(this) :
+                    nullptr),
+            m_openBraceToken(innerNode->GetOpenBraceToken().CreateOuter(this)),
+            m_enumeratorList(innerNode->GetEnumeratorList().CreateOuter<EnumeratorDefinition>(this)),
+            m_closeBraceToken(innerNode->GetCloseBraceToken().CreateOuter(this))
         {
         }
 
     public:
-        /// <summary>
-        /// Create an outer node with this node and the provided parent
-        /// </summary>
-        std::shared_ptr<const OuterTree::EnumDeclaration> CreateOuter(
-            const OuterTree::SyntaxNode* parentNode) const
-        {
-            return OuterTree::SyntaxWrapper::CreateOuter(
-                GetSelf<EnumDeclaration>(),
-                parentNode);
-        }
-
-        /// <summary>
-        /// Create an outer node with this node and the provided parent
-        /// </summary>
-        virtual std::shared_ptr<const OuterTree::SyntaxNode> CreateOuterAny(
-            const OuterTree::SyntaxNode* parentNode) const override final
-        {
-            return std::static_pointer_cast<const OuterTree::SyntaxNode>(
-                CreateOuter(parentNode));
-        }
-
         /// <summary>
         /// Gets the SyntaxToken for the enum keyword.
         /// </summary>
@@ -123,30 +104,40 @@ namespace Soup::Syntax::InnerTree
         }
 
         /// <summary>
-        /// Equality operator
+        /// Get the collection of children nodes and tokens
         /// </summary>
-        bool operator ==(const EnumDeclaration& rhs) const
+        virtual std::vector<SyntaxNodeChild> GetChildren() const override final
         {
-            return *m_enumToken == *rhs.m_enumToken &&
-                SyntaxUtils::AreOptionalValuesEqual(m_classToken, rhs.m_classToken) &&
-                SyntaxUtils::AreOptionalValuesEqual(m_identifierToken, rhs.m_identifierToken) &&
-                *m_openBraceToken == *rhs.m_openBraceToken &&
-                *m_enumeratorList == *rhs.m_enumeratorList &&
-                *m_closeBraceToken == *rhs.m_closeBraceToken;
+            std::vector<SyntaxNodeChild> children;
+
+            children.push_back(SyntaxNodeChild(m_enumToken));
+
+            if (HasClassToken())
+            {
+                children.push_back(SyntaxNodeChild(m_classToken));
+            }
+
+            if (HasIdentifierToken())
+            {
+                children.push_back(SyntaxNodeChild(m_identifierToken));
+            }
+
+            children.push_back(SyntaxNodeChild(m_openBraceToken));
+    
+            auto enumeratorListChildren = m_enumeratorList->GetChildren();
+            children.insert(children.end(), enumeratorListChildren.begin(), enumeratorListChildren.end());
+
+            children.push_back(SyntaxNodeChild(m_closeBraceToken));
+
+            return children;
         }
 
-        bool operator !=(const EnumDeclaration& rhs) const
-        {
-            return !(*this == rhs);
-        }
-
-    protected:
         /// <summary>
-        /// SyntaxNode Equals
+        /// Visitor Accept
         /// </summary>
-        virtual bool Equals(const SyntaxNode& rhs) const final
+        virtual void Accept(ISyntaxVisitor& visitor) const override final
         {
-            return *this == static_cast<const EnumDeclaration&>(rhs);
+            visitor.Visit(*this);
         }
 
     private:

@@ -380,9 +380,9 @@ namespace Soup::Syntax
         }
 
         /// <summary>
-        /// Create a EnumDeclaration
+        /// Create a EnumSpecifier
         /// </summary>
-        static std::shared_ptr<const InnerTree::EnumDeclaration> CreateEnumDeclaration(
+        static std::shared_ptr<const InnerTree::EnumSpecifier> CreateEnumSpecifier(
             std::shared_ptr<const InnerTree::SyntaxToken> enumToken,
             std::shared_ptr<const InnerTree::SyntaxToken> classToken,
             std::shared_ptr<const InnerTree::SyntaxToken> identifierToken,
@@ -400,8 +400,8 @@ namespace Soup::Syntax
             if (closeBraceToken == nullptr)
                 throw std::runtime_error("ArgumentNull - closeBraceToken");
 
-            auto result = std::shared_ptr<const InnerTree::EnumDeclaration>(
-                new InnerTree::EnumDeclaration(
+            auto result = std::shared_ptr<const InnerTree::EnumSpecifier>(
+                new InnerTree::EnumSpecifier(
                     std::move(enumToken),
                     std::move(classToken),
                     std::move(identifierToken),

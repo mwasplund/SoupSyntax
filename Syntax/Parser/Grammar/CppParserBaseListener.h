@@ -319,8 +319,8 @@ public:
   virtual void enterEnumHeadName(CppParser::EnumHeadNameContext * /*ctx*/) override { }
   virtual void exitEnumHeadName(CppParser::EnumHeadNameContext * /*ctx*/) override { }
 
-  virtual void enterOpaqueEnumDeclaration(CppParser::OpaqueEnumDeclarationContext * /*ctx*/) override { }
-  virtual void exitOpaqueEnumDeclaration(CppParser::OpaqueEnumDeclarationContext * /*ctx*/) override { }
+  virtual void enterOpaqueEnumSpecifier(CppParser::OpaqueEnumSpecifierContext * /*ctx*/) override { }
+  virtual void exitOpaqueEnumSpecifier(CppParser::OpaqueEnumSpecifierContext * /*ctx*/) override { }
 
   virtual void enterEnumKey(CppParser::EnumKeyContext * /*ctx*/) override { }
   virtual void exitEnumKey(CppParser::EnumKeyContext * /*ctx*/) override { }

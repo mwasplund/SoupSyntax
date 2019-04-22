@@ -114,8 +114,8 @@ namespace Soup::Syntax
                     return "EmptyDeclaration";
                 case SyntaxNodeType::EmptyStatement:
                     return "EmptyStatement";
-                case SyntaxNodeType::EnumDeclaration:
-                    return "EnumDeclaration";
+                case SyntaxNodeType::EnumSpecifier:
+                    return "EnumSpecifier";
                 case SyntaxNodeType::EnumeratorDefinition:
                     return "EnumeratorDefinition";
                 case SyntaxNodeType::ExpressionStatement:

@@ -14,7 +14,7 @@ import SoupSyntax;
 #include "AST\InnerTree\Declaration\DefaultFunctionBodyTests.gen.h"
 #include "AST\InnerTree\Declaration\DeleteFunctionBodyTests.gen.h"
 #include "AST\InnerTree\Declaration\EmptyDeclarationTests.gen.h"
-#include "AST\InnerTree\Declaration\EnumDeclarationTests.gen.h"
+#include "AST\InnerTree\Declaration\EnumSpecifierTests.gen.h"
 #include "AST\InnerTree\Declaration\EnumeratorDefinitionTests.gen.h"
 #include "AST\InnerTree\Declaration\FunctionDefinitionTests.gen.h"
 #include "AST\InnerTree\Declaration\InitializerDeclaratorListTests.gen.h"
@@ -66,7 +66,7 @@ import SoupSyntax;
 #include "AST\OuterTree\Declaration\DefaultFunctionBodyTests.gen.h"
 #include "AST\OuterTree\Declaration\DeleteFunctionBodyTests.gen.h"
 #include "AST\OuterTree\Declaration\EmptyDeclarationTests.gen.h"
-#include "AST\OuterTree\Declaration\EnumDeclarationTests.gen.h"
+#include "AST\OuterTree\Declaration\EnumSpecifierTests.gen.h"
 #include "AST\OuterTree\Declaration\EnumeratorDefinitionTests.gen.h"
 #include "AST\OuterTree\Declaration\FunctionDefinitionTests.gen.h"
 #include "AST\OuterTree\Declaration\InitializerDeclaratorListTests.gen.h"
@@ -118,7 +118,7 @@ import SoupSyntax;
 #include "Parser\Declaration\ParseAccessorSpecifierTests.gen.h"
 #include "Parser\Declaration\ParseClassSpecifierTests.gen.h"
 #include "Parser\Declaration\ParseConstructorDefinitionTests.gen.h"
-#include "Parser\Declaration\ParseEnumDeclarationTests.gen.h"
+#include "Parser\Declaration\ParseEnumSpecifierTests.gen.h"
 #include "Parser\Declaration\ParseFunctionDefinitionTests.gen.h"
 #include "Parser\Declaration\ParseMemberDeclarationTests.gen.h"
 #include "Parser\Declaration\ParseNamespaceDefinitionTests.gen.h"
@@ -158,7 +158,7 @@ int main()
     state += RunInnerTreeDefaultFunctionBodyTests();
     state += RunInnerTreeDeleteFunctionBodyTests();
     state += RunInnerTreeEmptyDeclarationTests();
-    state += RunInnerTreeEnumDeclarationTests();
+    state += RunInnerTreeEnumSpecifierTests();
     state += RunInnerTreeEnumeratorDefinitionTests();
     state += RunInnerTreeFunctionDefinitionTests();
     state += RunInnerTreeInitializerDeclaratorListTests();
@@ -210,7 +210,7 @@ int main()
     state += RunOuterTreeDefaultFunctionBodyTests();
     state += RunOuterTreeDeleteFunctionBodyTests();
     state += RunOuterTreeEmptyDeclarationTests();
-    state += RunOuterTreeEnumDeclarationTests();
+    state += RunOuterTreeEnumSpecifierTests();
     state += RunOuterTreeEnumeratorDefinitionTests();
     state += RunOuterTreeFunctionDefinitionTests();
     state += RunOuterTreeInitializerDeclaratorListTests();
@@ -262,7 +262,7 @@ int main()
     state += RunParseAccessorSpecifierTests();
     state += RunParseClassSpecifierTests();
     state += RunParseConstructorDefinitionTests();
-    state += RunParseEnumDeclarationTests();
+    state += RunParseEnumSpecifierTests();
     state += RunParseFunctionDefinitionTests();
     state += RunParseMemberDeclarationTests();
     state += RunParseNamespaceDefinitionTests();

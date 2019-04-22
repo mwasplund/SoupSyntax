@@ -112,7 +112,7 @@ namespace Soup::Syntax
         virtual antlrcpp::Any visitEnumSpecifier(CppParser::EnumSpecifierContext *context) override final;
         virtual antlrcpp::Any visitEnumHead(CppParser::EnumHeadContext *context) override final;
         virtual antlrcpp::Any visitEnumHeadName(CppParser::EnumHeadNameContext *context) override final;
-        virtual antlrcpp::Any visitOpaqueEnumDeclaration(CppParser::OpaqueEnumDeclarationContext *context) override final;
+        virtual antlrcpp::Any visitOpaqueEnumSpecifier(CppParser::OpaqueEnumSpecifierContext *context) override final;
         virtual antlrcpp::Any visitEnumKey(CppParser::EnumKeyContext *context) override final;
         virtual antlrcpp::Any visitEnumBase(CppParser::EnumBaseContext *context) override final;
         virtual antlrcpp::Any visitEnumeratorList(CppParser::EnumeratorListContext *context) override final;

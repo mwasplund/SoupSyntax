@@ -1872,7 +1872,7 @@ antlrcpp::Any ASTCppParserVisitor::visitEnumSpecifier(CppParser::EnumSpecifierCo
     }
 
     return std::static_pointer_cast<const SyntaxNode>(
-        SyntaxFactory::CreateEnumDeclaration(
+        SyntaxFactory::CreateEnumSpecifier(
             CreateToken(SyntaxTokenType::Enum, enumKeyContext->Enum()),
             std::move(classToken),
             std::move(identifierToken),
@@ -1895,9 +1895,9 @@ antlrcpp::Any ASTCppParserVisitor::visitEnumHeadName(CppParser::EnumHeadNameCont
     throw std::logic_error(std::string(__func__) + " NotImplemented");
 }
 
-antlrcpp::Any ASTCppParserVisitor::visitOpaqueEnumDeclaration(CppParser::OpaqueEnumDeclarationContext* context)
+antlrcpp::Any ASTCppParserVisitor::visitOpaqueEnumSpecifier(CppParser::OpaqueEnumSpecifierContext* context)
 {
-    Trace("VisitOpaqueEnumDeclaration");
+    Trace("VisitOpaqueEnumSpecifier");
     throw std::logic_error(std::string(__func__) + " NotImplemented");
 }
 

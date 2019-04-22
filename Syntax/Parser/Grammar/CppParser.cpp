@@ -8924,8 +8924,8 @@ CppParser::AliasDeclarationContext* CppParser::BlockDeclarationContext::aliasDec
   return getRuleContext<CppParser::AliasDeclarationContext>(0);
 }
 
-CppParser::OpaqueEnumDeclarationContext* CppParser::BlockDeclarationContext::opaqueEnumDeclaration() {
-  return getRuleContext<CppParser::OpaqueEnumDeclarationContext>(0);
+CppParser::OpaqueEnumSpecifierContext* CppParser::BlockDeclarationContext::opaqueEnumSpecifier() {
+  return getRuleContext<CppParser::OpaqueEnumSpecifierContext>(0);
 }
 
 
@@ -9016,7 +9016,7 @@ CppParser::BlockDeclarationContext* CppParser::blockDeclaration() {
     case 8: {
       enterOuterAlt(_localctx, 8);
       setState(1291);
-      opaqueEnumDeclaration();
+      opaqueEnumSpecifier();
       break;
     }
 
@@ -11423,64 +11423,64 @@ CppParser::EnumHeadNameContext* CppParser::enumHeadName() {
   return _localctx;
 }
 
-//----------------- OpaqueEnumDeclarationContext ------------------------------------------------------------------
+//----------------- OpaqueEnumSpecifierContext ------------------------------------------------------------------
 
-CppParser::OpaqueEnumDeclarationContext::OpaqueEnumDeclarationContext(ParserRuleContext *parent, size_t invokingState)
+CppParser::OpaqueEnumSpecifierContext::OpaqueEnumSpecifierContext(ParserRuleContext *parent, size_t invokingState)
   : ParserRuleContext(parent, invokingState) {
 }
 
-CppParser::EnumKeyContext* CppParser::OpaqueEnumDeclarationContext::enumKey() {
+CppParser::EnumKeyContext* CppParser::OpaqueEnumSpecifierContext::enumKey() {
   return getRuleContext<CppParser::EnumKeyContext>(0);
 }
 
-tree::TerminalNode* CppParser::OpaqueEnumDeclarationContext::Identifier() {
+tree::TerminalNode* CppParser::OpaqueEnumSpecifierContext::Identifier() {
   return getToken(CppParser::Identifier, 0);
 }
 
-tree::TerminalNode* CppParser::OpaqueEnumDeclarationContext::Semicolon() {
+tree::TerminalNode* CppParser::OpaqueEnumSpecifierContext::Semicolon() {
   return getToken(CppParser::Semicolon, 0);
 }
 
-CppParser::AttributeSpecifierSequenceContext* CppParser::OpaqueEnumDeclarationContext::attributeSpecifierSequence() {
+CppParser::AttributeSpecifierSequenceContext* CppParser::OpaqueEnumSpecifierContext::attributeSpecifierSequence() {
   return getRuleContext<CppParser::AttributeSpecifierSequenceContext>(0);
 }
 
-CppParser::NestedNameSpecifierContext* CppParser::OpaqueEnumDeclarationContext::nestedNameSpecifier() {
+CppParser::NestedNameSpecifierContext* CppParser::OpaqueEnumSpecifierContext::nestedNameSpecifier() {
   return getRuleContext<CppParser::NestedNameSpecifierContext>(0);
 }
 
-CppParser::EnumBaseContext* CppParser::OpaqueEnumDeclarationContext::enumBase() {
+CppParser::EnumBaseContext* CppParser::OpaqueEnumSpecifierContext::enumBase() {
   return getRuleContext<CppParser::EnumBaseContext>(0);
 }
 
 
-size_t CppParser::OpaqueEnumDeclarationContext::getRuleIndex() const {
-  return CppParser::RuleOpaqueEnumDeclaration;
+size_t CppParser::OpaqueEnumSpecifierContext::getRuleIndex() const {
+  return CppParser::RuleOpaqueEnumSpecifier;
 }
 
-void CppParser::OpaqueEnumDeclarationContext::enterRule(tree::ParseTreeListener *listener) {
+void CppParser::OpaqueEnumSpecifierContext::enterRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
-    parserListener->enterOpaqueEnumDeclaration(this);
+    parserListener->enterOpaqueEnumSpecifier(this);
 }
 
-void CppParser::OpaqueEnumDeclarationContext::exitRule(tree::ParseTreeListener *listener) {
+void CppParser::OpaqueEnumSpecifierContext::exitRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<CppParserListener *>(listener);
   if (parserListener != nullptr)
-    parserListener->exitOpaqueEnumDeclaration(this);
+    parserListener->exitOpaqueEnumSpecifier(this);
 }
 
 
-antlrcpp::Any CppParser::OpaqueEnumDeclarationContext::accept(tree::ParseTreeVisitor *visitor) {
+antlrcpp::Any CppParser::OpaqueEnumSpecifierContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<CppParserVisitor*>(visitor))
-    return parserVisitor->visitOpaqueEnumDeclaration(this);
+    return parserVisitor->visitOpaqueEnumSpecifier(this);
   else
     return visitor->visitChildren(this);
 }
 
-CppParser::OpaqueEnumDeclarationContext* CppParser::opaqueEnumDeclaration() {
-  OpaqueEnumDeclarationContext *_localctx = _tracker.createInstance<OpaqueEnumDeclarationContext>(_ctx, getState());
-  enterRule(_localctx, 202, CppParser::RuleOpaqueEnumDeclaration);
+CppParser::OpaqueEnumSpecifierContext* CppParser::opaqueEnumSpecifier() {
+  OpaqueEnumSpecifierContext *_localctx = _tracker.createInstance<OpaqueEnumSpecifierContext>(_ctx, getState());
+  enterRule(_localctx, 202, CppParser::RuleOpaqueEnumSpecifier);
   size_t _la = 0;
 
   auto onExit = finally([=] {
@@ -24824,7 +24824,7 @@ std::vector<std::string> CppParser::_ruleNames = {
   "storageClassSpecifier", "functionSpecifier", "typeSpecifier", "typeSpecifierSequence", 
   "definingTypeSpecifier", "definingTypeSpecifierSequence", "simpleTypeSpecifier", 
   "typeName", "declarationTypeSpecifier", "elaboratedTypeSpecifier", "enumSpecifier", 
-  "enumHead", "enumHeadName", "opaqueEnumDeclaration", "enumKey", "enumBase", 
+  "enumHead", "enumHeadName", "opaqueEnumSpecifier", "enumKey", "enumBase", 
   "enumeratorList", "enumeratorDefinition", "enumerator", "namespaceDefinition", 
   "namedNamespaceDefinition", "unnamedNamespaceDefinition", "nestedNamespaceDefinition", 
   "enclosingNamespaceSpecifier", "namespaceBody", "namespaceAliasDefinition", 

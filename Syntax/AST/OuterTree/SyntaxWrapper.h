@@ -131,10 +131,10 @@ namespace Soup::Syntax::OuterTree
             const SyntaxNode* parentNode);
 
         /// <summary>
-        /// Create a EnumDeclaration
+        /// Create a EnumSpecifier
         /// </summary>
-        static std::shared_ptr<const EnumDeclaration> CreateOuter(
-            std::shared_ptr<const InnerTree::EnumDeclaration> innerNode,
+        static std::shared_ptr<const EnumSpecifier> CreateOuter(
+            std::shared_ptr<const InnerTree::EnumSpecifier> innerNode,
             const SyntaxNode* parentNode);
 
         /// <summary>

@@ -4,16 +4,16 @@
 
 namespace Soup::Syntax::InnerTree::UnitTests
 {
-    class ParseEnumDeclarationTests
+    class ParseEnumSpecifierTests
     {
     public:
         [[Fact]]
-        void SingleSimpleEnumDeclaration()
+        void SingleSimpleEnumSpecifier()
         {
             auto sourceCode = std::string("enum{}");
-            auto expression = ParseEnumDeclaration(sourceCode);
+            auto expression = ParseEnumSpecifier(sourceCode);
 
-            auto expected = SyntaxFactory::CreateEnumDeclaration(
+            auto expected = SyntaxFactory::CreateEnumSpecifier(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Enum),
                 nullptr,
                 nullptr,
@@ -31,9 +31,9 @@ namespace Soup::Syntax::InnerTree::UnitTests
         void SingleEnumClassSpecifier()
         {
             auto sourceCode = std::string("enum class MyEnum { Value1, Value2 }");
-            auto expression = ParseEnumDeclaration(sourceCode);
+            auto expression = ParseEnumSpecifier(sourceCode);
 
-            auto expected = SyntaxFactory::CreateEnumDeclaration(
+            auto expected = SyntaxFactory::CreateEnumSpecifier(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Enum),
                 SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::Class,
@@ -90,7 +90,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         }
 
     private:
-        std::shared_ptr<const EnumDeclaration> ParseEnumDeclaration(std::string& sourceCode)
+        std::shared_ptr<const EnumSpecifier> ParseEnumSpecifier(std::string& sourceCode)
         {
             auto uut = TestUtils::BuildParser(sourceCode);
             auto context = uut.Parser->enumSpecifier();
@@ -99,7 +99,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             auto node = uut.Visitor->visit(context)
                 .as<std::shared_ptr<const SyntaxNode>>();
 
-            return std::dynamic_pointer_cast<const EnumDeclaration>(node);
+            return std::dynamic_pointer_cast<const EnumSpecifier>(node);
         }
     };
 }

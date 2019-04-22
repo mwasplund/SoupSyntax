@@ -138,12 +138,12 @@ using namespace Soup::Syntax::OuterTree;
         new EmptyStatement(std::move(innerNode), parentNode));
 }
 
-/*static*/ std::shared_ptr<const EnumDeclaration> SyntaxWrapper::CreateOuter(
-    std::shared_ptr<const InnerTree::EnumDeclaration> innerNode,
+/*static*/ std::shared_ptr<const EnumSpecifier> SyntaxWrapper::CreateOuter(
+    std::shared_ptr<const InnerTree::EnumSpecifier> innerNode,
     const SyntaxNode* parentNode)
 {
-    return std::shared_ptr<const EnumDeclaration>(
-        new EnumDeclaration(std::move(innerNode), parentNode));
+    return std::shared_ptr<const EnumSpecifier>(
+        new EnumSpecifier(std::move(innerNode), parentNode));
 }
 
 /*static*/ std::shared_ptr<const EnumeratorDefinition> SyntaxWrapper::CreateOuter(

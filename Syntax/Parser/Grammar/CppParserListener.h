@@ -317,8 +317,8 @@ public:
   virtual void enterEnumHeadName(CppParser::EnumHeadNameContext *ctx) = 0;
   virtual void exitEnumHeadName(CppParser::EnumHeadNameContext *ctx) = 0;
 
-  virtual void enterOpaqueEnumDeclaration(CppParser::OpaqueEnumDeclarationContext *ctx) = 0;
-  virtual void exitOpaqueEnumDeclaration(CppParser::OpaqueEnumDeclarationContext *ctx) = 0;
+  virtual void enterOpaqueEnumSpecifier(CppParser::OpaqueEnumSpecifierContext *ctx) = 0;
+  virtual void exitOpaqueEnumSpecifier(CppParser::OpaqueEnumSpecifierContext *ctx) = 0;
 
   virtual void enterEnumKey(CppParser::EnumKeyContext *ctx) = 0;
   virtual void exitEnumKey(CppParser::EnumKeyContext *ctx) = 0;

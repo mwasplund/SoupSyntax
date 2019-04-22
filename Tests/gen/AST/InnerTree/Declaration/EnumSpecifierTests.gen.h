@@ -1,11 +1,11 @@
 #pragma once
-#include "AST/InnerTree/Declaration/EnumDeclarationTests.h"
+#include "AST/InnerTree/Declaration/EnumSpecifierTests.h"
 #include "RunTest.h"
 
-TestState RunInnerTreeEnumDeclarationTests()
+TestState RunInnerTreeEnumSpecifierTests()
 {
-    std::string className = "InnerTree::EnumDeclarationTests";
-    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::InnerTreeEnumDeclarationTests>();
+    std::string className = "InnerTree::EnumSpecifierTests";
+    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::InnerTreeEnumSpecifierTests>();
     TestState state = { 0, 0 };
 
     state += RunTest(

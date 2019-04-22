@@ -25,7 +25,7 @@ namespace Soup::Syntax
         ElseClause,
         EmptyDeclaration,
         EmptyStatement,
-        EnumDeclaration,
+        EnumSpecifier,
         EnumeratorDefinition,
         ExpressionStatement,
         FunctionDefinition,

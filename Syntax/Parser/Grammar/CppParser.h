@@ -79,7 +79,7 @@ public:
     RuleTypeSpecifierSequence = 91, RuleDefiningTypeSpecifier = 92, RuleDefiningTypeSpecifierSequence = 93, 
     RuleSimpleTypeSpecifier = 94, RuleTypeName = 95, RuleDeclarationTypeSpecifier = 96, 
     RuleElaboratedTypeSpecifier = 97, RuleEnumSpecifier = 98, RuleEnumHead = 99, 
-    RuleEnumHeadName = 100, RuleOpaqueEnumDeclaration = 101, RuleEnumKey = 102, 
+    RuleEnumHeadName = 100, RuleOpaqueEnumSpecifier = 101, RuleEnumKey = 102, 
     RuleEnumBase = 103, RuleEnumeratorList = 104, RuleEnumeratorDefinition = 105, 
     RuleEnumerator = 106, RuleNamespaceDefinition = 107, RuleNamedNamespaceDefinition = 108, 
     RuleUnnamedNamespaceDefinition = 109, RuleNestedNamespaceDefinition = 110, 
@@ -235,7 +235,7 @@ public:
   class EnumSpecifierContext;
   class EnumHeadContext;
   class EnumHeadNameContext;
-  class OpaqueEnumDeclarationContext;
+  class OpaqueEnumSpecifierContext;
   class EnumKeyContext;
   class EnumBaseContext;
   class EnumeratorListContext;
@@ -1809,7 +1809,7 @@ public:
     UsingDirectiveContext *usingDirective();
     StaticAssertDeclarationContext *staticAssertDeclaration();
     AliasDeclarationContext *aliasDeclaration();
-    OpaqueEnumDeclarationContext *opaqueEnumDeclaration();
+    OpaqueEnumSpecifierContext *opaqueEnumSpecifier();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -2258,9 +2258,9 @@ public:
 
   EnumHeadNameContext* enumHeadName();
 
-  class  OpaqueEnumDeclarationContext : public antlr4::ParserRuleContext {
+  class  OpaqueEnumSpecifierContext : public antlr4::ParserRuleContext {
   public:
-    OpaqueEnumDeclarationContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    OpaqueEnumSpecifierContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     EnumKeyContext *enumKey();
     antlr4::tree::TerminalNode *Identifier();
@@ -2276,7 +2276,7 @@ public:
    
   };
 
-  OpaqueEnumDeclarationContext* opaqueEnumDeclaration();
+  OpaqueEnumSpecifierContext* opaqueEnumSpecifier();
 
   class  EnumKeyContext : public antlr4::ParserRuleContext {
   public:

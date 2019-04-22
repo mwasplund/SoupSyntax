@@ -221,7 +221,7 @@ public:
 
     virtual antlrcpp::Any visitEnumHeadName(CppParser::EnumHeadNameContext *context) = 0;
 
-    virtual antlrcpp::Any visitOpaqueEnumDeclaration(CppParser::OpaqueEnumDeclarationContext *context) = 0;
+    virtual antlrcpp::Any visitOpaqueEnumSpecifier(CppParser::OpaqueEnumSpecifierContext *context) = 0;
 
     virtual antlrcpp::Any visitEnumKey(CppParser::EnumKeyContext *context) = 0;
 

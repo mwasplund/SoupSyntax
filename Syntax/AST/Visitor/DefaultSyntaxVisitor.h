@@ -94,7 +94,7 @@ namespace Soup::Syntax
             DefaultVisit(node);
         }
 
-        virtual void Visit(const OuterTree::EnumDeclaration& node) override
+        virtual void Visit(const OuterTree::EnumSpecifier& node) override
         {
             DefaultVisit(node);
         }

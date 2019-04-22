@@ -56,14 +56,34 @@ namespace Soup::Syntax::InnerTree::UnitTests
         [[Fact]]
         void EnumSpecifierVariable()
         {
-            auto sourceCode = std::string("enum E1 {} e1;");
+            auto sourceCode = std::string("enum class E1 {} e1;");
             auto actual = ParseSimpleDeclaration(sourceCode);
 
             auto expected = SyntaxFactory::CreateSimpleDeclaration(
                 SyntaxFactory::CreateDeclarationSpecifier(
-                    SyntaxFactory::CreateIdentifierType(
-                        SyntaxFactory::CreateSimpleIdentifier(
-                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass")))),
+                    SyntaxFactory::CreateEnumSpecifier(
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Enum),
+                        SyntaxFactory::CreateKeywordToken(
+                            SyntaxTokenType::Class,
+                            {
+                                SyntaxFactory::CreateTrivia(" "),
+                            },
+                            {}),
+                        SyntaxFactory::CreateUniqueToken(
+                            SyntaxTokenType::Identifier,
+                            "E1",
+                            {
+                                SyntaxFactory::CreateTrivia(" "),
+                            },
+                            {}),
+                        SyntaxFactory::CreateKeywordToken(
+                            SyntaxTokenType::OpenBrace,
+                            {
+                                SyntaxFactory::CreateTrivia(" "),
+                            },
+                            {}),
+                        SyntaxFactory::CreateSyntaxSeparatorList<EnumeratorDefinition>({}, {}),
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace))),
                 SyntaxFactory::CreateInitializerDeclaratorList(
                     SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
                         {

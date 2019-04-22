@@ -26,7 +26,7 @@ namespace Soup::Syntax
         virtual void Visit(const OuterTree::ElseClause& node) = 0;
         virtual void Visit(const OuterTree::EmptyDeclaration& node) = 0;
         virtual void Visit(const OuterTree::EmptyStatement& node) = 0;
-        virtual void Visit(const OuterTree::EnumDeclaration& node) = 0;
+        virtual void Visit(const OuterTree::EnumSpecifier& node) = 0;
         virtual void Visit(const OuterTree::EnumeratorDefinition& node) = 0;
         virtual void Visit(const OuterTree::ExpressionStatement& node) = 0;
         virtual void Visit(const OuterTree::FunctionDefinition& node) = 0;

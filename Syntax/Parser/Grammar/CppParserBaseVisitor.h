@@ -422,7 +422,7 @@ public:
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitOpaqueEnumDeclaration(CppParser::OpaqueEnumDeclarationContext *ctx) override {
+  virtual antlrcpp::Any visitOpaqueEnumSpecifier(CppParser::OpaqueEnumSpecifierContext *ctx) override {
     return visitChildren(ctx);
   }
 
