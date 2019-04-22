@@ -1,11 +1,11 @@
 #pragma once
-#include "AST/OuterTree/Declaration/ClassDeclarationTests.h"
+#include "AST/OuterTree/Declaration/ClassSpecifierTests.h"
 #include "RunTest.h"
 
-TestState RunOuterTreeClassDeclarationTests()
+TestState RunOuterTreeClassSpecifierTests()
 {
-    std::string className = "OuterTree::ClassDeclarationTests";
-    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::OuterTreeClassDeclarationTests>();
+    std::string className = "OuterTree::ClassSpecifierTests";
+    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::OuterTreeClassSpecifierTests>();
     TestState state = { 0, 0 };
 
     state += RunTest(

@@ -13,7 +13,7 @@ namespace Soup::Syntax
         AccessorSpecifier,
         BinaryExpression,
         CatchClause,
-        ClassDeclaration,
+        ClassSpecifier,
         CompoundStatement,
         ConstructorDefinition,
         ConstructorInitializer,

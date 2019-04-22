@@ -2747,7 +2747,7 @@ antlrcpp::Any ASTCppParserVisitor::visitClassSpecifier(CppParser::ClassSpecifier
                 std::move(memberSpecifiers));
 
     return std::static_pointer_cast<const SyntaxNode>(
-        SyntaxFactory::CreateClassDeclaration(
+        SyntaxFactory::CreateClassSpecifier(
             std::move(classToken),
             std::move(identifierToken),
             CreateToken(SyntaxTokenType::OpenBrace, context->OpenBrace()),

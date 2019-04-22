@@ -4,16 +4,16 @@
 
 namespace Soup::Syntax::InnerTree::UnitTests
 {
-    class ParseClassDeclarationTests
+    class ParseClassSpecifierTests
     {
     public:
         [[Fact]]
         void Simple()
         {
             auto sourceCode = std::string("class{}");
-            auto expression = ParseClassDeclaration(sourceCode);
+            auto expression = ParseClassSpecifier(sourceCode);
 
-            auto expected = SyntaxFactory::CreateClassDeclaration(
+            auto expected = SyntaxFactory::CreateClassSpecifier(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
                 nullptr,
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
@@ -30,9 +30,9 @@ namespace Soup::Syntax::InnerTree::UnitTests
         void SingleDeclaration()
         {
             auto sourceCode = std::string("class MyClass { ; }");
-            auto expression = ParseClassDeclaration(sourceCode);
+            auto expression = ParseClassSpecifier(sourceCode);
 
-            auto expected = SyntaxFactory::CreateClassDeclaration(
+            auto expected = SyntaxFactory::CreateClassSpecifier(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
                 SyntaxFactory::CreateUniqueToken(
                     SyntaxTokenType::Identifier,
@@ -74,9 +74,9 @@ namespace Soup::Syntax::InnerTree::UnitTests
         void MultipleDeclarations()
         {
             auto sourceCode = std::string("class MyClass { public: ; }");
-            auto expression = ParseClassDeclaration(sourceCode);
+            auto expression = ParseClassSpecifier(sourceCode);
 
-            auto expected = SyntaxFactory::CreateClassDeclaration(
+            auto expected = SyntaxFactory::CreateClassSpecifier(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
                 SyntaxFactory::CreateUniqueToken(
                     SyntaxTokenType::Identifier,
@@ -123,7 +123,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         }
 
     private:
-        std::shared_ptr<const ClassDeclaration> ParseClassDeclaration(std::string& sourceCode)
+        std::shared_ptr<const ClassSpecifier> ParseClassSpecifier(std::string& sourceCode)
         {
             auto uut = TestUtils::BuildParser(sourceCode);
             auto context = uut.Parser->classSpecifier();
@@ -132,7 +132,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             auto node = uut.Visitor->visit(context)
                 .as<std::shared_ptr<const SyntaxNode>>();
 
-            return std::dynamic_pointer_cast<const ClassDeclaration>(node);
+            return std::dynamic_pointer_cast<const ClassSpecifier>(node);
         }
     };
 }

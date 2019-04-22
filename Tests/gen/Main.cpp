@@ -7,7 +7,7 @@ import SoupSyntax;
 #include "AST\InnerTree\Attribute\AttributeSpecifierTests.gen.h"
 
 #include "AST\InnerTree\Declaration\AccessorSpecifierTests.gen.h"
-#include "AST\InnerTree\Declaration\ClassDeclarationTests.gen.h"
+#include "AST\InnerTree\Declaration\ClassSpecifierTests.gen.h"
 #include "AST\InnerTree\Declaration\ConstructorDefinitionTests.gen.h"
 #include "AST\InnerTree\Declaration\ConstructorInitializerTests.gen.h"
 #include "AST\InnerTree\Declaration\DeclarationSpecifierTests.gen.h"
@@ -59,7 +59,7 @@ import SoupSyntax;
 #include "AST\OuterTree\Attribute\AttributeSpecifierTests.gen.h"
 
 #include "AST\OuterTree\Declaration\AccessorSpecifierTests.gen.h"
-#include "AST\OuterTree\Declaration\ClassDeclarationTests.gen.h"
+#include "AST\OuterTree\Declaration\ClassSpecifierTests.gen.h"
 #include "AST\OuterTree\Declaration\ConstructorDefinitionTests.gen.h"
 #include "AST\OuterTree\Declaration\ConstructorInitializerTests.gen.h"
 #include "AST\OuterTree\Declaration\DeclarationSpecifierTests.gen.h"
@@ -116,7 +116,7 @@ import SoupSyntax;
 #include "Parser\Attribute\ParseAttributeSpecifierTests.gen.h"
 
 #include "Parser\Declaration\ParseAccessorSpecifierTests.gen.h"
-#include "Parser\Declaration\ParseClassDeclarationTests.gen.h"
+#include "Parser\Declaration\ParseClassSpecifierTests.gen.h"
 #include "Parser\Declaration\ParseConstructorDefinitionTests.gen.h"
 #include "Parser\Declaration\ParseEnumDeclarationTests.gen.h"
 #include "Parser\Declaration\ParseFunctionDefinitionTests.gen.h"
@@ -151,7 +151,7 @@ int main()
     state += RunInnerTreeAttributeSpecifierTests();
 
     state += RunInnerTreeAccessorSpecifierTests();
-    state += RunInnerTreeClassDeclarationTests();
+    state += RunInnerTreeClassSpecifierTests();
     state += RunInnerTreeConstructorDefinitionTests();
     state += RunInnerTreeConstructorInitializerTests();
     state += RunInnerTreeDeclarationSpecifierTests();
@@ -203,7 +203,7 @@ int main()
     state += RunOuterTreeAttributeSpecifierTests();
 
     state += RunOuterTreeAccessorSpecifierTests();
-    state += RunOuterTreeClassDeclarationTests();
+    state += RunOuterTreeClassSpecifierTests();
     state += RunOuterTreeConstructorDefinitionTests();
     state += RunOuterTreeConstructorInitializerTests();
     state += RunOuterTreeDeclarationSpecifierTests();
@@ -260,7 +260,7 @@ int main()
     state += RunParseAttributeSpecifierTests();
 
     state += RunParseAccessorSpecifierTests();
-    state += RunParseClassDeclarationTests();
+    state += RunParseClassSpecifierTests();
     state += RunParseConstructorDefinitionTests();
     state += RunParseEnumDeclarationTests();
     state += RunParseFunctionDefinitionTests();

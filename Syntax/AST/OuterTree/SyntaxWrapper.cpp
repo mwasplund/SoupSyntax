@@ -42,12 +42,12 @@ using namespace Soup::Syntax::OuterTree;
         new CatchClause(std::move(innerNode), parentNode));
 }
 
-/*static*/ std::shared_ptr<const ClassDeclaration> SyntaxWrapper::CreateOuter(
-    std::shared_ptr<const InnerTree::ClassDeclaration> innerNode,
+/*static*/ std::shared_ptr<const ClassSpecifier> SyntaxWrapper::CreateOuter(
+    std::shared_ptr<const InnerTree::ClassSpecifier> innerNode,
     const SyntaxNode* parentNode)
 {
-    return std::shared_ptr<const ClassDeclaration>(
-        new ClassDeclaration(std::move(innerNode), parentNode));
+    return std::shared_ptr<const ClassSpecifier>(
+        new ClassSpecifier(std::move(innerNode), parentNode));
 }
 
 /*static*/ std::shared_ptr<const CompoundStatement> SyntaxWrapper::CreateOuter(

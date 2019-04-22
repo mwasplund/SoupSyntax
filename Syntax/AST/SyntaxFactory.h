@@ -105,9 +105,9 @@ namespace Soup::Syntax
         }
 
         /// <summary>
-        /// Create a ClassDeclaration
+        /// Create a ClassSpecifier
         /// </summary>
-        static std::shared_ptr<const InnerTree::ClassDeclaration> CreateClassDeclaration(
+        static std::shared_ptr<const InnerTree::ClassSpecifier> CreateClassSpecifier(
             std::shared_ptr<const InnerTree::SyntaxToken> classToken,
             std::shared_ptr<const InnerTree::SyntaxToken> identifierToken,
             std::shared_ptr<const InnerTree::SyntaxToken> openBraceToken,
@@ -124,8 +124,8 @@ namespace Soup::Syntax
             if (closeBraceToken == nullptr)
                 throw std::runtime_error("ArgumentNull - closeBraceToken");
 
-            auto result = std::shared_ptr<const InnerTree::ClassDeclaration>(
-                new InnerTree::ClassDeclaration(
+            auto result = std::shared_ptr<const InnerTree::ClassSpecifier>(
+                new InnerTree::ClassSpecifier(
                     std::move(classToken),
                     std::move(identifierToken),
                     std::move(openBraceToken),

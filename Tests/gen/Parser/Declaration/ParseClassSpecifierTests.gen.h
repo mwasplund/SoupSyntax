@@ -1,11 +1,11 @@
 #pragma once
-#include "ParseClassDeclarationTests.h"
+#include "ParseClassSpecifierTests.h"
 #include "../../RunTest.h"
 
-TestState RunParseClassDeclarationTests()
+TestState RunParseClassSpecifierTests()
 {
-    std::string className = "ParseClassDeclarationTests";
-    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::ParseClassDeclarationTests>();
+    std::string className = "ParseClassSpecifierTests";
+    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::ParseClassSpecifierTests>();
     TestState state = { 0, 0 };
 
     state += RunTest(

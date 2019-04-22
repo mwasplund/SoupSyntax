@@ -3,9 +3,9 @@
 namespace Soup::Syntax::InnerTree
 {
     /// <summary>
-    /// Class declaration
+    /// Class specifier that introduces a new class type inside a declaration sequence
     /// </summary>
-    export class ClassDeclaration final : public Declaration
+    export class ClassSpecifier final : public TypeSpecifier
     {
         friend class ::Soup::Syntax::SyntaxFactory;
 
@@ -13,13 +13,13 @@ namespace Soup::Syntax::InnerTree
         /// <summary>
         /// Initialize
         /// </summary>
-        ClassDeclaration(
+        ClassSpecifier(
             std::shared_ptr<const SyntaxToken> classToken,
             std::shared_ptr<const SyntaxToken> identifierToken,
             std::shared_ptr<const SyntaxToken> openBraceToken,
             std::shared_ptr<const SyntaxList<Declaration>> memberDeclarations,
             std::shared_ptr<const SyntaxToken> closeBraceToken) :
-            Declaration(SyntaxNodeType::ClassDeclaration),
+            TypeSpecifier(SyntaxNodeType::ClassSpecifier),
             m_classToken(std::move(classToken)),
             m_identifierToken(std::move(identifierToken)),
             m_openBraceToken(std::move(openBraceToken)),
@@ -32,11 +32,11 @@ namespace Soup::Syntax::InnerTree
         /// <summary>
         /// Create an outer node with this node and the provided parent
         /// </summary>
-        std::shared_ptr<const OuterTree::ClassDeclaration> CreateOuter(
+        std::shared_ptr<const OuterTree::ClassSpecifier> CreateOuter(
             const OuterTree::SyntaxNode* parentNode) const
         {
             return OuterTree::SyntaxWrapper::CreateOuter(
-                GetSelf<ClassDeclaration>(),
+                GetSelf<ClassSpecifier>(),
                 parentNode);
         }
 
@@ -51,7 +51,7 @@ namespace Soup::Syntax::InnerTree
         }
 
         /// <summary>
-        /// Gets the optional SyntaxToken for the class/struct keyword.
+        /// Gets the SyntaxToken for the class/struct keyword.
         /// </summary>
         const SyntaxToken& GetClassToken() const
         {
@@ -104,7 +104,7 @@ namespace Soup::Syntax::InnerTree
         /// <summary>
         /// Equality operator
         /// </summary>
-        bool operator ==(const ClassDeclaration& rhs) const
+        bool operator ==(const ClassSpecifier& rhs) const
         {
             return *m_classToken == *rhs.m_classToken &&
                 SyntaxUtils::AreOptionalValuesEqual(m_identifierToken, rhs.m_identifierToken) &&
@@ -113,7 +113,7 @@ namespace Soup::Syntax::InnerTree
                 *m_closeBraceToken == *rhs.m_closeBraceToken;
         }
 
-        bool operator !=(const ClassDeclaration& rhs) const
+        bool operator !=(const ClassSpecifier& rhs) const
         {
             return !(*this == rhs);
         }
@@ -124,7 +124,7 @@ namespace Soup::Syntax::InnerTree
         /// </summary>
         virtual bool Equals(const SyntaxNode& rhs) const final
         {
-            return *this == static_cast<const ClassDeclaration&>(rhs);
+            return *this == static_cast<const ClassSpecifier&>(rhs);
         }
 
     private:

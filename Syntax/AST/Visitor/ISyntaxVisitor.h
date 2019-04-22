@@ -14,7 +14,7 @@ namespace Soup::Syntax
         virtual void Visit(const OuterTree::AccessorSpecifier& node) = 0;
         virtual void Visit(const OuterTree::BinaryExpression& node) = 0;
         virtual void Visit(const OuterTree::CatchClause& node) = 0;
-        virtual void Visit(const OuterTree::ClassDeclaration& node) = 0;
+        virtual void Visit(const OuterTree::ClassSpecifier& node) = 0;
         virtual void Visit(const OuterTree::ConstructorDefinition& node) = 0;
         virtual void Visit(const OuterTree::ConstructorInitializer& node) = 0;
         virtual void Visit(const OuterTree::CompoundStatement& node) = 0;

@@ -34,7 +34,7 @@ namespace Soup::Syntax
             DefaultVisit(node);
         }
 
-        virtual void Visit(const OuterTree::ClassDeclaration& node) override
+        virtual void Visit(const OuterTree::ClassSpecifier& node) override
         {
             DefaultVisit(node);
         }

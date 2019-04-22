@@ -15,9 +15,23 @@ namespace Soup::Syntax::InnerTree::UnitTests
 
             auto expected = SyntaxFactory::CreateSimpleDeclaration(
                 SyntaxFactory::CreateDeclarationSpecifier(
-                    SyntaxFactory::CreateIdentifierType(
-                        SyntaxFactory::CreateSimpleIdentifier(
-                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass")))),
+                    SyntaxFactory::CreateClassSpecifier(
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
+                        SyntaxFactory::CreateUniqueToken(
+                            SyntaxTokenType::Identifier,
+                            "C1",
+                            {
+                                SyntaxFactory::CreateTrivia(" "),
+                            },
+                            {}),
+                        SyntaxFactory::CreateKeywordToken(
+                            SyntaxTokenType::OpenBrace,
+                            {
+                                SyntaxFactory::CreateTrivia(" "),
+                            },
+                            {}),
+                        SyntaxFactory::CreateSyntaxList<Declaration>({}),
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace))),
                 SyntaxFactory::CreateInitializerDeclaratorList(
                     SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
                         {

@@ -4,13 +4,13 @@
 
 namespace Soup::Syntax::InnerTree::UnitTests
 {
-    class InnerTreeClassDeclarationTests
+    class InnerTreeClassSpecifierTests
     {
     public:
         [[Fact]]
         void InitializeNoIdentifier()
         {
-            auto uut = SyntaxFactory::CreateClassDeclaration(
+            auto uut = SyntaxFactory::CreateClassSpecifier(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
                 nullptr,
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
@@ -18,7 +18,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             Assert::AreEqual(
-                SyntaxNodeType::ClassDeclaration,
+                SyntaxNodeType::ClassSpecifier,
                 uut->GetType(),
                 "Verify has correct type.");
             Assert::AreEqual(
@@ -45,7 +45,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         [[Fact]]
         void InitializeWithIdentifier()
         {
-            auto uut = SyntaxFactory::CreateClassDeclaration(
+            auto uut = SyntaxFactory::CreateClassSpecifier(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
@@ -60,7 +60,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             Assert::AreEqual(
-                SyntaxNodeType::ClassDeclaration,
+                SyntaxNodeType::ClassSpecifier,
                 uut->GetType(),
                 "Verify has correct type.");
             Assert::AreEqual(
@@ -98,7 +98,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         [[Fact]]
         void OperatorEqualNoIdentifier()
         {
-            auto uut = SyntaxFactory::CreateClassDeclaration(
+            auto uut = SyntaxFactory::CreateClassSpecifier(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
                 nullptr,
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
@@ -106,7 +106,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             TestUtils::AreEqual(
-                SyntaxFactory::CreateClassDeclaration(
+                SyntaxFactory::CreateClassSpecifier(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
                     nullptr,
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
@@ -119,7 +119,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         [[Fact]]
         void OperatorEqualWithIdentifier()
         {
-            auto uut = SyntaxFactory::CreateClassDeclaration(
+            auto uut = SyntaxFactory::CreateClassSpecifier(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
@@ -134,7 +134,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             TestUtils::AreEqual(
-                SyntaxFactory::CreateClassDeclaration(
+                SyntaxFactory::CreateClassSpecifier(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
@@ -154,7 +154,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         [[Fact]]
         void OperatorNotEqualClassToken()
         {
-            auto uut = SyntaxFactory::CreateClassDeclaration(
+            auto uut = SyntaxFactory::CreateClassSpecifier(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
@@ -169,7 +169,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             TestUtils::AreNotEqual(
-                SyntaxFactory::CreateClassDeclaration(
+                SyntaxFactory::CreateClassSpecifier(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Struct),
                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
@@ -189,7 +189,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         [[Fact]]
         void OperatorNotEqualNoIdentifier()
         {
-            auto uut = SyntaxFactory::CreateClassDeclaration(
+            auto uut = SyntaxFactory::CreateClassSpecifier(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
@@ -201,7 +201,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             TestUtils::AreNotEqual(
-                SyntaxFactory::CreateClassDeclaration(
+                SyntaxFactory::CreateClassSpecifier(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
                     nullptr,
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
@@ -218,7 +218,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         [[Fact]]
         void OperatorNotEqualWithIdentifier()
         {
-            auto uut = SyntaxFactory::CreateClassDeclaration(
+            auto uut = SyntaxFactory::CreateClassSpecifier(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
@@ -230,7 +230,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             TestUtils::AreNotEqual(
-                SyntaxFactory::CreateClassDeclaration(
+                SyntaxFactory::CreateClassSpecifier(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass2"),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
@@ -247,7 +247,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         [[Fact]]
         void OperatorNotEqualOpenBraceToken()
         {
-            auto uut = SyntaxFactory::CreateClassDeclaration(
+            auto uut = SyntaxFactory::CreateClassSpecifier(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
@@ -259,7 +259,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             TestUtils::AreNotEqual(
-                SyntaxFactory::CreateClassDeclaration(
+                SyntaxFactory::CreateClassSpecifier(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"),
                     SyntaxFactory::CreateKeywordToken(
@@ -281,7 +281,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         [[Fact]]
         void OperatorNotEqualMemberDeclarations()
         {
-            auto uut = SyntaxFactory::CreateClassDeclaration(
+            auto uut = SyntaxFactory::CreateClassSpecifier(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
@@ -293,7 +293,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             TestUtils::AreNotEqual(
-                SyntaxFactory::CreateClassDeclaration(
+                SyntaxFactory::CreateClassSpecifier(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
@@ -306,7 +306,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         [[Fact]]
         void OperatorNotEqualCloseBraceToken()
         {
-            auto uut = SyntaxFactory::CreateClassDeclaration(
+            auto uut = SyntaxFactory::CreateClassSpecifier(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
                 SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
@@ -318,7 +318,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             TestUtils::AreNotEqual(
-                SyntaxFactory::CreateClassDeclaration(
+                SyntaxFactory::CreateClassSpecifier(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
                     SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),

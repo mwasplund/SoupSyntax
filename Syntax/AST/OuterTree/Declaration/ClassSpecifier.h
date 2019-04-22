@@ -3,9 +3,9 @@
 namespace Soup::Syntax::OuterTree
 {
     /// <summary>
-    /// Class declaration
+    /// Class specifier
     /// </summary>
-    export class ClassDeclaration final : public Declaration
+    export class ClassSpecifier final : public TypeSpecifier
     {
         friend class ::Soup::Syntax::OuterTree::SyntaxWrapper;
 
@@ -13,10 +13,10 @@ namespace Soup::Syntax::OuterTree
         /// <summary>
         /// Initialize
         /// </summary>
-        ClassDeclaration(
-            std::shared_ptr<const InnerTree::ClassDeclaration> innerNode,
+        ClassSpecifier(
+            std::shared_ptr<const InnerTree::ClassSpecifier> innerNode,
             const SyntaxNode* parentNode) :
-            Declaration(innerNode, parentNode),
+            TypeSpecifier(innerNode, parentNode),
             m_classToken(innerNode->GetClassToken().CreateOuter(this)),
             m_identifierToken(
                 innerNode->HasIdentifierToken() ?
@@ -30,7 +30,7 @@ namespace Soup::Syntax::OuterTree
 
     public:
         /// <summary>
-        /// Gets the optional SyntaxToken for the class/struct keyword.
+        /// Gets the SyntaxToken for the class/struct keyword.
         /// </summary>
         const SyntaxToken& GetClassToken() const
         {

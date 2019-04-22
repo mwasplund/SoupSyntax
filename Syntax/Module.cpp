@@ -46,7 +46,7 @@ namespace Soup::Syntax::InnerTree
 
     // Declarations
     class AccessorSpecifier;
-    class ClassDeclaration;
+    class ClassSpecifier;
     class ConstructorDefinition;
     class ConstructorInitializer;
     class Declaration;
@@ -121,7 +121,7 @@ namespace Soup::Syntax::OuterTree
 
     // Declarations
     class AccessorSpecifier;
-    class ClassDeclaration;
+    class ClassSpecifier;
     class ConstructorDefinition;
     class ConstructorInitializer;
     class Declaration;
@@ -215,7 +215,7 @@ namespace Soup::Syntax::OuterTree
 
 #include "AST/InnerTree/Declaration/AccessorSpecifier.h"
 #include "AST/InnerTree/Declaration/DeclarationSpecifier.h"
-#include "AST/InnerTree/Declaration/ClassDeclaration.h"
+#include "AST/InnerTree/Declaration/ClassSpecifier.h"
 #include "AST/InnerTree/Declaration/IdentifierType.h"
 #include "AST/InnerTree/Declaration/InitializerDeclarator.h"
 #include "AST/InnerTree/Declaration/InitializerDeclaratorList.h"
@@ -286,7 +286,7 @@ namespace Soup::Syntax::OuterTree
 
 #include "AST/OuterTree/Declaration/AccessorSpecifier.h"
 #include "AST/OuterTree/Declaration/DeclarationSpecifier.h"
-#include "AST/OuterTree/Declaration/ClassDeclaration.h"
+#include "AST/OuterTree/Declaration/ClassSpecifier.h"
 #include "AST/OuterTree/Declaration/IdentifierType.h"
 #include "AST/OuterTree/Declaration/InitializerDeclarator.h"
 #include "AST/OuterTree/Declaration/InitializerDeclaratorList.h"

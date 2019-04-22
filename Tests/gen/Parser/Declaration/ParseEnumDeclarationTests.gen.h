@@ -14,8 +14,8 @@ TestState RunParseEnumDeclarationTests()
         [&testClass]() { testClass->SingleSimpleEnumDeclaration(); });
     state += RunTest(
         className,
-        "SingleEnumClassDeclaration",
-        [&testClass]() { testClass->SingleEnumClassDeclaration(); });
+        "SingleEnumClassSpecifier",
+        [&testClass]() { testClass->SingleEnumClassSpecifier(); });
 
     return state;
 }

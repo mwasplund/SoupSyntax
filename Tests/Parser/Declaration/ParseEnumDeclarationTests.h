@@ -28,7 +28,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         }
 
         [[Fact]]
-        void SingleEnumClassDeclaration()
+        void SingleEnumClassSpecifier()
         {
             auto sourceCode = std::string("enum class MyEnum { Value1, Value2 }");
             auto expression = ParseEnumDeclaration(sourceCode);

@@ -47,10 +47,10 @@ namespace Soup::Syntax::OuterTree
             const SyntaxNode* parentNode);
 
         /// <summary>
-        /// Create a ClassDeclaration
+        /// Create a ClassSpecifier
         /// </summary>
-        static std::shared_ptr<const ClassDeclaration> CreateOuter(
-            std::shared_ptr<const InnerTree::ClassDeclaration> innerNode,
+        static std::shared_ptr<const ClassSpecifier> CreateOuter(
+            std::shared_ptr<const InnerTree::ClassSpecifier> innerNode,
             const SyntaxNode* parentNode);
 
         /// <summary>

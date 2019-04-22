@@ -92,8 +92,8 @@ namespace Soup::Syntax
                     return "BinaryExpression";
                 case SyntaxNodeType::CatchClause:
                     return "CatchClause";
-                case SyntaxNodeType::ClassDeclaration:
-                    return "ClassDeclaration";
+                case SyntaxNodeType::ClassSpecifier:
+                    return "ClassSpecifier";
                 case SyntaxNodeType::CompoundStatement:
                     return "CompoundStatement";
                 case SyntaxNodeType::ConstructorDefinition:
