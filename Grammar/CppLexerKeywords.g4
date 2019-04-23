@@ -11,6 +11,7 @@ Break : 'break';
 Case : 'case';
 Catch : 'catch';
 Char : 'char';
+Char8 : 'char8_t';
 Char16 : 'char16_t';
 Char32 : 'char32_t';
 Class : 'class';

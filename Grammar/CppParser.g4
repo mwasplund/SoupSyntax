@@ -437,7 +437,7 @@ blockDeclaration:
 	usingDirective |
 	staticAssertDeclaration |
 	aliasDeclaration |
-	opaqueEnumDeclaration;
+	opaqueEnumSpecifier;
 
 noDeclarationSpecifierFunctionDeclaration:
 	attributeSpecifierSequence? declarator Semicolon;
@@ -520,6 +520,7 @@ simpleTypeSpecifier:
 	// TODO nestedNameSpecifier Template simpleTemplateIdentifier |
 	// TODO nestedNameSpecifier? templateName |
 	Char |
+	Char8 | // C++20
 	Char16 |
 	Char32 |
 	WChar |
@@ -559,7 +560,7 @@ enumHead:
 enumHeadName:
 	nestedNameSpecifier? Identifier;
 
-opaqueEnumDeclaration:
+opaqueEnumSpecifier:
 	enumKey attributeSpecifierSequence? nestedNameSpecifier? Identifier enumBase? Semicolon;
 
 enumKey:

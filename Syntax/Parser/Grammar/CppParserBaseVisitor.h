@@ -1,9 +1,6 @@
 
 // Generated from Grammar\CppParser.g4 by ANTLR 4.7.1
 
-
-// Generated from Grammar\CppParser.g4 by ANTLR 4.7.1
-
 #pragma once
 
 

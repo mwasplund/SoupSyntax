@@ -95,8 +95,9 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LessThan),
                             SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
                                 {
-                                    SyntaxFactory::CreateSimpleIdentifier(
-                                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "ClassA")),
+                                    SyntaxFactory::CreateIdentifierType(
+                                        SyntaxFactory::CreateSimpleIdentifier(
+                                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "ClassA"))),
                                 },
                                 {}),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan)))),

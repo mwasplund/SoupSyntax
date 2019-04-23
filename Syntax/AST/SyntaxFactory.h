@@ -720,6 +720,9 @@ namespace Soup::Syntax
                 case SyntaxTokenType::Char:
                      value = "char";
                      break;
+                case SyntaxTokenType::Char8:
+                     value = "char8_t";
+                     break;
                 case SyntaxTokenType::Char16:
                      value = "char16_t";
                      break;

@@ -207,14 +207,15 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LessThan),
                             SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
                                 {
-                                    SyntaxFactory::CreateSimpleIdentifier(
-                                        SyntaxFactory::CreateUniqueToken(
-                                            SyntaxTokenType::Identifier,
-                                            "ClassA",
-                                            {
-                                                SyntaxFactory::CreateTrivia(" "),
-                                            },
-                                            {})),
+                                    SyntaxFactory::CreateIdentifierType(
+                                        SyntaxFactory::CreateSimpleIdentifier(
+                                            SyntaxFactory::CreateUniqueToken(
+                                                SyntaxTokenType::Identifier,
+                                                "ClassA",
+                                                {
+                                                    SyntaxFactory::CreateTrivia(" "),
+                                                },
+                                                {}))),
                                 },
                                 {}),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan)))),
@@ -277,8 +278,9 @@ namespace Soup::Syntax::InnerTree::UnitTests
                                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LessThan),
                                             SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
                                                 {
-                                                    SyntaxFactory::CreateSimpleIdentifier(
-                                                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Attribute")),
+                                                    SyntaxFactory::CreateIdentifierType(
+                                                        SyntaxFactory::CreateSimpleIdentifier(
+                                                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Attribute"))),
                                                 },
                                                 {}),
                                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan))),

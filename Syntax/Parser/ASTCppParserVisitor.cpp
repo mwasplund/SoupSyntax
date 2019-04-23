@@ -1686,26 +1686,22 @@ antlrcpp::Any ASTCppParserVisitor::visitSimpleTypeSpecifier(CppParser::SimpleTyp
     Trace("VisitSimpleTypeSpecifier");
     if (context->typeName() != nullptr)
     {
+        auto identifier = SafeDynamicCast<const UnqualifiedIdentifier>(
+            visit(context->typeName())
+                .as<std::shared_ptr<const SyntaxNode>>(), __LINE__);
+
         // Check for the optional nested name specifier
+        std::shared_ptr<const NestedNameSpecifier> qualifier = nullptr;
         if (context->nestedNameSpecifier() != nullptr)
         {
-            auto qualifier = visit(context->nestedNameSpecifier())
+            qualifier = visit(context->nestedNameSpecifier())
                 .as<std::shared_ptr<const NestedNameSpecifier>>();
-
-            auto identifier = SafeDynamicCast<const UnqualifiedIdentifier>(
-                visit(context->typeName())
-                    .as<std::shared_ptr<const SyntaxNode>>(), __LINE__);
-
-            // Replace the right name with the current unqlaified name
-            return std::static_pointer_cast<const SyntaxNode>(
-                SyntaxFactory::CreateIdentifierType(
-                    std::move(qualifier),
-                    std::move(identifier)));
         }
-        else
-        {
-            return visit(context->typeName());
-        }
+
+        return std::static_pointer_cast<const SyntaxNode>(
+            SyntaxFactory::CreateIdentifierType(
+                std::move(qualifier),
+                std::move(identifier)));
     }
     else if (context->Char() != nullptr)
     {
@@ -1713,6 +1709,13 @@ antlrcpp::Any ASTCppParserVisitor::visitSimpleTypeSpecifier(CppParser::SimpleTyp
             SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                 PrimitiveDataType::Char,
                 CreateToken(SyntaxTokenType::Char, context->Char())));
+    }
+    else if (context->Char8() != nullptr)
+    {
+        return std::static_pointer_cast<const SyntaxNode>(
+            SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
+                PrimitiveDataType::Char8,
+                CreateToken(SyntaxTokenType::Char8, context->Char8())));
     }
     else if (context->Char16() != nullptr)
     {
