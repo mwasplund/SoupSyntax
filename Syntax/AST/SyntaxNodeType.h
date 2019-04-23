@@ -46,6 +46,8 @@ namespace Soup::Syntax
         Parameter,
         ParameterList,
         PrimitiveDataTypeSpecifier,
+        PointerDeclarator,
+        PointerOperator,
         RegularFunctionBody,
         ReturnStatement,
         SimpleDeclaration,

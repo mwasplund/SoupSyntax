@@ -79,7 +79,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         }
 
     private:
-        std::shared_ptr<const AttributeSpecifier> ParseAttributeSpecifier(std::string& sourceCode)
+        std::shared_ptr<const AttributeSpecifier> ParseAttributeSpecifier(const std::string& sourceCode)
         {
             auto uut = TestUtils::BuildParser(sourceCode);
             auto context = uut.Parser->attributeSpecifier();

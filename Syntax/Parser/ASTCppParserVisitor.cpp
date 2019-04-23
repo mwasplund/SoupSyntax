@@ -1529,7 +1529,11 @@ antlrcpp::Any ASTCppParserVisitor::visitAttributeDeclaration(CppParser::Attribut
 antlrcpp::Any ASTCppParserVisitor::visitDeclarationModifier(CppParser::DeclarationModifierContext* context)
 {
     Trace("visitDeclarationModifier");
-    if (context->storageClassSpecifier() != nullptr)
+    if (context->constVolatileQualifier() != nullptr)
+    {
+        return visit(context->constVolatileQualifier());
+    }
+    else if (context->storageClassSpecifier() != nullptr)
     {
         return visit(context->storageClassSpecifier());
     }
@@ -2309,7 +2313,12 @@ antlrcpp::Any ASTCppParserVisitor::visitDeclarator(CppParser::DeclaratorContext 
 antlrcpp::Any ASTCppParserVisitor::visitPointerDeclarator(CppParser::PointerDeclaratorContext* context)
 {
     Trace("VisitPointerDeclarator");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+    return std::static_pointer_cast<const SyntaxNode>(
+        SyntaxFactory::CreatePointerDeclarator(
+            visit(context->pointerOperator())
+                .as<std::shared_ptr<const PointerOperator>>(),
+            visit(context->declarator())
+                .as<std::shared_ptr<const SyntaxNode>>()));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitNoPointerDeclarator(CppParser::NoPointerDeclaratorContext* context)
@@ -2362,7 +2371,44 @@ antlrcpp::Any ASTCppParserVisitor::visitTrailingReturnType(CppParser::TrailingRe
 antlrcpp::Any ASTCppParserVisitor::visitPointerOperator(CppParser::PointerOperatorContext* context)
 {
     Trace("VisitPointerOperator");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+    // Asterisk attributeSpecifierSequence? constVolatileQualifierSequence? |
+    // Ampersand attributeSpecifierSequence? |
+    // DoubleAmpersand attributeSpecifierSequence? | // C++ 11
+    // nestedNameSpecifier Asterisk attributeSpecifierSequence? constVolatileQualifierSequence?;
+    if (context->attributeSpecifierSequence() != nullptr)
+    {
+        throw std::logic_error(std::string(__func__) + " NotImplemented");
+    }
+
+    if (context->constVolatileQualifierSequence() != nullptr)
+    {
+        throw std::logic_error(std::string(__func__) + " NotImplemented");
+    }
+
+    if (context->Asterisk() != nullptr)
+    {
+        if (context->nestedNameSpecifier() != nullptr)
+        {
+            throw std::logic_error(std::string(__func__) + " NotImplemented");
+        }
+
+        return SyntaxFactory::CreatePointerOperator(
+            CreateToken(SyntaxTokenType::Asterisk, context->Asterisk()));
+    }
+    else if (context->Ampersand() != nullptr)
+    {
+        return SyntaxFactory::CreatePointerOperator(
+            CreateToken(SyntaxTokenType::Ampersand, context->Ampersand()));
+    }
+    else if (context->DoubleAmpersand() != nullptr)
+    {
+        return SyntaxFactory::CreatePointerOperator(
+            CreateToken(SyntaxTokenType::DoubleAmpersand, context->DoubleAmpersand()));
+    }
+    else
+    {
+        throw std::runtime_error("Unknown pointer operator.");
+    }
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitConstVolatileQualifierSequence(CppParser::ConstVolatileQualifierSequenceContext* context)
@@ -2374,7 +2420,18 @@ antlrcpp::Any ASTCppParserVisitor::visitConstVolatileQualifierSequence(CppParser
 antlrcpp::Any ASTCppParserVisitor::visitConstVolatileQualifier(CppParser::ConstVolatileQualifierContext* context)
 {
     Trace("VisitConstVolatileQualifier");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+    if (context->Const() != nullptr)
+    {
+        return CreateToken(SyntaxTokenType::Const, context->Const());
+    }
+    else if (context->Volatile() != nullptr)
+    {
+        return CreateToken(SyntaxTokenType::Volatile, context->Volatile());
+    }
+    else
+    {
+        throw std::logic_error("Unexpected const volatile qualifier.");
+    }
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitReferenceQualifier(CppParser::ReferenceQualifierContext* context)

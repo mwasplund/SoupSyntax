@@ -194,6 +194,16 @@ namespace Soup::Syntax
             DefaultVisit(node);
         }
 
+        virtual void Visit(const OuterTree::PointerDeclarator& node) override
+        {
+            DefaultVisit(node);
+        }
+
+        virtual void Visit(const OuterTree::PointerOperator& node) override
+        {
+            DefaultVisit(node);
+        }
+
         virtual void Visit(const OuterTree::PrimitiveDataTypeSpecifier& node) override
         {
             DefaultVisit(node);

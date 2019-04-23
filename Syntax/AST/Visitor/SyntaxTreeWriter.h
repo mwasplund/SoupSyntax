@@ -154,6 +154,10 @@ namespace Soup::Syntax
                     return "Parameter";
                 case SyntaxNodeType::ParameterList:
                     return "ParameterList";
+                case SyntaxNodeType::PointerDeclarator:
+                    return "PointerDeclarator";
+                case SyntaxNodeType::PointerOperator:
+                    return "PointerOperator";
                 case SyntaxNodeType::PrimitiveDataTypeSpecifier:
                     return "PrimitiveDataTypeSpecifier";
                 case SyntaxNodeType::RegularFunctionBody:

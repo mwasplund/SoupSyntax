@@ -271,6 +271,20 @@ namespace Soup::Syntax::OuterTree
             const SyntaxNode* parentNode);
 
         /// <summary>
+        /// Create a PointerDeclarator
+        /// </summary>
+        static std::shared_ptr<const PointerDeclarator> CreateOuter(
+            std::shared_ptr<const InnerTree::PointerDeclarator> innerNode,
+            const SyntaxNode* parentNode);
+
+        /// <summary>
+        /// Create a PointerOperator
+        /// </summary>
+        static std::shared_ptr<const PointerOperator> CreateOuter(
+            std::shared_ptr<const InnerTree::PointerOperator> innerNode,
+            const SyntaxNode* parentNode);
+
+        /// <summary>
         /// Create a PrimitiveDataTypeSpecifier
         /// </summary>
         static std::shared_ptr<const PrimitiveDataTypeSpecifier> CreateOuter(

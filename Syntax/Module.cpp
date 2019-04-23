@@ -68,6 +68,8 @@ namespace Soup::Syntax::InnerTree
     class NamespaceDefinition;
     class Parameter;
     class ParameterList;
+    class PointerDeclarator;
+    class PointerOperator;
     class PrimitiveDataTypeSpecifier;
     class RegularFunctionBody;
     class TryFunctionBody;
@@ -143,6 +145,8 @@ namespace Soup::Syntax::OuterTree
     class NamespaceDefinition;
     class Parameter;
     class ParameterList;
+    class PointerDeclarator;
+    class PointerOperator;
     class PrimitiveDataTypeSpecifier;
     class RegularFunctionBody;
     class TryFunctionBody;
@@ -235,6 +239,8 @@ namespace Soup::Syntax::OuterTree
 #include "AST/InnerTree/Declaration/NamespaceDefinition.h"
 #include "AST/InnerTree/Declaration/Parameter.h"
 #include "AST/InnerTree/Declaration/ParameterList.h"
+#include "AST/InnerTree/Declaration/PointerOperator.h"
+#include "AST/InnerTree/Declaration/PointerDeclarator.h"
 #include "AST/InnerTree/Declaration/PrimitiveDataTypeSpecifier.h"
 #include "AST/InnerTree/Declaration/RegularFunctionBody.h"
 #include "AST/InnerTree/Declaration/SimpleDeclaration.h"
@@ -306,6 +312,8 @@ namespace Soup::Syntax::OuterTree
 #include "AST/OuterTree/Declaration/NamespaceDefinition.h"
 #include "AST/OuterTree/Declaration/Parameter.h"
 #include "AST/OuterTree/Declaration/ParameterList.h"
+#include "AST/OuterTree/Declaration/PointerOperator.h"
+#include "AST/OuterTree/Declaration/PointerDeclarator.h"
 #include "AST/OuterTree/Declaration/PrimitiveDataTypeSpecifier.h"
 #include "AST/OuterTree/Declaration/RegularFunctionBody.h"
 #include "AST/OuterTree/Declaration/SimpleDeclaration.h"

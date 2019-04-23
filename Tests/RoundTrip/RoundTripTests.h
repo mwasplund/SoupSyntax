@@ -12,6 +12,8 @@ namespace Soup::Syntax::UnitTests
         [[InlineData("ClassConstructor.cpp")]]
         [[InlineData("ClassSimple.cpp")]]
         [[InlineData("EmptyFile.cpp")]]
+        [[InlineData("FunctionParameters.cpp")]]
+        [[InlineData("FunctionSimple.cpp")]]
         [[InlineData("HelloWorld.cpp")]]
         [[InlineData("LineComment.cpp")]]
         [[InlineData("LineComments.cpp")]]

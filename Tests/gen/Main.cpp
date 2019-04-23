@@ -17,6 +17,7 @@ import SoupSyntax;
 #include "AST\InnerTree\Declaration\EnumSpecifierTests.gen.h"
 #include "AST\InnerTree\Declaration\EnumeratorDefinitionTests.gen.h"
 #include "AST\InnerTree\Declaration\FunctionDefinitionTests.gen.h"
+#include "AST\InnerTree\Declaration\IdentifierTypeTests.gen.h"
 #include "AST\InnerTree\Declaration\InitializerDeclaratorListTests.gen.h"
 #include "AST\InnerTree\Declaration\InitializerDeclaratorTests.gen.h"
 #include "AST\InnerTree\Declaration\InitializerListTests.gen.h"
@@ -27,6 +28,8 @@ import SoupSyntax;
 #include "AST\InnerTree\Declaration\NamespaceDefinitionTests.gen.h"
 #include "AST\InnerTree\Declaration\ParameterListTests.gen.h"
 #include "AST\InnerTree\Declaration\ParameterTests.gen.h"
+#include "AST\InnerTree\Declaration\PointerDeclaratorTests.gen.h"
+#include "AST\InnerTree\Declaration\PointerOperatorTests.gen.h"
 #include "AST\InnerTree\Declaration\PrimitiveDataTypeSpecifierTests.gen.h"
 #include "AST\InnerTree\Declaration\SimpleDeclarationTests.gen.h"
 #include "AST\InnerTree\Declaration\ValueEqualInitializerTests.gen.h"
@@ -40,6 +43,7 @@ import SoupSyntax;
 #include "AST\InnerTree\Expression\UnaryExpressionTests.gen.h"
 
 #include "AST\InnerTree\Shared\DestructorIdentifierTests.gen.h"
+#include "AST\InnerTree\Shared\NestedNameSpecifierTests.gen.h"
 #include "AST\InnerTree\Shared\SimpleIdentifierTests.gen.h"
 #include "AST\InnerTree\Shared\SimpleTemplateIdentifierTests.gen.h"
 
@@ -69,6 +73,7 @@ import SoupSyntax;
 #include "AST\OuterTree\Declaration\EnumSpecifierTests.gen.h"
 #include "AST\OuterTree\Declaration\EnumeratorDefinitionTests.gen.h"
 #include "AST\OuterTree\Declaration\FunctionDefinitionTests.gen.h"
+#include "AST\OuterTree\Declaration\IdentifierTypeTests.gen.h"
 #include "AST\OuterTree\Declaration\InitializerDeclaratorListTests.gen.h"
 #include "AST\OuterTree\Declaration\InitializerDeclaratorTests.gen.h"
 #include "AST\OuterTree\Declaration\InitializerListTests.gen.h"
@@ -79,6 +84,8 @@ import SoupSyntax;
 #include "AST\OuterTree\Declaration\NamespaceDefinitionTests.gen.h"
 #include "AST\OuterTree\Declaration\ParameterListTests.gen.h"
 #include "AST\OuterTree\Declaration\ParameterTests.gen.h"
+#include "AST\OuterTree\Declaration\PointerDeclaratorTests.gen.h"
+#include "AST\OuterTree\Declaration\PointerOperatorTests.gen.h"
 #include "AST\OuterTree\Declaration\PrimitiveDataTypeSpecifierTests.gen.h"
 #include "AST\OuterTree\Declaration\SimpleDeclarationTests.gen.h"
 #include "AST\OuterTree\Declaration\ValueEqualInitializerTests.gen.h"
@@ -92,6 +99,7 @@ import SoupSyntax;
 #include "AST\OuterTree\Expression\UnaryExpressionTests.gen.h"
 
 #include "AST\OuterTree\Shared\DestructorIdentifierTests.gen.h"
+#include "AST\OuterTree\Shared\NestedNameSpecifierTests.gen.h"
 #include "AST\OuterTree\Shared\SimpleIdentifierTests.gen.h"
 #include "AST\OuterTree\Shared\SimpleTemplateIdentifierTests.gen.h"
 
@@ -161,6 +169,7 @@ int main()
     state += RunInnerTreeEnumSpecifierTests();
     state += RunInnerTreeEnumeratorDefinitionTests();
     state += RunInnerTreeFunctionDefinitionTests();
+    state += RunInnerTreeIdentifierTypeTests();
     state += RunInnerTreeInitializerDeclaratorListTests();
     state += RunInnerTreeInitializerDeclaratorTests();
     state += RunInnerTreeInitializerListTests();
@@ -171,6 +180,8 @@ int main()
     state += RunInnerTreeNamespaceDefinitionTests();
     state += RunInnerTreeParameterListTests();
     state += RunInnerTreeParameterTests();
+    state += RunInnerTreePointerDeclaratorTests();
+    state += RunInnerTreePointerOperatorTests();
     state += RunInnerTreePrimitiveDataTypeSpecifierTests();
     state += RunInnerTreeSimpleDeclarationTests();
     state += RunInnerTreeValueEqualInitializerTests();
@@ -184,6 +195,7 @@ int main()
     state += RunInnerTreeUnaryExpressionTests();
 
     state += RunInnerTreeDestructorIdentifierTests();
+    state += RunInnerTreeNestedNameSpecifierTests();
     state += RunInnerTreeSimpleIdentifierTests();
     state += RunInnerTreeSimpleTemplateIdentifierTests();
 
@@ -213,6 +225,7 @@ int main()
     state += RunOuterTreeEnumSpecifierTests();
     state += RunOuterTreeEnumeratorDefinitionTests();
     state += RunOuterTreeFunctionDefinitionTests();
+    state += RunOuterTreeIdentifierTypeTests();
     state += RunOuterTreeInitializerDeclaratorListTests();
     state += RunOuterTreeInitializerDeclaratorTests();
     state += RunOuterTreeInitializerListTests();
@@ -223,6 +236,8 @@ int main()
     state += RunOuterTreeNamespaceDefinitionTests();
     state += RunOuterTreeParameterListTests();
     state += RunOuterTreeParameterTests();
+    state += RunOuterTreePointerDeclaratorTests();
+    state += RunOuterTreePointerOperatorTests();
     state += RunOuterTreePrimitiveDataTypeSpecifierTests();
     state += RunOuterTreeSimpleDeclarationTests();
     state += RunOuterTreeValueEqualInitializerTests();
@@ -236,6 +251,7 @@ int main()
     state += RunOuterTreeUnaryExpressionTests();
 
     state += RunOuterTreeDestructorIdentifierTests();
+    state += RunOuterTreeNestedNameSpecifierTests();
     state += RunOuterTreeSimpleIdentifierTests();
     state += RunOuterTreeSimpleTemplateIdentifierTests();
 

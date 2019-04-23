@@ -30,6 +30,14 @@ TestState RunRoundTripTests()
         [&testClass]() { testClass->RoundTrip("EmptyFile.cpp"); });
     state += RunTest(
         className,
+        "RoundTrip[FunctionParameters.cpp]",
+        [&testClass]() { testClass->RoundTrip("FunctionParameters.cpp"); });
+    state += RunTest(
+        className,
+        "RoundTrip[FunctionSimple.cpp]",
+        [&testClass]() { testClass->RoundTrip("FunctionSimple.cpp"); });
+    state += RunTest(
+        className,
         "RoundTrip[HelloWorld.cpp]",
         [&testClass]() { testClass->RoundTrip("HelloWorld.cpp"); });
     state += RunTest(

@@ -1297,6 +1297,42 @@ namespace Soup::Syntax
         }
 
         /// <summary>
+        /// Create a PointerDeclarator
+        /// </summary>
+        static std::shared_ptr<const InnerTree::PointerDeclarator> CreatePointerDeclarator(
+            std::shared_ptr<const InnerTree::PointerOperator> pointerOperator,
+            std::shared_ptr<const InnerTree::SyntaxNode> declarator)
+        {
+            if (pointerOperator == nullptr)
+                throw std::runtime_error("ArgumentNull - pointerOperator");
+            if (declarator == nullptr)
+                throw std::runtime_error("ArgumentNull - declarator");
+
+            auto result = std::shared_ptr<const InnerTree::PointerDeclarator>(
+                new InnerTree::PointerDeclarator(
+                    std::move(pointerOperator),
+                    std::move(declarator)));
+            result->SetSelf(result);
+            return result;
+        }
+
+        /// <summary>
+        /// Create a PointerOperator
+        /// </summary>
+        static std::shared_ptr<const InnerTree::PointerOperator> CreatePointerOperator(
+            std::shared_ptr<const InnerTree::SyntaxToken> operatorToken)
+        {
+            if (operatorToken == nullptr)
+                throw std::runtime_error("ArgumentNull - operatorToken");
+
+            auto result = std::shared_ptr<const InnerTree::PointerOperator>(
+                new InnerTree::PointerOperator(
+                    std::move(operatorToken)));
+            result->SetSelf(result);
+            return result;
+        }
+
+        /// <summary>
         /// Create a PrimitiveDataTypeSpecifier
         /// </summary>
         static std::shared_ptr<const InnerTree::PrimitiveDataTypeSpecifier> CreatePrimitiveDataTypeSpecifier(

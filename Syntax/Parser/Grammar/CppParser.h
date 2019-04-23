@@ -1936,6 +1936,7 @@ public:
   public:
     DeclarationModifierContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
+    ConstVolatileQualifierContext *constVolatileQualifier();
     StorageClassSpecifierContext *storageClassSpecifier();
     FunctionSpecifierContext *functionSpecifier();
     antlr4::tree::TerminalNode *Friend();

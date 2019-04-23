@@ -46,6 +46,8 @@ namespace Soup::Syntax
         virtual void Visit(const OuterTree::NestedNameSpecifier& node) = 0;
         virtual void Visit(const OuterTree::Parameter& node) = 0;
         virtual void Visit(const OuterTree::ParameterList& node) = 0;
+        virtual void Visit(const OuterTree::PointerDeclarator& node) = 0;
+        virtual void Visit(const OuterTree::PointerOperator& node) = 0;
         virtual void Visit(const OuterTree::PrimitiveDataTypeSpecifier& node) = 0;
         virtual void Visit(const OuterTree::RegularFunctionBody& node) = 0;
         virtual void Visit(const OuterTree::ReturnStatement& node) = 0;

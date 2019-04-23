@@ -461,6 +461,7 @@ attributeDeclaration:
 	attributeSpecifierSequence Semicolon;
 
 declarationModifier:
+	constVolatileQualifier |
 	storageClassSpecifier |
 	functionSpecifier |
 	Friend |

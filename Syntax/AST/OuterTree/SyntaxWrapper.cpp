@@ -298,6 +298,22 @@ using namespace Soup::Syntax::OuterTree;
         new ParameterList(std::move(innerNode), parentNode));
 }
 
+/*static*/ std::shared_ptr<const PointerDeclarator> SyntaxWrapper::CreateOuter(
+    std::shared_ptr<const InnerTree::PointerDeclarator> innerNode,
+    const SyntaxNode* parentNode)
+{
+    return std::shared_ptr<const PointerDeclarator>(
+        new PointerDeclarator(std::move(innerNode), parentNode));
+}
+
+/*static*/ std::shared_ptr<const PointerOperator> SyntaxWrapper::CreateOuter(
+    std::shared_ptr<const InnerTree::PointerOperator> innerNode,
+    const SyntaxNode* parentNode)
+{
+    return std::shared_ptr<const PointerOperator>(
+        new PointerOperator(std::move(innerNode), parentNode));
+}
+
 /*static*/ std::shared_ptr<const PrimitiveDataTypeSpecifier> SyntaxWrapper::CreateOuter(
     std::shared_ptr<const InnerTree::PrimitiveDataTypeSpecifier> innerNode,
     const SyntaxNode* parentNode)
