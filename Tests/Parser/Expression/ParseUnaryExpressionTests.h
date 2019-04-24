@@ -168,7 +168,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         }
 
     private:
-        std::shared_ptr<const SyntaxNode> ParseUnaryExpression(std::string& sourceCode)
+        std::shared_ptr<const SyntaxNode> ParseUnaryExpression(const std::string& sourceCode)
         {
             auto uut = TestUtils::BuildParser(sourceCode);
             auto context = uut.Parser->unaryExpression();

@@ -136,7 +136,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         }
 
     private:
-        std::shared_ptr<const NamespaceDefinition> ParseNamespaceDefinition(std::string& sourceCode)
+        std::shared_ptr<const NamespaceDefinition> ParseNamespaceDefinition(const std::string& sourceCode)
         {
             auto uut = TestUtils::BuildParser(sourceCode);
             auto context = uut.Parser->namespaceDefinition();

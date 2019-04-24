@@ -665,7 +665,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         }
 
     private:
-        std::shared_ptr<const BinaryExpression> ParseBinaryExpression(std::string& sourceCode)
+        std::shared_ptr<const BinaryExpression> ParseBinaryExpression(const std::string& sourceCode)
         {
             auto uut = TestUtils::BuildParser(sourceCode);
             auto context = uut.Parser->assignmentExpression();

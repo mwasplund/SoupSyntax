@@ -671,7 +671,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         }
 
     private:
-        std::shared_ptr<const SimpleDeclaration> ParseSimpleDeclaration(std::string& sourceCode)
+        std::shared_ptr<const SimpleDeclaration> ParseSimpleDeclaration(const std::string& sourceCode)
         {
             auto uut = TestUtils::BuildParser(sourceCode);
             auto context = uut.Parser->simpleDeclaration();

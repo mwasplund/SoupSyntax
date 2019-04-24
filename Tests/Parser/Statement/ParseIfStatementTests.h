@@ -144,7 +144,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         }
 
     private:
-        std::shared_ptr<const IfStatement> ParseIfStatement(std::string& sourceCode)
+        std::shared_ptr<const IfStatement> ParseIfStatement(const std::string& sourceCode)
         {
             auto uut = TestUtils::BuildParser(sourceCode);
             auto context = uut.Parser->selectionStatement();

@@ -90,7 +90,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         }
 
     private:
-        std::shared_ptr<const EnumSpecifier> ParseEnumSpecifier(std::string& sourceCode)
+        std::shared_ptr<const EnumSpecifier> ParseEnumSpecifier(const std::string& sourceCode)
         {
             auto uut = TestUtils::BuildParser(sourceCode);
             auto context = uut.Parser->enumSpecifier();

@@ -108,7 +108,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         }
 
     private:
-        std::shared_ptr<const LiteralExpression> ParseLiteralExpression(std::string& sourceCode)
+        std::shared_ptr<const LiteralExpression> ParseLiteralExpression(const std::string& sourceCode)
         {
             auto uut = TestUtils::BuildParser(sourceCode);
             auto context = uut.Parser->primaryExpression();

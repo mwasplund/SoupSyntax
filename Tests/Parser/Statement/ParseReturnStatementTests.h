@@ -66,7 +66,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         }
 
     private:
-        std::shared_ptr<const ReturnStatement> ParseReturnStatement(std::string& sourceCode)
+        std::shared_ptr<const ReturnStatement> ParseReturnStatement(const std::string& sourceCode)
         {
             auto uut = TestUtils::BuildParser(sourceCode);
             auto context = uut.Parser->jumpStatement();

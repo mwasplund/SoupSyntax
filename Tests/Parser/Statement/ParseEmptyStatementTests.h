@@ -20,7 +20,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         }
 
     private:
-        std::shared_ptr<const EmptyStatement> ParseEmptyStatement(std::string& sourceCode)
+        std::shared_ptr<const EmptyStatement> ParseEmptyStatement(const std::string& sourceCode)
         {
             // An empty statement is actually an expression statement with no expression
             auto uut = TestUtils::BuildParser(sourceCode);
