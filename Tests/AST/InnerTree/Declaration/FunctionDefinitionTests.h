@@ -11,7 +11,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             // void Function(int parameter) = delete;
             auto uut = SyntaxFactory::CreateFunctionDefinition(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
@@ -41,7 +41,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 uut->GetType(),
                 "Verify has correct type.");
             TestUtils::AreEqual(
-                *SyntaxFactory::CreateDeclarationSpecifier(
+                *SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
@@ -83,7 +83,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             // void Function(int parameter) = delete;
             auto uut = SyntaxFactory::CreateFunctionDefinition(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
@@ -110,7 +110,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateFunctionDefinition(
-                    SyntaxFactory::CreateDeclarationSpecifier(
+                    SyntaxFactory::CreateDeclarationSpecifierSequence(
                         SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                             PrimitiveDataType::Void,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
@@ -143,7 +143,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             // void Function(int parameter) = delete;
             auto uut = SyntaxFactory::CreateFunctionDefinition(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
@@ -178,7 +178,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket)),
                     }),
-                    SyntaxFactory::CreateDeclarationSpecifier(
+                    SyntaxFactory::CreateDeclarationSpecifierSequence(
                         SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                             PrimitiveDataType::Void,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
@@ -211,7 +211,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             // void Function(int parameter) = delete;
             auto uut = SyntaxFactory::CreateFunctionDefinition(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
@@ -238,7 +238,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateFunctionDefinition(
-                    SyntaxFactory::CreateDeclarationSpecifier(
+                    SyntaxFactory::CreateDeclarationSpecifierSequence(
                         SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                             PrimitiveDataType::Int,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
@@ -271,7 +271,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             // void Function(int parameter) = delete;
             auto uut = SyntaxFactory::CreateFunctionDefinition(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
@@ -298,7 +298,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateFunctionDefinition(
-                    SyntaxFactory::CreateDeclarationSpecifier(
+                    SyntaxFactory::CreateDeclarationSpecifierSequence(
                         SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                             PrimitiveDataType::Void,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
@@ -331,7 +331,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             // void Function(int parameter) = delete;
             auto uut = SyntaxFactory::CreateFunctionDefinition(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
@@ -358,7 +358,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateFunctionDefinition(
-                    SyntaxFactory::CreateDeclarationSpecifier(
+                    SyntaxFactory::CreateDeclarationSpecifierSequence(
                         SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                             PrimitiveDataType::Void,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
@@ -382,7 +382,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             // void Function(int parameter) = delete;
             auto uut = SyntaxFactory::CreateFunctionDefinition(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
@@ -409,7 +409,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateFunctionDefinition(
-                    SyntaxFactory::CreateDeclarationSpecifier(
+                    SyntaxFactory::CreateDeclarationSpecifierSequence(
                         SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                             PrimitiveDataType::Void,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),

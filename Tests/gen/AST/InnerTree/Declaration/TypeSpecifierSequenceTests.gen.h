@@ -1,11 +1,11 @@
 #pragma once
-#include "AST/InnerTree/Declaration/DeclarationSpecifierTests.h"
+#include "AST/InnerTree/Declaration/TypeSpecifierSequenceTests.h"
 #include "RunTest.h"
 
-TestState RunInnerTreeDeclarationSpecifierTests()
+TestState RunInnerTreeTypeSpecifierSequenceTests()
 {
-    std::string className = "InnerTree::DeclarationSpecifierTests";
-    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::InnerTreeDeclarationSpecifierTests>();
+    std::string className = "InnerTree::TypeSpecifierSequenceTests";
+    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::InnerTreeTypeSpecifierSequenceTests>();
     TestState state = { 0, 0 };
 
     state += RunTest(

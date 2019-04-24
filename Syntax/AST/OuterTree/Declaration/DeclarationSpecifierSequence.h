@@ -9,7 +9,7 @@ namespace Soup::Syntax::OuterTree
     /// TODO: Possibly verify const types have an initializer
     /// TODO: Add helpers to check if IsConst etc
     /// </summary>
-    export class DeclarationSpecifier final : public SyntaxNode
+    export class DeclarationSpecifierSequence final : public SyntaxNode
     {
         friend class ::Soup::Syntax::OuterTree::SyntaxWrapper;
 
@@ -17,8 +17,8 @@ namespace Soup::Syntax::OuterTree
         /// <summary>
         /// Initialize
         /// </summary>
-        DeclarationSpecifier(
-            std::shared_ptr<const InnerTree::DeclarationSpecifier> innerNode,
+        DeclarationSpecifierSequence(
+            std::shared_ptr<const InnerTree::DeclarationSpecifierSequence> innerNode,
             const SyntaxNode* parentNode) :
             SyntaxNode(innerNode, parentNode),
             m_leadingModifiers(innerNode->GetLeadingModifiers().CreateOuter<SyntaxToken>(this)),

@@ -97,7 +97,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                         SyntaxFactory::CreateSimpleDeclaration(
-                            SyntaxFactory::CreateDeclarationSpecifier(
+                            SyntaxFactory::CreateDeclarationSpecifierSequence(
                                 SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                     PrimitiveDataType::Int,
                                     SyntaxFactory::CreateKeywordToken(

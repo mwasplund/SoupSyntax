@@ -82,10 +82,10 @@ namespace Soup::Syntax::OuterTree
             const SyntaxNode* parentNode);
 
         /// <summary>
-        /// Create a DeclarationSpecifier
+        /// Create a DeclarationSpecifierSequence
         /// </summary>
-        static std::shared_ptr<const DeclarationSpecifier> CreateOuter(
-            std::shared_ptr<const InnerTree::DeclarationSpecifier> innerNode,
+        static std::shared_ptr<const DeclarationSpecifierSequence> CreateOuter(
+            std::shared_ptr<const InnerTree::DeclarationSpecifierSequence> innerNode,
             const SyntaxNode* parentNode);
 
         /// <summary>
@@ -416,6 +416,13 @@ namespace Soup::Syntax::OuterTree
         /// </summary>
         static std::shared_ptr<const TryStatement> CreateOuter(
             std::shared_ptr<const InnerTree::TryStatement> innerNode,
+            const SyntaxNode* parentNode);
+
+        /// <summary>
+        /// Create a TypeSpecifierSequence
+        /// </summary>
+        static std::shared_ptr<const TypeSpecifierSequence> CreateOuter(
+            std::shared_ptr<const InnerTree::TypeSpecifierSequence> innerNode,
             const SyntaxNode* parentNode);
 
         /// <summary>

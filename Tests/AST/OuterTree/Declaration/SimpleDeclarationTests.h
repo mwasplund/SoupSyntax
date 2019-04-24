@@ -12,7 +12,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             // int i;
             auto uut = SyntaxFactory::CreateSimpleDeclaration(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
@@ -32,11 +32,11 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 uut->GetType(),
                 "Verify has correct type.");
             TestUtils::AreEqual(
-                *SyntaxFactory::CreateDeclarationSpecifier(
+                *SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
-                uut->GetDeclarationSpecifier(),
+                uut->GetDeclarationSpecifierSequence(),
                 "Verify declaration specifier matches.");
             TestUtils::AreEqual(
                 *SyntaxFactory::CreateInitializerDeclaratorList(
@@ -61,7 +61,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             // int i;
             auto uut = SyntaxFactory::CreateSimpleDeclaration(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
@@ -80,7 +80,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 std::vector<OuterTree::SyntaxNodeChild>(
                 {
                     TestUtils::CreateChild(
-                        SyntaxFactory::CreateDeclarationSpecifier(
+                        SyntaxFactory::CreateDeclarationSpecifierSequence(
                             SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                 PrimitiveDataType::Int,
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)))),
@@ -105,7 +105,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             // int i;
             auto uut = SyntaxFactory::CreateSimpleDeclaration(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
@@ -122,7 +122,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateSimpleDeclaration(
-                    SyntaxFactory::CreateDeclarationSpecifier(
+                    SyntaxFactory::CreateDeclarationSpecifierSequence(
                         SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                             PrimitiveDataType::Int,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
@@ -141,11 +141,11 @@ namespace Soup::Syntax::InnerTree::UnitTests
         }
 
         [[Fact]]
-        void OperatorNotEqualDeclarationSpecifier()
+        void OperatorNotEqualDeclarationSpecifierSequence()
         {
             // int i;
             auto uut = SyntaxFactory::CreateSimpleDeclaration(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
@@ -162,7 +162,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateSimpleDeclaration(
-                    SyntaxFactory::CreateDeclarationSpecifier(
+                    SyntaxFactory::CreateDeclarationSpecifierSequence(
                         SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                             PrimitiveDataType::Long,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Long))),
@@ -185,7 +185,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             // int i;
             auto uut = SyntaxFactory::CreateSimpleDeclaration(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
@@ -202,7 +202,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateSimpleDeclaration(
-                    SyntaxFactory::CreateDeclarationSpecifier(
+                    SyntaxFactory::CreateDeclarationSpecifierSequence(
                         SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                             PrimitiveDataType::Int,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
@@ -225,7 +225,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             // int i;
             auto uut = SyntaxFactory::CreateSimpleDeclaration(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
@@ -242,7 +242,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateSimpleDeclaration(
-                    SyntaxFactory::CreateDeclarationSpecifier(
+                    SyntaxFactory::CreateDeclarationSpecifierSequence(
                         SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                             PrimitiveDataType::Int,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),

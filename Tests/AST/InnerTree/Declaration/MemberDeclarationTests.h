@@ -12,7 +12,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             // int i;
             auto uut = SyntaxFactory::CreateMemberDeclaration(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
@@ -32,11 +32,11 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 uut->GetType(),
                 "Verify has correct type.");
             Assert::AreEqual(
-                *SyntaxFactory::CreateDeclarationSpecifier(
+                *SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
-                uut->GetDeclarationSpecifier(),
+                uut->GetDeclarationSpecifierSequence(),
                 "Verify declaration specifier matches.");
             Assert::AreEqual(
                 *SyntaxFactory::CreateMemberDeclaratorList(
@@ -61,7 +61,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             // int i;
             auto uut = SyntaxFactory::CreateMemberDeclaration(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
@@ -78,7 +78,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateMemberDeclaration(
-                    SyntaxFactory::CreateDeclarationSpecifier(
+                    SyntaxFactory::CreateDeclarationSpecifierSequence(
                         SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                             PrimitiveDataType::Int,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
@@ -97,11 +97,11 @@ namespace Soup::Syntax::InnerTree::UnitTests
         }
 
         [[Fact]]
-        void OperatorNotEqualDeclarationSpecifier()
+        void OperatorNotEqualDeclarationSpecifierSequence()
         {
             // int i;
             auto uut = SyntaxFactory::CreateMemberDeclaration(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
@@ -118,7 +118,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateMemberDeclaration(
-                    SyntaxFactory::CreateDeclarationSpecifier(
+                    SyntaxFactory::CreateDeclarationSpecifierSequence(
                         SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                             PrimitiveDataType::Long,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Long))),
@@ -141,7 +141,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             // int i;
             auto uut = SyntaxFactory::CreateMemberDeclaration(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
@@ -158,7 +158,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateMemberDeclaration(
-                    SyntaxFactory::CreateDeclarationSpecifier(
+                    SyntaxFactory::CreateDeclarationSpecifierSequence(
                         SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                             PrimitiveDataType::Int,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
@@ -181,7 +181,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         {
             // int i;
             auto uut = SyntaxFactory::CreateMemberDeclaration(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
@@ -198,7 +198,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateMemberDeclaration(
-                    SyntaxFactory::CreateDeclarationSpecifier(
+                    SyntaxFactory::CreateDeclarationSpecifierSequence(
                         SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                             PrimitiveDataType::Int,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),

@@ -22,7 +22,7 @@ TestState RunOuterTreeDeclarationStatementTests()
         [&testClass]() { testClass->OperatorEqual(); });
     state += RunTest(
         className,
-        "OperatorNotEqualDeclarationSpecifier",
+        "OperatorNotEqualDeclarationSpecifierSequence",
         [&testClass]() { testClass->OperatorNotEqualDeclaration(); });
 
     return state;

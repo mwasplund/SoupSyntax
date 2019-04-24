@@ -50,7 +50,7 @@ namespace Soup::Syntax::InnerTree
     class ConstructorDefinition;
     class ConstructorInitializer;
     class Declaration;
-    class DeclarationSpecifier;
+    class DeclarationSpecifierSequence;
     class DefaultFunctionBody;
     class DeleteFunctionBody;
     class EmptyDeclaration;
@@ -73,6 +73,7 @@ namespace Soup::Syntax::InnerTree
     class PrimitiveDataTypeSpecifier;
     class RegularFunctionBody;
     class TryFunctionBody;
+    class TypeSpecifierSequence;
     class SimpleDeclaration;
     class ValueEqualInitializer;
 
@@ -127,7 +128,7 @@ namespace Soup::Syntax::OuterTree
     class ConstructorDefinition;
     class ConstructorInitializer;
     class Declaration;
-    class DeclarationSpecifier;
+    class DeclarationSpecifierSequence;
     class DefaultFunctionBody;
     class DeleteFunctionBody;
     class EmptyDeclaration;
@@ -150,6 +151,7 @@ namespace Soup::Syntax::OuterTree
     class PrimitiveDataTypeSpecifier;
     class RegularFunctionBody;
     class TryFunctionBody;
+    class TypeSpecifierSequence;
     class SimpleDeclaration;
     class ValueEqualInitializer;
 
@@ -218,7 +220,7 @@ namespace Soup::Syntax::OuterTree
 #include "AST/InnerTree/Statement/TryStatement.h"
 
 #include "AST/InnerTree/Declaration/AccessorSpecifier.h"
-#include "AST/InnerTree/Declaration/DeclarationSpecifier.h"
+#include "AST/InnerTree/Declaration/DeclarationSpecifierSequence.h"
 #include "AST/InnerTree/Declaration/ClassSpecifier.h"
 #include "AST/InnerTree/Declaration/IdentifierType.h"
 #include "AST/InnerTree/Declaration/InitializerDeclarator.h"
@@ -245,6 +247,7 @@ namespace Soup::Syntax::OuterTree
 #include "AST/InnerTree/Declaration/RegularFunctionBody.h"
 #include "AST/InnerTree/Declaration/SimpleDeclaration.h"
 #include "AST/InnerTree/Declaration/TryFunctionBody.h"
+#include "AST/InnerTree/Declaration/TypeSpecifierSequence.h"
 #include "AST/InnerTree/Declaration/ValueEqualInitializer.h"
 
 #include "AST/InnerTree/TranslationUnit.h"
@@ -291,7 +294,7 @@ namespace Soup::Syntax::OuterTree
 #include "AST/OuterTree/Statement/TryStatement.h"
 
 #include "AST/OuterTree/Declaration/AccessorSpecifier.h"
-#include "AST/OuterTree/Declaration/DeclarationSpecifier.h"
+#include "AST/OuterTree/Declaration/DeclarationSpecifierSequence.h"
 #include "AST/OuterTree/Declaration/ClassSpecifier.h"
 #include "AST/OuterTree/Declaration/IdentifierType.h"
 #include "AST/OuterTree/Declaration/InitializerDeclarator.h"
@@ -318,6 +321,7 @@ namespace Soup::Syntax::OuterTree
 #include "AST/OuterTree/Declaration/RegularFunctionBody.h"
 #include "AST/OuterTree/Declaration/SimpleDeclaration.h"
 #include "AST/OuterTree/Declaration/TryFunctionBody.h"
+#include "AST/OuterTree/Declaration/TypeSpecifierSequence.h"
 #include "AST/OuterTree/Declaration/ValueEqualInitializer.h"
 
 #include "AST/OuterTree/TranslationUnit.h"

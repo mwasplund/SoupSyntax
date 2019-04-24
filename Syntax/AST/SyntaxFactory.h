@@ -207,22 +207,22 @@ namespace Soup::Syntax
         }
 
         /// <summary>
-        /// Create a DeclarationSpecifier
+        /// Create a DeclarationSpecifierSequence
         /// Overload that excludes optional leading and trailing modifiers
         /// </summary>
-        static std::shared_ptr<const InnerTree::DeclarationSpecifier> CreateDeclarationSpecifier(
+        static std::shared_ptr<const InnerTree::DeclarationSpecifierSequence> CreateDeclarationSpecifierSequence(
             std::shared_ptr<const InnerTree::TypeSpecifier> typeSpecifier)
         {
-            return CreateDeclarationSpecifier(
+            return CreateDeclarationSpecifierSequence(
                 CreateSyntaxList<InnerTree::SyntaxToken>({}),
                 std::move(typeSpecifier),
                 CreateSyntaxList<InnerTree::SyntaxToken>({}));
         }
 
         /// <summary>
-        /// Create a DeclarationSpecifier
+        /// Create a DeclarationSpecifierSequence
         /// </summary>
-        static std::shared_ptr<const InnerTree::DeclarationSpecifier> CreateDeclarationSpecifier(
+        static std::shared_ptr<const InnerTree::DeclarationSpecifierSequence> CreateDeclarationSpecifierSequence(
             std::shared_ptr<const InnerTree::SyntaxList<InnerTree::SyntaxToken>> leadingModifiers,
             std::shared_ptr<const InnerTree::TypeSpecifier> typeSpecifier,
             std::shared_ptr<const InnerTree::SyntaxList<InnerTree::SyntaxToken>> trailingModifiers)
@@ -234,8 +234,8 @@ namespace Soup::Syntax
             if (trailingModifiers == nullptr)
                 throw std::runtime_error("ArgumentNull - trailingModifiers");
 
-            auto result = std::shared_ptr<const InnerTree::DeclarationSpecifier>(
-                new InnerTree::DeclarationSpecifier(
+            auto result = std::shared_ptr<const InnerTree::DeclarationSpecifierSequence>(
+                new InnerTree::DeclarationSpecifierSequence(
                     std::move(leadingModifiers),
                     std::move(typeSpecifier),
                     std::move(trailingModifiers)));
@@ -453,7 +453,7 @@ namespace Soup::Syntax
         /// </summary>
         static std::shared_ptr<const InnerTree::FunctionDefinition> CreateFunctionDefinition(
             std::shared_ptr<const InnerTree::SyntaxList<InnerTree::AttributeSpecifier>> attributeSpecifierSequence,
-            std::shared_ptr<const InnerTree::DeclarationSpecifier> returnType,
+            std::shared_ptr<const InnerTree::DeclarationSpecifierSequence> returnType,
             std::shared_ptr<const InnerTree::IdentifierExpression> identifier,
             std::shared_ptr<const InnerTree::ParameterList> parameterList,
             std::shared_ptr<const InnerTree::SyntaxNode> body)
@@ -485,7 +485,7 @@ namespace Soup::Syntax
         /// Overload that adds an empty attribute specifier sequence
         /// </summary>
         static std::shared_ptr<const InnerTree::FunctionDefinition> CreateFunctionDefinition(
-            std::shared_ptr<const InnerTree::DeclarationSpecifier> returnType,
+            std::shared_ptr<const InnerTree::DeclarationSpecifierSequence> returnType,
             std::shared_ptr<const InnerTree::IdentifierExpression> identifier,
             std::shared_ptr<const InnerTree::ParameterList> parameterList,
             std::shared_ptr<const InnerTree::SyntaxNode> body)
@@ -1129,12 +1129,12 @@ namespace Soup::Syntax
         /// Create a MemberDeclaration
         /// </summary>
         static std::shared_ptr<const InnerTree::MemberDeclaration> CreateMemberDeclaration(
-            std::shared_ptr<const InnerTree::DeclarationSpecifier> declarationSpecifier,
+            std::shared_ptr<const InnerTree::DeclarationSpecifierSequence> DeclarationSpecifierSequence,
             std::shared_ptr<const InnerTree::MemberDeclaratorList> memberDeclaratorList,
             std::shared_ptr<const InnerTree::SyntaxToken> semicolonToken)
         {
-            if (declarationSpecifier == nullptr)
-                throw std::runtime_error("ArgumentNull - declarationSpecifier");
+            if (DeclarationSpecifierSequence == nullptr)
+                throw std::runtime_error("ArgumentNull - DeclarationSpecifierSequence");
             if (memberDeclaratorList == nullptr)
                 throw std::runtime_error("ArgumentNull - memberDeclaratorList");
             if (semicolonToken == nullptr)
@@ -1142,7 +1142,7 @@ namespace Soup::Syntax
 
             auto result = std::shared_ptr<const InnerTree::MemberDeclaration>(
                 new InnerTree::MemberDeclaration(
-                    std::move(declarationSpecifier),
+                    std::move(DeclarationSpecifierSequence),
                     std::move(memberDeclaratorList),
                     std::move(semicolonToken)));
             result->SetSelf(result);
@@ -1256,17 +1256,17 @@ namespace Soup::Syntax
         /// Create a Parameter
         /// </summary>
         static std::shared_ptr<const InnerTree::Parameter> CreateParameter(
-            std::shared_ptr<const InnerTree::SyntaxNode> declarationSpecifier,
+            std::shared_ptr<const InnerTree::SyntaxNode> DeclarationSpecifierSequence,
             std::shared_ptr<const InnerTree::SyntaxNode> declarator)
         {
-            if (declarationSpecifier == nullptr)
-                throw std::runtime_error("ArgumentNull - declarationSpecifier");
+            if (DeclarationSpecifierSequence == nullptr)
+                throw std::runtime_error("ArgumentNull - DeclarationSpecifierSequence");
             if (declarator == nullptr)
                 throw std::runtime_error("ArgumentNull - declarator");
 
             auto result = std::shared_ptr<const InnerTree::Parameter>(
                 new InnerTree::Parameter(
-                    std::move(declarationSpecifier),
+                    std::move(DeclarationSpecifierSequence),
                     std::move(declarator)));
             result->SetSelf(result);
             return result;
@@ -1394,12 +1394,12 @@ namespace Soup::Syntax
         /// Create a SimpleDeclaration
         /// </summary>
         static std::shared_ptr<const InnerTree::SimpleDeclaration> CreateSimpleDeclaration(
-            std::shared_ptr<const InnerTree::DeclarationSpecifier> declarationSpecifier,
+            std::shared_ptr<const InnerTree::DeclarationSpecifierSequence> DeclarationSpecifierSequence,
             std::shared_ptr<const InnerTree::InitializerDeclaratorList> initializerDeclaratorList,
             std::shared_ptr<const InnerTree::SyntaxToken> semicolonToken)
         {
-            if (declarationSpecifier == nullptr)
-                throw std::runtime_error("ArgumentNull - declarationSpecifier");
+            if (DeclarationSpecifierSequence == nullptr)
+                throw std::runtime_error("ArgumentNull - DeclarationSpecifierSequence");
             if (initializerDeclaratorList == nullptr)
                 throw std::runtime_error("ArgumentNull - initializerDeclaratorList");
             if (semicolonToken == nullptr)
@@ -1407,7 +1407,7 @@ namespace Soup::Syntax
 
             auto result = std::shared_ptr<const InnerTree::SimpleDeclaration>(
                 new InnerTree::SimpleDeclaration(
-                    std::move(declarationSpecifier),
+                    std::move(DeclarationSpecifierSequence),
                     std::move(initializerDeclaratorList),
                     std::move(semicolonToken)));
             result->SetSelf(result);
@@ -1584,6 +1584,44 @@ namespace Soup::Syntax
         static SyntaxTrivia CreateTrivia(std::string value)
         {
             return SyntaxTrivia(std::move(value));
+        }
+
+
+        /// <summary>
+        /// Create a TypeSpecifierSequence
+        /// Overload that excludes optional leading and trailing modifiers
+        /// </summary>
+        static std::shared_ptr<const InnerTree::TypeSpecifierSequence> CreateTypeSpecifierSequence(
+            std::shared_ptr<const InnerTree::TypeSpecifier> typeSpecifier)
+        {
+            return CreateTypeSpecifierSequence(
+                CreateSyntaxList<InnerTree::SyntaxToken>({}),
+                std::move(typeSpecifier),
+                CreateSyntaxList<InnerTree::SyntaxToken>({}));
+        }
+
+        /// <summary>
+        /// Create a TypeSpecifierSequence
+        /// </summary>
+        static std::shared_ptr<const InnerTree::TypeSpecifierSequence> CreateTypeSpecifierSequence(
+            std::shared_ptr<const InnerTree::SyntaxList<InnerTree::SyntaxToken>> leadingModifiers,
+            std::shared_ptr<const InnerTree::TypeSpecifier> typeSpecifier,
+            std::shared_ptr<const InnerTree::SyntaxList<InnerTree::SyntaxToken>> trailingModifiers)
+        {
+            if (leadingModifiers == nullptr)
+                throw std::runtime_error("ArgumentNull - leadingModifiers");
+            if (typeSpecifier == nullptr)
+                throw std::runtime_error("ArgumentNull - typeSpecifier");
+            if (trailingModifiers == nullptr)
+                throw std::runtime_error("ArgumentNull - trailingModifiers");
+
+            auto result = std::shared_ptr<const InnerTree::TypeSpecifierSequence>(
+                new InnerTree::TypeSpecifierSequence(
+                    std::move(leadingModifiers),
+                    std::move(typeSpecifier),
+                    std::move(trailingModifiers)));
+            result->SetSelf(result);
+            return result;
         }
 
         /// <summary>

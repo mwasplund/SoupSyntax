@@ -4,23 +4,23 @@
 
 namespace Soup::Syntax::InnerTree::UnitTests
 {
-    class InnerTreeDeclarationSpecifierTests
+    class OuterTreeDeclarationSpecifierSequenceTests
     {
     public:
         [[Fact]]
         void InitializeSimpleNoModifiers()
         {
             // int
-            auto uut = SyntaxFactory::CreateDeclarationSpecifier(
+            auto uut = SyntaxFactory::CreateDeclarationSpecifierSequence(
                 SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                     PrimitiveDataType::Int,
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)));
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)))->CreateOuter(nullptr);
 
             Assert::AreEqual(
-                SyntaxNodeType::DeclarationSpecifier,
+                SyntaxNodeType::DeclarationSpecifierSequence,
                 uut->GetType(),
                 "Verify has correct type.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>({}),
                 uut->GetLeadingModifiers(),
                 "Verify leading modifier tokens match.");
@@ -30,7 +30,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
                 uut->GetTypeSpecifier(),
                 "Verify type specifier matches.");
-            Assert::AreEqual(
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>({}),
                 uut->GetTrailingModifiers(),
                 "Verify trailing modifier tokens match.");
@@ -40,7 +40,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         void InitializeSimpleWithModifiers()
         {
             // static thread_local int friend mutable
-            auto uut = SyntaxFactory::CreateDeclarationSpecifier(
+            auto uut = SyntaxFactory::CreateDeclarationSpecifierSequence(
                 SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
                 {
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Static),
@@ -53,15 +53,14 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 {
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Friend),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Mutable),
-                }));
+                }))->CreateOuter(nullptr);
 
             Assert::AreEqual(
-                SyntaxNodeType::DeclarationSpecifier,
+                SyntaxNodeType::DeclarationSpecifierSequence,
                 uut->GetType(),
                 "Verify has correct type.");
-            Assert::AreEqual(
-                *SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
-                {
+            TestUtils::AreEqual(
+                *SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>({
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Static),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::ThreadLocal),
                 }),
@@ -73,9 +72,8 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
                 uut->GetTypeSpecifier(),
                 "Verify type specifier matches.");
-            Assert::AreEqual(
-                *SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
-                {
+            TestUtils::AreEqual(
+                *SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>({
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Friend),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Mutable),
                 }),
@@ -84,16 +82,70 @@ namespace Soup::Syntax::InnerTree::UnitTests
         }
 
         [[Fact]]
+        void GetChildrenNoModifiers()
+        {
+            // int
+            auto uut = SyntaxFactory::CreateDeclarationSpecifierSequence(
+                SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
+                    PrimitiveDataType::Int,
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)))->CreateOuter(nullptr);
+
+            Assert::AreEqual(
+                std::vector<OuterTree::SyntaxNodeChild>({
+                    TestUtils::CreateChild(
+                        SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
+                            PrimitiveDataType::Int,
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
+                }),
+                uut->GetChildren(),
+                "Verify children match.");
+        }
+
+        [[Fact]]
+        void GetChildrenWithModifiers()
+        {
+            // static thread_local int friend mutable
+            auto uut = SyntaxFactory::CreateDeclarationSpecifierSequence(
+                SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
+                {
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Static),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::ThreadLocal),
+                }),
+                SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
+                    PrimitiveDataType::Int,
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
+                SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
+                {
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Friend),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Mutable),
+                }))->CreateOuter(nullptr);
+
+            Assert::AreEqual(
+                std::vector<OuterTree::SyntaxNodeChild>({
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Static)),
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::ThreadLocal)),
+                    TestUtils::CreateChild(
+                        SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
+                            PrimitiveDataType::Int,
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Friend)),
+                    TestUtils::CreateChild(SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Mutable)),
+                }),
+                uut->GetChildren(),
+                "Verify children match.");
+        }
+
+        [[Fact]]
         void OperatorEqualNoModifiers()
         {
             // int
-            auto uut = SyntaxFactory::CreateDeclarationSpecifier(
+            auto uut = SyntaxFactory::CreateDeclarationSpecifierSequence(
                 SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                     PrimitiveDataType::Int,
-                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)));
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)))->CreateOuter(nullptr);
 
             TestUtils::AreEqual(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
@@ -105,7 +157,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         void OperatorEqualWithModifiers()
         {
             // static thread_local int friend mutable
-            auto uut = SyntaxFactory::CreateDeclarationSpecifier(
+            auto uut = SyntaxFactory::CreateDeclarationSpecifierSequence(
                 SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
                 {
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Static),
@@ -118,10 +170,10 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 {
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Friend),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Mutable),
-                }));
+                }))->CreateOuter(nullptr);
 
             TestUtils::AreEqual(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
                     {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Static),
@@ -143,7 +195,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         void OperatorNotEqualNoLeadingModifiers()
         {
             // static thread_local int friend mutable
-            auto uut = SyntaxFactory::CreateDeclarationSpecifier(
+            auto uut = SyntaxFactory::CreateDeclarationSpecifierSequence(
                 SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
                 {
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Static),
@@ -156,10 +208,10 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 {
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Friend),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Mutable),
-                }));
+                }))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>({}),
                     SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Int,
@@ -177,7 +229,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         void OperatorNotEqualLeadingModifiers()
         {
             // static thread_local int friend mutable
-            auto uut = SyntaxFactory::CreateDeclarationSpecifier(
+            auto uut = SyntaxFactory::CreateDeclarationSpecifierSequence(
                 SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
                 {
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Static),
@@ -190,10 +242,10 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 {
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Friend),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Mutable),
-                }));
+                }))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
                     {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Inline),
@@ -215,7 +267,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         void OperatorNotEqualTypeSpecifier()
         {
             // static thread_local int friend mutable
-            auto uut = SyntaxFactory::CreateDeclarationSpecifier(
+            auto uut = SyntaxFactory::CreateDeclarationSpecifierSequence(
                 SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
                 {
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Static),
@@ -228,10 +280,10 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 {
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Friend),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Mutable),
-                }));
+                }))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
                     {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Static),
@@ -253,7 +305,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         void OperatorNotEqualNoTrailingModifiers()
         {
             // static thread_local int friend mutable
-            auto uut = SyntaxFactory::CreateDeclarationSpecifier(
+            auto uut = SyntaxFactory::CreateDeclarationSpecifierSequence(
                 SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
                 {
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Static),
@@ -266,10 +318,10 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 {
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Friend),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Mutable),
-                }));
+                }))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
                     {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Static),
@@ -287,7 +339,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         void OperatorNotEqualTrailingModifiers()
         {
             // static thread_local int friend mutable
-            auto uut = SyntaxFactory::CreateDeclarationSpecifier(
+            auto uut = SyntaxFactory::CreateDeclarationSpecifierSequence(
                 SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
                 {
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Static),
@@ -300,10 +352,10 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 {
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Friend),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Mutable),
-                }));
+                }))->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreateSyntaxList<InnerTree::SyntaxToken>(
                     {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Static),

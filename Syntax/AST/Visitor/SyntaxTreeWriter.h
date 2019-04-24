@@ -100,8 +100,8 @@ namespace Soup::Syntax
                     return "ConstructorDefinition";
                 case SyntaxNodeType::ConstructorInitializer:
                     return "ConstructorInitializer";
-                case SyntaxNodeType::DeclarationSpecifier:
-                    return "DeclarationSpecifier";
+                case SyntaxNodeType::DeclarationSpecifierSequence:
+                    return "DeclarationSpecifierSequence";
                 case SyntaxNodeType::DefaultFunctionBody:
                     return "DefaultFunctionBody";
                 case SyntaxNodeType::DeleteFunctionBody:
@@ -178,6 +178,8 @@ namespace Soup::Syntax
                     return "TranslationUnit";
                 case SyntaxNodeType::TryFunctionBody:
                     return "TryFunctionBody";
+                case SyntaxNodeType::TypeSpecifierSequence:
+                    return "TypeSpecifierSequence";
                 case SyntaxNodeType::UnaryExpression:
                     return "UnaryExpression";
                 case SyntaxNodeType::ValueEqualInitializer:

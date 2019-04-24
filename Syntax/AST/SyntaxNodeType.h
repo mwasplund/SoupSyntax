@@ -17,7 +17,7 @@ namespace Soup::Syntax
         CompoundStatement,
         ConstructorDefinition,
         ConstructorInitializer,
-        DeclarationSpecifier,
+        DeclarationSpecifierSequence,
         DeclarationStatement,
         DefaultFunctionBody,
         DeleteFunctionBody,
@@ -58,6 +58,7 @@ namespace Soup::Syntax
         TranslationUnit,
         TryFunctionBody,
         TryStatement,
+        TypeSpecifierSequence,
         UnaryExpression,
         ValueEqualInitializer,
     };

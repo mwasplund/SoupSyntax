@@ -19,7 +19,7 @@ namespace Soup::Syntax::OuterTree
             std::shared_ptr<const InnerTree::MemberDeclaration> innerNode,
             const SyntaxNode* parentNode) :
             Declaration(innerNode, parentNode),
-            m_declarationSpecifier(innerNode->GetDeclarationSpecifier().CreateOuter(this)),
+            m_declarationSpecifierSequence(innerNode->GetDeclarationSpecifierSequence().CreateOuter(this)),
             m_memberDeclaratorList(innerNode->GetMemberDeclaratorList().CreateOuter(this)),
             m_semicolonToken(innerNode->GetSemicolonToken().CreateOuter(this))
         {
@@ -27,11 +27,11 @@ namespace Soup::Syntax::OuterTree
 
     public:
         /// <summary>
-        /// Gets the DeclarationSpecifier.
+        /// Gets the DeclarationSpecifierSequence.
         /// </summary>
-        const DeclarationSpecifier& GetDeclarationSpecifier() const
+        const DeclarationSpecifierSequence& GetDeclarationSpecifierSequence() const
         {
-            return *m_declarationSpecifier;
+            return *m_declarationSpecifierSequence;
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace Soup::Syntax::OuterTree
         {
             std::vector<SyntaxNodeChild> children(
             {
-                SyntaxNodeChild(m_declarationSpecifier),
+                SyntaxNodeChild(m_declarationSpecifierSequence),
                 SyntaxNodeChild(m_memberDeclaratorList),
                 SyntaxNodeChild(m_semicolonToken),
             });
@@ -74,7 +74,7 @@ namespace Soup::Syntax::OuterTree
         }
 
     private:
-        std::shared_ptr<const DeclarationSpecifier> m_declarationSpecifier;
+        std::shared_ptr<const DeclarationSpecifierSequence> m_declarationSpecifierSequence;
         std::shared_ptr<const MemberDeclaratorList> m_memberDeclaratorList;
         std::shared_ptr<const SyntaxToken> m_semicolonToken;
     };

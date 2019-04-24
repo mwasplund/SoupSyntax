@@ -17,7 +17,7 @@ namespace Soup::Syntax::OuterTree
             std::shared_ptr<const InnerTree::Parameter> innerNode,
             const SyntaxNode* parentNode) :
             SyntaxNode(innerNode, parentNode),
-            m_declarationSpecifier(innerNode->GetDeclarationSpecifier().CreateOuterAny(this)),
+            m_declarationSpecifierSequence(innerNode->GetDeclarationSpecifierSequence().CreateOuterAny(this)),
             m_declarator(innerNode->GetDeclarator().CreateOuterAny(this))
         {
         }
@@ -26,9 +26,9 @@ namespace Soup::Syntax::OuterTree
         /// <summary>
         /// Gets the list of declaration specifier sequence
         /// </summary>
-        const SyntaxNode& GetDeclarationSpecifier() const
+        const SyntaxNode& GetDeclarationSpecifierSequence() const
         {
-            return *m_declarationSpecifier;
+            return *m_declarationSpecifierSequence;
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace Soup::Syntax::OuterTree
         {
             return std::vector<SyntaxNodeChild>(
             {
-                SyntaxNodeChild(m_declarationSpecifier),
+                SyntaxNodeChild(m_declarationSpecifierSequence),
                 SyntaxNodeChild(m_declarator),
             });
         }
@@ -60,7 +60,7 @@ namespace Soup::Syntax::OuterTree
         }
 
     private:
-        std::shared_ptr<const SyntaxNode> m_declarationSpecifier;
+        std::shared_ptr<const SyntaxNode> m_declarationSpecifierSequence;
         std::shared_ptr<const SyntaxNode> m_declarator;
     };
 }

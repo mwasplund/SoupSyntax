@@ -34,7 +34,7 @@ namespace Soup::Syntax::OuterTree
         /// <summary>
         /// Gets the return type
         /// </summary>
-        const DeclarationSpecifier& GetReturnType() const
+        const DeclarationSpecifierSequence& GetReturnType() const
         {
             return *m_returnType;
         }
@@ -91,7 +91,7 @@ namespace Soup::Syntax::OuterTree
 
     private:
         std::shared_ptr<const SyntaxList<AttributeSpecifier>> m_attributeSpecifierSequence;
-        std::shared_ptr<const DeclarationSpecifier> m_returnType;
+        std::shared_ptr<const DeclarationSpecifierSequence> m_returnType;
         std::shared_ptr<const IdentifierExpression> m_identifier;
         std::shared_ptr<const ParameterList> m_parameterList;
         std::shared_ptr<const SyntaxNode> m_body;

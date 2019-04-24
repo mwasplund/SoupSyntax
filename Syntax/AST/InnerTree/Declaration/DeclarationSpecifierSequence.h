@@ -5,7 +5,7 @@ namespace Soup::Syntax::InnerTree
     /// <summary>
     /// Declaration specifier sequence
     /// </summary>
-    export class DeclarationSpecifier final : public SyntaxNode
+    export class DeclarationSpecifierSequence final : public SyntaxNode
     {
         friend class ::Soup::Syntax::SyntaxFactory;
 
@@ -13,11 +13,11 @@ namespace Soup::Syntax::InnerTree
         /// <summary>
         /// Initialize
         /// </summary>
-        DeclarationSpecifier(
+        DeclarationSpecifierSequence(
             std::shared_ptr<const SyntaxList<SyntaxToken>> leadingModifiers,
             std::shared_ptr<const TypeSpecifier> typeSpecifier,
             std::shared_ptr<const SyntaxList<SyntaxToken>> trailingModifiers) :
-            SyntaxNode(SyntaxNodeType::DeclarationSpecifier),
+            SyntaxNode(SyntaxNodeType::DeclarationSpecifierSequence),
             m_leadingModifiers(std::move(leadingModifiers)),
             m_typeSpecifier(std::move(typeSpecifier)),
             m_trailingModifiers(std::move(trailingModifiers))
@@ -28,11 +28,11 @@ namespace Soup::Syntax::InnerTree
         /// <summary>
         /// Create an outer node with this node and the provided parent
         /// </summary>
-        std::shared_ptr<const OuterTree::DeclarationSpecifier> CreateOuter(
+        std::shared_ptr<const OuterTree::DeclarationSpecifierSequence> CreateOuter(
             const OuterTree::SyntaxNode* parentNode) const
         {
             return OuterTree::SyntaxWrapper::CreateOuter(
-                GetSelf<DeclarationSpecifier>(),
+                GetSelf<DeclarationSpecifierSequence>(),
                 parentNode);
         }
 
@@ -73,14 +73,14 @@ namespace Soup::Syntax::InnerTree
         /// <summary>
         /// Equality operator
         /// </summary>
-        bool operator ==(const DeclarationSpecifier& rhs) const
+        bool operator ==(const DeclarationSpecifierSequence& rhs) const
         {
             return *m_leadingModifiers == *rhs.m_leadingModifiers &&
                 *m_typeSpecifier == *rhs.m_typeSpecifier &&
                 *m_trailingModifiers == *rhs.m_trailingModifiers;
         }
 
-        bool operator !=(const DeclarationSpecifier& rhs) const
+        bool operator !=(const DeclarationSpecifierSequence& rhs) const
         {
             return !(*this == rhs);
         }
@@ -91,7 +91,7 @@ namespace Soup::Syntax::InnerTree
         /// </summary>
         virtual bool Equals(const SyntaxNode& rhs) const final
         {
-            return *this == static_cast<const DeclarationSpecifier&>(rhs);
+            return *this == static_cast<const DeclarationSpecifierSequence&>(rhs);
         }
 
     private:

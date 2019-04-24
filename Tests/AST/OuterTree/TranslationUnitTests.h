@@ -37,7 +37,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                         SyntaxFactory::CreateSimpleDeclaration(
-                            SyntaxFactory::CreateDeclarationSpecifier(
+                            SyntaxFactory::CreateDeclarationSpecifierSequence(
                                 SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                     PrimitiveDataType::Int,
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
@@ -64,7 +64,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                         SyntaxFactory::CreateSimpleDeclaration(
-                            SyntaxFactory::CreateDeclarationSpecifier(
+                            SyntaxFactory::CreateDeclarationSpecifierSequence(
                                 SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                     PrimitiveDataType::Int,
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
@@ -113,7 +113,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                         SyntaxFactory::CreateSimpleDeclaration(
-                            SyntaxFactory::CreateDeclarationSpecifier(
+                            SyntaxFactory::CreateDeclarationSpecifierSequence(
                                 SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                     PrimitiveDataType::Int,
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
@@ -138,7 +138,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon))),
                     TestUtils::CreateChild(
                         SyntaxFactory::CreateSimpleDeclaration(
-                            SyntaxFactory::CreateDeclarationSpecifier(
+                            SyntaxFactory::CreateDeclarationSpecifierSequence(
                                 SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                     PrimitiveDataType::Int,
                                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),

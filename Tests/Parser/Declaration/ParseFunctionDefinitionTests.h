@@ -14,7 +14,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "void Function() \n {\n}");
 
             auto expected = SyntaxFactory::CreateFunctionDefinition(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
@@ -65,7 +65,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "void Function() = default;");
 
             auto expected = SyntaxFactory::CreateFunctionDefinition(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
@@ -109,7 +109,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "void Function() = delete;");
 
             auto expected = SyntaxFactory::CreateFunctionDefinition(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
@@ -153,7 +153,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "void Function(int parameter) = delete;");
 
             auto expected = SyntaxFactory::CreateFunctionDefinition(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
@@ -171,7 +171,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
                         {
                             SyntaxFactory::CreateParameter(
-                                SyntaxFactory::CreateDeclarationSpecifier(
+                                SyntaxFactory::CreateDeclarationSpecifierSequence(
                                     SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                         PrimitiveDataType::Int,
                                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
@@ -222,7 +222,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket)),
                 }),
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(

@@ -504,6 +504,8 @@ typeSpecifier:
 	elaboratedTypeSpecifier |
 	typenameSpecifier;
 
+// Note: ConstVolitileQualifier was a part of the type specifier
+// We pull this out into the sequence to make type safety easier
 typeSpecifierSequence:
 	constVolatileQualifier? typeSpecifier attributeSpecifierSequence?;
 

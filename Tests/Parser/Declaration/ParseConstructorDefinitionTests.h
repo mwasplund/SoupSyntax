@@ -134,7 +134,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
                     SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
                         {
                             SyntaxFactory::CreateParameter(
-                                SyntaxFactory::CreateDeclarationSpecifier(
+                                SyntaxFactory::CreateDeclarationSpecifierSequence(
                                     SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                         PrimitiveDataType::Int,
                                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),

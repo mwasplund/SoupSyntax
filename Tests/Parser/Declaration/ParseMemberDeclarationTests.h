@@ -14,7 +14,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             auto actual = ParseMemberDeclaration(sourceCode);
 
             auto expected = SyntaxFactory::CreateMemberDeclaration(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
@@ -46,7 +46,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             auto actual = ParseMemberDeclaration(sourceCode);
 
             auto expected = SyntaxFactory::CreateMemberDeclaration(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreateIdentifierType(
                         SyntaxFactory::CreateSimpleIdentifier(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass")))),
@@ -78,7 +78,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             auto actual = ParseMemberDeclaration(sourceCode);
 
             auto expected = SyntaxFactory::CreateMemberDeclaration(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreateIdentifierType(
                     SyntaxFactory::CreateNestedNameSpecifier(
                         SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
@@ -95,9 +95,10 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LessThan),
                             SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
                                 {
-                                    SyntaxFactory::CreateIdentifierType(
-                                        SyntaxFactory::CreateSimpleIdentifier(
-                                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "ClassA"))),
+                                    SyntaxFactory::CreateTypeSpecifierSequence(
+                                        SyntaxFactory::CreateIdentifierType(
+                                            SyntaxFactory::CreateSimpleIdentifier(
+                                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "ClassA")))),
                                 },
                                 {}),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan)))),
@@ -129,7 +130,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             auto actual = ParseMemberDeclaration(sourceCode);
 
             auto expected = SyntaxFactory::CreateMemberDeclaration(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
@@ -176,7 +177,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             auto actual = ParseMemberDeclaration(sourceCode);
 
             auto expected = SyntaxFactory::CreateMemberDeclaration(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
@@ -221,7 +222,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             auto actual = ParseMemberDeclaration(sourceCode);
 
             auto expected = SyntaxFactory::CreateMemberDeclaration(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
@@ -281,7 +282,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             auto actual = ParseMemberDeclaration(sourceCode);
 
             auto expected = SyntaxFactory::CreateMemberDeclaration(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
@@ -356,7 +357,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             auto actual = ParseMemberDeclaration(sourceCode);
 
             auto expected = SyntaxFactory::CreateMemberDeclaration(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreateSyntaxList<SyntaxToken>(
                     {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Static),

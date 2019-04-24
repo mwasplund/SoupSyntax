@@ -10,7 +10,7 @@ import SoupSyntax;
 #include "AST\InnerTree\Declaration\ClassSpecifierTests.gen.h"
 #include "AST\InnerTree\Declaration\ConstructorDefinitionTests.gen.h"
 #include "AST\InnerTree\Declaration\ConstructorInitializerTests.gen.h"
-#include "AST\InnerTree\Declaration\DeclarationSpecifierTests.gen.h"
+#include "AST\InnerTree\Declaration\DeclarationSpecifierSequenceTests.gen.h"
 #include "AST\InnerTree\Declaration\DefaultFunctionBodyTests.gen.h"
 #include "AST\InnerTree\Declaration\DeleteFunctionBodyTests.gen.h"
 #include "AST\InnerTree\Declaration\EmptyDeclarationTests.gen.h"
@@ -32,6 +32,7 @@ import SoupSyntax;
 #include "AST\InnerTree\Declaration\PointerOperatorTests.gen.h"
 #include "AST\InnerTree\Declaration\PrimitiveDataTypeSpecifierTests.gen.h"
 #include "AST\InnerTree\Declaration\SimpleDeclarationTests.gen.h"
+#include "AST\InnerTree\Declaration\TypeSpecifierSequenceTests.gen.h"
 #include "AST\InnerTree\Declaration\ValueEqualInitializerTests.gen.h"
 
 #include "AST\InnerTree\Expression\BinaryExpressionTests.gen.h"
@@ -66,7 +67,7 @@ import SoupSyntax;
 #include "AST\OuterTree\Declaration\ClassSpecifierTests.gen.h"
 #include "AST\OuterTree\Declaration\ConstructorDefinitionTests.gen.h"
 #include "AST\OuterTree\Declaration\ConstructorInitializerTests.gen.h"
-#include "AST\OuterTree\Declaration\DeclarationSpecifierTests.gen.h"
+#include "AST\OuterTree\Declaration\DeclarationSpecifierSequenceTests.gen.h"
 #include "AST\OuterTree\Declaration\DefaultFunctionBodyTests.gen.h"
 #include "AST\OuterTree\Declaration\DeleteFunctionBodyTests.gen.h"
 #include "AST\OuterTree\Declaration\EmptyDeclarationTests.gen.h"
@@ -88,6 +89,7 @@ import SoupSyntax;
 #include "AST\OuterTree\Declaration\PointerOperatorTests.gen.h"
 #include "AST\OuterTree\Declaration\PrimitiveDataTypeSpecifierTests.gen.h"
 #include "AST\OuterTree\Declaration\SimpleDeclarationTests.gen.h"
+#include "AST\OuterTree\Declaration\TypeSpecifierSequenceTests.gen.h"
 #include "AST\OuterTree\Declaration\ValueEqualInitializerTests.gen.h"
 
 #include "AST\OuterTree\Expression\BinaryExpressionTests.gen.h"
@@ -162,7 +164,7 @@ int main()
     state += RunInnerTreeClassSpecifierTests();
     state += RunInnerTreeConstructorDefinitionTests();
     state += RunInnerTreeConstructorInitializerTests();
-    state += RunInnerTreeDeclarationSpecifierTests();
+    state += RunInnerTreeDeclarationSpecifierSequenceTests();
     state += RunInnerTreeDefaultFunctionBodyTests();
     state += RunInnerTreeDeleteFunctionBodyTests();
     state += RunInnerTreeEmptyDeclarationTests();
@@ -184,6 +186,7 @@ int main()
     state += RunInnerTreePointerOperatorTests();
     state += RunInnerTreePrimitiveDataTypeSpecifierTests();
     state += RunInnerTreeSimpleDeclarationTests();
+    state += RunInnerTreeTypeSpecifierSequenceTests();
     state += RunInnerTreeValueEqualInitializerTests();
 
     state += RunInnerTreeBinaryExpressionTests();
@@ -218,7 +221,7 @@ int main()
     state += RunOuterTreeClassSpecifierTests();
     state += RunOuterTreeConstructorDefinitionTests();
     state += RunOuterTreeConstructorInitializerTests();
-    state += RunOuterTreeDeclarationSpecifierTests();
+    state += RunOuterTreeDeclarationSpecifierSequenceTests();
     state += RunOuterTreeDefaultFunctionBodyTests();
     state += RunOuterTreeDeleteFunctionBodyTests();
     state += RunOuterTreeEmptyDeclarationTests();
@@ -240,6 +243,7 @@ int main()
     state += RunOuterTreePointerOperatorTests();
     state += RunOuterTreePrimitiveDataTypeSpecifierTests();
     state += RunOuterTreeSimpleDeclarationTests();
+    state += RunOuterTreeTypeSpecifierSequenceTests();
     state += RunOuterTreeValueEqualInitializerTests();
 
     state += RunOuterTreeBinaryExpressionTests();

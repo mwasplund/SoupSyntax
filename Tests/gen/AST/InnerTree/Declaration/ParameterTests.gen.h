@@ -18,8 +18,8 @@ TestState RunInnerTreeParameterTests()
         [&testClass]() { testClass->OperatorEqual(); });
     state += RunTest(
         className,
-        "OperatorNotEqualDeclarationSpecifier",
-        [&testClass]() { testClass->OperatorNotEqualDeclarationSpecifier(); });
+        "OperatorNotEqualDeclarationSpecifierSequence",
+        [&testClass]() { testClass->OperatorNotEqualDeclarationSpecifierSequence(); });
     state += RunTest(
         className,
         "OperatorNotEqualDeclarator",

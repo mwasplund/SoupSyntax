@@ -1484,8 +1484,8 @@ antlrcpp::Any ASTCppParserVisitor::visitSimpleDeclaration(CppParser::SimpleDecla
 {
     Trace("VisitSimpleDeclaration");
 
-    auto declarationSpecifier = visit(context->declarationSpecifierSequence())
-        .as<std::shared_ptr<const DeclarationSpecifier>>();
+    auto declarationSpecifierSequence = visit(context->declarationSpecifierSequence())
+        .as<std::shared_ptr<const DeclarationSpecifierSequence>>();
 
     // Check for optional initializer declarator list
     SeparatorListResult<InitializerDeclarator> initializerDeclaratorList;
@@ -1498,7 +1498,7 @@ antlrcpp::Any ASTCppParserVisitor::visitSimpleDeclaration(CppParser::SimpleDecla
     // TODO
     return std::static_pointer_cast<const SyntaxNode>(
         SyntaxFactory::CreateSimpleDeclaration(
-            std::move(declarationSpecifier),
+            std::move(declarationSpecifierSequence),
             SyntaxFactory::CreateInitializerDeclaratorList(
                 SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
                     std::move(initializerDeclaratorList.Items),
@@ -1590,7 +1590,7 @@ antlrcpp::Any ASTCppParserVisitor::visitDeclarationSpecifierSequence(CppParser::
             .as<std::vector<std::shared_ptr<const SyntaxToken>>>();
     }
 
-    return SyntaxFactory::CreateDeclarationSpecifier(
+    return SyntaxFactory::CreateDeclarationSpecifierSequence(
         SyntaxFactory::CreateSyntaxList<SyntaxToken>(std::move(leadingModifiers)),
         std::move(typeSpecifier),
         SyntaxFactory::CreateSyntaxList<SyntaxToken>(std::move(trailingModifiers)));
@@ -1669,8 +1669,29 @@ antlrcpp::Any ASTCppParserVisitor::visitTypeSpecifierSequence(CppParser::TypeSpe
 {
     Trace("VisitTypeSpecifierSequence");
 
-    // TODO: Sequence?
-    return visit(context->typeSpecifier());
+    // Check for optional leading modifiers
+    std::vector<std::shared_ptr<const SyntaxToken>> leadingModifiers = {};
+    if (context->constVolatileQualifier() != nullptr)
+    {
+        leadingModifiers.push_back(
+            visit(context->constVolatileQualifier())
+                .as<std::shared_ptr<const SyntaxToken>>());
+    }
+
+    auto typeSpecifier = SafeDynamicCast<const TypeSpecifier>(
+        visit(context->typeSpecifier())
+            .as<std::shared_ptr<const SyntaxNode>>(), __LINE__);
+
+    // TODO: Check for optional trailing modifiers
+    std::vector<std::shared_ptr<const SyntaxToken>> trailingModifiers = {};
+
+    return std::static_pointer_cast<const SyntaxNode>(
+        SyntaxFactory::CreateTypeSpecifierSequence(
+            SyntaxFactory::CreateSyntaxList<SyntaxToken>(
+                std::move(leadingModifiers)),
+            std::move(typeSpecifier),
+            SyntaxFactory::CreateSyntaxList<SyntaxToken>(
+                std::move(trailingModifiers))));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitDefiningTypeSpecifier(CppParser::DefiningTypeSpecifierContext *context)
@@ -2540,8 +2561,8 @@ antlrcpp::Any ASTCppParserVisitor::visitParameterDeclaration(CppParser::Paramete
     // attributeSpecifierSequence? declarationSpecifierSequence declarator Equal initializerClause |
     // attributeSpecifierSequence? declarationSpecifierSequence abstractDeclarator? |
     // attributeSpecifierSequence? declarationSpecifierSequence abstractDeclarator? Equal initializerClause;
-    auto declarationSpecifier = visit(context->declarationSpecifierSequence())
-        .as<std::shared_ptr<const DeclarationSpecifier>>();
+    auto declarationSpecifierSequence = visit(context->declarationSpecifierSequence())
+        .as<std::shared_ptr<const DeclarationSpecifierSequence>>();
     if (context->declarator() != nullptr)
     {
         auto declarator = visit(context->declarator())
@@ -2549,7 +2570,7 @@ antlrcpp::Any ASTCppParserVisitor::visitParameterDeclaration(CppParser::Paramete
 
         // TODO: initializerClause
         return SyntaxFactory::CreateParameter(
-            std::move(declarationSpecifier),
+            std::move(declarationSpecifierSequence),
             std::move(declarator));
     }
     else
@@ -2597,7 +2618,7 @@ antlrcpp::Any ASTCppParserVisitor::visitFunctionDefinition(CppParser::FunctionDe
         }
 
         auto returnType = visit(context->declarationSpecifierSequence())
-            .as<std::shared_ptr<const DeclarationSpecifier>>();
+            .as<std::shared_ptr<const DeclarationSpecifierSequence>>();
 
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreateFunctionDefinition(
@@ -2882,14 +2903,14 @@ antlrcpp::Any ASTCppParserVisitor::visitMemberDeclaration(CppParser::MemberDecla
     if (context->Semicolon() != nullptr)
     {
         // attributeSpecifierSequence? declarationSpecifierSequence memberDeclaratorList Semicolon
-        auto declarationSpecifier = visit(context->declarationSpecifierSequence())
-            .as<std::shared_ptr<const DeclarationSpecifier>>();
+        auto declarationSpecifierSequence = visit(context->declarationSpecifierSequence())
+            .as<std::shared_ptr<const DeclarationSpecifierSequence>>();
         auto memberDeclaratorList = visit(context->memberDeclaratorList())
             .as<SeparatorListResult<MemberDeclarator>>();
 
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreateMemberDeclaration(
-                std::move(declarationSpecifier),
+                std::move(declarationSpecifierSequence),
                 SyntaxFactory::CreateMemberDeclaratorList(
                     SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
                         std::move(memberDeclaratorList.Items),

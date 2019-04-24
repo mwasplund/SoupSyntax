@@ -14,10 +14,10 @@ namespace Soup::Syntax::InnerTree
         /// Initialize
         /// </summary>
         VariableDeclaration(
-            std::shared_ptr<const DeclarationSpecifier>&& declarationSpecifier,
+            std::shared_ptr<const DeclarationSpecifierSequence>&& declarationSpecifierSequence,
             std::shared_ptr<const InitializerDeclaratorList>&& initializerDeclaratorList) :
             Declaration(SyntaxNodeType::SimpleDefinition),
-            m_declarationSpecifier(std::move(declarationSpecifier)),
+            m_declarationSpecifierSequence(std::move(declarationSpecifierSequence)),
             m_initializerDeclaratorList(std::move(initializerDeclaratorList))
         {
         }
@@ -47,9 +47,9 @@ namespace Soup::Syntax::InnerTree
         /// <summary>
         /// Gets the specifiers
         /// </summary>
-        const DeclarationSpecifier& GetDeclarationSpecifier() const
+        const DeclarationSpecifierSequence& GetDeclarationSpecifierSequence() const
         {
-            return *m_declarationSpecifier;
+            return *m_declarationSpecifierSequence;
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace Soup::Syntax::InnerTree
         /// </summary>
         bool operator ==(const SimpleDefinition& rhs) const
         {
-            return *m_declarationSpecifier == *rhs.m_declarationSpecifier &&
+            return *m_declarationSpecifierSequence == *rhs.m_declarationSpecifierSequence &&
                 *m_initializerDeclaratorList == *rhs.m_initializerDeclaratorList;
         }
 
@@ -84,7 +84,7 @@ namespace Soup::Syntax::InnerTree
         }
 
     private:
-        std::shared_ptr<const DeclarationSpecifier> m_declarationSpecifier;
+        std::shared_ptr<const DeclarationSpecifierSequence> m_declarationSpecifierSequence;
         std::shared_ptr<const InitializerDeclaratorList> m_initializerDeclaratorList;
     };
 }

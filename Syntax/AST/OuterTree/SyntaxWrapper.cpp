@@ -82,12 +82,12 @@ using namespace Soup::Syntax::OuterTree;
         new DeclarationStatement(std::move(innerNode), parentNode));
 }
 
-/*static*/ std::shared_ptr<const DeclarationSpecifier> SyntaxWrapper::CreateOuter(
-    std::shared_ptr<const InnerTree::DeclarationSpecifier> innerNode,
+/*static*/ std::shared_ptr<const DeclarationSpecifierSequence> SyntaxWrapper::CreateOuter(
+    std::shared_ptr<const InnerTree::DeclarationSpecifierSequence> innerNode,
     const SyntaxNode* parentNode)
 {
-    return std::shared_ptr<const DeclarationSpecifier>(
-        new DeclarationSpecifier(std::move(innerNode), parentNode));
+    return std::shared_ptr<const DeclarationSpecifierSequence>(
+        new DeclarationSpecifierSequence(std::move(innerNode), parentNode));
 }
 
 /*static*/ std::shared_ptr<const DefaultFunctionBody> SyntaxWrapper::CreateOuter(
@@ -581,6 +581,14 @@ std::vector<std::shared_ptr<const SyntaxToken>> CreateOuterList(
 {
     return std::shared_ptr<const TryStatement>(
         new TryStatement(std::move(innerNode), parentNode));
+}
+
+/*static*/ std::shared_ptr<const TypeSpecifierSequence> SyntaxWrapper::CreateOuter(
+    std::shared_ptr<const InnerTree::TypeSpecifierSequence> innerNode,
+    const SyntaxNode* parentNode)
+{
+    return std::shared_ptr<const TypeSpecifierSequence>(
+        new TypeSpecifierSequence(std::move(innerNode), parentNode));
 }
 
 /*static*/ std::shared_ptr<const UnaryExpression> SyntaxWrapper::CreateOuter(

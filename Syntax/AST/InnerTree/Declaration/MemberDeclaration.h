@@ -16,11 +16,11 @@ namespace Soup::Syntax::InnerTree
         /// Initialize
         /// </summary>
         MemberDeclaration(
-            std::shared_ptr<const DeclarationSpecifier> declarationSpecifier,
+            std::shared_ptr<const DeclarationSpecifierSequence> declarationSpecifierSequence,
             std::shared_ptr<const MemberDeclaratorList> memberDeclaratorList,
             std::shared_ptr<const SyntaxToken> semicolonToken) :
             Declaration(SyntaxNodeType::MemberDeclaration),
-            m_declarationSpecifier(std::move(declarationSpecifier)),
+            m_declarationSpecifierSequence(std::move(declarationSpecifierSequence)),
             m_memberDeclaratorList(std::move(memberDeclaratorList)),
             m_semicolonToken(std::move(semicolonToken))
         {
@@ -49,11 +49,11 @@ namespace Soup::Syntax::InnerTree
         }
 
         /// <summary>
-        /// Gets the DeclarationSpecifier.
+        /// Gets the DeclarationSpecifierSequence.
         /// </summary>
-        const DeclarationSpecifier& GetDeclarationSpecifier() const
+        const DeclarationSpecifierSequence& GetDeclarationSpecifierSequence() const
         {
-            return *m_declarationSpecifier;
+            return *m_declarationSpecifierSequence;
         }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace Soup::Syntax::InnerTree
         /// </summary>
         bool operator ==(const MemberDeclaration& rhs) const
         {
-            return *m_declarationSpecifier == *rhs.m_declarationSpecifier &&
+            return *m_declarationSpecifierSequence == *rhs.m_declarationSpecifierSequence &&
                 *m_memberDeclaratorList == *rhs.m_memberDeclaratorList &&
                 *m_semicolonToken == *rhs.m_semicolonToken;
         }
@@ -97,7 +97,7 @@ namespace Soup::Syntax::InnerTree
         }
 
     private:
-        std::shared_ptr<const DeclarationSpecifier> m_declarationSpecifier;
+        std::shared_ptr<const DeclarationSpecifierSequence> m_declarationSpecifierSequence;
         std::shared_ptr<const MemberDeclaratorList> m_memberDeclaratorList;
         std::shared_ptr<const SyntaxToken> m_semicolonToken;
     };

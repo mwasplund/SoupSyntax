@@ -14,7 +14,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 
             auto expected = TestUtils::CreateSingleDeclaration(
                 SyntaxFactory::CreateFunctionDefinition(
-                    SyntaxFactory::CreateDeclarationSpecifier(
+                    SyntaxFactory::CreateDeclarationSpecifierSequence(
                         SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                             PrimitiveDataType::Void,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
@@ -41,7 +41,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 
             auto expected = TestUtils::CreateSingleDeclaration(
                 SyntaxFactory::CreateFunctionDefinition(
-                    SyntaxFactory::CreateDeclarationSpecifier(
+                    SyntaxFactory::CreateDeclarationSpecifierSequence(
                         SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                             PrimitiveDataType::Void,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
@@ -68,7 +68,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 
             auto expected = TestUtils::CreateSingleDeclaration(
                 SyntaxFactory::CreateFunctionDefinition(
-                    SyntaxFactory::CreateDeclarationSpecifier(
+                    SyntaxFactory::CreateDeclarationSpecifierSequence(
                         SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                             PrimitiveDataType::Void,
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),

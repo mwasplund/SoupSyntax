@@ -54,7 +54,7 @@ namespace Soup::Syntax
             DefaultVisit(node);
         }
 
-        virtual void Visit(const OuterTree::DeclarationSpecifier& node) override
+        virtual void Visit(const OuterTree::DeclarationSpecifierSequence& node) override
         {
             DefaultVisit(node);
         }
@@ -255,6 +255,11 @@ namespace Soup::Syntax
         }
 
         virtual void Visit(const OuterTree::TryStatement& node) override
+        {
+            DefaultVisit(node);
+        }
+
+        virtual void Visit(const OuterTree::TypeSpecifierSequence& node) override
         {
             DefaultVisit(node);
         }

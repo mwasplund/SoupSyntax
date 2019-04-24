@@ -14,7 +14,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             auto actual = ParseSimpleDeclaration(sourceCode);
 
             auto expected = SyntaxFactory::CreateSimpleDeclaration(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreateClassSpecifier(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Class),
                         SyntaxFactory::CreateUniqueToken(
@@ -60,7 +60,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             auto actual = ParseSimpleDeclaration(sourceCode);
 
             auto expected = SyntaxFactory::CreateSimpleDeclaration(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreateEnumSpecifier(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Enum),
                         SyntaxFactory::CreateKeywordToken(
@@ -127,7 +127,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             auto actual = ParseSimpleDeclaration(sourceCode);
 
             auto expected = SyntaxFactory::CreateSimpleDeclaration(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         expectedType,
                         SyntaxFactory::CreateKeywordToken(expectedToken))),
@@ -159,7 +159,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             auto actual = ParseSimpleDeclaration(sourceCode);
 
             auto expected = SyntaxFactory::CreateSimpleDeclaration(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreateIdentifierType(
                         SyntaxFactory::CreateSimpleIdentifier(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass")))),
@@ -191,7 +191,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             auto actual = ParseSimpleDeclaration(sourceCode);
 
             auto expected = SyntaxFactory::CreateSimpleDeclaration(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreateIdentifierType(
                         SyntaxFactory::CreateNestedNameSpecifier(
                             SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
@@ -207,15 +207,20 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LessThan),
                             SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
                                 {
-                                    SyntaxFactory::CreateIdentifierType(
-                                        SyntaxFactory::CreateSimpleIdentifier(
-                                            SyntaxFactory::CreateUniqueToken(
-                                                SyntaxTokenType::Identifier,
-                                                "ClassA",
-                                                {
-                                                    SyntaxFactory::CreateTrivia(" "),
-                                                },
-                                                {}))),
+                                    SyntaxFactory::CreateTypeSpecifierSequence(
+                                        SyntaxFactory::CreateSyntaxList<SyntaxToken>({
+                                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Const),
+                                        }),
+                                        SyntaxFactory::CreateIdentifierType(
+                                            SyntaxFactory::CreateSimpleIdentifier(
+                                                SyntaxFactory::CreateUniqueToken(
+                                                    SyntaxTokenType::Identifier,
+                                                    "ClassA",
+                                                    {
+                                                        SyntaxFactory::CreateTrivia(" "),
+                                                    },
+                                                    {}))),
+                                        SyntaxFactory::CreateSyntaxList<SyntaxToken>({})),
                                 },
                                 {}),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan)))),
@@ -247,7 +252,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             auto actual = ParseSimpleDeclaration(sourceCode);
 
             auto expected = SyntaxFactory::CreateSimpleDeclaration(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreateIdentifierType(
                         SyntaxFactory::CreateNestedNameSpecifier(
                             SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
@@ -263,27 +268,29 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LessThan),
                             SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
                                 {
-                                    SyntaxFactory::CreateIdentifierType(
-                                        SyntaxFactory::CreateNestedNameSpecifier(
-                                            SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
-                                                {
-                                                    SyntaxFactory::CreateSimpleIdentifier(
-                                                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "std")),
-                                                },
-                                                {
-                                                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
-                                                })),
-                                        SyntaxFactory::CreateSimpleTemplateIdentifier(
-                                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "shared_ptr"),
-                                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LessThan),
-                                            SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
-                                                {
-                                                    SyntaxFactory::CreateIdentifierType(
+                                    SyntaxFactory::CreateTypeSpecifierSequence(
+                                        SyntaxFactory::CreateIdentifierType(
+                                            SyntaxFactory::CreateNestedNameSpecifier(
+                                                SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
+                                                    {
                                                         SyntaxFactory::CreateSimpleIdentifier(
-                                                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Attribute"))),
-                                                },
-                                                {}),
-                                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan))),
+                                                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "std")),
+                                                    },
+                                                    {
+                                                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
+                                                    })),
+                                            SyntaxFactory::CreateSimpleTemplateIdentifier(
+                                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "shared_ptr"),
+                                                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LessThan),
+                                                SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
+                                                    {
+                                                        SyntaxFactory::CreateTypeSpecifierSequence(
+                                                            SyntaxFactory::CreateIdentifierType(
+                                                                SyntaxFactory::CreateSimpleIdentifier(
+                                                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Attribute")))),
+                                                    },
+                                                    {}),
+                                                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan)))),
                                 },
                                 {}),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan)))),
@@ -315,7 +322,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             auto actual = ParseSimpleDeclaration(sourceCode);
 
             auto expected = SyntaxFactory::CreateSimpleDeclaration(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
@@ -362,7 +369,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             auto actual = ParseSimpleDeclaration(sourceCode);
 
             auto expected = SyntaxFactory::CreateSimpleDeclaration(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
@@ -407,7 +414,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             auto actual = ParseSimpleDeclaration(sourceCode);
 
             auto expected = SyntaxFactory::CreateSimpleDeclaration(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
@@ -467,7 +474,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             auto actual = ParseSimpleDeclaration(sourceCode);
 
             auto expected = SyntaxFactory::CreateSimpleDeclaration(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
@@ -542,7 +549,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             auto actual = ParseSimpleDeclaration(sourceCode);
 
             auto expected = SyntaxFactory::CreateSimpleDeclaration(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreateSyntaxList<SyntaxToken>(
                     {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Static),
@@ -592,7 +599,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             auto actual = ParseSimpleDeclaration(sourceCode);
 
             auto expected = SyntaxFactory::CreateSimpleDeclaration(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
                     SyntaxFactory::CreateIdentifierType(
                         SyntaxFactory::CreateNestedNameSpecifier(
                             SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
@@ -608,9 +615,10 @@ namespace Soup::Syntax::InnerTree::UnitTests
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LessThan),
                             SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
                                 {
-                                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
-                                        PrimitiveDataType::Int,
-                                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int)),
+                                    SyntaxFactory::CreateTypeSpecifierSequence(
+                                        SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
+                                            PrimitiveDataType::Int,
+                                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                                 },
                                 {}),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan)))),

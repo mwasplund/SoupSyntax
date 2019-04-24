@@ -57,18 +57,20 @@ namespace Soup::Syntax::InnerTree::UnitTests
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LessThan),
                         SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
                             {
-                                SyntaxFactory::CreateIdentifierType(
-                                    SyntaxFactory::CreateSimpleIdentifier(
-                                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value1"))),
-                                SyntaxFactory::CreateIdentifierType(
-                                    SyntaxFactory::CreateSimpleIdentifier(
-                                        SyntaxFactory::CreateUniqueToken(
-                                            SyntaxTokenType::Identifier,
-                                            "Value2",
-                                            {
-                                                SyntaxFactory::CreateTrivia(" "),
-                                            },
-                                            {}))),
+                                SyntaxFactory::CreateTypeSpecifierSequence(
+                                    SyntaxFactory::CreateIdentifierType(
+                                        SyntaxFactory::CreateSimpleIdentifier(
+                                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "Value1")))),
+                                SyntaxFactory::CreateTypeSpecifierSequence(
+                                    SyntaxFactory::CreateIdentifierType(
+                                        SyntaxFactory::CreateSimpleIdentifier(
+                                            SyntaxFactory::CreateUniqueToken(
+                                                SyntaxTokenType::Identifier,
+                                                "Value2",
+                                                {
+                                                    SyntaxFactory::CreateTrivia(" "),
+                                                },
+                                                {})))),
                             },
                             {
                                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma)
