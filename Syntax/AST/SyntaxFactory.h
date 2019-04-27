@@ -12,16 +12,55 @@ namespace Soup::Syntax
     public:
         /// <summary>
         /// Create a Attribute
+        /// Overload without optional argument clause
         /// </summary>
         static std::shared_ptr<const InnerTree::Attribute> CreateAttribute(
             std::shared_ptr<const InnerTree::SyntaxToken> identifierToken)
         {
+            return CreateAttribute(
+                std::move(identifierToken),
+                nullptr);
+        }
+
+        /// <summary>
+        /// Create a Attribute
+        /// </summary>
+        static std::shared_ptr<const InnerTree::Attribute> CreateAttribute(
+            std::shared_ptr<const InnerTree::SyntaxToken> identifierToken,
+            std::shared_ptr<const InnerTree::AttributeArgumentClause> argumentClause)
+        {
+            // Note:: The argument clause is optional
             if (identifierToken == nullptr)
                 throw std::runtime_error("ArgumentNull - identifierToken");
 
             auto result = std::shared_ptr<const InnerTree::Attribute>(
                 new InnerTree::Attribute(
-                    std::move(identifierToken)));
+                    std::move(identifierToken),
+                    std::move(argumentClause)));
+            result->SetSelf(result);
+            return result;
+        }
+
+        /// <summary>
+        /// Create a AttributeArgumentClause
+        /// </summary>
+        static std::shared_ptr<const InnerTree::AttributeArgumentClause> CreateAttributeArgumentClause(
+            std::shared_ptr<const InnerTree::SyntaxToken> openParenthesisToken,
+            std::shared_ptr<const InnerTree::SyntaxList<InnerTree::SyntaxToken>> tokens,
+            std::shared_ptr<const InnerTree::SyntaxToken> closeParenthesisToken)
+        {
+            if (openParenthesisToken == nullptr)
+                throw std::runtime_error("ArgumentNull - openParenthesisToken");
+            if (tokens == nullptr)
+                throw std::runtime_error("ArgumentNull - tokens");
+            if (closeParenthesisToken == nullptr)
+                throw std::runtime_error("ArgumentNull - closeParenthesisToken");
+
+            auto result = std::shared_ptr<const InnerTree::AttributeArgumentClause>(
+                new InnerTree::AttributeArgumentClause(
+                    std::move(openParenthesisToken),
+                    std::move(tokens),
+                    std::move(closeParenthesisToken)));
             result->SetSelf(result);
             return result;
         }

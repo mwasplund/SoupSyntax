@@ -10,16 +10,32 @@ TestState RunInnerTreeAttributeTests()
 
     state += RunTest(
         className,
-        "Initialize",
-        [&testClass]() { testClass->Initialize(); });
+        "InitializeSimple",
+        [&testClass]() { testClass->InitializeSimple(); });
     state += RunTest(
         className,
-        "OperatorEqual",
-        [&testClass]() { testClass->OperatorEqual(); });
+        "InitializeComplex",
+        [&testClass]() { testClass->InitializeComplex(); });
+    state += RunTest(
+        className,
+        "OperatorEqualSimple",
+        [&testClass]() { testClass->OperatorEqualSimple(); });
+    state += RunTest(
+        className,
+        "OperatorEqualComplex",
+        [&testClass]() { testClass->OperatorEqualComplex(); });
     state += RunTest(
         className,
         "OperatorNotEqualIdentifier",
         [&testClass]() { testClass->OperatorNotEqualIdentifier(); });
+    state += RunTest(
+        className,
+        "OperatorNotEqualArgumentClause",
+        [&testClass]() { testClass->OperatorNotEqualArgumentClause(); });
+    state += RunTest(
+        className,
+        "OperatorNotEqualNoArgumentClause",
+        [&testClass]() { testClass->OperatorNotEqualNoArgumentClause(); });
 
     return state;
 }

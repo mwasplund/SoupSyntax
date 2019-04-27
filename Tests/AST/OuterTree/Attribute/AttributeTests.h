@@ -8,10 +8,11 @@ namespace Soup::Syntax::InnerTree::UnitTests
     {
     public:
         [[Fact]]
-        void Initialize()
+        void InitializeSimple()
         {
             auto uut = SyntaxFactory::CreateAttribute(
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name"))->CreateOuter(nullptr);
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name"),
+                nullptr)->CreateOuter(nullptr);
 
             Assert::AreEqual(
                 SyntaxNodeType::Attribute,
@@ -21,13 +22,47 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 *SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name"),
                 uut->GetIdentifierToken(),
                 "Verify identifier matches.");
+            Assert::IsFalse(
+                uut->HasArgumentClause(),
+                "Verify has no argument clause.");
         }
 
         [[Fact]]
-        void GetChildren()
+        void InitializeComplex()
         {
             auto uut = SyntaxFactory::CreateAttribute(
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name"))->CreateOuter(nullptr);
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name"),
+                SyntaxFactory::CreateAttributeArgumentClause(
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
+                    SyntaxFactory::CreateSyntaxList<SyntaxToken>({}),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)))->CreateOuter(nullptr);
+
+            Assert::AreEqual(
+                SyntaxNodeType::Attribute,
+                uut->GetType(),
+                "Verify has correct type.");
+            TestUtils::AreEqual(
+                *SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name"),
+                uut->GetIdentifierToken(),
+                "Verify identifier matches.");
+            Assert::IsTrue(
+                uut->HasArgumentClause(),
+                "Verify has no argument clause.");
+            TestUtils::AreEqual(
+                *SyntaxFactory::CreateAttributeArgumentClause(
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
+                    SyntaxFactory::CreateSyntaxList<SyntaxToken>({}),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
+                uut->GetArgumentClause(),
+                "Verify identifier matches.");
+        }
+
+        [[Fact]]
+        void GetChildrenSimple()
+        {
+            auto uut = SyntaxFactory::CreateAttribute(
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name"),
+                nullptr)->CreateOuter(nullptr);
 
             Assert::AreEqual(
                 std::vector<OuterTree::SyntaxNodeChild>({
@@ -38,14 +73,59 @@ namespace Soup::Syntax::InnerTree::UnitTests
         }
 
         [[Fact]]
-        void OperatorEqual()
+        void GetChildrenComplex()
         {
             auto uut = SyntaxFactory::CreateAttribute(
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name"))->CreateOuter(nullptr);
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name"),
+                SyntaxFactory::CreateAttributeArgumentClause(
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
+                    SyntaxFactory::CreateSyntaxList<SyntaxToken>({}),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)))->CreateOuter(nullptr);
+
+            Assert::AreEqual(
+                std::vector<OuterTree::SyntaxNodeChild>({
+                    TestUtils::CreateChild(SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name")),
+                    TestUtils::CreateChild(SyntaxFactory::CreateAttributeArgumentClause(
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
+                        SyntaxFactory::CreateSyntaxList<SyntaxToken>({}),
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))),
+                }),
+                uut->GetChildren(),
+                "Verify children match.");
+        }
+
+        [[Fact]]
+        void OperatorEqualSimple()
+        {
+            auto uut = SyntaxFactory::CreateAttribute(
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name"),
+                nullptr)->CreateOuter(nullptr);
 
             TestUtils::AreEqual(
                 SyntaxFactory::CreateAttribute(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name"),
+                    nullptr),
+                uut,
+                "Verify matches.");
+        }
+
+        [[Fact]]
+        void OperatorEqualComplex()
+        {
+            auto uut = SyntaxFactory::CreateAttribute(
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name"),
+                SyntaxFactory::CreateAttributeArgumentClause(
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
+                    SyntaxFactory::CreateSyntaxList<SyntaxToken>({}),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)))->CreateOuter(nullptr);
+
+            TestUtils::AreEqual(
+                SyntaxFactory::CreateAttribute(
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name"),
+                    SyntaxFactory::CreateAttributeArgumentClause(
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
+                        SyntaxFactory::CreateSyntaxList<SyntaxToken>({}),
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))),
                 uut,
                 "Verify matches.");
         }
@@ -54,13 +134,56 @@ namespace Soup::Syntax::InnerTree::UnitTests
         void OperatorNotEqualIdentifier()
         {
             auto uut = SyntaxFactory::CreateAttribute(
-                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name"))->CreateOuter(nullptr);
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name"),
+                nullptr)->CreateOuter(nullptr);
 
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateAttribute(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name2")),
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name2"),
+                    nullptr),
                 uut,
                 "Verify do not match.");
+        }
+
+        [[Fact]]
+        void OperatorNotEqualArgumentClause()
+        {
+            auto uut = SyntaxFactory::CreateAttribute(
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name"),
+                SyntaxFactory::CreateAttributeArgumentClause(
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
+                    SyntaxFactory::CreateSyntaxList<SyntaxToken>({}),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)))->CreateOuter(nullptr);
+
+            TestUtils::AreNotEqual(
+                SyntaxFactory::CreateAttribute(
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name"),
+                    SyntaxFactory::CreateAttributeArgumentClause(
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
+                        SyntaxFactory::CreateSyntaxList<SyntaxToken>({
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "arg")
+                        }),
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))),
+                uut,
+                "Verify matches.");
+        }
+
+        [[Fact]]
+        void OperatorNotEqualNoArgumentClause()
+        {
+            auto uut = SyntaxFactory::CreateAttribute(
+                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name"),
+                SyntaxFactory::CreateAttributeArgumentClause(
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
+                    SyntaxFactory::CreateSyntaxList<SyntaxToken>({}),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)))->CreateOuter(nullptr);
+
+            TestUtils::AreNotEqual(
+                SyntaxFactory::CreateAttribute(
+                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "name"),
+                    nullptr),
+                uut,
+                "Verify matches.");
         }
     };
 }

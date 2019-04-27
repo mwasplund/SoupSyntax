@@ -2230,9 +2230,11 @@ antlrcpp::Any ASTCppParserVisitor::visitAttribute(CppParser::AttributeContext* c
     Trace("VisitAttribute");
 
     // Check for optional arguments
+    std::shared_ptr<const AttributeArgumentClause> argumentClause = nullptr;
     if (context->attributeArgumentClause() != nullptr)
     {
-        throw std::logic_error(std::string(__func__) + " NotImplemented attributeArgumentClause");
+        argumentClause = visit(context->attributeArgumentClause())
+            .as<std::shared_ptr<const AttributeArgumentClause>>();
     }
 
     // Check for optional scoped token
@@ -2243,7 +2245,8 @@ antlrcpp::Any ASTCppParserVisitor::visitAttribute(CppParser::AttributeContext* c
     else
     {
         return SyntaxFactory::CreateAttribute(
-            CreateToken(SyntaxTokenType::Identifier, context->attributeToken()->Identifier()));
+            CreateToken(SyntaxTokenType::Identifier, context->attributeToken()->Identifier()),
+            std::move(argumentClause));
     }
 }
 
@@ -2268,7 +2271,19 @@ antlrcpp::Any ASTCppParserVisitor::visitAttributeNamespace(CppParser::AttributeN
 antlrcpp::Any ASTCppParserVisitor::visitAttributeArgumentClause(CppParser::AttributeArgumentClauseContext* context)
 {
     Trace("VisitAttributeArgumentClause");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+
+    // Check for optional arguments
+    std::vector<std::shared_ptr<const SyntaxToken>> balancedTokenSequence = {};
+    if (context->balancedTokenSequence() != nullptr)
+    {
+        balancedTokenSequence = visit(context->balancedTokenSequence())
+            .as<std::vector<std::shared_ptr<const SyntaxToken>>>();
+    }
+
+    return SyntaxFactory::CreateAttributeArgumentClause(
+        CreateToken(SyntaxTokenType::OpenParenthesis, context->OpenParenthesis()),
+        SyntaxFactory::CreateSyntaxList<SyntaxToken>(std::move(balancedTokenSequence)),
+        CreateToken(SyntaxTokenType::CloseParenthesis, context->CloseParenthesis()));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitBalancedTokenSequence(CppParser::BalancedTokenSequenceContext* context)

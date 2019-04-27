@@ -84,6 +84,8 @@ namespace Soup::Syntax
             {
                 case SyntaxNodeType::Attribute:
                     return "Attribute";
+                case SyntaxNodeType::AttributeArgumentClause:
+                    return "AttributeArgumentClause";
                 case SyntaxNodeType::AttributeSpecifier:
                     return "AttributeSpecifier";
                 case SyntaxNodeType::AccessorSpecifier:

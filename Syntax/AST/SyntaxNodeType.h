@@ -9,6 +9,7 @@ namespace Soup::Syntax
     export enum class SyntaxNodeType
     {
         Attribute,
+        AttributeArgumentClause,
         AttributeSpecifier,
         AccessorSpecifier,
         BinaryExpression,

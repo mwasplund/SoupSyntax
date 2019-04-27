@@ -78,6 +78,32 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
+        [[Fact]]
+        void SingleEmptyArgumentClause()
+        {
+            auto sourceCode = std::string("[[a()]]");
+
+            auto actual = ParseAttributeSpecifier(sourceCode);
+
+            auto expected = SyntaxFactory::CreateAttributeSpecifier(
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
+                SyntaxFactory::CreateSyntaxSeparatorList<Attribute>(
+                    {
+                        SyntaxFactory::CreateAttribute(
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"),
+                            SyntaxFactory::CreateAttributeArgumentClause(
+                                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
+                                SyntaxFactory::CreateSyntaxList<SyntaxToken>({}),
+                                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis))),
+                    },
+                    {}),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket));
+
+            TestUtils::AreEqual(expected, actual, "Verify matches expected.");
+        }
+
     private:
         std::shared_ptr<const AttributeSpecifier> ParseAttributeSpecifier(const std::string& sourceCode)
         {

@@ -32,6 +32,7 @@ namespace Soup::Syntax::InnerTree
 
     // Attribute
     class Attribute;
+    class AttributeArgumentClause;
     class AttributeSpecifier;
 
     // Expressions
@@ -110,6 +111,7 @@ namespace Soup::Syntax::OuterTree
 
     // Attribute
     class Attribute;
+    class AttributeArgumentClause;
     class AttributeSpecifier;
 
     // Expressions
@@ -198,6 +200,7 @@ namespace Soup::Syntax::OuterTree
 #include "AST/InnerTree/Shared/SimpleIdentifier.h"
 #include "AST/InnerTree/Shared/SimpleTemplateIdentifier.h"
 
+#include "AST/InnerTree/Attribute/AttributeArgumentClause.h"
 #include "AST/InnerTree/Attribute/Attribute.h"
 #include "AST/InnerTree/Attribute/AttributeSpecifier.h"
 
@@ -272,6 +275,7 @@ namespace Soup::Syntax::OuterTree
 #include "AST/OuterTree/Shared/SimpleIdentifier.h"
 #include "AST/OuterTree/Shared/SimpleTemplateIdentifier.h"
 
+#include "AST/OuterTree/Attribute/AttributeArgumentClause.h"
 #include "AST/OuterTree/Attribute/Attribute.h"
 #include "AST/OuterTree/Attribute/AttributeSpecifier.h"
 

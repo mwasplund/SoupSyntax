@@ -19,6 +19,13 @@ namespace Soup::Syntax::OuterTree
             const SyntaxNode* parentNode);
 
         /// <summary>
+        /// Create a AttributeArgumentClause
+        /// </summary>
+        static std::shared_ptr<const AttributeArgumentClause> CreateOuter(
+            std::shared_ptr<const InnerTree::AttributeArgumentClause> innerNode,
+            const SyntaxNode* parentNode);
+
+        /// <summary>
         /// Create a AttributeSpecifier
         /// </summary>
         static std::shared_ptr<const AttributeSpecifier> CreateOuter(

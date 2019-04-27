@@ -14,6 +14,11 @@ namespace Soup::Syntax
             DefaultVisit(node);
         }
 
+        virtual void Visit(const OuterTree::AttributeArgumentClause& node) override
+        {
+            DefaultVisit(node);
+        }
+
         virtual void Visit(const OuterTree::AttributeSpecifier& node) override
         {
             DefaultVisit(node);

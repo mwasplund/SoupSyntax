@@ -10,6 +10,7 @@ namespace Soup::Syntax
     {
     public:
         virtual void Visit(const OuterTree::Attribute& node) = 0;
+        virtual void Visit(const OuterTree::AttributeArgumentClause& node) = 0;
         virtual void Visit(const OuterTree::AttributeSpecifier& node) = 0;
         virtual void Visit(const OuterTree::AccessorSpecifier& node) = 0;
         virtual void Visit(const OuterTree::BinaryExpression& node) = 0;

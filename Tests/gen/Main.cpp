@@ -4,6 +4,7 @@ import SoupSyntax;
 
 // Inner Tree
 #include "AST\InnerTree\Attribute\AttributeTests.gen.h"
+#include "AST\InnerTree\Attribute\AttributeArgumentClauseTests.gen.h"
 #include "AST\InnerTree\Attribute\AttributeSpecifierTests.gen.h"
 
 #include "AST\InnerTree\Declaration\AccessorSpecifierTests.gen.h"
@@ -61,6 +62,7 @@ import SoupSyntax;
 
 // Outer Tree
 #include "AST\OuterTree\Attribute\AttributeTests.gen.h"
+#include "AST\OuterTree\Attribute\AttributeArgumentClauseTests.gen.h"
 #include "AST\OuterTree\Attribute\AttributeSpecifierTests.gen.h"
 
 #include "AST\OuterTree\Declaration\AccessorSpecifierTests.gen.h"
@@ -158,6 +160,7 @@ int main()
 
     // Inner Tree
     state += RunInnerTreeAttributeTests();
+    state += RunInnerTreeAttributeArgumentClauseTests();
     state += RunInnerTreeAttributeSpecifierTests();
 
     state += RunInnerTreeAccessorSpecifierTests();
@@ -215,6 +218,7 @@ int main()
 
     // Outer Tree
     state += RunOuterTreeAttributeTests();
+    state += RunOuterTreeAttributeArgumentClauseTests();
     state += RunOuterTreeAttributeSpecifierTests();
 
     state += RunOuterTreeAccessorSpecifierTests();

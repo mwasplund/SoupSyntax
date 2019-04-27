@@ -10,6 +10,14 @@ using namespace Soup::Syntax::OuterTree;
         new Attribute(std::move(innerNode), parentNode));
 }
 
+/*static*/ std::shared_ptr<const AttributeArgumentClause> SyntaxWrapper::CreateOuter(
+    std::shared_ptr<const InnerTree::AttributeArgumentClause> innerNode,
+    const SyntaxNode* parentNode)
+{
+    return std::shared_ptr<const AttributeArgumentClause>(
+        new AttributeArgumentClause(std::move(innerNode), parentNode));
+}
+
 /*static*/ std::shared_ptr<const AttributeSpecifier> SyntaxWrapper::CreateOuter(
     std::shared_ptr<const InnerTree::AttributeSpecifier> innerNode,
     const SyntaxNode* parentNode)
