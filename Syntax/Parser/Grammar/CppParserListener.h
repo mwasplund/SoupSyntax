@@ -143,38 +143,11 @@ public:
   virtual void enterCastExpression(CppParser::CastExpressionContext *ctx) = 0;
   virtual void exitCastExpression(CppParser::CastExpressionContext *ctx) = 0;
 
-  virtual void enterPointerManipulationExpression(CppParser::PointerManipulationExpressionContext *ctx) = 0;
-  virtual void exitPointerManipulationExpression(CppParser::PointerManipulationExpressionContext *ctx) = 0;
+  virtual void enterBinaryExpression(CppParser::BinaryExpressionContext *ctx) = 0;
+  virtual void exitBinaryExpression(CppParser::BinaryExpressionContext *ctx) = 0;
 
-  virtual void enterMultiplicativeExpression(CppParser::MultiplicativeExpressionContext *ctx) = 0;
-  virtual void exitMultiplicativeExpression(CppParser::MultiplicativeExpressionContext *ctx) = 0;
-
-  virtual void enterAdditiveExpression(CppParser::AdditiveExpressionContext *ctx) = 0;
-  virtual void exitAdditiveExpression(CppParser::AdditiveExpressionContext *ctx) = 0;
-
-  virtual void enterShiftExpression(CppParser::ShiftExpressionContext *ctx) = 0;
-  virtual void exitShiftExpression(CppParser::ShiftExpressionContext *ctx) = 0;
-
-  virtual void enterRelationalExpression(CppParser::RelationalExpressionContext *ctx) = 0;
-  virtual void exitRelationalExpression(CppParser::RelationalExpressionContext *ctx) = 0;
-
-  virtual void enterEqualityExpression(CppParser::EqualityExpressionContext *ctx) = 0;
-  virtual void exitEqualityExpression(CppParser::EqualityExpressionContext *ctx) = 0;
-
-  virtual void enterAndExpression(CppParser::AndExpressionContext *ctx) = 0;
-  virtual void exitAndExpression(CppParser::AndExpressionContext *ctx) = 0;
-
-  virtual void enterExclusiveOrExpression(CppParser::ExclusiveOrExpressionContext *ctx) = 0;
-  virtual void exitExclusiveOrExpression(CppParser::ExclusiveOrExpressionContext *ctx) = 0;
-
-  virtual void enterInclusiveOrExpression(CppParser::InclusiveOrExpressionContext *ctx) = 0;
-  virtual void exitInclusiveOrExpression(CppParser::InclusiveOrExpressionContext *ctx) = 0;
-
-  virtual void enterLogicalAndExpression(CppParser::LogicalAndExpressionContext *ctx) = 0;
-  virtual void exitLogicalAndExpression(CppParser::LogicalAndExpressionContext *ctx) = 0;
-
-  virtual void enterLogicalOrExpression(CppParser::LogicalOrExpressionContext *ctx) = 0;
-  virtual void exitLogicalOrExpression(CppParser::LogicalOrExpressionContext *ctx) = 0;
+  virtual void enterBinaryOperator(CppParser::BinaryOperatorContext *ctx) = 0;
+  virtual void exitBinaryOperator(CppParser::BinaryOperatorContext *ctx) = 0;
 
   virtual void enterConditionalExpression(CppParser::ConditionalExpressionContext *ctx) = 0;
   virtual void exitConditionalExpression(CppParser::ConditionalExpressionContext *ctx) = 0;

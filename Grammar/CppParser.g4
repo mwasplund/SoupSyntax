@@ -183,7 +183,9 @@ typeIdentificationExpression:
 
 postfixExpression:
 	primaryExpression |
+	// Subscript expression
 	postfixExpression OpenBracket expressionOrBracedInitializerList CloseBracket |
+	// Ambiguous case, could be Function Call or could be two comparison followed by primary expression
 	postfixExpression OpenParenthesis expressionList? CloseParenthesis |
 	explicitTypeCoversionOperatorExpression |
 	simpleTypeSpecifier bracedInitializerList |
@@ -258,69 +260,42 @@ castExpression:
 	unaryExpression |
 	OpenParenthesis typeIdentifier CloseParenthesis castExpression;
 
-pointerManipulationExpression:
+binaryExpression:
 	castExpression |
-	pointerManipulationExpression PeriodAsterisk castExpression |
-	pointerManipulationExpression ArrowAsterisk castExpression;
+	binaryExpression binaryOperator castExpression;
 
-multiplicativeExpression:
-	pointerManipulationExpression |
-	multiplicativeExpression Asterisk pointerManipulationExpression |
-	multiplicativeExpression ForwardSlash pointerManipulationExpression |
-	multiplicativeExpression Percent pointerManipulationExpression;
-
-additiveExpression:
-	multiplicativeExpression |
-	additiveExpression Plus multiplicativeExpression |
-	additiveExpression Minus multiplicativeExpression;
-
-shiftExpression:
-	additiveExpression |
-	shiftExpression DoubleLessThan additiveExpression |
-	shiftExpression doubleGreaterThan additiveExpression;
-
-relationalExpression:
-	shiftExpression |
-	relationalExpression LessThan shiftExpression |
-	relationalExpression GreaterThan shiftExpression |
-	relationalExpression LessThanEqual shiftExpression |
-	relationalExpression GreaterThanEqual shiftExpression;
-
-equalityExpression:
-	relationalExpression |
-	equalityExpression DoubleEqual relationalExpression |
-	equalityExpression ExclamationMarkEqual relationalExpression;
-
-andExpression:
-	equalityExpression |
-	andExpression Ampersand equalityExpression;
-
-exclusiveOrExpression:
-	andExpression |
-	exclusiveOrExpression Caret andExpression;
-
-inclusiveOrExpression:
-	exclusiveOrExpression |
-	inclusiveOrExpression VerticalBar exclusiveOrExpression;
-
-logicalAndExpression:
-	inclusiveOrExpression |
-	logicalAndExpression DoubleAmpersand inclusiveOrExpression;
-
-logicalOrExpression:
-	logicalAndExpression |
-	logicalOrExpression DoubleVerticalBar logicalAndExpression;
+binaryOperator:
+	PeriodAsterisk |
+	ArrowAsterisk |
+	Asterisk |
+	ForwardSlash |
+	Percent |
+	Plus |
+	Minus |
+	DoubleLessThan |
+	doubleGreaterThan |
+	LessThan |
+	GreaterThan |
+	LessThanEqual |
+	GreaterThanEqual |
+	DoubleEqual |
+	ExclamationMarkEqual |
+	Ampersand |
+	Caret |
+	VerticalBar |
+	DoubleAmpersand |
+	DoubleVerticalBar;
 
 conditionalExpression:
-	logicalOrExpression |
-	logicalOrExpression QuestionMark expression Colon assignmentExpression;
+	binaryExpression |
+	binaryExpression QuestionMark expression Colon assignmentExpression;
 
 throwExpression:
 	Throw assignmentExpression?;
 
 assignmentExpression:
 	conditionalExpression |
-	logicalOrExpression assignmentOperator initializerClause |
+	binaryExpression assignmentOperator initializerClause |
 	throwExpression;
 
 assignmentOperator:

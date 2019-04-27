@@ -105,27 +105,9 @@ public:
 
     virtual antlrcpp::Any visitCastExpression(CppParser::CastExpressionContext *context) = 0;
 
-    virtual antlrcpp::Any visitPointerManipulationExpression(CppParser::PointerManipulationExpressionContext *context) = 0;
+    virtual antlrcpp::Any visitBinaryExpression(CppParser::BinaryExpressionContext *context) = 0;
 
-    virtual antlrcpp::Any visitMultiplicativeExpression(CppParser::MultiplicativeExpressionContext *context) = 0;
-
-    virtual antlrcpp::Any visitAdditiveExpression(CppParser::AdditiveExpressionContext *context) = 0;
-
-    virtual antlrcpp::Any visitShiftExpression(CppParser::ShiftExpressionContext *context) = 0;
-
-    virtual antlrcpp::Any visitRelationalExpression(CppParser::RelationalExpressionContext *context) = 0;
-
-    virtual antlrcpp::Any visitEqualityExpression(CppParser::EqualityExpressionContext *context) = 0;
-
-    virtual antlrcpp::Any visitAndExpression(CppParser::AndExpressionContext *context) = 0;
-
-    virtual antlrcpp::Any visitExclusiveOrExpression(CppParser::ExclusiveOrExpressionContext *context) = 0;
-
-    virtual antlrcpp::Any visitInclusiveOrExpression(CppParser::InclusiveOrExpressionContext *context) = 0;
-
-    virtual antlrcpp::Any visitLogicalAndExpression(CppParser::LogicalAndExpressionContext *context) = 0;
-
-    virtual antlrcpp::Any visitLogicalOrExpression(CppParser::LogicalOrExpressionContext *context) = 0;
+    virtual antlrcpp::Any visitBinaryOperator(CppParser::BinaryOperatorContext *context) = 0;
 
     virtual antlrcpp::Any visitConditionalExpression(CppParser::ConditionalExpressionContext *context) = 0;
 

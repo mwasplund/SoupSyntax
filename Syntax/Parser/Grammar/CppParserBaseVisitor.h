@@ -187,47 +187,11 @@ public:
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitPointerManipulationExpression(CppParser::PointerManipulationExpressionContext *ctx) override {
+  virtual antlrcpp::Any visitBinaryExpression(CppParser::BinaryExpressionContext *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitMultiplicativeExpression(CppParser::MultiplicativeExpressionContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitAdditiveExpression(CppParser::AdditiveExpressionContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitShiftExpression(CppParser::ShiftExpressionContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitRelationalExpression(CppParser::RelationalExpressionContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitEqualityExpression(CppParser::EqualityExpressionContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitAndExpression(CppParser::AndExpressionContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitExclusiveOrExpression(CppParser::ExclusiveOrExpressionContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitInclusiveOrExpression(CppParser::InclusiveOrExpressionContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitLogicalAndExpression(CppParser::LogicalAndExpressionContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitLogicalOrExpression(CppParser::LogicalOrExpressionContext *ctx) override {
+  virtual antlrcpp::Any visitBinaryOperator(CppParser::BinaryOperatorContext *ctx) override {
     return visitChildren(ctx);
   }
 
