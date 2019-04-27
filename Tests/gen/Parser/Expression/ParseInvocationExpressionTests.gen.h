@@ -20,6 +20,10 @@ TestState RunParseInvocationExpressionTests()
         className,
         "BracedInitializerParameter",
         [&testClass]() { testClass->BracedInitializerParameter(); });
+    state += RunTest(
+        className,
+        "EnumValueParameter",
+        [&testClass]() { testClass->EnumValueParameter(); });
 
     return state;
 }

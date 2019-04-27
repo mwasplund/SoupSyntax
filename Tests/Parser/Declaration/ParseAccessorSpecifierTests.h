@@ -65,7 +65,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             auto nodes = uut.Visitor->visit(context)
                 .as<std::vector<std::shared_ptr<const Declaration>>>();
 
-            Assert::AreEqual<uint32_t>(1, nodes.size(), "Verify exactly one node.");
+            Assert::IsTrue(nodes.size() == 1, "Verify exactly one node.");
 
             return nodes.at(0);
         }

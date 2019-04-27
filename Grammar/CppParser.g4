@@ -521,7 +521,7 @@ definingTypeSpecifierSequence:
 simpleTypeSpecifier:
 	nestedNameSpecifier? typeName |
 	// TODO nestedNameSpecifier Template simpleTemplateIdentifier |
-	// TODO nestedNameSpecifier? templateName |
+	// COVERTED BY ABOVE nestedNameSpecifier? templateName |
 	Char |
 	Char8 | // C++20
 	Char16 |

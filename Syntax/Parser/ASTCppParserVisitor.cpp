@@ -2232,13 +2232,13 @@ antlrcpp::Any ASTCppParserVisitor::visitAttribute(CppParser::AttributeContext* c
     // Check for optional arguments
     if (context->attributeArgumentClause() != nullptr)
     {
-        throw std::logic_error(std::string(__func__) + " NotImplemented");
+        throw std::logic_error(std::string(__func__) + " NotImplemented attributeArgumentClause");
     }
 
     // Check for optional scoped token
     if (context->attributeToken()->attributeScopedToken() != nullptr)
     {
-        throw std::logic_error(std::string(__func__) + " NotImplemented");
+        throw std::logic_error(std::string(__func__) + " NotImplemented attributeScopedToken");
     }
     else
     {

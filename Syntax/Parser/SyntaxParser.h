@@ -34,6 +34,12 @@ namespace Soup::Syntax
             PrintAllTokens(input.get());
         }
 
+        static void PrintAllTokens(std::istream& source)
+        {
+            auto input = std::make_unique<antlr4::ANTLRInputStream>(source);
+            PrintAllTokens(input.get());
+        }
+
     private:
         static std::shared_ptr<const SyntaxTree> Parse(antlr4::ANTLRInputStream* input)
         {
