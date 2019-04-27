@@ -285,6 +285,8 @@ public:
 
     virtual antlrcpp::Any visitBalancedToken(CppParser::BalancedTokenContext *context) = 0;
 
+    virtual antlrcpp::Any visitNonBalancedToken(CppParser::NonBalancedTokenContext *context) = 0;
+
     virtual antlrcpp::Any visitInitializerDeclaratorList(CppParser::InitializerDeclaratorListContext *context) = 0;
 
     virtual antlrcpp::Any visitInitializerDeclarator(CppParser::InitializerDeclaratorContext *context) = 0;

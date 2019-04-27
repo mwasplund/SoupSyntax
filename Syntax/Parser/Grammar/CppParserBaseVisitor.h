@@ -547,6 +547,10 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual antlrcpp::Any visitNonBalancedToken(CppParser::NonBalancedTokenContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual antlrcpp::Any visitInitializerDeclaratorList(CppParser::InitializerDeclaratorListContext *ctx) override {
     return visitChildren(ctx);
   }

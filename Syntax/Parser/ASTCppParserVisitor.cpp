@@ -103,9 +103,7 @@ antlrcpp::Any ASTCppParserVisitor::visitPrimaryExpression(CppParser::PrimaryExpr
     Trace("VisitPrimaryExpression");
     if (context->This() != nullptr)
     {
-        auto thisToken = CreateToken(
-            SyntaxTokenType::This,
-            context->This());
+        auto thisToken = visit(context->This());
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreateThisExpression(
                 std::move(thisToken)));
@@ -143,9 +141,7 @@ antlrcpp::Any ASTCppParserVisitor::visitUnqualifiedIdentifier(CppParser::Unquali
     Trace("VisitUnqualifiedIdentifier");
     if (context->Identifier() != nullptr)
     {
-        auto identifier = CreateToken(
-            SyntaxTokenType::Identifier,
-            context->Identifier());
+        auto identifier = visit(context->Identifier());
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreateSimpleIdentifier(std::move(identifier)));
     }
@@ -153,8 +149,8 @@ antlrcpp::Any ASTCppParserVisitor::visitUnqualifiedIdentifier(CppParser::Unquali
     {
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreateDestructorIdentifier(
-                CreateToken(SyntaxTokenType::Tilde, context->Tilde()),
-                CreateToken(SyntaxTokenType::Identifier, context->className()->Identifier())));
+                visit(context->Tilde()),
+                visit(context->className()->Identifier())));
     }
     else if (context->declarationTypeSpecifier() != nullptr)
     {
@@ -201,9 +197,7 @@ antlrcpp::Any ASTCppParserVisitor::visitNestedNameSpecifier(CppParser::NestedNam
     }
 
     // Add the final colon separator to front of list
-    auto doubleColonToken = CreateToken(
-        SyntaxTokenType::DoubleColon,
-        context->DoubleColon());
+    std::shared_ptr<const SyntaxToken> doubleColonToken = visit(context->DoubleColon());
     specifierList.Separators.insert(
         specifierList.Separators.begin(),
         std::move(doubleColonToken));
@@ -213,9 +207,7 @@ antlrcpp::Any ASTCppParserVisitor::visitNestedNameSpecifier(CppParser::NestedNam
     {
         // Simple name qualified
         auto rootQualifier = SyntaxFactory::CreateSimpleIdentifier(
-            CreateToken(
-                SyntaxTokenType::Identifier,
-                context->Identifier()));
+            visit(context->Identifier()));
         specifierList.Items.insert(
             specifierList.Items.begin(),
             std::move(rootQualifier));
@@ -358,17 +350,13 @@ antlrcpp::Any ASTCppParserVisitor::visitPostfixExpression(CppParser::PostfixExpr
         {
             // Subscript operator expression
             // postfixExpression OpenBracket expressionOrBracedInitializerList CloseBracket
-            auto openBracketToken = CreateToken(
-                SyntaxTokenType::OpenBracket,
-                context->OpenBracket());
+            auto openBracketToken = visit(context->OpenBracket());
             auto initializerList = SafeDynamicCast<const Expression>(
                 visit(context->expressionOrBracedInitializerList())
                     .as<std::shared_ptr<const SyntaxNode>>(), __LINE__);
             if (initializerList == nullptr)
                 throw std::runtime_error("TODO: Braced initializer postfix?");
-            auto closeBracketToken = CreateToken(
-                SyntaxTokenType::CloseBracket,
-                context->CloseBracket());
+            auto closeBracketToken = visit(context->CloseBracket());
             return std::static_pointer_cast<const SyntaxNode>(
                 SyntaxFactory::CreateSubscriptExpression(
                     std::move(recursiveExpression),
@@ -379,9 +367,7 @@ antlrcpp::Any ASTCppParserVisitor::visitPostfixExpression(CppParser::PostfixExpr
         else if (context->OpenParenthesis() != nullptr)
         {
             // postfixExpression OpenParenthesis expressionList? CloseParenthesis
-            auto openParenthesisToken = CreateToken(
-                SyntaxTokenType::OpenParenthesis,
-                context->OpenParenthesis());
+            auto openParenthesisToken = visit(context->OpenParenthesis());
 
             // Check for the optional expression list
             SeparatorListResult<SyntaxNode> expressionList = {};
@@ -395,9 +381,7 @@ antlrcpp::Any ASTCppParserVisitor::visitPostfixExpression(CppParser::PostfixExpr
                 std::move(expressionList.Items),
                 std::move(expressionList.Separators));
 
-            auto closeParenthesisToken = CreateToken(
-                SyntaxTokenType::CloseParenthesis,
-                context->CloseParenthesis());
+            auto closeParenthesisToken = visit(context->CloseParenthesis());
 
             return std::static_pointer_cast<const SyntaxNode>(
                 SyntaxFactory::CreateInvocationExpression(
@@ -429,7 +413,7 @@ antlrcpp::Any ASTCppParserVisitor::visitPostfixExpression(CppParser::PostfixExpr
                     SyntaxFactory::CreateBinaryExpression(
                         BinaryOperator::MemberOfPointer,
                         std::move(recursiveExpression),
-                        CreateToken(SyntaxTokenType::Arrow, memberAccessOperator->Arrow()),
+                        visit(memberAccessOperator->Arrow()),
                         std::move(rightExpression)));
             }
             else if (memberAccessOperator->Period() != nullptr)
@@ -438,7 +422,7 @@ antlrcpp::Any ASTCppParserVisitor::visitPostfixExpression(CppParser::PostfixExpr
                     SyntaxFactory::CreateBinaryExpression(
                         BinaryOperator::MemberOfObject,
                         std::move(recursiveExpression),
-                        CreateToken(SyntaxTokenType::Period, memberAccessOperator->Period()),
+                        visit(memberAccessOperator->Period()),
                         std::move(rightExpression)));
             }
             else
@@ -456,16 +440,12 @@ antlrcpp::Any ASTCppParserVisitor::visitPostfixExpression(CppParser::PostfixExpr
             if (operatorContext->DoublePlus() != nullptr)
             {
                 unaryOperator = UnaryOperator::PostIncrement;
-                operatorToken = CreateToken(
-                    SyntaxTokenType::DoublePlus,
-                    operatorContext->DoublePlus());
+                operatorToken = visit(operatorContext->DoublePlus());
             }
             else if (operatorContext->DoubleMinus() != nullptr)
             {
                 unaryOperator = UnaryOperator::PostDecrement;
-                operatorToken = CreateToken(
-                    SyntaxTokenType::DoubleMinus,
-                    operatorContext->DoubleMinus());
+                operatorToken = visit(operatorContext->DoubleMinus());
             }
             else
             {
@@ -543,16 +523,12 @@ antlrcpp::Any ASTCppParserVisitor::visitUnaryExpression(CppParser::UnaryExpressi
         if (context->DoublePlus() != nullptr)
         {
             unaryOperator = UnaryOperator::PreIncrement;
-            operatorToken = CreateToken(
-                SyntaxTokenType::DoublePlus,
-                context->DoublePlus());
+            operatorToken = visit(context->DoublePlus());
         }
         else if (context->DoubleMinus() != nullptr)
         {
             unaryOperator = UnaryOperator::PreDecrement;
-            operatorToken = CreateToken(
-                SyntaxTokenType::DoubleMinus,
-                context->DoubleMinus());
+            operatorToken = visit(context->DoubleMinus());
         }
         else if (context->unaryOperator() != nullptr)
         {
@@ -560,44 +536,32 @@ antlrcpp::Any ASTCppParserVisitor::visitUnaryExpression(CppParser::UnaryExpressi
             if (operatorContext->Asterisk() != nullptr)
             {
                 unaryOperator = UnaryOperator::Indirection;
-                operatorToken = CreateToken(
-                    SyntaxTokenType::Asterisk,
-                    operatorContext->Asterisk());
+                operatorToken = visit(operatorContext->Asterisk());
             }
             else if (operatorContext->Ampersand() != nullptr)
             {
                 unaryOperator = UnaryOperator::AddressOf;
-                operatorToken = CreateToken(
-                    SyntaxTokenType::Ampersand,
-                    operatorContext->Ampersand());
+                operatorToken = visit(operatorContext->Ampersand());
             }
             else if (operatorContext->Plus() != nullptr)
             {
                 unaryOperator = UnaryOperator::Plus;
-                operatorToken = CreateToken(
-                    SyntaxTokenType::Plus,
-                    operatorContext->Plus());
+                operatorToken = visit(operatorContext->Plus());
             }
             else if (operatorContext->Minus() != nullptr)
             {
                 unaryOperator = UnaryOperator::Minus;
-                operatorToken = CreateToken(
-                    SyntaxTokenType::Minus,
-                    operatorContext->Minus());
+                operatorToken = visit(operatorContext->Minus());
             }
             else if (operatorContext->ExclamationMark() != nullptr)
             {
                 unaryOperator = UnaryOperator::LogicalNot;
-                operatorToken = CreateToken(
-                    SyntaxTokenType::ExclamationMark,
-                    operatorContext->ExclamationMark());
+                operatorToken = visit(operatorContext->ExclamationMark());
             }
             else if (operatorContext->Tilde() != nullptr)
             {
                 unaryOperator = UnaryOperator::BitwiseNot;
-                operatorToken = CreateToken(
-                    SyntaxTokenType::Tilde,
-                    operatorContext->Tilde());
+                operatorToken = visit(operatorContext->Tilde());
             }
             else
             {
@@ -699,7 +663,7 @@ antlrcpp::Any ASTCppParserVisitor::visitPointerManipulationExpression(CppParser:
                 SafeDynamicCast<const Expression>(
                     visit(context->pointerManipulationExpression())
                         .as<std::shared_ptr<const SyntaxNode>>(), __LINE__),
-                CreateToken(SyntaxTokenType::PeriodAsterisk, context->PeriodAsterisk()),
+                visit(context->PeriodAsterisk()),
                 SafeDynamicCast<const Expression>(
                     visit(context->castExpression())
                         .as<std::shared_ptr<const SyntaxNode>>(), __LINE__)));
@@ -712,7 +676,7 @@ antlrcpp::Any ASTCppParserVisitor::visitPointerManipulationExpression(CppParser:
                 SafeDynamicCast<const Expression>(
                     visit(context->pointerManipulationExpression())
                         .as<std::shared_ptr<const SyntaxNode>>(), __LINE__),
-                CreateToken(SyntaxTokenType::ArrowAsterisk, context->ArrowAsterisk()),
+                visit(context->ArrowAsterisk()),
                 SafeDynamicCast<const Expression>(
                     visit(context->castExpression())
                         .as<std::shared_ptr<const SyntaxNode>>(), __LINE__)));
@@ -734,7 +698,7 @@ antlrcpp::Any ASTCppParserVisitor::visitMultiplicativeExpression(CppParser::Mult
                 SafeDynamicCast<const Expression>(
                     visit(context->multiplicativeExpression())
                         .as<std::shared_ptr<const SyntaxNode>>(), __LINE__),
-                CreateToken(SyntaxTokenType::Asterisk, context->Asterisk()),
+                visit(context->Asterisk()),
                 SafeDynamicCast<const Expression>(
                     visit(context->pointerManipulationExpression())
                         .as<std::shared_ptr<const SyntaxNode>>(), __LINE__)));
@@ -747,7 +711,7 @@ antlrcpp::Any ASTCppParserVisitor::visitMultiplicativeExpression(CppParser::Mult
                 SafeDynamicCast<const Expression>(
                     visit(context->multiplicativeExpression())
                         .as<std::shared_ptr<const SyntaxNode>>(), __LINE__),
-                CreateToken(SyntaxTokenType::ForwardSlash, context->ForwardSlash()),
+                visit(context->ForwardSlash()),
                 SafeDynamicCast<const Expression>(
                     visit(context->pointerManipulationExpression())
                         .as<std::shared_ptr<const SyntaxNode>>(), __LINE__)));
@@ -760,7 +724,7 @@ antlrcpp::Any ASTCppParserVisitor::visitMultiplicativeExpression(CppParser::Mult
                 SafeDynamicCast<const Expression>(
                     visit(context->multiplicativeExpression())
                         .as<std::shared_ptr<const SyntaxNode>>(), __LINE__),
-                CreateToken(SyntaxTokenType::Percent, context->Percent()),
+                visit(context->Percent()),
                 SafeDynamicCast<const Expression>(
                     visit(context->pointerManipulationExpression())
                         .as<std::shared_ptr<const SyntaxNode>>(), __LINE__)));
@@ -782,7 +746,7 @@ antlrcpp::Any ASTCppParserVisitor::visitAdditiveExpression(CppParser::AdditiveEx
                 SafeDynamicCast<const Expression>(
                     visit(context->additiveExpression())
                         .as<std::shared_ptr<const SyntaxNode>>(), __LINE__),
-                CreateToken(SyntaxTokenType::Plus, context->Plus()),
+                visit(context->Plus()),
                 SafeDynamicCast<const Expression>(
                     visit(context->multiplicativeExpression())
                         .as<std::shared_ptr<const SyntaxNode>>(), __LINE__)));
@@ -795,7 +759,7 @@ antlrcpp::Any ASTCppParserVisitor::visitAdditiveExpression(CppParser::AdditiveEx
                 SafeDynamicCast<const Expression>(
                     visit(context->additiveExpression())
                         .as<std::shared_ptr<const SyntaxNode>>(), __LINE__),
-                CreateToken(SyntaxTokenType::Minus, context->Minus()),
+                visit(context->Minus()),
                 SafeDynamicCast<const Expression>(
                     visit(context->multiplicativeExpression())
                         .as<std::shared_ptr<const SyntaxNode>>(), __LINE__)));
@@ -817,7 +781,7 @@ antlrcpp::Any ASTCppParserVisitor::visitShiftExpression(CppParser::ShiftExpressi
                 SafeDynamicCast<const Expression>(
                     visit(context->shiftExpression())
                         .as<std::shared_ptr<const SyntaxNode>>(), __LINE__),
-                CreateToken(SyntaxTokenType::DoubleLessThan, context->DoubleLessThan()),
+                visit(context->DoubleLessThan()),
                 SafeDynamicCast<const Expression>(
                     visit(context->additiveExpression())
                         .as<std::shared_ptr<const SyntaxNode>>(), __LINE__)));
@@ -854,7 +818,7 @@ antlrcpp::Any ASTCppParserVisitor::visitRelationalExpression(CppParser::Relation
                 SafeDynamicCast<const Expression>(
                     visit(context->relationalExpression())
                         .as<std::shared_ptr<const SyntaxNode>>(), __LINE__),
-                CreateToken(SyntaxTokenType::LessThan, context->LessThan()),
+                visit(context->LessThan()),
                 SafeDynamicCast<const Expression>(
                     visit(context->shiftExpression())
                         .as<std::shared_ptr<const SyntaxNode>>(), __LINE__)));
@@ -868,7 +832,7 @@ antlrcpp::Any ASTCppParserVisitor::visitRelationalExpression(CppParser::Relation
                 SafeDynamicCast<const Expression>(
                     visit(context->relationalExpression())
                         .as<std::shared_ptr<const SyntaxNode>>(), __LINE__),
-                CreateToken(SyntaxTokenType::GreaterThan, context->GreaterThan()),
+                visit(context->GreaterThan()),
                 SafeDynamicCast<const Expression>(
                     visit(context->shiftExpression())
                         .as<std::shared_ptr<const SyntaxNode>>(), __LINE__)));
@@ -881,7 +845,7 @@ antlrcpp::Any ASTCppParserVisitor::visitRelationalExpression(CppParser::Relation
                 SafeDynamicCast<const Expression>(
                     visit(context->relationalExpression())
                         .as<std::shared_ptr<const SyntaxNode>>(), __LINE__),
-                CreateToken(SyntaxTokenType::LessThanEqual, context->LessThanEqual()),
+                visit(context->LessThanEqual()),
                 SafeDynamicCast<const Expression>(
                     visit(context->shiftExpression())
                         .as<std::shared_ptr<const SyntaxNode>>(), __LINE__)));
@@ -894,7 +858,7 @@ antlrcpp::Any ASTCppParserVisitor::visitRelationalExpression(CppParser::Relation
                 SafeDynamicCast<const Expression>(
                     visit(context->relationalExpression())
                         .as<std::shared_ptr<const SyntaxNode>>(), __LINE__),
-                CreateToken(SyntaxTokenType::GreaterThanEqual, context->GreaterThanEqual()),
+                visit(context->GreaterThanEqual()),
                 SafeDynamicCast<const Expression>(
                     visit(context->shiftExpression())
                         .as<std::shared_ptr<const SyntaxNode>>(), __LINE__)));
@@ -916,7 +880,7 @@ antlrcpp::Any ASTCppParserVisitor::visitEqualityExpression(CppParser::EqualityEx
                 SafeDynamicCast<const Expression>(
                     visit(context->equalityExpression())
                         .as<std::shared_ptr<const SyntaxNode>>(), __LINE__),
-                CreateToken(SyntaxTokenType::DoubleEqual, context->DoubleEqual()),
+                visit(context->DoubleEqual()),
                 SafeDynamicCast<const Expression>(
                     visit(context->relationalExpression())
                         .as<std::shared_ptr<const SyntaxNode>>(), __LINE__)));
@@ -929,7 +893,7 @@ antlrcpp::Any ASTCppParserVisitor::visitEqualityExpression(CppParser::EqualityEx
                 SafeDynamicCast<const Expression>(
                     visit(context->equalityExpression())
                         .as<std::shared_ptr<const SyntaxNode>>(), __LINE__),
-                CreateToken(SyntaxTokenType::ExclamationMarkEqual, context->ExclamationMarkEqual()),
+                visit(context->ExclamationMarkEqual()),
                 SafeDynamicCast<const Expression>(
                     visit(context->relationalExpression())
                         .as<std::shared_ptr<const SyntaxNode>>(), __LINE__)));
@@ -951,7 +915,7 @@ antlrcpp::Any ASTCppParserVisitor::visitAndExpression(CppParser::AndExpressionCo
                 SafeDynamicCast<const Expression>(
                     visit(context->andExpression())
                         .as<std::shared_ptr<const SyntaxNode>>(), __LINE__),
-                CreateToken(SyntaxTokenType::Ampersand, context->Ampersand()),
+                visit(context->Ampersand()),
                 SafeDynamicCast<const Expression>(
                     visit(context->equalityExpression())
                         .as<std::shared_ptr<const SyntaxNode>>(), __LINE__)));
@@ -973,7 +937,7 @@ antlrcpp::Any ASTCppParserVisitor::visitExclusiveOrExpression(CppParser::Exclusi
                 SafeDynamicCast<const Expression>(
                     visit(context->exclusiveOrExpression())
                         .as<std::shared_ptr<const SyntaxNode>>(), __LINE__),
-                CreateToken(SyntaxTokenType::Caret, context->Caret()),
+                visit(context->Caret()),
                 SafeDynamicCast<const Expression>(
                     visit(context->andExpression())
                         .as<std::shared_ptr<const SyntaxNode>>(), __LINE__)));
@@ -995,7 +959,7 @@ antlrcpp::Any ASTCppParserVisitor::visitInclusiveOrExpression(CppParser::Inclusi
                 SafeDynamicCast<const Expression>(
                     visit(context->inclusiveOrExpression())
                         .as<std::shared_ptr<const SyntaxNode>>(), __LINE__),
-                CreateToken(SyntaxTokenType::VerticalBar, context->VerticalBar()),
+                visit(context->VerticalBar()),
                 SafeDynamicCast<const Expression>(
                     visit(context->exclusiveOrExpression())
                         .as<std::shared_ptr<const SyntaxNode>>(), __LINE__)));
@@ -1017,7 +981,7 @@ antlrcpp::Any ASTCppParserVisitor::visitLogicalAndExpression(CppParser::LogicalA
                 SafeDynamicCast<const Expression>(
                     visit(context->logicalAndExpression())
                         .as<std::shared_ptr<const SyntaxNode>>(), __LINE__),
-                CreateToken(SyntaxTokenType::DoubleAmpersand, context->DoubleAmpersand()),
+                visit(context->DoubleAmpersand()),
                 SafeDynamicCast<const Expression>(
                     visit(context->inclusiveOrExpression())
                         .as<std::shared_ptr<const SyntaxNode>>(), __LINE__)));
@@ -1039,7 +1003,7 @@ antlrcpp::Any ASTCppParserVisitor::visitLogicalOrExpression(CppParser::LogicalOr
                 SafeDynamicCast<const Expression>(
                     visit(context->logicalOrExpression())
                         .as<std::shared_ptr<const SyntaxNode>>(), __LINE__),
-                CreateToken(SyntaxTokenType::DoubleVerticalBar, context->DoubleVerticalBar()),
+                visit(context->DoubleVerticalBar()),
                 SafeDynamicCast<const Expression>(
                     visit(context->logicalAndExpression())
                         .as<std::shared_ptr<const SyntaxNode>>(), __LINE__)));
@@ -1092,7 +1056,7 @@ antlrcpp::Any ASTCppParserVisitor::visitAssignmentExpression(CppParser::Assignme
                 SyntaxFactory::CreateBinaryExpression(
                     BinaryOperator::SimpleAssignment,
                     std::move(leftExpression),
-                    CreateToken(SyntaxTokenType::Equal, operatorContext->Equal()),
+                    visit(operatorContext->Equal()),
                     std::move(rightExpression)));
         }
         else if (operatorContext->AsteriskEqual() != nullptr)
@@ -1101,7 +1065,7 @@ antlrcpp::Any ASTCppParserVisitor::visitAssignmentExpression(CppParser::Assignme
                 SyntaxFactory::CreateBinaryExpression(
                     BinaryOperator::MultiplicationAssignment,
                     std::move(leftExpression),
-                    CreateToken(SyntaxTokenType::AsteriskEqual, operatorContext->AsteriskEqual()),
+                    visit(operatorContext->AsteriskEqual()),
                     std::move(rightExpression)));
         }
         else if (operatorContext->ForwardSlashEqual() != nullptr)
@@ -1110,7 +1074,7 @@ antlrcpp::Any ASTCppParserVisitor::visitAssignmentExpression(CppParser::Assignme
                 SyntaxFactory::CreateBinaryExpression(
                     BinaryOperator::DivisionAssignment,
                     std::move(leftExpression),
-                    CreateToken(SyntaxTokenType::ForwardSlashEqual, operatorContext->ForwardSlashEqual()),
+                    visit(operatorContext->ForwardSlashEqual()),
                     std::move(rightExpression)));
         }
         else if (operatorContext->PercentEqual() != nullptr)
@@ -1119,7 +1083,7 @@ antlrcpp::Any ASTCppParserVisitor::visitAssignmentExpression(CppParser::Assignme
                 SyntaxFactory::CreateBinaryExpression(
                     BinaryOperator::ModuloAssignment,
                     std::move(leftExpression),
-                    CreateToken(SyntaxTokenType::PercentEqual, operatorContext->PercentEqual()),
+                    visit(operatorContext->PercentEqual()),
                     std::move(rightExpression)));
         }
         else if (operatorContext->PlusEqual() != nullptr)
@@ -1128,7 +1092,7 @@ antlrcpp::Any ASTCppParserVisitor::visitAssignmentExpression(CppParser::Assignme
                 SyntaxFactory::CreateBinaryExpression(
                     BinaryOperator::AdditionAssignment,
                     std::move(leftExpression),
-                    CreateToken(SyntaxTokenType::PlusEqual, operatorContext->PlusEqual()),
+                    visit(operatorContext->PlusEqual()),
                     std::move(rightExpression)));
         }
         else if (operatorContext->MinusEqual() != nullptr)
@@ -1137,7 +1101,7 @@ antlrcpp::Any ASTCppParserVisitor::visitAssignmentExpression(CppParser::Assignme
                 SyntaxFactory::CreateBinaryExpression(
                     BinaryOperator::SubtractionAssignment,
                     std::move(leftExpression),
-                    CreateToken(SyntaxTokenType::MinusEqual, operatorContext->MinusEqual()),
+                    visit(operatorContext->MinusEqual()),
                     std::move(rightExpression)));
         }
         else if (operatorContext->DoubleGreaterThanEqual() != nullptr)
@@ -1146,7 +1110,7 @@ antlrcpp::Any ASTCppParserVisitor::visitAssignmentExpression(CppParser::Assignme
                 SyntaxFactory::CreateBinaryExpression(
                     BinaryOperator::BitwiseRightShiftAssignment,
                     std::move(leftExpression),
-                    CreateToken(SyntaxTokenType::DoubleGreaterThanEqual, operatorContext->DoubleGreaterThanEqual()),
+                    visit(operatorContext->DoubleGreaterThanEqual()),
                     std::move(rightExpression)));
         }
         else if (operatorContext->DoubleLessThanEqual() != nullptr)
@@ -1155,7 +1119,7 @@ antlrcpp::Any ASTCppParserVisitor::visitAssignmentExpression(CppParser::Assignme
                 SyntaxFactory::CreateBinaryExpression(
                     BinaryOperator::BitwiseLeftShiftAssignment,
                     std::move(leftExpression),
-                    CreateToken(SyntaxTokenType::DoubleLessThanEqual, operatorContext->DoubleLessThanEqual()),
+                    visit(operatorContext->DoubleLessThanEqual()),
                     std::move(rightExpression)));
         }
         else if (operatorContext->AmpersandEqual() != nullptr)
@@ -1164,7 +1128,7 @@ antlrcpp::Any ASTCppParserVisitor::visitAssignmentExpression(CppParser::Assignme
                 SyntaxFactory::CreateBinaryExpression(
                     BinaryOperator::BitwiseAndAssignment,
                     std::move(leftExpression),
-                    CreateToken(SyntaxTokenType::AmpersandEqual, operatorContext->AmpersandEqual()),
+                    visit(operatorContext->AmpersandEqual()),
                     std::move(rightExpression)));
         }
         else if (operatorContext->CaretEqual() != nullptr)
@@ -1173,7 +1137,7 @@ antlrcpp::Any ASTCppParserVisitor::visitAssignmentExpression(CppParser::Assignme
                 SyntaxFactory::CreateBinaryExpression(
                     BinaryOperator::BitwiseExclusiveOrAssignment,
                     std::move(leftExpression),
-                    CreateToken(SyntaxTokenType::CaretEqual, operatorContext->CaretEqual()),
+                    visit(operatorContext->CaretEqual()),
                     std::move(rightExpression)));
         }
         else if (operatorContext->VerticalBarEqual() != nullptr)
@@ -1182,7 +1146,7 @@ antlrcpp::Any ASTCppParserVisitor::visitAssignmentExpression(CppParser::Assignme
                 SyntaxFactory::CreateBinaryExpression(
                     BinaryOperator::BitwiseOrAssignment,
                     std::move(leftExpression),
-                    CreateToken(SyntaxTokenType::VerticalBarEqual, operatorContext->VerticalBarEqual()),
+                    visit(operatorContext->VerticalBarEqual()),
                     std::move(rightExpression)));
         }
         else
@@ -1268,16 +1232,15 @@ antlrcpp::Any ASTCppParserVisitor::visitExpressionStatement(CppParser::Expressio
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreateExpressionStatement(
                 std::move(expression),
-                CreateToken(SyntaxTokenType::Semicolon, context->Semicolon())));
+                visit(context->Semicolon())));
     }
     else
     {
         // The degenerate expression statement with no expression has a special type
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreateEmptyStatement(
-                CreateToken(SyntaxTokenType::Semicolon, context->Semicolon())));
+                visit(context->Semicolon())));
     }
-    
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitCompoundStatement(CppParser::CompoundStatementContext* context)
@@ -1294,9 +1257,9 @@ antlrcpp::Any ASTCppParserVisitor::visitCompoundStatement(CppParser::CompoundSta
 
     return std::static_pointer_cast<const SyntaxNode>(
         SyntaxFactory::CreateCompoundStatement(
-            CreateToken(SyntaxTokenType::OpenBrace, context->OpenBrace()),
+            visit(context->OpenBrace()),
             SyntaxFactory::CreateSyntaxList<Statement>(std::move(statements)),
-            CreateToken(SyntaxTokenType::CloseBrace, context->CloseBrace())));
+            visit(context->CloseBrace())));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitStatementSequence(CppParser::StatementSequenceContext* context)
@@ -1345,16 +1308,16 @@ antlrcpp::Any ASTCppParserVisitor::visitSelectionStatement(CppParser::SelectionS
                     .as<std::shared_ptr<const SyntaxNode>>(), __LINE__);
 
             elseClause = SyntaxFactory::CreateElseClause(
-                CreateToken(SyntaxTokenType::Else, context->Else()),
+                visit(context->Else()),
                 std::move(falseStatement));
         }
 
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreateIfStatement(
-                CreateToken(SyntaxTokenType::If, context->If()),
-                CreateToken(SyntaxTokenType::OpenParenthesis, context->OpenParenthesis()),
+                visit(context->If()),
+                visit(context->OpenParenthesis()),
                 std::move(condition),
-                CreateToken(SyntaxTokenType::CloseParenthesis, context->CloseParenthesis()),
+                visit(context->CloseParenthesis()),
                 std::move(trueStatement),
                 std::move(elseClause)));
     }
@@ -1406,9 +1369,9 @@ antlrcpp::Any ASTCppParserVisitor::visitJumpStatement(CppParser::JumpStatementCo
 
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreateReturnStatement(
-                CreateToken(SyntaxTokenType::Return, context->Return()),
+                visit(context->Return()),
                 std::move(expression),
-                CreateToken(SyntaxTokenType::Semicolon, context->Semicolon())));
+                visit(context->Semicolon())));
     }
     else
     {
@@ -1503,7 +1466,7 @@ antlrcpp::Any ASTCppParserVisitor::visitSimpleDeclaration(CppParser::SimpleDecla
                 SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
                     std::move(initializerDeclaratorList.Items),
                     std::move(initializerDeclaratorList.Separators))),
-            CreateToken(SyntaxTokenType::Semicolon, context->Semicolon())));
+            visit(context->Semicolon())));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitStaticAssertDeclaration(CppParser::StaticAssertDeclarationContext* context)
@@ -1517,7 +1480,7 @@ antlrcpp::Any ASTCppParserVisitor::visitEmptyDeclaration(CppParser::EmptyDeclara
     Trace("VisitEmptyDeclaration");
     return std::static_pointer_cast<const SyntaxNode>(
         SyntaxFactory::CreateEmptyDeclaration(
-            CreateToken(SyntaxTokenType::Semicolon, context->Semicolon())));
+            visit(context->Semicolon())));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitAttributeDeclaration(CppParser::AttributeDeclarationContext* context)
@@ -1529,38 +1492,7 @@ antlrcpp::Any ASTCppParserVisitor::visitAttributeDeclaration(CppParser::Attribut
 antlrcpp::Any ASTCppParserVisitor::visitDeclarationModifier(CppParser::DeclarationModifierContext* context)
 {
     Trace("visitDeclarationModifier");
-    if (context->constVolatileQualifier() != nullptr)
-    {
-        return visit(context->constVolatileQualifier());
-    }
-    else if (context->storageClassSpecifier() != nullptr)
-    {
-        return visit(context->storageClassSpecifier());
-    }
-    else if (context->functionSpecifier() != nullptr)
-    {
-        return visit(context->functionSpecifier());
-    }
-    else if (context->Friend() != nullptr)
-    {
-        return CreateToken(SyntaxTokenType::Friend, context->Friend());
-    }
-    else if (context->TypeDef() != nullptr)
-    {
-        return CreateToken(SyntaxTokenType::TypeDef, context->TypeDef());
-    }
-    else if (context->ConstExpr() != nullptr)
-    {
-        return CreateToken(SyntaxTokenType::ConstExpr, context->ConstExpr());
-    }
-    else if (context->Inline() != nullptr)
-    {
-        return CreateToken(SyntaxTokenType::Inline, context->Inline());
-    }
-    else
-    {
-        throw std::logic_error("Unexpected declaration specifier");
-    }
+    return visitChildren(context);
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitDeclarationSpecifierSequence(CppParser::DeclarationSpecifierSequenceContext* context)
@@ -1631,26 +1563,7 @@ antlrcpp::Any ASTCppParserVisitor::visitDeclarationModifierSequence(CppParser::D
 antlrcpp::Any ASTCppParserVisitor::visitStorageClassSpecifier(CppParser::StorageClassSpecifierContext* context)
 {
     Trace("VisitStorageClassSpecifier");
-    if (context->Static() != nullptr)
-    {
-        return CreateToken(SyntaxTokenType::Static, context->Static());
-    }
-    else if (context->ThreadLocal() != nullptr)
-    {
-        return CreateToken(SyntaxTokenType::ThreadLocal, context->ThreadLocal());
-    }
-    else if (context->Extern() != nullptr)
-    {
-        return CreateToken(SyntaxTokenType::Extern, context->Extern());
-    }
-    else if (context->Mutable() != nullptr)
-    {
-        return CreateToken(SyntaxTokenType::Mutable, context->Mutable());
-    }
-    else
-    {
-        throw std::logic_error("Unexpected storage class specifier");
-    }
+    return visitChildren(context);
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitFunctionSpecifier(CppParser::FunctionSpecifierContext* context)
@@ -1733,105 +1646,105 @@ antlrcpp::Any ASTCppParserVisitor::visitSimpleTypeSpecifier(CppParser::SimpleTyp
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                 PrimitiveDataType::Char,
-                CreateToken(SyntaxTokenType::Char, context->Char())));
+                visit(context->Char())));
     }
     else if (context->Char8() != nullptr)
     {
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                 PrimitiveDataType::Char8,
-                CreateToken(SyntaxTokenType::Char8, context->Char8())));
+                visit(context->Char8())));
     }
     else if (context->Char16() != nullptr)
     {
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                 PrimitiveDataType::Char16,
-                CreateToken(SyntaxTokenType::Char16, context->Char16())));
+                visit(context->Char16())));
     }
     else if (context->Char32() != nullptr)
     {
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                 PrimitiveDataType::Char32,
-                CreateToken(SyntaxTokenType::Char32, context->Char32())));
+                visit(context->Char32())));
     }
     else if (context->WChar() != nullptr)
     {
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                 PrimitiveDataType::WChar,
-                CreateToken(SyntaxTokenType::WChar, context->WChar())));
+                visit(context->WChar())));
     }
     else if (context->Bool() != nullptr)
     {
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                 PrimitiveDataType::Bool,
-                CreateToken(SyntaxTokenType::Bool, context->Bool())));
+                visit(context->Bool())));
     }
     else if (context->Short() != nullptr)
     {
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                 PrimitiveDataType::Short,
-                CreateToken(SyntaxTokenType::Short, context->Short())));
+                visit(context->Short())));
     }
     else if (context->Int() != nullptr)
     {
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                 PrimitiveDataType::Int,
-                CreateToken(SyntaxTokenType::Int, context->Int())));
+                visit(context->Int())));
     }
     else if (context->Long() != nullptr)
     {
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                 PrimitiveDataType::Long,
-                CreateToken(SyntaxTokenType::Long, context->Long())));
+                visit(context->Long())));
     }
     else if (context->Signed() != nullptr)
     {
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                 PrimitiveDataType::Signed,
-                CreateToken(SyntaxTokenType::Signed, context->Signed())));
+                visit(context->Signed())));
     }
     else if (context->Unsigned() != nullptr)
     {
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                 PrimitiveDataType::Unsigned,
-                CreateToken(SyntaxTokenType::Unsigned, context->Unsigned())));
+                visit(context->Unsigned())));
     }
     else if (context->Float() != nullptr)
     {
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                 PrimitiveDataType::Float,
-                CreateToken(SyntaxTokenType::Float, context->Float())));
+                visit(context->Float())));
     }
     else if (context->Double() != nullptr)
     {
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                 PrimitiveDataType::Double,
-                CreateToken(SyntaxTokenType::Double, context->Double())));
+                visit(context->Double())));
     }
     else if (context->Void() != nullptr)
     {
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                 PrimitiveDataType::Void,
-                CreateToken(SyntaxTokenType::Void, context->Void())));
+                visit(context->Void())));
     }
     else if (context->Auto() != nullptr)
     {
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                 PrimitiveDataType::Auto,
-                CreateToken(SyntaxTokenType::Auto, context->Auto())));
+                visit(context->Auto())));
     }
 
     throw std::logic_error("Unexpected simple type.");
@@ -1844,7 +1757,7 @@ antlrcpp::Any ASTCppParserVisitor::visitTypeName(CppParser::TypeNameContext* con
     {
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreateSimpleIdentifier(
-                CreateToken(SyntaxTokenType::Identifier, context->Identifier())));
+                visit(context->Identifier())));
     }
     else
     {
@@ -1874,11 +1787,11 @@ antlrcpp::Any ASTCppParserVisitor::visitEnumSpecifier(CppParser::EnumSpecifierCo
     std::shared_ptr<const SyntaxToken> classToken = nullptr;
     if (enumKeyContext->Class() != nullptr)
     {
-        classToken = CreateToken(SyntaxTokenType::Class, enumKeyContext->Class());
+        classToken = visit(enumKeyContext->Class());
     }
     else if (enumKeyContext->Struct() != nullptr)
     {
-        classToken = CreateToken(SyntaxTokenType::Struct, enumKeyContext->Struct());
+        classToken = visit(enumKeyContext->Struct());
     }
 
     // Check for the optional enum head name
@@ -1886,7 +1799,7 @@ antlrcpp::Any ASTCppParserVisitor::visitEnumSpecifier(CppParser::EnumSpecifierCo
     if (enumHeadContext->enumHeadName() != nullptr)
     {
         auto enumHeadNameContext = enumHeadContext->enumHeadName();
-        identifierToken = CreateToken(SyntaxTokenType::Identifier, enumHeadNameContext->Identifier());
+        identifierToken = visit(enumHeadNameContext->Identifier());
     }
 
     // Check for the optional enumerator list
@@ -1901,14 +1814,14 @@ antlrcpp::Any ASTCppParserVisitor::visitEnumSpecifier(CppParser::EnumSpecifierCo
 
     return std::static_pointer_cast<const SyntaxNode>(
         SyntaxFactory::CreateEnumSpecifier(
-            CreateToken(SyntaxTokenType::Enum, enumKeyContext->Enum()),
+            visit(enumKeyContext->Enum()),
             std::move(classToken),
             std::move(identifierToken),
-            CreateToken(SyntaxTokenType::OpenBrace, context->OpenBrace()),
+            visit(context->OpenBrace()),
             SyntaxFactory::CreateSyntaxSeparatorList<EnumeratorDefinition>(
                 std::move(enumeratorList.Items),
                 std::move(enumeratorList.Separators)),
-            CreateToken(SyntaxTokenType::CloseBrace, context->CloseBrace())));
+            visit(context->CloseBrace())));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitEnumHead(CppParser::EnumHeadContext* context)
@@ -1952,7 +1865,7 @@ antlrcpp::Any ASTCppParserVisitor::visitEnumeratorList(CppParser::EnumeratorList
         enumeratorList = visit(context->enumeratorList())
             .as<SeparatorListResult<EnumeratorDefinition>>();
         enumeratorList.Separators.push_back(
-            CreateToken(SyntaxTokenType::Comma, context->Comma()));
+            visit(context->Comma()));
     }
 
     // Handle the next item
@@ -1968,7 +1881,7 @@ antlrcpp::Any ASTCppParserVisitor::visitEnumeratorDefinition(CppParser::Enumerat
     Trace("VisitEnumeratorDefinition");
     auto enumeratorContext = context->enumerator();
     return SyntaxFactory::CreateEnumeratorDefinition(
-        CreateToken(SyntaxTokenType::Identifier, enumeratorContext->Identifier()));
+        visit(enumeratorContext->Identifier()));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitEnumerator(CppParser::EnumeratorContext* context)
@@ -1994,15 +1907,15 @@ antlrcpp::Any ASTCppParserVisitor::visitNamedNamespaceDefinition(CppParser::Name
     // Create a namespace with a single identifier
     return std::static_pointer_cast<const SyntaxNode>(
         SyntaxFactory::CreateNamespaceDefinition(
-            CreateToken(SyntaxTokenType::Namespace, context->Namespace()),
+            visit(context->Namespace()),
             SyntaxFactory::CreateSyntaxSeparatorList<SyntaxToken>(
                 std::vector<std::shared_ptr<const SyntaxToken>>({
-                    CreateToken(SyntaxTokenType::Identifier, context->Identifier()),
+                    visit(context->Identifier()),
                 }),
                 {}),
-            CreateToken(SyntaxTokenType::OpenBrace, context->OpenBrace()),
+            visit(context->OpenBrace()),
             std::move(namespaceBody),
-            CreateToken(SyntaxTokenType::CloseBrace, context->CloseBrace())));
+            visit(context->CloseBrace())));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitUnnamedNamespaceDefinition(CppParser::UnnamedNamespaceDefinitionContext* context)
@@ -2016,13 +1929,11 @@ antlrcpp::Any ASTCppParserVisitor::visitUnnamedNamespaceDefinition(CppParser::Un
     // Create a namespace with no name identifiers
     return std::static_pointer_cast<const SyntaxNode>(
         SyntaxFactory::CreateNamespaceDefinition(
-            CreateToken(SyntaxTokenType::Namespace, context->Namespace()),
-            SyntaxFactory::CreateSyntaxSeparatorList<SyntaxToken>(
-                {},
-                {}),
-            CreateToken(SyntaxTokenType::OpenBrace, context->OpenBrace()),
+            visit(context->Namespace()),
+            SyntaxFactory::CreateSyntaxSeparatorList<SyntaxToken>({}, {}),
+            visit(context->OpenBrace()),
             std::move(namespaceBody),
-            CreateToken(SyntaxTokenType::CloseBrace, context->CloseBrace())));
+            visit(context->CloseBrace())));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitNestedNamespaceDefinition(CppParser::NestedNamespaceDefinitionContext* context)
@@ -2035,8 +1946,8 @@ antlrcpp::Any ASTCppParserVisitor::visitNestedNamespaceDefinition(CppParser::Nes
 
     // Add the final identifier
     enclosingNamespaceSpecifier.Separators.push_back(
-        CreateToken(SyntaxTokenType::DoubleColon, context->DoubleColon()));
-    auto identifierToken = CreateToken(SyntaxTokenType::Identifier, context->Identifier());
+        visit(context->DoubleColon()));
+    auto identifierToken = visit(context->Identifier());
     enclosingNamespaceSpecifier.Items.push_back(identifierToken);
 
     auto namespaceBody = visit(context->namespaceBody())
@@ -2045,13 +1956,13 @@ antlrcpp::Any ASTCppParserVisitor::visitNestedNamespaceDefinition(CppParser::Nes
     // Create a namespace with nested identifiers
     return std::static_pointer_cast<const SyntaxNode>(
         SyntaxFactory::CreateNamespaceDefinition(
-            CreateToken(SyntaxTokenType::Namespace, context->Namespace()),
+            visit(context->Namespace()),
             SyntaxFactory::CreateSyntaxSeparatorList<SyntaxToken>(
                 std::move(enclosingNamespaceSpecifier.Items),
                 std::move(enclosingNamespaceSpecifier.Separators)),
-            CreateToken(SyntaxTokenType::OpenBrace, context->OpenBrace()),
+            visit(context->OpenBrace()),
             std::move(namespaceBody),
-            CreateToken(SyntaxTokenType::CloseBrace, context->CloseBrace())));
+            visit(context->CloseBrace())));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitEnclosingNamespaceSpecifier(CppParser::EnclosingNamespaceSpecifierContext* context)
@@ -2065,11 +1976,11 @@ antlrcpp::Any ASTCppParserVisitor::visitEnclosingNamespaceSpecifier(CppParser::E
         enclosingNamespaceSpecifier = visit(context->enclosingNamespaceSpecifier())
             .as<SeparatorListResult<SyntaxToken>>();
         enclosingNamespaceSpecifier.Separators.push_back(
-            CreateToken(SyntaxTokenType::DoubleColon, context->DoubleColon()));
+            visit(context->DoubleColon()));
     }
 
     // Handle the new identifier
-    auto identifierToken = CreateToken(SyntaxTokenType::Identifier, context->Identifier());
+    auto identifierToken = visit(context->Identifier());
     enclosingNamespaceSpecifier.Items.push_back(identifierToken);
 
     return enclosingNamespaceSpecifier;
@@ -2173,13 +2084,13 @@ antlrcpp::Any ASTCppParserVisitor::visitAttributeSpecifier(CppParser::AttributeS
             .as<SeparatorListResult<Attribute>>();
 
         return SyntaxFactory::CreateAttributeSpecifier(
-            CreateToken(SyntaxTokenType::OpenBracket, context->OpenBracket().at(0)),
-            CreateToken(SyntaxTokenType::OpenBracket, context->OpenBracket().at(1)),
+            visit(context->OpenBracket().at(0)),
+            visit(context->OpenBracket().at(1)),
             SyntaxFactory::CreateSyntaxSeparatorList<Attribute>(
                 std::move(attributeList.Items),
                 std::move(attributeList.Separators)),
-            CreateToken(SyntaxTokenType::CloseBracket, context->CloseBracket().at(0)),
-            CreateToken(SyntaxTokenType::CloseBracket, context->CloseBracket().at(1)));
+            visit(context->CloseBracket().at(0)),
+            visit(context->CloseBracket().at(1)));
     }
 }
 
@@ -2206,7 +2117,7 @@ antlrcpp::Any ASTCppParserVisitor::visitAttributeList(CppParser::AttributeListCo
         attributeList = visit(context->attributeList())
             .as<SeparatorListResult<Attribute>>();
         attributeList.Separators.push_back(
-            CreateToken(SyntaxTokenType::Comma, context->Comma()));
+            visit(context->Comma()));
     }
 
     // Handle the optional new attribute
@@ -2245,7 +2156,7 @@ antlrcpp::Any ASTCppParserVisitor::visitAttribute(CppParser::AttributeContext* c
     else
     {
         return SyntaxFactory::CreateAttribute(
-            CreateToken(SyntaxTokenType::Identifier, context->attributeToken()->Identifier()),
+            visit(context->attributeToken()->Identifier()),
             std::move(argumentClause));
     }
 }
@@ -2281,21 +2192,87 @@ antlrcpp::Any ASTCppParserVisitor::visitAttributeArgumentClause(CppParser::Attri
     }
 
     return SyntaxFactory::CreateAttributeArgumentClause(
-        CreateToken(SyntaxTokenType::OpenParenthesis, context->OpenParenthesis()),
+        visit(context->OpenParenthesis()),
         SyntaxFactory::CreateSyntaxList<SyntaxToken>(std::move(balancedTokenSequence)),
-        CreateToken(SyntaxTokenType::CloseParenthesis, context->CloseParenthesis()));
+        visit(context->CloseParenthesis()));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitBalancedTokenSequence(CppParser::BalancedTokenSequenceContext* context)
 {
     Trace("VisitBalancedTokenSequence");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+
+    std::vector<std::shared_ptr<const SyntaxToken>> balancedTokenSequence = {};
+    if (context->balancedTokenSequence() != nullptr)
+    {
+        balancedTokenSequence = visit(context->balancedTokenSequence())
+            .as<std::vector<std::shared_ptr<const SyntaxToken>>>();
+    }
+
+    // Add the new token
+    auto balancedToken = visit(context->balancedToken())
+        .as<std::vector<std::shared_ptr<const SyntaxToken>>>();
+    balancedTokenSequence.insert(balancedTokenSequence.end(), balancedToken.begin(), balancedToken.end());
+
+    return balancedTokenSequence;
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitBalancedToken(CppParser::BalancedTokenContext* context)
 {
     Trace("VisitBalancedToken");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+
+    std::vector<std::shared_ptr<const SyntaxToken>> balancedToken = {};
+    if (context->OpenParenthesis() != nullptr)
+    {
+        balancedToken.push_back(visit(context->OpenParenthesis()));
+        if (context->balancedTokenSequence() != nullptr)
+        {
+            auto balancedTokenSequence = visit(context->balancedTokenSequence())
+                .as<std::vector<std::shared_ptr<const SyntaxToken>>>();
+            balancedToken.insert(balancedToken.end(), balancedTokenSequence.begin(), balancedTokenSequence.end());
+        }
+
+        balancedToken.push_back(visit(context->CloseParenthesis()));
+    }
+    else if (context->OpenBracket() != nullptr)
+    {
+        balancedToken.push_back(visit(context->OpenBracket()));
+        if (context->balancedTokenSequence() != nullptr)
+        {
+            auto balancedTokenSequence = visit(context->balancedTokenSequence())
+                .as<std::vector<std::shared_ptr<const SyntaxToken>>>();
+            balancedToken.insert(balancedToken.end(), balancedTokenSequence.begin(), balancedTokenSequence.end());
+        }
+
+        balancedToken.push_back(visit(context->CloseBracket()));
+    }
+    else if (context->OpenBrace() != nullptr)
+    {
+        balancedToken.push_back(visit(context->OpenBrace()));
+        if (context->balancedTokenSequence() != nullptr)
+        {
+            auto balancedTokenSequence = visit(context->balancedTokenSequence())
+                .as<std::vector<std::shared_ptr<const SyntaxToken>>>();
+            balancedToken.insert(balancedToken.end(), balancedTokenSequence.begin(), balancedTokenSequence.end());
+        }
+
+        balancedToken.push_back(visit(context->CloseBrace()));
+    }
+    else if (context->nonBalancedToken() != nullptr)
+    {
+        balancedToken.push_back(visit(context->nonBalancedToken()));
+    }
+    else
+    {
+        throw std::runtime_error("Unknown balanced token.");
+    }
+
+    return balancedToken;
+}
+
+antlrcpp::Any ASTCppParserVisitor::visitNonBalancedToken(CppParser::NonBalancedTokenContext *context)
+{
+    Trace("VisitNonBalancedToken");
+    return visitChildren(context);
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitInitializerDeclaratorList(CppParser::InitializerDeclaratorListContext* context)
@@ -2308,8 +2285,7 @@ antlrcpp::Any ASTCppParserVisitor::visitInitializerDeclaratorList(CppParser::Ini
     {
         initializerDeclaratorList = visit(context->initializerDeclaratorList())
             .as<SeparatorListResult<InitializerDeclarator>>();
-        initializerDeclaratorList.Separators.push_back(
-            CreateToken(SyntaxTokenType::Comma, context->Comma()));
+        initializerDeclaratorList.Separators.push_back(visit(context->Comma()));
     }
 
     // Handle the new initializer declarator
@@ -2331,8 +2307,7 @@ antlrcpp::Any ASTCppParserVisitor::visitInitializerDeclarator(CppParser::Initial
     std::shared_ptr<const SyntaxNode> initializer = nullptr;
     if (context->initializer() != nullptr)
     {
-        initializer = visit(context->initializer())
-            .as<std::shared_ptr<const SyntaxNode>>();
+        initializer = visit(context->initializer());
     }
 
     return SyntaxFactory::CreateInitializerDeclarator(
@@ -2387,9 +2362,9 @@ antlrcpp::Any ASTCppParserVisitor::visitFunctionParameters(CppParser::FunctionPa
     Trace("VisitFunctionParameters2");
     return std::static_pointer_cast<const SyntaxNode>(
         SyntaxFactory::CreateParameterList(
-            CreateToken(SyntaxTokenType::OpenParenthesis, context->OpenParenthesis()),
+            visit(context->OpenParenthesis()),
             std::move(parameterList),
-            CreateToken(SyntaxTokenType::CloseParenthesis, context->CloseParenthesis())));
+            visit(context->CloseParenthesis())));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitFunctionQualifiers(CppParser::FunctionQualifiersContext *context)
@@ -2429,17 +2404,17 @@ antlrcpp::Any ASTCppParserVisitor::visitPointerOperator(CppParser::PointerOperat
         }
 
         return SyntaxFactory::CreatePointerOperator(
-            CreateToken(SyntaxTokenType::Asterisk, context->Asterisk()));
+            visit(context->Asterisk()));
     }
     else if (context->Ampersand() != nullptr)
     {
         return SyntaxFactory::CreatePointerOperator(
-            CreateToken(SyntaxTokenType::Ampersand, context->Ampersand()));
+            visit(context->Ampersand()));
     }
     else if (context->DoubleAmpersand() != nullptr)
     {
         return SyntaxFactory::CreatePointerOperator(
-            CreateToken(SyntaxTokenType::DoubleAmpersand, context->DoubleAmpersand()));
+            visit(context->DoubleAmpersand()));
     }
     else
     {
@@ -2456,18 +2431,7 @@ antlrcpp::Any ASTCppParserVisitor::visitConstVolatileQualifierSequence(CppParser
 antlrcpp::Any ASTCppParserVisitor::visitConstVolatileQualifier(CppParser::ConstVolatileQualifierContext* context)
 {
     Trace("VisitConstVolatileQualifier");
-    if (context->Const() != nullptr)
-    {
-        return CreateToken(SyntaxTokenType::Const, context->Const());
-    }
-    else if (context->Volatile() != nullptr)
-    {
-        return CreateToken(SyntaxTokenType::Volatile, context->Volatile());
-    }
-    else
-    {
-        throw std::logic_error("Unexpected const volatile qualifier.");
-    }
+    return visitChildren(context);
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitReferenceQualifier(CppParser::ReferenceQualifierContext* context)
@@ -2556,8 +2520,7 @@ antlrcpp::Any ASTCppParserVisitor::visitParameterDeclarationList(CppParser::Para
     {
         parameterDeclarationList = visit(context->parameterDeclarationList())
             .as<SeparatorListResult<Parameter>>();
-        parameterDeclarationList.Separators.push_back(
-            CreateToken(SyntaxTokenType::Comma, context->Comma()));
+        parameterDeclarationList.Separators.push_back(visit(context->Comma()));
     }
 
     // Handle the next item
@@ -2692,9 +2655,9 @@ antlrcpp::Any ASTCppParserVisitor::visitExplicitlyDefaultedFunction(CppParser::E
     Trace("VisitExplicitlyDefaultedFunction");
     return std::static_pointer_cast<const SyntaxNode>(
         SyntaxFactory::CreateDefaultFunctionBody(
-            CreateToken(SyntaxTokenType::Equal, context->Equal()),
-            CreateToken(SyntaxTokenType::Default, context->Default()),
-            CreateToken(SyntaxTokenType::Semicolon, context->Semicolon())));
+            visit(context->Equal()),
+            visit(context->Default()),
+            visit(context->Semicolon())));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitDeletedFunction(CppParser::DeletedFunctionContext* context)
@@ -2702,9 +2665,9 @@ antlrcpp::Any ASTCppParserVisitor::visitDeletedFunction(CppParser::DeletedFuncti
     Trace("VisitDeletedFunction");
     return std::static_pointer_cast<const SyntaxNode>(
         SyntaxFactory::CreateDeleteFunctionBody(
-            CreateToken(SyntaxTokenType::Equal, context->Equal()),
-            CreateToken(SyntaxTokenType::Delete, context->Delete()),
-            CreateToken(SyntaxTokenType::Semicolon, context->Semicolon())));
+            visit(context->Equal()),
+            visit(context->Delete()),
+            visit(context->Semicolon())));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitInitializer(CppParser::InitializerContext *context)
@@ -2721,7 +2684,7 @@ antlrcpp::Any ASTCppParserVisitor::visitBraceOrEqualInitializer(CppParser::Brace
         // TODO : Could not be an expression
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreateValueEqualInitializer(
-                CreateToken(SyntaxTokenType::Equal, context->Equal()),
+                visit(context->Equal()),
                 visit(context->initializerClause())
                     .as<std::shared_ptr<const SyntaxNode>>()));
     }
@@ -2747,8 +2710,7 @@ antlrcpp::Any ASTCppParserVisitor::visitInitializerList(CppParser::InitializerLi
     {
         initializerList = visit(context->initializerList())
             .as<SeparatorListResult<SyntaxNode>>();
-        initializerList.Separators.push_back(
-            CreateToken(SyntaxTokenType::Comma, context->Comma()));
+        initializerList.Separators.push_back(visit(context->Comma()));
     }
 
     // Handle the next item
@@ -2773,8 +2735,7 @@ antlrcpp::Any ASTCppParserVisitor::visitBracedInitializerList(CppParser::BracedI
         // Check for the optional trailing comma
         if (context->Comma() != nullptr)
         {
-            result.Separators.push_back(
-                CreateToken(SyntaxTokenType::Comma, context->Comma()));
+            result.Separators.push_back(visit(context->Comma()));
         }
     }
 
@@ -2784,9 +2745,9 @@ antlrcpp::Any ASTCppParserVisitor::visitBracedInitializerList(CppParser::BracedI
 
     return std::static_pointer_cast<const SyntaxNode>(
         SyntaxFactory::CreateInitializerList(
-            CreateToken(SyntaxTokenType::OpenBrace, context->OpenBrace()),
+            visit(context->OpenBrace()),
             std::move(values),
-            CreateToken(SyntaxTokenType::CloseBrace, context->CloseBrace())));
+            visit(context->CloseBrace())));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitExpressionOrBracedInitializerList(CppParser::ExpressionOrBracedInitializerListContext* context)
@@ -2805,15 +2766,15 @@ antlrcpp::Any ASTCppParserVisitor::visitClassSpecifier(CppParser::ClassSpecifier
     std::shared_ptr<const SyntaxToken> classToken = nullptr;
     if (classKeyContext->Class() != nullptr)
     {
-        classToken = CreateToken(SyntaxTokenType::Class, classKeyContext->Class());
+        classToken = visit(classKeyContext->Class());
     }
     else if (classKeyContext->Struct() != nullptr)
     {
-        classToken = CreateToken(SyntaxTokenType::Struct, classKeyContext->Struct());
+        classToken = visit(classKeyContext->Struct());
     }
     else if (classKeyContext->Union() != nullptr)
     {
-        classToken = CreateToken(SyntaxTokenType::Union, classKeyContext->Union());
+        classToken = visit(classKeyContext->Union());
     }
 
     // Check for the optional class head name
@@ -2846,9 +2807,9 @@ antlrcpp::Any ASTCppParserVisitor::visitClassSpecifier(CppParser::ClassSpecifier
         SyntaxFactory::CreateClassSpecifier(
             std::move(classToken),
             std::move(identifierToken),
-            CreateToken(SyntaxTokenType::OpenBrace, context->OpenBrace()),
+            visit(context->OpenBrace()),
             std::move(memberSpecifiersList),
-            CreateToken(SyntaxTokenType::CloseBrace, context->CloseBrace())));
+            visit(context->CloseBrace())));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitClassHead(CppParser::ClassHeadContext* context)
@@ -2894,7 +2855,7 @@ antlrcpp::Any ASTCppParserVisitor::visitMemberSpecification(CppParser::MemberSpe
             .as<std::shared_ptr<const SyntaxToken>>();
         auto member = SyntaxFactory::CreateAccessorSpecifier(
             std::move(accessorToken),
-            CreateToken(SyntaxTokenType::Colon, context->Colon()));
+            visit(context->Colon()));
         memberSpecifiers.push_back(std::move(member));
     }
     else if (context->memberDeclaration() != nullptr)
@@ -2930,7 +2891,7 @@ antlrcpp::Any ASTCppParserVisitor::visitMemberDeclaration(CppParser::MemberDecla
                     SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
                         std::move(memberDeclaratorList.Items),
                         std::move(memberDeclaratorList.Separators))),
-                CreateToken(SyntaxTokenType::Semicolon, context->Semicolon())));
+                visit(context->Semicolon())));
     }
     else
     {
@@ -2949,8 +2910,7 @@ antlrcpp::Any ASTCppParserVisitor::visitMemberDeclaratorList(CppParser::MemberDe
     {
         memberDeclaratorList = visit(context->memberDeclaratorList())
             .as<SeparatorListResult<MemberDeclarator>>();
-        memberDeclaratorList.Separators.push_back(
-            CreateToken(SyntaxTokenType::Comma, context->Comma()));
+        memberDeclaratorList.Separators.push_back(visit(context->Comma()));
     }
 
     // Handle the new member declarator
@@ -3038,15 +2998,15 @@ antlrcpp::Any ASTCppParserVisitor::visitAccessSpecifier(CppParser::AccessSpecifi
     Trace("VisitAccessSpecifier");
     if (context->Private() != nullptr)
     {
-        return CreateToken(SyntaxTokenType::Private, context->Private());
+        return visit(context->Private());
     }
     else if (context->Protected() != nullptr)
     {
-        return CreateToken(SyntaxTokenType::Protected, context->Protected());
+        return visit(context->Protected());
     }
     else if (context->Public() != nullptr)
     {
-        return CreateToken(SyntaxTokenType::Public, context->Public());
+        return visit(context->Public());
     }
     else
     {
@@ -3080,7 +3040,7 @@ antlrcpp::Any ASTCppParserVisitor::visitConstructorInitializer(CppParser::Constr
         .as<SeparatorListResult<MemberInitializer>>();
 
     return SyntaxFactory::CreateConstructorInitializer(
-        CreateToken(SyntaxTokenType::Colon, context->Colon()),
+        visit(context->Colon()),
         SyntaxFactory::CreateSyntaxSeparatorList<MemberInitializer>(
             std::move(initializerList.Items),
             std::move(initializerList.Separators)));
@@ -3096,8 +3056,7 @@ antlrcpp::Any ASTCppParserVisitor::visitMemberInitializerList(CppParser::MemberI
     {
         memberInitializerList = visit(context->memberInitializerList())
             .as<SeparatorListResult<MemberInitializer>>();
-        memberInitializerList.Separators.push_back(
-            CreateToken(SyntaxTokenType::Comma, context->Comma()));
+        memberInitializerList.Separators.push_back(visit(context->Comma()));
     }
 
     // Handle the next item
@@ -3129,9 +3088,9 @@ antlrcpp::Any ASTCppParserVisitor::visitMemberInitializer(CppParser::MemberIniti
             std::move(result.Separators));
 
         initializerList = SyntaxFactory::CreateInitializerList(
-            CreateToken(SyntaxTokenType::OpenParenthesis, context->OpenParenthesis()),
+            visit(context->OpenParenthesis()),
             std::move(values),
-            CreateToken(SyntaxTokenType::CloseParenthesis, context->CloseParenthesis()));
+            visit(context->CloseParenthesis()));
     }
     else if (context->bracedInitializerList() != nullptr)
     {
@@ -3145,7 +3104,7 @@ antlrcpp::Any ASTCppParserVisitor::visitMemberInitializer(CppParser::MemberIniti
     }
 
     return SyntaxFactory::CreateMemberInitializer(
-        CreateToken(SyntaxTokenType::Identifier, context->memberInitializerIdentifier()->Identifier()),
+        visit(context->memberInitializerIdentifier()->Identifier()),
         std::move(initializerList));
 }
 
@@ -3218,12 +3177,12 @@ antlrcpp::Any ASTCppParserVisitor::visitSimpleTemplateIdentifier(CppParser::Simp
 
     return std::static_pointer_cast<const SyntaxNode>(
         SyntaxFactory::CreateSimpleTemplateIdentifier(
-            CreateToken(SyntaxTokenType::Identifier, context->templateName()->Identifier()),
-            CreateToken(SyntaxTokenType::LessThan, context->LessThan()),
+            visit(context->templateName()->Identifier()),
+            visit(context->LessThan()),
             SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
                 std::move(argumentList.Items),
                 std::move(argumentList.Separators)),
-            CreateToken(SyntaxTokenType::GreaterThan, context->GreaterThan())));
+            visit(context->GreaterThan())));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitTemplateIdentifier(CppParser::TemplateIdentifierContext* context)
@@ -3249,8 +3208,7 @@ antlrcpp::Any ASTCppParserVisitor::visitTemplateArgumentList(CppParser::Template
     {
         templateArgumentList = visit(context->templateArgumentList())
             .as<SeparatorListResult<SyntaxNode>>();
-        templateArgumentList.Separators.push_back(
-            CreateToken(SyntaxTokenType::Comma, context->Comma()));
+        templateArgumentList.Separators.push_back(visit(context->Comma()));
     }
 
     // Handle the next item
@@ -3338,9 +3296,7 @@ antlrcpp::Any ASTCppParserVisitor::visitLiteral(CppParser::LiteralContext* conte
     Trace("VisitLiteral");
     if (context->FloatingPointLiteral() != nullptr)
     {
-        auto literal = CreateToken(
-            SyntaxTokenType::FloatingPointLiteral,
-            context->FloatingPointLiteral());
+        auto literal = visit(context->FloatingPointLiteral());
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreateLiteralExpression(
                 LiteralType::Floating,
@@ -3348,9 +3304,7 @@ antlrcpp::Any ASTCppParserVisitor::visitLiteral(CppParser::LiteralContext* conte
     }
     else if (context->CharacterLiteral() != nullptr)
     {
-        auto literal = CreateToken(
-            SyntaxTokenType::CharacterLiteral,
-            context->CharacterLiteral());
+        auto literal = visit(context->CharacterLiteral());
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreateLiteralExpression(
                 LiteralType::Character,
@@ -3358,9 +3312,7 @@ antlrcpp::Any ASTCppParserVisitor::visitLiteral(CppParser::LiteralContext* conte
     }
     else if (context->StringLiteral() != nullptr)
     {
-        auto literal = CreateToken(
-            SyntaxTokenType::StringLiteral,
-            context->StringLiteral());
+        auto literal = visit(context->StringLiteral());
         return std::static_pointer_cast<const SyntaxNode>(
             SyntaxFactory::CreateLiteralExpression(
                 LiteralType::String,
@@ -3384,9 +3336,7 @@ antlrcpp::Any ASTCppParserVisitor::visitIntegerLiteral(CppParser::IntegerLiteral
     }
     else if (context->IntegerLiteral())
     {
-        literal = CreateToken(
-            SyntaxTokenType::IntegerLiteral,
-            context->IntegerLiteral());
+        literal = visit(context->IntegerLiteral());
     }
     else
     {
@@ -3405,15 +3355,11 @@ antlrcpp::Any ASTCppParserVisitor::visitBooleanLiteral(CppParser::BooleanLiteral
     std::shared_ptr<const SyntaxToken> literal = nullptr;
     if (context->True() != nullptr)
     {
-        literal = CreateToken(
-            SyntaxTokenType::True,
-            context->True());
+        literal = visit(context->True());
     }
     else if (context->False() != nullptr)
     {
-        literal = CreateToken(
-            SyntaxTokenType::False,
-            context->False());
+        literal = visit(context->False());
     }
     else
     {
@@ -3430,9 +3376,7 @@ antlrcpp::Any ASTCppParserVisitor::visitBooleanLiteral(CppParser::BooleanLiteral
 antlrcpp::Any ASTCppParserVisitor::visitPointerLiteral(CppParser::PointerLiteralContext* context)
 {
     Trace("VisitPointerLitera");
-    auto literal = CreateToken(
-        SyntaxTokenType::Nullptr,
-        context->Nullptr());
+    auto literal = visit(context->Nullptr());
     return std::static_pointer_cast<const SyntaxNode>(
         SyntaxFactory::CreateLiteralExpression(
             LiteralType::Pointer,
@@ -3445,27 +3389,19 @@ antlrcpp::Any ASTCppParserVisitor::visitUserDefinedLiteral(CppParser::UserDefine
     std::shared_ptr<const SyntaxToken> literal = nullptr;
     if (context->UserDefinedIntegerLiteral() != nullptr)
     {
-        literal = CreateToken(
-            SyntaxTokenType::UserDefinedLiteral,
-            context->UserDefinedIntegerLiteral());
+        literal = visit(context->UserDefinedIntegerLiteral());
     }
     else if (context->UserDefinedFloatingPointLiteral() != nullptr)
     {
-        literal = CreateToken(
-            SyntaxTokenType::UserDefinedLiteral,
-            context->UserDefinedFloatingPointLiteral());
+        literal = visit(context->UserDefinedFloatingPointLiteral());
     }
     else if (context->UserDefinedCharacterLiteral() != nullptr)
     {
-        literal = CreateToken(
-            SyntaxTokenType::UserDefinedLiteral,
-            context->UserDefinedCharacterLiteral());
+        literal = visit(context->UserDefinedCharacterLiteral());
     }
     else if (context->UserDefinedStringLiteral() != nullptr)
     {
-        literal = CreateToken(
-            SyntaxTokenType::UserDefinedLiteral,
-            context->UserDefinedStringLiteral());
+        literal = visit(context->UserDefinedStringLiteral());
     }
     else
     {
@@ -3476,6 +3412,293 @@ antlrcpp::Any ASTCppParserVisitor::visitUserDefinedLiteral(CppParser::UserDefine
         SyntaxFactory::CreateLiteralExpression(
             LiteralType::UserDefined,
             std::move(literal)));
+}
+
+antlrcpp::Any ASTCppParserVisitor::visitTerminal(antlr4::tree::TerminalNode* node)
+{
+    auto token = node->getSymbol();
+    SyntaxTokenType tokenType = GetTokenType(*token);
+    return CreateToken(tokenType, node);
+}
+
+SyntaxTokenType ASTCppParserVisitor::GetTokenType(antlr4::Token& token)
+{
+    switch (token.getType())
+    {
+        case CppLexer::BlockComment:
+        case CppLexer::LineComment:
+        case CppLexer::Whitespace:
+        case CppLexer::Preprocessor:
+        case CppLexer::Newline:
+            throw std::runtime_error("Cannot create token for trivia.");
+        case CppLexer::AlignAs:
+            return SyntaxTokenType::AlignAs;
+        case CppLexer::AlignOf:
+            return SyntaxTokenType::AlignOf;
+        case CppLexer::Asm:
+            return SyntaxTokenType::Asm;
+        case CppLexer::Auto:
+            return SyntaxTokenType::Auto;
+        case CppLexer::Bool:
+            return SyntaxTokenType::Bool;
+        case CppLexer::Break:
+            return SyntaxTokenType::Break;
+        case CppLexer::Case:
+            return SyntaxTokenType::Case;
+        case CppLexer::Catch:
+            return SyntaxTokenType::Catch;
+        case CppLexer::Char:
+            return SyntaxTokenType::Char;
+        case CppLexer::Char8:
+            return SyntaxTokenType::Char8;
+        case CppLexer::Char16:
+            return SyntaxTokenType::Char16;
+        case CppLexer::Char32:
+            return SyntaxTokenType::Char32;
+        case CppLexer::Class:
+            return SyntaxTokenType::Class;
+        case CppLexer::Const:
+            return SyntaxTokenType::Const;
+        case CppLexer::ConstExpr:
+            return SyntaxTokenType::ConstExpr;
+        case CppLexer::ConstCast:
+            return SyntaxTokenType::ConstCast;
+        case CppLexer::Continue:
+            return SyntaxTokenType::Continue;
+        case CppLexer::DeclType:
+            return SyntaxTokenType::DeclType;
+        case CppLexer::Default:
+            return SyntaxTokenType::Default;
+        case CppLexer::Delete:
+            return SyntaxTokenType::Delete;
+        case CppLexer::Do:
+            return SyntaxTokenType::Do;
+        case CppLexer::Double:
+            return SyntaxTokenType::Double;
+        case CppLexer::DynamicCast:
+            return SyntaxTokenType::DynamicCast;
+        case CppLexer::Else:
+            return SyntaxTokenType::Else;
+        case CppLexer::Enum:
+            return SyntaxTokenType::Enum;
+        case CppLexer::Explicit:
+            return SyntaxTokenType::Explicit;
+        case CppLexer::Export:
+            return SyntaxTokenType::Export;
+        case CppLexer::Extern:
+            return SyntaxTokenType::Extern;
+        case CppLexer::False:
+            return SyntaxTokenType::False;
+        case CppLexer::Float:
+            return SyntaxTokenType::Float;
+        case CppLexer::For:
+            return SyntaxTokenType::For;
+        case CppLexer::Friend:
+            return SyntaxTokenType::Friend;
+        case CppLexer::GoTo:
+            return SyntaxTokenType::GoTo;
+        case CppLexer::If:
+            return SyntaxTokenType::If;
+        case CppLexer::Inline:
+            return SyntaxTokenType::Inline;
+        case CppLexer::Int:
+            return SyntaxTokenType::Int;
+        case CppLexer::Long:
+            return SyntaxTokenType::Long;
+        case CppLexer::Mutable:
+            return SyntaxTokenType::Mutable;
+        case CppLexer::Namespace:
+            return SyntaxTokenType::Namespace;
+        case CppLexer::New:
+            return SyntaxTokenType::New;
+        case CppLexer::NoExcept:
+            return SyntaxTokenType::NoExcept;
+        case CppLexer::Nullptr:
+            return SyntaxTokenType::Nullptr;
+        case CppLexer::Operator:
+            return SyntaxTokenType::Operator;
+        case CppLexer::Private:
+            return SyntaxTokenType::Private;
+        case CppLexer::Protected:
+            return SyntaxTokenType::Protected;
+        case CppLexer::Public:
+            return SyntaxTokenType::Public;
+        case CppLexer::Register:
+            return SyntaxTokenType::Register;
+        case CppLexer::ReinterpretCast:
+            return SyntaxTokenType::ReinterpretCast;
+        case CppLexer::Return:
+            return SyntaxTokenType::Return;
+        case CppLexer::Short:
+            return SyntaxTokenType::Short;
+        case CppLexer::Signed:
+            return SyntaxTokenType::Signed;
+        case CppLexer::SizeOf:
+            return SyntaxTokenType::SizeOf;
+        case CppLexer::Static:
+            return SyntaxTokenType::Static;
+        case CppLexer::StaticAssert:
+            return SyntaxTokenType::StaticAssert;
+        case CppLexer::StaticCast:
+            return SyntaxTokenType::StaticCast;
+        case CppLexer::Struct:
+            return SyntaxTokenType::Struct;
+        case CppLexer::Switch:
+            return SyntaxTokenType::Switch;
+        case CppLexer::Template:
+            return SyntaxTokenType::Template;
+        case CppLexer::This:
+            return SyntaxTokenType::This;
+        case CppLexer::ThreadLocal:
+            return SyntaxTokenType::ThreadLocal;
+        case CppLexer::Throw:
+            return SyntaxTokenType::Throw;
+        case CppLexer::True:
+            return SyntaxTokenType::True;
+        case CppLexer::Try:
+            return SyntaxTokenType::Try;
+        case CppLexer::TypeDef:
+            return SyntaxTokenType::TypeDef;
+        case CppLexer::TypeId:
+            return SyntaxTokenType::TypeId;
+        case CppLexer::TypeName:
+            return SyntaxTokenType::TypeName;
+        case CppLexer::Union:
+            return SyntaxTokenType::Union;
+        case CppLexer::Unsigned:
+            return SyntaxTokenType::Unsigned;
+        case CppLexer::Using:
+            return SyntaxTokenType::Using;
+        case CppLexer::Virtual:
+            return SyntaxTokenType::Virtual;
+        case CppLexer::Void:
+            return SyntaxTokenType::Void;
+        case CppLexer::Volatile:
+            return SyntaxTokenType::Volatile;
+        case CppLexer::WChar:
+            return SyntaxTokenType::WChar;
+        case CppLexer::While:
+            return SyntaxTokenType::While;
+        case CppLexer::Override:
+            return SyntaxTokenType::Override;
+        case CppLexer::Final:
+            return SyntaxTokenType::Final;
+        case CppLexer::OpenBrace:
+            return SyntaxTokenType::OpenBrace;
+        case CppLexer::CloseBrace:
+            return SyntaxTokenType::CloseBrace;
+        case CppLexer::OpenBracket:
+            return SyntaxTokenType::OpenBracket;
+        case CppLexer::CloseBracket:
+            return SyntaxTokenType::CloseBracket;
+        case CppLexer::OpenParenthesis:
+            return SyntaxTokenType::OpenParenthesis;
+        case CppLexer::CloseParenthesis:
+            return SyntaxTokenType::CloseParenthesis;
+        case CppLexer::Semicolon:
+            return SyntaxTokenType::Semicolon;
+        case CppLexer::Colon:
+            return SyntaxTokenType::Colon;
+        case CppLexer::Ellipsis:
+            return SyntaxTokenType::Ellipsis;
+        case CppLexer::QuestionMark:
+            return SyntaxTokenType::QuestionMark;
+        case CppLexer::DoubleColon:
+            return SyntaxTokenType::DoubleColon;
+        case CppLexer::Period:
+            return SyntaxTokenType::Period;
+        case CppLexer::PeriodAsterisk:
+            return SyntaxTokenType::PeriodAsterisk;
+        case CppLexer::Plus:
+            return SyntaxTokenType::Plus;
+        case CppLexer::Minus:
+            return SyntaxTokenType::Minus;
+        case CppLexer::Asterisk:
+            return SyntaxTokenType::Asterisk;
+        case CppLexer::ForwardSlash:
+            return SyntaxTokenType::ForwardSlash;
+        case CppLexer::Percent:
+            return SyntaxTokenType::Percent;
+        case CppLexer::Caret:
+            return SyntaxTokenType::Caret;
+        case CppLexer::Ampersand:
+            return SyntaxTokenType::Ampersand;
+        case CppLexer::VerticalBar:
+            return SyntaxTokenType::VerticalBar;
+        case CppLexer::Tilde:
+            return SyntaxTokenType::Tilde;
+        case CppLexer::ExclamationMark:
+            return SyntaxTokenType::ExclamationMark;
+        case CppLexer::Equal:
+            return SyntaxTokenType::Equal;
+        case CppLexer::LessThan:
+            return SyntaxTokenType::LessThan;
+        case CppLexer::GreaterThan:
+            return SyntaxTokenType::GreaterThan;
+        case CppLexer::PlusEqual:
+            return SyntaxTokenType::PlusEqual;
+        case CppLexer::MinusEqual:
+            return SyntaxTokenType::MinusEqual;
+        case CppLexer::AsteriskEqual:
+            return SyntaxTokenType::AsteriskEqual;
+        case CppLexer::ForwardSlashEqual:
+            return SyntaxTokenType::ForwardSlashEqual;
+        case CppLexer::PercentEqual:
+            return SyntaxTokenType::PercentEqual;
+        case CppLexer::CaretEqual:
+            return SyntaxTokenType::CaretEqual;
+        case CppLexer::AmpersandEqual:
+            return SyntaxTokenType::AmpersandEqual;
+        case CppLexer::VerticalBarEqual:
+            return SyntaxTokenType::VerticalBarEqual;
+        case CppLexer::DoubleLessThan:
+            return SyntaxTokenType::DoubleLessThan;
+        case CppLexer::DoubleLessThanEqual:
+            return SyntaxTokenType::DoubleLessThanEqual;
+        case CppLexer::DoubleGreaterThanEqual:
+            return SyntaxTokenType::DoubleGreaterThanEqual;
+        case CppLexer::DoubleEqual:
+            return SyntaxTokenType::DoubleEqual;
+        case CppLexer::ExclamationMarkEqual:
+            return SyntaxTokenType::ExclamationMarkEqual;
+        case CppLexer::LessThanEqual:
+            return SyntaxTokenType::LessThanEqual;
+        case CppLexer::GreaterThanEqual:
+            return SyntaxTokenType::GreaterThanEqual;
+        case CppLexer::DoubleAmpersand:
+            return SyntaxTokenType::DoubleAmpersand;
+        case CppLexer::DoubleVerticalBar:
+            return SyntaxTokenType::DoubleVerticalBar;
+        case CppLexer::DoublePlus:
+            return SyntaxTokenType::DoublePlus;
+        case CppLexer::DoubleMinus:
+            return SyntaxTokenType::DoubleMinus;
+        case CppLexer::Comma:
+            return SyntaxTokenType::Comma;
+        case CppLexer::ArrowAsterisk:
+            return SyntaxTokenType::ArrowAsterisk;
+        case CppLexer::Arrow:
+            return SyntaxTokenType::Arrow;
+        case CppLexer::Zero:
+            return SyntaxTokenType::Zero;
+        case CppLexer::IntegerLiteral:
+            return SyntaxTokenType::IntegerLiteral;
+        case CppLexer::FloatingPointLiteral:
+            return SyntaxTokenType::FloatingPointLiteral;
+        case CppLexer::CharacterLiteral:
+            return SyntaxTokenType::CharacterLiteral;
+        case CppLexer::StringLiteral:
+            return SyntaxTokenType::StringLiteral;
+        case CppLexer::UserDefinedIntegerLiteral:
+        case CppLexer::UserDefinedFloatingPointLiteral:
+        case CppLexer::UserDefinedCharacterLiteral:
+        case CppLexer::UserDefinedStringLiteral:
+            return SyntaxTokenType::UserDefinedLiteral;
+        case CppLexer::Identifier:
+            return SyntaxTokenType::Identifier;
+        default:
+            throw std::logic_error("Unknown token type.");
+    }
 }
 
 size_t ASTCppParserVisitor::GetFirstNewlinePosition(

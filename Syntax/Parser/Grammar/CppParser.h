@@ -90,38 +90,39 @@ public:
     RuleAttributeSpecifier = 122, RuleAlignmentSpecifier = 123, RuleAttributeUsingPrefix = 124, 
     RuleAttributeList = 125, RuleAttribute = 126, RuleAttributeToken = 127, 
     RuleAttributeScopedToken = 128, RuleAttributeNamespace = 129, RuleAttributeArgumentClause = 130, 
-    RuleBalancedTokenSequence = 131, RuleBalancedToken = 132, RuleInitializerDeclaratorList = 133, 
-    RuleInitializerDeclarator = 134, RuleDeclarator = 135, RulePointerDeclarator = 136, 
-    RuleNoPointerDeclarator = 137, RuleParametersAndQualifiers = 138, RuleFunctionParameters = 139, 
-    RuleFunctionQualifiers = 140, RuleTrailingReturnType = 141, RulePointerOperator = 142, 
-    RuleConstVolatileQualifierSequence = 143, RuleConstVolatileQualifier = 144, 
-    RuleReferenceQualifier = 145, RuleTypeIdentifier = 146, RuleDefiningTypeIdentifier = 147, 
-    RuleAbstractDeclarator = 148, RulePointerAbstractDeclarator = 149, RuleNoPointerAbstractDeclarator = 150, 
-    RuleAbstractPackDeclarator = 151, RuleNoPointerAbstractPackDeclarator = 152, 
-    RuleParameterDeclarationClause = 153, RuleParameterDeclarationList = 154, 
-    RuleParameterDeclaration = 155, RuleFunctionDefinition = 156, RuleFunctionDeclarator = 157, 
-    RuleFunctionBody = 158, RuleRegularFunctionBody = 159, RuleExplicitlyDefaultedFunction = 160, 
-    RuleDeletedFunction = 161, RuleInitializer = 162, RuleBraceOrEqualInitializer = 163, 
-    RuleInitializerClause = 164, RuleInitializerList = 165, RuleBracedInitializerList = 166, 
-    RuleExpressionOrBracedInitializerList = 167, RuleClassSpecifier = 168, 
-    RuleClassHead = 169, RuleClassHeadName = 170, RuleClassVirtualSpecifier = 171, 
-    RuleClassKey = 172, RuleMemberSpecification = 173, RuleMemberDeclaration = 174, 
-    RuleMemberDeclaratorList = 175, RuleMemberDeclarator = 176, RuleVirtualSpecifierSequence = 177, 
-    RuleVirtualSpecifier = 178, RulePureSpecifier = 179, RuleBaseClause = 180, 
-    RuleBaseSpecifierList = 181, RuleBaseSpecifier = 182, RuleClassOrDecltype = 183, 
-    RuleAccessSpecifier = 184, RuleConversionFunctionIdentifier = 185, RuleConversionTypeIdentifier = 186, 
-    RuleConversionDeclarator = 187, RuleConstructorInitializer = 188, RuleMemberInitializerList = 189, 
-    RuleMemberInitializer = 190, RuleMemberInitializerIdentifier = 191, 
-    RuleOperatorFunctionIdentifier = 192, RuleAnyOperator = 193, RuleLiteralOperatorIdentifier = 194, 
-    RuleTemplateDeclaration = 195, RuleTemplateParameterList = 196, RuleTemplateParameter = 197, 
-    RuleTypeParameter = 198, RuleTypeParameterKey = 199, RuleSimpleTemplateIdentifier = 200, 
-    RuleTemplateIdentifier = 201, RuleTemplateArgumentList = 202, RuleTemplateArgument = 203, 
-    RuleTypenameSpecifier = 204, RuleExplicitInstantiation = 205, RuleExplicitSpecialization = 206, 
-    RuleDeductionGuide = 207, RuleTryBlock = 208, RuleFunctionTryBlock = 209, 
-    RuleHandlerSequence = 210, RuleHandler = 211, RuleExceptionDeclaration = 212, 
-    RuleNoExceptionSpecifier = 213, RuleIdentifierList = 214, RuleLiteral = 215, 
-    RuleIntegerLiteral = 216, RuleBooleanLiteral = 217, RulePointerLiteral = 218, 
-    RuleUserDefinedLiteral = 219
+    RuleBalancedTokenSequence = 131, RuleBalancedToken = 132, RuleNonBalancedToken = 133, 
+    RuleInitializerDeclaratorList = 134, RuleInitializerDeclarator = 135, 
+    RuleDeclarator = 136, RulePointerDeclarator = 137, RuleNoPointerDeclarator = 138, 
+    RuleParametersAndQualifiers = 139, RuleFunctionParameters = 140, RuleFunctionQualifiers = 141, 
+    RuleTrailingReturnType = 142, RulePointerOperator = 143, RuleConstVolatileQualifierSequence = 144, 
+    RuleConstVolatileQualifier = 145, RuleReferenceQualifier = 146, RuleTypeIdentifier = 147, 
+    RuleDefiningTypeIdentifier = 148, RuleAbstractDeclarator = 149, RulePointerAbstractDeclarator = 150, 
+    RuleNoPointerAbstractDeclarator = 151, RuleAbstractPackDeclarator = 152, 
+    RuleNoPointerAbstractPackDeclarator = 153, RuleParameterDeclarationClause = 154, 
+    RuleParameterDeclarationList = 155, RuleParameterDeclaration = 156, 
+    RuleFunctionDefinition = 157, RuleFunctionDeclarator = 158, RuleFunctionBody = 159, 
+    RuleRegularFunctionBody = 160, RuleExplicitlyDefaultedFunction = 161, 
+    RuleDeletedFunction = 162, RuleInitializer = 163, RuleBraceOrEqualInitializer = 164, 
+    RuleInitializerClause = 165, RuleInitializerList = 166, RuleBracedInitializerList = 167, 
+    RuleExpressionOrBracedInitializerList = 168, RuleClassSpecifier = 169, 
+    RuleClassHead = 170, RuleClassHeadName = 171, RuleClassVirtualSpecifier = 172, 
+    RuleClassKey = 173, RuleMemberSpecification = 174, RuleMemberDeclaration = 175, 
+    RuleMemberDeclaratorList = 176, RuleMemberDeclarator = 177, RuleVirtualSpecifierSequence = 178, 
+    RuleVirtualSpecifier = 179, RulePureSpecifier = 180, RuleBaseClause = 181, 
+    RuleBaseSpecifierList = 182, RuleBaseSpecifier = 183, RuleClassOrDecltype = 184, 
+    RuleAccessSpecifier = 185, RuleConversionFunctionIdentifier = 186, RuleConversionTypeIdentifier = 187, 
+    RuleConversionDeclarator = 188, RuleConstructorInitializer = 189, RuleMemberInitializerList = 190, 
+    RuleMemberInitializer = 191, RuleMemberInitializerIdentifier = 192, 
+    RuleOperatorFunctionIdentifier = 193, RuleAnyOperator = 194, RuleLiteralOperatorIdentifier = 195, 
+    RuleTemplateDeclaration = 196, RuleTemplateParameterList = 197, RuleTemplateParameter = 198, 
+    RuleTypeParameter = 199, RuleTypeParameterKey = 200, RuleSimpleTemplateIdentifier = 201, 
+    RuleTemplateIdentifier = 202, RuleTemplateArgumentList = 203, RuleTemplateArgument = 204, 
+    RuleTypenameSpecifier = 205, RuleExplicitInstantiation = 206, RuleExplicitSpecialization = 207, 
+    RuleDeductionGuide = 208, RuleTryBlock = 209, RuleFunctionTryBlock = 210, 
+    RuleHandlerSequence = 211, RuleHandler = 212, RuleExceptionDeclaration = 213, 
+    RuleNoExceptionSpecifier = 214, RuleIdentifierList = 215, RuleLiteral = 216, 
+    RuleIntegerLiteral = 217, RuleBooleanLiteral = 218, RulePointerLiteral = 219, 
+    RuleUserDefinedLiteral = 220
   };
 
   CppParser(antlr4::TokenStream *input);
@@ -267,6 +268,7 @@ public:
   class AttributeArgumentClauseContext;
   class BalancedTokenSequenceContext;
   class BalancedTokenContext;
+  class NonBalancedTokenContext;
   class InitializerDeclaratorListContext;
   class InitializerDeclaratorContext;
   class DeclaratorContext;
@@ -2822,6 +2824,7 @@ public:
     antlr4::tree::TerminalNode *CloseBracket();
     antlr4::tree::TerminalNode *OpenBrace();
     antlr4::tree::TerminalNode *CloseBrace();
+    NonBalancedTokenContext *nonBalancedToken();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -2831,6 +2834,26 @@ public:
   };
 
   BalancedTokenContext* balancedToken();
+
+  class  NonBalancedTokenContext : public antlr4::ParserRuleContext {
+  public:
+    NonBalancedTokenContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    antlr4::tree::TerminalNode *OpenParenthesis();
+    antlr4::tree::TerminalNode *CloseParenthesis();
+    antlr4::tree::TerminalNode *OpenBracket();
+    antlr4::tree::TerminalNode *CloseBracket();
+    antlr4::tree::TerminalNode *OpenBrace();
+    antlr4::tree::TerminalNode *CloseBrace();
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  NonBalancedTokenContext* nonBalancedToken();
 
   class  InitializerDeclaratorListContext : public antlr4::ParserRuleContext {
   public:

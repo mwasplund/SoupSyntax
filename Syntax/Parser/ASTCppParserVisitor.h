@@ -144,6 +144,7 @@ namespace Soup::Syntax
         virtual antlrcpp::Any visitAttributeArgumentClause(CppParser::AttributeArgumentClauseContext *context) override final;
         virtual antlrcpp::Any visitBalancedTokenSequence(CppParser::BalancedTokenSequenceContext *context) override final;
         virtual antlrcpp::Any visitBalancedToken(CppParser::BalancedTokenContext *context) override final;
+        virtual antlrcpp::Any visitNonBalancedToken(CppParser::NonBalancedTokenContext *context) override final;
         virtual antlrcpp::Any visitInitializerDeclaratorList(CppParser::InitializerDeclaratorListContext *context) override final;
         virtual antlrcpp::Any visitInitializerDeclarator(CppParser::InitializerDeclaratorContext *context) override final;
         virtual antlrcpp::Any visitDeclarator(CppParser::DeclaratorContext *context) override final;
@@ -232,7 +233,10 @@ namespace Soup::Syntax
         virtual antlrcpp::Any visitPointerLiteral(CppParser::PointerLiteralContext *context) override final;
         virtual antlrcpp::Any visitUserDefinedLiteral(CppParser::UserDefinedLiteralContext *context) override final;
 
+        virtual antlrcpp::Any visitTerminal(antlr4::tree::TerminalNode* node) override final;
+
     private:
+        SyntaxTokenType GetTokenType(antlr4::Token& token);
         size_t GetFirstNewlinePosition(const std::vector<antlr4::Token*>& tokens);
         std::vector<SyntaxTrivia> GetLeadingTrivia(size_t index);
         std::vector<SyntaxTrivia> GetTrailingTrivia(size_t index);

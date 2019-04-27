@@ -677,7 +677,10 @@ balancedToken:
 	OpenParenthesis balancedTokenSequence? CloseParenthesis |
 	OpenBracket balancedTokenSequence? CloseBracket |
 	OpenBrace balancedTokenSequence? CloseBrace |
-	/*any token other than a parenthesis, a bracket, or a brace*/
+	nonBalancedToken;
+
+// Any token other than a parenthesis, a bracket, or a brace
+nonBalancedToken:
 	~(OpenParenthesis | CloseParenthesis | OpenBracket | CloseBracket | OpenBrace | CloseBrace);
 
 /****************************************/

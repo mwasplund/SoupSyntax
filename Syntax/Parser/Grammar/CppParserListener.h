@@ -413,6 +413,9 @@ public:
   virtual void enterBalancedToken(CppParser::BalancedTokenContext *ctx) = 0;
   virtual void exitBalancedToken(CppParser::BalancedTokenContext *ctx) = 0;
 
+  virtual void enterNonBalancedToken(CppParser::NonBalancedTokenContext *ctx) = 0;
+  virtual void exitNonBalancedToken(CppParser::NonBalancedTokenContext *ctx) = 0;
+
   virtual void enterInitializerDeclaratorList(CppParser::InitializerDeclaratorListContext *ctx) = 0;
   virtual void exitInitializerDeclaratorList(CppParser::InitializerDeclaratorListContext *ctx) = 0;
 

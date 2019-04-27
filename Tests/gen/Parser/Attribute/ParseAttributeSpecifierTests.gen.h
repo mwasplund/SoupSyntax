@@ -24,6 +24,10 @@ TestState RunParseAttributeSpecifierTests()
         className,
         "SingleEmptyArgumentClause",
         [&testClass]() { testClass->SingleEmptyArgumentClause(); });
+    state += RunTest(
+        className,
+        "SingleArgumentClause",
+        [&testClass]() { testClass->SingleArgumentClause(); });
 
     return state;
 }
