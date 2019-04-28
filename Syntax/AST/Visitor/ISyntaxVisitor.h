@@ -38,6 +38,7 @@ namespace Soup::Syntax
         virtual void Visit(const OuterTree::InitializerDeclaratorList& node) = 0;
         virtual void Visit(const OuterTree::InitializerList& node) = 0;
         virtual void Visit(const OuterTree::InvocationExpression& node) = 0;
+        virtual void Visit(const OuterTree::LambdaExpression& node) = 0;
         virtual void Visit(const OuterTree::LiteralExpression& node) = 0;
         virtual void Visit(const OuterTree::MemberDeclaration& node) = 0;
         virtual void Visit(const OuterTree::MemberDeclarator& node) = 0;

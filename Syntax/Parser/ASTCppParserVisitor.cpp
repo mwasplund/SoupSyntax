@@ -11,7 +11,7 @@ struct SeparatorListResult
 
 void Trace(const char* message)
 {
-    std::cout << message << std::endl;
+    // std::cout << message << std::endl;
 }
 
 template<class TOut, class TIn>
@@ -274,7 +274,28 @@ antlrcpp::Any ASTCppParserVisitor::visitNestedNameSpecifierSequence(CppParser::N
 antlrcpp::Any ASTCppParserVisitor::visitLambdaExpression(CppParser::LambdaExpressionContext* context)
 {
     Trace("VisitLambdaExpression");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+
+    // Check for optional capture
+    auto lambdaIntroducerContext = context->lambdaIntroducer();
+    if (lambdaIntroducerContext->lambdaCapture() != nullptr)
+    {
+        throw std::logic_error(std::string(__func__) + " NotImplemented capture");
+    }
+
+    // Check for optional declarator
+    std::shared_ptr<const ParameterList> parameterList = nullptr;
+    if (context->lambdaDeclarator() != nullptr)
+    {
+        parameterList = visit(context->lambdaDeclarator());
+    }
+
+    std::shared_ptr<const SyntaxNode> body = visit(context->compoundStatement());
+    return std::static_pointer_cast<const SyntaxNode>(
+        SyntaxFactory::CreateLambdaExpression(
+            visit(lambdaIntroducerContext->OpenBracket()),
+            visit(lambdaIntroducerContext->CloseBracket()),
+            std::move(parameterList),
+            SafeDynamicCast<const CompoundStatement>(body, __LINE__)));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitLambdaIntroducer(CppParser::LambdaIntroducerContext* context)
@@ -286,7 +307,35 @@ antlrcpp::Any ASTCppParserVisitor::visitLambdaIntroducer(CppParser::LambdaIntrod
 antlrcpp::Any ASTCppParserVisitor::visitLambdaDeclarator(CppParser::LambdaDeclaratorContext* context)
 {
     Trace("VisitLambdaDeclarator");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+
+    // Check for optional declarationSpecifierSequence
+    if (context->declarationSpecifierSequence() != nullptr)
+    {
+        throw std::logic_error(std::string(__func__) + " NotImplemented declarationSpecifierSequence");
+    }
+
+    // Check for optional noExceptionSpecifier
+    if (context->noExceptionSpecifier() != nullptr)
+    {
+        throw std::logic_error(std::string(__func__) + " NotImplemented noExceptionSpecifier");
+    }
+
+    // Check for optional attributeSpecifierSequence
+    if (context->attributeSpecifierSequence() != nullptr)
+    {
+        throw std::logic_error(std::string(__func__) + " NotImplemented attributeSpecifierSequence");
+    }
+    
+    // Check for optional trailingReturnType
+    if (context->trailingReturnType() != nullptr)
+    {
+        throw std::logic_error(std::string(__func__) + " NotImplemented trailingReturnType");
+    }
+
+    return SyntaxFactory::CreateParameterList(
+        visit(context->OpenParenthesis()),
+        visit(context->parameterDeclarationClause()),
+        visit(context->CloseParenthesis()));
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitLambdaCapture(CppParser::LambdaCaptureContext* context)

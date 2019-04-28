@@ -1147,6 +1147,33 @@ namespace Soup::Syntax
         }
 
         /// <summary>
+        /// Create a LambdaExpression
+        /// </summary>
+        static std::shared_ptr<const InnerTree::LambdaExpression> CreateLambdaExpression(
+            std::shared_ptr<const InnerTree::SyntaxToken> openBracketToken,
+            std::shared_ptr<const InnerTree::SyntaxToken> closeBracketToken,
+            std::shared_ptr<const InnerTree::ParameterList> parameterList,
+            std::shared_ptr<const InnerTree::CompoundStatement> body)
+        {
+            // Note: the parameter list is optional
+            if (openBracketToken == nullptr)
+                throw std::runtime_error("ArgumentNull - openBracketToken");
+            if (closeBracketToken == nullptr)
+                throw std::runtime_error("ArgumentNull - closeBracketToken");
+            if (body == nullptr)
+                throw std::runtime_error("ArgumentNull - body");
+
+            auto result = std::shared_ptr<const InnerTree::LambdaExpression>(
+                new InnerTree::LambdaExpression(
+                    std::move(openBracketToken),
+                    std::move(closeBracketToken),
+                    std::move(parameterList),
+                    std::move(body)));
+            result->SetSelf(result);
+            return result;
+        }
+
+        /// <summary>
         /// Create a LiteralExpression
         /// </summary>
         static std::shared_ptr<const InnerTree::LiteralExpression> CreateLiteralExpression(

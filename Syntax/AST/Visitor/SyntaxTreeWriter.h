@@ -138,6 +138,8 @@ namespace Soup::Syntax
                     return "InitializerList";
                 case SyntaxNodeType::InvocationExpression:
                     return "InvocationExpression";
+                case SyntaxNodeType::LambdaExpression:
+                    return "LambdaExpression";
                 case SyntaxNodeType::LiteralExpression:
                     return "LiteralExpression";
                 case SyntaxNodeType::MemberDeclaration:

@@ -27,6 +27,8 @@ namespace Soup::Syntax::InnerTree
     // Shared
     class DestructorIdentifier;
     class NestedNameSpecifier;
+    class Parameter;
+    class ParameterList;
     class SimpleIdentifier;
     class SimpleTemplateIdentifier;
 
@@ -40,6 +42,7 @@ namespace Soup::Syntax::InnerTree
     class Expression;
     class IdentifierExpression;
     class InvocationExpression;
+    class LambdaExpression;
     class LiteralExpression;
     class SubscriptExpression;
     class ThisExpression;
@@ -67,8 +70,6 @@ namespace Soup::Syntax::InnerTree
     class MemberDeclaratorList;
     class MemberInitializer;
     class NamespaceDefinition;
-    class Parameter;
-    class ParameterList;
     class PointerDeclarator;
     class PointerOperator;
     class PrimitiveDataTypeSpecifier;
@@ -106,6 +107,8 @@ namespace Soup::Syntax::OuterTree
     // Shared
     class DestructorIdentifier;
     class NestedNameSpecifier;
+    class Parameter;
+    class ParameterList;
     class SimpleIdentifier;
     class SimpleTemplateIdentifier;
 
@@ -119,6 +122,7 @@ namespace Soup::Syntax::OuterTree
     class Expression;
     class IdentifierExpression;
     class InvocationExpression;
+    class LambdaExpression;
     class LiteralExpression;
     class SubscriptExpression;
     class ThisExpression;
@@ -146,8 +150,6 @@ namespace Soup::Syntax::OuterTree
     class MemberDeclaratorList;
     class MemberInitializer;
     class NamespaceDefinition;
-    class Parameter;
-    class ParameterList;
     class PointerDeclarator;
     class PointerOperator;
     class PrimitiveDataTypeSpecifier;
@@ -187,16 +189,19 @@ namespace Soup::Syntax::OuterTree
 // Inner Tree
 #include "AST/InnerTree/SyntaxNode.h"
 #include "AST/InnerTree/SyntaxToken.h"
+#include "AST/InnerTree/SyntaxList.h"
+#include "AST/InnerTree/SyntaxSeparatorList.h"
 #include "AST/InnerTree/Shared/UnqualifiedIdentifier.h"
 #include "AST/InnerTree/Expression/Expression.h"
 #include "AST/InnerTree/Statement/Statement.h"
+#include "AST/InnerTree/Statement/CompoundStatement.h"
 #include "AST/InnerTree/Declaration/Declaration.h"
 #include "AST/InnerTree/Declaration/TypeSpecifier.h"
-#include "AST/InnerTree/SyntaxList.h"
-#include "AST/InnerTree/SyntaxSeparatorList.h"
 
 #include "AST/InnerTree/Shared/DestructorIdentifier.h"
 #include "AST/InnerTree/Shared/NestedNameSpecifier.h"
+#include "AST/InnerTree/Shared/Parameter.h"
+#include "AST/InnerTree/Shared/ParameterList.h"
 #include "AST/InnerTree/Shared/SimpleIdentifier.h"
 #include "AST/InnerTree/Shared/SimpleTemplateIdentifier.h"
 
@@ -207,13 +212,13 @@ namespace Soup::Syntax::OuterTree
 #include "AST/InnerTree/Expression/BinaryExpression.h"
 #include "AST/InnerTree/Expression/IdentifierExpression.h"
 #include "AST/InnerTree/Expression/InvocationExpression.h"
+#include "AST/InnerTree/Expression/LambdaExpression.h"
 #include "AST/InnerTree/Expression/LiteralExpression.h"
 #include "AST/InnerTree/Expression/SubscriptExpression.h"
 #include "AST/InnerTree/Expression/ThisExpression.h"
 #include "AST/InnerTree/Expression/UnaryExpression.h"
 
 #include "AST/InnerTree/Statement/CatchClause.h"
-#include "AST/InnerTree/Statement/CompoundStatement.h"
 #include "AST/InnerTree/Statement/DeclarationStatement.h"
 #include "AST/InnerTree/Statement/ElseClause.h"
 #include "AST/InnerTree/Statement/EmptyStatement.h"
@@ -242,8 +247,6 @@ namespace Soup::Syntax::OuterTree
 #include "AST/InnerTree/Declaration/MemberDeclaration.h"
 #include "AST/InnerTree/Declaration/MemberInitializer.h"
 #include "AST/InnerTree/Declaration/NamespaceDefinition.h"
-#include "AST/InnerTree/Declaration/Parameter.h"
-#include "AST/InnerTree/Declaration/ParameterList.h"
 #include "AST/InnerTree/Declaration/PointerOperator.h"
 #include "AST/InnerTree/Declaration/PointerDeclarator.h"
 #include "AST/InnerTree/Declaration/PrimitiveDataTypeSpecifier.h"
@@ -262,16 +265,19 @@ namespace Soup::Syntax::OuterTree
 #include "AST/OuterTree/SyntaxNode.h"
 #include "AST/OuterTree/SyntaxToken.h"
 #include "AST/OuterTree/SyntaxNodeChild.h"
+#include "AST/OuterTree/SyntaxList.h"
+#include "AST/OuterTree/SyntaxSeparatorList.h"
 #include "AST/OuterTree/Shared/UnqualifiedIdentifier.h"
 #include "AST/OuterTree/Expression/Expression.h"
 #include "AST/OuterTree/Statement/Statement.h"
+#include "AST/OuterTree/Statement/CompoundStatement.h"
 #include "AST/OuterTree/Declaration/Declaration.h"
 #include "AST/OuterTree/Declaration/TypeSpecifier.h"
-#include "AST/OuterTree/SyntaxList.h"
-#include "AST/OuterTree/SyntaxSeparatorList.h"
 
 #include "AST/OuterTree/Shared/DestructorIdentifier.h"
 #include "AST/OuterTree/Shared/NestedNameSpecifier.h"
+#include "AST/OuterTree/Shared/Parameter.h"
+#include "AST/OuterTree/Shared/ParameterList.h"
 #include "AST/OuterTree/Shared/SimpleIdentifier.h"
 #include "AST/OuterTree/Shared/SimpleTemplateIdentifier.h"
 
@@ -282,13 +288,13 @@ namespace Soup::Syntax::OuterTree
 #include "AST/OuterTree/Expression/BinaryExpression.h"
 #include "AST/OuterTree/Expression/IdentifierExpression.h"
 #include "AST/OuterTree/Expression/InvocationExpression.h"
+#include "AST/OuterTree/Expression/LambdaExpression.h"
 #include "AST/OuterTree/Expression/LiteralExpression.h"
 #include "AST/OuterTree/Expression/SubscriptExpression.h"
 #include "AST/OuterTree/Expression/ThisExpression.h"
 #include "AST/OuterTree/Expression/UnaryExpression.h"
 
 #include "AST/OuterTree/Statement/CatchClause.h"
-#include "AST/OuterTree/Statement/CompoundStatement.h"
 #include "AST/OuterTree/Statement/DeclarationStatement.h"
 #include "AST/OuterTree/Statement/ElseClause.h"
 #include "AST/OuterTree/Statement/EmptyStatement.h"
@@ -317,8 +323,6 @@ namespace Soup::Syntax::OuterTree
 #include "AST/OuterTree/Declaration/MemberDeclaration.h"
 #include "AST/OuterTree/Declaration/MemberInitializer.h"
 #include "AST/OuterTree/Declaration/NamespaceDefinition.h"
-#include "AST/OuterTree/Declaration/Parameter.h"
-#include "AST/OuterTree/Declaration/ParameterList.h"
 #include "AST/OuterTree/Declaration/PointerOperator.h"
 #include "AST/OuterTree/Declaration/PointerDeclarator.h"
 #include "AST/OuterTree/Declaration/PrimitiveDataTypeSpecifier.h"

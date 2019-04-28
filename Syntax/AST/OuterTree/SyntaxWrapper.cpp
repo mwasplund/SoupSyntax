@@ -234,6 +234,14 @@ using namespace Soup::Syntax::OuterTree;
         new InvocationExpression(std::move(innerNode), parentNode));
 }
 
+/*static*/ std::shared_ptr<const LambdaExpression> SyntaxWrapper::CreateOuter(
+    std::shared_ptr<const InnerTree::LambdaExpression> innerNode,
+    const SyntaxNode* parentNode)
+{
+    return std::shared_ptr<const LambdaExpression>(
+        new LambdaExpression(std::move(innerNode), parentNode));
+}
+
 /*static*/ std::shared_ptr<const LiteralExpression> SyntaxWrapper::CreateOuter(
     std::shared_ptr<const InnerTree::LiteralExpression> innerNode,
     const SyntaxNode* parentNode)

@@ -215,6 +215,13 @@ namespace Soup::Syntax::OuterTree
             const SyntaxNode* parentNode);
 
         /// <summary>
+        /// Create a LambdaExpression
+        /// </summary>
+        static std::shared_ptr<const LambdaExpression> CreateOuter(
+            std::shared_ptr<const InnerTree::LambdaExpression> innerNode,
+            const SyntaxNode* parentNode);
+
+        /// <summary>
         /// Create a LiteralExpression
         /// </summary>
         static std::shared_ptr<const LiteralExpression> CreateOuter(

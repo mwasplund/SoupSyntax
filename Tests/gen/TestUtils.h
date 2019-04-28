@@ -6,7 +6,7 @@ namespace Soup::Syntax
 
 struct CppParserContainer
 {
-    std::unique_ptr<antlr4::ANTLRInputStream> Input;
+    std::shared_ptr<antlr4::ANTLRInputStream> Input;
 
     std::unique_ptr<CppLexer> Lexer;
     std::unique_ptr<antlr4::CommonTokenStream> TokenStream;
@@ -25,23 +25,23 @@ class TestUtils
     {
         CppParserContainer container;
 
-        container.Input = std::make_unique<antlr4::ANTLRInputStream>(source);
+        container.Input = std::make_unique<typename antlr4::ANTLRInputStream>(source);
 
         // Parse the file
-        container.Lexer = std::make_unique<CppLexer>(container.Input.get());
-        container.TokenStream = std::make_unique<antlr4::CommonTokenStream>(container.Lexer.get());
-        container.Parser = std::make_unique<CppParser>(container.TokenStream.get());
+        container.Lexer = std::make_unique<typename ::CppLexer>(container.Input.get());
+        container.TokenStream = std::make_unique<typename antlr4::CommonTokenStream>(container.Lexer.get());
+        container.Parser = std::make_unique<typename ::CppParser>(container.TokenStream.get());
 
         // Setup error handling
-        container.LexerErrorListener = std::make_unique<LexerExceptionErrorListener>();
+        container.LexerErrorListener = std::make_unique<typename Soup::Syntax::LexerExceptionErrorListener>();
         container.Lexer->removeErrorListeners();
         container.Lexer->addErrorListener(container.LexerErrorListener.get());
-        container.ParserErrorListener = std::make_unique<ParserExceptionErrorListener>();
+        container.ParserErrorListener = std::make_unique<typename Soup::Syntax::ParserExceptionErrorListener>();
         container.Parser->removeErrorListeners();
         container.Parser->addErrorListener(container.ParserErrorListener.get());
 
         // Create the final AST visitor
-        container.Visitor = std::make_unique<ASTCppParserVisitor>(container.TokenStream.get());
+        container.Visitor = std::make_unique<typename Soup::Syntax::ASTCppParserVisitor>(container.TokenStream.get());
 
         return container;
     }
@@ -108,7 +108,7 @@ class TestUtils
         if (expected != actual)
         {
             std::stringstream errorMessage;
-            SyntaxTreeWriter writer(errorMessage);
+            auto writer = SyntaxTreeWriter(errorMessage);
             errorMessage << message << "\n";
             errorMessage << "Expected:\n";
             expected.CreateOuterAny(nullptr)->Accept(writer);
@@ -144,7 +144,7 @@ class TestUtils
         if (expected == actual)
         {
             std::stringstream errorMessage;
-            SyntaxTreeWriter writer(errorMessage);
+            auto writer = SyntaxTreeWriter(errorMessage);
             errorMessage << message << "\n";
             errorMessage << "Expected:\n";
             expected.CreateOuterAny(nullptr)->Accept(writer);
@@ -181,7 +181,7 @@ class TestUtils
         if (*expectedOuter != actual)
         {
             std::stringstream errorMessage;
-            SyntaxTreeWriter writer(errorMessage);
+            auto writer = SyntaxTreeWriter(errorMessage);
             errorMessage << message << "\n";
             errorMessage << "Expected:\n";
             expectedOuter->Accept(writer);
@@ -218,7 +218,7 @@ class TestUtils
         if (*expectedOuter == actual)
         {
             std::stringstream errorMessage;
-            SyntaxTreeWriter writer(errorMessage);
+            auto writer = SyntaxTreeWriter(errorMessage);
             errorMessage << message << "\n";
             errorMessage << "Expected:\n";
             expectedOuter->Accept(writer);
@@ -255,7 +255,7 @@ class TestUtils
         if (*expectedOuter == actual)
         {
             std::stringstream errorMessage;
-            SyntaxTreeWriter writer(errorMessage);
+            auto writer = SyntaxTreeWriter(errorMessage);
             errorMessage << message << "\n";
             Assert::Fail(errorMessage.str());
         }
@@ -287,7 +287,7 @@ class TestUtils
         if (*expectedOuter != actual)
         {
             std::stringstream errorMessage;
-            SyntaxTreeWriter writer(errorMessage);
+            auto writer = SyntaxTreeWriter(errorMessage);
             errorMessage << message << "\n";
             Assert::Fail(errorMessage.str());
         }
@@ -304,7 +304,7 @@ class TestUtils
         if (*expectedOuter != actual)
         {
             std::stringstream errorMessage;
-            SyntaxTreeWriter writer(errorMessage);
+            auto writer = SyntaxTreeWriter(errorMessage);
             errorMessage << message << "\n";
             Assert::Fail(errorMessage.str());
         }
@@ -321,7 +321,7 @@ class TestUtils
         if (*expectedOuter != actual)
         {
             std::stringstream errorMessage;
-            SyntaxTreeWriter writer(errorMessage);
+            auto writer = SyntaxTreeWriter(errorMessage);
             errorMessage << message << "\n";
             Assert::Fail(errorMessage.str());
         }
