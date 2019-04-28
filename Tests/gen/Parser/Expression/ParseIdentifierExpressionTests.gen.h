@@ -18,6 +18,10 @@ TestState RunParseIdentifierExpressionTests()
         [&testClass]() { testClass->SingleQualifiedIdentifier(); });
     state += RunTest(
         className,
+        "DoubleQualifiedIdentifier",
+        [&testClass]() { testClass->DoubleQualifiedIdentifier(); });
+    state += RunTest(
+        className,
         "SingleTemplateIdentifier",
         [&testClass]() { testClass->SingleTemplateIdentifier(); });
     state += RunTest(

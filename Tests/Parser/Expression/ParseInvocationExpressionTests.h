@@ -170,6 +170,51 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
+        [[Fact]]
+        void QualifiedTemplateSpecification()
+        {
+            auto sourceCode = std::string("std::istreambuf_iterator<char>(sourceFile);");
+
+            auto actual = ParseInvocationExpression(sourceCode);
+
+            auto expected = SyntaxFactory::CreateExpressionStatement(
+                SyntaxFactory::CreateInvocationExpression(
+                    SyntaxFactory::CreateIdentifierExpression(
+                        SyntaxFactory::CreateNestedNameSpecifier(
+                             SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
+                                {
+                                    SyntaxFactory::CreateSimpleIdentifier(
+                                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "std")),
+                                },
+                                {
+                                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
+                                })),
+                        SyntaxFactory::CreateSimpleTemplateIdentifier(
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "istreambuf_iterator"),
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LessThan),
+                            SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
+                                {
+                                    SyntaxFactory::CreateTypeSpecifierSequence(
+                                        SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
+                                            PrimitiveDataType::Char,
+                                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Char))),
+                                },
+                                {}),
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan))),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
+                    SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
+                        {
+                            SyntaxFactory::CreateIdentifierExpression(
+                                SyntaxFactory::CreateSimpleIdentifier(
+                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "sourceFile"))),
+                        },
+                        {}),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
+
+            TestUtils::AreEqual(expected, actual, "Verify matches expected.");
+        }
+
     private:
         std::shared_ptr<const SyntaxNode> ParseInvocationExpression(const std::string& sourceCode)
         {

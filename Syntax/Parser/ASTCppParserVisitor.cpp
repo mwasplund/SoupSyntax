@@ -11,7 +11,7 @@ struct SeparatorListResult
 
 void Trace(const char* message)
 {
-    // std::cout << message << std::endl;
+    std::cout << message << std::endl;
 }
 
 template<class TOut, class TIn>
@@ -225,7 +225,50 @@ antlrcpp::Any ASTCppParserVisitor::visitNestedNameSpecifier(CppParser::NestedNam
 
 antlrcpp::Any ASTCppParserVisitor::visitNestedNameSpecifierSequence(CppParser::NestedNameSpecifierSequenceContext *context)
 {
-    throw std::logic_error("NestedNameSpecifierSequence is handled manually.");
+    Trace("VisitNestedNameSpecifierSequence");
+
+    // Check for the optional specifier sequence
+    SeparatorListResult<SyntaxNode> specifierList = {};
+    if (context->nestedNameSpecifierSequence() != nullptr)
+    {
+        specifierList = visit(context->nestedNameSpecifierSequence())
+            .as<SeparatorListResult<SyntaxNode>>();
+    }
+
+    if (context->Identifier() != nullptr)
+    {
+        auto simpleIdentifier = SyntaxFactory::CreateSimpleIdentifier(
+            visit(context->Identifier()));
+        specifierList.Items.insert(
+            specifierList.Items.begin(),
+            std::move(simpleIdentifier));
+    }
+    else if (context->simpleTemplateIdentifier() != nullptr)
+    {
+        // Check for the optional template
+        if (context->Template() != nullptr)
+        {
+            throw std::logic_error(std::string(__func__) + " NotImplemented Template");
+        }
+
+        std::shared_ptr<const SyntaxNode> simpleTemplateIdentifier =
+            visit(context->simpleTemplateIdentifier());
+        specifierList.Items.insert(
+            specifierList.Items.begin(),
+            std::move(simpleTemplateIdentifier));
+    }
+    else 
+    {
+        throw std::logic_error("Unknown NestedNameSpecifierSequence type.");
+    }
+
+    // Add the double colon token to the front
+    std::shared_ptr<const SyntaxToken> doubleColonToken = visit(context->DoubleColon());
+    specifierList.Separators.insert(
+        specifierList.Separators.begin(),
+        doubleColonToken);
+
+    return specifierList;
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitLambdaExpression(CppParser::LambdaExpressionContext* context)

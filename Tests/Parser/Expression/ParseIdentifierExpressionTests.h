@@ -45,6 +45,32 @@ namespace Soup::Syntax::InnerTree::UnitTests
         }
 
         [[Fact]]
+        void DoubleQualifiedIdentifier()
+        {
+            auto sourceCode = std::string("std::filesystem::path");
+            auto expression = ParseIdentifierExpression(sourceCode);
+
+            TestUtils::AreEqual(
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateNestedNameSpecifier(
+                        SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
+                            {
+                                SyntaxFactory::CreateSimpleIdentifier(
+                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "std")),
+                                SyntaxFactory::CreateSimpleIdentifier(
+                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "filesystem")),
+                            },
+                            {
+                                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
+                                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
+                            })),
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "path"))),
+                expression,
+                "Verify matches expected.");
+        }
+
+        [[Fact]]
         void SingleTemplateIdentifier()
         {
             auto sourceCode = std::string("Name<Value1, Value2>");

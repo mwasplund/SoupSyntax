@@ -24,6 +24,10 @@ TestState RunParseInvocationExpressionTests()
         className,
         "EnumValueParameter",
         [&testClass]() { testClass->EnumValueParameter(); });
+    state += RunTest(
+        className,
+        "QualifiedTemplateSpecification",
+        [&testClass]() { testClass->QualifiedTemplateSpecification(); });
 
     return state;
 }

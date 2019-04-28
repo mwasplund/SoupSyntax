@@ -288,16 +288,16 @@ namespace Soup::Syntax::InnerTree::UnitTests
         void RunTest(const std::string& sourceCode, size_t expectedToken)
         {
             // Parse the file
-            auto inputStream = std::make_unique<antlr4::ANTLRInputStream>(sourceCode);
-            auto lexer = std::make_unique<CppLexer>(inputStream.get());
+            auto inputStream = antlr4::ANTLRInputStream(sourceCode);
+            auto lexer = CppLexer(&inputStream);
 
             // Setup error handling
-            auto errorListener = std::make_unique<LexerExceptionErrorListener>();
-            lexer->removeErrorListeners();
-            lexer->addErrorListener(errorListener.get());
+            auto errorListener = LexerExceptionErrorListener();
+            lexer.removeErrorListeners();
+            lexer.addErrorListener(&errorListener);
 
             // Match all tokens
-            auto tokens = lexer->getAllTokens();
+            auto tokens = lexer.getAllTokens();
 
             // Verify we got the single expected token
             Assert::IsTrue(tokens.size() == 1, "Verify one token.");
