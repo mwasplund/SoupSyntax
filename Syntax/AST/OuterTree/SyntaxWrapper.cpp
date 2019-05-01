@@ -234,6 +234,14 @@ using namespace Soup::Syntax::OuterTree;
         new InvocationExpression(std::move(innerNode), parentNode));
 }
 
+/*static*/ std::shared_ptr<const LambdaCaptureClause> SyntaxWrapper::CreateOuter(
+    std::shared_ptr<const InnerTree::LambdaCaptureClause> innerNode,
+    const SyntaxNode* parentNode)
+{
+    return std::shared_ptr<const LambdaCaptureClause>(
+        new LambdaCaptureClause(std::move(innerNode), parentNode));
+}
+
 /*static*/ std::shared_ptr<const LambdaExpression> SyntaxWrapper::CreateOuter(
     std::shared_ptr<const InnerTree::LambdaExpression> innerNode,
     const SyntaxNode* parentNode)
@@ -498,6 +506,16 @@ std::vector<std::shared_ptr<const SyntaxToken>> CreateOuterList(
     return std::shared_ptr<const SyntaxSeparatorList<InitializerDeclarator>>(
         new SyntaxSeparatorList<InitializerDeclarator>(
             CreateOuterList<InitializerDeclarator>(innerNode->GetItems(), parentNode),
+            CreateOuterList<SyntaxToken>(innerNode->GetSeparators(), parentNode)));
+}
+
+/*static*/ std::shared_ptr<const SyntaxSeparatorList<LambdaCaptureClause>> SyntaxWrapper::CreateOuter(
+    std::shared_ptr<const InnerTree::SyntaxSeparatorList<InnerTree::LambdaCaptureClause>> innerNode,
+    const SyntaxNode* parentNode)
+{
+    return std::shared_ptr<const SyntaxSeparatorList<LambdaCaptureClause>>(
+        new SyntaxSeparatorList<LambdaCaptureClause>(
+            CreateOuterList<LambdaCaptureClause>(innerNode->GetItems(), parentNode),
             CreateOuterList<SyntaxToken>(innerNode->GetSeparators(), parentNode)));
 }
 

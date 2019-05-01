@@ -2,6 +2,8 @@ import std.core;
 import Antlr4.Runtime;
 import SoupSyntax;
 
+#include "RunTest.h"
+
 // Inner Tree
 #include "AST\InnerTree\Attribute\AttributeTests.gen.h"
 #include "AST\InnerTree\Attribute\AttributeArgumentClauseTests.gen.h"

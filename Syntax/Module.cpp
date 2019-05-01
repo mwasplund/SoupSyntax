@@ -42,6 +42,7 @@ namespace Soup::Syntax::InnerTree
     class Expression;
     class IdentifierExpression;
     class InvocationExpression;
+    class LambdaCaptureClause;
     class LambdaExpression;
     class LiteralExpression;
     class SubscriptExpression;
@@ -122,6 +123,7 @@ namespace Soup::Syntax::OuterTree
     class Expression;
     class IdentifierExpression;
     class InvocationExpression;
+    class LambdaCaptureClause;
     class LambdaExpression;
     class LiteralExpression;
     class SubscriptExpression;
@@ -212,6 +214,7 @@ namespace Soup::Syntax::OuterTree
 #include "AST/InnerTree/Expression/BinaryExpression.h"
 #include "AST/InnerTree/Expression/IdentifierExpression.h"
 #include "AST/InnerTree/Expression/InvocationExpression.h"
+#include "AST/InnerTree/Expression/LambdaCaptureClause.h"
 #include "AST/InnerTree/Expression/LambdaExpression.h"
 #include "AST/InnerTree/Expression/LiteralExpression.h"
 #include "AST/InnerTree/Expression/SubscriptExpression.h"
@@ -288,6 +291,7 @@ namespace Soup::Syntax::OuterTree
 #include "AST/OuterTree/Expression/BinaryExpression.h"
 #include "AST/OuterTree/Expression/IdentifierExpression.h"
 #include "AST/OuterTree/Expression/InvocationExpression.h"
+#include "AST/OuterTree/Expression/LambdaCaptureClause.h"
 #include "AST/OuterTree/Expression/LambdaExpression.h"
 #include "AST/OuterTree/Expression/LiteralExpression.h"
 #include "AST/OuterTree/Expression/SubscriptExpression.h"

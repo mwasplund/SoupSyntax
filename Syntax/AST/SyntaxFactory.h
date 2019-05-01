@@ -1147,10 +1147,30 @@ namespace Soup::Syntax
         }
 
         /// <summary>
+        /// Create a LambdaCaptureClause
+        /// </summary>
+        static std::shared_ptr<const InnerTree::LambdaCaptureClause> CreateLambdaCaptureClause(
+            std::shared_ptr<const InnerTree::SyntaxToken> ampersandToken,
+            std::shared_ptr<const InnerTree::SyntaxToken> identifierToken)
+        {
+            // Note: the ampersand token is optional
+            if (identifierToken == nullptr)
+                throw std::runtime_error("ArgumentNull - identifierToken");
+
+            auto result = std::shared_ptr<const InnerTree::LambdaCaptureClause>(
+                new InnerTree::LambdaCaptureClause(
+                    std::move(ampersandToken),
+                    std::move(identifierToken)));
+            result->SetSelf(result);
+            return result;
+        }
+
+        /// <summary>
         /// Create a LambdaExpression
         /// </summary>
         static std::shared_ptr<const InnerTree::LambdaExpression> CreateLambdaExpression(
             std::shared_ptr<const InnerTree::SyntaxToken> openBracketToken,
+            std::shared_ptr<const InnerTree::SyntaxSeparatorList<InnerTree::LambdaCaptureClause>> captureList,
             std::shared_ptr<const InnerTree::SyntaxToken> closeBracketToken,
             std::shared_ptr<const InnerTree::ParameterList> parameterList,
             std::shared_ptr<const InnerTree::CompoundStatement> body)
@@ -1158,6 +1178,8 @@ namespace Soup::Syntax
             // Note: the parameter list is optional
             if (openBracketToken == nullptr)
                 throw std::runtime_error("ArgumentNull - openBracketToken");
+            if (captureList == nullptr)
+                throw std::runtime_error("ArgumentNull - captureList");
             if (closeBracketToken == nullptr)
                 throw std::runtime_error("ArgumentNull - closeBracketToken");
             if (body == nullptr)
@@ -1166,11 +1188,30 @@ namespace Soup::Syntax
             auto result = std::shared_ptr<const InnerTree::LambdaExpression>(
                 new InnerTree::LambdaExpression(
                     std::move(openBracketToken),
+                    std::move(captureList),
                     std::move(closeBracketToken),
                     std::move(parameterList),
                     std::move(body)));
             result->SetSelf(result);
             return result;
+        }
+
+        /// <summary>
+        /// Create a LambdaExpression
+        /// Overload with an empty capture list
+        /// </summary>
+        static std::shared_ptr<const InnerTree::LambdaExpression> CreateLambdaExpression(
+            std::shared_ptr<const InnerTree::SyntaxToken> openBracketToken,
+            std::shared_ptr<const InnerTree::SyntaxToken> closeBracketToken,
+            std::shared_ptr<const InnerTree::ParameterList> parameterList,
+            std::shared_ptr<const InnerTree::CompoundStatement> body)
+        {
+            return CreateLambdaExpression(
+                std::move(openBracketToken),
+                CreateSyntaxSeparatorList<InnerTree::LambdaCaptureClause>({}, {}),
+                std::move(closeBracketToken),
+                std::move(parameterList),
+                std::move(body));
         }
 
         /// <summary>

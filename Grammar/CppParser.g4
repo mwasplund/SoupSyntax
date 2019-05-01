@@ -105,7 +105,7 @@ captureList:
 	captureList Comma capture Ellipsis?;
 
 capture:
-	simpleCapture
+	simpleCapture |
 	initializerCapture; // C++ 14
 
 simpleCapture:

@@ -12,11 +12,13 @@ namespace Soup::Syntax::InnerTree
     private:
         LambdaExpression(
             std::shared_ptr<const SyntaxToken> openBracketToken,
+            std::shared_ptr<const SyntaxSeparatorList<LambdaCaptureClause>> captureList,
             std::shared_ptr<const SyntaxToken> closeBracketToken,
             std::shared_ptr<const ParameterList> parameterList,
             std::shared_ptr<const CompoundStatement> body) :
             Expression(SyntaxNodeType::LambdaExpression),
             m_openBracketToken(std::move(openBracketToken)),
+            m_captureList(std::move(captureList)),
             m_closeBracketToken(std::move(closeBracketToken)),
             m_parameterList(std::move(parameterList)),
             m_body(std::move(body))
@@ -51,6 +53,14 @@ namespace Soup::Syntax::InnerTree
         const SyntaxToken& GetOpenBracketToken() const
         {
             return *m_openBracketToken;
+        }
+
+        /// <summary>
+        /// Gets the optional capture list
+        /// </summary>
+        const SyntaxSeparatorList<LambdaCaptureClause>& GetCaptureList() const
+        {
+            return *m_captureList;
         }
 
         /// <summary>
@@ -93,6 +103,7 @@ namespace Soup::Syntax::InnerTree
         bool operator ==(const LambdaExpression& rhs) const
         {
             return *m_openBracketToken == *rhs.m_openBracketToken &&
+                *m_captureList == *rhs.m_captureList &&
                 *m_closeBracketToken == *rhs.m_closeBracketToken &&
                 SyntaxUtils::AreOptionalValuesEqual(m_parameterList, rhs.m_parameterList) &&
                 *m_body == *rhs.m_body;
@@ -114,6 +125,7 @@ namespace Soup::Syntax::InnerTree
 
     private:
         std::shared_ptr<const SyntaxToken> m_openBracketToken;
+        std::shared_ptr<const SyntaxSeparatorList<LambdaCaptureClause>> m_captureList;
         std::shared_ptr<const SyntaxToken> m_closeBracketToken;
         std::shared_ptr<const ParameterList> m_parameterList;
         std::shared_ptr<const CompoundStatement> m_body;

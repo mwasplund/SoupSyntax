@@ -215,6 +215,13 @@ namespace Soup::Syntax::OuterTree
             const SyntaxNode* parentNode);
 
         /// <summary>
+        /// Create a LambdaCaptureClause
+        /// </summary>
+        static std::shared_ptr<const LambdaCaptureClause> CreateOuter(
+            std::shared_ptr<const InnerTree::LambdaCaptureClause> innerNode,
+            const SyntaxNode* parentNode);
+
+        /// <summary>
         /// Create a LambdaExpression
         /// </summary>
         static std::shared_ptr<const LambdaExpression> CreateOuter(
@@ -373,6 +380,9 @@ namespace Soup::Syntax::OuterTree
             const SyntaxNode* parentNode);
         static std::shared_ptr<const SyntaxSeparatorList<InitializerDeclarator>> CreateOuter(
             std::shared_ptr<const InnerTree::SyntaxSeparatorList<InnerTree::InitializerDeclarator>> innerNode,
+            const SyntaxNode* parentNode);
+        static std::shared_ptr<const SyntaxSeparatorList<LambdaCaptureClause>> CreateOuter(
+            std::shared_ptr<const InnerTree::SyntaxSeparatorList<InnerTree::LambdaCaptureClause>> innerNode,
             const SyntaxNode* parentNode);
         static std::shared_ptr<const SyntaxSeparatorList<MemberDeclarator>> CreateOuter(
             std::shared_ptr<const InnerTree::SyntaxSeparatorList<InnerTree::MemberDeclarator>> innerNode,

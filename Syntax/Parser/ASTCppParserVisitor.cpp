@@ -277,9 +277,10 @@ antlrcpp::Any ASTCppParserVisitor::visitLambdaExpression(CppParser::LambdaExpres
 
     // Check for optional capture
     auto lambdaIntroducerContext = context->lambdaIntroducer();
+    SeparatorListResult<LambdaCaptureClause> captureList = {};
     if (lambdaIntroducerContext->lambdaCapture() != nullptr)
     {
-        throw std::logic_error(std::string(__func__) + " NotImplemented capture");
+        captureList = visit(lambdaIntroducerContext->lambdaCapture());
     }
 
     // Check for optional declarator
@@ -293,6 +294,9 @@ antlrcpp::Any ASTCppParserVisitor::visitLambdaExpression(CppParser::LambdaExpres
     return std::static_pointer_cast<const SyntaxNode>(
         SyntaxFactory::CreateLambdaExpression(
             visit(lambdaIntroducerContext->OpenBracket()),
+            SyntaxFactory::CreateSyntaxSeparatorList<LambdaCaptureClause>(
+                std::move(captureList.Items),
+                std::move(captureList.Separators)),
             visit(lambdaIntroducerContext->CloseBracket()),
             std::move(parameterList),
             SafeDynamicCast<const CompoundStatement>(body, __LINE__)));
@@ -341,7 +345,14 @@ antlrcpp::Any ASTCppParserVisitor::visitLambdaDeclarator(CppParser::LambdaDeclar
 antlrcpp::Any ASTCppParserVisitor::visitLambdaCapture(CppParser::LambdaCaptureContext* context)
 {
     Trace("VisitLambdaCapture");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+    if (context->captureList() != nullptr)
+    {
+        return visit(context->captureList());
+    }
+    else
+    {
+        throw std::logic_error(std::string(__func__) + " NotImplemented");
+    }
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitCaptureDefault(CppParser::CaptureDefaultContext* context)
@@ -353,19 +364,55 @@ antlrcpp::Any ASTCppParserVisitor::visitCaptureDefault(CppParser::CaptureDefault
 antlrcpp::Any ASTCppParserVisitor::visitCaptureList(CppParser::CaptureListContext* context)
 {
     Trace("VisitCaptureList");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+
+    // Handle the recursive rule
+    SeparatorListResult<LambdaCaptureClause> captureList = {};
+    if (context->captureList() != nullptr)
+    {
+        captureList = visit(context->captureList())
+            .as<SeparatorListResult<LambdaCaptureClause>>();
+        captureList.Separators.push_back(
+            visit(context->Comma()));
+    }
+
+    // Handle the next item
+    auto capture = visit(context->capture())
+            .as<std::shared_ptr<const LambdaCaptureClause>>();
+    captureList.Items.push_back(std::move(capture));
+
+    return captureList;
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitCapture(CppParser::CaptureContext* context)
 {
     Trace("VisitCapture");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+    return visitChildren(context);
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitSimpleCapture(CppParser::SimpleCaptureContext* context)
 {
     Trace("VisitSimpleCapture");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
+    if (context->Identifier() != nullptr)
+    {
+        // Check for optional ampersand token
+        std::shared_ptr<const SyntaxToken> ampersandToken = nullptr;
+        if (context->Ampersand() != nullptr)
+        {
+            ampersandToken = visit(context->Ampersand());
+        }
+
+        return SyntaxFactory::CreateLambdaCaptureClause(
+            std::move(ampersandToken),
+            visit(context->Identifier()));
+    }
+    else if (context->This() != nullptr)
+    {
+        throw std::logic_error(std::string(__func__) + " NotImplemented");
+    }
+    else
+    {
+        throw std::runtime_error("Unknown Simple Capture.");
+    }
 }
 
 antlrcpp::Any ASTCppParserVisitor::visitInitializerCapture(CppParser::InitializerCaptureContext* context)

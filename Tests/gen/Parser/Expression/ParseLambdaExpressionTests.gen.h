@@ -14,8 +14,16 @@ TestState RunParseLambdaExpressionTests()
         [&testClass]() { testClass->Simple(); });
     state += RunTest(
         className,
-        "Complex",
-        [&testClass]() { testClass->Complex(); });
+        "EmptyParameterList",
+        [&testClass]() { testClass->EmptyParameterList(); });
+    state += RunTest(
+        className,
+        "SingleCaptureReference",
+        [&testClass]() { testClass->SingleCaptureReference(); });
+    state += RunTest(
+        className,
+        "SingleParameterAndReturnStatement",
+        [&testClass]() { testClass->SingleParameterAndReturnStatement(); });
 
     return state;
 }

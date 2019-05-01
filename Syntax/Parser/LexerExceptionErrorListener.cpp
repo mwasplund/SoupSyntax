@@ -12,7 +12,7 @@ void LexerExceptionErrorListener::syntaxError(
     std::exception_ptr e)
 {
     std::stringstream errorMessage;
-    errorMessage << "syntaxError: line " << line << ":" << charPositionInLine << " " << msg;
+    errorMessage << "Lexer:SyntaxError: line " << line << ":" << charPositionInLine << " " << msg;
 
     throw ParseCancellationException(errorMessage.str());
 }

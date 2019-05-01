@@ -28,6 +28,10 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 uut->GetOpenBracketToken(),
                 "Verify open bracket token matches.");
             TestUtils::AreEqual(
+                *SyntaxFactory::CreateSyntaxSeparatorList<LambdaCaptureClause>({}, {}),
+                uut->GetCaptureList(),
+                "Verify capture list matches.");
+            TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket),
                 uut->GetCloseBracketToken(),
                 "Verify close bracket token matches.");
@@ -46,9 +50,16 @@ namespace Soup::Syntax::InnerTree::UnitTests
         [[Fact]]
         void InitializeComplex()
         {
-            // [](){}
+            // [&value](){}
             auto uut = SyntaxFactory::CreateLambdaExpression(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
+                SyntaxFactory::CreateSyntaxSeparatorList<LambdaCaptureClause>(
+                    {
+                        SyntaxFactory::CreateLambdaCaptureClause(
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Ampersand),
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value"))
+                    },
+                    {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
@@ -67,6 +78,16 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
                 uut->GetOpenBracketToken(),
                 "Verify open bracket token matches.");
+            TestUtils::AreEqual(
+                *SyntaxFactory::CreateSyntaxSeparatorList<LambdaCaptureClause>(
+                    {
+                        SyntaxFactory::CreateLambdaCaptureClause(
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Ampersand),
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value"))
+                    },
+                    {}),
+                uut->GetCaptureList(),
+                "Verify capture list matches.");
             TestUtils::AreEqual(
                 *SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket),
                 uut->GetCloseBracketToken(),
@@ -122,9 +143,16 @@ namespace Soup::Syntax::InnerTree::UnitTests
         [[Fact]]
         void GetChildrenComplex()
         {
-            // [](){}
+            // [&value](){}
             auto uut = SyntaxFactory::CreateLambdaExpression(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
+                SyntaxFactory::CreateSyntaxSeparatorList<LambdaCaptureClause>(
+                    {
+                        SyntaxFactory::CreateLambdaCaptureClause(
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Ampersand),
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
+                    },
+                    {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
@@ -139,6 +167,10 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 std::vector<OuterTree::SyntaxNodeChild>({
                     TestUtils::CreateChild(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket)),
+                    TestUtils::CreateChild(
+                        SyntaxFactory::CreateLambdaCaptureClause(
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Ampersand),
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value"))),
                     TestUtils::CreateChild(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket)),
                     TestUtils::CreateChild(
@@ -185,9 +217,16 @@ namespace Soup::Syntax::InnerTree::UnitTests
         [[Fact]]
         void OperatorEqualComplex()
         {
-            // [](){}
+            // [&value](){}
             auto uut = SyntaxFactory::CreateLambdaExpression(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
+                SyntaxFactory::CreateSyntaxSeparatorList<LambdaCaptureClause>(
+                    {
+                        SyntaxFactory::CreateLambdaCaptureClause(
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Ampersand),
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
+                    },
+                    {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
@@ -201,6 +240,13 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreEqual(
                 SyntaxFactory::CreateLambdaExpression(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
+                    SyntaxFactory::CreateSyntaxSeparatorList<LambdaCaptureClause>(
+                        {
+                            SyntaxFactory::CreateLambdaCaptureClause(
+                                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Ampersand),
+                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value")),
+                        },
+                        {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket),
                     SyntaxFactory::CreateParameterList(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
@@ -220,6 +266,50 @@ namespace Soup::Syntax::InnerTree::UnitTests
             // [](){}
             auto uut = SyntaxFactory::CreateLambdaExpression(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket),
+                SyntaxFactory::CreateParameterList(
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
+                    SyntaxFactory::CreateSyntaxSeparatorList<Parameter>({}, {}),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
+                SyntaxFactory::CreateCompoundStatement(
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
+                    SyntaxFactory::CreateSyntaxList<Statement>({}),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace)))->CreateOuter(nullptr);
+
+            TestUtils::AreNotEqual(
+                SyntaxFactory::CreateLambdaExpression(
+                    SyntaxFactory::CreateKeywordToken(
+                        SyntaxTokenType::OpenBracket,
+                        {
+                            SyntaxFactory::CreateTrivia(" "),
+                        },
+                        {}),
+                    SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket),
+                    SyntaxFactory::CreateParameterList(
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
+                        SyntaxFactory::CreateSyntaxSeparatorList<Parameter>({}, {}),
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
+                    SyntaxFactory::CreateCompoundStatement(
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
+                        SyntaxFactory::CreateSyntaxList<Statement>({}),
+                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace))),
+                uut,
+                "Verify does not match.");
+        }
+
+        [[Fact]]
+        void OperatorNotEqualCaptureList()
+        {
+            // [&value](){}
+            auto uut = SyntaxFactory::CreateLambdaExpression(
+                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
+                SyntaxFactory::CreateSyntaxSeparatorList<LambdaCaptureClause>(
+                    {
+                        SyntaxFactory::CreateLambdaCaptureClause(
+                            SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Ampersand),
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "value"))
+                    },
+                    {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),

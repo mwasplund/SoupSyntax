@@ -90,7 +90,7 @@ void ParserExceptionErrorListener::syntaxError(
 {
     std::stringstream errorMessage;
     auto state = recognizer->getState();
-    errorMessage << "SyntaxError: " << state << " line " << line << ":" << charPositionInLine << " " << msg;
+    errorMessage << "Parser:SyntaxError: " << state << " line " << line << ":" << charPositionInLine << " " << msg;
 
     throw ParseCancellationException(errorMessage.str());
 }

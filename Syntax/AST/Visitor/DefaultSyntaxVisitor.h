@@ -154,6 +154,11 @@ namespace Soup::Syntax
             DefaultVisit(node);
         }
 
+        virtual void Visit(const OuterTree::LambdaCaptureClause& node) override
+        {
+            DefaultVisit(node);
+        }
+
         virtual void Visit(const OuterTree::LambdaExpression& node) override
         {
             DefaultVisit(node);

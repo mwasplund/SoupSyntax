@@ -38,6 +38,10 @@ TestState RunOuterTreeLambdaExpressionTests()
         [&testClass]() { testClass->OperatorNotEqualOpenBracketToken(); });
     state += RunTest(
         className,
+        "OperatorNotEqualCaptureList",
+        [&testClass]() { testClass->OperatorNotEqualCaptureList(); });
+    state += RunTest(
+        className,
         "OperatorNotEqualCloseBracketToken",
         [&testClass]() { testClass->OperatorNotEqualCloseBracketToken(); });
     state += RunTest(

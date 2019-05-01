@@ -15,6 +15,7 @@ namespace Soup::Syntax::OuterTree
             const SyntaxNode* parentNode) :
             Expression(innerNode, parentNode),
             m_openBracketToken(innerNode->GetOpenBracketToken().CreateOuter(this)),
+            m_captureList(innerNode->GetCaptureList().CreateOuter<LambdaCaptureClause>(this)),
             m_closeBracketToken(innerNode->GetCloseBracketToken().CreateOuter(this)),
             m_parameterList(
                 innerNode->HasParameterList() ?
@@ -31,6 +32,14 @@ namespace Soup::Syntax::OuterTree
         const SyntaxToken& GetOpenBracketToken() const
         {
             return *m_openBracketToken;
+        }
+
+        /// <summary>
+        /// Gets the optional capture list
+        /// </summary>
+        const SyntaxSeparatorList<LambdaCaptureClause>& GetCaptureList() const
+        {
+            return *m_captureList;
         }
 
         /// <summary>
@@ -75,6 +84,10 @@ namespace Soup::Syntax::OuterTree
             std::vector<SyntaxNodeChild> children;
 
             children.push_back(SyntaxNodeChild(m_openBracketToken));
+
+            auto captureChildren = m_captureList->GetChildren();
+            children.insert(children.end(), captureChildren.begin(), captureChildren.end());
+
             children.push_back(SyntaxNodeChild(m_closeBracketToken));
 
             if (HasParameterList())
@@ -97,6 +110,7 @@ namespace Soup::Syntax::OuterTree
 
     private:
         std::shared_ptr<const SyntaxToken> m_openBracketToken;
+        std::shared_ptr<const SyntaxSeparatorList<LambdaCaptureClause>> m_captureList;
         std::shared_ptr<const SyntaxToken> m_closeBracketToken;
         std::shared_ptr<const ParameterList> m_parameterList;
         std::shared_ptr<const CompoundStatement> m_body;
