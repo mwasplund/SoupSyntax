@@ -1,53 +1,21 @@
 #pragma once
-#include "AST/InnerTree/Declaration/ClassSpecifierTests.h"
-#include "RunTest.h"
+#include "/AST/InnerTree/Declaration/ClassSpecifierTests.h"
 
-TestState RunInnerTreeClassSpecifierTests()
-{
-    std::string className = "InnerTree::ClassSpecifierTests";
-    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::InnerTreeClassSpecifierTests>();
+TestState RunInnerTreeClassSpecifierTests() 
+ {
+    auto className = "InnerTreeClassSpecifierTests";
+    auto testClass = std::make_shared<Soup::Syntax::InnerTree::UnitTests::InnerTreeClassSpecifierTests>();
     TestState state = { 0, 0 };
-
-    state += RunTest(
-        className,
-        "InitializeNoIdentifier",
-        [&testClass]() { testClass->InitializeNoIdentifier(); });
-    state += RunTest(
-        className,
-        "InitializeWithIdentifier",
-        [&testClass]() { testClass->InitializeWithIdentifier(); });
-    state += RunTest(
-        className,
-        "OperatorEqualNoIdentifier",
-        [&testClass]() { testClass->OperatorEqualNoIdentifier(); });
-    state += RunTest(
-        className,
-        "OperatorEqualWithIdentifier",
-        [&testClass]() { testClass->OperatorEqualWithIdentifier(); });
-    state += RunTest(
-        className,
-        "OperatorNotEqualClassToken",
-        [&testClass]() { testClass->OperatorNotEqualClassToken(); });
-    state += RunTest(
-        className,
-        "OperatorNotEqualNoIdentifier",
-        [&testClass]() { testClass->OperatorNotEqualNoIdentifier(); });
-    state += RunTest(
-        className,
-        "OperatorNotEqualWithIdentifier",
-        [&testClass]() { testClass->OperatorNotEqualWithIdentifier(); });
-    state += RunTest(
-        className,
-        "OperatorNotEqualOpenBraceToken",
-        [&testClass]() { testClass->OperatorNotEqualOpenBraceToken(); });
-    state += RunTest(
-        className,
-        "OperatorNotEqualMemberDeclarations",
-        [&testClass]() { testClass->OperatorNotEqualMemberDeclarations(); });
-    state += RunTest(
-        className,
-        "OperatorNotEqualCloseBraceToken",
-        [&testClass]() { testClass->OperatorNotEqualCloseBraceToken(); });
+    state += RunTest(className, "InitializeNoIdentifier", [&testClass]() { testClass->InitializeNoIdentifier(); });
+    state += RunTest(className, "InitializeWithIdentifier", [&testClass]() { testClass->InitializeWithIdentifier(); });
+    state += RunTest(className, "OperatorEqualNoIdentifier", [&testClass]() { testClass->OperatorEqualNoIdentifier(); });
+    state += RunTest(className, "OperatorEqualWithIdentifier", [&testClass]() { testClass->OperatorEqualWithIdentifier(); });
+    state += RunTest(className, "OperatorNotEqualClassToken", [&testClass]() { testClass->OperatorNotEqualClassToken(); });
+    state += RunTest(className, "OperatorNotEqualNoIdentifier", [&testClass]() { testClass->OperatorNotEqualNoIdentifier(); });
+    state += RunTest(className, "OperatorNotEqualWithIdentifier", [&testClass]() { testClass->OperatorNotEqualWithIdentifier(); });
+    state += RunTest(className, "OperatorNotEqualOpenBraceToken", [&testClass]() { testClass->OperatorNotEqualOpenBraceToken(); });
+    state += RunTest(className, "OperatorNotEqualMemberDeclarations", [&testClass]() { testClass->OperatorNotEqualMemberDeclarations(); });
+    state += RunTest(className, "OperatorNotEqualCloseBraceToken", [&testClass]() { testClass->OperatorNotEqualCloseBraceToken(); });
 
     return state;
 }

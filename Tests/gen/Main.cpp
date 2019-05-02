@@ -41,6 +41,7 @@ import SoupSyntax;
 #include "AST\InnerTree\Expression\BinaryExpressionTests.gen.h"
 #include "AST\InnerTree\Expression\IdentifierExpressionTests.gen.h"
 #include "AST\InnerTree\Expression\InvocationExpressionTests.gen.h"
+#include "AST\InnerTree\Expression\LambdaCaptureClauseTests.gen.h"
 #include "AST\InnerTree\Expression\LambdaExpressionTests.gen.h"
 #include "AST\InnerTree\Expression\LiteralExpressionTests.gen.h"
 #include "AST\InnerTree\Expression\SubscriptExpressionTests.gen.h"
@@ -100,6 +101,7 @@ import SoupSyntax;
 #include "AST\OuterTree\Expression\BinaryExpressionTests.gen.h"
 #include "AST\OuterTree\Expression\IdentifierExpressionTests.gen.h"
 #include "AST\OuterTree\Expression\InvocationExpressionTests.gen.h"
+#include "AST\OuterTree\Expression\LambdaCaptureClauseTests.gen.h"
 #include "AST\OuterTree\Expression\LambdaExpressionTests.gen.h"
 #include "AST\OuterTree\Expression\LiteralExpressionTests.gen.h"
 #include "AST\OuterTree\Expression\SubscriptExpressionTests.gen.h"
@@ -127,7 +129,6 @@ import SoupSyntax;
 #include "Parser\ParserAttributesTests.gen.h"
 #include "Parser\ParserExpressionTests.gen.h"
 #include "Parser\ParseTranslationUnitTests.gen.h"
-#include "Parser\SyntaxNamespaceTests.gen.h"
 
 #include "Parser\Attribute\ParseAttributeSpecifierTests.gen.h"
 
@@ -200,6 +201,7 @@ int main()
     state += RunInnerTreeBinaryExpressionTests();
     state += RunInnerTreeIdentifierExpressionTests();
     state += RunInnerTreeInvocationExpressionTests();
+    state += RunInnerTreeLambdaCaptureClauseTests();
     state += RunInnerTreeLambdaExpressionTests();
     state += RunInnerTreeLiteralExpressionTests();
     state += RunInnerTreeSubscriptExpressionTests();
@@ -259,6 +261,7 @@ int main()
     state += RunOuterTreeBinaryExpressionTests();
     state += RunOuterTreeIdentifierExpressionTests();
     state += RunOuterTreeInvocationExpressionTests();
+    state += RunOuterTreeLambdaCaptureClauseTests();
     state += RunOuterTreeLambdaExpressionTests();
     state += RunOuterTreeLiteralExpressionTests();
     state += RunOuterTreeSubscriptExpressionTests();
@@ -286,7 +289,6 @@ int main()
     state += RunParserAttributesTests();
     state += RunParserExpressionTests();
     state += RunParseTranslationUnitTests();
-    state += RunSyntaxNamespaceTests();
 
     state += RunParseAttributeSpecifierTests();
 

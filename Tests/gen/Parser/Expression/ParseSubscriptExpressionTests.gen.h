@@ -1,17 +1,12 @@
 #pragma once
-#include "ParseSubscriptExpressionTests.h"
-#include "../../RunTest.h"
+#include "/Parser/Expression/ParseSubscriptExpressionTests.h"
 
-TestState RunParseSubscriptExpressionTests()
-{
-    std::string className = "ParseSubscriptExpressionTests";
-    auto testClass = std::make_unique<Soup::Syntax::InnerTree::UnitTests::ParseSubscriptExpressionTests>();
+TestState RunParseSubscriptExpressionTests() 
+ {
+    auto className = "ParseSubscriptExpressionTests";
+    auto testClass = std::make_shared<Soup::Syntax::InnerTree::UnitTests::ParseSubscriptExpressionTests>();
     TestState state = { 0, 0 };
-
-    state += RunTest(
-        className,
-        "SingleSubscriptExpression",
-        [&testClass]() { testClass->SingleSubscriptExpression(); });
+    state += RunTest(className, "SingleSubscriptExpression", [&testClass]() { testClass->SingleSubscriptExpression(); });
 
     return state;
 }

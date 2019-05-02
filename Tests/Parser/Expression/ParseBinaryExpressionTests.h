@@ -526,7 +526,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        [[Fact]]
+        // TODO: [[Fact]]
         void IdentifierThreeWayComparison()
         {
             auto sourceCode = std::string("a<=>b");

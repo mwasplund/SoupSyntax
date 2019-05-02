@@ -111,7 +111,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreNotEqual(
                 SyntaxFactory::CreateLambdaCaptureClause(
                     SyntaxFactory::CreateKeywordToken(
-                        SyntaxTokenType::Ampersand
+                        SyntaxTokenType::Ampersand,
                         {
                             SyntaxFactory::CreateTrivia(" "),
                         },
