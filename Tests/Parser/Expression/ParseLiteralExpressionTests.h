@@ -78,9 +78,10 @@ namespace Soup::Syntax::InnerTree::UnitTests
                 "Verify value matches entire source.");
         }
 
+        // TODO: Remove namespaces when inline data theories have correct scope
         [[Theory]]
-        [[InlineData("true", SyntaxTokenType::True)]]
-        [[InlineData("false", SyntaxTokenType::False)]]
+        [[InlineData("true", Soup::Syntax::SyntaxTokenType::True)]]
+        [[InlineData("false", Soup::Syntax::SyntaxTokenType::False)]]
         void SingleBooleanLiteralType(std::string sourceCode, SyntaxTokenType type)
         {
             auto expression = ParseLiteralExpression(sourceCode);

@@ -122,7 +122,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
         [[InlineData("&=", CppLexer::AmpersandEqual)]]
         [[InlineData("|=", CppLexer::VerticalBarEqual)]]
         [[InlineData("<<", CppLexer::DoubleLessThan)]]
-        [[InlineData(">>", CppLexer::DoubleGreaterThan)]]
+        // Special Token [[InlineData(">>", CppLexer::DoubleGreaterThan)]]
         [[InlineData("<<=", CppLexer::DoubleLessThanEqual)]]
         [[InlineData(">>=", CppLexer::DoubleGreaterThanEqual)]]
         [[InlineData("==", CppLexer::DoubleEqual)]]

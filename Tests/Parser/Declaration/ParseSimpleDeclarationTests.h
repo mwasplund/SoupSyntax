@@ -105,22 +105,23 @@ namespace Soup::Syntax::InnerTree::UnitTests
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
+        // TODO: Remove namespaces when inline data theories have correct scope
         [[Theory]]
-        [[InlineData("char", SyntaxTokenType::Char, PrimitiveDataType::Char)]]
-        [[InlineData("char8_t", SyntaxTokenType::Char8, PrimitiveDataType::Char8)]]
-        [[InlineData("char16_t", SyntaxTokenType::Char16, PrimitiveDataType::Char16)]]
-        [[InlineData("char32_t", SyntaxTokenType::Char32, PrimitiveDataType::Char32)]]
-        [[InlineData("wchar_t", SyntaxTokenType::WChar, PrimitiveDataType::WChar)]]
-        [[InlineData("bool", SyntaxTokenType::Bool, PrimitiveDataType::Bool)]]
-        [[InlineData("short", SyntaxTokenType::Short, PrimitiveDataType::Short)]]
-        [[InlineData("int", SyntaxTokenType::Int, PrimitiveDataType::Int)]]
-        [[InlineData("long", SyntaxTokenType::Long, PrimitiveDataType::Long)]]
-        [[InlineData("signed", SyntaxTokenType::Signed, PrimitiveDataType::Signed)]]
-        [[InlineData("unsigned", SyntaxTokenType::Unsigned, PrimitiveDataType::Unsigned)]]
-        [[InlineData("float", SyntaxTokenType::Float, PrimitiveDataType::Float)]]
-        [[InlineData("double", SyntaxTokenType::Double, PrimitiveDataType::Double)]]
-        [[InlineData("void", SyntaxTokenType::Void, PrimitiveDataType::Void)]]
-        [[InlineData("auto", SyntaxTokenType::Auto, PrimitiveDataType::Auto)]]
+        [[InlineData("char", Soup::Syntax::SyntaxTokenType::Char, Soup::Syntax::PrimitiveDataType::Char)]]
+        [[InlineData("char8_t", Soup::Syntax::SyntaxTokenType::Char8, Soup::Syntax::PrimitiveDataType::Char8)]]
+        [[InlineData("char16_t", Soup::Syntax::SyntaxTokenType::Char16, Soup::Syntax::PrimitiveDataType::Char16)]]
+        [[InlineData("char32_t", Soup::Syntax::SyntaxTokenType::Char32, Soup::Syntax::PrimitiveDataType::Char32)]]
+        [[InlineData("wchar_t", Soup::Syntax::SyntaxTokenType::WChar, Soup::Syntax::PrimitiveDataType::WChar)]]
+        [[InlineData("bool", Soup::Syntax::SyntaxTokenType::Bool, Soup::Syntax::PrimitiveDataType::Bool)]]
+        [[InlineData("short", Soup::Syntax::SyntaxTokenType::Short, Soup::Syntax::PrimitiveDataType::Short)]]
+        [[InlineData("int", Soup::Syntax::SyntaxTokenType::Int, Soup::Syntax::PrimitiveDataType::Int)]]
+        [[InlineData("long", Soup::Syntax::SyntaxTokenType::Long, Soup::Syntax::PrimitiveDataType::Long)]]
+        [[InlineData("signed", Soup::Syntax::SyntaxTokenType::Signed, Soup::Syntax::PrimitiveDataType::Signed)]]
+        [[InlineData("unsigned", Soup::Syntax::SyntaxTokenType::Unsigned, Soup::Syntax::PrimitiveDataType::Unsigned)]]
+        [[InlineData("float", Soup::Syntax::SyntaxTokenType::Float, Soup::Syntax::PrimitiveDataType::Float)]]
+        [[InlineData("double", Soup::Syntax::SyntaxTokenType::Double, Soup::Syntax::PrimitiveDataType::Double)]]
+        [[InlineData("void", Soup::Syntax::SyntaxTokenType::Void, Soup::Syntax::PrimitiveDataType::Void)]]
+        [[InlineData("auto", Soup::Syntax::SyntaxTokenType::Auto, Soup::Syntax::PrimitiveDataType::Auto)]]
         void SimplePrimitiveVariable(std::string typeSource, SyntaxTokenType expectedToken, PrimitiveDataType expectedType)
         {
             auto sourceCode = typeSource + " i;";
