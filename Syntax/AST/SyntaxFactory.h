@@ -745,7 +745,7 @@ namespace Soup::Syntax
                      value = "auto";
                      break;
                 case SyntaxTokenType::Bool:
-                     value = "boo";
+                     value = "bool";
                      break;
                 case SyntaxTokenType::Break:
                      value = "break";

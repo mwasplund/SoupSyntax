@@ -19,7 +19,17 @@ std::shared_ptr<TOut> SafeDynamicCast(const std::shared_ptr<TIn>& value, int lin
 {
     auto result = std::dynamic_pointer_cast<TOut>(value);
     if (result == nullptr)
-        throw std::runtime_error("Failed dynamic cast: " + std::to_string(line));
+    {
+        std::stringstream errorMessage;
+        auto writer = SyntaxTreeWriter(errorMessage);
+        errorMessage << "Failed dynamic cast: ";
+        errorMessage << std::to_string(line);
+        errorMessage << " ";
+        value->CreateOuterAny(nullptr)->Accept(writer);
+
+        throw std::runtime_error(errorMessage.str());
+    }
+
     return result;
 }
 

@@ -2,7 +2,9 @@ import std.core;
 import Antlr4.Runtime;
 import SoupSyntax;
 
-#include "RunTest.h"
+#include "..\..\SoupTest\Assert\SoupAssert.h"
+#include "..\..\SoupTest\Assert\RunTest.h"
+using namespace SoupTest;
 
 // Inner Tree
 #include "AST\InnerTree\Attribute\AttributeTests.gen.h"

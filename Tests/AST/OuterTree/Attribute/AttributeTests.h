@@ -1,5 +1,4 @@
 #pragma once
-#include "SoupAssert.h"
 #include "TestUtils.h"
 
 namespace Soup::Syntax::InnerTree::UnitTests

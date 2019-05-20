@@ -6,19 +6,19 @@ TestState RunOuterTreeIfStatementTests()
     auto className = "OuterTreeIfStatementTests";
     auto testClass = std::make_shared<Soup::Syntax::InnerTree::UnitTests::OuterTreeIfStatementTests>();
     TestState state = { 0, 0 };
-    state += RunTest(className, "InitializeNoElseClause", [&testClass]() { testClass->InitializeNoElseClause(); });
-    state += RunTest(className, "InitializeWithElseClause", [&testClass]() { testClass->InitializeWithElseClause(); });
-    state += RunTest(className, "GetChildrenNoElseClause", [&testClass]() { testClass->GetChildrenNoElseClause(); });
-    state += RunTest(className, "GetChildrenWithElseClause", [&testClass]() { testClass->GetChildrenWithElseClause(); });
-    state += RunTest(className, "OperatorEqualNoElseClause", [&testClass]() { testClass->OperatorEqualNoElseClause(); });
-    state += RunTest(className, "OperatorEqualWithElseClause", [&testClass]() { testClass->OperatorEqualWithElseClause(); });
-    state += RunTest(className, "OperatorNotEqualIfToken", [&testClass]() { testClass->OperatorNotEqualIfToken(); });
-    state += RunTest(className, "OperatorNotEqualOpenParenthesisToken", [&testClass]() { testClass->OperatorNotEqualOpenParenthesisToken(); });
-    state += RunTest(className, "OperatorNotEqualConditionExpression", [&testClass]() { testClass->OperatorNotEqualConditionExpression(); });
-    state += RunTest(className, "OperatorNotEqualCloseParenthesisToken", [&testClass]() { testClass->OperatorNotEqualCloseParenthesisToken(); });
-    state += RunTest(className, "OperatorNotEqualStatement", [&testClass]() { testClass->OperatorNotEqualStatement(); });
-    state += RunTest(className, "OperatorNotEqualNoElseClause", [&testClass]() { testClass->OperatorNotEqualNoElseClause(); });
-    state += RunTest(className, "OperatorNotEqualWithElseClause", [&testClass]() { testClass->OperatorNotEqualWithElseClause(); });
+    state += SoupTest::RunTest(className, "InitializeNoElseClause", [&testClass]() { testClass->InitializeNoElseClause(); });
+    state += SoupTest::RunTest(className, "InitializeWithElseClause", [&testClass]() { testClass->InitializeWithElseClause(); });
+    state += SoupTest::RunTest(className, "GetChildrenNoElseClause", [&testClass]() { testClass->GetChildrenNoElseClause(); });
+    state += SoupTest::RunTest(className, "GetChildrenWithElseClause", [&testClass]() { testClass->GetChildrenWithElseClause(); });
+    state += SoupTest::RunTest(className, "OperatorEqualNoElseClause", [&testClass]() { testClass->OperatorEqualNoElseClause(); });
+    state += SoupTest::RunTest(className, "OperatorEqualWithElseClause", [&testClass]() { testClass->OperatorEqualWithElseClause(); });
+    state += SoupTest::RunTest(className, "OperatorNotEqualIfToken", [&testClass]() { testClass->OperatorNotEqualIfToken(); });
+    state += SoupTest::RunTest(className, "OperatorNotEqualOpenParenthesisToken", [&testClass]() { testClass->OperatorNotEqualOpenParenthesisToken(); });
+    state += SoupTest::RunTest(className, "OperatorNotEqualConditionExpression", [&testClass]() { testClass->OperatorNotEqualConditionExpression(); });
+    state += SoupTest::RunTest(className, "OperatorNotEqualCloseParenthesisToken", [&testClass]() { testClass->OperatorNotEqualCloseParenthesisToken(); });
+    state += SoupTest::RunTest(className, "OperatorNotEqualStatement", [&testClass]() { testClass->OperatorNotEqualStatement(); });
+    state += SoupTest::RunTest(className, "OperatorNotEqualNoElseClause", [&testClass]() { testClass->OperatorNotEqualNoElseClause(); });
+    state += SoupTest::RunTest(className, "OperatorNotEqualWithElseClause", [&testClass]() { testClass->OperatorNotEqualWithElseClause(); });
 
     return state;
 }

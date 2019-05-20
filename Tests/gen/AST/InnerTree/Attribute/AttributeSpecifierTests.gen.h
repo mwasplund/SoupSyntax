@@ -6,14 +6,14 @@ TestState RunInnerTreeAttributeSpecifierTests()
     auto className = "InnerTreeAttributeSpecifierTests";
     auto testClass = std::make_shared<Soup::Syntax::InnerTree::UnitTests::InnerTreeAttributeSpecifierTests>();
     TestState state = { 0, 0 };
-    state += RunTest(className, "InitializeSimple", [&testClass]() { testClass->InitializeSimple(); });
-    state += RunTest(className, "InitializeComplex", [&testClass]() { testClass->InitializeComplex(); });
-    state += RunTest(className, "OperatorEqual", [&testClass]() { testClass->OperatorEqual(); });
-    state += RunTest(className, "OperatorNotEqualOuterOpenBracketToken", [&testClass]() { testClass->OperatorNotEqualOuterOpenBracketToken(); });
-    state += RunTest(className, "OperatorNotEqualInnerOpenBracketToken", [&testClass]() { testClass->OperatorNotEqualInnerOpenBracketToken(); });
-    state += RunTest(className, "OperatorNotEqualAttributes", [&testClass]() { testClass->OperatorNotEqualAttributes(); });
-    state += RunTest(className, "OperatorNotEqualInnerCloseBracketToken", [&testClass]() { testClass->OperatorNotEqualInnerCloseBracketToken(); });
-    state += RunTest(className, "OperatorNotEqualOuterCloseBracketToken", [&testClass]() { testClass->OperatorNotEqualOuterCloseBracketToken(); });
+    state += SoupTest::RunTest(className, "InitializeSimple", [&testClass]() { testClass->InitializeSimple(); });
+    state += SoupTest::RunTest(className, "InitializeComplex", [&testClass]() { testClass->InitializeComplex(); });
+    state += SoupTest::RunTest(className, "OperatorEqual", [&testClass]() { testClass->OperatorEqual(); });
+    state += SoupTest::RunTest(className, "OperatorNotEqualOuterOpenBracketToken", [&testClass]() { testClass->OperatorNotEqualOuterOpenBracketToken(); });
+    state += SoupTest::RunTest(className, "OperatorNotEqualInnerOpenBracketToken", [&testClass]() { testClass->OperatorNotEqualInnerOpenBracketToken(); });
+    state += SoupTest::RunTest(className, "OperatorNotEqualAttributes", [&testClass]() { testClass->OperatorNotEqualAttributes(); });
+    state += SoupTest::RunTest(className, "OperatorNotEqualInnerCloseBracketToken", [&testClass]() { testClass->OperatorNotEqualInnerCloseBracketToken(); });
+    state += SoupTest::RunTest(className, "OperatorNotEqualOuterCloseBracketToken", [&testClass]() { testClass->OperatorNotEqualOuterCloseBracketToken(); });
 
     return state;
 }

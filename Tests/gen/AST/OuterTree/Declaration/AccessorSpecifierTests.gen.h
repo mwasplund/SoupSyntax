@@ -6,11 +6,11 @@ TestState RunOuterTreeAccessorSpecifierTests()
     auto className = "OuterTreeAccessorSpecifierTests";
     auto testClass = std::make_shared<Soup::Syntax::InnerTree::UnitTests::OuterTreeAccessorSpecifierTests>();
     TestState state = { 0, 0 };
-    state += RunTest(className, "Initialize", [&testClass]() { testClass->Initialize(); });
-    state += RunTest(className, "GetChildren", [&testClass]() { testClass->GetChildren(); });
-    state += RunTest(className, "OperatorEqual", [&testClass]() { testClass->OperatorEqual(); });
-    state += RunTest(className, "OperatorNotEqualAccessorToken", [&testClass]() { testClass->OperatorNotEqualAccessorToken(); });
-    state += RunTest(className, "OperatorNotEqualColonToken", [&testClass]() { testClass->OperatorNotEqualColonToken(); });
+    state += SoupTest::RunTest(className, "Initialize", [&testClass]() { testClass->Initialize(); });
+    state += SoupTest::RunTest(className, "GetChildren", [&testClass]() { testClass->GetChildren(); });
+    state += SoupTest::RunTest(className, "OperatorEqual", [&testClass]() { testClass->OperatorEqual(); });
+    state += SoupTest::RunTest(className, "OperatorNotEqualAccessorToken", [&testClass]() { testClass->OperatorNotEqualAccessorToken(); });
+    state += SoupTest::RunTest(className, "OperatorNotEqualColonToken", [&testClass]() { testClass->OperatorNotEqualColonToken(); });
 
     return state;
 }

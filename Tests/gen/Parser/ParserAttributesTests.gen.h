@@ -1,6 +1,5 @@
 #pragma once
 #include "ParserAttributesTests.h"
-#include "../RunTest.h"
 
 TestState RunParserAttributesTests()
 {
