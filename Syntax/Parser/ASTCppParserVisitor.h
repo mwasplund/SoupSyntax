@@ -13,7 +13,6 @@ namespace Soup::Syntax
 
         virtual antlrcpp::Any visitDoubleGreaterThan(CppParser::DoubleGreaterThanContext *ctx) override final;
         virtual antlrcpp::Any visitNamespaceName(CppParser::NamespaceNameContext *context) override final;
-        virtual antlrcpp::Any visitNamespaceAlias(CppParser::NamespaceAliasContext *context) override final;
         virtual antlrcpp::Any visitClassName(CppParser::ClassNameContext *context) override final;
         virtual antlrcpp::Any visitTemplateName(CppParser::TemplateNameContext *context) override final;
         virtual antlrcpp::Any visitTranslationUnit(CppParser::TranslationUnitContext *context) override final;

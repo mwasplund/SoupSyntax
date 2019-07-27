@@ -13,7 +13,7 @@
  * which can be extended to create a listener which only needs to handle a subset
  * of the available methods.
  */
-class  CppParserBaseListener : public CppParserListener {
+class CppParserBaseListener : public CppParserListener {
 public:
 
   virtual void enterDoubleGreaterThan(CppParser::DoubleGreaterThanContext * /*ctx*/) override { }
@@ -21,9 +21,6 @@ public:
 
   virtual void enterNamespaceName(CppParser::NamespaceNameContext * /*ctx*/) override { }
   virtual void exitNamespaceName(CppParser::NamespaceNameContext * /*ctx*/) override { }
-
-  virtual void enterNamespaceAlias(CppParser::NamespaceAliasContext * /*ctx*/) override { }
-  virtual void exitNamespaceAlias(CppParser::NamespaceAliasContext * /*ctx*/) override { }
 
   virtual void enterClassName(CppParser::ClassNameContext * /*ctx*/) override { }
   virtual void exitClassName(CppParser::ClassNameContext * /*ctx*/) override { }

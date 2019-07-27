@@ -11,7 +11,7 @@
 /**
  * This interface defines an abstract listener for a parse tree produced by CppParser.
  */
-export class  CppParserListener : public antlr4::tree::ParseTreeListener {
+export class CppParserListener : public antlr4::tree::ParseTreeListener {
 public:
 
   virtual void enterDoubleGreaterThan(CppParser::DoubleGreaterThanContext *ctx) = 0;
@@ -19,9 +19,6 @@ public:
 
   virtual void enterNamespaceName(CppParser::NamespaceNameContext *ctx) = 0;
   virtual void exitNamespaceName(CppParser::NamespaceNameContext *ctx) = 0;
-
-  virtual void enterNamespaceAlias(CppParser::NamespaceAliasContext *ctx) = 0;
-  virtual void exitNamespaceAlias(CppParser::NamespaceAliasContext *ctx) = 0;
 
   virtual void enterClassName(CppParser::ClassNameContext *ctx) = 0;
   virtual void exitClassName(CppParser::ClassNameContext *ctx) = 0;

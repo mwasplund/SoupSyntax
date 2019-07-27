@@ -21,10 +21,6 @@ doubleGreaterThan:
 /* Keywords
 /****************************************/
 namespaceName:
-	Identifier |
-	namespaceAlias;
-
-namespaceAlias:
 	Identifier;
 
 className:

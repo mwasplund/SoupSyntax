@@ -72,12 +72,6 @@ antlrcpp::Any ASTCppParserVisitor::visitNamespaceName(CppParser::NamespaceNameCo
     throw std::logic_error(std::string(__func__) + " NotImplemented");
 }
 
-antlrcpp::Any ASTCppParserVisitor::visitNamespaceAlias(CppParser::NamespaceAliasContext* context)
-{
-    Trace("VisitNamespaceAlias");
-    throw std::logic_error(std::string(__func__) + " NotImplemented");
-}
-
 antlrcpp::Any ASTCppParserVisitor::visitClassName(CppParser::ClassNameContext* context)
 {
     Trace("VisitClassName");

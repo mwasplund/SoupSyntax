@@ -13,7 +13,7 @@
  * This class defines an abstract visitor for a parse tree
  * produced by CppParser.
  */
-export class  CppParserVisitor : public antlr4::tree::AbstractParseTreeVisitor {
+export class CppParserVisitor : public antlr4::tree::AbstractParseTreeVisitor {
 public:
 
   /**
@@ -22,8 +22,6 @@ public:
     virtual antlrcpp::Any visitDoubleGreaterThan(CppParser::DoubleGreaterThanContext *context) = 0;
 
     virtual antlrcpp::Any visitNamespaceName(CppParser::NamespaceNameContext *context) = 0;
-
-    virtual antlrcpp::Any visitNamespaceAlias(CppParser::NamespaceAliasContext *context) = 0;
 
     virtual antlrcpp::Any visitClassName(CppParser::ClassNameContext *context) = 0;
 
