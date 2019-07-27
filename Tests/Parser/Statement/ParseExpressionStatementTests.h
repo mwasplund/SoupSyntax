@@ -1,28 +1,28 @@
 #pragma once
 #include "TestUtils.h"
-#include "SoupAssert.h"
 
-namespace Soup::Syntax::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
     class ParseExpressionStatementTests
     {
     public:
-        // [Fact]
-        void SimpleIdentifierExpression()
+        [[Fact]]
+        void SimpleIdentifier()
         {
             auto sourceCode = std::string("a;");
             auto actual = ParseExpressionStatement(sourceCode);
 
             auto expected = SyntaxFactory::CreateExpressionStatement(
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
     private:
-        std::shared_ptr<const ExpressionStatement> ParseExpressionStatement(std::string& sourceCode)
+        std::shared_ptr<const ExpressionStatement> ParseExpressionStatement(const std::string& sourceCode)
         {
             auto uut = TestUtils::BuildParser(sourceCode);
             auto context = uut.Parser->expressionStatement();

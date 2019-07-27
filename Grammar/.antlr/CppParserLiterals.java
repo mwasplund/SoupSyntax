@@ -16,31 +16,32 @@ public class CppParserLiterals extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		BlockComment=1, LineComment=2, Whitespace=3, Newline=4, AlignAs=5, AlignOf=6, 
-		Asm=7, Auto=8, Bool=9, Break=10, Case=11, Catch=12, Char=13, Char16=14, 
-		Char32=15, Class=16, Const=17, ConstExpr=18, ConstCast=19, Continue=20, 
-		DeclType=21, Default=22, Delete=23, Do=24, Double=25, DynamicCast=26, 
-		Else=27, Enum=28, Explicit=29, Export=30, Extern=31, False=32, Float=33, 
-		For=34, Friend=35, GoTo=36, If=37, Inline=38, Int=39, Long=40, Mutable=41, 
-		Namespace=42, New=43, NoExcept=44, Nullptr=45, Operator=46, Private=47, 
-		Protected=48, Public=49, Register=50, ReinterpretCast=51, Return=52, Short=53, 
-		Signed=54, SizeOf=55, Static=56, StaticAssert=57, StaticCast=58, Struct=59, 
-		Switch=60, Template=61, This=62, ThreadLocal=63, Throw=64, True=65, Try=66, 
-		TypeDef=67, TypeId=68, TypeName=69, Union=70, Unsigned=71, Using=72, Virtual=73, 
-		Void=74, Volatile=75, WChar=76, While=77, Override=78, Final=79, OpenBrace=80, 
-		CloseBrace=81, OpenBracket=82, CloseBracket=83, OpenParenthesis=84, CloseParenthesis=85, 
-		Semicolon=86, Colon=87, Ellipsis=88, QuestionMark=89, DoubleColon=90, 
-		Period=91, PeriodAsterisk=92, Plus=93, Minus=94, Asterisk=95, ForwardSlash=96, 
-		Percent=97, Caret=98, Ampersand=99, VerticalBar=100, Tilde=101, ExclamationMark=102, 
-		Equal=103, LessThan=104, GreaterThan=105, PlusEqual=106, MinusEqual=107, 
-		AsteriskEqual=108, ForwardSlashEqual=109, PercentEqual=110, CaretEqual=111, 
-		AmpersandEqual=112, VerticalBarEqual=113, DoubleLessThan=114, DoubleGreaterThan=115, 
-		DoubleLessThanEqual=116, DoubleGreaterThanEqual=117, DoubleEqual=118, 
-		ExclamationMarkEqual=119, LessThanEqual=120, GreaterThanEqual=121, DoubleAmpersand=122, 
-		DoubleVerticalBar=123, DoublePlus=124, DoubleMinus=125, Comma=126, ArrowAsterisk=127, 
-		Arrow=128, Zero=129, IntegerLiteral=130, FloatingPointLiteral=131, CharacterLiteral=132, 
-		StringLiteral=133, UserDefinedIntegerLiteral=134, UserDefinedFloatingPointLiteral=135, 
-		UserDefinedCharacterLiteral=136, UserDefinedStringLiteral=137, Identifier=138;
+		BlockComment=1, LineComment=2, Whitespace=3, Preprocessor=4, Newline=5, 
+		AlignAs=6, AlignOf=7, Asm=8, Auto=9, Bool=10, Break=11, Case=12, Catch=13, 
+		Char=14, Char8=15, Char16=16, Char32=17, Class=18, Const=19, ConstExpr=20, 
+		ConstCast=21, Continue=22, DeclType=23, Default=24, Delete=25, Do=26, 
+		Double=27, DynamicCast=28, Else=29, Enum=30, Explicit=31, Export=32, Extern=33, 
+		False=34, Float=35, For=36, Friend=37, GoTo=38, If=39, Inline=40, Int=41, 
+		Long=42, Mutable=43, Namespace=44, New=45, NoExcept=46, Nullptr=47, Operator=48, 
+		Private=49, Protected=50, Public=51, Register=52, ReinterpretCast=53, 
+		Return=54, Short=55, Signed=56, SizeOf=57, Static=58, StaticAssert=59, 
+		StaticCast=60, Struct=61, Switch=62, Template=63, This=64, ThreadLocal=65, 
+		Throw=66, True=67, Try=68, TypeDef=69, TypeId=70, TypeName=71, Union=72, 
+		Unsigned=73, Using=74, Virtual=75, Void=76, Volatile=77, WChar=78, While=79, 
+		Override=80, Final=81, OpenBrace=82, CloseBrace=83, OpenBracket=84, CloseBracket=85, 
+		OpenParenthesis=86, CloseParenthesis=87, Semicolon=88, Colon=89, Ellipsis=90, 
+		QuestionMark=91, DoubleColon=92, Period=93, PeriodAsterisk=94, Plus=95, 
+		Minus=96, Asterisk=97, ForwardSlash=98, Percent=99, Caret=100, Ampersand=101, 
+		VerticalBar=102, Tilde=103, ExclamationMark=104, Equal=105, LessThan=106, 
+		GreaterThan=107, PlusEqual=108, MinusEqual=109, AsteriskEqual=110, ForwardSlashEqual=111, 
+		PercentEqual=112, CaretEqual=113, AmpersandEqual=114, VerticalBarEqual=115, 
+		DoubleLessThan=116, DoubleLessThanEqual=117, DoubleGreaterThanEqual=118, 
+		DoubleEqual=119, ExclamationMarkEqual=120, LessThanEqual=121, GreaterThanEqual=122, 
+		DoubleAmpersand=123, DoubleVerticalBar=124, DoublePlus=125, DoubleMinus=126, 
+		Comma=127, ArrowAsterisk=128, Arrow=129, Zero=130, IntegerLiteral=131, 
+		FloatingPointLiteral=132, CharacterLiteral=133, StringLiteral=134, UserDefinedIntegerLiteral=135, 
+		UserDefinedFloatingPointLiteral=136, UserDefinedCharacterLiteral=137, 
+		UserDefinedStringLiteral=138, Identifier=139;
 	public static final int
 		RULE_literal = 0, RULE_integerLiteral = 1, RULE_booleanLiteral = 2, RULE_pointerLiteral = 3, 
 		RULE_userDefinedLiteral = 4;
@@ -49,49 +50,51 @@ public class CppParserLiterals extends Parser {
 	};
 
 	private static final String[] _LITERAL_NAMES = {
-		null, null, null, null, null, "'alignas'", "'alignof'", "'asm'", "'auto'", 
-		"'bool'", "'break'", "'case'", "'catch'", "'char'", "'char16_t'", "'char32_t'", 
-		"'class'", "'const'", "'constexpr'", "'const_cast'", "'continue'", "'decltype'", 
-		"'default'", "'delete'", "'do'", "'double'", "'dynamic_cast'", "'else'", 
-		"'enum'", "'explicit'", "'export'", "'extern'", "'false'", "'float'", 
-		"'for'", "'friend'", "'goto'", "'if'", "'inline'", "'int'", "'long'", 
-		"'mutable'", "'namespace'", "'new'", "'noexcept'", "'nullptr'", "'operator'", 
-		"'private'", "'protected'", "'public'", "'register'", "'reinterpret_cast'", 
-		"'return'", "'short'", "'signed'", "'sizeof'", "'static'", "'static_assert'", 
-		"'static_cast'", "'struct'", "'switch'", "'template'", "'this'", "'thread_local'", 
-		"'throw'", "'true'", "'try'", "'typedef'", "'typeid'", "'typename'", "'union'", 
-		"'unsigned'", "'using'", "'virtual'", "'void'", "'volatile'", "'wchar_t'", 
-		"'while'", "'override'", "'final'", "'{'", "'}'", "'['", "']'", "'('", 
-		"')'", "';'", "':'", "'...'", "'?'", "'::'", "'.'", "'.*'", "'+'", "'-'", 
-		"'*'", "'/'", "'%'", "'^'", "'&'", "'|'", "'~'", "'!'", "'='", "'<'", 
-		"'>'", "'+='", "'-='", "'*='", "'/='", "'%='", "'^='", "'&='", "'|='", 
-		"'<<'", "'>>'", "'<<='", "'>>='", "'=='", "'!='", "'<='", "'>='", "'&&'", 
-		"'||'", "'++'", "'--'", "','", "'->*'", "'->'", "'0'"
+		null, null, null, null, null, null, "'alignas'", "'alignof'", "'asm'", 
+		"'auto'", "'bool'", "'break'", "'case'", "'catch'", "'char'", "'char8_t'", 
+		"'char16_t'", "'char32_t'", "'class'", "'const'", "'constexpr'", "'const_cast'", 
+		"'continue'", "'decltype'", "'default'", "'delete'", "'do'", "'double'", 
+		"'dynamic_cast'", "'else'", "'enum'", "'explicit'", "'export'", "'extern'", 
+		"'false'", "'float'", "'for'", "'friend'", "'goto'", "'if'", "'inline'", 
+		"'int'", "'long'", "'mutable'", "'namespace'", "'new'", "'noexcept'", 
+		"'nullptr'", "'operator'", "'private'", "'protected'", "'public'", "'register'", 
+		"'reinterpret_cast'", "'return'", "'short'", "'signed'", "'sizeof'", "'static'", 
+		"'static_assert'", "'static_cast'", "'struct'", "'switch'", "'template'", 
+		"'this'", "'thread_local'", "'throw'", "'true'", "'try'", "'typedef'", 
+		"'typeid'", "'typename'", "'union'", "'unsigned'", "'using'", "'virtual'", 
+		"'void'", "'volatile'", "'wchar_t'", "'while'", "'override'", "'final'", 
+		"'{'", "'}'", "'['", "']'", "'('", "')'", "';'", "':'", "'...'", "'?'", 
+		"'::'", "'.'", "'.*'", "'+'", "'-'", "'*'", "'/'", "'%'", "'^'", "'&'", 
+		"'|'", "'~'", "'!'", "'='", "'<'", "'>'", "'+='", "'-='", "'*='", "'/='", 
+		"'%='", "'^='", "'&='", "'|='", "'<<'", "'<<='", "'>>='", "'=='", "'!='", 
+		"'<='", "'>='", "'&&'", "'||'", "'++'", "'--'", "','", "'->*'", "'->'", 
+		"'0'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
-		null, "BlockComment", "LineComment", "Whitespace", "Newline", "AlignAs", 
-		"AlignOf", "Asm", "Auto", "Bool", "Break", "Case", "Catch", "Char", "Char16", 
-		"Char32", "Class", "Const", "ConstExpr", "ConstCast", "Continue", "DeclType", 
-		"Default", "Delete", "Do", "Double", "DynamicCast", "Else", "Enum", "Explicit", 
-		"Export", "Extern", "False", "Float", "For", "Friend", "GoTo", "If", "Inline", 
-		"Int", "Long", "Mutable", "Namespace", "New", "NoExcept", "Nullptr", "Operator", 
-		"Private", "Protected", "Public", "Register", "ReinterpretCast", "Return", 
-		"Short", "Signed", "SizeOf", "Static", "StaticAssert", "StaticCast", "Struct", 
-		"Switch", "Template", "This", "ThreadLocal", "Throw", "True", "Try", "TypeDef", 
-		"TypeId", "TypeName", "Union", "Unsigned", "Using", "Virtual", "Void", 
-		"Volatile", "WChar", "While", "Override", "Final", "OpenBrace", "CloseBrace", 
-		"OpenBracket", "CloseBracket", "OpenParenthesis", "CloseParenthesis", 
-		"Semicolon", "Colon", "Ellipsis", "QuestionMark", "DoubleColon", "Period", 
-		"PeriodAsterisk", "Plus", "Minus", "Asterisk", "ForwardSlash", "Percent", 
-		"Caret", "Ampersand", "VerticalBar", "Tilde", "ExclamationMark", "Equal", 
-		"LessThan", "GreaterThan", "PlusEqual", "MinusEqual", "AsteriskEqual", 
-		"ForwardSlashEqual", "PercentEqual", "CaretEqual", "AmpersandEqual", "VerticalBarEqual", 
-		"DoubleLessThan", "DoubleGreaterThan", "DoubleLessThanEqual", "DoubleGreaterThanEqual", 
-		"DoubleEqual", "ExclamationMarkEqual", "LessThanEqual", "GreaterThanEqual", 
-		"DoubleAmpersand", "DoubleVerticalBar", "DoublePlus", "DoubleMinus", "Comma", 
-		"ArrowAsterisk", "Arrow", "Zero", "IntegerLiteral", "FloatingPointLiteral", 
-		"CharacterLiteral", "StringLiteral", "UserDefinedIntegerLiteral", "UserDefinedFloatingPointLiteral", 
-		"UserDefinedCharacterLiteral", "UserDefinedStringLiteral", "Identifier"
+		null, "BlockComment", "LineComment", "Whitespace", "Preprocessor", "Newline", 
+		"AlignAs", "AlignOf", "Asm", "Auto", "Bool", "Break", "Case", "Catch", 
+		"Char", "Char8", "Char16", "Char32", "Class", "Const", "ConstExpr", "ConstCast", 
+		"Continue", "DeclType", "Default", "Delete", "Do", "Double", "DynamicCast", 
+		"Else", "Enum", "Explicit", "Export", "Extern", "False", "Float", "For", 
+		"Friend", "GoTo", "If", "Inline", "Int", "Long", "Mutable", "Namespace", 
+		"New", "NoExcept", "Nullptr", "Operator", "Private", "Protected", "Public", 
+		"Register", "ReinterpretCast", "Return", "Short", "Signed", "SizeOf", 
+		"Static", "StaticAssert", "StaticCast", "Struct", "Switch", "Template", 
+		"This", "ThreadLocal", "Throw", "True", "Try", "TypeDef", "TypeId", "TypeName", 
+		"Union", "Unsigned", "Using", "Virtual", "Void", "Volatile", "WChar", 
+		"While", "Override", "Final", "OpenBrace", "CloseBrace", "OpenBracket", 
+		"CloseBracket", "OpenParenthesis", "CloseParenthesis", "Semicolon", "Colon", 
+		"Ellipsis", "QuestionMark", "DoubleColon", "Period", "PeriodAsterisk", 
+		"Plus", "Minus", "Asterisk", "ForwardSlash", "Percent", "Caret", "Ampersand", 
+		"VerticalBar", "Tilde", "ExclamationMark", "Equal", "LessThan", "GreaterThan", 
+		"PlusEqual", "MinusEqual", "AsteriskEqual", "ForwardSlashEqual", "PercentEqual", 
+		"CaretEqual", "AmpersandEqual", "VerticalBarEqual", "DoubleLessThan", 
+		"DoubleLessThanEqual", "DoubleGreaterThanEqual", "DoubleEqual", "ExclamationMarkEqual", 
+		"LessThanEqual", "GreaterThanEqual", "DoubleAmpersand", "DoubleVerticalBar", 
+		"DoublePlus", "DoubleMinus", "Comma", "ArrowAsterisk", "Arrow", "Zero", 
+		"IntegerLiteral", "FloatingPointLiteral", "CharacterLiteral", "StringLiteral", 
+		"UserDefinedIntegerLiteral", "UserDefinedFloatingPointLiteral", "UserDefinedCharacterLiteral", 
+		"UserDefinedStringLiteral", "Identifier"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -367,7 +370,7 @@ public class CppParserLiterals extends Parser {
 			{
 			setState(25);
 			_la = _input.LA(1);
-			if ( !(((((_la - 134)) & ~0x3f) == 0 && ((1L << (_la - 134)) & ((1L << (UserDefinedIntegerLiteral - 134)) | (1L << (UserDefinedFloatingPointLiteral - 134)) | (1L << (UserDefinedCharacterLiteral - 134)) | (1L << (UserDefinedStringLiteral - 134)))) != 0)) ) {
+			if ( !(((((_la - 135)) & ~0x3f) == 0 && ((1L << (_la - 135)) & ((1L << (UserDefinedIntegerLiteral - 135)) | (1L << (UserDefinedFloatingPointLiteral - 135)) | (1L << (UserDefinedCharacterLiteral - 135)) | (1L << (UserDefinedStringLiteral - 135)))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -389,15 +392,15 @@ public class CppParserLiterals extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\u008c\36\4\2\t\2"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\u008d\36\4\2\t\2"+
 		"\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\3\2\3\2\3\2\3\2\3\2\3\2\3\2\5\2\24\n"+
-		"\2\3\3\3\3\3\4\3\4\3\5\3\5\3\6\3\6\3\6\2\2\7\2\4\6\b\n\2\5\3\2\u0083\u0084"+
-		"\4\2\"\"CC\3\2\u0088\u008b\2\36\2\23\3\2\2\2\4\25\3\2\2\2\6\27\3\2\2\2"+
-		"\b\31\3\2\2\2\n\33\3\2\2\2\f\24\5\4\3\2\r\24\7\u0085\2\2\16\24\7\u0086"+
-		"\2\2\17\24\7\u0087\2\2\20\24\5\6\4\2\21\24\5\b\5\2\22\24\5\n\6\2\23\f"+
-		"\3\2\2\2\23\r\3\2\2\2\23\16\3\2\2\2\23\17\3\2\2\2\23\20\3\2\2\2\23\21"+
-		"\3\2\2\2\23\22\3\2\2\2\24\3\3\2\2\2\25\26\t\2\2\2\26\5\3\2\2\2\27\30\t"+
-		"\3\2\2\30\7\3\2\2\2\31\32\7/\2\2\32\t\3\2\2\2\33\34\t\4\2\2\34\13\3\2"+
+		"\2\3\3\3\3\3\4\3\4\3\5\3\5\3\6\3\6\3\6\2\2\7\2\4\6\b\n\2\5\3\2\u0084\u0085"+
+		"\4\2$$EE\3\2\u0089\u008c\2\36\2\23\3\2\2\2\4\25\3\2\2\2\6\27\3\2\2\2\b"+
+		"\31\3\2\2\2\n\33\3\2\2\2\f\24\5\4\3\2\r\24\7\u0086\2\2\16\24\7\u0087\2"+
+		"\2\17\24\7\u0088\2\2\20\24\5\6\4\2\21\24\5\b\5\2\22\24\5\n\6\2\23\f\3"+
+		"\2\2\2\23\r\3\2\2\2\23\16\3\2\2\2\23\17\3\2\2\2\23\20\3\2\2\2\23\21\3"+
+		"\2\2\2\23\22\3\2\2\2\24\3\3\2\2\2\25\26\t\2\2\2\26\5\3\2\2\2\27\30\t\3"+
+		"\2\2\30\7\3\2\2\2\31\32\7\61\2\2\32\t\3\2\2\2\33\34\t\4\2\2\34\13\3\2"+
 		"\2\2\3\23";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());

@@ -1,13 +1,12 @@
 #pragma once
 #include "TestUtils.h"
-#include "SoupAssert.h"
 
-namespace Soup::Syntax::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
     class ParseThisExpressionTests
     {
     public:
-        // [Fact]
+        [[Fact]]
         void SingleThisExpression()
         {
             auto sourceCode = std::string("this");
@@ -20,7 +19,7 @@ namespace Soup::Syntax::UnitTests
         }
 
     private:
-        std::shared_ptr<const ThisExpression> ParseThisExpression(std::string& sourceCode)
+        std::shared_ptr<const ThisExpression> ParseThisExpression(const std::string& sourceCode)
         {
             auto uut = TestUtils::BuildParser(sourceCode);
             auto context = uut.Parser->primaryExpression();

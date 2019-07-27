@@ -11,8 +11,8 @@ namespace Soup::Syntax
     public:
         ASTCppParserVisitor(antlr4::BufferedTokenStream* tokenStream);
 
+        virtual antlrcpp::Any visitDoubleGreaterThan(CppParser::DoubleGreaterThanContext *ctx) override final;
         virtual antlrcpp::Any visitNamespaceName(CppParser::NamespaceNameContext *context) override final;
-        virtual antlrcpp::Any visitNamespaceAlias(CppParser::NamespaceAliasContext *context) override final;
         virtual antlrcpp::Any visitClassName(CppParser::ClassNameContext *context) override final;
         virtual antlrcpp::Any visitTemplateName(CppParser::TemplateNameContext *context) override final;
         virtual antlrcpp::Any visitTranslationUnit(CppParser::TranslationUnitContext *context) override final;
@@ -53,17 +53,8 @@ namespace Soup::Syntax
         virtual antlrcpp::Any visitDeleteExpression(CppParser::DeleteExpressionContext *context) override final;
         virtual antlrcpp::Any visitNoExceptionExpression(CppParser::NoExceptionExpressionContext *context) override final;
         virtual antlrcpp::Any visitCastExpression(CppParser::CastExpressionContext *context) override final;
-        virtual antlrcpp::Any visitPointerManipulationExpression(CppParser::PointerManipulationExpressionContext *context) override final;
-        virtual antlrcpp::Any visitMultiplicativeExpression(CppParser::MultiplicativeExpressionContext *context) override final;
-        virtual antlrcpp::Any visitAdditiveExpression(CppParser::AdditiveExpressionContext *context) override final;
-        virtual antlrcpp::Any visitShiftExpression(CppParser::ShiftExpressionContext *context) override final;
-        virtual antlrcpp::Any visitRelationalExpression(CppParser::RelationalExpressionContext *context) override final;
-        virtual antlrcpp::Any visitEqualityExpression(CppParser::EqualityExpressionContext *context) override final;
-        virtual antlrcpp::Any visitAndExpression(CppParser::AndExpressionContext *context) override final;
-        virtual antlrcpp::Any visitExclusiveOrExpression(CppParser::ExclusiveOrExpressionContext *context) override final;
-        virtual antlrcpp::Any visitInclusiveOrExpression(CppParser::InclusiveOrExpressionContext *context) override final;
-        virtual antlrcpp::Any visitLogicalAndExpression(CppParser::LogicalAndExpressionContext *context) override final;
-        virtual antlrcpp::Any visitLogicalOrExpression(CppParser::LogicalOrExpressionContext *context) override final;
+        virtual antlrcpp::Any visitBinaryExpression(CppParser::BinaryExpressionContext *context) override final;
+        virtual antlrcpp::Any visitBinaryOperator(CppParser::BinaryOperatorContext *context) override final;
         virtual antlrcpp::Any visitConditionalExpression(CppParser::ConditionalExpressionContext *context) override final;
         virtual antlrcpp::Any visitThrowExpression(CppParser::ThrowExpressionContext *context) override final;
         virtual antlrcpp::Any visitAssignmentExpression(CppParser::AssignmentExpressionContext *context) override final;
@@ -111,7 +102,7 @@ namespace Soup::Syntax
         virtual antlrcpp::Any visitEnumSpecifier(CppParser::EnumSpecifierContext *context) override final;
         virtual antlrcpp::Any visitEnumHead(CppParser::EnumHeadContext *context) override final;
         virtual antlrcpp::Any visitEnumHeadName(CppParser::EnumHeadNameContext *context) override final;
-        virtual antlrcpp::Any visitOpaqueEnumDeclaration(CppParser::OpaqueEnumDeclarationContext *context) override final;
+        virtual antlrcpp::Any visitOpaqueEnumSpecifier(CppParser::OpaqueEnumSpecifierContext *context) override final;
         virtual antlrcpp::Any visitEnumKey(CppParser::EnumKeyContext *context) override final;
         virtual antlrcpp::Any visitEnumBase(CppParser::EnumBaseContext *context) override final;
         virtual antlrcpp::Any visitEnumeratorList(CppParser::EnumeratorListContext *context) override final;
@@ -143,6 +134,7 @@ namespace Soup::Syntax
         virtual antlrcpp::Any visitAttributeArgumentClause(CppParser::AttributeArgumentClauseContext *context) override final;
         virtual antlrcpp::Any visitBalancedTokenSequence(CppParser::BalancedTokenSequenceContext *context) override final;
         virtual antlrcpp::Any visitBalancedToken(CppParser::BalancedTokenContext *context) override final;
+        virtual antlrcpp::Any visitNonBalancedToken(CppParser::NonBalancedTokenContext *context) override final;
         virtual antlrcpp::Any visitInitializerDeclaratorList(CppParser::InitializerDeclaratorListContext *context) override final;
         virtual antlrcpp::Any visitInitializerDeclarator(CppParser::InitializerDeclaratorContext *context) override final;
         virtual antlrcpp::Any visitDeclarator(CppParser::DeclaratorContext *context) override final;
@@ -231,18 +223,16 @@ namespace Soup::Syntax
         virtual antlrcpp::Any visitPointerLiteral(CppParser::PointerLiteralContext *context) override final;
         virtual antlrcpp::Any visitUserDefinedLiteral(CppParser::UserDefinedLiteralContext *context) override final;
 
+        virtual antlrcpp::Any visitTerminal(antlr4::tree::TerminalNode* node) override final;
+
     private:
+        SyntaxTokenType GetTokenType(antlr4::Token& token);
         size_t GetFirstNewlinePosition(const std::vector<antlr4::Token*>& tokens);
         std::vector<SyntaxTrivia> GetLeadingTrivia(size_t index);
         std::vector<SyntaxTrivia> GetTrailingTrivia(size_t index);
-        std::shared_ptr<const SyntaxToken> CreateToken(
+        std::shared_ptr<const InnerTree::SyntaxToken> CreateToken(
             SyntaxTokenType type,
             antlr4::tree::TerminalNode* terminalNode);
-        std::shared_ptr<const SimpleIdentifierExpression> GetNextSimpleName(
-            CppParser::NestedNameSpecifierSequenceContext* context);
-        std::shared_ptr<const QualifiedIdentifierExpression> visitNextRightQualifiedNestedNames(
-            std::shared_ptr<const QualifiedIdentifierExpression> leftQualifiedName,
-            CppParser::NestedNameSpecifierSequenceContext* context);
 
     private:
         antlr4::BufferedTokenStream* m_tokenStream;

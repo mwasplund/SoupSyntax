@@ -1,13 +1,12 @@
 #pragma once
 #include "TestUtils.h"
-#include "SoupAssert.h"
 
-namespace Soup::Syntax::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
     class ParseReturnStatementTests
     {
     public:
-        // [Fact]
+        [[Fact]]
         void ReturnNoExpression()
         {
             auto sourceCode = std::string("return;");
@@ -21,7 +20,7 @@ namespace Soup::Syntax::UnitTests
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void ReturnLiteralExpression()
         {
             auto sourceCode = std::string("return 1;");
@@ -35,7 +34,7 @@ namespace Soup::Syntax::UnitTests
                         SyntaxTokenType::IntegerLiteral,
                         "1",
                         {
-                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                            SyntaxFactory::CreateTrivia(" ")
                         },
                         {})),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
@@ -43,29 +42,30 @@ namespace Soup::Syntax::UnitTests
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
-        void ReturnSimpleIdentifierExpression()
+        [[Fact]]
+        void ReturnIdentifierExpression()
         {
             auto sourceCode = std::string("return a;");
             auto actual = ParseReturnStatement(sourceCode);
 
             auto expected = SyntaxFactory::CreateReturnStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Return),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(
-                        SyntaxTokenType::Identifier,
-                        "a",
-                        {
-                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
-                        },
-                        {})),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(
+                            SyntaxTokenType::Identifier,
+                            "a",
+                            {
+                                SyntaxFactory::CreateTrivia(" ")
+                            },
+                            {}))),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
     private:
-        std::shared_ptr<const ReturnStatement> ParseReturnStatement(std::string& sourceCode)
+        std::shared_ptr<const ReturnStatement> ParseReturnStatement(const std::string& sourceCode)
         {
             auto uut = TestUtils::BuildParser(sourceCode);
             auto context = uut.Parser->jumpStatement();

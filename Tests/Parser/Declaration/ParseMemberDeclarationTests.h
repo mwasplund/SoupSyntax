@@ -1,147 +1,156 @@
 #pragma once
 #include "TestUtils.h"
-#include "SoupAssert.h"
 
-namespace Soup::Syntax::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
     class ParseMemberDeclarationTests
     {
     public:
-        // [Fact]
+        [[Fact]]
         void SingleIntVariable()
         {
             auto sourceCode = std::string("int i;");
             auto actual = ParseMemberDeclaration(sourceCode);
 
             auto expected = SyntaxFactory::CreateMemberDeclaration(
-                SyntaxFactory::CreateDeclarationSpecifier(
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
+                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
               SyntaxFactory::CreateMemberDeclaratorList(
-                    std::make_shared<const SyntaxSeparatorList<MemberDeclarator>>(
-                        std::vector<std::shared_ptr<const MemberDeclarator>>(
+                    SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
                         {
                             SyntaxFactory::CreateMemberDeclarator(
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
-                                    SyntaxFactory::CreateUniqueToken(
-                                        SyntaxTokenType::Identifier,
-                                        "i",
-                                        {
-                                            SyntaxFactory::CreateTrivia(" ", TextSpan()),
-                                        },
-                                        {})),
+                                SyntaxFactory::CreateIdentifierExpression(
+                                    SyntaxFactory::CreateSimpleIdentifier(
+                                        SyntaxFactory::CreateUniqueToken(
+                                            SyntaxTokenType::Identifier,
+                                            "i",
+                                            {
+                                                SyntaxFactory::CreateTrivia(" "),
+                                            },
+                                            {}))),
                                 nullptr),
-                        }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>())),
+                        },
+                        {})),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void SingleClassVariable()
         {
             auto sourceCode = std::string("MyClass i;");
             auto actual = ParseMemberDeclaration(sourceCode);
 
             auto expected = SyntaxFactory::CreateMemberDeclaration(
-                SyntaxFactory::CreateDeclarationSpecifier(
-                    SyntaxFactory::CreateSimpleIdentifierExpression(
-                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass"))),
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
+                    SyntaxFactory::CreateIdentifierType(
+                        SyntaxFactory::CreateSimpleIdentifier(
+                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "MyClass")))),
                 SyntaxFactory::CreateMemberDeclaratorList(
-                    std::make_shared<const SyntaxSeparatorList<MemberDeclarator>>(
-                        std::vector<std::shared_ptr<const MemberDeclarator>>(
+                    SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
                         {
                             SyntaxFactory::CreateMemberDeclarator(
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
-                                    SyntaxFactory::CreateUniqueToken(
-                                        SyntaxTokenType::Identifier,
-                                        "i",
-                                        {
-                                            SyntaxFactory::CreateTrivia(" ", TextSpan()),
-                                        },
-                                        {})),
+                                SyntaxFactory::CreateIdentifierExpression(
+                                    SyntaxFactory::CreateSimpleIdentifier(
+                                        SyntaxFactory::CreateUniqueToken(
+                                            SyntaxTokenType::Identifier,
+                                            "i",
+                                            {
+                                                SyntaxFactory::CreateTrivia(" "),
+                                            },
+                                            {}))),
                                 nullptr),
-                        }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>())),
+                        },
+                        {})),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void SingleTemplateClassVariable()
         {
             auto sourceCode = std::string("std::vector<ClassA> value1;");
             auto actual = ParseMemberDeclaration(sourceCode);
 
             auto expected = SyntaxFactory::CreateMemberDeclaration(
-                SyntaxFactory::CreateDeclarationSpecifier(
-                    SyntaxFactory::CreateQualifiedIdentifierExpression(
-                        SyntaxFactory::CreateSimpleIdentifierExpression(
-                            SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "std")),
-                        SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
-                        SyntaxFactory::CreateSimpleTemplateIdentifierExpression(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
+                    SyntaxFactory::CreateIdentifierType(
+                    SyntaxFactory::CreateNestedNameSpecifier(
+                        SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
+                            {
+                                SyntaxFactory::CreateSimpleIdentifier(
+                                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "std")),
+                            },
+                            {
+                                SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
+                            }
+                        )),
+                        SyntaxFactory::CreateSimpleTemplateIdentifier(
                             SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "vector"),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::LessThan),
-                            std::make_shared<const SyntaxSeparatorList<Expression>>(
-                                std::vector<std::shared_ptr<const Expression>>({
-                                    SyntaxFactory::CreateSimpleIdentifierExpression(
-                                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "ClassA")),
-                                }),
-                                std::vector<std::shared_ptr<const SyntaxToken>>({})),
+                            SyntaxFactory::CreateSyntaxSeparatorList<SyntaxNode>(
+                                {
+                                    SyntaxFactory::CreateTypeSpecifierSequence(
+                                        SyntaxFactory::CreateIdentifierType(
+                                            SyntaxFactory::CreateSimpleIdentifier(
+                                                SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "ClassA")))),
+                                },
+                                {}),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::GreaterThan)))),
                 SyntaxFactory::CreateMemberDeclaratorList(
-                    std::make_shared<const SyntaxSeparatorList<MemberDeclarator>>(
-                        std::vector<std::shared_ptr<const MemberDeclarator>>(
+                    SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
                         {
                             SyntaxFactory::CreateMemberDeclarator(
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
-                                    SyntaxFactory::CreateUniqueToken(
-                                        SyntaxTokenType::Identifier,
-                                        "value1",
-                                        {
-                                            SyntaxFactory::CreateTrivia(" ", TextSpan()),
-                                        },
-                                        {})),
+                                SyntaxFactory::CreateIdentifierExpression(
+                                    SyntaxFactory::CreateSimpleIdentifier(
+                                        SyntaxFactory::CreateUniqueToken(
+                                            SyntaxTokenType::Identifier,
+                                            "value1",
+                                            {
+                                                SyntaxFactory::CreateTrivia(" "),
+                                            },
+                                            {}))),
                                 nullptr),
-                        }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>())),
+                        },
+                        {})),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void SingleIntVariableWithInitializer()
         {
             auto sourceCode = std::string("int i = 0;");
             auto actual = ParseMemberDeclaration(sourceCode);
 
             auto expected = SyntaxFactory::CreateMemberDeclaration(
-                SyntaxFactory::CreateDeclarationSpecifier(
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
+                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                 SyntaxFactory::CreateMemberDeclaratorList(
-                    std::make_shared<const SyntaxSeparatorList<MemberDeclarator>>(
-                        std::vector<std::shared_ptr<const MemberDeclarator>>(
+                    SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
                         {
                             SyntaxFactory::CreateMemberDeclarator(
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
-                                    SyntaxFactory::CreateUniqueToken(
-                                        SyntaxTokenType::Identifier,
-                                        "i",
-                                        {
-                                            SyntaxFactory::CreateTrivia(" ", TextSpan()),
-                                        },
-                                        {})),
+                                SyntaxFactory::CreateIdentifierExpression(
+                                    SyntaxFactory::CreateSimpleIdentifier(
+                                        SyntaxFactory::CreateUniqueToken(
+                                            SyntaxTokenType::Identifier,
+                                            "i",
+                                            {
+                                                SyntaxFactory::CreateTrivia(" "),
+                                            },
+                                            {}))),
                                 SyntaxFactory::CreateValueEqualInitializer(
                                     SyntaxFactory::CreateKeywordToken(
                                         SyntaxTokenType::Equal,
                                         {
-                                            SyntaxFactory::CreateTrivia(" ", TextSpan()),
+                                            SyntaxFactory::CreateTrivia(" "),
                                         },
                                         {}),
                                     SyntaxFactory::CreateLiteralExpression(
@@ -150,89 +159,90 @@ namespace Soup::Syntax::UnitTests
                                             SyntaxTokenType::IntegerLiteral,
                                             "0",
                                             {
-                                                SyntaxFactory::CreateTrivia(" ", TextSpan()),
+                                                SyntaxFactory::CreateTrivia(" "),
                                             },
                                             {})))),
-                        }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>())),
+                        },
+                        {})),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void DoubleIntVariable()
         {
             auto sourceCode = std::string("int i, j;");
             auto actual = ParseMemberDeclaration(sourceCode);
 
             auto expected = SyntaxFactory::CreateMemberDeclaration(
-                SyntaxFactory::CreateDeclarationSpecifier(
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
+                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                 SyntaxFactory::CreateMemberDeclaratorList(
-                    std::make_shared<const SyntaxSeparatorList<MemberDeclarator>>(
-                        std::vector<std::shared_ptr<const MemberDeclarator>>(
+                    SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
                         {
                             SyntaxFactory::CreateMemberDeclarator(
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
-                                    SyntaxFactory::CreateUniqueToken(
-                                        SyntaxTokenType::Identifier,
-                                        "i",
-                                        {
-                                            SyntaxFactory::CreateTrivia(" ", TextSpan()),
-                                        },
-                                        {})),
+                                SyntaxFactory::CreateIdentifierExpression(
+                                    SyntaxFactory::CreateSimpleIdentifier(
+                                        SyntaxFactory::CreateUniqueToken(
+                                            SyntaxTokenType::Identifier,
+                                            "i",
+                                            {
+                                                SyntaxFactory::CreateTrivia(" "),
+                                            },
+                                            {}))),
                                 nullptr),
                             SyntaxFactory::CreateMemberDeclarator(
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
-                                    SyntaxFactory::CreateUniqueToken(
-                                        SyntaxTokenType::Identifier,
-                                        "j",
-                                        {
-                                            SyntaxFactory::CreateTrivia(" ", TextSpan()),
-                                        },
-                                        {})),
+                                SyntaxFactory::CreateIdentifierExpression(
+                                    SyntaxFactory::CreateSimpleIdentifier(
+                                        SyntaxFactory::CreateUniqueToken(
+                                            SyntaxTokenType::Identifier,
+                                            "j",
+                                            {
+                                                SyntaxFactory::CreateTrivia(" "),
+                                            },
+                                            {}))),
                                 nullptr),
-                        }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>({
+                        },
+                        {
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma),
-                        }))),
+                        })),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void DoubleIntVariableSingleWithInitializer()
         {
             auto sourceCode = std::string("int i = 0, j;");
             auto actual = ParseMemberDeclaration(sourceCode);
 
             auto expected = SyntaxFactory::CreateMemberDeclaration(
-                SyntaxFactory::CreateDeclarationSpecifier(
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
+                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                 SyntaxFactory::CreateMemberDeclaratorList(
-                    std::make_shared<const SyntaxSeparatorList<MemberDeclarator>>(
-                        std::vector<std::shared_ptr<const MemberDeclarator>>(
+                    SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
                         {
                             SyntaxFactory::CreateMemberDeclarator(
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
-                                    SyntaxFactory::CreateUniqueToken(
-                                        SyntaxTokenType::Identifier,
-                                        "i",
-                                        {
-                                            SyntaxFactory::CreateTrivia(" ", TextSpan()),
-                                        },
-                                        {})),
+                                SyntaxFactory::CreateIdentifierExpression(
+                                    SyntaxFactory::CreateSimpleIdentifier(
+                                        SyntaxFactory::CreateUniqueToken(
+                                            SyntaxTokenType::Identifier,
+                                            "i",
+                                            {
+                                                SyntaxFactory::CreateTrivia(" "),
+                                            },
+                                            {}))),
                                 SyntaxFactory::CreateValueEqualInitializer(
                                     SyntaxFactory::CreateKeywordToken(
                                         SyntaxTokenType::Equal,
                                         {
-                                            SyntaxFactory::CreateTrivia(" ", TextSpan()),
+                                            SyntaxFactory::CreateTrivia(" "),
                                         },
                                         {}),
                                     SyntaxFactory::CreateLiteralExpression(
@@ -241,57 +251,58 @@ namespace Soup::Syntax::UnitTests
                                             SyntaxTokenType::IntegerLiteral,
                                             "0",
                                             {
-                                                SyntaxFactory::CreateTrivia(" ", TextSpan()),
+                                                SyntaxFactory::CreateTrivia(" "),
                                             },
                                             {})))),
                             SyntaxFactory::CreateMemberDeclarator(
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
-                                    SyntaxFactory::CreateUniqueToken(
-                                        SyntaxTokenType::Identifier,
-                                        "j",
-                                        {
-                                            SyntaxFactory::CreateTrivia(" ", TextSpan()),
-                                        },
-                                        {})),
+                                SyntaxFactory::CreateIdentifierExpression(
+                                    SyntaxFactory::CreateSimpleIdentifier(
+                                        SyntaxFactory::CreateUniqueToken(
+                                            SyntaxTokenType::Identifier,
+                                            "j",
+                                            {
+                                                SyntaxFactory::CreateTrivia(" "),
+                                            },
+                                            {}))),
                                 nullptr),
-                        }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>({
+                        },
+                        {
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma),
-                        }))),
+                        })),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void DoubleIntVariableBothWithInitializer()
         {
             auto sourceCode = std::string("int i = 0, j = 1;");
             auto actual = ParseMemberDeclaration(sourceCode);
 
             auto expected = SyntaxFactory::CreateMemberDeclaration(
-                SyntaxFactory::CreateDeclarationSpecifier(
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
+                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
                 SyntaxFactory::CreateMemberDeclaratorList(
-                    std::make_shared<const SyntaxSeparatorList<MemberDeclarator>>(
-                        std::vector<std::shared_ptr<const MemberDeclarator>>(
+                    SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
                         {
                             SyntaxFactory::CreateMemberDeclarator(
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
-                                    SyntaxFactory::CreateUniqueToken(
-                                        SyntaxTokenType::Identifier,
-                                        "i",
-                                        {
-                                            SyntaxFactory::CreateTrivia(" ", TextSpan()),
-                                        },
-                                        {})),
+                                SyntaxFactory::CreateIdentifierExpression(
+                                    SyntaxFactory::CreateSimpleIdentifier(
+                                        SyntaxFactory::CreateUniqueToken(
+                                            SyntaxTokenType::Identifier,
+                                            "i",
+                                            {
+                                                SyntaxFactory::CreateTrivia(" "),
+                                            },
+                                            {}))),
                                 SyntaxFactory::CreateValueEqualInitializer(
                                     SyntaxFactory::CreateKeywordToken(
                                         SyntaxTokenType::Equal,
                                         {
-                                            SyntaxFactory::CreateTrivia(" ", TextSpan()),
+                                            SyntaxFactory::CreateTrivia(" "),
                                         },
                                         {}),
                                     SyntaxFactory::CreateLiteralExpression(
@@ -300,23 +311,24 @@ namespace Soup::Syntax::UnitTests
                                             SyntaxTokenType::IntegerLiteral,
                                             "0",
                                             {
-                                                SyntaxFactory::CreateTrivia(" ", TextSpan()),
+                                                SyntaxFactory::CreateTrivia(" "),
                                             },
                                             {})))),
                             SyntaxFactory::CreateMemberDeclarator(
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
-                                    SyntaxFactory::CreateUniqueToken(
-                                        SyntaxTokenType::Identifier,
-                                        "j",
-                                        {
-                                            SyntaxFactory::CreateTrivia(" ", TextSpan()),
-                                        },
-                                        {})),
+                                SyntaxFactory::CreateIdentifierExpression(
+                                    SyntaxFactory::CreateSimpleIdentifier(
+                                        SyntaxFactory::CreateUniqueToken(
+                                            SyntaxTokenType::Identifier,
+                                            "j",
+                                            {
+                                                SyntaxFactory::CreateTrivia(" "),
+                                            },
+                                            {}))),
                                 SyntaxFactory::CreateValueEqualInitializer(
                                     SyntaxFactory::CreateKeywordToken(
                                         SyntaxTokenType::Equal,
                                         {
-                                            SyntaxFactory::CreateTrivia(" ", TextSpan()),
+                                            SyntaxFactory::CreateTrivia(" "),
                                         },
                                         {}),
                                     SyntaxFactory::CreateLiteralExpression(
@@ -325,68 +337,70 @@ namespace Soup::Syntax::UnitTests
                                             SyntaxTokenType::IntegerLiteral,
                                             "1",
                                             {
-                                                SyntaxFactory::CreateTrivia(" ", TextSpan()),
+                                                SyntaxFactory::CreateTrivia(" "),
                                             },
                                             {})))),
-                        }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>({
+                        },
+                        {
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Comma),
-                        }))),
+                        })),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void SingleIntLeadingAndTrailingModifierVariable()
         {
             auto sourceCode = std::string("static int constexpr i;");
             auto actual = ParseMemberDeclaration(sourceCode);
 
             auto expected = SyntaxFactory::CreateMemberDeclaration(
-                SyntaxFactory::CreateDeclarationSpecifier(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
+                    SyntaxFactory::CreateSyntaxList<SyntaxToken>(
                     {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Static),
-                    },
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                    }),
+                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Int,
                         SyntaxFactory::CreateKeywordToken(
                             SyntaxTokenType::Int,
                             {
-                                SyntaxFactory::CreateTrivia(" ", TextSpan()),
+                                SyntaxFactory::CreateTrivia(" "),
                             },
                             {})),
+                    SyntaxFactory::CreateSyntaxList<SyntaxToken>(
                     {
                         SyntaxFactory::CreateKeywordToken(
                             SyntaxTokenType::ConstExpr,
                             {
-                                SyntaxFactory::CreateTrivia(" ", TextSpan()),
+                                SyntaxFactory::CreateTrivia(" "),
                             },
                             {}),
-                    }),
+                    })),
                 SyntaxFactory::CreateMemberDeclaratorList(
-                    std::make_shared<const SyntaxSeparatorList<MemberDeclarator>>(
-                        std::vector<std::shared_ptr<const MemberDeclarator>>(
+                    SyntaxFactory::CreateSyntaxSeparatorList<MemberDeclarator>(
                         {
                             SyntaxFactory::CreateMemberDeclarator(
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
-                                    SyntaxFactory::CreateUniqueToken(
-                                        SyntaxTokenType::Identifier,
-                                        "i",
-                                        {
-                                            SyntaxFactory::CreateTrivia(" ", TextSpan()),
-                                        },
-                                        {})),
+                                SyntaxFactory::CreateIdentifierExpression(
+                                    SyntaxFactory::CreateSimpleIdentifier(
+                                        SyntaxFactory::CreateUniqueToken(
+                                            SyntaxTokenType::Identifier,
+                                            "i",
+                                            {
+                                                SyntaxFactory::CreateTrivia(" "),
+                                            },
+                                            {}))),
                                 nullptr),
-                        }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>())),
+                        },
+                        {})),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon));
 
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
     private:
-        std::shared_ptr<const SyntaxNode> ParseMemberDeclaration(std::string& sourceCode)
+        std::shared_ptr<const SyntaxNode> ParseMemberDeclaration(const std::string& sourceCode)
         {
             auto uut = TestUtils::BuildParser(sourceCode);
             auto context = uut.Parser->memberDeclaration();

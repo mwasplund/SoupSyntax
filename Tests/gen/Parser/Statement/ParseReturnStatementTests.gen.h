@@ -1,25 +1,14 @@
 #pragma once
-#include "ParseReturnStatementTests.h"
-#include "../../RunTest.h"
+#include "/Parser/Statement/ParseReturnStatementTests.h"
 
-TestState RunParseReturnStatementTests()
-{
-    std::string className = "ParseReturnStatementTests";
-    auto testClass = std::make_unique<Soup::Syntax::UnitTests::ParseReturnStatementTests>();
+TestState RunParseReturnStatementTests() 
+ {
+    auto className = "ParseReturnStatementTests";
+    auto testClass = std::make_shared<Soup::Syntax::InnerTree::UnitTests::ParseReturnStatementTests>();
     TestState state = { 0, 0 };
-
-    state += RunTest(
-        className,
-        "ReturnNoExpression",
-        [&testClass]() { testClass->ReturnNoExpression(); });
-    state += RunTest(
-        className,
-        "ReturnLiteralExpression",
-        [&testClass]() { testClass->ReturnLiteralExpression(); });
-    state += RunTest(
-        className,
-        "ReturnSimpleIdentifierExpression",
-        [&testClass]() { testClass->ReturnSimpleIdentifierExpression(); });
+    state += SoupTest::RunTest(className, "ReturnNoExpression", [&testClass]() { testClass->ReturnNoExpression(); });
+    state += SoupTest::RunTest(className, "ReturnLiteralExpression", [&testClass]() { testClass->ReturnLiteralExpression(); });
+    state += SoupTest::RunTest(className, "ReturnIdentifierExpression", [&testClass]() { testClass->ReturnIdentifierExpression(); });
 
     return state;
 }

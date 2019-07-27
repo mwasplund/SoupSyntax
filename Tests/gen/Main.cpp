@@ -2,69 +2,142 @@ import std.core;
 import Antlr4.Runtime;
 import SoupSyntax;
 
-#include "AST\Attribute\AttributeTests.gen.h"
-#include "AST\Attribute\AttributeSpecifierTests.gen.h"
+#include "..\..\SoupTest\Assert\SoupAssert.h"
+#include "..\..\SoupTest\Assert\RunTest.h"
+using namespace SoupTest;
 
-#include "AST\Declaration\AccessorSpecifierTests.gen.h"
-#include "AST\Declaration\ClassDeclarationTests.gen.h"
-#include "AST\Declaration\ConstructorDefinitionTests.gen.h"
-#include "AST\Declaration\ConstructorInitializerTests.gen.h"
-#include "AST\Declaration\DeclarationSpecifierTests.gen.h"
-#include "AST\Declaration\DefaultFunctionBodyTests.gen.h"
-#include "AST\Declaration\DeleteFunctionBodyTests.gen.h"
-#include "AST\Declaration\EmptyDeclarationTests.gen.h"
-#include "AST\Declaration\EnumDeclarationTests.gen.h"
-#include "AST\Declaration\EnumeratorDefinitionTests.gen.h"
-#include "AST\Declaration\FunctionDefinitionTests.gen.h"
-#include "AST\Declaration\InitializerDeclaratorListTests.gen.h"
-#include "AST\Declaration\InitializerDeclaratorTests.gen.h"
-#include "AST\Declaration\InitializerListTests.gen.h"
-#include "AST\Declaration\MemberDeclarationTests.gen.h"
-#include "AST\Declaration\MemberDeclaratorListTests.gen.h"
-#include "AST\Declaration\MemberDeclaratorTests.gen.h"
-#include "AST\Declaration\MemberInitializerTests.gen.h"
-#include "AST\Declaration\NamespaceDefinitionTests.gen.h"
-#include "AST\Declaration\ParameterListTests.gen.h"
-#include "AST\Declaration\ParameterTests.gen.h"
-#include "AST\Declaration\PrimitiveDataTypeDeclarationTests.gen.h"
-#include "AST\Declaration\SimpleDeclarationTests.gen.h"
-#include "AST\Declaration\ValueEqualInitializerTests.gen.h"
+// Inner Tree
+#include "AST\InnerTree\Attribute\AttributeTests.gen.h"
+#include "AST\InnerTree\Attribute\AttributeArgumentClauseTests.gen.h"
+#include "AST\InnerTree\Attribute\AttributeSpecifierTests.gen.h"
 
-#include "AST\Expression\BinaryExpressionTests.gen.h"
-#include "AST\Expression\DestructorIdentifierExpressionTests.gen.h"
-#include "AST\Expression\InvocationExpressionTests.gen.h"
-#include "AST\Expression\LiteralExpressionTests.gen.h"
-#include "AST\Expression\QualifiedIdentifierExpressionTests.gen.h"
-#include "AST\Expression\SimpleIdentifierExpressionTests.gen.h"
-#include "AST\Expression\SimpleTemplateIdentifierExpressionTests.gen.h"
-#include "AST\Expression\SubscriptExpressionTests.gen.h"
-#include "AST\Expression\ThisExpressionTests.gen.h"
-#include "AST\Expression\UnaryExpressionTests.gen.h"
+#include "AST\InnerTree\Declaration\AccessorSpecifierTests.gen.h"
+#include "AST\InnerTree\Declaration\ClassSpecifierTests.gen.h"
+#include "AST\InnerTree\Declaration\ConstructorDefinitionTests.gen.h"
+#include "AST\InnerTree\Declaration\ConstructorInitializerTests.gen.h"
+#include "AST\InnerTree\Declaration\DeclarationSpecifierSequenceTests.gen.h"
+#include "AST\InnerTree\Declaration\DefaultFunctionBodyTests.gen.h"
+#include "AST\InnerTree\Declaration\DeleteFunctionBodyTests.gen.h"
+#include "AST\InnerTree\Declaration\EmptyDeclarationTests.gen.h"
+#include "AST\InnerTree\Declaration\EnumSpecifierTests.gen.h"
+#include "AST\InnerTree\Declaration\EnumeratorDefinitionTests.gen.h"
+#include "AST\InnerTree\Declaration\FunctionDefinitionTests.gen.h"
+#include "AST\InnerTree\Declaration\IdentifierTypeTests.gen.h"
+#include "AST\InnerTree\Declaration\InitializerDeclaratorListTests.gen.h"
+#include "AST\InnerTree\Declaration\InitializerDeclaratorTests.gen.h"
+#include "AST\InnerTree\Declaration\InitializerListTests.gen.h"
+#include "AST\InnerTree\Declaration\MemberDeclarationTests.gen.h"
+#include "AST\InnerTree\Declaration\MemberDeclaratorListTests.gen.h"
+#include "AST\InnerTree\Declaration\MemberDeclaratorTests.gen.h"
+#include "AST\InnerTree\Declaration\MemberInitializerTests.gen.h"
+#include "AST\InnerTree\Declaration\NamespaceDefinitionTests.gen.h"
+#include "AST\InnerTree\Declaration\ParameterListTests.gen.h"
+#include "AST\InnerTree\Declaration\ParameterTests.gen.h"
+#include "AST\InnerTree\Declaration\PointerDeclaratorTests.gen.h"
+#include "AST\InnerTree\Declaration\PointerOperatorTests.gen.h"
+#include "AST\InnerTree\Declaration\PrimitiveDataTypeSpecifierTests.gen.h"
+#include "AST\InnerTree\Declaration\SimpleDeclarationTests.gen.h"
+#include "AST\InnerTree\Declaration\TypeSpecifierSequenceTests.gen.h"
+#include "AST\InnerTree\Declaration\ValueEqualInitializerTests.gen.h"
 
-#include "AST\Statement\CompoundStatementTests.gen.h"
-#include "AST\Statement\DeclarationStatementTests.gen.h"
-#include "AST\Statement\ElseClauseTests.gen.h"
-#include "AST\Statement\EmptyStatementTests.gen.h"
-#include "AST\Statement\ExpressionStatementTests.gen.h"
-#include "AST\Statement\IfStatementTests.gen.h"
-#include "AST\Statement\ReturnStatementTests.gen.h"
+#include "AST\InnerTree\Expression\BinaryExpressionTests.gen.h"
+#include "AST\InnerTree\Expression\IdentifierExpressionTests.gen.h"
+#include "AST\InnerTree\Expression\InvocationExpressionTests.gen.h"
+#include "AST\InnerTree\Expression\LambdaCaptureClauseTests.gen.h"
+#include "AST\InnerTree\Expression\LambdaExpressionTests.gen.h"
+#include "AST\InnerTree\Expression\LiteralExpressionTests.gen.h"
+#include "AST\InnerTree\Expression\SubscriptExpressionTests.gen.h"
+#include "AST\InnerTree\Expression\ThisExpressionTests.gen.h"
+#include "AST\InnerTree\Expression\UnaryExpressionTests.gen.h"
 
-#include "AST\SyntaxNodeChildTests.gen.h"
-#include "AST\SyntaxTokenTests.gen.h"
-#include "AST\TranslationUnitTests.gen.h"
+#include "AST\InnerTree\Shared\DestructorIdentifierTests.gen.h"
+#include "AST\InnerTree\Shared\NestedNameSpecifierTests.gen.h"
+#include "AST\InnerTree\Shared\SimpleIdentifierTests.gen.h"
+#include "AST\InnerTree\Shared\SimpleTemplateIdentifierTests.gen.h"
+
+#include "AST\InnerTree\Statement\CompoundStatementTests.gen.h"
+#include "AST\InnerTree\Statement\DeclarationStatementTests.gen.h"
+#include "AST\InnerTree\Statement\ElseClauseTests.gen.h"
+#include "AST\InnerTree\Statement\EmptyStatementTests.gen.h"
+#include "AST\InnerTree\Statement\ExpressionStatementTests.gen.h"
+#include "AST\InnerTree\Statement\IfStatementTests.gen.h"
+#include "AST\InnerTree\Statement\ReturnStatementTests.gen.h"
+
+#include "AST\InnerTree\TranslationUnitTests.gen.h"
+#include "AST\InnerTree\SyntaxTokenTests.gen.h"
+
+// Outer Tree
+#include "AST\OuterTree\Attribute\AttributeTests.gen.h"
+#include "AST\OuterTree\Attribute\AttributeArgumentClauseTests.gen.h"
+#include "AST\OuterTree\Attribute\AttributeSpecifierTests.gen.h"
+
+#include "AST\OuterTree\Declaration\AccessorSpecifierTests.gen.h"
+#include "AST\OuterTree\Declaration\ClassSpecifierTests.gen.h"
+#include "AST\OuterTree\Declaration\ConstructorDefinitionTests.gen.h"
+#include "AST\OuterTree\Declaration\ConstructorInitializerTests.gen.h"
+#include "AST\OuterTree\Declaration\DeclarationSpecifierSequenceTests.gen.h"
+#include "AST\OuterTree\Declaration\DefaultFunctionBodyTests.gen.h"
+#include "AST\OuterTree\Declaration\DeleteFunctionBodyTests.gen.h"
+#include "AST\OuterTree\Declaration\EmptyDeclarationTests.gen.h"
+#include "AST\OuterTree\Declaration\EnumSpecifierTests.gen.h"
+#include "AST\OuterTree\Declaration\EnumeratorDefinitionTests.gen.h"
+#include "AST\OuterTree\Declaration\FunctionDefinitionTests.gen.h"
+#include "AST\OuterTree\Declaration\IdentifierTypeTests.gen.h"
+#include "AST\OuterTree\Declaration\InitializerDeclaratorListTests.gen.h"
+#include "AST\OuterTree\Declaration\InitializerDeclaratorTests.gen.h"
+#include "AST\OuterTree\Declaration\InitializerListTests.gen.h"
+#include "AST\OuterTree\Declaration\MemberDeclarationTests.gen.h"
+#include "AST\OuterTree\Declaration\MemberDeclaratorListTests.gen.h"
+#include "AST\OuterTree\Declaration\MemberDeclaratorTests.gen.h"
+#include "AST\OuterTree\Declaration\MemberInitializerTests.gen.h"
+#include "AST\OuterTree\Declaration\NamespaceDefinitionTests.gen.h"
+#include "AST\OuterTree\Declaration\ParameterListTests.gen.h"
+#include "AST\OuterTree\Declaration\ParameterTests.gen.h"
+#include "AST\OuterTree\Declaration\PointerDeclaratorTests.gen.h"
+#include "AST\OuterTree\Declaration\PointerOperatorTests.gen.h"
+#include "AST\OuterTree\Declaration\PrimitiveDataTypeSpecifierTests.gen.h"
+#include "AST\OuterTree\Declaration\SimpleDeclarationTests.gen.h"
+#include "AST\OuterTree\Declaration\TypeSpecifierSequenceTests.gen.h"
+#include "AST\OuterTree\Declaration\ValueEqualInitializerTests.gen.h"
+
+#include "AST\OuterTree\Expression\BinaryExpressionTests.gen.h"
+#include "AST\OuterTree\Expression\IdentifierExpressionTests.gen.h"
+#include "AST\OuterTree\Expression\InvocationExpressionTests.gen.h"
+#include "AST\OuterTree\Expression\LambdaCaptureClauseTests.gen.h"
+#include "AST\OuterTree\Expression\LambdaExpressionTests.gen.h"
+#include "AST\OuterTree\Expression\LiteralExpressionTests.gen.h"
+#include "AST\OuterTree\Expression\SubscriptExpressionTests.gen.h"
+#include "AST\OuterTree\Expression\ThisExpressionTests.gen.h"
+#include "AST\OuterTree\Expression\UnaryExpressionTests.gen.h"
+
+#include "AST\OuterTree\Shared\DestructorIdentifierTests.gen.h"
+#include "AST\OuterTree\Shared\NestedNameSpecifierTests.gen.h"
+#include "AST\OuterTree\Shared\SimpleIdentifierTests.gen.h"
+#include "AST\OuterTree\Shared\SimpleTemplateIdentifierTests.gen.h"
+
+#include "AST\OuterTree\Statement\CompoundStatementTests.gen.h"
+#include "AST\OuterTree\Statement\DeclarationStatementTests.gen.h"
+#include "AST\OuterTree\Statement\ElseClauseTests.gen.h"
+#include "AST\OuterTree\Statement\EmptyStatementTests.gen.h"
+#include "AST\OuterTree\Statement\ExpressionStatementTests.gen.h"
+#include "AST\OuterTree\Statement\IfStatementTests.gen.h"
+#include "AST\OuterTree\Statement\ReturnStatementTests.gen.h"
+
+#include "AST\OuterTree\TranslationUnitTests.gen.h"
+#include "AST\OuterTree\SyntaxNodeChildTests.gen.h"
+#include "AST\OuterTree\SyntaxTokenTests.gen.h"
 
 #include "Parser\LexerTests.gen.h"
 #include "Parser\ParserAttributesTests.gen.h"
 #include "Parser\ParserExpressionTests.gen.h"
 #include "Parser\ParseTranslationUnitTests.gen.h"
-#include "Parser\SyntaxNamespaceTests.gen.h"
 
 #include "Parser\Attribute\ParseAttributeSpecifierTests.gen.h"
 
 #include "Parser\Declaration\ParseAccessorSpecifierTests.gen.h"
-#include "Parser\Declaration\ParseClassDeclarationTests.gen.h"
+#include "Parser\Declaration\ParseClassSpecifierTests.gen.h"
 #include "Parser\Declaration\ParseConstructorDefinitionTests.gen.h"
-#include "Parser\Declaration\ParseEnumDeclarationTests.gen.h"
+#include "Parser\Declaration\ParseEnumSpecifierTests.gen.h"
 #include "Parser\Declaration\ParseFunctionDefinitionTests.gen.h"
 #include "Parser\Declaration\ParseMemberDeclarationTests.gen.h"
 #include "Parser\Declaration\ParseNamespaceDefinitionTests.gen.h"
@@ -73,6 +146,7 @@ import SoupSyntax;
 #include "Parser\Expression\ParseBinaryExpressionTests.gen.h"
 #include "Parser\Expression\ParseIdentifierExpressionTests.gen.h"
 #include "Parser\Expression\ParseInvocationExpressionTests.gen.h"
+#include "Parser\Expression\ParseLambdaExpressionTests.gen.h"
 #include "Parser\Expression\ParseLiteralExpressionTests.gen.h"
 #include "Parser\Expression\ParseSubscriptExpressionTests.gen.h"
 #include "Parser\Expression\ParseThisExpressionTests.gen.h"
@@ -92,69 +166,138 @@ int main()
 
     TestState state = { 0, 0 };
 
-    state += RunAttributeTests();
-    state += RunAttributeSpecifierTests();
+    // Inner Tree
+    state += RunInnerTreeAttributeTests();
+    state += RunInnerTreeAttributeArgumentClauseTests();
+    state += RunInnerTreeAttributeSpecifierTests();
 
-    state += RunAccessorSpecifierTests();
-    state += RunClassDeclarationTests();
-    state += RunConstructorDefinitionTests();
-    state += RunConstructorInitializerTests();
-    state += RunDeclarationSpecifierTests();
-    state += RunDefaultFunctionBodyTests();
-    state += RunDeleteFunctionBodyTests();
-    state += RunEmptyDeclarationTests();
-    state += RunEnumDeclarationTests();
-    state += RunEnumeratorDefinitionTests();
-    state += RunFunctionDefinitionTests();
-    state += RunInitializerDeclaratorListTests();
-    state += RunInitializerDeclaratorTests();
-    state += RunInitializerListTests();
-    state += RunMemberDeclarationTests();
-    state += RunMemberDeclaratorListTests();
-    state += RunMemberDeclaratorTests();
-    state += RunMemberInitializerTests();
-    state += RunNamespaceDefinitionTests();
-    state += RunParameterListTests();
-    state += RunParameterTests();
-    state += RunPrimitiveDataTypeDeclarationTests();
-    state += RunSimpleDeclarationTests();
-    state += RunValueEqualInitializerTests();
+    state += RunInnerTreeAccessorSpecifierTests();
+    state += RunInnerTreeClassSpecifierTests();
+    state += RunInnerTreeConstructorDefinitionTests();
+    state += RunInnerTreeConstructorInitializerTests();
+    state += RunInnerTreeDeclarationSpecifierSequenceTests();
+    state += RunInnerTreeDefaultFunctionBodyTests();
+    state += RunInnerTreeDeleteFunctionBodyTests();
+    state += RunInnerTreeEmptyDeclarationTests();
+    state += RunInnerTreeEnumSpecifierTests();
+    state += RunInnerTreeEnumeratorDefinitionTests();
+    state += RunInnerTreeFunctionDefinitionTests();
+    state += RunInnerTreeIdentifierTypeTests();
+    state += RunInnerTreeInitializerDeclaratorListTests();
+    state += RunInnerTreeInitializerDeclaratorTests();
+    state += RunInnerTreeInitializerListTests();
+    state += RunInnerTreeMemberDeclarationTests();
+    state += RunInnerTreeMemberDeclaratorListTests();
+    state += RunInnerTreeMemberDeclaratorTests();
+    state += RunInnerTreeMemberInitializerTests();
+    state += RunInnerTreeNamespaceDefinitionTests();
+    state += RunInnerTreeParameterListTests();
+    state += RunInnerTreeParameterTests();
+    state += RunInnerTreePointerDeclaratorTests();
+    state += RunInnerTreePointerOperatorTests();
+    state += RunInnerTreePrimitiveDataTypeSpecifierTests();
+    state += RunInnerTreeSimpleDeclarationTests();
+    state += RunInnerTreeTypeSpecifierSequenceTests();
+    state += RunInnerTreeValueEqualInitializerTests();
 
-    state += RunBinaryExpressionTests();
-    state += RunDestructorIdentifierExpressionTests();
-    state += RunInvocationExpressionTests();
-    state += RunLiteralExpressionTests();
-    state += RunQualifiedIdentifierExpressionTests();
-    state += RunSimpleIdentifierExpressionTests();
-    state += RunSimpleTemplateIdentifierExpressionTests();
-    state += RunSubscriptExpressionTests();
-    state += RunThisExpressionTests();
-    state += RunUnaryExpressionTests();
+    state += RunInnerTreeBinaryExpressionTests();
+    state += RunInnerTreeIdentifierExpressionTests();
+    state += RunInnerTreeInvocationExpressionTests();
+    state += RunInnerTreeLambdaCaptureClauseTests();
+    state += RunInnerTreeLambdaExpressionTests();
+    state += RunInnerTreeLiteralExpressionTests();
+    state += RunInnerTreeSubscriptExpressionTests();
+    state += RunInnerTreeThisExpressionTests();
+    state += RunInnerTreeUnaryExpressionTests();
 
-    state += RunCompoundStatementTests();
-    state += RunElseClauseTests();
-    state += RunEmptyStatementTests();
-    state += RunExpressionStatementTests();
-    state += RunIfStatementTests();
-    state += RunReturnStatementTests();
-    state += RunDeclarationStatementTests();
+    state += RunInnerTreeDestructorIdentifierTests();
+    state += RunInnerTreeNestedNameSpecifierTests();
+    state += RunInnerTreeSimpleIdentifierTests();
+    state += RunInnerTreeSimpleTemplateIdentifierTests();
 
-    state += RunSyntaxNodeChildTests();
-    state += RunSyntaxTokenTests();
-    state += RunTranslationUnitTests();
+    state += RunInnerTreeCompoundStatementTests();
+    state += RunInnerTreeElseClauseTests();
+    state += RunInnerTreeEmptyStatementTests();
+    state += RunInnerTreeExpressionStatementTests();
+    state += RunInnerTreeIfStatementTests();
+    state += RunInnerTreeReturnStatementTests();
+    state += RunInnerTreeDeclarationStatementTests();
+
+    state += RunInnerTreeSyntaxTokenTests();
+    state += RunInnerTreeTranslationUnitTests();
+
+    // Outer Tree
+    state += RunOuterTreeAttributeTests();
+    state += RunOuterTreeAttributeArgumentClauseTests();
+    state += RunOuterTreeAttributeSpecifierTests();
+
+    state += RunOuterTreeAccessorSpecifierTests();
+    state += RunOuterTreeClassSpecifierTests();
+    state += RunOuterTreeConstructorDefinitionTests();
+    state += RunOuterTreeConstructorInitializerTests();
+    state += RunOuterTreeDeclarationSpecifierSequenceTests();
+    state += RunOuterTreeDefaultFunctionBodyTests();
+    state += RunOuterTreeDeleteFunctionBodyTests();
+    state += RunOuterTreeEmptyDeclarationTests();
+    state += RunOuterTreeEnumSpecifierTests();
+    state += RunOuterTreeEnumeratorDefinitionTests();
+    state += RunOuterTreeFunctionDefinitionTests();
+    state += RunOuterTreeIdentifierTypeTests();
+    state += RunOuterTreeInitializerDeclaratorListTests();
+    state += RunOuterTreeInitializerDeclaratorTests();
+    state += RunOuterTreeInitializerListTests();
+    state += RunOuterTreeMemberDeclarationTests();
+    state += RunOuterTreeMemberDeclaratorListTests();
+    state += RunOuterTreeMemberDeclaratorTests();
+    state += RunOuterTreeMemberInitializerTests();
+    state += RunOuterTreeNamespaceDefinitionTests();
+    state += RunOuterTreeParameterListTests();
+    state += RunOuterTreeParameterTests();
+    state += RunOuterTreePointerDeclaratorTests();
+    state += RunOuterTreePointerOperatorTests();
+    state += RunOuterTreePrimitiveDataTypeSpecifierTests();
+    state += RunOuterTreeSimpleDeclarationTests();
+    state += RunOuterTreeTypeSpecifierSequenceTests();
+    state += RunOuterTreeValueEqualInitializerTests();
+
+    state += RunOuterTreeBinaryExpressionTests();
+    state += RunOuterTreeIdentifierExpressionTests();
+    state += RunOuterTreeInvocationExpressionTests();
+    state += RunOuterTreeLambdaCaptureClauseTests();
+    state += RunOuterTreeLambdaExpressionTests();
+    state += RunOuterTreeLiteralExpressionTests();
+    state += RunOuterTreeSubscriptExpressionTests();
+    state += RunOuterTreeThisExpressionTests();
+    state += RunOuterTreeUnaryExpressionTests();
+
+    state += RunOuterTreeDestructorIdentifierTests();
+    state += RunOuterTreeNestedNameSpecifierTests();
+    state += RunOuterTreeSimpleIdentifierTests();
+    state += RunOuterTreeSimpleTemplateIdentifierTests();
+
+    state += RunOuterTreeCompoundStatementTests();
+    state += RunOuterTreeElseClauseTests();
+    state += RunOuterTreeEmptyStatementTests();
+    state += RunOuterTreeExpressionStatementTests();
+    state += RunOuterTreeIfStatementTests();
+    state += RunOuterTreeReturnStatementTests();
+    state += RunOuterTreeDeclarationStatementTests();
+
+    state += RunOuterTreeSyntaxNodeChildTests();
+    state += RunOuterTreeSyntaxTokenTests();
+    state += RunOuterTreeTranslationUnitTests();
 
     state += RunLexerTests();
     state += RunParserAttributesTests();
     state += RunParserExpressionTests();
     state += RunParseTranslationUnitTests();
-    state += RunSyntaxNamespaceTests();
 
     state += RunParseAttributeSpecifierTests();
 
     state += RunParseAccessorSpecifierTests();
-    state += RunParseClassDeclarationTests();
+    state += RunParseClassSpecifierTests();
     state += RunParseConstructorDefinitionTests();
-    state += RunParseEnumDeclarationTests();
+    state += RunParseEnumSpecifierTests();
     state += RunParseFunctionDefinitionTests();
     state += RunParseMemberDeclarationTests();
     state += RunParseNamespaceDefinitionTests();
@@ -163,6 +306,7 @@ int main()
     state += RunParseBinaryExpressionTests();
     state += RunParseIdentifierExpressionTests();
     state += RunParseInvocationExpressionTests();
+    state += RunParseLambdaExpressionTests();
     state += RunParseLiteralExpressionTests();
     state += RunParseSubscriptExpressionTests();
     state += RunParseThisExpressionTests();

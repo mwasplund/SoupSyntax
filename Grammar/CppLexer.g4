@@ -23,4 +23,8 @@ BlockComment: '/*' .*? '*/' -> channel(TRIVIA);
 LineComment: '//' ~[\r\n]* -> channel(TRIVIA);
 
 Whitespace: (' ' | '\t')+ -> channel(TRIVIA);
+
+// Skip over Preprocessor for now
+Preprocessor: '#' ~[\r\n]* -> channel(TRIVIA);
+
 Newline: ('\r' '\n'? | '\n') -> channel(TRIVIA);

@@ -1,141 +1,135 @@
 #pragma once
-#include "../TestUtils.h"
-#include "../SoupAssert.h"
+#include "TestUtils.h"
 
-namespace Soup::Syntax::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
     class ParseTranslationUnitTests
     {
     public:
-        // [Fact]
+        [[Fact]]
         void EmptyFile()
         {
             auto sourceCode = std::string("\0");
             auto actual = ParseTranslationUnit(sourceCode);
 
             auto expected = SyntaxFactory::CreateTranslationUnit(
-                std::make_shared<const SyntaxList<Declaration>>(
-                    std::vector<std::shared_ptr<const Declaration>>()),
+                SyntaxFactory::CreateSyntaxList<Declaration>({}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile));
 
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void OnlyTrivia()
         {
             auto sourceCode = std::string(" \0");
             auto actual = ParseTranslationUnit(sourceCode);
 
             auto expected = SyntaxFactory::CreateTranslationUnit(
-                std::make_shared<const SyntaxList<Declaration>>(
-                    std::vector<std::shared_ptr<const Declaration>>()),
+                SyntaxFactory::CreateSyntaxList<Declaration>({}),
                 SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::EndOfFile,
                     {
-                        SyntaxFactory::CreateTrivia(" ", TextSpan()),
+                        SyntaxFactory::CreateTrivia(" "),
                     },
                     {}));
 
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void OnlyComments()
         {
             auto sourceCode = std::string("//COMMENT\n//OTHER\0");
             auto actual = ParseTranslationUnit(sourceCode);
 
             auto expected = SyntaxFactory::CreateTranslationUnit(
-                std::make_shared<const SyntaxList<Declaration>>(
-                    std::vector<std::shared_ptr<const Declaration>>()),
+                SyntaxFactory::CreateSyntaxList<Declaration>({}),
                 SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::EndOfFile,
                     {
-                        SyntaxFactory::CreateTrivia("//COMMENT", TextSpan()),
-                        SyntaxFactory::CreateTrivia("\n", TextSpan()),
-                        SyntaxFactory::CreateTrivia("//OTHER", TextSpan()),
+                        SyntaxFactory::CreateTrivia("//COMMENT"),
+                        SyntaxFactory::CreateTrivia("\n"),
+                        SyntaxFactory::CreateTrivia("//OTHER"),
                     },
                     {}));
 
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void SingleEmptyDeclaration()
         {
             auto sourceCode = std::string(" ; \0");
             auto actual = ParseTranslationUnit(sourceCode);
 
             auto expected = SyntaxFactory::CreateTranslationUnit(
-                std::make_shared<const SyntaxList<Declaration>>(
-                    std::vector<std::shared_ptr<const Declaration>>(
+                SyntaxFactory::CreateSyntaxList<Declaration>(
                     {
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(
                                 SyntaxTokenType::Semicolon,
                                 {
-                                    SyntaxFactory::CreateTrivia(" ", TextSpan()),
+                                    SyntaxFactory::CreateTrivia(" "),
                                 },
                                 {})),
-                    })),
+                    }),
                 SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::EndOfFile,
                     {
-                        SyntaxFactory::CreateTrivia(" ", TextSpan()),
+                        SyntaxFactory::CreateTrivia(" "),
                     },
                     {}));
 
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void MultipleDeclarations()
         {
             auto sourceCode = std::string(";\nint i;\0");
             auto actual = ParseTranslationUnit(sourceCode);
 
             auto expected = SyntaxFactory::CreateTranslationUnit(
-                std::make_shared<const SyntaxList<Declaration>>(
-                    std::vector<std::shared_ptr<const Declaration>>(
+                SyntaxFactory::CreateSyntaxList<Declaration>(
                     {
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
                         SyntaxFactory::CreateSimpleDeclaration(
-                            SyntaxFactory::CreateDeclarationSpecifier(
-                                SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                            SyntaxFactory::CreateDeclarationSpecifierSequence(
+                                SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                     PrimitiveDataType::Int,
                                     SyntaxFactory::CreateKeywordToken(
                                         SyntaxTokenType::Int,
                                         {
-                                            SyntaxFactory::CreateTrivia("\n", TextSpan()),
+                                            SyntaxFactory::CreateTrivia("\n"),
                                         },
                                         {}))),
                             SyntaxFactory::CreateInitializerDeclaratorList(
-                                std::make_shared<const SyntaxSeparatorList<InitializerDeclarator>>(
-                                    std::vector<std::shared_ptr<const InitializerDeclarator>>(
+                                SyntaxFactory::CreateSyntaxSeparatorList<InitializerDeclarator>(
                                     {
                                         SyntaxFactory::CreateInitializerDeclarator(
-                                            SyntaxFactory::CreateSimpleIdentifierExpression(
-                                                SyntaxFactory::CreateUniqueToken(
-                                                    SyntaxTokenType::Identifier,
-                                                    "i",
-                                                    {
-                                                        SyntaxFactory::CreateTrivia(" ", TextSpan()),
-                                                    },
-                                                    {})),
+                                            SyntaxFactory::CreateIdentifierExpression(
+                                                SyntaxFactory::CreateSimpleIdentifier(
+                                                    SyntaxFactory::CreateUniqueToken(
+                                                        SyntaxTokenType::Identifier,
+                                                        "i",
+                                                        {
+                                                            SyntaxFactory::CreateTrivia(" "),
+                                                        },
+                                                        {}))),
                                             nullptr),
-                                    }),
-                                    std::vector<std::shared_ptr<const SyntaxToken>>())),
+                                    },
+                                    {})),
                             SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
-                    })),
+                    }),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::EndOfFile));
 
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
     private:
-        std::shared_ptr<const TranslationUnit> ParseTranslationUnit(std::string& sourceCode)
+        std::shared_ptr<const TranslationUnit> ParseTranslationUnit(const std::string& sourceCode)
         {
             auto uut = TestUtils::BuildParser(sourceCode);
             auto context = uut.Parser->translationUnit();

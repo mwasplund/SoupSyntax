@@ -13,14 +13,14 @@
  * which can be extended to create a listener which only needs to handle a subset
  * of the available methods.
  */
-class  CppParserBaseListener : public CppParserListener {
+class CppParserBaseListener : public CppParserListener {
 public:
+
+  virtual void enterDoubleGreaterThan(CppParser::DoubleGreaterThanContext * /*ctx*/) override { }
+  virtual void exitDoubleGreaterThan(CppParser::DoubleGreaterThanContext * /*ctx*/) override { }
 
   virtual void enterNamespaceName(CppParser::NamespaceNameContext * /*ctx*/) override { }
   virtual void exitNamespaceName(CppParser::NamespaceNameContext * /*ctx*/) override { }
-
-  virtual void enterNamespaceAlias(CppParser::NamespaceAliasContext * /*ctx*/) override { }
-  virtual void exitNamespaceAlias(CppParser::NamespaceAliasContext * /*ctx*/) override { }
 
   virtual void enterClassName(CppParser::ClassNameContext * /*ctx*/) override { }
   virtual void exitClassName(CppParser::ClassNameContext * /*ctx*/) override { }
@@ -142,38 +142,11 @@ public:
   virtual void enterCastExpression(CppParser::CastExpressionContext * /*ctx*/) override { }
   virtual void exitCastExpression(CppParser::CastExpressionContext * /*ctx*/) override { }
 
-  virtual void enterPointerManipulationExpression(CppParser::PointerManipulationExpressionContext * /*ctx*/) override { }
-  virtual void exitPointerManipulationExpression(CppParser::PointerManipulationExpressionContext * /*ctx*/) override { }
+  virtual void enterBinaryExpression(CppParser::BinaryExpressionContext * /*ctx*/) override { }
+  virtual void exitBinaryExpression(CppParser::BinaryExpressionContext * /*ctx*/) override { }
 
-  virtual void enterMultiplicativeExpression(CppParser::MultiplicativeExpressionContext * /*ctx*/) override { }
-  virtual void exitMultiplicativeExpression(CppParser::MultiplicativeExpressionContext * /*ctx*/) override { }
-
-  virtual void enterAdditiveExpression(CppParser::AdditiveExpressionContext * /*ctx*/) override { }
-  virtual void exitAdditiveExpression(CppParser::AdditiveExpressionContext * /*ctx*/) override { }
-
-  virtual void enterShiftExpression(CppParser::ShiftExpressionContext * /*ctx*/) override { }
-  virtual void exitShiftExpression(CppParser::ShiftExpressionContext * /*ctx*/) override { }
-
-  virtual void enterRelationalExpression(CppParser::RelationalExpressionContext * /*ctx*/) override { }
-  virtual void exitRelationalExpression(CppParser::RelationalExpressionContext * /*ctx*/) override { }
-
-  virtual void enterEqualityExpression(CppParser::EqualityExpressionContext * /*ctx*/) override { }
-  virtual void exitEqualityExpression(CppParser::EqualityExpressionContext * /*ctx*/) override { }
-
-  virtual void enterAndExpression(CppParser::AndExpressionContext * /*ctx*/) override { }
-  virtual void exitAndExpression(CppParser::AndExpressionContext * /*ctx*/) override { }
-
-  virtual void enterExclusiveOrExpression(CppParser::ExclusiveOrExpressionContext * /*ctx*/) override { }
-  virtual void exitExclusiveOrExpression(CppParser::ExclusiveOrExpressionContext * /*ctx*/) override { }
-
-  virtual void enterInclusiveOrExpression(CppParser::InclusiveOrExpressionContext * /*ctx*/) override { }
-  virtual void exitInclusiveOrExpression(CppParser::InclusiveOrExpressionContext * /*ctx*/) override { }
-
-  virtual void enterLogicalAndExpression(CppParser::LogicalAndExpressionContext * /*ctx*/) override { }
-  virtual void exitLogicalAndExpression(CppParser::LogicalAndExpressionContext * /*ctx*/) override { }
-
-  virtual void enterLogicalOrExpression(CppParser::LogicalOrExpressionContext * /*ctx*/) override { }
-  virtual void exitLogicalOrExpression(CppParser::LogicalOrExpressionContext * /*ctx*/) override { }
+  virtual void enterBinaryOperator(CppParser::BinaryOperatorContext * /*ctx*/) override { }
+  virtual void exitBinaryOperator(CppParser::BinaryOperatorContext * /*ctx*/) override { }
 
   virtual void enterConditionalExpression(CppParser::ConditionalExpressionContext * /*ctx*/) override { }
   virtual void exitConditionalExpression(CppParser::ConditionalExpressionContext * /*ctx*/) override { }
@@ -316,8 +289,8 @@ public:
   virtual void enterEnumHeadName(CppParser::EnumHeadNameContext * /*ctx*/) override { }
   virtual void exitEnumHeadName(CppParser::EnumHeadNameContext * /*ctx*/) override { }
 
-  virtual void enterOpaqueEnumDeclaration(CppParser::OpaqueEnumDeclarationContext * /*ctx*/) override { }
-  virtual void exitOpaqueEnumDeclaration(CppParser::OpaqueEnumDeclarationContext * /*ctx*/) override { }
+  virtual void enterOpaqueEnumSpecifier(CppParser::OpaqueEnumSpecifierContext * /*ctx*/) override { }
+  virtual void exitOpaqueEnumSpecifier(CppParser::OpaqueEnumSpecifierContext * /*ctx*/) override { }
 
   virtual void enterEnumKey(CppParser::EnumKeyContext * /*ctx*/) override { }
   virtual void exitEnumKey(CppParser::EnumKeyContext * /*ctx*/) override { }
@@ -411,6 +384,9 @@ public:
 
   virtual void enterBalancedToken(CppParser::BalancedTokenContext * /*ctx*/) override { }
   virtual void exitBalancedToken(CppParser::BalancedTokenContext * /*ctx*/) override { }
+
+  virtual void enterNonBalancedToken(CppParser::NonBalancedTokenContext * /*ctx*/) override { }
+  virtual void exitNonBalancedToken(CppParser::NonBalancedTokenContext * /*ctx*/) override { }
 
   virtual void enterInitializerDeclaratorList(CppParser::InitializerDeclaratorListContext * /*ctx*/) override { }
   virtual void exitInitializerDeclaratorList(CppParser::InitializerDeclaratorListContext * /*ctx*/) override { }

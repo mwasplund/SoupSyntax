@@ -10,13 +10,17 @@ options { tokenVocab = CppLexer; }
 import CppParserLiterals;
 
 /****************************************/
+/* Lexer Fragments
+/****************************************/
+// Fill in the missing DoubleGreaterThan in the parser
+// since it is ambiguous with two templates ending
+doubleGreaterThan:
+	GreaterThan GreaterThan;
+
+/****************************************/
 /* Keywords
 /****************************************/
 namespaceName:
-	Identifier |
-	namespaceAlias;
-
-namespaceAlias:
 	Identifier;
 
 className:
@@ -97,7 +101,7 @@ captureList:
 	captureList Comma capture Ellipsis?;
 
 capture:
-	simpleCapture
+	simpleCapture |
 	initializerCapture; // C++ 14
 
 simpleCapture:
@@ -124,7 +128,7 @@ foldOperator:
 	Ampersand |
 	VerticalBar |
 	DoubleLessThan |
-	DoubleGreaterThan |
+	doubleGreaterThan |
 	PlusEqual |
 	MinusEqual |
 	AsteriskEqual |
@@ -175,7 +179,9 @@ typeIdentificationExpression:
 
 postfixExpression:
 	primaryExpression |
+	// Subscript expression
 	postfixExpression OpenBracket expressionOrBracedInitializerList CloseBracket |
+	// Ambiguous case, could be Function Call or could be two comparison followed by primary expression
 	postfixExpression OpenParenthesis expressionList? CloseParenthesis |
 	explicitTypeCoversionOperatorExpression |
 	simpleTypeSpecifier bracedInitializerList |
@@ -250,69 +256,42 @@ castExpression:
 	unaryExpression |
 	OpenParenthesis typeIdentifier CloseParenthesis castExpression;
 
-pointerManipulationExpression:
+binaryExpression:
 	castExpression |
-	pointerManipulationExpression PeriodAsterisk castExpression |
-	pointerManipulationExpression ArrowAsterisk castExpression;
+	binaryExpression binaryOperator castExpression;
 
-multiplicativeExpression:
-	pointerManipulationExpression |
-	multiplicativeExpression Asterisk pointerManipulationExpression |
-	multiplicativeExpression ForwardSlash pointerManipulationExpression |
-	multiplicativeExpression Percent pointerManipulationExpression;
-
-additiveExpression:
-	multiplicativeExpression |
-	additiveExpression Plus multiplicativeExpression |
-	additiveExpression Minus multiplicativeExpression;
-
-shiftExpression:
-	additiveExpression |
-	shiftExpression DoubleLessThan additiveExpression |
-	shiftExpression DoubleGreaterThan additiveExpression;
-
-relationalExpression:
-	shiftExpression |
-	relationalExpression LessThan shiftExpression |
-	relationalExpression GreaterThan shiftExpression |
-	relationalExpression LessThanEqual shiftExpression |
-	relationalExpression GreaterThanEqual shiftExpression;
-
-equalityExpression:
-	relationalExpression |
-	equalityExpression DoubleEqual relationalExpression |
-	equalityExpression ExclamationMarkEqual relationalExpression;
-
-andExpression:
-	equalityExpression |
-	andExpression Ampersand equalityExpression;
-
-exclusiveOrExpression:
-	andExpression |
-	exclusiveOrExpression Caret andExpression;
-
-inclusiveOrExpression:
-	exclusiveOrExpression |
-	inclusiveOrExpression VerticalBar exclusiveOrExpression;
-
-logicalAndExpression:
-	inclusiveOrExpression |
-	logicalAndExpression DoubleAmpersand inclusiveOrExpression;
-
-logicalOrExpression:
-	logicalAndExpression |
-	logicalOrExpression DoubleVerticalBar logicalAndExpression;
+binaryOperator:
+	PeriodAsterisk |
+	ArrowAsterisk |
+	Asterisk |
+	ForwardSlash |
+	Percent |
+	Plus |
+	Minus |
+	DoubleLessThan |
+	doubleGreaterThan |
+	LessThan |
+	GreaterThan |
+	LessThanEqual |
+	GreaterThanEqual |
+	DoubleEqual |
+	ExclamationMarkEqual |
+	Ampersand |
+	Caret |
+	VerticalBar |
+	DoubleAmpersand |
+	DoubleVerticalBar;
 
 conditionalExpression:
-	logicalOrExpression |
-	logicalOrExpression QuestionMark expression Colon assignmentExpression;
+	binaryExpression |
+	binaryExpression QuestionMark expression Colon assignmentExpression;
 
 throwExpression:
 	Throw assignmentExpression?;
 
 assignmentExpression:
 	conditionalExpression |
-	logicalOrExpression assignmentOperator initializerClause |
+	binaryExpression assignmentOperator initializerClause |
 	throwExpression;
 
 assignmentOperator:
@@ -429,7 +408,7 @@ blockDeclaration:
 	usingDirective |
 	staticAssertDeclaration |
 	aliasDeclaration |
-	opaqueEnumDeclaration;
+	opaqueEnumSpecifier;
 
 noDeclarationSpecifierFunctionDeclaration:
 	attributeSpecifierSequence? declarator Semicolon;
@@ -453,6 +432,7 @@ attributeDeclaration:
 	attributeSpecifierSequence Semicolon;
 
 declarationModifier:
+	constVolatileQualifier |
 	storageClassSpecifier |
 	functionSpecifier |
 	Friend |
@@ -460,6 +440,14 @@ declarationModifier:
 	ConstExpr |
 	Inline;
 
+// A declaration specifier sequence can have any number of specifiers in any order.
+// However because an identifier can be inside the type the simple declaration "A a;" will consume
+// both identifiers as types and won't find a trailing declarator. Because of this I am breaking
+// the sequence into Leading/Trailing modifiers and the single type to resolve this ambiguity. This
+// also allows the single type node to be a generic SyntaxNode istead of a raw token.
+// Note: The C++ specification calls for ->
+// declarationSpecifier attributeSpecifierSequence? |
+// declarationSpecifier declarationSpecifierSequence;
 declarationSpecifierSequence:
 	leadingDeclarationModifierSequence? definingTypeSpecifier trailingDeclarationModifierSequence? attributeSpecifierSequence?;
 
@@ -485,12 +473,12 @@ functionSpecifier:
 typeSpecifier:
 	simpleTypeSpecifier |
 	elaboratedTypeSpecifier |
-	typenameSpecifier |
-	constVolatileQualifier;
+	typenameSpecifier;
 
+// Note: ConstVolitileQualifier was a part of the type specifier
+// We pull this out into the sequence to make type safety easier
 typeSpecifierSequence:
-	typeSpecifier attributeSpecifierSequence? |
-	typeSpecifier typeSpecifierSequence;
+	constVolatileQualifier? typeSpecifier attributeSpecifierSequence?;
 
 definingTypeSpecifier:
 	typeSpecifier |
@@ -504,8 +492,9 @@ definingTypeSpecifierSequence:
 simpleTypeSpecifier:
 	nestedNameSpecifier? typeName |
 	// TODO nestedNameSpecifier Template simpleTemplateIdentifier |
-	// TODO nestedNameSpecifier? templateName |
+	// COVERTED BY ABOVE nestedNameSpecifier? templateName |
 	Char |
+	Char8 | // C++20
 	Char16 |
 	Char32 |
 	WChar |
@@ -545,7 +534,7 @@ enumHead:
 enumHeadName:
 	nestedNameSpecifier? Identifier;
 
-opaqueEnumDeclaration:
+opaqueEnumSpecifier:
 	enumKey attributeSpecifierSequence? nestedNameSpecifier? Identifier enumBase? Semicolon;
 
 enumKey:
@@ -659,7 +648,10 @@ balancedToken:
 	OpenParenthesis balancedTokenSequence? CloseParenthesis |
 	OpenBracket balancedTokenSequence? CloseBracket |
 	OpenBrace balancedTokenSequence? CloseBrace |
-	/*any token other than a parenthesis, a bracket, or a brace*/
+	nonBalancedToken;
+
+// Any token other than a parenthesis, a bracket, or a brace
+nonBalancedToken:
 	~(OpenParenthesis | CloseParenthesis | OpenBracket | CloseBracket | OpenBrace | CloseBrace);
 
 /****************************************/
@@ -947,7 +939,7 @@ anyOperator:
 	AmpersandEqual |
 	VerticalBarEqual |
 	DoubleLessThan |
-	DoubleGreaterThan |
+	doubleGreaterThan |
 	DoubleGreaterThanEqual |
 	DoubleLessThanEqual |
 	DoubleEqual |
@@ -1006,8 +998,8 @@ templateArgumentList:
 
 templateArgument:
 	// TODO constantExpression |
-	// TODO typeIdentifier |
-	identifierExpression;
+	typeIdentifier;// |
+	// identifierExpression;
 
 typenameSpecifier:
 	TypeName nestedNameSpecifier Identifier |

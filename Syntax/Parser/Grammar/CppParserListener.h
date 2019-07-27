@@ -11,14 +11,14 @@
 /**
  * This interface defines an abstract listener for a parse tree produced by CppParser.
  */
-export class  CppParserListener : public antlr4::tree::ParseTreeListener {
+export class CppParserListener : public antlr4::tree::ParseTreeListener {
 public:
+
+  virtual void enterDoubleGreaterThan(CppParser::DoubleGreaterThanContext *ctx) = 0;
+  virtual void exitDoubleGreaterThan(CppParser::DoubleGreaterThanContext *ctx) = 0;
 
   virtual void enterNamespaceName(CppParser::NamespaceNameContext *ctx) = 0;
   virtual void exitNamespaceName(CppParser::NamespaceNameContext *ctx) = 0;
-
-  virtual void enterNamespaceAlias(CppParser::NamespaceAliasContext *ctx) = 0;
-  virtual void exitNamespaceAlias(CppParser::NamespaceAliasContext *ctx) = 0;
 
   virtual void enterClassName(CppParser::ClassNameContext *ctx) = 0;
   virtual void exitClassName(CppParser::ClassNameContext *ctx) = 0;
@@ -140,38 +140,11 @@ public:
   virtual void enterCastExpression(CppParser::CastExpressionContext *ctx) = 0;
   virtual void exitCastExpression(CppParser::CastExpressionContext *ctx) = 0;
 
-  virtual void enterPointerManipulationExpression(CppParser::PointerManipulationExpressionContext *ctx) = 0;
-  virtual void exitPointerManipulationExpression(CppParser::PointerManipulationExpressionContext *ctx) = 0;
+  virtual void enterBinaryExpression(CppParser::BinaryExpressionContext *ctx) = 0;
+  virtual void exitBinaryExpression(CppParser::BinaryExpressionContext *ctx) = 0;
 
-  virtual void enterMultiplicativeExpression(CppParser::MultiplicativeExpressionContext *ctx) = 0;
-  virtual void exitMultiplicativeExpression(CppParser::MultiplicativeExpressionContext *ctx) = 0;
-
-  virtual void enterAdditiveExpression(CppParser::AdditiveExpressionContext *ctx) = 0;
-  virtual void exitAdditiveExpression(CppParser::AdditiveExpressionContext *ctx) = 0;
-
-  virtual void enterShiftExpression(CppParser::ShiftExpressionContext *ctx) = 0;
-  virtual void exitShiftExpression(CppParser::ShiftExpressionContext *ctx) = 0;
-
-  virtual void enterRelationalExpression(CppParser::RelationalExpressionContext *ctx) = 0;
-  virtual void exitRelationalExpression(CppParser::RelationalExpressionContext *ctx) = 0;
-
-  virtual void enterEqualityExpression(CppParser::EqualityExpressionContext *ctx) = 0;
-  virtual void exitEqualityExpression(CppParser::EqualityExpressionContext *ctx) = 0;
-
-  virtual void enterAndExpression(CppParser::AndExpressionContext *ctx) = 0;
-  virtual void exitAndExpression(CppParser::AndExpressionContext *ctx) = 0;
-
-  virtual void enterExclusiveOrExpression(CppParser::ExclusiveOrExpressionContext *ctx) = 0;
-  virtual void exitExclusiveOrExpression(CppParser::ExclusiveOrExpressionContext *ctx) = 0;
-
-  virtual void enterInclusiveOrExpression(CppParser::InclusiveOrExpressionContext *ctx) = 0;
-  virtual void exitInclusiveOrExpression(CppParser::InclusiveOrExpressionContext *ctx) = 0;
-
-  virtual void enterLogicalAndExpression(CppParser::LogicalAndExpressionContext *ctx) = 0;
-  virtual void exitLogicalAndExpression(CppParser::LogicalAndExpressionContext *ctx) = 0;
-
-  virtual void enterLogicalOrExpression(CppParser::LogicalOrExpressionContext *ctx) = 0;
-  virtual void exitLogicalOrExpression(CppParser::LogicalOrExpressionContext *ctx) = 0;
+  virtual void enterBinaryOperator(CppParser::BinaryOperatorContext *ctx) = 0;
+  virtual void exitBinaryOperator(CppParser::BinaryOperatorContext *ctx) = 0;
 
   virtual void enterConditionalExpression(CppParser::ConditionalExpressionContext *ctx) = 0;
   virtual void exitConditionalExpression(CppParser::ConditionalExpressionContext *ctx) = 0;
@@ -314,8 +287,8 @@ public:
   virtual void enterEnumHeadName(CppParser::EnumHeadNameContext *ctx) = 0;
   virtual void exitEnumHeadName(CppParser::EnumHeadNameContext *ctx) = 0;
 
-  virtual void enterOpaqueEnumDeclaration(CppParser::OpaqueEnumDeclarationContext *ctx) = 0;
-  virtual void exitOpaqueEnumDeclaration(CppParser::OpaqueEnumDeclarationContext *ctx) = 0;
+  virtual void enterOpaqueEnumSpecifier(CppParser::OpaqueEnumSpecifierContext *ctx) = 0;
+  virtual void exitOpaqueEnumSpecifier(CppParser::OpaqueEnumSpecifierContext *ctx) = 0;
 
   virtual void enterEnumKey(CppParser::EnumKeyContext *ctx) = 0;
   virtual void exitEnumKey(CppParser::EnumKeyContext *ctx) = 0;
@@ -409,6 +382,9 @@ public:
 
   virtual void enterBalancedToken(CppParser::BalancedTokenContext *ctx) = 0;
   virtual void exitBalancedToken(CppParser::BalancedTokenContext *ctx) = 0;
+
+  virtual void enterNonBalancedToken(CppParser::NonBalancedTokenContext *ctx) = 0;
+  virtual void exitNonBalancedToken(CppParser::NonBalancedTokenContext *ctx) = 0;
 
   virtual void enterInitializerDeclaratorList(CppParser::InitializerDeclaratorListContext *ctx) = 0;
   virtual void exitInitializerDeclaratorList(CppParser::InitializerDeclaratorListContext *ctx) = 0;

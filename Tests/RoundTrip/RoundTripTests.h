@@ -1,33 +1,32 @@
 #pragma once
-#include "../SoupAssert.h"
 
 namespace Soup::Syntax::UnitTests
 {
     class RoundTripTests
     {
     public:
-        // [[Theory]]
-        // [[InlineData("BlockComment.cpp")]]
-        // [[InlineData("ClassComplex.cpp")]]
-        // [[InlineData("ClassConstructor.cpp")]]
-        // [[InlineData("ClassSimple.cpp")]]
-        // [[InlineData("EmptyFile.cpp")]]
-        // [[InlineData("HelloWorld.cpp")]]
-        // [[InlineData("LineComment.cpp")]]
-        // [[InlineData("LineComments.cpp")]]
-        // [[InlineData("Namespace.cpp")]]
-        // [[InlineData("TemplateArguments.cpp")]]
+        [[Theory]]
+        [[InlineData("BlockComment.cpp")]]
+        [[InlineData("ClassComplex.cpp")]]
+        [[InlineData("ClassConstructor.cpp")]]
+        [[InlineData("ClassSimple.cpp")]]
+        [[InlineData("EmptyFile.cpp")]]
+        [[InlineData("FunctionParameters.cpp")]]
+        [[InlineData("FunctionSimple.cpp")]]
+        [[InlineData("HelloWorld.cpp")]]
+        [[InlineData("LineComment.cpp")]]
+        [[InlineData("LineComments.cpp")]]
+        [[InlineData("Namespace.cpp")]]
+        [[InlineData("TemplateArguments.cpp")]]
         void RoundTrip(std::string name)
         {
-            std::filesystem::path sourceFilePath("RoundTrip/Input/" + name);
-            std::ifstream sourceFile(sourceFilePath);
+            auto filename = "RoundTrip/Input/" + name;
+            auto sourceFilePath = std::filesystem::path(filename);
+            auto sourceFile = std::ifstream(sourceFilePath);
 
             // Read the whole file
-            sourceFile.seekg(0, std::ios::end);
-            size_t size = sourceFile.tellg();
-            std::string source(size, ' ');
-            sourceFile.seekg(0);
-            sourceFile.read(&source[0], size); 
+            auto source = std::string(std::istreambuf_iterator<char>(sourceFile),
+                std::istreambuf_iterator<char>());
 
             auto syntaxTree = SyntaxParser::Parse(source);
 

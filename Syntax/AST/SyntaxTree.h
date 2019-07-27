@@ -8,15 +8,15 @@ namespace Soup::Syntax
         /// <summary>
         /// Initialize
         /// </summary>
-        SyntaxTree(std::shared_ptr<const TranslationUnit> translationUnit) :
-            m_translationUnit(std::move(translationUnit))
+        SyntaxTree(const std::shared_ptr<const InnerTree::TranslationUnit>& translationUnit) :
+            m_translationUnit(translationUnit->CreateOuter(nullptr))
         {
         }
 
         /// <summary>
         /// Gets the root translation unit
         /// </summary>
-        const TranslationUnit& GetTranslationUnit() const
+        const OuterTree::TranslationUnit& GetTranslationUnit() const
         {
             return *m_translationUnit;
         }
@@ -45,6 +45,6 @@ namespace Soup::Syntax
         }
 
     private:
-        std::shared_ptr<const TranslationUnit> m_translationUnit;
+        std::shared_ptr<const OuterTree::TranslationUnit> m_translationUnit;
     };
 }

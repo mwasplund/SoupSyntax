@@ -1,13 +1,12 @@
 #pragma once
 #include "TestUtils.h"
-#include "SoupAssert.h"
 
-namespace Soup::Syntax::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
     class ParseNamespaceDefinitionTests
     {
     public:
-        // [Fact]
+        [[Fact]]
         void SimpleAnonymous()
         {
             auto sourceCode = std::string("namespace{}");
@@ -15,13 +14,9 @@ namespace Soup::Syntax::UnitTests
 
             auto expected = SyntaxFactory::CreateNamespaceDefinition(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Namespace),
-                std::make_shared<const SyntaxSeparatorList<SyntaxToken>>(
-                    std::vector<std::shared_ptr<const SyntaxToken>>(),
-                    std::vector<std::shared_ptr<const SyntaxToken>>()),
+                SyntaxFactory::CreateSyntaxSeparatorList<SyntaxToken>({}, {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                std::make_shared<const SyntaxList<Declaration>>(
-                    std::vector<std::shared_ptr<const Declaration>>(
-                    {})),
+                SyntaxFactory::CreateSyntaxList<Declaration>({}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             TestUtils::AreEqual(
@@ -30,7 +25,7 @@ namespace Soup::Syntax::UnitTests
                 "Verify identifier matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void SimpleNamed()
         {
             auto sourceCode = std::string("namespace Namespace{}");
@@ -38,21 +33,19 @@ namespace Soup::Syntax::UnitTests
 
             auto expected = SyntaxFactory::CreateNamespaceDefinition(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Namespace),
-                std::make_shared<const SyntaxSeparatorList<SyntaxToken>>(
-                    std::vector<std::shared_ptr<const SyntaxToken>>({
+                SyntaxFactory::CreateSyntaxSeparatorList<SyntaxToken>(
+                    {
                         SyntaxFactory::CreateUniqueToken(
                             SyntaxTokenType::Identifier,
                             "Namespace",
                             {
-                                SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                                SyntaxFactory::CreateTrivia(" ")
                             },
                             {}),
-                    }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>()),
+                    },
+                    {}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                std::make_shared<const SyntaxList<Declaration>>(
-                    std::vector<std::shared_ptr<const Declaration>>(
-                    {})),
+                SyntaxFactory::CreateSyntaxList<Declaration>({}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             TestUtils::AreEqual(
@@ -61,7 +54,7 @@ namespace Soup::Syntax::UnitTests
                 "Verify identifier matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void NestedName()
         {
             auto sourceCode = std::string("namespace RootNamespace::SubNamespace{}");
@@ -69,24 +62,22 @@ namespace Soup::Syntax::UnitTests
 
             auto expected = SyntaxFactory::CreateNamespaceDefinition(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Namespace),
-                std::make_shared<const SyntaxSeparatorList<SyntaxToken>>(
-                    std::vector<std::shared_ptr<const SyntaxToken>>({
+                SyntaxFactory::CreateSyntaxSeparatorList<SyntaxToken>(
+                    {
                         SyntaxFactory::CreateUniqueToken(
                             SyntaxTokenType::Identifier,
                             "RootNamespace",
                             {
-                                SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                                SyntaxFactory::CreateTrivia(" ")
                             },
                             {}),
                         SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "SubNamespace"),
-                    }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>({
+                    },
+                    {
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleColon),
-                    })),
+                    }),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBrace),
-                std::make_shared<const SyntaxList<Declaration>>(
-                    std::vector<std::shared_ptr<const Declaration>>(
-                    {})),
+                SyntaxFactory::CreateSyntaxList<Declaration>({}),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBrace));
 
             TestUtils::AreEqual(
@@ -95,7 +86,7 @@ namespace Soup::Syntax::UnitTests
                 "Verify identifier matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void SimpleNamedNamespaceSingleDeclaration()
         {
             auto sourceCode = std::string("namespace MyNamespace { ; }");
@@ -103,38 +94,37 @@ namespace Soup::Syntax::UnitTests
 
             auto expected = SyntaxFactory::CreateNamespaceDefinition(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Namespace),
-                std::make_shared<const SyntaxSeparatorList<SyntaxToken>>(
-                    std::vector<std::shared_ptr<const SyntaxToken>>({
+                SyntaxFactory::CreateSyntaxSeparatorList<SyntaxToken>(
+                    {
                         SyntaxFactory::CreateUniqueToken(
                             SyntaxTokenType::Identifier,
                             "MyNamespace",
                             {
-                                SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                                SyntaxFactory::CreateTrivia(" ")
                             },
                             {}),
-                    }),
-                    std::vector<std::shared_ptr<const SyntaxToken>>()),
+                    },
+                    {}),
                 SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::OpenBrace,
                     {
-                        SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                        SyntaxFactory::CreateTrivia(" ")
                     },
                     {}),
-                std::make_shared<const SyntaxList<Declaration>>(
-                    std::vector<std::shared_ptr<const Declaration>>(
+                SyntaxFactory::CreateSyntaxList<Declaration>(
                     {
                         SyntaxFactory::CreateEmptyDeclaration(
                             SyntaxFactory::CreateKeywordToken(
                                 SyntaxTokenType::Semicolon,
                                 {
-                                    SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                                    SyntaxFactory::CreateTrivia(" ")
                                 },
                                 {})),
-                    })),
+                    }),
                 SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::CloseBrace,
                     {
-                        SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                        SyntaxFactory::CreateTrivia(" ")
                     },
                     {}));
 
@@ -145,7 +135,7 @@ namespace Soup::Syntax::UnitTests
         }
 
     private:
-        std::shared_ptr<const NamespaceDefinition> ParseNamespaceDefinition(std::string& sourceCode)
+        std::shared_ptr<const NamespaceDefinition> ParseNamespaceDefinition(const std::string& sourceCode)
         {
             auto uut = TestUtils::BuildParser(sourceCode);
             auto context = uut.Parser->namespaceDefinition();

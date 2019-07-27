@@ -1,45 +1,19 @@
 #pragma once
-#include "ParseMemberDeclarationTests.h"
-#include "../../RunTest.h"
+#include "/Parser/Declaration/ParseMemberDeclarationTests.h"
 
-TestState RunParseMemberDeclarationTests()
-{
-    std::string className = "ParseMemberDeclarationTests";
-    auto testClass = std::make_unique<Soup::Syntax::UnitTests::ParseMemberDeclarationTests>();
+TestState RunParseMemberDeclarationTests() 
+ {
+    auto className = "ParseMemberDeclarationTests";
+    auto testClass = std::make_shared<Soup::Syntax::InnerTree::UnitTests::ParseMemberDeclarationTests>();
     TestState state = { 0, 0 };
-
-    state += RunTest(
-        className,
-        "SingleIntVariable",
-        [&testClass]() { testClass->SingleIntVariable(); });
-    state += RunTest(
-        className,
-        "SingleClassVariable",
-        [&testClass]() { testClass->SingleClassVariable(); });
-    state += RunTest(
-        className,
-        "SingleTemplateClassVariable",
-        [&testClass]() { testClass->SingleTemplateClassVariable(); });
-    state += RunTest(
-        className,
-        "SingleIntVariableWithInitializer",
-        [&testClass]() { testClass->SingleIntVariableWithInitializer(); });
-    state += RunTest(
-        className,
-        "DoubleIntVariable",
-        [&testClass]() { testClass->DoubleIntVariable(); });
-    state += RunTest(
-        className,
-        "DoubleIntVariableSingleWithInitializer",
-        [&testClass]() { testClass->DoubleIntVariableSingleWithInitializer(); });
-    state += RunTest(
-        className,
-        "DoubleIntVariableBothWithInitializer",
-        [&testClass]() { testClass->DoubleIntVariableBothWithInitializer(); });
-    state += RunTest(
-        className,
-        "SingleIntLeadingAndTrailingModifierVariable",
-        [&testClass]() { testClass->SingleIntLeadingAndTrailingModifierVariable(); });
+    state += SoupTest::RunTest(className, "SingleIntVariable", [&testClass]() { testClass->SingleIntVariable(); });
+    state += SoupTest::RunTest(className, "SingleClassVariable", [&testClass]() { testClass->SingleClassVariable(); });
+    state += SoupTest::RunTest(className, "SingleTemplateClassVariable", [&testClass]() { testClass->SingleTemplateClassVariable(); });
+    state += SoupTest::RunTest(className, "SingleIntVariableWithInitializer", [&testClass]() { testClass->SingleIntVariableWithInitializer(); });
+    state += SoupTest::RunTest(className, "DoubleIntVariable", [&testClass]() { testClass->DoubleIntVariable(); });
+    state += SoupTest::RunTest(className, "DoubleIntVariableSingleWithInitializer", [&testClass]() { testClass->DoubleIntVariableSingleWithInitializer(); });
+    state += SoupTest::RunTest(className, "DoubleIntVariableBothWithInitializer", [&testClass]() { testClass->DoubleIntVariableBothWithInitializer(); });
+    state += SoupTest::RunTest(className, "SingleIntLeadingAndTrailingModifierVariable", [&testClass]() { testClass->SingleIntLeadingAndTrailingModifierVariable(); });
 
     return state;
 }

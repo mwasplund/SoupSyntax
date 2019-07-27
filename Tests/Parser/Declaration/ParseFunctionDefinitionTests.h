@@ -1,56 +1,54 @@
 #pragma once
 #include "TestUtils.h"
-#include "SoupAssert.h"
 
-namespace Soup::Syntax::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
     class ParseFunctionDefinitionTests
     {
     public:
-        // [Fact]
+        [[Fact]]
         void SimpleFunctionRegular()
         {
             auto source = std::string(
                 "void Function() \n {\n}");
 
             auto expected = SyntaxFactory::CreateFunctionDefinition(
-                SyntaxFactory::CreateDeclarationSpecifier(
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
+                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(
-                        SyntaxTokenType::Identifier,
-                        "Function",
-                        {
-                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
-                        },
-                        {})),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(
+                            SyntaxTokenType::Identifier,
+                            "Function",
+                            {
+                                SyntaxFactory::CreateTrivia(" "),
+                            },
+                            {}))),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                    std::make_shared<SyntaxSeparatorList<Parameter>>(
-                        std::vector<std::shared_ptr<const Parameter>>(),
-                        std::vector<std::shared_ptr<const SyntaxToken>>()),
+                    SyntaxFactory::CreateSyntaxSeparatorList<Parameter>({}, {}),
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::CloseParenthesis,
                         {},
                         {
-                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
+                            SyntaxFactory::CreateTrivia(" "),
                         })),
-                std::make_shared<RegularFunctionBody>(
+                SyntaxFactory::CreateRegularFunctionBody(
                     SyntaxFactory::CreateCompoundStatement(
                         SyntaxFactory::CreateKeywordToken(
                             SyntaxTokenType::OpenBrace,
                             {
-                                SyntaxFactory::CreateTrivia("\n", TextSpan(0, 0)),
-                                SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
+                                SyntaxFactory::CreateTrivia("\n"),
+                                SyntaxFactory::CreateTrivia(" "),
                             },
                             {}),
-                        {},
+                        SyntaxFactory::CreateSyntaxList<Statement>({}),
                         SyntaxFactory::CreateKeywordToken(
                             SyntaxTokenType::CloseBrace,
                             {
-                                SyntaxFactory::CreateTrivia("\n", TextSpan(0, 0)),
+                                SyntaxFactory::CreateTrivia("\n"),
                             },
                             {}))));
 
@@ -59,42 +57,41 @@ namespace Soup::Syntax::UnitTests
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void SimpleFunctionDefault()
         {
             auto source = std::string(
                 "void Function() = default;");
 
             auto expected = SyntaxFactory::CreateFunctionDefinition(
-                SyntaxFactory::CreateDeclarationSpecifier(
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
+                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(
-                        SyntaxTokenType::Identifier,
-                        "Function",
-                        {
-                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
-                        },
-                        {})),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(
+                            SyntaxTokenType::Identifier,
+                            "Function",
+                            {
+                                SyntaxFactory::CreateTrivia(" "),
+                            },
+                            {}))),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                    std::make_shared<SyntaxSeparatorList<Parameter>>(
-                        std::vector<std::shared_ptr<const Parameter>>(),
-                        std::vector<std::shared_ptr<const SyntaxToken>>()),
+                    SyntaxFactory::CreateSyntaxSeparatorList<Parameter>({}, {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
                 SyntaxFactory::CreateDefaultFunctionBody(
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::Equal,
                         {
-                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
+                            SyntaxFactory::CreateTrivia(" "),
                         },
                         {}),
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::Default,
                         {
-                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
+                            SyntaxFactory::CreateTrivia(" "),
                         },
                         {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)));
@@ -104,42 +101,41 @@ namespace Soup::Syntax::UnitTests
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void SimpleFunctionDelete()
         {
             auto source = std::string(
                 "void Function() = delete;");
 
             auto expected = SyntaxFactory::CreateFunctionDefinition(
-                SyntaxFactory::CreateDeclarationSpecifier(
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
+                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(
-                        SyntaxTokenType::Identifier,
-                        "Function",
-                        {
-                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
-                        },
-                        {})),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(
+                            SyntaxTokenType::Identifier,
+                            "Function",
+                            {
+                                SyntaxFactory::CreateTrivia(" "),
+                            },
+                            {}))),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                    std::make_shared<SyntaxSeparatorList<Parameter>>(
-                        std::vector<std::shared_ptr<const Parameter>>(),
-                        std::vector<std::shared_ptr<const SyntaxToken>>()),
+                    SyntaxFactory::CreateSyntaxSeparatorList<Parameter>({}, {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
                 SyntaxFactory::CreateDeleteFunctionBody(
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::Equal,
                         {
-                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
+                            SyntaxFactory::CreateTrivia(" "),
                         },
                         {}),
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::Delete,
                         {
-                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
+                            SyntaxFactory::CreateTrivia(" "),
                         },
                         {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)));
@@ -149,56 +145,58 @@ namespace Soup::Syntax::UnitTests
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void SimpleFunctionParameter()
         {
             auto source = std::string(
                 "void Function(int parameter) = delete;");
 
             auto expected = SyntaxFactory::CreateFunctionDefinition(
-                SyntaxFactory::CreateDeclarationSpecifier(
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
+                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Void))),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(
-                        SyntaxTokenType::Identifier,
-                        "Function",
-                        {
-                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
-                        },
-                        {})),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(
+                            SyntaxTokenType::Identifier,
+                            "Function",
+                            {
+                                SyntaxFactory::CreateTrivia(" "),
+                            },
+                            {}))),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                    std::make_shared<SyntaxSeparatorList<Parameter>>(
-                        std::vector<std::shared_ptr<const Parameter>>({
+                    SyntaxFactory::CreateSyntaxSeparatorList<Parameter>(
+                        {
                             SyntaxFactory::CreateParameter(
-                                SyntaxFactory::CreateDeclarationSpecifier(
-                                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                                SyntaxFactory::CreateDeclarationSpecifierSequence(
+                                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                                         PrimitiveDataType::Int,
                                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Int))),
-                                SyntaxFactory::CreateSimpleIdentifierExpression(
-                                    SyntaxFactory::CreateUniqueToken(
-                                        SyntaxTokenType::Identifier,
-                                        "parameter",
-                                        {
-                                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
-                                        },
-                                        {}))),
-                        }),
-                        std::vector<std::shared_ptr<const SyntaxToken>>()),
+                                SyntaxFactory::CreateIdentifierExpression(
+                                    SyntaxFactory::CreateSimpleIdentifier(
+                                        SyntaxFactory::CreateUniqueToken(
+                                            SyntaxTokenType::Identifier,
+                                            "parameter",
+                                            {
+                                                SyntaxFactory::CreateTrivia(" "),
+                                            },
+                                            {})))),
+                        },
+                        {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
                 SyntaxFactory::CreateDeleteFunctionBody(
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::Equal,
                         {
-                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
+                            SyntaxFactory::CreateTrivia(" "),
                         },
                         {}),
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::Delete,
                         {
-                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
+                            SyntaxFactory::CreateTrivia(" "),
                         },
                         {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)));
@@ -208,7 +206,7 @@ namespace Soup::Syntax::UnitTests
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void SimpleFunctionAttribute()
         {
             auto source = std::string(
@@ -219,46 +217,43 @@ namespace Soup::Syntax::UnitTests
                     SyntaxFactory::CreateAttributeSpecifier(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenBracket),
-                        std::make_shared<const SyntaxSeparatorList<Attribute>>(
-                            std::vector<std::shared_ptr<const Attribute>>(),
-                            std::vector<std::shared_ptr<const SyntaxToken>>()),
+                        SyntaxFactory::CreateSyntaxSeparatorList<Attribute>({}, {}),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket),
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseBracket)),
                 }),
-                SyntaxFactory::CreateDeclarationSpecifier(
-                    SyntaxFactory::CreatePrimitiveDataTypeDeclaration(
+                SyntaxFactory::CreateDeclarationSpecifierSequence(
+                    SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
                         PrimitiveDataType::Void,
                         SyntaxFactory::CreateKeywordToken(
                             SyntaxTokenType::Void,
                             {
-                                SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
+                                SyntaxFactory::CreateTrivia(" "),
                             },
                             {}))),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(
-                        SyntaxTokenType::Identifier,
-                        "Function",
-                        {
-                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
-                        },
-                        {})),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(
+                            SyntaxTokenType::Identifier,
+                            "Function",
+                            {
+                                SyntaxFactory::CreateTrivia(" "),
+                            },
+                            {}))),
                 SyntaxFactory::CreateParameterList(
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                    std::make_shared<SyntaxSeparatorList<Parameter>>(
-                        std::vector<std::shared_ptr<const Parameter>>(),
-                        std::vector<std::shared_ptr<const SyntaxToken>>()),
+                    SyntaxFactory::CreateSyntaxSeparatorList<Parameter>({}, {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis)),
                 SyntaxFactory::CreateDeleteFunctionBody(
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::Equal,
                         {
-                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
+                            SyntaxFactory::CreateTrivia(" "),
                         },
                         {}),
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::Delete,
                         {
-                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
+                            SyntaxFactory::CreateTrivia(" "),
                         },
                         {}),
                     SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)));
@@ -269,7 +264,7 @@ namespace Soup::Syntax::UnitTests
         }
 
     private:
-        std::shared_ptr<const FunctionDefinition> ParseFunctionDefinition(std::string& sourceCode)
+        std::shared_ptr<const FunctionDefinition> ParseFunctionDefinition(const std::string& sourceCode)
         {
             auto uut = TestUtils::BuildParser(sourceCode);
             auto context = uut.Parser->functionDefinition();

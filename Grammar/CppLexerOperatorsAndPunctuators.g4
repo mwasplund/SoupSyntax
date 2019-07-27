@@ -39,7 +39,9 @@ CaretEqual: '^=';
 AmpersandEqual: '&=';
 VerticalBarEqual: '|=';
 DoubleLessThan: '<<';
-DoubleGreaterThan: '>>';
+// Ambiguous with end of template
+// Will be resolved in the parser
+// DoubleGreaterThan: '>>';
 DoubleLessThanEqual: '<<=';
 DoubleGreaterThanEqual: '>>=';
 DoubleEqual: '==';

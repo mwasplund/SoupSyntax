@@ -15,7 +15,7 @@ namespace Soup::Syntax
         }
 
     protected:
-        virtual void VisitToken(const SyntaxToken& token) override
+        virtual void VisitToken(const OuterTree::SyntaxToken& token) override
         {
             token.Write(m_stream);
         }

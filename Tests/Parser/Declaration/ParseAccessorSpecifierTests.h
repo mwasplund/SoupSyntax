@@ -1,13 +1,12 @@
 #pragma once
 #include "TestUtils.h"
-#include "SoupAssert.h"
 
-namespace Soup::Syntax::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
     class ParseAccessorSpecifierTests
     {
     public:
-        // [Fact]
+        [[Fact]]
         void SimplePublic()
         {
             auto sourceCode = std::string("public:");
@@ -23,7 +22,7 @@ namespace Soup::Syntax::UnitTests
                 "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void SimplePrivate()
         {
             auto sourceCode = std::string("private:");
@@ -39,7 +38,7 @@ namespace Soup::Syntax::UnitTests
                 "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void SimpleProtected()
         {
             auto sourceCode = std::string("protected:");
@@ -56,7 +55,7 @@ namespace Soup::Syntax::UnitTests
         }
 
     private:
-        std::shared_ptr<const Declaration> ParseAccessorSpecifier(std::string& sourceCode)
+        std::shared_ptr<const Declaration> ParseAccessorSpecifier(const std::string& sourceCode)
         {
             auto uut = TestUtils::BuildParser(sourceCode);
             auto context = uut.Parser->memberSpecification();
@@ -65,7 +64,7 @@ namespace Soup::Syntax::UnitTests
             auto nodes = uut.Visitor->visit(context)
                 .as<std::vector<std::shared_ptr<const Declaration>>>();
 
-            Assert::AreEqual<uint32_t>(1, nodes.size(), "Verify exactly one node.");
+            Assert::IsTrue(nodes.size() == 1, "Verify exactly one node.");
 
             return nodes.at(0);
         }

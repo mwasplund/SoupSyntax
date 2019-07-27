@@ -15,7 +15,7 @@ namespace Soup::Syntax
         }
 
     protected:
-        virtual void DefaultVisit(const SyntaxNode& node) override
+        virtual void DefaultVisit(const OuterTree::SyntaxNode& node) override
         {
             for (auto i = 0u; i < GetDepth(); i++)
             {
@@ -34,7 +34,7 @@ namespace Soup::Syntax
             SyntaxWalker::DefaultVisit(node);
         }
 
-        virtual void VisitToken(const SyntaxToken& token) override
+        virtual void VisitToken(const OuterTree::SyntaxToken& token) override
         {
             // Write the leading trivia
             for (auto& trivia : token.GetLeadingTrivia())
@@ -71,10 +71,10 @@ namespace Soup::Syntax
             }
 
             m_stream << location << "Trivia: \"";
-            m_stream << EscapeText(trivia.GetValue());
-            m_stream << "\" [";
-            m_stream << trivia.GetSpan().GetStart() << ", ";
-            m_stream << trivia.GetSpan().GetEnd() << ")\n";
+            m_stream << EscapeText(trivia.GetValue()) << "\n";
+            //m_stream << "\" [";
+            //m_stream << trivia.GetSpan().GetStart() << ", ";
+            //m_stream << trivia.GetSpan().GetEnd() << ")\n";
         }
 
     private:
@@ -84,6 +84,8 @@ namespace Soup::Syntax
             {
                 case SyntaxNodeType::Attribute:
                     return "Attribute";
+                case SyntaxNodeType::AttributeArgumentClause:
+                    return "AttributeArgumentClause";
                 case SyntaxNodeType::AttributeSpecifier:
                     return "AttributeSpecifier";
                 case SyntaxNodeType::AccessorSpecifier:
@@ -92,36 +94,40 @@ namespace Soup::Syntax
                     return "BinaryExpression";
                 case SyntaxNodeType::CatchClause:
                     return "CatchClause";
-                case SyntaxNodeType::ClassDeclaration:
-                    return "ClassDeclaration";
+                case SyntaxNodeType::ClassSpecifier:
+                    return "ClassSpecifier";
                 case SyntaxNodeType::CompoundStatement:
                     return "CompoundStatement";
                 case SyntaxNodeType::ConstructorDefinition:
                     return "ConstructorDefinition";
                 case SyntaxNodeType::ConstructorInitializer:
                     return "ConstructorInitializer";
-                case SyntaxNodeType::DeclarationSpecifier:
-                    return "DeclarationSpecifier";
+                case SyntaxNodeType::DeclarationSpecifierSequence:
+                    return "DeclarationSpecifierSequence";
                 case SyntaxNodeType::DefaultFunctionBody:
                     return "DefaultFunctionBody";
                 case SyntaxNodeType::DeleteFunctionBody:
                     return "DeleteFunctionBody";
-                case SyntaxNodeType::DestructorIdentifierExpression:
-                    return "DestructorIdentifierExpression";
+                case SyntaxNodeType::DestructorIdentifier:
+                    return "DestructorIdentifier";
                 case SyntaxNodeType::ElseClause:
                     return "ElseClause";
                 case SyntaxNodeType::EmptyDeclaration:
                     return "EmptyDeclaration";
                 case SyntaxNodeType::EmptyStatement:
                     return "EmptyStatement";
-                case SyntaxNodeType::EnumDeclaration:
-                    return "EnumDeclaration";
+                case SyntaxNodeType::EnumSpecifier:
+                    return "EnumSpecifier";
                 case SyntaxNodeType::EnumeratorDefinition:
                     return "EnumeratorDefinition";
                 case SyntaxNodeType::ExpressionStatement:
                     return "ExpressionStatement";
                 case SyntaxNodeType::FunctionDefinition:
                     return "FunctionDefinition";
+                case SyntaxNodeType::IdentifierExpression:
+                    return "IdentifierExpression";
+                case SyntaxNodeType::IdentifierType:
+                    return "IdentifierType";
                 case SyntaxNodeType::IfStatement:
                     return "IfStatement";
                 case SyntaxNodeType::InitializerDeclarator:
@@ -132,6 +138,10 @@ namespace Soup::Syntax
                     return "InitializerList";
                 case SyntaxNodeType::InvocationExpression:
                     return "InvocationExpression";
+                case SyntaxNodeType::LambdaCaptureClause:
+                    return "LambdaCaptureClause";
+                case SyntaxNodeType::LambdaExpression:
+                    return "LambdaExpression";
                 case SyntaxNodeType::LiteralExpression:
                     return "LiteralExpression";
                 case SyntaxNodeType::MemberDeclaration:
@@ -144,24 +154,28 @@ namespace Soup::Syntax
                     return "MemberInitializer";
                 case SyntaxNodeType::NamespaceDefinition:
                     return "NamespaceDefinition";
+                case SyntaxNodeType::NestedNameSpecifier:
+                    return "NestedNameSpecifier";
                 case SyntaxNodeType::Parameter:
                     return "Parameter";
                 case SyntaxNodeType::ParameterList:
                     return "ParameterList";
-                case SyntaxNodeType::PrimitiveDataTypeDeclaration:
-                    return "PrimitiveDataTypeDeclaration";
-                case SyntaxNodeType::QualifiedIdentifierExpression:
-                    return "QualifiedIdentifierExpression";
+                case SyntaxNodeType::PointerDeclarator:
+                    return "PointerDeclarator";
+                case SyntaxNodeType::PointerOperator:
+                    return "PointerOperator";
+                case SyntaxNodeType::PrimitiveDataTypeSpecifier:
+                    return "PrimitiveDataTypeSpecifier";
                 case SyntaxNodeType::RegularFunctionBody:
                     return "RegularFunctionBody";
                 case SyntaxNodeType::ReturnStatement:
                     return "ReturnStatement";
                 case SyntaxNodeType::SimpleDeclaration:
                     return "SimpleDeclaration";
-                case SyntaxNodeType::SimpleIdentifierExpression:
-                    return "SimpleIdentifierExpression";
-                case SyntaxNodeType::SimpleTemplateIdentifierExpression:
-                    return "SimpleTemplateIdentifierExpression";
+                case SyntaxNodeType::SimpleIdentifier:
+                    return "SimpleIdentifier";
+                case SyntaxNodeType::SimpleTemplateIdentifier:
+                    return "SimpleTemplateIdentifier";
                 case SyntaxNodeType::SubscriptExpression:
                     return "SubscriptExpression";
                 case SyntaxNodeType::ThisExpression:
@@ -170,6 +184,8 @@ namespace Soup::Syntax
                     return "TranslationUnit";
                 case SyntaxNodeType::TryFunctionBody:
                     return "TryFunctionBody";
+                case SyntaxNodeType::TypeSpecifierSequence:
+                    return "TypeSpecifierSequence";
                 case SyntaxNodeType::UnaryExpression:
                     return "UnaryExpression";
                 case SyntaxNodeType::ValueEqualInitializer:

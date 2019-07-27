@@ -6,6 +6,7 @@
   ],
   "public": "Module.cppm",
   "source": [
+    "AST/OuterTree/SyntaxWrapper.cpp",
     "Parser/Grammar/CppLexer.cpp",
     "Parser/Grammar/CppParser.cpp",
     "Parser/Grammar/CppParserBaseVisitor.cpp",

@@ -1,13 +1,12 @@
 #pragma once
 #include "TestUtils.h"
-#include "SoupAssert.h"
 
-namespace Soup::Syntax::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
     class ParseIfStatementTests
     {
     public:
-        // [Fact]
+        [[Fact]]
         void IfEmptyStatement()
         {
             auto sourceCode = std::string("if(a);");
@@ -16,8 +15,9 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateIfStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
@@ -26,7 +26,7 @@ namespace Soup::Syntax::UnitTests
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void IfEmptyStatementWithElseClause()
         {
             auto sourceCode = std::string("if(a);else;");
@@ -35,8 +35,9 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateIfStatement(
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::If),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::OpenParenthesis),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))),
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::CloseParenthesis),
                 SyntaxFactory::CreateEmptyStatement(
                         SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Semicolon)),
@@ -48,7 +49,7 @@ namespace Soup::Syntax::UnitTests
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void IfStatementReturnWithElseClause()
         {
             auto sourceCode = std::string("if ( a ) \r\n return 1 ; \r\n else \r\n return 2 ; ");
@@ -59,31 +60,32 @@ namespace Soup::Syntax::UnitTests
                 SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::OpenParenthesis,
                     {
-                        SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                        SyntaxFactory::CreateTrivia(" ")
                     },
                     {}),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(
-                        SyntaxTokenType::Identifier,
-                        "a",
-                        {
-                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
-                        },
-                        {})),
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(
+                            SyntaxTokenType::Identifier,
+                            "a",
+                            {
+                                SyntaxFactory::CreateTrivia(" ")
+                            },
+                            {}))),
                 SyntaxFactory::CreateKeywordToken(
                     SyntaxTokenType::CloseParenthesis,
                     {
-                        SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                        SyntaxFactory::CreateTrivia(" ")
                     },
                     {
-                        SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                        SyntaxFactory::CreateTrivia(" ")
                     }),
                 SyntaxFactory::CreateReturnStatement(
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::Return,
                         {
-                            SyntaxFactory::CreateTrivia("\r\n", TextSpan(0, 0)),
-                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
+                            SyntaxFactory::CreateTrivia("\r\n"),
+                            SyntaxFactory::CreateTrivia(" "),
                         },
                         {}),
                     SyntaxFactory::CreateLiteralExpression(
@@ -92,33 +94,33 @@ namespace Soup::Syntax::UnitTests
                             SyntaxTokenType::IntegerLiteral,
                             "1",
                             {
-                                SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                                SyntaxFactory::CreateTrivia(" ")
                             },
                             {})),
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::Semicolon,
                         {
-                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                            SyntaxFactory::CreateTrivia(" ")
                         },
                         {
-                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                            SyntaxFactory::CreateTrivia(" ")
                         })),
                 SyntaxFactory::CreateElseClause(
                     SyntaxFactory::CreateKeywordToken(
                         SyntaxTokenType::Else,
                         {
-                            SyntaxFactory::CreateTrivia("\r\n", TextSpan(0, 0)),
-                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
+                            SyntaxFactory::CreateTrivia("\r\n"),
+                            SyntaxFactory::CreateTrivia(" "),
                         },
                         {
-                            SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                            SyntaxFactory::CreateTrivia(" ")
                         }),
                     SyntaxFactory::CreateReturnStatement(
                         SyntaxFactory::CreateKeywordToken(
                             SyntaxTokenType::Return,
                             {
-                                SyntaxFactory::CreateTrivia("\r\n", TextSpan(0, 0)),
-                                SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0)),
+                                SyntaxFactory::CreateTrivia("\r\n"),
+                                SyntaxFactory::CreateTrivia(" "),
                             },
                             {}),
                         SyntaxFactory::CreateLiteralExpression(
@@ -127,13 +129,13 @@ namespace Soup::Syntax::UnitTests
                                 SyntaxTokenType::IntegerLiteral,
                                 "2",
                                 {
-                                    SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                                    SyntaxFactory::CreateTrivia(" ")
                                 },
                                 {})),
                         SyntaxFactory::CreateKeywordToken(
                             SyntaxTokenType::Semicolon,
                             {
-                                SyntaxFactory::CreateTrivia(" ", TextSpan(0, 0))
+                                SyntaxFactory::CreateTrivia(" ")
                             },
                             {}))));
 
@@ -141,7 +143,7 @@ namespace Soup::Syntax::UnitTests
         }
 
     private:
-        std::shared_ptr<const IfStatement> ParseIfStatement(std::string& sourceCode)
+        std::shared_ptr<const IfStatement> ParseIfStatement(const std::string& sourceCode)
         {
             auto uut = TestUtils::BuildParser(sourceCode);
             auto context = uut.Parser->selectionStatement();

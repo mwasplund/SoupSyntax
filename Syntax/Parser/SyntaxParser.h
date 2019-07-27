@@ -34,6 +34,12 @@ namespace Soup::Syntax
             PrintAllTokens(input.get());
         }
 
+        static void PrintAllTokens(std::istream& source)
+        {
+            auto input = std::make_unique<antlr4::ANTLRInputStream>(source);
+            PrintAllTokens(input.get());
+        }
+
     private:
         static std::shared_ptr<const SyntaxTree> Parse(antlr4::ANTLRInputStream* input)
         {
@@ -58,7 +64,7 @@ namespace Soup::Syntax
 
             // Convert the the abstract syntax tree
             auto node = visitor->visit(context)
-                .as<std::shared_ptr<const TranslationUnit>>();
+                .as<std::shared_ptr<const InnerTree::TranslationUnit>>();
 
             return std::make_shared<const SyntaxTree>(std::move(node));
         }

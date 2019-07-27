@@ -1,17 +1,12 @@
 #pragma once
-#include "ParseEmptyStatementTests.h"
-#include "../../RunTest.h"
+#include "/Parser/Statement/ParseEmptyStatementTests.h"
 
-TestState RunParseEmptyStatementTests()
-{
-    std::string className = "ParseEmptyStatementTests";
-    auto testClass = std::make_unique<Soup::Syntax::UnitTests::ParseEmptyStatementTests>();
+TestState RunParseEmptyStatementTests() 
+ {
+    auto className = "ParseEmptyStatementTests";
+    auto testClass = std::make_shared<Soup::Syntax::InnerTree::UnitTests::ParseEmptyStatementTests>();
     TestState state = { 0, 0 };
-
-    state += RunTest(
-        className,
-        "Simple",
-        [&testClass]() { testClass->Simple(); });
+    state += SoupTest::RunTest(className, "Simple", [&testClass]() { testClass->Simple(); });
 
     return state;
 }

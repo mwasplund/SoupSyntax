@@ -9,15 +9,14 @@ namespace Soup::Syntax
     /// </summary>
     export class SyntaxTrivia
     {
-        friend class SyntaxFactory;
+        friend class ::Soup::Syntax::SyntaxFactory;
 
     private:
         /// <summary>
         /// Initialize
         /// </summary>
-        SyntaxTrivia(std::string value, TextSpan span) :
-            m_value(std::move(value)),
-            m_span(span)
+        SyntaxTrivia(std::string value) :
+            m_value(std::move(value))
         {
         }
 
@@ -28,14 +27,6 @@ namespace Soup::Syntax
         const std::string& GetValue() const
         {
             return m_value;
-        }
-
-        /// <summary>
-        /// Get the trivia span
-        /// </summary>
-        TextSpan GetSpan() const
-        {
-            return m_span;
         }
 
         /// <summary>
@@ -51,8 +42,7 @@ namespace Soup::Syntax
         /// </summary>
         bool operator==(const SyntaxTrivia &rhs) const
         {
-            return m_value == rhs.m_value &&
-                m_span == rhs.m_span;
+            return m_value == rhs.m_value;
         }
 
         bool operator!=(const SyntaxTrivia &rhs) const
@@ -62,6 +52,5 @@ namespace Soup::Syntax
 
     private:
         std::string m_value;
-        TextSpan m_span;
     };
 }

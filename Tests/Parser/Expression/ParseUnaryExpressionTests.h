@@ -1,13 +1,12 @@
 #pragma once
 #include "TestUtils.h"
-#include "SoupAssert.h"
 
-namespace Soup::Syntax::UnitTests
+namespace Soup::Syntax::InnerTree::UnitTests
 {
     class ParseUnaryExpressionTests
     {
     public:
-        // [Fact]
+        [[Fact]]
         void SingleIdentifierPlus()
         {
             auto sourceCode = std::string("+a");
@@ -16,13 +15,14 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateUnaryExpression(
                 UnaryOperator::Plus,
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Plus),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")));
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))));
 
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void SingleIdentifierMinus()
         {
             auto sourceCode = std::string("-a");
@@ -31,13 +31,14 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateUnaryExpression(
                 UnaryOperator::Minus,
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Minus),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")));
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))));
 
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        // TODO: AMBIGUOUS [[Fact]]
         void SingleIdentifierBitwiseNot()
         {
             auto sourceCode = std::string("~a");
@@ -46,13 +47,14 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateUnaryExpression(
                 UnaryOperator::BitwiseNot,
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Tilde),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")));
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))));
 
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void SingleIdentifierPreIncrement()
         {
             auto sourceCode = std::string("++a");
@@ -61,13 +63,14 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateUnaryExpression(
                 UnaryOperator::PreIncrement,
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoublePlus),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")));
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))));
 
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void SingleIdentifierPreDecrement()
         {
             auto sourceCode = std::string("--a");
@@ -76,13 +79,14 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateUnaryExpression(
                 UnaryOperator::PreDecrement,
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleMinus),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")));
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))));
 
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void SingleIdentifierPostIncrement()
         {
             auto sourceCode = std::string("a++");
@@ -91,13 +95,14 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateUnaryExpression(
                 UnaryOperator::PostIncrement,
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoublePlus),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")));
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))));
 
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void SingleIdentifierPostDecrement()
         {
             auto sourceCode = std::string("a--");
@@ -106,13 +111,14 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateUnaryExpression(
                 UnaryOperator::PostDecrement,
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::DoubleMinus),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")));
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))));
 
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void SingleIdentifierLogicalNot()
         {
             auto sourceCode = std::string("!a");
@@ -121,13 +127,14 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateUnaryExpression(
                 UnaryOperator::LogicalNot,
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::ExclamationMark),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")));
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))));
 
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void SingleIdentifierIndirection()
         {
             auto sourceCode = std::string("*a");
@@ -136,13 +143,14 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateUnaryExpression(
                 UnaryOperator::Indirection,
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Asterisk),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")));
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))));
 
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
-        // [Fact]
+        [[Fact]]
         void SingleIdentifierAddressOf()
         {
             auto sourceCode = std::string("&a");
@@ -151,14 +159,15 @@ namespace Soup::Syntax::UnitTests
             auto expected = SyntaxFactory::CreateUnaryExpression(
                 UnaryOperator::AddressOf,
                 SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Ampersand),
-                SyntaxFactory::CreateSimpleIdentifierExpression(
-                    SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a")));
+                SyntaxFactory::CreateIdentifierExpression(
+                    SyntaxFactory::CreateSimpleIdentifier(
+                        SyntaxFactory::CreateUniqueToken(SyntaxTokenType::Identifier, "a"))));
 
             TestUtils::AreEqual(expected, actual, "Verify matches expected.");
         }
 
     private:
-        std::shared_ptr<const SyntaxNode> ParseUnaryExpression(std::string& sourceCode)
+        std::shared_ptr<const SyntaxNode> ParseUnaryExpression(const std::string& sourceCode)
         {
             auto uut = TestUtils::BuildParser(sourceCode);
             auto context = uut.Parser->unaryExpression();
