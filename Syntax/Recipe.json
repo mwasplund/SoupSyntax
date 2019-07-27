@@ -2,7 +2,7 @@
   "name": "SoupSyntax",
   "version": "1.0.0",
   "dependencies": [
-    "D:/Repos/antlr4/runtime/cpp/runtime"
+    "../../../Dependencies/antlr4/runtime/cpp/runtime/"
   ],
   "public": "Module.cppm",
   "source": [
