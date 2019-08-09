@@ -1,5 +1,5 @@
 
-module SoupSyntax;
+module SoupSyntaxParser;
 
 
 //#include "CppParserListener.h"

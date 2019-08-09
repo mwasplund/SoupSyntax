@@ -2,7 +2,7 @@
 // Generated from Grammar\CppLexer.g4 by ANTLR 4.7.1
 
 
-module SoupSyntax;
+module SoupSyntaxParser;
 
 
 using namespace antlr4;
@@ -58,108 +58,108 @@ atn::PredictionContextCache CppLexer::_sharedContextCache;
 // We own the ATN which in turn owns the ATN states.
 atn::ATN CppLexer::_atn;
 std::vector<uint16_t> CppLexer::_serializedATN;
-
+ 
 std::vector<std::string> CppLexer::_ruleNames = {
-  u8"BlockComment", u8"LineComment", u8"Whitespace", u8"Preprocessor", u8"Newline", 
-  u8"AlignAs", u8"AlignOf", u8"Asm", u8"Auto", u8"Bool", u8"Break", u8"Case", 
-  u8"Catch", u8"Char", u8"Char8", u8"Char16", u8"Char32", u8"Class", u8"Const", 
-  u8"ConstExpr", u8"ConstCast", u8"Continue", u8"DeclType", u8"Default", 
-  u8"Delete", u8"Do", u8"Double", u8"DynamicCast", u8"Else", u8"Enum", u8"Explicit", 
-  u8"Export", u8"Extern", u8"False", u8"Float", u8"For", u8"Friend", u8"GoTo", 
-  u8"If", u8"Inline", u8"Int", u8"Long", u8"Mutable", u8"Namespace", u8"New", 
-  u8"NoExcept", u8"Nullptr", u8"Operator", u8"Private", u8"Protected", u8"Public", 
-  u8"Register", u8"ReinterpretCast", u8"Return", u8"Short", u8"Signed", 
-  u8"SizeOf", u8"Static", u8"StaticAssert", u8"StaticCast", u8"Struct", 
-  u8"Switch", u8"Template", u8"This", u8"ThreadLocal", u8"Throw", u8"True", 
-  u8"Try", u8"TypeDef", u8"TypeId", u8"TypeName", u8"Union", u8"Unsigned", 
-  u8"Using", u8"Virtual", u8"Void", u8"Volatile", u8"WChar", u8"While", 
-  u8"Override", u8"Final", u8"OpenBrace", u8"CloseBrace", u8"OpenBracket", 
-  u8"CloseBracket", u8"OpenParenthesis", u8"CloseParenthesis", u8"Semicolon", 
-  u8"Colon", u8"Ellipsis", u8"QuestionMark", u8"DoubleColon", u8"Period", 
-  u8"PeriodAsterisk", u8"Plus", u8"Minus", u8"Asterisk", u8"ForwardSlash", 
-  u8"Percent", u8"Caret", u8"Ampersand", u8"VerticalBar", u8"Tilde", u8"ExclamationMark", 
-  u8"Equal", u8"LessThan", u8"GreaterThan", u8"PlusEqual", u8"MinusEqual", 
-  u8"AsteriskEqual", u8"ForwardSlashEqual", u8"PercentEqual", u8"CaretEqual", 
-  u8"AmpersandEqual", u8"VerticalBarEqual", u8"DoubleLessThan", u8"DoubleLessThanEqual", 
-  u8"DoubleGreaterThanEqual", u8"DoubleEqual", u8"ExclamationMarkEqual", 
-  u8"LessThanEqual", u8"GreaterThanEqual", u8"DoubleAmpersand", u8"DoubleVerticalBar", 
-  u8"DoublePlus", u8"DoubleMinus", u8"Comma", u8"ArrowAsterisk", u8"Arrow", 
-  u8"IntegerSuffix", u8"Zero", u8"DecimalLiteral", u8"OctalLiteral", u8"HexadecimalLiteral", 
-  u8"BinaryLiteral", u8"IntegerLiteral", u8"BinaryDigit", u8"NonZeroDecimalDigit", 
-  u8"DecimalDigit", u8"OctalDigit", u8"HexadecimalDigit", u8"LowerCaseLetter", 
-  u8"UpperCaseLetter", u8"Letter", u8"NonDigit", u8"Sign", u8"HexadecimalPrefix", 
-  u8"BinaryPrefix", u8"UnsignedSuffix", u8"LongSuffix", u8"LongLongSuffix", 
-  u8"SingleQuote", u8"DoubleQuote", u8"EscapeSequence", u8"SimpleEscapeSequence", 
-  u8"OctalEscapeSequence", u8"HexadecimalEscapeSequence", u8"HexadecimalQuad", 
-  u8"UniversalCharacterName", u8"Point", u8"FloatSuffix", u8"DecimalDigitSequence", 
-  u8"HexidecimalDigitSequence", u8"ExponentPart", u8"FractionalConstant", 
-  u8"FloatingPointLiteral", u8"CCharacter", u8"CharacterLiteral", u8"StringCharacter", 
-  u8"StringPrefix", u8"DelimiterCharacter", u8"RawCharacter", u8"StringLiteral", 
-  u8"UserDefinedSuffix", u8"UserDefinedIntegerLiteral", u8"UserDefinedFloatingPointLiteral", 
-  u8"UserDefinedCharacterLiteral", u8"UserDefinedStringLiteral", u8"IdentifierNonDigit", 
-  u8"Identifier"
+  "BlockComment", "LineComment", "Whitespace", "Preprocessor", "Newline", 
+  "AlignAs", "AlignOf", "Asm", "Auto", "Bool", "Break", "Case", 
+  "Catch", "Char", "Char8", "Char16", "Char32", "Class", "Const", 
+  "ConstExpr", "ConstCast", "Continue", "DeclType", "Default", 
+  "Delete", "Do", "Double", "DynamicCast", "Else", "Enum", "Explicit", 
+  "Export", "Extern", "False", "Float", "For", "Friend", "GoTo", 
+  "If", "Inline", "Int", "Long", "Mutable", "Namespace", "New", 
+  "NoExcept", "Nullptr", "Operator", "Private", "Protected", "Public", 
+  "Register", "ReinterpretCast", "Return", "Short", "Signed", 
+  "SizeOf", "Static", "StaticAssert", "StaticCast", "Struct", 
+  "Switch", "Template", "This", "ThreadLocal", "Throw", "True", 
+  "Try", "TypeDef", "TypeId", "TypeName", "Union", "Unsigned", 
+  "Using", "Virtual", "Void", "Volatile", "WChar", "While", 
+  "Override", "Final", "OpenBrace", "CloseBrace", "OpenBracket", 
+  "CloseBracket", "OpenParenthesis", "CloseParenthesis", "Semicolon", 
+  "Colon", "Ellipsis", "QuestionMark", "DoubleColon", "Period", 
+  "PeriodAsterisk", "Plus", "Minus", "Asterisk", "ForwardSlash", 
+  "Percent", "Caret", "Ampersand", "VerticalBar", "Tilde", "ExclamationMark", 
+  "Equal", "LessThan", "GreaterThan", "PlusEqual", "MinusEqual", 
+  "AsteriskEqual", "ForwardSlashEqual", "PercentEqual", "CaretEqual", 
+  "AmpersandEqual", "VerticalBarEqual", "DoubleLessThan", "DoubleLessThanEqual", 
+  "DoubleGreaterThanEqual", "DoubleEqual", "ExclamationMarkEqual", 
+  "LessThanEqual", "GreaterThanEqual", "DoubleAmpersand", "DoubleVerticalBar", 
+  "DoublePlus", "DoubleMinus", "Comma", "ArrowAsterisk", "Arrow", 
+  "IntegerSuffix", "Zero", "DecimalLiteral", "OctalLiteral", "HexadecimalLiteral", 
+  "BinaryLiteral", "IntegerLiteral", "BinaryDigit", "NonZeroDecimalDigit", 
+  "DecimalDigit", "OctalDigit", "HexadecimalDigit", "LowerCaseLetter", 
+  "UpperCaseLetter", "Letter", "NonDigit", "Sign", "HexadecimalPrefix", 
+  "BinaryPrefix", "UnsignedSuffix", "LongSuffix", "LongLongSuffix", 
+  "SingleQuote", "DoubleQuote", "EscapeSequence", "SimpleEscapeSequence", 
+  "OctalEscapeSequence", "HexadecimalEscapeSequence", "HexadecimalQuad", 
+  "UniversalCharacterName", "Point", "FloatSuffix", "DecimalDigitSequence", 
+  "HexidecimalDigitSequence", "ExponentPart", "FractionalConstant", 
+  "FloatingPointLiteral", "CCharacter", "CharacterLiteral", "StringCharacter", 
+  "StringPrefix", "DelimiterCharacter", "RawCharacter", "StringLiteral", 
+  "UserDefinedSuffix", "UserDefinedIntegerLiteral", "UserDefinedFloatingPointLiteral", 
+  "UserDefinedCharacterLiteral", "UserDefinedStringLiteral", "IdentifierNonDigit", 
+  "Identifier"
 };
 
 std::vector<std::string> CppLexer::_channelNames = {
-  "DEFAULT_TOKEN_CHANNEL", "HIDDEN", u8"TRIVIA"
+  "DEFAULT_TOKEN_CHANNEL", "HIDDEN", "TRIVIA"
 };
 
 std::vector<std::string> CppLexer::_modeNames = {
-  u8"DEFAULT_MODE"
+  "DEFAULT_MODE"
 };
 
 std::vector<std::string> CppLexer::_literalNames = {
-  "", "", "", "", "", "", u8"'alignas'", u8"'alignof'", u8"'asm'", u8"'auto'", 
-  u8"'bool'", u8"'break'", u8"'case'", u8"'catch'", u8"'char'", u8"'char8_t'", 
-  u8"'char16_t'", u8"'char32_t'", u8"'class'", u8"'const'", u8"'constexpr'", 
-  u8"'const_cast'", u8"'continue'", u8"'decltype'", u8"'default'", u8"'delete'", 
-  u8"'do'", u8"'double'", u8"'dynamic_cast'", u8"'else'", u8"'enum'", u8"'explicit'", 
-  u8"'export'", u8"'extern'", u8"'false'", u8"'float'", u8"'for'", u8"'friend'", 
-  u8"'goto'", u8"'if'", u8"'inline'", u8"'int'", u8"'long'", u8"'mutable'", 
-  u8"'namespace'", u8"'new'", u8"'noexcept'", u8"'nullptr'", u8"'operator'", 
-  u8"'private'", u8"'protected'", u8"'public'", u8"'register'", u8"'reinterpret_cast'", 
-  u8"'return'", u8"'short'", u8"'signed'", u8"'sizeof'", u8"'static'", u8"'static_assert'", 
-  u8"'static_cast'", u8"'struct'", u8"'switch'", u8"'template'", u8"'this'", 
-  u8"'thread_local'", u8"'throw'", u8"'true'", u8"'try'", u8"'typedef'", 
-  u8"'typeid'", u8"'typename'", u8"'union'", u8"'unsigned'", u8"'using'", 
-  u8"'virtual'", u8"'void'", u8"'volatile'", u8"'wchar_t'", u8"'while'", 
-  u8"'override'", u8"'final'", u8"'{'", u8"'}'", u8"'['", u8"']'", u8"'('", 
-  u8"')'", u8"';'", u8"':'", u8"'...'", u8"'?'", u8"'::'", u8"'.'", u8"'.*'", 
-  u8"'+'", u8"'-'", u8"'*'", u8"'/'", u8"'%'", u8"'^'", u8"'&'", u8"'|'", 
-  u8"'~'", u8"'!'", u8"'='", u8"'<'", u8"'>'", u8"'+='", u8"'-='", u8"'*='", 
-  u8"'/='", u8"'%='", u8"'^='", u8"'&='", u8"'|='", u8"'<<'", u8"'<<='", 
-  u8"'>>='", u8"'=='", u8"'!='", u8"'<='", u8"'>='", u8"'&&'", u8"'||'", 
-  u8"'++'", u8"'--'", u8"','", u8"'->*'", u8"'->'", u8"'0'"
+  "", "", "", "", "", "", "'alignas'", "'alignof'", "'asm'", "'auto'", 
+  "'bool'", "'break'", "'case'", "'catch'", "'char'", "'char8_t'", 
+  "'char16_t'", "'char32_t'", "'class'", "'const'", "'constexpr'", 
+  "'const_cast'", "'continue'", "'decltype'", "'default'", "'delete'", 
+  "'do'", "'double'", "'dynamic_cast'", "'else'", "'enum'", "'explicit'", 
+  "'export'", "'extern'", "'false'", "'float'", "'for'", "'friend'", 
+  "'goto'", "'if'", "'inline'", "'int'", "'long'", "'mutable'", 
+  "'namespace'", "'new'", "'noexcept'", "'nullptr'", "'operator'", 
+  "'private'", "'protected'", "'public'", "'register'", "'reinterpret_cast'", 
+  "'return'", "'short'", "'signed'", "'sizeof'", "'static'", "'static_assert'", 
+  "'static_cast'", "'struct'", "'switch'", "'template'", "'this'", 
+  "'thread_local'", "'throw'", "'true'", "'try'", "'typedef'", 
+  "'typeid'", "'typename'", "'union'", "'unsigned'", "'using'", 
+  "'virtual'", "'void'", "'volatile'", "'wchar_t'", "'while'", 
+  "'override'", "'final'", "'{'", "'}'", "'['", "']'", "'('", 
+  "')'", "';'", "':'", "'...'", "'?'", "'::'", "'.'", "'.*'", 
+  "'+'", "'-'", "'*'", "'/'", "'%'", "'^'", "'&'", "'|'", 
+  "'~'", "'!'", "'='", "'<'", "'>'", "'+='", "'-='", "'*='", 
+  "'/='", "'%='", "'^='", "'&='", "'|='", "'<<'", "'<<='", 
+  "'>>='", "'=='", "'!='", "'<='", "'>='", "'&&'", "'||'", 
+  "'++'", "'--'", "','", "'->*'", "'->'", "'0'"
 };
 
 std::vector<std::string> CppLexer::_symbolicNames = {
-  "", u8"BlockComment", u8"LineComment", u8"Whitespace", u8"Preprocessor", 
-  u8"Newline", u8"AlignAs", u8"AlignOf", u8"Asm", u8"Auto", u8"Bool", u8"Break", 
-  u8"Case", u8"Catch", u8"Char", u8"Char8", u8"Char16", u8"Char32", u8"Class", 
-  u8"Const", u8"ConstExpr", u8"ConstCast", u8"Continue", u8"DeclType", u8"Default", 
-  u8"Delete", u8"Do", u8"Double", u8"DynamicCast", u8"Else", u8"Enum", u8"Explicit", 
-  u8"Export", u8"Extern", u8"False", u8"Float", u8"For", u8"Friend", u8"GoTo", 
-  u8"If", u8"Inline", u8"Int", u8"Long", u8"Mutable", u8"Namespace", u8"New", 
-  u8"NoExcept", u8"Nullptr", u8"Operator", u8"Private", u8"Protected", u8"Public", 
-  u8"Register", u8"ReinterpretCast", u8"Return", u8"Short", u8"Signed", 
-  u8"SizeOf", u8"Static", u8"StaticAssert", u8"StaticCast", u8"Struct", 
-  u8"Switch", u8"Template", u8"This", u8"ThreadLocal", u8"Throw", u8"True", 
-  u8"Try", u8"TypeDef", u8"TypeId", u8"TypeName", u8"Union", u8"Unsigned", 
-  u8"Using", u8"Virtual", u8"Void", u8"Volatile", u8"WChar", u8"While", 
-  u8"Override", u8"Final", u8"OpenBrace", u8"CloseBrace", u8"OpenBracket", 
-  u8"CloseBracket", u8"OpenParenthesis", u8"CloseParenthesis", u8"Semicolon", 
-  u8"Colon", u8"Ellipsis", u8"QuestionMark", u8"DoubleColon", u8"Period", 
-  u8"PeriodAsterisk", u8"Plus", u8"Minus", u8"Asterisk", u8"ForwardSlash", 
-  u8"Percent", u8"Caret", u8"Ampersand", u8"VerticalBar", u8"Tilde", u8"ExclamationMark", 
-  u8"Equal", u8"LessThan", u8"GreaterThan", u8"PlusEqual", u8"MinusEqual", 
-  u8"AsteriskEqual", u8"ForwardSlashEqual", u8"PercentEqual", u8"CaretEqual", 
-  u8"AmpersandEqual", u8"VerticalBarEqual", u8"DoubleLessThan", u8"DoubleLessThanEqual", 
-  u8"DoubleGreaterThanEqual", u8"DoubleEqual", u8"ExclamationMarkEqual", 
-  u8"LessThanEqual", u8"GreaterThanEqual", u8"DoubleAmpersand", u8"DoubleVerticalBar", 
-  u8"DoublePlus", u8"DoubleMinus", u8"Comma", u8"ArrowAsterisk", u8"Arrow", 
-  u8"Zero", u8"IntegerLiteral", u8"FloatingPointLiteral", u8"CharacterLiteral", 
-  u8"StringLiteral", u8"UserDefinedIntegerLiteral", u8"UserDefinedFloatingPointLiteral", 
-  u8"UserDefinedCharacterLiteral", u8"UserDefinedStringLiteral", u8"Identifier"
+  "", "BlockComment", "LineComment", "Whitespace", "Preprocessor", 
+  "Newline", "AlignAs", "AlignOf", "Asm", "Auto", "Bool", "Break", 
+  "Case", "Catch", "Char", "Char8", "Char16", "Char32", "Class", 
+  "Const", "ConstExpr", "ConstCast", "Continue", "DeclType", "Default", 
+  "Delete", "Do", "Double", "DynamicCast", "Else", "Enum", "Explicit", 
+  "Export", "Extern", "False", "Float", "For", "Friend", "GoTo", 
+  "If", "Inline", "Int", "Long", "Mutable", "Namespace", "New", 
+  "NoExcept", "Nullptr", "Operator", "Private", "Protected", "Public", 
+  "Register", "ReinterpretCast", "Return", "Short", "Signed", 
+  "SizeOf", "Static", "StaticAssert", "StaticCast", "Struct", 
+  "Switch", "Template", "This", "ThreadLocal", "Throw", "True", 
+  "Try", "TypeDef", "TypeId", "TypeName", "Union", "Unsigned", 
+  "Using", "Virtual", "Void", "Volatile", "WChar", "While", 
+  "Override", "Final", "OpenBrace", "CloseBrace", "OpenBracket", 
+  "CloseBracket", "OpenParenthesis", "CloseParenthesis", "Semicolon", 
+  "Colon", "Ellipsis", "QuestionMark", "DoubleColon", "Period", 
+  "PeriodAsterisk", "Plus", "Minus", "Asterisk", "ForwardSlash", 
+  "Percent", "Caret", "Ampersand", "VerticalBar", "Tilde", "ExclamationMark", 
+  "Equal", "LessThan", "GreaterThan", "PlusEqual", "MinusEqual", 
+  "AsteriskEqual", "ForwardSlashEqual", "PercentEqual", "CaretEqual", 
+  "AmpersandEqual", "VerticalBarEqual", "DoubleLessThan", "DoubleLessThanEqual", 
+  "DoubleGreaterThanEqual", "DoubleEqual", "ExclamationMarkEqual", 
+  "LessThanEqual", "GreaterThanEqual", "DoubleAmpersand", "DoubleVerticalBar", 
+  "DoublePlus", "DoubleMinus", "Comma", "ArrowAsterisk", "Arrow", 
+  "Zero", "IntegerLiteral", "FloatingPointLiteral", "CharacterLiteral", 
+  "StringLiteral", "UserDefinedIntegerLiteral", "UserDefinedFloatingPointLiteral", 
+  "UserDefinedCharacterLiteral", "UserDefinedStringLiteral", "Identifier"
 };
 
 dfa::Vocabulary CppLexer::_vocabulary(_literalNames, _symbolicNames);

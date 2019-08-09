@@ -1,19 +1,21 @@
 {
-  "name": "SoupSyntax",
+  "name": "SoupSyntaxParser",
   "version": "1.0.0",
   "dependencies": [
-    "../../../Dependencies/antlr4/runtime/cpp/runtime/"
+    "../Syntax/",
+    "../../../../Dependencies/SoupSTL/core/",
+    "../../../../Dependencies/antlr4/runtime/cpp/runtime/"
   ],
   "public": "Module.cppm",
   "source": [
-    "AST/OuterTree/SyntaxWrapper.cpp",
-    "Parser/Grammar/CppLexer.cpp",
-    "Parser/Grammar/CppParser.cpp",
-    "Parser/Grammar/CppParserBaseVisitor.cpp",
-    "Parser/Grammar/CppParserListener.cpp",
-    "Parser/Grammar/CppParserVisitor.cpp",
-    "Parser/ASTCppParserVisitor.cpp",
-    "Parser/LexerExceptionErrorListener.cpp",
-    "Parser/ParserExceptionErrorListener.cpp"
+    "Grammar/CppLexer.cpp",
+    "Grammar/CppParser.cpp",
+    "Grammar/CppParserBaseVisitor.cpp",
+    "Grammar/CppParserListener.cpp",
+    "Grammar/CppParserVisitor.cpp",
+    "ASTCppParserVisitor.cpp",
+    "LexerExceptionErrorListener.cpp",
+    "ParserExceptionErrorListener.cpp",
+    "SyntaxParser.cpp"
   ]
 }

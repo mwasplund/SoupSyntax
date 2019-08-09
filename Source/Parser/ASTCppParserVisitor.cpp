@@ -1,4 +1,5 @@
-﻿module SoupSyntax;
+﻿module SoupSyntaxParser;
+
 using namespace Soup::Syntax;
 using namespace Soup::Syntax::InnerTree;
 

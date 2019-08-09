@@ -1,4 +1,4 @@
-﻿module SoupSyntax;
+﻿module SoupSyntaxParser;
 
 using namespace antlr4;
 using namespace Soup::Syntax;

@@ -1,4 +1,4 @@
-﻿module SoupSyntax;
+﻿module SoupSyntaxParser;
 
 using namespace antlr4;
 using namespace antlr4::atn;
@@ -43,9 +43,9 @@ void ParserExceptionErrorListener::reportAmbiguity(
 {
     std::stringstream errorMessage;
     errorMessage << "ParserExceptionErrorListener::reportAmbiguity" << " index " << startIndex << ":" << stopIndex;
-    errorMessage << "\n" << GetDecisionDescription(recognizer, dfa) << std::endl;
-    errorMessage << "\n" << const_cast<BitSet&>(ambigAlts).toString() << std::endl;
-    errorMessage << "\n" << GetAlternatesDescription(configs) << std::endl;
+    errorMessage << "\n" << GetDecisionDescription(recognizer, dfa) << "\n";
+    errorMessage << "\n" << const_cast<BitSet&>(ambigAlts).toString() << "\n";
+    errorMessage << "\n" << GetAlternatesDescription(configs) << "\n";
 
     throw ParseCancellationException(errorMessage.str());
 }
@@ -60,9 +60,9 @@ void ParserExceptionErrorListener::reportAttemptingFullContext(
 {
     std::stringstream errorMessage;
     errorMessage << "ParserExceptionErrorListener::reportAttemptingFullContext" << " index " << startIndex << ":" << stopIndex;
-    errorMessage << "\n" << GetDecisionDescription(recognizer, dfa) << std::endl;
-    errorMessage << "\n" << const_cast<BitSet&>(conflictingAlts).toString() << std::endl;
-    errorMessage << "\n" << GetAlternatesDescription(configs) << std::endl;
+    errorMessage << "\n" << GetDecisionDescription(recognizer, dfa) << "\n";
+    errorMessage << "\n" << const_cast<BitSet&>(conflictingAlts).toString() << "\n";
+    errorMessage << "\n" << GetAlternatesDescription(configs) << "\n";
     
     // TODO: Add unit tests to verify this
     // throw ParseCancellationException(errorMessage.str());

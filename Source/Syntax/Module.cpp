@@ -1,8 +1,5 @@
-﻿
-export module SoupSyntax;
-
+﻿export module SoupSyntax;
 import std.core;
-import Antlr4.Runtime;
 
 // Predefine nodes to get around circular references
 // used in the visitors
@@ -347,14 +344,3 @@ namespace Soup::Syntax::OuterTree
 // SyntaxTree
 #include "AST/SyntaxFactory.h"
 #include "AST/SyntaxTree.h"
-
-// Parser
-#include "Parser/Grammar/CppLexer.h"
-#include "Parser/Grammar/CppParser.h"
-#include "Parser/Grammar/CppParserBaseVisitor.h"
-#include "Parser/Grammar/CppParserListener.h"
-#include "Parser/Grammar/CppParserVisitor.h"
-#include "Parser/ASTCppParserVisitor.h"
-#include "Parser/LexerExceptionErrorListener.h"
-#include "Parser/ParserExceptionErrorListener.h"
-#include "Parser/SyntaxParser.h"
