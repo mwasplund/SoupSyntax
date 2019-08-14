@@ -86,19 +86,8 @@ namespace Soup::Syntax::InnerTree
         /// </summary>
         bool operator ==(const ReturnStatement& rhs) const
         {
-            // The expression is optional
-            bool expressionEqual = false;
-            if (!HasExpression() || !rhs.HasExpression())
-            {
-                expressionEqual = !HasExpression() && !rhs.HasExpression();
-            }
-            else
-            {
-                expressionEqual = *m_expression == *rhs.m_expression;
-            }
-
             return *m_returnToken == *rhs.m_returnToken &&
-                expressionEqual &&
+                SyntaxUtils::AreOptionalValuesEqual(m_expression, rhs.m_expression) &&
                 *m_semicolonToken  == *rhs.m_semicolonToken;
         }
 

@@ -1,4 +1,4 @@
-﻿module SoupSyntax;
+﻿module Soup.Syntax;
 
 using namespace Soup::Syntax;
 using namespace Soup::Syntax::OuterTree;

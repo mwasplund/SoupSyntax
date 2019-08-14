@@ -1,5 +1,5 @@
 {
-  "name": "SoupSyntax",
+  "name": "Soup.Syntax",
   "version": "1.0.0",
   "dependencies": [
     "../../../../Dependencies/SoupSTL/core/"

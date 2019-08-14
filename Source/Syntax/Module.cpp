@@ -1,4 +1,4 @@
-﻿export module SoupSyntax;
+﻿export module Soup.Syntax;
 import std.core;
 
 // Predefine nodes to get around circular references

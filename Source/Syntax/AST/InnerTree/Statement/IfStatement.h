@@ -116,23 +116,12 @@ namespace Soup::Syntax::InnerTree
         /// </summary>
         bool operator ==(const IfStatement& rhs) const
         {
-            // The else clause is optional
-            bool elseClauseEqual = false;
-            if (!HasElseClause() || !rhs.HasElseClause())
-            {
-                elseClauseEqual = !HasElseClause() && !rhs.HasElseClause();
-            }
-            else
-            {
-                elseClauseEqual = *m_elseClause == *rhs.m_elseClause;
-            }
-
             return *m_ifToken == *rhs.m_ifToken &&
                 *m_openParenthesisToken  == *rhs.m_openParenthesisToken &&
                 *m_conditionExpression  == *rhs.m_conditionExpression &&
                 *m_closeParenthesisToken  == *rhs.m_closeParenthesisToken &&
                 *m_statement  == *rhs.m_statement &&
-                elseClauseEqual;
+                SyntaxUtils::AreOptionalValuesEqual(m_elseClause, rhs.m_elseClause);
         }
 
         bool operator !=(const IfStatement& rhs) const
