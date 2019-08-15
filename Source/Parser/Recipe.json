@@ -1,5 +1,5 @@
 {
-  "name": "SoupSyntaxParser",
+  "name": "Soup.Syntax.Parser",
   "version": "1.0.0",
   "dependencies": [
     "../Syntax/",

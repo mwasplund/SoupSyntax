@@ -1,9 +1,9 @@
 ﻿
-export module SoupSyntaxParser;
+export module Soup.Syntax.Parser;
 
 import std.core;
 import Antlr4.Runtime;
-import SoupSyntax;
+import Soup.Syntax;
 
 // Parser
 #include "Grammar/CppLexer.h"

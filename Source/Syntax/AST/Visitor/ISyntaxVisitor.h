@@ -29,6 +29,7 @@ namespace Soup::Syntax
         virtual void Visit(const OuterTree::EmptyStatement& node) = 0;
         virtual void Visit(const OuterTree::EnumSpecifier& node) = 0;
         virtual void Visit(const OuterTree::EnumeratorDefinition& node) = 0;
+        virtual void Visit(const OuterTree::ExportDeclaration& node) = 0;
         virtual void Visit(const OuterTree::ExpressionStatement& node) = 0;
         virtual void Visit(const OuterTree::FunctionDefinition& node) = 0;
         virtual void Visit(const OuterTree::IdentifierExpression& node) = 0;
@@ -45,6 +46,8 @@ namespace Soup::Syntax
         virtual void Visit(const OuterTree::MemberDeclarator& node) = 0;
         virtual void Visit(const OuterTree::MemberDeclaratorList& node) = 0;
         virtual void Visit(const OuterTree::MemberInitializer& node) = 0;
+        virtual void Visit(const OuterTree::ModuleDeclaration& node) = 0;
+        virtual void Visit(const OuterTree::ModuleImportDeclaration& node) = 0;
         virtual void Visit(const OuterTree::NamespaceDefinition& node) = 0;
         virtual void Visit(const OuterTree::NestedNameSpecifier& node) = 0;
         virtual void Visit(const OuterTree::Parameter& node) = 0;

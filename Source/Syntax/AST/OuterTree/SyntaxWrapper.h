@@ -152,6 +152,13 @@ namespace Soup::Syntax::OuterTree
             const SyntaxNode* parentNode);
 
         /// <summary>
+        /// Create a ExportDeclaration
+        /// </summary>
+        static std::shared_ptr<const ExportDeclaration> CreateOuter(
+            std::shared_ptr<const InnerTree::ExportDeclaration> innerNode,
+            const SyntaxNode* parentNode);
+
+        /// <summary>
         /// Create a ExpressionStatement
         /// </summary>
         static std::shared_ptr<const ExpressionStatement> CreateOuter(
@@ -261,6 +268,20 @@ namespace Soup::Syntax::OuterTree
         /// </summary>
         static std::shared_ptr<const MemberInitializer> CreateOuter(
             std::shared_ptr<const InnerTree::MemberInitializer> innerNode,
+            const SyntaxNode* parentNode);
+
+        /// <summary>
+        /// Create a ModuleDeclaration
+        /// </summary>
+        static std::shared_ptr<const ModuleDeclaration> CreateOuter(
+            std::shared_ptr<const InnerTree::ModuleDeclaration> innerNode,
+            const SyntaxNode* parentNode);
+
+        /// <summary>
+        /// Create a ModuleImportDeclaration
+        /// </summary>
+        static std::shared_ptr<const ModuleImportDeclaration> CreateOuter(
+            std::shared_ptr<const InnerTree::ModuleImportDeclaration> innerNode,
             const SyntaxNode* parentNode);
 
         /// <summary>

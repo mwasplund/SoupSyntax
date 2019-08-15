@@ -163,6 +163,14 @@ using namespace Soup::Syntax::OuterTree;
         new EnumeratorDefinition(std::move(innerNode), parentNode));
 }
 
+/*static*/ std::shared_ptr<const ExportDeclaration> SyntaxWrapper::CreateOuter(
+    std::shared_ptr<const InnerTree::ExportDeclaration> innerNode,
+    const SyntaxNode* parentNode)
+{
+    return std::shared_ptr<const ExportDeclaration>(
+        new ExportDeclaration(std::move(innerNode), parentNode));
+}
+
 /*static*/ std::shared_ptr<const ExpressionStatement> SyntaxWrapper::CreateOuter(
     std::shared_ptr<const InnerTree::ExpressionStatement> innerNode,
     const SyntaxNode* parentNode)
@@ -289,6 +297,22 @@ using namespace Soup::Syntax::OuterTree;
 {
     return std::shared_ptr<const MemberInitializer>(
         new MemberInitializer(std::move(innerNode), parentNode));
+}
+
+/*static*/ std::shared_ptr<const ModuleDeclaration> SyntaxWrapper::CreateOuter(
+    std::shared_ptr<const InnerTree::ModuleDeclaration> innerNode,
+    const SyntaxNode* parentNode)
+{
+    return std::shared_ptr<const ModuleDeclaration>(
+        new ModuleDeclaration(std::move(innerNode), parentNode));
+}
+
+/*static*/ std::shared_ptr<const ModuleImportDeclaration> SyntaxWrapper::CreateOuter(
+    std::shared_ptr<const InnerTree::ModuleImportDeclaration> innerNode,
+    const SyntaxNode* parentNode)
+{
+    return std::shared_ptr<const ModuleImportDeclaration>(
+        new ModuleImportDeclaration(std::move(innerNode), parentNode));
 }
 
 /*static*/ std::shared_ptr<const NamespaceDefinition> SyntaxWrapper::CreateOuter(

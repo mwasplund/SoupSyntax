@@ -468,6 +468,26 @@ namespace Soup::Syntax
         }
 
         /// <summary>
+        /// Create a ExportDeclaration
+        /// </summary>
+        static std::shared_ptr<const InnerTree::ExportDeclaration> CreateExportDeclaration(
+            std::shared_ptr<const InnerTree::SyntaxToken> exportToken,
+            std::shared_ptr<const InnerTree::Declaration> declaration)
+        {
+            if (exportToken == nullptr)
+                throw std::runtime_error("ArgumentNull - exportToken");
+            if (declaration == nullptr)
+                throw std::runtime_error("ArgumentNull - declaration");
+
+            auto result = std::shared_ptr<const InnerTree::ExportDeclaration>(
+                new InnerTree::ExportDeclaration(
+                    std::move(exportToken),
+                    std::move(declaration)));
+            result->SetSelf(result);
+            return result;
+        }
+
+        /// <summary>
         /// Create a ExpressionStatement
         /// </summary>
         static std::shared_ptr<const InnerTree::ExpressionStatement> CreateExpressionStatement(
@@ -837,6 +857,9 @@ namespace Soup::Syntax
                 case SyntaxTokenType::If:
                      value = "if";
                      break;
+                case SyntaxTokenType::Import:
+                     value = "import";
+                     break;
                 case SyntaxTokenType::Inline:
                      value = "inline";
                      break;
@@ -845,6 +868,9 @@ namespace Soup::Syntax
                      break;
                 case SyntaxTokenType::Long:
                      value = "long";
+                     break;
+                case SyntaxTokenType::Module:
+                     value = "module";
                      break;
                 case SyntaxTokenType::Mutable:
                      value = "mutable";
@@ -1307,6 +1333,57 @@ namespace Soup::Syntax
                 new InnerTree::MemberInitializer(
                     std::move(identifierToken),
                     std::move(initializer)));
+            result->SetSelf(result);
+            return result;
+        }
+
+        /// <summary>
+        /// Create a ModuleDeclaration
+        /// </summary>
+        static std::shared_ptr<const InnerTree::ModuleDeclaration> CreateModuleDeclaration(
+            std::shared_ptr<const InnerTree::SyntaxToken> exportToken,
+            std::shared_ptr<const InnerTree::SyntaxToken> moduleToken,
+            std::shared_ptr<const InnerTree::SyntaxSeparatorList<InnerTree::SyntaxToken>> identifierNameList,
+            std::shared_ptr<const InnerTree::SyntaxToken> semicolonToken)
+        {
+            // Note: The export token is optional
+            if (moduleToken == nullptr)
+                throw std::runtime_error("ArgumentNull - moduleToken");
+            if (identifierNameList == nullptr)
+                throw std::runtime_error("ArgumentNull - identifierNameList");
+            if (semicolonToken == nullptr)
+                throw std::runtime_error("ArgumentNull - semicolonToken");
+
+            auto result = std::shared_ptr<const InnerTree::ModuleDeclaration>(
+                new InnerTree::ModuleDeclaration(
+                    std::move(exportToken),
+                    std::move(moduleToken),
+                    std::move(identifierNameList),
+                    std::move(semicolonToken)));
+            result->SetSelf(result);
+            return result;
+        }
+
+        /// <summary>
+        /// Create a ModuleImportDeclaration
+        /// </summary>
+        static std::shared_ptr<const InnerTree::ModuleImportDeclaration> CreateModuleImportDeclaration(
+            std::shared_ptr<const InnerTree::SyntaxToken> importToken,
+            std::shared_ptr<const InnerTree::SyntaxSeparatorList<InnerTree::SyntaxToken>> identifierNameList,
+            std::shared_ptr<const InnerTree::SyntaxToken> semicolonToken)
+        {
+            if (importToken == nullptr)
+                throw std::runtime_error("ArgumentNull - importToken");
+            if (identifierNameList == nullptr)
+                throw std::runtime_error("ArgumentNull - identifierNameList");
+            if (semicolonToken == nullptr)
+                throw std::runtime_error("ArgumentNull - semicolonToken");
+
+            auto result = std::shared_ptr<const InnerTree::ModuleImportDeclaration>(
+                new InnerTree::ModuleImportDeclaration(
+                    std::move(importToken),
+                    std::move(identifierNameList),
+                    std::move(semicolonToken)));
             result->SetSelf(result);
             return result;
         }

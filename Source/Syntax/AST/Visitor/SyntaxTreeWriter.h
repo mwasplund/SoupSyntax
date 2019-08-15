@@ -120,6 +120,8 @@ namespace Soup::Syntax
                     return "EnumSpecifier";
                 case SyntaxNodeType::EnumeratorDefinition:
                     return "EnumeratorDefinition";
+                case SyntaxNodeType::ExportDeclaration:
+                    return "ExportDeclaration";
                 case SyntaxNodeType::ExpressionStatement:
                     return "ExpressionStatement";
                 case SyntaxNodeType::FunctionDefinition:
@@ -152,6 +154,10 @@ namespace Soup::Syntax
                     return "MemberDeclaratorList";
                 case SyntaxNodeType::MemberInitializer:
                     return "MemberInitializer";
+                case SyntaxNodeType::ModuleDeclaration:
+                    return "ModuleDeclaration";
+                case SyntaxNodeType::ModuleImportDeclaration:
+                    return "ModuleImportDeclaration";
                 case SyntaxNodeType::NamespaceDefinition:
                     return "NamespaceDefinition";
                 case SyntaxNodeType::NestedNameSpecifier:

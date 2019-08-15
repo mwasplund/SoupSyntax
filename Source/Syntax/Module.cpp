@@ -58,6 +58,7 @@ namespace Soup::Syntax::InnerTree
     class EmptyDeclaration;
     class EnumSpecifier;
     class EnumeratorDefinition;
+    class ExportDeclaration;
     class FunctionDefinition;
     class IdentifierType;
     class InitializerDeclarator;
@@ -67,6 +68,8 @@ namespace Soup::Syntax::InnerTree
     class MemberDeclarator;
     class MemberDeclaratorList;
     class MemberInitializer;
+    class ModuleDeclaration;
+    class ModuleImportDeclaration;
     class NamespaceDefinition;
     class PointerDeclarator;
     class PointerOperator;
@@ -139,6 +142,7 @@ namespace Soup::Syntax::OuterTree
     class EmptyDeclaration;
     class EnumSpecifier;
     class EnumeratorDefinition;
+    class ExportDeclaration;
     class FunctionDefinition;
     class IdentifierType;
     class InitializerDeclarator;
@@ -147,6 +151,8 @@ namespace Soup::Syntax::OuterTree
     class MemberDeclaration;
     class MemberDeclarator;
     class MemberDeclaratorList;
+    class ModuleDeclaration;
+    class ModuleImportDeclaration;
     class MemberInitializer;
     class NamespaceDefinition;
     class PointerDeclarator;
@@ -241,11 +247,14 @@ namespace Soup::Syntax::OuterTree
 #include "AST/InnerTree/Declaration/EmptyDeclaration.h"
 #include "AST/InnerTree/Declaration/EnumeratorDefinition.h"
 #include "AST/InnerTree/Declaration/EnumSpecifier.h"
+#include "AST/InnerTree/Declaration/ExportDeclaration.h"
 #include "AST/InnerTree/Declaration/FunctionDefinition.h"
 #include "AST/InnerTree/Declaration/MemberDeclarator.h"
 #include "AST/InnerTree/Declaration/MemberDeclaratorList.h"
 #include "AST/InnerTree/Declaration/MemberDeclaration.h"
 #include "AST/InnerTree/Declaration/MemberInitializer.h"
+#include "AST/InnerTree/Declaration/ModuleDeclaration.h"
+#include "AST/InnerTree/Declaration/ModuleImportDeclaration.h"
 #include "AST/InnerTree/Declaration/NamespaceDefinition.h"
 #include "AST/InnerTree/Declaration/PointerOperator.h"
 #include "AST/InnerTree/Declaration/PointerDeclarator.h"
@@ -318,11 +327,14 @@ namespace Soup::Syntax::OuterTree
 #include "AST/OuterTree/Declaration/EmptyDeclaration.h"
 #include "AST/OuterTree/Declaration/EnumeratorDefinition.h"
 #include "AST/OuterTree/Declaration/EnumSpecifier.h"
+#include "AST/OuterTree/Declaration/ExportDeclaration.h"
 #include "AST/OuterTree/Declaration/FunctionDefinition.h"
 #include "AST/OuterTree/Declaration/MemberDeclarator.h"
 #include "AST/OuterTree/Declaration/MemberDeclaratorList.h"
 #include "AST/OuterTree/Declaration/MemberDeclaration.h"
 #include "AST/OuterTree/Declaration/MemberInitializer.h"
+#include "AST/OuterTree/Declaration/ModuleDeclaration.h"
+#include "AST/OuterTree/Declaration/ModuleImportDeclaration.h"
 #include "AST/OuterTree/Declaration/NamespaceDefinition.h"
 #include "AST/OuterTree/Declaration/PointerOperator.h"
 #include "AST/OuterTree/Declaration/PointerDeclarator.h"

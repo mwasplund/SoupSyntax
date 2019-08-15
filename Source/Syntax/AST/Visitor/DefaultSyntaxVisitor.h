@@ -109,6 +109,11 @@ namespace Soup::Syntax
             DefaultVisit(node);
         }
 
+        virtual void Visit(const OuterTree::ExportDeclaration& node) override
+        {
+            DefaultVisit(node);
+        }
+
         virtual void Visit(const OuterTree::ExpressionStatement& node) override
         {
             DefaultVisit(node);
@@ -185,6 +190,16 @@ namespace Soup::Syntax
         }
 
         virtual void Visit(const OuterTree::MemberInitializer& node) override
+        {
+            DefaultVisit(node);
+        }
+
+        virtual void Visit(const OuterTree::ModuleDeclaration& node) override
+        {
+            DefaultVisit(node);
+        }
+
+        virtual void Visit(const OuterTree::ModuleImportDeclaration& node) override
         {
             DefaultVisit(node);
         }

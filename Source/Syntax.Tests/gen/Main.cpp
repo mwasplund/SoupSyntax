@@ -20,6 +20,7 @@ using namespace SoupTest;
 #include "AST\InnerTree\Declaration\EmptyDeclarationTests.gen.h"
 #include "AST\InnerTree\Declaration\EnumSpecifierTests.gen.h"
 #include "AST\InnerTree\Declaration\EnumeratorDefinitionTests.gen.h"
+#include "AST\InnerTree\Declaration\ExportDeclarationTests.gen.h"
 #include "AST\InnerTree\Declaration\FunctionDefinitionTests.gen.h"
 #include "AST\InnerTree\Declaration\IdentifierTypeTests.gen.h"
 #include "AST\InnerTree\Declaration\InitializerDeclaratorListTests.gen.h"
@@ -29,6 +30,8 @@ using namespace SoupTest;
 #include "AST\InnerTree\Declaration\MemberDeclaratorListTests.gen.h"
 #include "AST\InnerTree\Declaration\MemberDeclaratorTests.gen.h"
 #include "AST\InnerTree\Declaration\MemberInitializerTests.gen.h"
+#include "AST\InnerTree\Declaration\ModuleDeclarationTests.gen.h"
+#include "AST\InnerTree\Declaration\ModuleImportDeclarationTests.gen.h"
 #include "AST\InnerTree\Declaration\NamespaceDefinitionTests.gen.h"
 #include "AST\InnerTree\Declaration\ParameterListTests.gen.h"
 #include "AST\InnerTree\Declaration\ParameterTests.gen.h"
@@ -80,6 +83,7 @@ using namespace SoupTest;
 #include "AST\OuterTree\Declaration\EmptyDeclarationTests.gen.h"
 #include "AST\OuterTree\Declaration\EnumSpecifierTests.gen.h"
 #include "AST\OuterTree\Declaration\EnumeratorDefinitionTests.gen.h"
+#include "AST\OuterTree\Declaration\ExportDeclarationTests.gen.h"
 #include "AST\OuterTree\Declaration\FunctionDefinitionTests.gen.h"
 #include "AST\OuterTree\Declaration\IdentifierTypeTests.gen.h"
 #include "AST\OuterTree\Declaration\InitializerDeclaratorListTests.gen.h"
@@ -89,6 +93,8 @@ using namespace SoupTest;
 #include "AST\OuterTree\Declaration\MemberDeclaratorListTests.gen.h"
 #include "AST\OuterTree\Declaration\MemberDeclaratorTests.gen.h"
 #include "AST\OuterTree\Declaration\MemberInitializerTests.gen.h"
+#include "AST\OuterTree\Declaration\ModuleDeclarationTests.gen.h"
+#include "AST\OuterTree\Declaration\ModuleImportDeclarationTests.gen.h"
 #include "AST\OuterTree\Declaration\NamespaceDefinitionTests.gen.h"
 #include "AST\OuterTree\Declaration\ParameterListTests.gen.h"
 #include "AST\OuterTree\Declaration\ParameterTests.gen.h"
@@ -147,6 +153,7 @@ int main()
     state += RunInnerTreeEmptyDeclarationTests();
     state += RunInnerTreeEnumSpecifierTests();
     state += RunInnerTreeEnumeratorDefinitionTests();
+    state += RunInnerTreeExportDeclarationTests();
     state += RunInnerTreeFunctionDefinitionTests();
     state += RunInnerTreeIdentifierTypeTests();
     state += RunInnerTreeInitializerDeclaratorListTests();
@@ -156,6 +163,8 @@ int main()
     state += RunInnerTreeMemberDeclaratorListTests();
     state += RunInnerTreeMemberDeclaratorTests();
     state += RunInnerTreeMemberInitializerTests();
+    state += RunInnerTreeModuleDeclarationTests();
+    state += RunInnerTreeModuleImportDeclarationTests();
     state += RunInnerTreeNamespaceDefinitionTests();
     state += RunInnerTreeParameterListTests();
     state += RunInnerTreeParameterTests();
@@ -207,6 +216,7 @@ int main()
     state += RunOuterTreeEmptyDeclarationTests();
     state += RunOuterTreeEnumSpecifierTests();
     state += RunOuterTreeEnumeratorDefinitionTests();
+    state += RunOuterTreeExportDeclarationTests();
     state += RunOuterTreeFunctionDefinitionTests();
     state += RunOuterTreeIdentifierTypeTests();
     state += RunOuterTreeInitializerDeclaratorListTests();
@@ -216,6 +226,8 @@ int main()
     state += RunOuterTreeMemberDeclaratorListTests();
     state += RunOuterTreeMemberDeclaratorTests();
     state += RunOuterTreeMemberInitializerTests();
+    state += RunOuterTreeModuleDeclarationTests();
+    state += RunOuterTreeModuleImportDeclarationTests();
     state += RunOuterTreeNamespaceDefinitionTests();
     state += RunOuterTreeParameterListTests();
     state += RunOuterTreeParameterTests();
