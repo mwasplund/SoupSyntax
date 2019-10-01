@@ -9,7 +9,7 @@
 
 
 
-export class CppParser : public antlr4::Parser {
+class CppParser : public antlr4::Parser {
 public:
   enum {
     BlockComment = 1, LineComment = 2, Whitespace = 3, Preprocessor = 4, 
