@@ -2,7 +2,7 @@
 
 namespace Soup::Syntax::InnerTree::UnitTests
 {
-    class ParserAttributesTests
-    {
-    };
+	class ParserAttributesTests
+	{
+	};
 }
