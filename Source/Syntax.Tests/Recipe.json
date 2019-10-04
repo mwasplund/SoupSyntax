@@ -5,6 +5,10 @@
   "dependencies": [
     "../Syntax/"
   ],
+  "includePaths": [
+    "./",
+    "gen/"
+  ],
   "source": [
     "gen/Main.cpp"
   ]

@@ -1,8 +1,8 @@
 import std.core;
 import Soup.Syntax;
 
-#include "..\..\..\SoupTest\Assert\SoupAssert.h"
-#include "..\..\..\SoupTest\Assert\RunTest.h"
+#include "..\..\..\..\SoupTest\Assert\SoupAssert.h"
+#include "..\..\..\..\SoupTest\Assert\RunTest.h"
 using namespace SoupTest;
 
 // Inner Tree

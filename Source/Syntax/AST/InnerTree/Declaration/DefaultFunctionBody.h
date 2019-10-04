@@ -2,101 +2,101 @@
 
 namespace Soup::Syntax::InnerTree
 {
-    /// <summary>
-    /// The explicit default function body
-    /// </summary>
-    export class DefaultFunctionBody final : public SyntaxNode
-    {
-        friend class ::Soup::Syntax::SyntaxFactory;
+	/// <summary>
+	/// The explicit default function body
+	/// </summary>
+	export class DefaultFunctionBody final : public SyntaxNode
+	{
+		friend class ::Soup::Syntax::SyntaxFactory;
 
-    private:
-        /// <summary>
-        /// Initialize
-        /// </summary>
-        DefaultFunctionBody(
-            std::shared_ptr<const SyntaxToken> equalToken,
-            std::shared_ptr<const SyntaxToken> defaultToken,
-            std::shared_ptr<const SyntaxToken> semicolonToken) :
-            SyntaxNode(SyntaxNodeType::DefaultFunctionBody),
-            m_equalToken(std::move(equalToken)),
-            m_defaultToken(std::move(defaultToken)),
-            m_semicolonToken(std::move(semicolonToken))
-        {
-        }
+	private:
+		/// <summary>
+		/// Initialize
+		/// </summary>
+		DefaultFunctionBody(
+			std::shared_ptr<const SyntaxToken> equalToken,
+			std::shared_ptr<const SyntaxToken> defaultToken,
+			std::shared_ptr<const SyntaxToken> semicolonToken) :
+			SyntaxNode(SyntaxNodeType::DefaultFunctionBody),
+			m_equalToken(std::move(equalToken)),
+			m_defaultToken(std::move(defaultToken)),
+			m_semicolonToken(std::move(semicolonToken))
+		{
+		}
 
-    public:
-        /// <summary>
-        /// Create an outer node with this node and the provided parent
-        /// </summary>
-        std::shared_ptr<const OuterTree::DefaultFunctionBody> CreateOuter(
-            const OuterTree::SyntaxNode* parentNode) const
-        {
-            return OuterTree::SyntaxWrapper::CreateOuter(
-                GetSelf<DefaultFunctionBody>(),
-                parentNode);
-        }
+	public:
+		/// <summary>
+		/// Create an outer node with this node and the provided parent
+		/// </summary>
+		std::shared_ptr<const OuterTree::DefaultFunctionBody> CreateOuter(
+			const OuterTree::SyntaxNode* parentNode) const
+		{
+			return OuterTree::SyntaxWrapper::CreateOuter(
+				GetSelf<DefaultFunctionBody>(),
+				parentNode);
+		}
 
-        /// <summary>
-        /// Create an outer node with this node and the provided parent
-        /// </summary>
-        virtual std::shared_ptr<const OuterTree::SyntaxNode> CreateOuterAny(
-            const OuterTree::SyntaxNode* parentNode) const override final
-        {
-            return std::static_pointer_cast<const OuterTree::SyntaxNode>(
-                CreateOuter(parentNode));
-        }
+		/// <summary>
+		/// Create an outer node with this node and the provided parent
+		/// </summary>
+		virtual std::shared_ptr<const OuterTree::SyntaxNode> CreateOuterAny(
+			const OuterTree::SyntaxNode* parentNode) const override final
+		{
+			return std::static_pointer_cast<const OuterTree::SyntaxNode>(
+				CreateOuter(parentNode));
+		}
 
-        /// <summary>
-        /// Get the equal token
-        /// </summary>
-        const SyntaxToken& GetEqualToken() const
-        {
-            return *m_equalToken;
-        }
+		/// <summary>
+		/// Get the equal token
+		/// </summary>
+		const SyntaxToken& GetEqualToken() const
+		{
+			return *m_equalToken;
+		}
 
-        /// <summary>
-        /// Get the default token
-        /// </summary>
-        const SyntaxToken& GetDefaultToken() const
-        {
-            return *m_defaultToken;
-        }
+		/// <summary>
+		/// Get the default token
+		/// </summary>
+		const SyntaxToken& GetDefaultToken() const
+		{
+			return *m_defaultToken;
+		}
 
-        /// <summary>
-        /// Get the semicolon token
-        /// </summary>
-        const SyntaxToken& GetSemicolonToken() const
-        {
-            return *m_semicolonToken;
-        }
+		/// <summary>
+		/// Get the semicolon token
+		/// </summary>
+		const SyntaxToken& GetSemicolonToken() const
+		{
+			return *m_semicolonToken;
+		}
 
-        /// <summary>
-        /// Equality operator
-        /// </summary>
-        bool operator ==(const DefaultFunctionBody& rhs) const
-        {
-            return *m_equalToken == *rhs.m_equalToken &&
-                *m_defaultToken == *rhs.m_defaultToken &&
-                *m_semicolonToken == *rhs.m_semicolonToken;
-        }
+		/// <summary>
+		/// Equality operator
+		/// </summary>
+		bool operator ==(const DefaultFunctionBody& rhs) const
+		{
+			return *m_equalToken == *rhs.m_equalToken &&
+				*m_defaultToken == *rhs.m_defaultToken &&
+				*m_semicolonToken == *rhs.m_semicolonToken;
+		}
 
-        bool operator !=(const DefaultFunctionBody& rhs) const
-        {
-            return !(*this == rhs);
-        }
+		bool operator !=(const DefaultFunctionBody& rhs) const
+		{
+			return !(*this == rhs);
+		}
 
-    protected:
-        /// <summary>
-        /// SyntaxNode Equals
-        /// </summary>
-        virtual bool Equals(const SyntaxNode& rhs) const final
-        {
-            return *this == static_cast<const DefaultFunctionBody&>(rhs);
-        }
+	protected:
+		/// <summary>
+		/// SyntaxNode Equals
+		/// </summary>
+		virtual bool Equals(const SyntaxNode& rhs) const final
+		{
+			return *this == static_cast<const DefaultFunctionBody&>(rhs);
+		}
 
-    private:
-        std::shared_ptr<const SyntaxToken> m_equalToken;
-        std::shared_ptr<const SyntaxToken> m_defaultToken;
-        std::shared_ptr<const SyntaxToken> m_semicolonToken;
-    };
+	private:
+		std::shared_ptr<const SyntaxToken> m_equalToken;
+		std::shared_ptr<const SyntaxToken> m_defaultToken;
+		std::shared_ptr<const SyntaxToken> m_semicolonToken;
+	};
 }
