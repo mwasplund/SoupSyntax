@@ -1880,6 +1880,34 @@ namespace Soup::Syntax
 		}
 
 		/// <summary>
+		/// Create a UsingDirective
+		/// </summary>
+		static std::shared_ptr<const InnerTree::UsingDirective> CreateUsingDirective(
+			std::shared_ptr<const InnerTree::SyntaxToken> usingToken,
+			std::shared_ptr<const InnerTree::SyntaxToken> namespaceToken,
+			std::shared_ptr<const InnerTree::SyntaxSeparatorList<InnerTree::SyntaxToken>> identifierNameList,
+			std::shared_ptr<const InnerTree::SyntaxToken> semicolonToken)
+		{
+			if (usingToken == nullptr)
+				throw std::runtime_error("ArgumentNull - usingToken");
+			if (namespaceToken == nullptr)
+				throw std::runtime_error("ArgumentNull - namespaceToken");
+			if (identifierNameList == nullptr)
+				throw std::runtime_error("ArgumentNull - identifierNameList");
+			if (semicolonToken == nullptr)
+				throw std::runtime_error("ArgumentNull - semicolonToken");
+
+			auto result = std::shared_ptr<const InnerTree::UsingDirective>(
+				new InnerTree::UsingDirective(
+					std::move(usingToken),
+					std::move(namespaceToken),
+					std::move(identifierNameList),
+					std::move(semicolonToken)));
+			result->SetSelf(result);
+			return result;
+		}
+
+		/// <summary>
 		/// Create a ValueEqualInitializer
 		/// </summary>
 		static std::shared_ptr<const InnerTree::ValueEqualInitializer> CreateValueEqualInitializer(

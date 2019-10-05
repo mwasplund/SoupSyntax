@@ -194,6 +194,8 @@ namespace Soup::Syntax
 					return "TypeSpecifierSequence";
 				case SyntaxNodeType::UnaryExpression:
 					return "UnaryExpression";
+				case SyntaxNodeType::UsingDirective:
+					return "UsingDirective";
 				case SyntaxNodeType::ValueEqualInitializer:
 					return "ValueEqualInitializer";
 				default:

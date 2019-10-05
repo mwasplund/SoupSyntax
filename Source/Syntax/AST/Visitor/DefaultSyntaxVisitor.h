@@ -299,6 +299,11 @@ namespace Soup::Syntax
 			DefaultVisit(node);
 		}
 
+		virtual void Visit(const OuterTree::UsingDirective& node) override
+		{
+			DefaultVisit(node);
+		}
+
 		virtual void Visit(const OuterTree::ValueEqualInitializer& node) override
 		{
 			DefaultVisit(node);

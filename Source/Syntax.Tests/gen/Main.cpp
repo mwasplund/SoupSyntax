@@ -40,6 +40,7 @@ using namespace SoupTest;
 #include "AST\InnerTree\Declaration\PrimitiveDataTypeSpecifierTests.gen.h"
 #include "AST\InnerTree\Declaration\SimpleDeclarationTests.gen.h"
 #include "AST\InnerTree\Declaration\TypeSpecifierSequenceTests.gen.h"
+#include "AST\InnerTree\Declaration\UsingDirectiveTests.gen.h"
 #include "AST\InnerTree\Declaration\ValueEqualInitializerTests.gen.h"
 
 #include "AST\InnerTree\Expression\BinaryExpressionTests.gen.h"
@@ -103,6 +104,7 @@ using namespace SoupTest;
 #include "AST\OuterTree\Declaration\PrimitiveDataTypeSpecifierTests.gen.h"
 #include "AST\OuterTree\Declaration\SimpleDeclarationTests.gen.h"
 #include "AST\OuterTree\Declaration\TypeSpecifierSequenceTests.gen.h"
+#include "AST\OuterTree\Declaration\UsingDirectiveTests.gen.h"
 #include "AST\OuterTree\Declaration\ValueEqualInitializerTests.gen.h"
 
 #include "AST\OuterTree\Expression\BinaryExpressionTests.gen.h"
@@ -173,6 +175,7 @@ int main()
 	state += RunInnerTreePrimitiveDataTypeSpecifierTests();
 	state += RunInnerTreeSimpleDeclarationTests();
 	state += RunInnerTreeTypeSpecifierSequenceTests();
+	state += RunInnerTreeUsingDirectiveTests();
 	state += RunInnerTreeValueEqualInitializerTests();
 
 	state += RunInnerTreeBinaryExpressionTests();
@@ -236,6 +239,7 @@ int main()
 	state += RunOuterTreePrimitiveDataTypeSpecifierTests();
 	state += RunOuterTreeSimpleDeclarationTests();
 	state += RunOuterTreeTypeSpecifierSequenceTests();
+	state += RunOuterTreeUsingDirectiveTests();
 	state += RunOuterTreeValueEqualInitializerTests();
 
 	state += RunOuterTreeBinaryExpressionTests();

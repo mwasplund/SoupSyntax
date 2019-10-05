@@ -67,6 +67,7 @@ namespace Soup::Syntax
 		virtual void Visit(const OuterTree::TryStatement& node) = 0;
 		virtual void Visit(const OuterTree::TypeSpecifierSequence& node) = 0;
 		virtual void Visit(const OuterTree::UnaryExpression& node) = 0;
+		virtual void Visit(const OuterTree::UsingDirective& node) = 0;
 		virtual void Visit(const OuterTree::ValueEqualInitializer& node) = 0;
 	};
 }

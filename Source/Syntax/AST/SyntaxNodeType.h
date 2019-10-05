@@ -66,6 +66,7 @@ namespace Soup::Syntax
 		TryStatement,
 		TypeSpecifierSequence,
 		UnaryExpression,
+		UsingDirective,
 		ValueEqualInitializer,
 	};
 }

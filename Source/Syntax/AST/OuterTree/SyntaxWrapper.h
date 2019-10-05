@@ -478,6 +478,13 @@ namespace Soup::Syntax::OuterTree
 			const SyntaxNode* parentNode);
 
 		/// <summary>
+		/// Create a UsingDirective
+		/// </summary>
+		static std::shared_ptr<const UsingDirective> CreateOuter(
+			std::shared_ptr<const InnerTree::UsingDirective> innerNode,
+			const SyntaxNode* parentNode);
+
+		/// <summary>
 		/// Create a ValueEqualInitializer
 		/// </summary>
 		static std::shared_ptr<const ValueEqualInitializer> CreateOuter(

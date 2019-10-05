@@ -658,6 +658,14 @@ std::vector<std::shared_ptr<const SyntaxToken>> CreateOuterList(
 		new UnaryExpression(std::move(innerNode), parentNode));
 }
 
+/*static*/ std::shared_ptr<const UsingDirective> SyntaxWrapper::CreateOuter(
+	std::shared_ptr<const InnerTree::UsingDirective> innerNode,
+	const SyntaxNode* parentNode)
+{
+	return std::shared_ptr<const UsingDirective>(
+		new UsingDirective(std::move(innerNode), parentNode));
+}
+
 /*static*/ std::shared_ptr<const ValueEqualInitializer> SyntaxWrapper::CreateOuter(
 	std::shared_ptr<const InnerTree::ValueEqualInitializer> innerNode,
 	const SyntaxNode* parentNode)

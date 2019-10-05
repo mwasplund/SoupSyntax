@@ -78,6 +78,7 @@ namespace Soup::Syntax::InnerTree
 	class TryFunctionBody;
 	class TypeSpecifierSequence;
 	class SimpleDeclaration;
+	class UsingDirective;
 	class ValueEqualInitializer;
 
 	// Statements
@@ -162,6 +163,7 @@ namespace Soup::Syntax::OuterTree
 	class TryFunctionBody;
 	class TypeSpecifierSequence;
 	class SimpleDeclaration;
+	class UsingDirective;
 	class ValueEqualInitializer;
 
 	// Statements
@@ -263,6 +265,7 @@ namespace Soup::Syntax::OuterTree
 #include "AST/InnerTree/Declaration/SimpleDeclaration.h"
 #include "AST/InnerTree/Declaration/TryFunctionBody.h"
 #include "AST/InnerTree/Declaration/TypeSpecifierSequence.h"
+#include "AST/InnerTree/Declaration/UsingDirective.h"
 #include "AST/InnerTree/Declaration/ValueEqualInitializer.h"
 
 #include "AST/InnerTree/TranslationUnit.h"
@@ -343,6 +346,7 @@ namespace Soup::Syntax::OuterTree
 #include "AST/OuterTree/Declaration/SimpleDeclaration.h"
 #include "AST/OuterTree/Declaration/TryFunctionBody.h"
 #include "AST/OuterTree/Declaration/TypeSpecifierSequence.h"
+#include "AST/OuterTree/Declaration/UsingDirective.h"
 #include "AST/OuterTree/Declaration/ValueEqualInitializer.h"
 
 #include "AST/OuterTree/TranslationUnit.h"
