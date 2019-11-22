@@ -6,7 +6,7 @@
     "../../../../Dependencies/SoupSTL/core/",
     "../../../../Dependencies/antlr4/runtime/cpp/runtime/"
   ],
-  "public": "Module.cppm",
+  "public": "Module.cpp",
   "source": [
     "Grammar/CppLexer.cpp",
     "Grammar/CppParser.cpp",

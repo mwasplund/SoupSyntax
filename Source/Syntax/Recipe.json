@@ -4,7 +4,7 @@
   "dependencies": [
     "../../../../Dependencies/SoupSTL/core/"
   ],
-  "public": "Module.cppm",
+  "public": "Module.cpp",
   "source": [
     "AST/OuterTree/SyntaxWrapper.cpp"
   ],
