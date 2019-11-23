@@ -1,5 +1,5 @@
 #pragma once
-#include "/AST/OuterTree/Expression/LiteralExpressionTests.h"
+#include "AST/OuterTree/Expression/LiteralExpressionTests.h"
 
 TestState RunOuterTreeLiteralExpressionTests() 
  {

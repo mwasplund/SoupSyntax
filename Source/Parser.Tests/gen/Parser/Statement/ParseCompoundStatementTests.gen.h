@@ -1,5 +1,5 @@
 #pragma once
-#include "/Parser/Statement/ParseCompoundStatementTests.h"
+#include "Parser/Statement/ParseCompoundStatementTests.h"
 
 TestState RunParseCompoundStatementTests() 
  {

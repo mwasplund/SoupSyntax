@@ -1,5 +1,5 @@
 #pragma once
-#include "/AST/InnerTree/Shared/NestedNameSpecifierTests.h"
+#include "AST/InnerTree/Shared/NestedNameSpecifierTests.h"
 
 TestState RunInnerTreeNestedNameSpecifierTests() 
  {

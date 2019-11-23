@@ -1,5 +1,5 @@
 #pragma once
-#include "/AST/InnerTree/Declaration/SimpleDeclarationTests.h"
+#include "AST/InnerTree/Declaration/SimpleDeclarationTests.h"
 
 TestState RunInnerTreeSimpleDeclarationTests() 
  {

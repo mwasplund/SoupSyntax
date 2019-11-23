@@ -1,5 +1,5 @@
 #pragma once
-#include "/AST/InnerTree/SyntaxTokenTests.h"
+#include "AST/InnerTree/SyntaxTokenTests.h"
 
 TestState RunInnerTreeSyntaxTokenTests() 
  {

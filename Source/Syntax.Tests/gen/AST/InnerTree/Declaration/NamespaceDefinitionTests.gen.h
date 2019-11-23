@@ -1,5 +1,5 @@
 #pragma once
-#include "/AST/InnerTree/Declaration/NamespaceDefinitionTests.h"
+#include "AST/InnerTree/Declaration/NamespaceDefinitionTests.h"
 
 TestState RunInnerTreeNamespaceDefinitionTests() 
  {

@@ -1,5 +1,5 @@
 #pragma once
-#include "/Parser/Declaration/ParseNamespaceDefinitionTests.h"
+#include "Parser/Declaration/ParseNamespaceDefinitionTests.h"
 
 TestState RunParseNamespaceDefinitionTests() 
  {

@@ -1,5 +1,5 @@
 #pragma once
-#include "/AST/OuterTree/Expression/LambdaExpressionTests.h"
+#include "AST/OuterTree/Expression/LambdaExpressionTests.h"
 
 TestState RunOuterTreeLambdaExpressionTests() 
  {

@@ -1,5 +1,5 @@
 #pragma once
-#include "/Parser/Declaration/ParseClassSpecifierTests.h"
+#include "Parser/Declaration/ParseClassSpecifierTests.h"
 
 TestState RunParseClassSpecifierTests() 
  {

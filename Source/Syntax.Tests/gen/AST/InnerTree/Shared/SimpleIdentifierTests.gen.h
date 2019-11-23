@@ -1,5 +1,5 @@
 #pragma once
-#include "/AST/InnerTree/Shared/SimpleIdentifierTests.h"
+#include "AST/InnerTree/Shared/SimpleIdentifierTests.h"
 
 TestState RunInnerTreeSimpleIdentifierTests() 
  {

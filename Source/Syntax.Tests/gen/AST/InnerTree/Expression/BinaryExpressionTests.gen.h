@@ -1,5 +1,5 @@
 #pragma once
-#include "/AST/InnerTree/Expression/BinaryExpressionTests.h"
+#include "AST/InnerTree/Expression/BinaryExpressionTests.h"
 
 TestState RunInnerTreeBinaryExpressionTests() 
  {

@@ -1,5 +1,5 @@
 #pragma once
-#include "/AST/InnerTree/Declaration/AccessorSpecifierTests.h"
+#include "AST/InnerTree/Declaration/AccessorSpecifierTests.h"
 
 TestState RunInnerTreeAccessorSpecifierTests() 
  {

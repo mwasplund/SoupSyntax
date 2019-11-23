@@ -1,13 +1,15 @@
 {
-  "name": "Soup.Syntax.Tests",
+  "name": "SoupSyntaxTests",
   "version": "1.0.0",
   "type": "Executable",
   "dependencies": [
+    "../../../../Dependencies/SoupSTL/core/",
     "../Syntax/"
   ],
   "includePaths": [
     "./",
-    "gen/"
+    "./AST/",
+    "./gen/"
   ],
   "source": [
     "gen/Main.cpp"

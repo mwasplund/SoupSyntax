@@ -1,5 +1,5 @@
 #pragma once
-#include "/AST/InnerTree/Declaration/EnumeratorDefinitionTests.h"
+#include "AST/InnerTree/Declaration/EnumeratorDefinitionTests.h"
 
 TestState RunInnerTreeEnumeratorDefinitionTests() 
  {

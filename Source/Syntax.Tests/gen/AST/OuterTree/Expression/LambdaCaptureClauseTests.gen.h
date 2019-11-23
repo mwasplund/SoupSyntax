@@ -1,5 +1,5 @@
 #pragma once
-#include "/AST/OuterTree/Expression/LambdaCaptureClauseTests.h"
+#include "AST/OuterTree/Expression/LambdaCaptureClauseTests.h"
 
 TestState RunOuterTreeLambdaCaptureClauseTests() 
  {

@@ -1,5 +1,5 @@
 #pragma once
-#include "/Parser/Declaration/ParseEnumSpecifierTests.h"
+#include "Parser/Declaration/ParseEnumSpecifierTests.h"
 
 TestState RunParseEnumSpecifierTests() 
  {

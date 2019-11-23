@@ -1,5 +1,5 @@
-import std.core;
-import Soup.Syntax;
+import StandardLibrary;;
+import SoupSyntax;
 
 #include "..\..\..\..\SoupTest\Assert\SoupAssert.h"
 #include "..\..\..\..\SoupTest\Assert\RunTest.h"

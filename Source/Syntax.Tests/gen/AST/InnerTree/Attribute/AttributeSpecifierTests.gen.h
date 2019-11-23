@@ -1,5 +1,5 @@
 #pragma once
-#include "/AST/InnerTree/Attribute/AttributeSpecifierTests.h"
+#include "AST/InnerTree/Attribute/AttributeSpecifierTests.h"
 
 TestState RunInnerTreeAttributeSpecifierTests() 
  {

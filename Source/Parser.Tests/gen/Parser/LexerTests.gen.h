@@ -1,5 +1,5 @@
 #pragma once
-#include "/Parser/LexerTests.h"
+#include "Parser/LexerTests.h"
 
 TestState RunLexerTests() 
  {

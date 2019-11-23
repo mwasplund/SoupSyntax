@@ -1,5 +1,5 @@
 #pragma once
-#include "/AST/OuterTree/Declaration/IdentifierTypeTests.h"
+#include "AST/OuterTree/Declaration/IdentifierTypeTests.h"
 
 TestState RunOuterTreeIdentifierTypeTests() 
  {

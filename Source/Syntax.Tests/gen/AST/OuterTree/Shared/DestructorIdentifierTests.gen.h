@@ -1,5 +1,5 @@
 #pragma once
-#include "/AST/OuterTree/Shared/DestructorIdentifierTests.h"
+#include "AST/OuterTree/Shared/DestructorIdentifierTests.h"
 
 TestState RunOuterTreeDestructorIdentifierTests() 
  {

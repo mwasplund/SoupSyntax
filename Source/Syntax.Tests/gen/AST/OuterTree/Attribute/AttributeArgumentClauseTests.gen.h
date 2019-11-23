@@ -1,5 +1,5 @@
 #pragma once
-#include "/AST/OuterTree/Attribute/AttributeArgumentClauseTests.h"
+#include "AST/OuterTree/Attribute/AttributeArgumentClauseTests.h"
 
 TestState RunOuterTreeAttributeArgumentClauseTests() 
  {

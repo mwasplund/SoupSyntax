@@ -1,5 +1,5 @@
 #pragma once
-#include "/AST/OuterTree/Shared/SimpleTemplateIdentifierTests.h"
+#include "AST/OuterTree/Shared/SimpleTemplateIdentifierTests.h"
 
 TestState RunOuterTreeSimpleTemplateIdentifierTests() 
  {

@@ -1,5 +1,5 @@
 #pragma once
-#include "/AST/InnerTree/Expression/SubscriptExpressionTests.h"
+#include "AST/InnerTree/Expression/SubscriptExpressionTests.h"
 
 TestState RunInnerTreeSubscriptExpressionTests() 
  {

@@ -1,5 +1,5 @@
 #pragma once
-#include "/AST/OuterTree/Statement/EmptyStatementTests.h"
+#include "AST/OuterTree/Statement/EmptyStatementTests.h"
 
 TestState RunOuterTreeEmptyStatementTests() 
  {

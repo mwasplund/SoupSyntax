@@ -1,5 +1,5 @@
 #pragma once
-#include "/AST/InnerTree/TranslationUnitTests.h"
+#include "AST/InnerTree/TranslationUnitTests.h"
 
 TestState RunInnerTreeTranslationUnitTests() 
  {

@@ -9,7 +9,8 @@ namespace Soup::Syntax::OuterTree
 	{
 		friend class ::Soup::Syntax::OuterTree::SyntaxWrapper;
 
-	private:
+	// TODO: Friend broken in MSVC modules
+	public: // private:
 		LambdaExpression(
 			std::shared_ptr<const InnerTree::LambdaExpression> innerNode,
 			const SyntaxNode* parentNode) :

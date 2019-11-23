@@ -1,5 +1,5 @@
 #pragma once
-#include "/AST/InnerTree/Statement/ElseClauseTests.h"
+#include "AST/InnerTree/Statement/ElseClauseTests.h"
 
 TestState RunInnerTreeElseClauseTests() 
  {

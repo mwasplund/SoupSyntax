@@ -1,5 +1,5 @@
 #pragma once
-#include "/AST/OuterTree/Declaration/PrimitiveDataTypeSpecifierTests.h"
+#include "AST/OuterTree/Declaration/PrimitiveDataTypeSpecifierTests.h"
 
 TestState RunOuterTreePrimitiveDataTypeSpecifierTests() 
  {

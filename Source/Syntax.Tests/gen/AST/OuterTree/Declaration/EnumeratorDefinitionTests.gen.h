@@ -1,5 +1,5 @@
 #pragma once
-#include "/AST/OuterTree/Declaration/EnumeratorDefinitionTests.h"
+#include "AST/OuterTree/Declaration/EnumeratorDefinitionTests.h"
 
 TestState RunOuterTreeEnumeratorDefinitionTests() 
  {

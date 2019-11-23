@@ -1,5 +1,5 @@
 #pragma once
-#include "/AST/InnerTree/Declaration/PointerOperatorTests.h"
+#include "AST/InnerTree/Declaration/PointerOperatorTests.h"
 
 TestState RunInnerTreePointerOperatorTests() 
  {

@@ -1,5 +1,5 @@
 #pragma once
-#include "/AST/InnerTree/Declaration/InitializerDeclaratorListTests.h"
+#include "AST/InnerTree/Declaration/InitializerDeclaratorListTests.h"
 
 TestState RunInnerTreeInitializerDeclaratorListTests() 
  {

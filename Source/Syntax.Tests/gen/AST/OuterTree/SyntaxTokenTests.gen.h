@@ -1,5 +1,5 @@
 #pragma once
-#include "/AST/OuterTree/SyntaxTokenTests.h"
+#include "AST/OuterTree/SyntaxTokenTests.h"
 
 TestState RunOuterTreeSyntaxTokenTests() 
  {

@@ -1,5 +1,5 @@
 #pragma once
-#include "/Parser/Expression/ParseInvocationExpressionTests.h"
+#include "Parser/Expression/ParseInvocationExpressionTests.h"
 
 TestState RunParseInvocationExpressionTests() 
  {

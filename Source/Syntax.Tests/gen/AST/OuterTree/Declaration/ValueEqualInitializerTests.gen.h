@@ -1,5 +1,5 @@
 #pragma once
-#include "/AST/OuterTree/Declaration/ValueEqualInitializerTests.h"
+#include "AST/OuterTree/Declaration/ValueEqualInitializerTests.h"
 
 TestState RunOuterTreeValueEqualInitializerTests() 
  {

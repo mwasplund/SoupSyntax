@@ -1,5 +1,5 @@
 #pragma once
-#include "/AST/OuterTree/Declaration/InitializerListTests.h"
+#include "AST/OuterTree/Declaration/InitializerListTests.h"
 
 TestState RunOuterTreeInitializerListTests() 
  {

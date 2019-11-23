@@ -1,5 +1,5 @@
 #pragma once
-#include "/AST/InnerTree/Declaration/ClassSpecifierTests.h"
+#include "AST/InnerTree/Declaration/ClassSpecifierTests.h"
 
 TestState RunInnerTreeClassSpecifierTests() 
  {

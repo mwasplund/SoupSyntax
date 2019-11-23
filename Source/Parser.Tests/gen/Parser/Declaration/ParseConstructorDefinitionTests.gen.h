@@ -1,5 +1,5 @@
 #pragma once
-#include "/Parser/Declaration/ParseConstructorDefinitionTests.h"
+#include "Parser/Declaration/ParseConstructorDefinitionTests.h"
 
 TestState RunParseConstructorDefinitionTests() 
  {

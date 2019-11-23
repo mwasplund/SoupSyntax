@@ -1,5 +1,5 @@
 #pragma once
-#include "/AST/OuterTree/Declaration/DeleteFunctionBodyTests.h"
+#include "AST/OuterTree/Declaration/DeleteFunctionBodyTests.h"
 
 TestState RunOuterTreeDeleteFunctionBodyTests() 
  {

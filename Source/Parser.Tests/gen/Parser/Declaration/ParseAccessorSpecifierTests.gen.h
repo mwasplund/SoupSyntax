@@ -1,5 +1,5 @@
 #pragma once
-#include "/Parser/Declaration/ParseAccessorSpecifierTests.h"
+#include "Parser/Declaration/ParseAccessorSpecifierTests.h"
 
 TestState RunParseAccessorSpecifierTests() 
  {

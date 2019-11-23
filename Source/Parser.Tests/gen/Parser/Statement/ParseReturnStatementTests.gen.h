@@ -1,5 +1,5 @@
 #pragma once
-#include "/Parser/Statement/ParseReturnStatementTests.h"
+#include "Parser/Statement/ParseReturnStatementTests.h"
 
 TestState RunParseReturnStatementTests() 
  {

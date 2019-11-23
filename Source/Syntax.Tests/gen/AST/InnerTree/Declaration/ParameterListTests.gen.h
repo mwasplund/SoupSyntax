@@ -1,5 +1,5 @@
 #pragma once
-#include "/AST/InnerTree/Declaration/ParameterListTests.h"
+#include "AST/InnerTree/Declaration/ParameterListTests.h"
 
 TestState RunInnerTreeParameterListTests() 
  {

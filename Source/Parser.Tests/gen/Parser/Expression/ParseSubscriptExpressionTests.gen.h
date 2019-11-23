@@ -1,5 +1,5 @@
 #pragma once
-#include "/Parser/Expression/ParseSubscriptExpressionTests.h"
+#include "Parser/Expression/ParseSubscriptExpressionTests.h"
 
 TestState RunParseSubscriptExpressionTests() 
  {

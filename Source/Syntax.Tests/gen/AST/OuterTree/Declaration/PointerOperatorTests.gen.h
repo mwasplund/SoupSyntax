@@ -1,5 +1,5 @@
 #pragma once
-#include "/AST/OuterTree/Declaration/PointerOperatorTests.h"
+#include "AST/OuterTree/Declaration/PointerOperatorTests.h"
 
 TestState RunOuterTreePointerOperatorTests() 
  {

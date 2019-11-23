@@ -1,5 +1,5 @@
 #pragma once
-#include "/Parser/ParseTranslationUnitTests.h"
+#include "Parser/ParseTranslationUnitTests.h"
 
 TestState RunParseTranslationUnitTests() 
  {

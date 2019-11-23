@@ -1,5 +1,5 @@
 #pragma once
-#include "/AST/InnerTree/Statement/CompoundStatementTests.h"
+#include "AST/InnerTree/Statement/CompoundStatementTests.h"
 
 TestState RunInnerTreeCompoundStatementTests() 
  {

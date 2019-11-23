@@ -1,5 +1,5 @@
 #pragma once
-#include "/AST/InnerTree/Statement/IfStatementTests.h"
+#include "AST/InnerTree/Statement/IfStatementTests.h"
 
 TestState RunInnerTreeIfStatementTests() 
  {

@@ -1,5 +1,5 @@
-﻿export module Soup.Syntax;
-import std.core;
+﻿export module SoupSyntax;
+import StandardLibrary;
 
 // Predefine nodes to get around circular references
 // used in the visitors

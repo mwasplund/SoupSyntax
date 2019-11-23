@@ -1,5 +1,5 @@
 #pragma once
-#include "/AST/OuterTree/Declaration/EnumSpecifierTests.h"
+#include "AST/OuterTree/Declaration/EnumSpecifierTests.h"
 
 TestState RunOuterTreeEnumSpecifierTests() 
  {

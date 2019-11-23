@@ -1,5 +1,5 @@
 #pragma once
-#include "/AST/OuterTree/Declaration/TypeSpecifierSequenceTests.h"
+#include "AST/OuterTree/Declaration/TypeSpecifierSequenceTests.h"
 
 TestState RunOuterTreeTypeSpecifierSequenceTests() 
  {

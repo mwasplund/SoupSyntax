@@ -1,5 +1,5 @@
 #pragma once
-#include "/AST/OuterTree/Declaration/UsingDirectiveTests.h"
+#include "AST/OuterTree/Declaration/UsingDirectiveTests.h"
 
 TestState RunOuterTreeUsingDirectiveTests() 
  {

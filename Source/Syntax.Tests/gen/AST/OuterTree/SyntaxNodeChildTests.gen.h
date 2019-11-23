@@ -1,5 +1,5 @@
 #pragma once
-#include "/AST/OuterTree/SyntaxNodeChildTests.h"
+#include "AST/OuterTree/SyntaxNodeChildTests.h"
 
 TestState RunOuterTreeSyntaxNodeChildTests() 
  {

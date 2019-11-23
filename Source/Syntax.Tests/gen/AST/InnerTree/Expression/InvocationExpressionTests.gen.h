@@ -1,5 +1,5 @@
 #pragma once
-#include "/AST/InnerTree/Expression/InvocationExpressionTests.h"
+#include "AST/InnerTree/Expression/InvocationExpressionTests.h"
 
 TestState RunInnerTreeInvocationExpressionTests() 
  {

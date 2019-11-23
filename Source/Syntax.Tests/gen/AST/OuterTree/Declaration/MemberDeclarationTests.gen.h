@@ -1,5 +1,5 @@
 #pragma once
-#include "/AST/OuterTree/Declaration/MemberDeclarationTests.h"
+#include "AST/OuterTree/Declaration/MemberDeclarationTests.h"
 
 TestState RunOuterTreeMemberDeclarationTests() 
  {
