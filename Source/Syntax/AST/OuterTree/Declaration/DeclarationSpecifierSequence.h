@@ -13,7 +13,8 @@ namespace Soup::Syntax::OuterTree
 	{
 		friend class ::Soup::Syntax::OuterTree::SyntaxWrapper;
 
-	private:
+	// TODO: Friend broken in MSVC modules
+	public: // private:
 		/// <summary>
 		/// Initialize
 		/// </summary>

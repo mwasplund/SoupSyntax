@@ -52,7 +52,7 @@ namespace Soup::Syntax::InnerTree
 		/// </summary>
 		bool operator==(const SyntaxNode& rhs) const
 		{
-			return typeid(*this) == typeid(rhs) &&
+			return std::ext::are_equal(typeid(*this), typeid(rhs)) &&
 				Equals(rhs);
 		}
 
@@ -76,11 +76,11 @@ namespace Soup::Syntax::InnerTree
 		{
 			auto sharedSelf = m_self.lock();
 			if (sharedSelf == nullptr)
-				throw std::runtime_error("Failed to get self pointer: " + std::string(typeid(T).name()));
+				throw std::runtime_error("Failed to get self pointer: ");// + std::string(typeid(T).name()));
 
 			auto typedSelf = std::dynamic_pointer_cast<const T>(sharedSelf);
 			if (typedSelf == nullptr)
-				throw std::runtime_error("Failed to get cast self pointer: " + std::string(typeid(T).name()));
+				throw std::runtime_error("Failed to get cast self pointer: ");// + std::string(typeid(T).name()));
 
 			return typedSelf;
 		}

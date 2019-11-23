@@ -8,13 +8,14 @@ namespace Soup::Syntax::InnerTree
 	export template<class TNode>
 	class SyntaxSeparatorList final
 	{
-		friend class ::Soup::Syntax::SyntaxFactory;
-		static_assert(
-			std::is_base_of<SyntaxNode, TNode>::value ||
-			std::is_same<SyntaxToken, TNode>::value,
-			"TNode must be derived from SyntaxNode or be a SyntaxToken.");
+		// friend class ::Soup::Syntax::SyntaxFactory;
+		// static_assert(
+		// 	std::is_base_of<SyntaxNode, TNode>::value ||
+		// 	std::is_same<SyntaxToken, TNode>::value,
+		// 	"TNode must be derived from SyntaxNode or be a SyntaxToken.");
 
-	private:
+	// TODO: Friend broken in MSVC modules
+	public: // private:
 		/// <summary>
 		/// Initialize
 		/// </summary>
@@ -85,7 +86,8 @@ namespace Soup::Syntax::InnerTree
 			return !(*this == rhs);
 		}
 
-	private:
+	// TODO: Friend broken in MSVC modules
+	public: // private:
 		/// <summary>
 		/// Get the shared pointer to myself
 		/// </summary>

@@ -12,7 +12,8 @@ namespace Soup::Syntax::OuterTree
 	{
 		friend class ::Soup::Syntax::OuterTree::SyntaxWrapper;
 
-	private:
+	// TODO: Friend broken in MSVC modules
+	public: // private:
 		ConstructorDefinition(
 			std::shared_ptr<const InnerTree::ConstructorDefinition> innerNode,
 			const SyntaxNode* parentNode) :
