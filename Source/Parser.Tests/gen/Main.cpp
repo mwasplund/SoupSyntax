@@ -1,6 +1,14 @@
-import StandardLibrary;;
-import Antlr4.Runtime;
-import Soup.Syntax.Parser;
+#include <filesystem>
+#include <fstream>
+#include <iostream>
+#include <memory>
+#include <sstream>
+#include <stdexcept>
+#include <string>
+#include <vector>
+
+import Antlr4Runtime;
+import SoupSyntaxParser;
 
 #include "..\..\..\SoupTest\Assert\SoupAssert.h"
 #include "..\..\..\SoupTest\Assert\RunTest.h"
@@ -44,127 +52,6 @@ int main()
 	std::cout << "Running Tests..." << std::endl;
 
 	TestState state = { 0, 0 };
-
-	// Inner Tree
-	state += RunInnerTreeAttributeTests();
-	state += RunInnerTreeAttributeArgumentClauseTests();
-	state += RunInnerTreeAttributeSpecifierTests();
-
-	state += RunInnerTreeAccessorSpecifierTests();
-	state += RunInnerTreeClassSpecifierTests();
-	state += RunInnerTreeConstructorDefinitionTests();
-	state += RunInnerTreeConstructorInitializerTests();
-	state += RunInnerTreeDeclarationSpecifierSequenceTests();
-	state += RunInnerTreeDefaultFunctionBodyTests();
-	state += RunInnerTreeDeleteFunctionBodyTests();
-	state += RunInnerTreeEmptyDeclarationTests();
-	state += RunInnerTreeEnumSpecifierTests();
-	state += RunInnerTreeEnumeratorDefinitionTests();
-	state += RunInnerTreeFunctionDefinitionTests();
-	state += RunInnerTreeIdentifierTypeTests();
-	state += RunInnerTreeInitializerDeclaratorListTests();
-	state += RunInnerTreeInitializerDeclaratorTests();
-	state += RunInnerTreeInitializerListTests();
-	state += RunInnerTreeMemberDeclarationTests();
-	state += RunInnerTreeMemberDeclaratorListTests();
-	state += RunInnerTreeMemberDeclaratorTests();
-	state += RunInnerTreeMemberInitializerTests();
-	state += RunInnerTreeNamespaceDefinitionTests();
-	state += RunInnerTreeParameterListTests();
-	state += RunInnerTreeParameterTests();
-	state += RunInnerTreePointerDeclaratorTests();
-	state += RunInnerTreePointerOperatorTests();
-	state += RunInnerTreePrimitiveDataTypeSpecifierTests();
-	state += RunInnerTreeSimpleDeclarationTests();
-	state += RunInnerTreeTypeSpecifierSequenceTests();
-	state += RunInnerTreeValueEqualInitializerTests();
-
-	state += RunInnerTreeBinaryExpressionTests();
-	state += RunInnerTreeIdentifierExpressionTests();
-	state += RunInnerTreeInvocationExpressionTests();
-	state += RunInnerTreeLambdaCaptureClauseTests();
-	state += RunInnerTreeLambdaExpressionTests();
-	state += RunInnerTreeLiteralExpressionTests();
-	state += RunInnerTreeSubscriptExpressionTests();
-	state += RunInnerTreeThisExpressionTests();
-	state += RunInnerTreeUnaryExpressionTests();
-
-	state += RunInnerTreeDestructorIdentifierTests();
-	state += RunInnerTreeNestedNameSpecifierTests();
-	state += RunInnerTreeSimpleIdentifierTests();
-	state += RunInnerTreeSimpleTemplateIdentifierTests();
-
-	state += RunInnerTreeCompoundStatementTests();
-	state += RunInnerTreeElseClauseTests();
-	state += RunInnerTreeEmptyStatementTests();
-	state += RunInnerTreeExpressionStatementTests();
-	state += RunInnerTreeIfStatementTests();
-	state += RunInnerTreeReturnStatementTests();
-	state += RunInnerTreeDeclarationStatementTests();
-
-	state += RunInnerTreeSyntaxTokenTests();
-	state += RunInnerTreeTranslationUnitTests();
-
-	// Outer Tree
-	state += RunOuterTreeAttributeTests();
-	state += RunOuterTreeAttributeArgumentClauseTests();
-	state += RunOuterTreeAttributeSpecifierTests();
-
-	state += RunOuterTreeAccessorSpecifierTests();
-	state += RunOuterTreeClassSpecifierTests();
-	state += RunOuterTreeConstructorDefinitionTests();
-	state += RunOuterTreeConstructorInitializerTests();
-	state += RunOuterTreeDeclarationSpecifierSequenceTests();
-	state += RunOuterTreeDefaultFunctionBodyTests();
-	state += RunOuterTreeDeleteFunctionBodyTests();
-	state += RunOuterTreeEmptyDeclarationTests();
-	state += RunOuterTreeEnumSpecifierTests();
-	state += RunOuterTreeEnumeratorDefinitionTests();
-	state += RunOuterTreeFunctionDefinitionTests();
-	state += RunOuterTreeIdentifierTypeTests();
-	state += RunOuterTreeInitializerDeclaratorListTests();
-	state += RunOuterTreeInitializerDeclaratorTests();
-	state += RunOuterTreeInitializerListTests();
-	state += RunOuterTreeMemberDeclarationTests();
-	state += RunOuterTreeMemberDeclaratorListTests();
-	state += RunOuterTreeMemberDeclaratorTests();
-	state += RunOuterTreeMemberInitializerTests();
-	state += RunOuterTreeNamespaceDefinitionTests();
-	state += RunOuterTreeParameterListTests();
-	state += RunOuterTreeParameterTests();
-	state += RunOuterTreePointerDeclaratorTests();
-	state += RunOuterTreePointerOperatorTests();
-	state += RunOuterTreePrimitiveDataTypeSpecifierTests();
-	state += RunOuterTreeSimpleDeclarationTests();
-	state += RunOuterTreeTypeSpecifierSequenceTests();
-	state += RunOuterTreeValueEqualInitializerTests();
-
-	state += RunOuterTreeBinaryExpressionTests();
-	state += RunOuterTreeIdentifierExpressionTests();
-	state += RunOuterTreeInvocationExpressionTests();
-	state += RunOuterTreeLambdaCaptureClauseTests();
-	state += RunOuterTreeLambdaExpressionTests();
-	state += RunOuterTreeLiteralExpressionTests();
-	state += RunOuterTreeSubscriptExpressionTests();
-	state += RunOuterTreeThisExpressionTests();
-	state += RunOuterTreeUnaryExpressionTests();
-
-	state += RunOuterTreeDestructorIdentifierTests();
-	state += RunOuterTreeNestedNameSpecifierTests();
-	state += RunOuterTreeSimpleIdentifierTests();
-	state += RunOuterTreeSimpleTemplateIdentifierTests();
-
-	state += RunOuterTreeCompoundStatementTests();
-	state += RunOuterTreeElseClauseTests();
-	state += RunOuterTreeEmptyStatementTests();
-	state += RunOuterTreeExpressionStatementTests();
-	state += RunOuterTreeIfStatementTests();
-	state += RunOuterTreeReturnStatementTests();
-	state += RunOuterTreeDeclarationStatementTests();
-
-	state += RunOuterTreeSyntaxNodeChildTests();
-	state += RunOuterTreeSyntaxTokenTests();
-	state += RunOuterTreeTranslationUnitTests();
 
 	state += RunLexerTests();
 	state += RunParserAttributesTests();

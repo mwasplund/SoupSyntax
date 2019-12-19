@@ -1,4 +1,13 @@
-﻿module Soup.Syntax.Parser;
+﻿
+module;
+#include <memory>
+#include <stdexcept>
+#include <sstream>
+#include <string>
+#ifdef EOF
+#undef EOF
+#endif
+module SoupSyntaxParser;
 
 using namespace Soup::Syntax;
 using namespace Soup::Syntax::InnerTree;

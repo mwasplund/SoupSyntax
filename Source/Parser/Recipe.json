@@ -1,9 +1,8 @@
 {
-  "name": "Soup.Syntax.Parser",
+  "name": "SoupSyntaxParser",
   "version": "1.0.0",
   "dependencies": [
     "../Syntax/",
-    "../../../../Dependencies/SoupSTL/core/",
     "../../../../Dependencies/antlr4/runtime/cpp/runtime/"
   ],
   "public": "Module.cpp",

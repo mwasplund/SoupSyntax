@@ -1,7 +1,9 @@
 
 // Generated from Grammar\CppParser.g4 by ANTLR 4.7.1
 
-module Soup.Syntax.Parser;
+module;
+#include <memory>
+module SoupSyntaxParser;
 
 //#include "CppParserListener.h"
 

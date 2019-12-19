@@ -1,8 +1,10 @@
 
 // Generated from Grammar\CppLexer.g4 by ANTLR 4.7.1
 
-
-module Soup.Syntax.Parser;
+module;
+#include <memory>
+#include <string>
+module SoupSyntaxParser;
 
 
 using namespace antlr4;

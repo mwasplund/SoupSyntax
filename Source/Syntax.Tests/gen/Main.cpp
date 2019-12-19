@@ -1,4 +1,9 @@
-import StandardLibrary;;
+#include <iostream>
+#include <memory>
+#include <sstream>
+#include <string>
+#include <vector>
+
 import SoupSyntax;
 
 #include "..\..\..\..\SoupTest\Assert\SoupAssert.h"

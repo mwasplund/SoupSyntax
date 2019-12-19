@@ -1,4 +1,7 @@
-﻿module SoupSyntax;
+﻿module;
+#include <memory>
+#include <stdexcept>
+module SoupSyntax;
 
 using namespace Soup::Syntax;
 using namespace Soup::Syntax::OuterTree;

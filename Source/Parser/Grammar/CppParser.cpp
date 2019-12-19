@@ -1,5 +1,11 @@
 
-module Soup.Syntax.Parser;
+module;
+#include <memory>
+#include <string>
+#ifdef EOF
+#undef EOF
+#endif
+module SoupSyntaxParser;
 
 
 //#include "CppParserListener.h"

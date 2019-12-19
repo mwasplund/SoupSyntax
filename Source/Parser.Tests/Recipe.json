@@ -1,9 +1,13 @@
 {
-  "name": "Soup.Syntax.Parser.Tests",
+  "name": "SoupSyntaxParserTests",
   "version": "1.0.0",
-  "type": "executable",
+  "type": "Executable",
   "dependencies": [
     "../Parser/"
+  ],
+  "includePaths": [
+    "./",
+    "./gen/"
   ],
   "source": [
     "gen/Main.cpp"

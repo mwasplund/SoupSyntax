@@ -1,8 +1,9 @@
-﻿
-export module Soup.Syntax.Parser;
+﻿module;
+#include <memory>
+#include <string>
+export module SoupSyntaxParser;
 
-import StandardLibrary;;
-import Antlr4.Runtime;
+import Antlr4Runtime;
 import SoupSyntax;
 
 // Parser

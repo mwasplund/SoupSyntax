@@ -2,7 +2,9 @@
 // Generated from Grammar\CppParser.g4 by ANTLR 4.7.1
 
 #pragma once
-
+#ifdef EOF
+#undef EOF
+#endif
 
 //#include "antlr4-runtime.h"
 

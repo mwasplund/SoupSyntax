@@ -52,7 +52,7 @@ namespace Soup::Syntax::InnerTree
 		/// </summary>
 		bool operator==(const SyntaxNode& rhs) const
 		{
-			return std::ext::are_equal(typeid(*this), typeid(rhs)) &&
+			return typeid(*this) == typeid(rhs) &&
 				Equals(rhs);
 		}
 

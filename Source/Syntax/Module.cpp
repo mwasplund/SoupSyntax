@@ -1,5 +1,10 @@
-﻿export module SoupSyntax;
-import StandardLibrary;
+﻿module;
+#include <iostream>
+#include <memory>
+#include <stdexcept>
+#include <string>
+#include <vector>
+export module SoupSyntax;
 
 // Predefine nodes to get around circular references
 // used in the visitors

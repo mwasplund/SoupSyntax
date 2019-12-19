@@ -1,4 +1,8 @@
-﻿module Soup.Syntax.Parser;
+﻿module;
+#include <memory>
+#include <sstream>
+#include <string>
+module SoupSyntaxParser;
 
 using namespace antlr4;
 using namespace antlr4::atn;

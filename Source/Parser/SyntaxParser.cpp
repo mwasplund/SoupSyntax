@@ -1,4 +1,8 @@
-﻿module Soup.Syntax.Parser;
+﻿module;
+#include <iostream>
+#include <memory>
+#include <string>
+module SoupSyntaxParser;
 
 using namespace Soup::Syntax;
 
@@ -48,8 +52,7 @@ using namespace Soup::Syntax;
 	auto context = parser->translationUnit();
 
 	// Convert the the abstract syntax tree
-	auto node = std::any_cast<std::shared_ptr<const InnerTree::TranslationUnit>>(
-		visitor->visit(context));
+	auto node = visitor->visit(context).as<std::shared_ptr<const InnerTree::TranslationUnit>>();
 
 	return std::make_shared<const SyntaxTree>(std::move(node));
 }
