@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "type": "Executable",
   "dependencies": [
+    "../../../SoupTest/Assert/",
     "../Syntax/"
   ],
   "includePaths": [
