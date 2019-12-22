@@ -104,6 +104,8 @@ namespace Soup::Syntax
 					return "ConstructorInitializer";
 				case SyntaxNodeType::DeclarationSpecifierSequence:
 					return "DeclarationSpecifierSequence";
+				case SyntaxNodeType::DeclarationStatement:
+					return "DeclarationStatement";
 				case SyntaxNodeType::DefaultFunctionBody:
 					return "DefaultFunctionBody";
 				case SyntaxNodeType::DeleteFunctionBody:
