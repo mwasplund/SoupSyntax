@@ -85,8 +85,8 @@ int main()
 
 	state += RunRoundTripTests();
 
-	std::cout << state.FailCount << " FAILED." << std::endl;
 	std::cout << state.PassCount << " PASSED." << std::endl;
+	std::cout << state.FailCount << " FAILED." << std::endl;
 
 	return 0;
 }
