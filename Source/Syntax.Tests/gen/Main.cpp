@@ -5,7 +5,7 @@
 #include <vector>
 
 import SoupSyntax;
-import SoupTest;
+import Soup.Test.Assert;
 
 using namespace SoupTest;
 

@@ -6,7 +6,7 @@ TestState RunParseExpressionStatementTests()
 	auto className = "ParseExpressionStatementTests";
 	auto testClass = std::make_shared<Soup::Syntax::InnerTree::UnitTests::ParseExpressionStatementTests>();
 	TestState state = { 0, 0 };
-	state += SoupTest::RunTest(className, "SimpleIdentifier", [&testClass]() { testClass->SimpleIdentifier(); });
+	state += Soup::Test::RunTest(className, "SimpleIdentifier", [&testClass]() { testClass->SimpleIdentifier(); });
 
 	return state;
 }

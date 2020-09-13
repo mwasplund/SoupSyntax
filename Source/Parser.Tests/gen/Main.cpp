@@ -9,7 +9,7 @@
 
 import Antlr4Runtime;
 import SoupSyntaxParser;
-import SoupTest;
+import Soup.Test.Assert;
 
 using namespace SoupTest;
 
