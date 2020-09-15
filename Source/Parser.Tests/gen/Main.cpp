@@ -11,7 +11,7 @@ import Antlr4Runtime;
 import SoupSyntaxParser;
 import Soup.Test.Assert;
 
-using namespace SoupTest;
+using namespace Soup::Test;
 
 #include "Parser\LexerTests.gen.h"
 #include "Parser\ParserAttributesTests.gen.h"

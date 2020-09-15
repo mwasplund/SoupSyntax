@@ -7,7 +7,7 @@
 import SoupSyntax;
 import Soup.Test.Assert;
 
-using namespace SoupTest;
+using namespace Soup::Test;
 
 // Inner Tree
 #include "AST\InnerTree\Attribute\AttributeTests.gen.h"
