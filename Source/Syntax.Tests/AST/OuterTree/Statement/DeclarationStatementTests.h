@@ -6,7 +6,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 	class OuterTreeDeclarationStatementTests
 	{
 	public:
-		[[Fact]]
+		// [[Fact]]
 		void InitializeSimple()
 		{
 			auto uut = SyntaxFactory::CreateDeclarationStatement(
@@ -50,7 +50,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify declaration matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void GetChildren()
 		{
 			auto uut = SyntaxFactory::CreateDeclarationStatement(
@@ -93,7 +93,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify children match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorEqual()
 		{
 			auto uut = SyntaxFactory::CreateDeclarationStatement(
@@ -134,7 +134,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualDeclaration()
 		{
 			auto uut = SyntaxFactory::CreateDeclarationStatement(

@@ -6,7 +6,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 	class OuterTreeTranslationUnitTests
 	{
 	public:
-		[[Fact]]
+		// [[Fact]]
 		void InitializeSimple()
 		{
 			auto uut = SyntaxFactory::CreateTranslationUnit(
@@ -27,7 +27,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify end of tile token matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void InitializeComplex()
 		{
 			auto uut = SyntaxFactory::CreateTranslationUnit(
@@ -86,7 +86,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify end of tile token matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void GetChildrenSimple()
 		{
 			auto uut = SyntaxFactory::CreateTranslationUnit(
@@ -103,7 +103,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify children match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void GetChildrenComplex()
 		{
 			auto uut = SyntaxFactory::CreateTranslationUnit(
@@ -158,7 +158,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify children match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorEqual()
 		{
 			auto uut = SyntaxFactory::CreateTranslationUnit(
@@ -181,7 +181,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualNoDeclarations()
 		{
 			auto uut = SyntaxFactory::CreateTranslationUnit(
@@ -200,7 +200,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify do not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualWithDelarations()
 		{
 			auto uut = SyntaxFactory::CreateTranslationUnit(
@@ -228,7 +228,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify do not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualEndOfFileToken()
 		{
 			auto uut = SyntaxFactory::CreateTranslationUnit(

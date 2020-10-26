@@ -6,7 +6,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 	class ParseConstructorDefinitionTests
 	{
 	public:
-		[[Fact]]
+		// [[Fact]]
 		void SimpleRegular()
 		{
 			auto source = std::string(
@@ -48,7 +48,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void SimpleDefault()
 		{
 			auto source = std::string(
@@ -83,7 +83,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void SimpleDelete()
 		{
 			auto source = std::string(
@@ -118,7 +118,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void ComplexParameterAndInitializer()
 		{
 			auto source = std::string(

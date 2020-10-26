@@ -5,7 +5,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 	class InnerTreeSimpleTemplateIdentifierTests
 	{
 	public:
-		[[Fact]]
+		// [[Fact]]
 		void InitializeNoArguments()
 		{
 			auto uut = SyntaxFactory::CreateSimpleTemplateIdentifier(
@@ -36,7 +36,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify greater than matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void InitializeWithArguments()
 		{
 			auto uut = SyntaxFactory::CreateSimpleTemplateIdentifier(
@@ -85,7 +85,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify greater than matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorEqualNoArguments()
 		{
 			auto uut = SyntaxFactory::CreateSimpleTemplateIdentifier(
@@ -104,7 +104,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorEqualWithArguments()
 		{
 			auto uut = SyntaxFactory::CreateSimpleTemplateIdentifier(
@@ -141,7 +141,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualIdentifier()
 		{
 			auto uut = SyntaxFactory::CreateSimpleTemplateIdentifier(
@@ -178,7 +178,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify do not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualLessThanToken()
 		{
 			auto uut = SyntaxFactory::CreateSimpleTemplateIdentifier(
@@ -220,7 +220,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify do not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualNoArguments()
 		{
 			auto uut = SyntaxFactory::CreateSimpleTemplateIdentifier(
@@ -248,7 +248,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify do not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualWithArguments()
 		{
 			auto uut = SyntaxFactory::CreateSimpleTemplateIdentifier(
@@ -285,7 +285,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify do not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualGreaterThanToken()
 		{
 			auto uut = SyntaxFactory::CreateSimpleTemplateIdentifier(

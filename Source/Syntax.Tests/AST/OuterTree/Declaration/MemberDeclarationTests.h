@@ -6,7 +6,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 	class OuterTreeMemberDeclarationTests
 	{
 	public:
-		[[Fact]]
+		// [[Fact]]
 		void InitializeSimple()
 		{
 			// int i;
@@ -55,7 +55,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify semicolon token matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void GetChildren()
 		{
 			// int i;
@@ -99,7 +99,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify children match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorEqual()
 		{
 			// int i;
@@ -139,7 +139,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualDeclarationSpecifierSequence()
 		{
 			// int i;
@@ -179,7 +179,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify do not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualMemberDeclaratorList()
 		{
 			// int i;
@@ -219,7 +219,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify do not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualSemicolonToken()
 		{
 			// int i;

@@ -6,7 +6,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 	class OuterTreeMemberInitializerTests
 	{
 	public:
-		[[Fact]]
+		// [[Fact]]
 		void InitializeSimple()
 		{
 			// a()
@@ -34,7 +34,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify initializer list matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void GetChildren()
 		{
 			// a()
@@ -58,7 +58,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify children match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorEqual()
 		{
 			// a()
@@ -80,7 +80,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualIdentifierToken()
 		{
 			// a()
@@ -102,7 +102,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify does not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualInitializer()
 		{
 			// a()

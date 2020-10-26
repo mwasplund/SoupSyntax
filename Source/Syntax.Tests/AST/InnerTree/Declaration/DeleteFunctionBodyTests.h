@@ -5,7 +5,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 	class InnerTreeDeleteFunctionBodyTests
 	{
 	public:
-		[[Fact]]
+		// [[Fact]]
 		void InitializeSimple()
 		{
 			auto uut = SyntaxFactory::CreateDeleteFunctionBody(
@@ -31,7 +31,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify semicolon token matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorEqual()
 		{
 			auto uut = SyntaxFactory::CreateDeleteFunctionBody(
@@ -48,7 +48,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualEqualToken()
 		{
 			auto uut = SyntaxFactory::CreateDeleteFunctionBody(
@@ -71,7 +71,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify do not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualDeleteToken()
 		{
 			auto uut = SyntaxFactory::CreateDeleteFunctionBody(
@@ -94,7 +94,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify do not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualSemicolonToken()
 		{
 			auto uut = SyntaxFactory::CreateDeleteFunctionBody(

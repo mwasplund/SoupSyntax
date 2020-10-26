@@ -6,7 +6,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 	class ParseTranslationUnitTests
 	{
 	public:
-		[[Fact]]
+		// [[Fact]]
 		void EmptyFile()
 		{
 			auto sourceCode = std::string("\0");
@@ -19,7 +19,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OnlyTrivia()
 		{
 			auto sourceCode = std::string(" \0");
@@ -37,7 +37,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OnlyComments()
 		{
 			auto sourceCode = std::string("//COMMENT\n//OTHER\0");
@@ -57,7 +57,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void SingleEmptyDeclaration()
 		{
 			auto sourceCode = std::string(" ; \0");
@@ -84,7 +84,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void MultipleDeclarations()
 		{
 			auto sourceCode = std::string(";\nint i;\0");

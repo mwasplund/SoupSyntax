@@ -5,7 +5,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 	class OuterTreeSimpleIdentifierTests
 	{
 	public:
-		[[Fact]]
+		// [[Fact]]
 		void Initialize()
 		{
 			auto uut = SyntaxFactory::CreateSimpleIdentifier(
@@ -21,7 +21,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify identifier matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void GetChildren()
 		{
 			auto uut = SyntaxFactory::CreateSimpleIdentifier(
@@ -35,7 +35,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify children match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorEqual()
 		{
 			auto uut = SyntaxFactory::CreateSimpleIdentifier(
@@ -48,7 +48,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualIdentifier()
 		{
 			auto uut = SyntaxFactory::CreateSimpleIdentifier(

@@ -5,7 +5,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 	class InnerTreeLambdaExpressionTests
 	{
 	public:
-		[[Fact]]
+		// [[Fact]]
 		void InitializeSimple()
 		{
 			// []{}
@@ -46,7 +46,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify body matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void InitializeComplex()
 		{
 			// [&value](){}
@@ -110,7 +110,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify body matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorEqualSimple()
 		{
 			// []{}
@@ -136,7 +136,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorEqualComplex()
 		{
 			// [&value](){}
@@ -182,7 +182,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualOpenBracketToken()
 		{
 			// [](){}
@@ -219,7 +219,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify does not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualCaptureList()
 		{
 			// [&value](){}
@@ -263,7 +263,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify does not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualCloseBracketToken()
 		{
 			// [](){}
@@ -300,7 +300,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify does not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualNoParameterList()
 		{
 			// [](){}
@@ -329,7 +329,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify does not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualParameterList()
 		{
 			// [](){}
@@ -369,7 +369,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify does not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualBody()
 		{
 			// [](){}

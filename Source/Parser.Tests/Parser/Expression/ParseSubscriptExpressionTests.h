@@ -6,7 +6,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 	class ParseSubscriptExpressionTests
 	{
 	public:
-		[[Fact]]
+		// [[Fact]]
 		void SingleSubscriptExpression()
 		{
 			auto sourceCode = std::string("a[1]");

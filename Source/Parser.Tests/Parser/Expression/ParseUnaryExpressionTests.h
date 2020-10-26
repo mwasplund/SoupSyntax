@@ -6,7 +6,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 	class ParseUnaryExpressionTests
 	{
 	public:
-		[[Fact]]
+		// [[Fact]]
 		void SingleIdentifierPlus()
 		{
 			auto sourceCode = std::string("+a");
@@ -22,7 +22,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void SingleIdentifierMinus()
 		{
 			auto sourceCode = std::string("-a");
@@ -54,7 +54,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void SingleIdentifierPreIncrement()
 		{
 			auto sourceCode = std::string("++a");
@@ -70,7 +70,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void SingleIdentifierPreDecrement()
 		{
 			auto sourceCode = std::string("--a");
@@ -86,7 +86,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void SingleIdentifierPostIncrement()
 		{
 			auto sourceCode = std::string("a++");
@@ -102,7 +102,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void SingleIdentifierPostDecrement()
 		{
 			auto sourceCode = std::string("a--");
@@ -118,7 +118,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void SingleIdentifierLogicalNot()
 		{
 			auto sourceCode = std::string("!a");
@@ -134,7 +134,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void SingleIdentifierIndirection()
 		{
 			auto sourceCode = std::string("*a");
@@ -150,7 +150,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void SingleIdentifierAddressOf()
 		{
 			auto sourceCode = std::string("&a");

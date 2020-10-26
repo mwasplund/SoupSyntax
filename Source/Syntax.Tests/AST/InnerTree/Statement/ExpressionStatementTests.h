@@ -6,7 +6,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 	class InnerTreeExpressionStatementTests
 	{
 	public:
-		[[Fact]]
+		// [[Fact]]
 		void InitializeSimple()
 		{
 			// a;
@@ -32,7 +32,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify semicolon token matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorEqual()
 		{
 			// a;
@@ -52,7 +52,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualExpression()
 		{
 			// a;
@@ -72,7 +72,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify do not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualSemicolonToken()
 		{
 			// a;

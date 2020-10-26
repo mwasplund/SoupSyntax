@@ -6,7 +6,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 	class ParseEmptyStatementTests
 	{
 	public:
-		[[Fact]]
+		// [[Fact]]
 		void Simple()
 		{
 			auto sourceCode = std::string(";");

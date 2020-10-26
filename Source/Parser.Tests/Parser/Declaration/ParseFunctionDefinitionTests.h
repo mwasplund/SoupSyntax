@@ -6,7 +6,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 	class ParseFunctionDefinitionTests
 	{
 	public:
-		[[Fact]]
+		// [[Fact]]
 		void SimpleFunctionRegular()
 		{
 			auto source = std::string(
@@ -57,7 +57,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void SimpleFunctionDefault()
 		{
 			auto source = std::string(
@@ -101,7 +101,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void SimpleFunctionDelete()
 		{
 			auto source = std::string(
@@ -145,7 +145,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void SimpleFunctionParameter()
 		{
 			auto source = std::string(
@@ -206,7 +206,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void SimpleFunctionAttribute()
 		{
 			auto source = std::string(

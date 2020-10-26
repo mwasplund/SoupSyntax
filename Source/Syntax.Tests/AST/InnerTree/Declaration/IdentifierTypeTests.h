@@ -5,7 +5,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 	class InnerTreeIdentifierTypeTests
 	{
 	public:
-		[[Fact]]
+		// [[Fact]]
 		void InitializeUnqualified()
 		{
 			auto uut = SyntaxFactory::CreateIdentifierType(
@@ -26,7 +26,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify unqualified identifier matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void InitializeGlobalQualified()
 		{
 			auto uut = SyntaxFactory::CreateIdentifierType(
@@ -60,7 +60,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify unqualified identifier matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void InitializeSingleQualifiedIdentifier()
 		{
 			auto uut = SyntaxFactory::CreateIdentifierType(
@@ -100,7 +100,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify unqualified identifier matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorEqualUnqualified()
 		{
 			auto uut = SyntaxFactory::CreateIdentifierType(
@@ -115,7 +115,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorEqualQualified()
 		{
 			auto uut = SyntaxFactory::CreateIdentifierType(
@@ -148,7 +148,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualNoQualifier()
 		{
 			auto uut = SyntaxFactory::CreateIdentifierType(
@@ -172,7 +172,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify do not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualQualifier()
 		{
 			auto uut = SyntaxFactory::CreateIdentifierType(
@@ -205,7 +205,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify do not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualUnqualifiedIdentifier()
 		{
 			auto uut = SyntaxFactory::CreateIdentifierType(

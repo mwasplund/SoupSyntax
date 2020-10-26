@@ -6,7 +6,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 	class ParseMemberDeclarationTests
 	{
 	public:
-		[[Fact]]
+		// [[Fact]]
 		void SingleIntVariable()
 		{
 			auto sourceCode = std::string("int i;");
@@ -38,7 +38,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void SingleClassVariable()
 		{
 			auto sourceCode = std::string("MyClass i;");
@@ -70,7 +70,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void SingleTemplateClassVariable()
 		{
 			auto sourceCode = std::string("std::vector<ClassA> value1;");
@@ -122,7 +122,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void SingleIntVariableWithInitializer()
 		{
 			auto sourceCode = std::string("int i = 0;");
@@ -169,7 +169,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void DoubleIntVariable()
 		{
 			auto sourceCode = std::string("int i, j;");
@@ -214,7 +214,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void DoubleIntVariableSingleWithInitializer()
 		{
 			auto sourceCode = std::string("int i = 0, j;");
@@ -274,7 +274,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void DoubleIntVariableBothWithInitializer()
 		{
 			auto sourceCode = std::string("int i = 0, j = 1;");
@@ -349,7 +349,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void SingleIntLeadingAndTrailingModifierVariable()
 		{
 			auto sourceCode = std::string("static int constexpr i;");

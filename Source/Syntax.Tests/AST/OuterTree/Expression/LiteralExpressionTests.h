@@ -5,7 +5,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 	class OuterTreeLiteralExpressionTests
 	{
 	public:
-		[[Fact]]
+		// [[Fact]]
 		void InitializeSimple()
 		{
 			auto uut = SyntaxFactory::CreateLiteralExpression(
@@ -23,7 +23,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify value matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void GetChildren()
 		{
 			auto uut = SyntaxFactory::CreateLiteralExpression(
@@ -38,7 +38,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify children match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorEqual()
 		{
 			auto uut = SyntaxFactory::CreateLiteralExpression(
@@ -53,7 +53,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualType()
 		{
 			auto uut = SyntaxFactory::CreateLiteralExpression(
@@ -68,7 +68,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify do not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualToken()
 		{
 			auto uut = SyntaxFactory::CreateLiteralExpression(

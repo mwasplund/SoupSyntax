@@ -6,7 +6,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 	class ParseSimpleDeclarationTests
 	{
 	public:
-		[[Fact]]
+		// [[Fact]]
 		void ClassSpecifierVariable()
 		{
 			auto sourceCode = std::string("class C1 {} c1;");
@@ -52,7 +52,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void EnumSpecifierVariable()
 		{
 			auto sourceCode = std::string("enum class E1 {} e1;");
@@ -105,22 +105,22 @@ namespace Soup::Syntax::InnerTree::UnitTests
 		}
 
 		// TODO: Remove namespaces when inline data theories have correct scope
-		[[Theory]]
-		[[InlineData("char", Soup::Syntax::SyntaxTokenType::Char, Soup::Syntax::PrimitiveDataType::Char)]]
-		[[InlineData("char8_t", Soup::Syntax::SyntaxTokenType::Char8, Soup::Syntax::PrimitiveDataType::Char8)]]
-		[[InlineData("char16_t", Soup::Syntax::SyntaxTokenType::Char16, Soup::Syntax::PrimitiveDataType::Char16)]]
-		[[InlineData("char32_t", Soup::Syntax::SyntaxTokenType::Char32, Soup::Syntax::PrimitiveDataType::Char32)]]
-		[[InlineData("wchar_t", Soup::Syntax::SyntaxTokenType::WChar, Soup::Syntax::PrimitiveDataType::WChar)]]
-		[[InlineData("bool", Soup::Syntax::SyntaxTokenType::Bool, Soup::Syntax::PrimitiveDataType::Bool)]]
-		[[InlineData("short", Soup::Syntax::SyntaxTokenType::Short, Soup::Syntax::PrimitiveDataType::Short)]]
-		[[InlineData("int", Soup::Syntax::SyntaxTokenType::Int, Soup::Syntax::PrimitiveDataType::Int)]]
-		[[InlineData("long", Soup::Syntax::SyntaxTokenType::Long, Soup::Syntax::PrimitiveDataType::Long)]]
-		[[InlineData("signed", Soup::Syntax::SyntaxTokenType::Signed, Soup::Syntax::PrimitiveDataType::Signed)]]
-		[[InlineData("unsigned", Soup::Syntax::SyntaxTokenType::Unsigned, Soup::Syntax::PrimitiveDataType::Unsigned)]]
-		[[InlineData("float", Soup::Syntax::SyntaxTokenType::Float, Soup::Syntax::PrimitiveDataType::Float)]]
-		[[InlineData("double", Soup::Syntax::SyntaxTokenType::Double, Soup::Syntax::PrimitiveDataType::Double)]]
-		[[InlineData("void", Soup::Syntax::SyntaxTokenType::Void, Soup::Syntax::PrimitiveDataType::Void)]]
-		[[InlineData("auto", Soup::Syntax::SyntaxTokenType::Auto, Soup::Syntax::PrimitiveDataType::Auto)]]
+		// [[Theory]]
+		// [[InlineData("char", Soup::Syntax::SyntaxTokenType::Char, Soup::Syntax::PrimitiveDataType::Char)]]
+		// [[InlineData("char8_t", Soup::Syntax::SyntaxTokenType::Char8, Soup::Syntax::PrimitiveDataType::Char8)]]
+		// [[InlineData("char16_t", Soup::Syntax::SyntaxTokenType::Char16, Soup::Syntax::PrimitiveDataType::Char16)]]
+		// [[InlineData("char32_t", Soup::Syntax::SyntaxTokenType::Char32, Soup::Syntax::PrimitiveDataType::Char32)]]
+		// [[InlineData("wchar_t", Soup::Syntax::SyntaxTokenType::WChar, Soup::Syntax::PrimitiveDataType::WChar)]]
+		// [[InlineData("bool", Soup::Syntax::SyntaxTokenType::Bool, Soup::Syntax::PrimitiveDataType::Bool)]]
+		// [[InlineData("short", Soup::Syntax::SyntaxTokenType::Short, Soup::Syntax::PrimitiveDataType::Short)]]
+		// [[InlineData("int", Soup::Syntax::SyntaxTokenType::Int, Soup::Syntax::PrimitiveDataType::Int)]]
+		// [[InlineData("long", Soup::Syntax::SyntaxTokenType::Long, Soup::Syntax::PrimitiveDataType::Long)]]
+		// [[InlineData("signed", Soup::Syntax::SyntaxTokenType::Signed, Soup::Syntax::PrimitiveDataType::Signed)]]
+		// [[InlineData("unsigned", Soup::Syntax::SyntaxTokenType::Unsigned, Soup::Syntax::PrimitiveDataType::Unsigned)]]
+		// [[InlineData("float", Soup::Syntax::SyntaxTokenType::Float, Soup::Syntax::PrimitiveDataType::Float)]]
+		// [[InlineData("double", Soup::Syntax::SyntaxTokenType::Double, Soup::Syntax::PrimitiveDataType::Double)]]
+		// [[InlineData("void", Soup::Syntax::SyntaxTokenType::Void, Soup::Syntax::PrimitiveDataType::Void)]]
+		// [[InlineData("auto", Soup::Syntax::SyntaxTokenType::Auto, Soup::Syntax::PrimitiveDataType::Auto)]]
 		void SimplePrimitiveVariable(std::string typeSource, SyntaxTokenType expectedToken, PrimitiveDataType expectedType)
 		{
 			auto sourceCode = typeSource + " i;";
@@ -152,7 +152,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void SimpleIdentifierVariable()
 		{
 			auto sourceCode = std::string("MyClass i;");
@@ -184,7 +184,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void TemplateClassVariable()
 		{
 			auto sourceCode = std::string("std::shared_ptr<const ClassA> value1;");
@@ -245,7 +245,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void TemplateOfTemplateVariable()
 		{
 			auto sourceCode = std::string("std::vector<std::shared_ptr<Attribute>> values;");
@@ -315,7 +315,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void VariableWithInitializer()
 		{
 			auto sourceCode = std::string("int i = 0;");
@@ -362,7 +362,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void DoubleVariable()
 		{
 			auto sourceCode = std::string("int i, j;");
@@ -407,7 +407,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void DoubleVariableSingleWithInitializer()
 		{
 			auto sourceCode = std::string("int i = 0, j;");
@@ -467,7 +467,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void DoubleVariableBothWithInitializer()
 		{
 			auto sourceCode = std::string("int i = 0, j = 1;");
@@ -542,7 +542,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void SingleIntLeadingAndTrailingModifierVariable()
 		{
 			auto sourceCode = std::string("static int constexpr i;");
@@ -592,7 +592,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void SingleTemplateWithInitializerList()
 		{
 			auto sourceCode = std::string("std::vector<int> values = {1,2,};");

@@ -6,7 +6,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 	class InnerTreeIfStatementTests
 	{
 	public:
-		[[Fact]]
+		// [[Fact]]
 		void InitializeNoElseClause()
 		{
 			// if(value);
@@ -53,7 +53,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify has no else clause.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void InitializeWithElseClause()
 		{
 			// if(value);else;
@@ -110,7 +110,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify else clause matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorEqualNoElseClause()
 		{
 			// if(value);
@@ -140,7 +140,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorEqualWithElseClause()
 		{
 			// if(value);else;
@@ -176,7 +176,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualIfToken()
 		{
 			// if(value);
@@ -212,7 +212,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify do not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualOpenParenthesisToken()
 		{
 			// if(value);
@@ -248,7 +248,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify do not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualConditionExpression()
 		{
 			// if(value);
@@ -278,7 +278,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify do not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualCloseParenthesisToken()
 		{
 			// if(value);
@@ -314,7 +314,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify do not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualStatement()
 		{
 			// if(value);
@@ -350,7 +350,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify do not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualNoElseClause()
 		{
 			// if(value);
@@ -383,7 +383,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify do not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualWithElseClause()
 		{
 			// if(value);

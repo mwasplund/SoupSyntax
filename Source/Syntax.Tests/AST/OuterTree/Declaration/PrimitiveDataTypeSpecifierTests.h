@@ -6,7 +6,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 	class OuterTreePrimitiveDataTypeSpecifierTests
 	{
 	public:
-		[[Fact]]
+		// [[Fact]]
 		void InitializeSimple()
 		{
 			auto uut = SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
@@ -27,7 +27,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify token matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void GetChildren()
 		{
 			auto uut = SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
@@ -42,7 +42,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify children match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorEqual()
 		{
 			auto uut = SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
@@ -57,7 +57,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualPrimitiveType()
 		{
 			auto uut = SyntaxFactory::CreatePrimitiveDataTypeSpecifier(
@@ -72,7 +72,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify does not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualToken()
 		{
 			auto uut = SyntaxFactory::CreatePrimitiveDataTypeSpecifier(

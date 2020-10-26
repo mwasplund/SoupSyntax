@@ -5,7 +5,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 	class InnerTreePointerOperatorTests
 	{
 	public:
-		[[Fact]]
+		// [[Fact]]
 		void Initialize()
 		{
 			auto uut = SyntaxFactory::CreatePointerOperator(
@@ -21,7 +21,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify operator token matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorEqual()
 		{
 			auto uut = SyntaxFactory::CreatePointerOperator(
@@ -34,7 +34,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualOperatorToken()
 		{
 			auto uut = SyntaxFactory::CreatePointerOperator(

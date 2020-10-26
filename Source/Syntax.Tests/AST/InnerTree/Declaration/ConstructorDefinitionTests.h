@@ -5,7 +5,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 	class InnerTreeConstructorDefinitionTests
 	{
 	public:
-		[[Fact]]
+		// [[Fact]]
 		void InitializeSimple()
 		{
 			// MyClass() {};
@@ -52,7 +52,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify body matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void InitializeComplex()
 		{
 			// MyClass(int value) : m_value() {};
@@ -143,7 +143,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify body matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorEqualSimple()
 		{
 			// MyClass(int parameter) = delete;
@@ -199,7 +199,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorEqualComplex()
 		{
 			// MyClass(int value) : m_value() {};
@@ -275,7 +275,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualIdentifier()
 		{
 			// MyClass(int parameter) = delete;
@@ -331,7 +331,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify does not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualParameterList()
 		{
 			// MyClass(int parameter) = delete;
@@ -377,7 +377,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify does not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualNoConstructorInitializer()
 		{
 			// MyClass() : m_value() {};
@@ -424,7 +424,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify does not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualConstructorInitializer()
 		{
 			// MyClass() : m_value() {};
@@ -482,7 +482,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify does not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualBody()
 		{
 			// MyClass(int parameter) = delete;

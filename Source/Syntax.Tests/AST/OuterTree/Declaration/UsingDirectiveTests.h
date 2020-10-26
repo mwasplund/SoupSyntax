@@ -6,7 +6,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 	class OuterTreeUsingDirectiveTests
 	{
 	public:
-		[[Fact]]
+		// [[Fact]]
 		void Initialize()
 		{
 			auto uut = SyntaxFactory::CreateUsingDirective(
@@ -51,7 +51,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify semicolon token matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void GetChildren()
 		{
 			auto uut = SyntaxFactory::CreateUsingDirective(
@@ -81,7 +81,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify children match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorEqual()
 		{
 			auto uut = SyntaxFactory::CreateUsingDirective(
@@ -114,7 +114,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualUsingToken()
 		{
 			auto uut = SyntaxFactory::CreateUsingDirective(
@@ -152,7 +152,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify do not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualNamespaceToken()
 		{
 			auto uut = SyntaxFactory::CreateUsingDirective(
@@ -190,7 +190,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify do not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualNameIdentifierList()
 		{
 			auto uut = SyntaxFactory::CreateUsingDirective(
@@ -223,7 +223,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify do not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualSemicolonToken()
 		{
 			auto uut = SyntaxFactory::CreateUsingDirective(

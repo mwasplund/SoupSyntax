@@ -6,7 +6,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 	class InnerTreeExportDeclarationTests
 	{
 	public:
-		[[Fact]]
+		// [[Fact]]
 		void Initialize()
 		{
 			auto uut = SyntaxFactory::CreateExportDeclaration(
@@ -45,7 +45,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify declaration matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorEqual()
 		{
 			auto uut = SyntaxFactory::CreateExportDeclaration(
@@ -78,7 +78,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualExport()
 		{
 			auto uut = SyntaxFactory::CreateExportDeclaration(
@@ -116,7 +116,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify do not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualDeclaration()
 		{
 			auto uut = SyntaxFactory::CreateExportDeclaration(

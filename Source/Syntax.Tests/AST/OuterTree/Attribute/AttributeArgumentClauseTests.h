@@ -6,7 +6,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 	class OuterTreeAttributeArgumentClauseTests
 	{
 	public:
-		[[Fact]]
+		// [[Fact]]
 		void InitializeSimple()
 		{
 			// a()
@@ -33,7 +33,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify close parenthesis token matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void InitializeComplex()
 		{
 			// a(b, c)
@@ -70,7 +70,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify close parenthesis token matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void GetChildrenSimple()
 		{
 			// a()
@@ -88,7 +88,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify children match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void GetChildrenComplex()
 		{
 			// a(b, c)
@@ -114,7 +114,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify children match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorEqual()
 		{
 			// a(b, c)
@@ -142,7 +142,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualOpenParenthesisToken()
 		{
 			// a(b, c)
@@ -175,7 +175,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify does not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualParameters()
 		{
 			// a(b, c)
@@ -203,7 +203,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify does not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualCloseParenthesisToken()
 		{
 			// a(b, c)

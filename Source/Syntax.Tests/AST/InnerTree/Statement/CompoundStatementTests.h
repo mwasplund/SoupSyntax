@@ -6,7 +6,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 	class InnerTreeCompoundStatementTests
 	{
 	public:
-		[[Fact]]
+		// [[Fact]]
 		void InitializeEmpty()
 		{
 			auto uut = SyntaxFactory::CreateCompoundStatement(
@@ -32,7 +32,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify right brace token matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void InitializeSingleStatement()
 		{
 			auto uut = SyntaxFactory::CreateCompoundStatement(
@@ -70,7 +70,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify right brace token matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorEqualEmpty()
 		{
 			auto uut = SyntaxFactory::CreateCompoundStatement(
@@ -87,7 +87,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorEqualSingleStatement()
 		{
 			auto uut = SyntaxFactory::CreateCompoundStatement(
@@ -116,7 +116,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualOpenBraceToken()
 		{
 			auto uut = SyntaxFactory::CreateCompoundStatement(
@@ -138,7 +138,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify do not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualEmpty()
 		{
 			auto uut = SyntaxFactory::CreateCompoundStatement(
@@ -161,7 +161,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify do not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualSingleStatement()
 		{
 			auto uut = SyntaxFactory::CreateCompoundStatement(
@@ -195,7 +195,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify do not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualCloseBraceToken()
 		{
 			auto uut = SyntaxFactory::CreateCompoundStatement(

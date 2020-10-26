@@ -5,7 +5,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 	class OuterTreeBinaryExpressionTests
 	{
 	public:
-		[[Fact]]
+		// [[Fact]]
 		void InitializeSimple()
 		{
 			auto uut = SyntaxFactory::CreateBinaryExpression(
@@ -41,7 +41,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify right expression matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void GetChildren()
 		{
 			auto uut = SyntaxFactory::CreateBinaryExpression(
@@ -70,7 +70,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify children match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorEqual()
 		{
 			auto uut = SyntaxFactory::CreateBinaryExpression(
@@ -97,7 +97,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualOperatorType()
 		{
 			auto uut = SyntaxFactory::CreateBinaryExpression(
@@ -124,7 +124,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify do not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualLeft()
 		{
 			auto uut = SyntaxFactory::CreateBinaryExpression(
@@ -151,7 +151,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify do not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualOperatorToken()
 		{
 			auto uut = SyntaxFactory::CreateBinaryExpression(
@@ -178,7 +178,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify do not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualRight()
 		{
 			auto uut = SyntaxFactory::CreateBinaryExpression(

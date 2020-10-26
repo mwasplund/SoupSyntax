@@ -5,19 +5,19 @@ namespace Soup::Syntax::UnitTests
 	class RoundTripTests
 	{
 	public:
-		[[Theory]]
-		[[InlineData("BlockComment.cpp")]]
-		[[InlineData("ClassComplex.cpp")]]
-		[[InlineData("ClassConstructor.cpp")]]
-		[[InlineData("ClassSimple.cpp")]]
-		[[InlineData("EmptyFile.cpp")]]
-		[[InlineData("FunctionParameters.cpp")]]
-		[[InlineData("FunctionSimple.cpp")]]
-		[[InlineData("HelloWorld.cpp")]]
-		[[InlineData("LineComment.cpp")]]
-		[[InlineData("LineComments.cpp")]]
-		[[InlineData("Namespace.cpp")]]
-		[[InlineData("TemplateArguments.cpp")]]
+		// [[Theory]]
+		// [[InlineData("BlockComment.cpp")]]
+		// [[InlineData("ClassComplex.cpp")]]
+		// [[InlineData("ClassConstructor.cpp")]]
+		// [[InlineData("ClassSimple.cpp")]]
+		// [[InlineData("EmptyFile.cpp")]]
+		// [[InlineData("FunctionParameters.cpp")]]
+		// [[InlineData("FunctionSimple.cpp")]]
+		// [[InlineData("HelloWorld.cpp")]]
+		// [[InlineData("LineComment.cpp")]]
+		// [[InlineData("LineComments.cpp")]]
+		// [[InlineData("Namespace.cpp")]]
+		// [[InlineData("TemplateArguments.cpp")]]
 		void RoundTrip(std::string name)
 		{
 			auto filename = "RoundTrip/Input/" + name;

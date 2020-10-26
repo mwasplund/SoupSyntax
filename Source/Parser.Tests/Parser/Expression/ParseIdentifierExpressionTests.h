@@ -6,7 +6,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 	class ParseIdentifierExpressionTests
 	{
 	public:
-		[[Fact]]
+		// [[Fact]]
 		void SingleSimpleIdentifier()
 		{
 			auto sourceCode = std::string("Name");
@@ -20,7 +20,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void SingleQualifiedIdentifier()
 		{
 			auto sourceCode = std::string("NameLeft::NameRight");
@@ -43,7 +43,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void DoubleQualifiedIdentifier()
 		{
 			auto sourceCode = std::string("std::filesystem::path");
@@ -69,7 +69,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void SingleTemplateIdentifier()
 		{
 			auto sourceCode = std::string("Name<Value1, Value2>");
@@ -105,7 +105,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void SingleDestructorIdentifier()
 		{
 			auto sourceCode = std::string("~MyClass");

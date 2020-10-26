@@ -6,7 +6,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 	class InnerTreeNamespaceDefinitionTests
 	{
 	public:
-		[[Fact]]
+		// [[Fact]]
 		void InitializeNoIdentifier()
 		{
 			auto uut = SyntaxFactory::CreateNamespaceDefinition(
@@ -46,7 +46,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify right brace token matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void InitializeWithIdentifier()
 		{
 			auto uut = SyntaxFactory::CreateNamespaceDefinition(
@@ -104,7 +104,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify right brace token matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorEqualNoIdentifier()
 		{
 			auto uut = SyntaxFactory::CreateNamespaceDefinition(
@@ -133,7 +133,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorEqualWithIdentifier()
 		{
 			auto uut = SyntaxFactory::CreateNamespaceDefinition(
@@ -176,7 +176,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualNamespaceToken()
 		{
 			auto uut = SyntaxFactory::CreateNamespaceDefinition(
@@ -224,7 +224,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify do not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualNoIdentifier()
 		{
 			auto uut = SyntaxFactory::CreateNamespaceDefinition(
@@ -260,7 +260,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify do not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualWithIdentifier()
 		{
 			auto uut = SyntaxFactory::CreateNamespaceDefinition(
@@ -303,7 +303,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify do not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualOpenBraceToken()
 		{
 			auto uut = SyntaxFactory::CreateNamespaceDefinition(
@@ -351,7 +351,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify do not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualBody()
 		{
 			auto uut = SyntaxFactory::CreateNamespaceDefinition(
@@ -390,7 +390,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify do not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualCloseBraceToken()
 		{
 			auto uut = SyntaxFactory::CreateNamespaceDefinition(

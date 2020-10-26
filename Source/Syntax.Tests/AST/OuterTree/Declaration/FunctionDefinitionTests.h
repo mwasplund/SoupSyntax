@@ -5,7 +5,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 	class OuterTreeFunctionDefinitionTests
 	{
 	public:
-		[[Fact]]
+		// [[Fact]]
 		void InitializeSimple()
 		{
 			// void Function(int parameter) = delete;
@@ -77,7 +77,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify body matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void GetChildren()
 		{
 			// void Function(int parameter) = delete;
@@ -142,7 +142,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify children match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorEqual()
 		{
 			// void Function(int parameter) = delete;
@@ -202,7 +202,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualAttributeSpecifier()
 		{
 			// void Function(int parameter) = delete;
@@ -270,7 +270,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify does not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualReturnType()
 		{
 			// void Function(int parameter) = delete;
@@ -330,7 +330,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify does not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualIdentifier()
 		{
 			// void Function(int parameter) = delete;
@@ -390,7 +390,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify does not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualParameterList()
 		{
 			// void Function(int parameter) = delete;
@@ -441,7 +441,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify does not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualBody()
 		{
 			// void Function(int parameter) = delete;

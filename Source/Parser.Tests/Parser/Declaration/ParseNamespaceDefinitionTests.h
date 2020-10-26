@@ -6,7 +6,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 	class ParseNamespaceDefinitionTests
 	{
 	public:
-		[[Fact]]
+		// [[Fact]]
 		void SimpleAnonymous()
 		{
 			auto sourceCode = std::string("namespace{}");
@@ -25,7 +25,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify identifier matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void SimpleNamed()
 		{
 			auto sourceCode = std::string("namespace Namespace{}");
@@ -54,7 +54,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify identifier matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void NestedName()
 		{
 			auto sourceCode = std::string("namespace RootNamespace::SubNamespace{}");
@@ -86,7 +86,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify identifier matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void SimpleNamedNamespaceSingleDeclaration()
 		{
 			auto sourceCode = std::string("namespace MyNamespace { ; }");

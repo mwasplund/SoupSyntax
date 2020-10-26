@@ -6,7 +6,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 	class ParseInvocationExpressionTests
 	{
 	public:
-		[[Fact]]
+		// [[Fact]]
 		void SimpleInvocation()
 		{
 			auto sourceCode = std::string("a();");
@@ -26,7 +26,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void ComplexInvocation()
 		{
 			auto sourceCode = std::string("a(b, c);");
@@ -63,7 +63,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void BracedInitializerParameter()
 		{
 			auto sourceCode = std::string("a({1,});");
@@ -98,7 +98,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void EnumValueParameter()
 		{
 			auto sourceCode = std::string("Run(MyEnum::Value);");
@@ -169,7 +169,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void QualifiedTemplateSpecification()
 		{
 			auto sourceCode = std::string("std::istreambuf_iterator<char>(sourceFile);");

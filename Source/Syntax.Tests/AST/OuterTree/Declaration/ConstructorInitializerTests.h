@@ -5,7 +5,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 	class OuterTreeConstructorInitializerTests
 	{
 	public:
-		[[Fact]]
+		// [[Fact]]
 		void InitializeSimple()
 		{
 			// : a()
@@ -45,7 +45,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify initializers list matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void InitializeComplex()
 		{
 			// : a(), b()
@@ -101,7 +101,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify initializers list matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void GetChildrenSimple()
 		{
 			// : a(), b()
@@ -133,7 +133,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify children match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void GetChildrenComplex()
 		{
 			// : a(), b()
@@ -181,7 +181,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify children match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorEqual()
 		{
 			// : a(), b()
@@ -231,7 +231,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualColonToken()
 		{
 			// : a(), b()
@@ -286,7 +286,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify does not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualInitializers()
 		{
 			// : a(), b()

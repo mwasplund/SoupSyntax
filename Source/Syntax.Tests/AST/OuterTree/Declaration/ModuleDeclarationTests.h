@@ -6,7 +6,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 	class OuterTreeModuleDeclarationTests
 	{
 	public:
-		[[Fact]]
+		// [[Fact]]
 		void InitializeNoExport()
 		{
 			auto uut = SyntaxFactory::CreateModuleDeclaration(
@@ -44,7 +44,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify semicolon token matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void InitializeWithExport()
 		{
 			auto uut = SyntaxFactory::CreateModuleDeclaration(
@@ -92,7 +92,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify semicolon token matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void GetChildrenNoExport()
 		{
 			auto uut = SyntaxFactory::CreateModuleDeclaration(
@@ -118,7 +118,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify children match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void GetChildrenWithExport()
 		{
 			auto uut = SyntaxFactory::CreateModuleDeclaration(
@@ -153,7 +153,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify children match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorEqualNoExport()
 		{
 			auto uut = SyntaxFactory::CreateModuleDeclaration(
@@ -180,7 +180,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorEqualWithExport()
 		{
 			auto uut = SyntaxFactory::CreateModuleDeclaration(
@@ -213,7 +213,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualNoExport()
 		{
 			auto uut = SyntaxFactory::CreateModuleDeclaration(
@@ -246,7 +246,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify do not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualWithExport()
 		{
 			auto uut = SyntaxFactory::CreateModuleDeclaration(
@@ -284,7 +284,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify do not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualModule()
 		{
 			auto uut = SyntaxFactory::CreateModuleDeclaration(
@@ -322,7 +322,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify do not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualName()
 		{
 			auto uut = SyntaxFactory::CreateModuleDeclaration(
@@ -352,7 +352,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify do not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualSemicolon()
 		{
 			auto uut = SyntaxFactory::CreateModuleDeclaration(

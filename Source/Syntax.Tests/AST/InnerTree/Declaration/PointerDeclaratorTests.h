@@ -5,7 +5,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 	class InnerTreePointerDeclaratorTests
 	{
 	public:
-		[[Fact]]
+		// [[Fact]]
 		void Initialize()
 		{
 			auto uut = SyntaxFactory::CreatePointerDeclarator(
@@ -30,7 +30,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify declarator matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorEqual()
 		{
 			auto uut = SyntaxFactory::CreatePointerDeclarator(
@@ -49,7 +49,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualPointerOperator()
 		{
 			auto uut = SyntaxFactory::CreatePointerDeclarator(
@@ -68,7 +68,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify do not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualDeclarator()
 		{
 			auto uut = SyntaxFactory::CreatePointerDeclarator(

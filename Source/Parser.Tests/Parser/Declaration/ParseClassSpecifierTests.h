@@ -6,7 +6,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 	class ParseClassSpecifierTests
 	{
 	public:
-		[[Fact]]
+		// [[Fact]]
 		void Simple()
 		{
 			auto sourceCode = std::string("class{}");
@@ -25,7 +25,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify identifier matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void SingleDeclaration()
 		{
 			auto sourceCode = std::string("class MyClass { ; }");
@@ -69,7 +69,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify identifier matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void MultipleDeclarations()
 		{
 			auto sourceCode = std::string("class MyClass { public: ; }");

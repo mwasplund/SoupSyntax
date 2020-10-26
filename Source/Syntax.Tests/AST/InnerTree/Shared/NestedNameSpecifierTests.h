@@ -5,7 +5,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 	class InnerTreeNestedNameSpecifierTests
 	{
 	public:
-		[[Fact]]
+		// [[Fact]]
 		void Initialize()
 		{
 			auto uut = SyntaxFactory::CreateNestedNameSpecifier(
@@ -35,7 +35,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify specifier sequence matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorEqual()
 		{
 			auto uut = SyntaxFactory::CreateNestedNameSpecifier(
@@ -62,7 +62,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualSpecifierSequence()
 		{
 			auto uut = SyntaxFactory::CreateNestedNameSpecifier(

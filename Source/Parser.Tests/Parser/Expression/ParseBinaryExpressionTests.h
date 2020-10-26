@@ -8,7 +8,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 	public:
 		// Arithmetic
 
-		[[Fact]]
+		// [[Fact]]
 		void IdentifierAddition()
 		{
 			auto sourceCode = std::string("a+b");
@@ -27,7 +27,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void IdentifierSubtraction()
 		{
 			auto sourceCode = std::string("a-b");
@@ -46,7 +46,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void IdentifierMultiplication()
 		{
 			auto sourceCode = std::string("a*b");
@@ -65,7 +65,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void IdentifierDivision()
 		{
 			auto sourceCode = std::string("a/b");
@@ -84,7 +84,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void IdentifierModulo()
 		{
 			auto sourceCode = std::string("a%b");
@@ -103,7 +103,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void IdentifierBitwiseAnd()
 		{
 			auto sourceCode = std::string("a&b");
@@ -122,7 +122,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void IdentifierBitwiseOr()
 		{
 			auto sourceCode = std::string("a|b");
@@ -141,7 +141,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void IdentifierBitwiseExclusiveOr()
 		{
 			auto sourceCode = std::string("a^b");
@@ -160,7 +160,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void IdentifierBitwiseLeftShift()
 		{
 			auto sourceCode = std::string("a<<b");
@@ -179,7 +179,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void IdentifierBitwiseRightShift()
 		{
 			auto sourceCode = std::string("a>>b");
@@ -200,7 +200,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 
 		// Assignment
 
-		[[Fact]]
+		// [[Fact]]
 		void IdentifierSimpleAssignment()
 		{
 			auto sourceCode = std::string("a=b");
@@ -219,7 +219,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void IdentifierAdditionAssignment()
 		{
 			auto sourceCode = std::string("a+=b");
@@ -238,7 +238,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void IdentifierSubtractionAssignment()
 		{
 			auto sourceCode = std::string("a-=b");
@@ -257,7 +257,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void IdentifierMultiplicationAssignment()
 		{
 			auto sourceCode = std::string("a*=b");
@@ -276,7 +276,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void IdentifierDivisionAssignment()
 		{
 			auto sourceCode = std::string("a/=b");
@@ -295,7 +295,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void IdentifierModuloAssignment()
 		{
 			auto sourceCode = std::string("a%=b");
@@ -314,7 +314,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void IdentifierBitwiseExclusiveOrAssignment()
 		{
 			auto sourceCode = std::string("a^=b");
@@ -333,7 +333,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
  
-		[[Fact]]
+		// [[Fact]]
 		void IdentifierBitwiseAndAssignment()
 		{
 			auto sourceCode = std::string("a&=b");
@@ -352,7 +352,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void IdentifierBitwiseOrAssignment()
 		{
 			auto sourceCode = std::string("a|=b");
@@ -371,7 +371,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void IdentifierBitwiseLeftShiftAssignment()
 		{
 			auto sourceCode = std::string("a<<=b");
@@ -390,7 +390,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void IdentifierBitwiseRightShiftAssignment()
 		{
 			auto sourceCode = std::string("a>>=b");
@@ -411,7 +411,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 
 		// Comparision
 
-		[[Fact]]
+		// [[Fact]]
 		void IdentifierEquals()
 		{
 			auto sourceCode = std::string("a==b");
@@ -430,7 +430,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void IdentifierNotEquals()
 		{
 			auto sourceCode = std::string("a!=b");
@@ -449,7 +449,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void IdentifierLessThan()
 		{
 			auto sourceCode = std::string("a<b");
@@ -468,7 +468,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void IdentifierGreaterThan()
 		{
 			auto sourceCode = std::string("a>b");
@@ -487,7 +487,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void IdentifierLessThanOrEqual()
 		{
 			auto sourceCode = std::string("a<=b");
@@ -506,7 +506,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void IdentifierGreaterThanOrEqual()
 		{
 			auto sourceCode = std::string("a>=b");
@@ -546,7 +546,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 
 		// Logical
 
-		[[Fact]]
+		// [[Fact]]
 		void IdentifierLogicalAnd()
 		{
 			auto sourceCode = std::string("a&&b");
@@ -565,7 +565,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void IdentifierLogicalOr()
 		{
 			auto sourceCode = std::string("a||b");
@@ -587,7 +587,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 		// Member Access
 		// Subscript has unique tests
 
-		[[Fact]]
+		// [[Fact]]
 		void IdentifierMemberOfObject()
 		{
 			auto sourceCode = std::string("a.b");
@@ -606,7 +606,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void IdentifierMemberOfPointer()
 		{
 			auto sourceCode = std::string("a->b");
@@ -625,7 +625,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void IdentifierPointerToMemberOfObject()
 		{
 			auto sourceCode = std::string("a.*b");
@@ -644,7 +644,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void IdentifierPointerToMemberOfPointer()
 		{
 			auto sourceCode = std::string("a->*b");

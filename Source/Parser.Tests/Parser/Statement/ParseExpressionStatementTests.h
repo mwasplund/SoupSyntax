@@ -6,7 +6,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 	class ParseExpressionStatementTests
 	{
 	public:
-		[[Fact]]
+		// [[Fact]]
 		void SimpleIdentifier()
 		{
 			auto sourceCode = std::string("a;");

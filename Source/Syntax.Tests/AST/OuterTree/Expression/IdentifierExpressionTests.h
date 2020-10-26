@@ -5,7 +5,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 	class OuterTreeIdentifierExpressionTests
 	{
 	public:
-		[[Fact]]
+		// [[Fact]]
 		void InitializeUnqualified()
 		{
 			auto uut = SyntaxFactory::CreateIdentifierExpression(
@@ -26,7 +26,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify unqualified identifier matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void InitializeGlobalQualified()
 		{
 			auto uut = SyntaxFactory::CreateIdentifierExpression(
@@ -60,7 +60,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify unqualified identifier matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void InitializeSingleQualifiedIdentifier()
 		{
 			auto uut = SyntaxFactory::CreateIdentifierExpression(
@@ -100,7 +100,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify unqualified identifier matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void GetChildrenUnqualified()
 		{
 			auto uut = SyntaxFactory::CreateIdentifierExpression(
@@ -118,7 +118,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify children match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void GetChildrenGlobalQualified()
 		{
 			auto uut = SyntaxFactory::CreateIdentifierExpression(
@@ -149,7 +149,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify children match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void GetChildrenSingleQualifiedIdentifier()
 		{
 			auto uut = SyntaxFactory::CreateIdentifierExpression(
@@ -186,7 +186,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify children match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorEqualUnqualified()
 		{
 			auto uut = SyntaxFactory::CreateIdentifierExpression(
@@ -201,7 +201,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorEqualQualified()
 		{
 			auto uut = SyntaxFactory::CreateIdentifierExpression(
@@ -234,7 +234,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualNoQualifier()
 		{
 			auto uut = SyntaxFactory::CreateIdentifierExpression(
@@ -258,7 +258,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify do not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualQualifier()
 		{
 			auto uut = SyntaxFactory::CreateIdentifierExpression(
@@ -291,7 +291,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify do not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualUnqualifiedIdentifier()
 		{
 			auto uut = SyntaxFactory::CreateIdentifierExpression(

@@ -6,7 +6,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 	class OuterTreeAttributeTests
 	{
 	public:
-		[[Fact]]
+		// [[Fact]]
 		void InitializeSimple()
 		{
 			auto uut = SyntaxFactory::CreateAttribute(
@@ -26,7 +26,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify has no argument clause.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void InitializeComplex()
 		{
 			auto uut = SyntaxFactory::CreateAttribute(
@@ -56,7 +56,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify identifier matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void GetChildrenSimple()
 		{
 			auto uut = SyntaxFactory::CreateAttribute(
@@ -71,7 +71,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify children match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void GetChildrenComplex()
 		{
 			auto uut = SyntaxFactory::CreateAttribute(
@@ -93,7 +93,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify children match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorEqualSimple()
 		{
 			auto uut = SyntaxFactory::CreateAttribute(
@@ -108,7 +108,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorEqualComplex()
 		{
 			auto uut = SyntaxFactory::CreateAttribute(
@@ -129,7 +129,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualIdentifier()
 		{
 			auto uut = SyntaxFactory::CreateAttribute(
@@ -144,7 +144,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify do not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualArgumentClause()
 		{
 			auto uut = SyntaxFactory::CreateAttribute(
@@ -167,7 +167,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualNoArgumentClause()
 		{
 			auto uut = SyntaxFactory::CreateAttribute(

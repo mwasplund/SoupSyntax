@@ -6,7 +6,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 	class ParseLambdaExpressionTests
 	{
 	public:
-		[[Fact]]
+		// [[Fact]]
 		void Simple()
 		{
 			auto sourceCode = std::string("[]{}");
@@ -25,7 +25,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void EmptyParameterList()
 		{
 			auto sourceCode = std::string("[](){}");
@@ -47,7 +47,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void SingleCaptureReference()
 		{
 			auto sourceCode = std::string("[&value](){}");
@@ -76,7 +76,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 			TestUtils::AreEqual(expected, actual, "Verify matches expected.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void SingleParameterAndReturnStatement()
 		{
 			auto sourceCode = std::string("[](int i){ return i; }");

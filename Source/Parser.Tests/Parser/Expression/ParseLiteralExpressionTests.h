@@ -6,9 +6,9 @@ namespace Soup::Syntax::InnerTree::UnitTests
 	class ParseLiteralExpressionTests
 	{
 	public:
-		[[Theory]]
-		[[InlineData("0")]]
-		[[InlineData("1")]]
+		// [[Theory]]
+		// [[InlineData("0")]]
+		// [[InlineData("1")]]
 		void SingleIntegerLiteralType(std::string sourceCode)
 		{
 			auto expression = ParseLiteralExpression(sourceCode);
@@ -21,8 +21,8 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify value matches entire source.");
 		}
 
-		[[Theory]]
-		[[InlineData("0.0f")]]
+		// [[Theory]]
+		// [[InlineData("0.0f")]]
 		void SingleFloatingLiteralType(std::string sourceCode)
 		{
 			auto expression = ParseLiteralExpression(sourceCode);
@@ -35,8 +35,8 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify value matches entire source.");
 		}
 
-		[[Theory]]
-		[[InlineData("'1'")]]
+		// [[Theory]]
+		// [[InlineData("'1'")]]
 		void SingleCharacterLiteralType(std::string sourceCode)
 		{
 			auto expression = ParseLiteralExpression(sourceCode);
@@ -49,8 +49,8 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify value matches entire source.");
 		}
 
-		[[Theory]]
-		[[InlineData("nullptr")]]
+		// [[Theory]]
+		// [[InlineData("nullptr")]]
 		void SinglePointerLiteralType(std::string sourceCode)
 		{
 			auto expression = ParseLiteralExpression(sourceCode);
@@ -63,8 +63,8 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify value matches entire source.");
 		}
 
-		[[Theory]]
-		[[InlineData("\" \"")]]
+		// [[Theory]]
+		// [[InlineData("\" \"")]]
 		void SingleStringLiteralType(std::string sourceCode)
 		{
 			auto expression = ParseLiteralExpression(sourceCode);
@@ -78,9 +78,9 @@ namespace Soup::Syntax::InnerTree::UnitTests
 		}
 
 		// TODO: Remove namespaces when inline data theories have correct scope
-		[[Theory]]
-		[[InlineData("true", Soup::Syntax::SyntaxTokenType::True)]]
-		[[InlineData("false", Soup::Syntax::SyntaxTokenType::False)]]
+		// [[Theory]]
+		// [[InlineData("true", Soup::Syntax::SyntaxTokenType::True)]]
+		// [[InlineData("false", Soup::Syntax::SyntaxTokenType::False)]]
 		void SingleBooleanLiteralType(std::string sourceCode, SyntaxTokenType type)
 		{
 			auto expression = ParseLiteralExpression(sourceCode);
@@ -93,8 +93,8 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify value matches entire source.");
 		}
 
-		[[Theory]]
-		[[InlineData("2h")]]
+		// [[Theory]]
+		// [[InlineData("2h")]]
 		void SingleUserDefinedLiteralType(std::string sourceCode)
 		{
 			auto expression = ParseLiteralExpression(sourceCode);

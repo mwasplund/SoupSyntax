@@ -5,7 +5,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 	class InnerTreeSyntaxTokenTests
 	{
 	public:
-		[[Fact]]
+		// [[Fact]]
 		void InitializeSimple()
 		{
 			auto uut = SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Nullptr);
@@ -27,7 +27,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify matches.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualType()
 		{
 			auto uut = SyntaxFactory::CreateKeywordToken(SyntaxTokenType::Nullptr);
@@ -38,7 +38,7 @@ namespace Soup::Syntax::InnerTree::UnitTests
 				"Verify do not match.");
 		}
 
-		[[Fact]]
+		// [[Fact]]
 		void OperatorNotEqualValue()
 		{
 			auto uut = SyntaxFactory::CreateUniqueToken(
